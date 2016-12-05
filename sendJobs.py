@@ -66,10 +66,6 @@ if __name__=="__main__":
     parser.add_option ('-p', '--process',  help='process, example B_4p',
                        dest='process',
                        default='')
-    
-    parser.add_option ('-b', '--binning',  help='ht binning, example: B-4p-0-1_100TEV',
-                       dest='binning',
-                       default='')
 
     parser.add_option ('-q', '--queue',  help='lxbatch queue, default 8nh',
                        dest='queue',
@@ -86,7 +82,6 @@ if __name__=="__main__":
     events   = int(options.events)
     mode     = options.mode
     process  = options.process
-    binning  = options.binning
     queue    = options.queue
     rundir = os.getcwd()
     nbjobsSub=0
@@ -136,7 +131,7 @@ if __name__=="__main__":
                 batchid=-1
                 job,batchid=SubmitToBatch(cmdBatch,10)
                 nbjobsSub+=job
-                mydict.addjob(sample=pr,jobid=i,queue='8nh',nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/events%i.lhe.gz'%(para.outdir,pr,i),batchid=batchid,script='%s/%s'%(logdir,frunname))
+                mydict.addjob(sample=pr,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/events%i.lhe.gz'%(para.outdir,pr,i),batchid=batchid,script='%s/%s'%(logdir,frunname))
 
             elif mode=='local':
                 os.system('./tmp/%s'%frunname)
