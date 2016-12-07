@@ -1,4 +1,5 @@
-#python sendJobs_FCCSW.py -n 10 -p pp_w012j_5f -q 8nh -e -1 -i $FCCUSERPATH/Generation/data/Pythia_LHEinput.cmd
+#python sendJobs_FCCSW.py -n 10 -p pp_w012j_5f -q 8nh -e -1 -i $FCCUSERPATH/Generation/data/Pythia_LHEinput_Matching.cmd
+
 
 import glob, os, sys,subprocess,cPickle
 import commands
@@ -140,7 +141,7 @@ if __name__=="__main__":
             frun.write('mkdir job%i_%s\n'%(i,pr))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
-            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select mkdir %s%s/n'%(para.outdir_delphes,pr))
+            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select mkdir %s%s/n'%(param.outdir_delphes,pr))
             frun.write('cd job%i_%s\n'%(i,pr))
             frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp %s .\n'%(LHEfile))
             frun.write('gunzip -c %s > events.lhe\n'%LHEfile.split('/')[-1])
