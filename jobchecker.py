@@ -1,5 +1,8 @@
 import json
 import subprocess
+import sys
+
+
 
 
 mydict=None
@@ -21,17 +24,13 @@ for s in mydict:
                 j['status']='done'
         else:
             cmd='bjobs %s'%(j['batchid'])
+            print 'cmd: ',cmd
             p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
-            p.wait()
-            jobstatus=(p.stderr.readline()).rstrip()
-            myjobstatus=str('Job <%s> is not found'%(j['batchid']))
-            
-            print jobstatus
-            print myjobstatus
-            print jobstatus == myjobstatus
-            print '---------------------------'
+            stdout,stderr = p.communicate()
+            stdoutplit=stdout.split(' ')
+            stderrplit=stderr.split(' ')
 
-            if jobstatus == myjobstatus:
+            if "EXIT" in stdoutplit or "DONE" in stdoutplit or ("is" in stderrplit and "not"  in stderrplit and "<%s>"%(j['batchid'])  in stderrplit):
                 print 'job failed'
                 j['status']='failed'
             else:
