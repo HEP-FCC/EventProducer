@@ -9,7 +9,7 @@ import param
 import paramsig
 import dicwriter as dicr
 
-mydict=dicr.dicwriter('LHEdict.json')
+mydict=dicr.dicwriter('/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json')
 
 #__________________________________________________________
 def getCommandOutput(command):
@@ -105,7 +105,7 @@ if __name__=="__main__":
             else:
                 print 'job does not exists: ',i
 
-            logdir="/afs/cern.ch/work/h/helsens/public/FCCGenJobs/%s"%(pr)
+            logdir=Dir+"BatchOutputs/%s"%(pr)
             os.system("mkdir -p %s"%logdir+'/job%s/'%str(i))
             frunname = 'job%i.sh'%(i)
             frun = open(logdir+'/job%s/'%str(i)+frunname, 'w')
@@ -129,8 +129,8 @@ if __name__=="__main__":
                 #print cmdBatch
                 
                 batchid=-1
-                job,batchid=SubmitToBatch(cmdBatch,10)
-                nbjobsSub+=job
+                #job,batchid=SubmitToBatch(cmdBatch,10)
+                #nbjobsSub+=job
                 mydict.addjob(sample=pr,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/events%i.lhe.gz'%(para.outdir,pr,i),batchid=batchid,script='%s/%s'%(logdir,frunname))
 
             elif mode=='local':

@@ -3,7 +3,7 @@ import subprocess
 
 
 mydict=None
-with open('LHEdict.json') as f:
+with open('/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json') as f:
     mydict = json.load(f)
 for s in mydict:
     evttot=0
@@ -41,5 +41,5 @@ for s in mydict:
 
     print s,'  \t',njobs,'\t  ',evttot
     
-with open('LHEdict.json', 'w') as f:
+with open('/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json', 'w') as f:
     json.dump(mydict, f)

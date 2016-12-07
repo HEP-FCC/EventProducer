@@ -4,7 +4,7 @@ import os
 
 mydict=None
 mynewdict={}
-with open('LHEdict.json') as f:
+with open('/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json') as f:
     mydict = json.load(f)
 for s in mydict:
     mynewdict[s]=[]
