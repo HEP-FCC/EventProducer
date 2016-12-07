@@ -140,6 +140,7 @@ if __name__=="__main__":
             frun.write('mkdir job%i_%s\n'%(i,pr))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
+            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select mkdir %s%s/n'%(para.outdir_delphes,pr))
             frun.write('cd job%i_%s\n'%(i,pr))
             frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp %s .\n'%(LHEfile))
             frun.write('gunzip -c %s > events.lhe\n'%LHEfile.split('/')[-1])
@@ -151,7 +152,7 @@ if __name__=="__main__":
             frun.write('cp %sSim/SimDelphesInterface/data/muonMomentumResolutionVsP.tcl .\n'%(FCCSW))
             frun.write('cp %sSim/SimDelphesInterface/data/momentumResolutionVsP.tcl .\n'%(FCCSW))
             frun.write('%s/run fccrun.py PythiaDelphes_config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%i.root --nevents=%i\n'%(FCCSW,i,events))
-            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp events%i.root %s/%s/events%i.root\n'%(i,param.outdir_delphes,pr,i))
+            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp events%i.root %s%s/events%i.root\n'%(i,param.outdir_delphes,pr,i))
             frun.write('cd ..\n')
             frun.write('rm -rf job%i_%s\n'%(i,pr))
             print pr
