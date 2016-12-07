@@ -1,5 +1,4 @@
-##python sendJobs.py -n 10 -e 20000  -s
-##python sendJobs.py -n 10 -e 20000  -s -p "Higgs/SM_HH" -b SM-HH-13TEV
+##python sendJobs.py -n 10 -e 20000  -p "pp_w012j_5f"
 
 import glob, os, sys,subprocess,cPickle
 import commands
@@ -71,13 +70,7 @@ if __name__=="__main__":
                        dest='queue',
                        default='8nh')
 
-    parser.add_option('-s', '--signal',
-                      action='store_true', dest='issignal', default=False,
-                      help='this sample is signal')
-
-
     (options, args) = parser.parse_args()
-    issignal = options.issignal
     njobs    = int(options.njobs)
     events   = int(options.events)
     mode     = options.mode
@@ -86,10 +79,8 @@ if __name__=="__main__":
     rundir = os.getcwd()
     nbjobsSub=0
      
-    if issignal:
-        import paramsig as para
-    else:
-        import param as para
+
+    import param as para
 
     for pr in para.gridpacklist:
         if process!='' and process !=pr:continue
@@ -129,8 +120,8 @@ if __name__=="__main__":
                 #print cmdBatch
                 
                 batchid=-1
-                #job,batchid=SubmitToBatch(cmdBatch,10)
-                #nbjobsSub+=job
+                job,batchid=SubmitToBatch(cmdBatch,10)
+                nbjobsSub+=job
                 mydict.addjob(sample=pr,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/events%i.lhe.gz'%(para.outdir,pr,i),batchid=batchid,script='%s/%s'%(logdir,frunname))
 
             elif mode=='local':
