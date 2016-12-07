@@ -10,13 +10,12 @@ import dicwriter_FCC as dicr
 #python sendJobs_FCCSW.py -n 1 -p BBB_4p
 
 
-FCCSW='/afs/cern.ch/user/h/helsens/FCCsoft/FCCSOFT/newEDM2/FCCSW/'
-
-indictname='LHEdict.json'
+FCCSW=os.environ["FCCUSERPATH"]
+indictname='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json'
 indict=None
 with open(indictname) as f:
     indict = json.load(f)
-outdict=dicr.dicwriter('PyhtiaDelphesdict_%s.json'%param.version)
+outdict=dicr.dicwriter('/afs/cern.ch/work/h/helsens/public/FCCDicts/PyhtiaDelphesdict_%s.json'%param.version)
 
 #__________________________________________________________
 def getCommandOutput(command):
@@ -116,7 +115,7 @@ if __name__=="__main__":
                 if i>len(indict[pr]): break
                 continue
 
-            logdir="/afs/cern.ch/work/h/helsens/public/DelphesEventsJobs/%s/%s/"%(param.version,pr)
+            logdir=Dir+"BatchOutputs/%s/%s/"%(param.version,pr)
             os.system("mkdir -p %s"%logdir)
             frunname = 'job%i.sh'%(i)
             frun = open(logdir+'/'+frunname, 'w')
@@ -135,11 +134,9 @@ if __name__=="__main__":
             frun.write('cp %sSim/SimDelphesInterface/options/PythiaDelphes_config.py .\n'%(FCCSW))
             frun.write('cp %sGeneration/data/Pythia_LHEinput_batch.cmd card.cmd\n'%(FCCSW))
             frun.write('cp %sSim/SimDelphesInterface/data/FCChh_DelphesCard_Baseline_v01.tcl card.tcl\n'%(FCCSW))
-            frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/FCCSOFT/newEDM2/FCCSW/Sim/SimDelphesInterface/data/muonMomentumResolutionVsP.tcl .\n')
-            frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/FCCSOFT/newEDM2/FCCSW/Sim/SimDelphesInterface/data/momentumResolutionVsP.tcl .\n')
-
+            frun.write('cp %sSim/SimDelphesInterface/data/muonMomentumResolutionVsP.tcl .\n'%(FCCSW))
+            frun.write('cp %sSim/SimDelphesInterface/data/momentumResolutionVsP.tcl .\n'%(FCCSW))
             frun.write('%s/run fccrun.py PythiaDelphes_config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%i.root --nevents=-1\n'%(FCCSW,i))
-
             frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp events%i.root %s/%s/events%i.root\n'%(i,param.outdir_delphes,pr,i))
             frun.write('cd ..\n')
             frun.write('rm -rf job%i_%s\n'%(i,pr))

@@ -15,5 +15,5 @@ for s in mydict:
             os.system('rm -rf %s'%(mydict[s][j]['log']))
         else: mynewdict[s].append(mydict[s][j])
         
-with open('LHEdict.json', 'w') as f:
+with open('/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json', 'w') as f:
     json.dump(mynewdict, f)
