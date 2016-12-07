@@ -1,3 +1,5 @@
+#python sendJobs_FCCSW.py -n 10 -p pp_w012j_5f -q 8nh -e -1 -i $FCCUSERPATH/Generation/data/Pythia_LHEinput.cmd
+
 import glob, os, sys,subprocess,cPickle
 import commands
 import time
@@ -77,12 +79,22 @@ if __name__=="__main__":
                        dest='queue',
                        default='8nh')
 
+    parser.add_option('-t','--test',
+                      action='store_true', dest='test', default=False,
+                      help='don\'t send to batch nor write to the dictonary')
+
+    parser.add_option ('-i', '--inputfile',  help='pythia 8 configuration file, example $FCCUSERPATH/Generation/data/Pythia_LHEinput.cmd',
+                       dest='inputfile',
+                       default='')
+
     (options, args) = parser.parse_args()
     njobs    = int(options.njobs)
     events   = int(options.events)
     mode     = options.mode
     process  = options.process
     queue    = options.queue
+    test     = options.test
+    pythiacard = options.inputfile
     rundir = os.getcwd()
     nbjobsSub=0
 
@@ -132,11 +144,13 @@ if __name__=="__main__":
             frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp %s .\n'%(LHEfile))
             frun.write('gunzip -c %s > events.lhe\n'%LHEfile.split('/')[-1])
             frun.write('cp %sSim/SimDelphesInterface/options/PythiaDelphes_config.py .\n'%(FCCSW))
-            frun.write('cp %sGeneration/data/Pythia_LHEinput_batch.cmd card.cmd\n'%(FCCSW))
+#            frun.write('cp %sGeneration/data/Pythia_LHEinput_batch.cmd card.cmd\n'%(FCCSW))
+            frun.write('cp %s card.cmd\n'%(pythiacard))
+            frun.write('echo "Beams:LHEF = events.lhe" >> card.cmd\n')
             frun.write('cp %sSim/SimDelphesInterface/data/FCChh_DelphesCard_Baseline_v01.tcl card.tcl\n'%(FCCSW))
             frun.write('cp %sSim/SimDelphesInterface/data/muonMomentumResolutionVsP.tcl .\n'%(FCCSW))
             frun.write('cp %sSim/SimDelphesInterface/data/momentumResolutionVsP.tcl .\n'%(FCCSW))
-            frun.write('%s/run fccrun.py PythiaDelphes_config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%i.root --nevents=-1\n'%(FCCSW,i))
+            frun.write('%s/run fccrun.py PythiaDelphes_config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%i.root --nevents=%i\n'%(FCCSW,i,events))
             frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp events%i.root %s/%s/events%i.root\n'%(i,param.outdir_delphes,pr,i))
             frun.write('cd ..\n')
             frun.write('rm -rf job%i_%s\n'%(i,pr))
@@ -145,9 +159,10 @@ if __name__=="__main__":
             if mode=='batch':
                 cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -cwd%s %s" %(queue, logdir,logdir+'/'+frunname)
                 batchid=-1
-                job,batchid=SubmitToBatch(cmdBatch,10)
-                nbjobsSub+=job
-                outdict.addjob(sample=pr,jobid=i,queue=queue,nevents=-1,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/events%i.root'%(param.outdir_delphes,pr,i),batchid=batchid,script='%s/%s'%(logdir,frunname),inputlhe=LHEfile,plots='none')
+                if test==False:
+                    job,batchid=SubmitToBatch(cmdBatch,10)
+                    nbjobsSub+=job
+                    outdict.addjob(sample=pr,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/events%i.root'%(param.outdir_delphes,pr,i),batchid=batchid,script='%s/%s'%(logdir,frunname),inputlhe=LHEfile,plots='none')
             elif mode=='local':
                 os.system('./tmp/%s'%frunname)
 

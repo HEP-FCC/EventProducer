@@ -70,12 +70,17 @@ if __name__=="__main__":
                        dest='queue',
                        default='8nh')
 
+    parser.add_option("-t","--test",
+                      action="store_true", dest="test", default=False,
+                      help="don't send to batch nor write the the dictonary")
+
     (options, args) = parser.parse_args()
     njobs    = int(options.njobs)
     events   = int(options.events)
     mode     = options.mode
     process  = options.process
     queue    = options.queue
+    test     = options.test
     rundir = os.getcwd()
     nbjobsSub=0
      
@@ -120,9 +125,10 @@ if __name__=="__main__":
                 #print cmdBatch
                 
                 batchid=-1
-                job,batchid=SubmitToBatch(cmdBatch,10)
-                nbjobsSub+=job
-                mydict.addjob(sample=pr,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/events%i.lhe.gz'%(para.outdir,pr,i),batchid=batchid,script='%s/%s'%(logdir,frunname))
+                if test==False:
+                    job,batchid=SubmitToBatch(cmdBatch,10)
+                    nbjobsSub+=job
+                    mydict.addjob(sample=pr,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/events%i.lhe.gz'%(para.outdir,pr,i),batchid=batchid,script='%s/%s'%(logdir,frunname))
 
             elif mode=='local':
                 os.system('./tmp/%s'%frunname)
