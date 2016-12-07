@@ -25,7 +25,7 @@ python sendJobs.py -n 1 -e 200 -q 1nh -p pp_hh_bbaa
 First you need to export your FCCSW path (this is where you installed FCCSW):
 
 ```
-export FCCUSERPATH=$FCCPATH
+export FCCUSERPATH=<UserFccPath>
 ```
 
 Run jobs:
