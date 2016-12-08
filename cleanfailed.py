@@ -1,10 +1,21 @@
+#python cleanfailed.py /afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json
 import json
 import os
+import os.path
+import sys
 
+if len(sys.argv)!=2:
+    print 'usage: python cleanfailed.py indict.json'
+    exit(3)
+
+indict=sys.argv[1]
+if os.path.isfile(indict)==False:
+    print 'dictonary does not exists '
+    exit(3)
 
 mydict=None
 mynewdict={}
-with open('/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json') as f:
+with open(indict) as f:
     mydict = json.load(f)
 for s in mydict:
     mynewdict[s]=[]
@@ -15,5 +26,5 @@ for s in mydict:
             os.system('rm -rf %s'%(mydict[s][j]['log']))
         else: mynewdict[s].append(mydict[s][j])
         
-with open('/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json', 'w') as f:
+with open(indict, 'w') as f:
     json.dump(mynewdict, f)

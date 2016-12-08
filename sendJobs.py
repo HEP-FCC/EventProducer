@@ -1,4 +1,5 @@
 ##python sendJobs.py -n 10 -e 20000  -p "pp_w012j_5f"
+##python sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa"
 
 import glob, os, sys,subprocess,cPickle
 import commands
