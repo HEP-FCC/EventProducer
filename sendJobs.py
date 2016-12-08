@@ -101,7 +101,9 @@ if __name__=="__main__":
             else:
                 print 'job does not exists: ',i
 
-            logdir=Dir+"BatchOutputs/%s"%(pr)
+            logdir=Dir+"/BatchOutputs/%s"%(pr)
+            print 'logdir  ',logdir
+
             os.system("mkdir -p %s"%logdir+'/job%s/'%str(i))
             frunname = 'job%i.sh'%(i)
             frun = open(logdir+'/job%s/'%str(i)+frunname, 'w')
@@ -110,7 +112,7 @@ if __name__=="__main__":
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
             frun.write('source /afs/cern.ch/exp/fcc/sw/0.8pre/setup.sh\n')
-            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select mkdir %s%s/n'%(para.outdir,pr))
+            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select mkdir %s%s\n'%(para.outdir,pr))
             frun.write('cd job%i_%s\n'%(i,pr))
             frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp %s/%s.tar.gz .\n'%(para.indir,pr))
             frun.write('tar -zxf %s.tar.gz\n'%pr)
