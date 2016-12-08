@@ -128,7 +128,7 @@ if __name__=="__main__":
                 if i>len(indict[pr]): break
                 continue
 
-            logdir=Dir+"BatchOutputs/%s/%s/"%(param.version,pr)
+            logdir=Dir+"/BatchOutputs/%s/%s/"%(param.version,pr)
             os.system("mkdir -p %s"%logdir)
             frunname = 'job%i.sh'%(i)
             frun = open(logdir+'/'+frunname, 'w')
@@ -141,7 +141,7 @@ if __name__=="__main__":
             frun.write('mkdir job%i_%s\n'%(i,pr))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
-            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select mkdir %s%s/n'%(param.outdir_delphes,pr))
+            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select mkdir %s%s\n'%(param.outdir_delphes,pr))
             frun.write('cd job%i_%s\n'%(i,pr))
             frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp %s .\n'%(LHEfile))
             frun.write('gunzip -c %s > events.lhe\n'%LHEfile.split('/')[-1])

@@ -10,6 +10,7 @@ gridpacklist = [
 'pp_w012j_5f',
 'pp_z012j_5f',
 'pp_jj012j_5f',
-'pp_hh_bbaa'
+'pp_hh_bbaa',
+'pp_jjaa01j_5f'
 ]
 
