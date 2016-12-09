@@ -1,4 +1,6 @@
+#export FCCUSERPATH=/afs/cern.ch/user/h/helsens/FCCsoft/FCCSOFT/newEDM2/FCCSW/
 #python sendJobs_FCCSW.py -n 10 -p pp_w012j_5f -q 8nh -e -1 -i $FCCUSERPATH/Generation/data/Pythia_LHEinput_Matching.cmd
+#python sendJobs_FCCSW.py -n 100 -p pp_hh_bbaa -q 8nh -e -1 -i $FCCUSERPATH/Generation/data/Pythia_LHEinput.cmd
 
 
 import glob, os, sys,subprocess,cPickle
