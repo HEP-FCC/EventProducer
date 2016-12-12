@@ -4,6 +4,9 @@ import subprocess
 import sys
 import os.path
 import ROOT as r
+
+force=True
+
 if len(sys.argv)!=2:
     print 'usage: python jobchecker.py indict.json'
     exit(3)
@@ -17,12 +20,25 @@ if os.path.isfile(indict)==False:
 mydict=None
 with open(indict) as f:
     mydict = json.load(f)
+firstprocess=True
 for s in mydict:
     evttot=0
     njobs=0
+
     for j in mydict[s]:
-        if j['status']=='done' and '.root' not in j['out']:continue
-        if j['status']=='done' and '.root' in j['out'] and j['nevents']>0:continue
+
+        if force==False:
+
+            if j['status']== 'done' and '.root' not in j['out']:
+                njobs+=1
+                evttot+=j['nevents']
+                continue
+            if j['status']=='done' and '.root' in j['out'] and j['nevents']>0:
+                njobs+=1
+                evttot+=j['nevents']
+                continue
+
+
 
         cmd='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select ls %s'%(j['out'])
         p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
@@ -60,8 +76,15 @@ for s in mydict:
                 print '----->> job running or pending'
                 j['status']='running'
         
+    lstring=20
+    sprint=s
+    for i in xrange(lstring-len(s)):
+        sprint+=" "
 
-    print s,'  \t',njobs,'\t  ',evttot
-    
+    if firstprocess:
+        print 'process            \t\tnjobs  \t\t   nevents'
+
+    print sprint,'  \t\t',njobs,'\t\t  ',evttot
+    firstprocess=False
 with open(indict, 'w') as f:
     json.dump(mydict, f)
