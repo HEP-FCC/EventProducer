@@ -5,12 +5,12 @@ version='v0_0'
 outdir_delphes='/eos/fcc/hh/generation/DelphesEvents/%s/'%version
 
 
-gridpacklist = [
-'pp_tt012j_5f',
-'pp_w012j_5f',
-'pp_z012j_5f',
-'pp_jj012j_5f',
-'pp_hh_bbaa',
-'pp_jjaa01j_5f'
-]
+gridpacklist = {
+'pp_tt012j_5f':'ttbar + 0,1,2 jets 5 flavor scheme',
+'pp_w012j_5f':'w + 0,1,2 jets 5 flavor scheme',
+'pp_z012j_5f':'z + 0,1,2 jets 5 flavor scheme',
+'pp_jj012j_5f':'dijet + 0,1,2 jets 5 flavor scheme',
+'pp_hh_bbaa':'gluon gluon fusion di-higgs to bbbar gammagamma',
+'pp_jjaa01j_5f':'dijet diphoton + 0,1,2 jets 5 flavor scheme'
+}
 
