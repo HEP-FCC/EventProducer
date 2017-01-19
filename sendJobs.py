@@ -1,5 +1,6 @@
 ##python sendJobs.py -n 10 -e 20000  -p "pp_w012j_5f"
 ##python sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa"
+##python sendJobs.py -n 10 -e 10000  -p "pp_jjaa01j_5f" -q "1nd"
 
 import glob, os, sys,subprocess,cPickle
 import commands
@@ -117,6 +118,7 @@ if __name__=="__main__":
             frun.write('cd job%i_%s\n'%(i,pr))
             frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp %s/%s.tar.gz .\n'%(para.indir,pr))
             frun.write('tar -zxf %s.tar.gz\n'%pr)
+            frun.write('cd process/\n')
             frun.write('./run.sh %i %i\n'%(events,i+1))
             frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp events.lhe.gz %s/%s/events%i.lhe.gz\n'%(para.outdir,pr,i))
             frun.write('cd ..\n')
