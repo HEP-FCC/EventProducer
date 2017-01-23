@@ -28,6 +28,13 @@ First you need to export your FCCSW path (this is where you installed FCCSW):
 export FCCUSERPATH=<UserFccPath>
 ```
 
+Check dictionary:
+
+```
+python jobchecker.py /afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json
+python cleanfailed.py /afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json
+```
+
 Run jobs:
 
 ```
