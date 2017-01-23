@@ -20,7 +20,7 @@ indictname='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json'
 indict=None
 with open(indictname) as f:
     indict = json.load(f)
-outdict=dicr.dicwriter('/afs/cern.ch/work/h/helsens/public/FCCDicts/PyhtiaDelphesdict_%s.json'%param.version)
+outdict=dicr.dicwriter('/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_%s.json'%param.version)
 
 #__________________________________________________________
 def getCommandOutput(command):
