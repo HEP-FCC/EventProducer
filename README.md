@@ -28,6 +28,13 @@ First you need to export your FCCSW path (this is where you installed FCCSW):
 export FCCUSERPATH=<UserFccPath>
 ```
 
+Check dictionary:
+
+```
+python jobchecker.py /afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json
+python cleanfailed.py /afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json
+```
+
 Run jobs:
 
 ```
@@ -37,7 +44,7 @@ python sendJobs_FCCSW.py -n <NumberOfJobs> -e <NumberOfEventsPerJob> -q <BatchQu
 Example:
 
 ```
-python sendJobs_FCCSW.py -i $FCCUSERPATH/Generation/data/Pythia_LHEinput.cmd -n 1 -e 200 -q 1nh -p pp_hh_bbaa
+python sendJobs_FCCSW.py -i $FCCUSERPATH/Generation/data/Pythia_LHEinput.cmd -n 1 -e 200 -q 1nh -p pp_hh_bbaa --test
 ``` 
 
 -
