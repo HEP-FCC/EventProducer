@@ -45,13 +45,38 @@ for s in mydict:
         p.wait()
         if len(p.stderr.readline())==0: 
             if p.stdout.readline().split()[0]==j['out'].split('/')[-1]:
-                #print 'job succeeded'
-                j['nevents']
-                if '.root' not in j['out']:
-                    evttot+=j['nevents']
 
-                njobs+=1
-                j['status']='done'
+##########################################################
+#For LHE files
+##########################################################
+                if '.root' not in j['out']:
+                    cmd='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp %s /tmp/helsens/'%(j['out'])
+                    p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
+                    stdout,stderr = p.communicate()
+                    if os.path.isfile('/tmp/helsens/%s'%(j['out'].split('/')[-1])):
+                        os.system('gunzip /tmp/helsens/%s'%(j['out'].split('/')[-1]))
+                        cmd='grep \"<event>\" /tmp/helsens/%s | wc -l'%(j['out'].split('/')[-1].replace('.gz',''))
+                        p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
+                        stdout,stderr = p.communicate()
+                        stdoutplit=stdout.split(' ')
+
+                        if int(stdoutplit[0])==j['nevents']:
+                            evttot+=j['nevents']
+                            njobs+=1
+                            j['status']='done'
+
+                        else:
+                            print 'job is bad exp %s obs %i'%(j['nevents'],int(stdoutplit[0]))
+                            j['status']='bad'
+                        os.system('rm /tmp/helsens/%s'%(j['out'].split('/')[-1].replace('.gz','')))
+
+                    else:
+                        print "not able to copy file %s please check"%j['out']
+
+
+##########################################################
+#For ROOT files
+##########################################################
                 if '.root' in j['out']:
                     toOpen='root://eospublic.cern.ch/'+j['out']
                     f=r.TFile.Open(toOpen)
@@ -59,8 +84,8 @@ for s in mydict:
                     print j['out'],'  ',tree.GetEntries()
                     j['nevents'] = tree.GetEntries()
                     evttot+=j['nevents']
-
                     f.Close()
+
         else:
             cmd='bjobs %s'%(j['batchid'])
             print 'cmd: ',cmd
