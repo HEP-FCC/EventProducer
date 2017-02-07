@@ -80,12 +80,13 @@ for s in mydict:
                 if '.root' in j['out']:
                     toOpen='root://eospublic.cern.ch/'+j['out']
                     f=r.TFile.Open(toOpen)
-                    tree=f.Get('events')
-                    print j['out'],'  ',tree.GetEntries()
-                    j['nevents'] = tree.GetEntries()
-                    evttot+=j['nevents']
-                    j['status']='done'
-                    f.Close()
+                    if f:
+                        tree=f.Get('events')
+                        print j['out'],'  ',tree.GetEntries()
+                        j['nevents'] = tree.GetEntries()
+                        evttot+=j['nevents']
+                        j['status']='done'
+                        f.Close()
 
         else:
             cmd='bjobs %s'%(j['batchid'])
