@@ -84,6 +84,7 @@ for s in mydict:
                     print j['out'],'  ',tree.GetEntries()
                     j['nevents'] = tree.GetEntries()
                     evttot+=j['nevents']
+                    j['status']='done'
                     f.Close()
 
         else:
