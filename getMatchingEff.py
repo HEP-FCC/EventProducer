@@ -31,15 +31,16 @@ for process in fccDict:
    njobs = 0
 
    for jobfcc in fccDict[process]:
-       if jobfcc['nevents']>0:
+       if jobfcc['nevents']>0 and jobfcc['status']== 'done':
            for joblhe in lheDict[process]:
-               if joblhe['jobid'] == jobfcc['jobid']:
+               if joblhe['jobid'] == jobfcc['jobid'] and joblhe['status']== 'done':
                    nlhe += joblhe['nevents']
                    nmatched+=jobfcc['nevents']
                    njobs+=1
                    break
 
    print  '============================================'
+   print  ''
    print  'process:                    ', process
    print  'number of matched events  : ', nmatched
    print  'number of generated events: ', nlhe
@@ -48,5 +49,4 @@ for process in fccDict:
        print  'matching efficiency:        ', round(float(nmatched)/nlhe, 3)
    else: 
        print  'no events found for this process...'
-   print  ''
    print  ''
