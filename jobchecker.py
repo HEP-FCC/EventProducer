@@ -5,7 +5,7 @@ import sys
 import os.path
 import ROOT as r
 
-force=True
+force=False
 
 if len(sys.argv)!=2:
     print 'usage: python jobchecker.py indict.json'
@@ -29,7 +29,7 @@ for s in mydict:
 
         if force==False:
 
-            if j['status']== 'done' and '.root' not in j['out']:
+            if (j['status']== 'done' or j['status']== 'bad')and '.root' not in j['out']:
                 njobs+=1
                 evttot+=j['nevents']
                 continue
