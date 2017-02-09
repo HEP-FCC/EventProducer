@@ -7,8 +7,9 @@ import ROOT as r
 
 force=False
 
-if len(sys.argv)!=2:
-    print 'usage: python jobchecker.py indict.json'
+
+if len(sys.argv)>3:
+    print 'usage: python jobchecker.py indict.json process'
     exit(3)
 
 indict=sys.argv[1]
@@ -16,6 +17,9 @@ if os.path.isfile(indict)==False:
     print 'dictonary does not exists '
     exit(3)
 
+inprocess=''
+if len(sys.argv)==3:
+    inprocess=t=sys.argv[2]
 
 mydict=None
 with open(indict) as f:
@@ -24,6 +28,9 @@ firstprocess=True
 for s in mydict:
     evttot=0
     njobs=0
+
+    if inprocess!='':
+        if inprocess!=s: continue
 
     for j in mydict[s]:
 
