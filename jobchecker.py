@@ -5,10 +5,10 @@ import sys
 import os.path
 import ROOT as r
 
-force=False
+force=True
 
 
-if len(sys.argv)>3:
+if len(sys.argv)>4:
     print 'usage: python jobchecker.py indict.json process'
     exit(3)
 
@@ -19,7 +19,7 @@ if os.path.isfile(indict)==False:
 
 inprocess=''
 if len(sys.argv)==3:
-    inprocess=t=sys.argv[2]
+    inprocess=sys.argv[2]
 
 mydict=None
 with open(indict) as f:
@@ -31,6 +31,7 @@ for s in mydict:
 
     if inprocess!='':
         if inprocess!=s: continue
+
 
     for j in mydict[s]:
 
