@@ -18,6 +18,8 @@ gridpacklist = {
 'pp_bbaa01j_4f':['bbaa + 0,1 jets 4 flavor scheme','','xqcut = 25, qCut = 35','5.899','0.310'],
 'pp_bjaa01j_4f':['bjaa + 0,1 jets 4 flavor scheme','','xqcut = 25, qCut = 35','16.9','0.328'],
 'pp_tth':['ttbar plus higgs','inclusive','','23.37','1.0'],
+'pp_bbh':['bbar plus higgs','inclusive','50 < mbb < 300','0.916','1.0'],
 'pp_zh':['z plus higgs production','inclusive','','7.42','1.0'],
 'pp_hh':['gluon gluon fusion di-higgs','inclusive','', '0.65','1.0'],
+'pp_vbfhh':['vector boson fusion di-higgs','inclusive','', '0.06612','1.0'],
 }
