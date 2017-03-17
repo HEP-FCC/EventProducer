@@ -5,12 +5,12 @@ import sys
 import os.path
 import ROOT as r
 
-force=True
+force=False
 
-
-if len(sys.argv)>4:
-    print 'usage: python jobchecker.py indict.json process'
+if len(sys.argv)>4 or len(sys.argv)<2:
+    print 'usage: python jobchecker.py indict.json (process)'
     exit(3)
+
 
 indict=sys.argv[1]
 if os.path.isfile(indict)==False:
@@ -28,6 +28,7 @@ firstprocess=True
 for s in mydict:
     evttot=0
     njobs=0
+    print 'process  ',s
 
     if inprocess!='':
         if inprocess!=s: continue
@@ -58,12 +59,16 @@ for s in mydict:
 #For LHE files
 ##########################################################
                 if '.root' not in j['out']:
-                    cmd='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp %s /tmp/helsens/'%(j['out'])
+                    filecounting='filecounting'
+                    if os.path.isdir(filecounting)==False:
+                        os.system('mkdir %s'%filecounting)
+                    cmd='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp %s %s'%(j['out'],filecounting)
+                    print cmd
                     p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
                     stdout,stderr = p.communicate()
-                    if os.path.isfile('/tmp/helsens/%s'%(j['out'].split('/')[-1])):
-                        os.system('gunzip /tmp/helsens/%s'%(j['out'].split('/')[-1]))
-                        cmd='grep \"<event>\" /tmp/helsens/%s | wc -l'%(j['out'].split('/')[-1].replace('.gz',''))
+                    if os.path.isfile('%s/%s'%(filecounting,j['out'].split('/')[-1])):
+                        os.system('gunzip %s/%s'%(filecounting,j['out'].split('/')[-1]))
+                        cmd='grep \"<event>\" %s/%s | wc -l'%(filecounting,j['out'].split('/')[-1].replace('.gz',''))
                         p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
                         stdout,stderr = p.communicate()
                         stdoutplit=stdout.split(' ')
@@ -76,7 +81,7 @@ for s in mydict:
                         else:
                             print 'job is bad exp %s obs %i'%(j['nevents'],int(stdoutplit[0]))
                             j['status']='bad'
-                        os.system('rm /tmp/helsens/%s'%(j['out'].split('/')[-1].replace('.gz','')))
+                        os.system('rm %s/%s'%(filecounting,j['out'].split('/')[-1].replace('.gz','')))
 
                     else:
                         print "not able to copy file %s please check"%j['out']
