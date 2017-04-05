@@ -7,6 +7,8 @@ outdir_delphes='/eos/fcc/hh/generation/DelphesEvents/%s/'%version
 
 
 gridpacklist = {
+'pp_w012j_5f':['w + 0,1,2 jets 5 flavor scheme','inclusive','xqcut = 30, qCut = 45','1.4995e06', '0.724'],
+'pp_z012j_5f':['z + 0,1,2 jets 5 flavor scheme','inclusive','xqcut = 30, qCut = 45', '5.1839e05', '0.691'],
 'pp_jjaa01j_5f':['dijet diphoton + 0,1 jets 5 flavor scheme','','xqcut = 20, qCut = 30', '55.72','0.236'],
 'pp_jjaa_5f':['dijet diphoton','','','17.97','1.0'],
 'pp_jjja01j_5f':['photon +jets + 0,1 jets 5 flavor scheme','','xqcut = 20, qCut = 25','4.133e+05','0.143'],
@@ -34,6 +36,7 @@ gridpacklist = {
 'pp_llv01j_5f_HT_800_2000':[' di-vector with V -> ll (l=e,mu,ve,vm,vt) + 0/1 jets','800 < HT < 2000','xqcut = 40, qCut = 60','0.9956','1.0'],
 'pp_llv01j_5f_HT_2000_4000':[' di-vector with V -> ll (l=e,mu,ve,vm,vt) + 0/1 jets','2000 < HT < 4000','xqcut = 40, qCut = 60','0.07411','1.0'],
 'pp_llv01j_5f_HT_4000_100000':[' di-vector with V -> ll (l=e,mu,ve,vm,vt) + 0/1 jets','4000 < HT < 100000','xqcut = 40, qCut = 60','0.008311','1.0'],
+'pp_tt012j_5f':['top pair + 0/1/2 jets','inclusive','xqcut = 60, qCut = 90', '4.2670e04','0.468'],
 'pp_tt012j_5f_HT_0_600':['top pair + 0/1/2 jets','0 < HT < 600','xqcut = 60, qCut = 90','3.207e+04','1.0'],
 'pp_tt012j_5f_HT_600_1200':['top pair + 0/1/2 jets','600 < HT < 1200','xqcut = 60, qCut = 90','8915','1.0'],
 'pp_tt012j_5f_HT_1200_2100':['top pair + 0/1/2 jets','1200 < HT < 2100','xqcut = 60, qCut = 90','1743','1.0'],
@@ -50,6 +53,7 @@ gridpacklist = {
 'pp_v0123j_5f_HT_2900_5100':['vector boson + 0/1/2/3 jets','2900 < HT < 5100','xqcut = 30, qCut = 45','300.8','1.0'],
 'pp_v0123j_5f_HT_5100_8500':['vector boson + 0/1/2/3 jets','5100 < HT < 8500','xqcut = 30, qCut = 45','30.93','1.0'],
 'pp_v0123j_5f_HT_8500_100000':['vector boson + 0/1/2/3 jets','8500 < HT < 100000','xqcut = 30, qCut = 45','2.95','1.0'],
+'pp_vbf_hh':['vector boson fusion di-higgs','inclusive','', '0.06612','1.0'],
 'pp_vbf_hh01j_5f_HT_0_2000':['vbf di-higgs + 0/1 jets','0 < HT < 2000','xqcut = 60, qCut = 90','0.01087','1.0'],
 'pp_vbf_hh01j_5f_HT_2000_4000':['vbf di-higgs + 0/1 jets','2000 < HT < 4000','xqcut = 60, qCut = 90','0.0003602','1.0'],
 'pp_vbf_hh01j_5f_HT_4000_7200':['vbf di-higgs + 0/1 jets','4000 < HT < 7200','xqcut = 60, qCut = 90','4.4e-05','1.0'],
