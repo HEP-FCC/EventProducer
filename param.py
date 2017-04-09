@@ -1,10 +1,12 @@
-indir ='/eos/fcc/hh/generation/mg5_amcatnlo/gridpacks/'
-outdir='/eos/fcc/hh/generation/mg5_amcatnlo/lhe/'
+gp_dir  = '/eos/fcc/hh/generation/mg5_amcatnlo/gridpacks/'
+lhe_dir = '/eos/fcc/hh/generation/mg5_amcatnlo/lhe/'
+delphes_dir = '/eos/fcc/hh/generation/DelphesEvents/'
 
-#version='old'
-version='v0_0'
-outdir_delphes='/eos/fcc/hh/generation/DelphesEvents/%s/'%version
+delphescards_dir = '/eos/fcc/hh/delphescards/'
 
+fccsw_dir='/cvmfs/fcc.cern.ch/sw/0.8/'
+stack=fccsw_dir+'init_fcc_stack.sh'
+fccsw=fccsw_dir+'fccsw/0.8/x86_64-slc6-gcc49-dbg/'
 
 gridpacklist = {
 'pp_w012j_5f':['w + 0,1,2 jets 5 flavor scheme','inclusive','xqcut = 30, qCut = 45','1.4995e06', '0.724'],
