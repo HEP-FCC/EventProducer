@@ -126,5 +126,7 @@ for s in mydict:
 
     print sprint,'  \t\t',njobs,'\t\t  ',evttot
     firstprocess=False
+
+
 with open(indict, 'w') as f:
     json.dump(mydict, f)

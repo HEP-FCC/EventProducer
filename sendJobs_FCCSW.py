@@ -14,13 +14,59 @@ import dicwriter_FCC as dicr
 
 #python sendJobs_FCCSW.py -n 1 -p BBB_4p
 
-
-FCCSW=os.environ["FCCUSERPATH"]
 indictname='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json'
 indict=None
 with open(indictname) as f:
     indict = json.load(f)
 outdict=dicr.dicwriter('/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_%s.json'%param.version)
+
+#jets multiplicities for matching
+jetmultflags = {
+'01j':1, 
+'012j':2, 
+'0123j':3, 
+'01234j':4, 
+'012345j':5
+}
+
+
+#__________________________________________________________
+def matching(pr):
+   ################ find max jet multiplicity
+   nJetsMax = -1 
+   for flag, jetmult in jetmultflags.iteritems():
+      if flag in pr:
+          nJetsMax = jetmult
+
+   ################ find qCut value
+   
+   # case where no matching should be applied
+   if nJetsMax < 0:
+      print '   No merging applied'
+      return ''
+      
+   
+   # if find njetsMax but qCut value is not specified
+   elif nJetsMax > 0 and 'qCut' not in desc[2]:
+      print '   qCut value not specified for process {}.'.format(pr)
+      print '   Please specify qCut value. Not submitting a job for this process...'
+      return ''
+
+   else:
+      qcutstr = desc[2].split(",")[1]
+      qCut = qcutstr.split("=",1)[1].strip()
+
+      print '   Merging with parameters (nJetMax = {}, qCut = {} GeV) will be applied for {}'.format(nJetsMax, qCut, pr)
+
+      os.system('cp {} tmp.cmd'.format(cardmatching))
+      with open('tmp.cmd', 'a') as myfile:
+         myfile.write('JetMatching:nJetMax = {}\n'.format(nJetsMax))
+         myfile.write('JetMatching:qCut = {}\n'.format(qCut))
+
+      
+      ### TBD: SEND JOB USING 'tmp.cmd'
+      os.system('rm tmp.cmd')
+
 
 #__________________________________________________________
 def getCommandOutput(command):
@@ -90,22 +136,30 @@ if __name__=="__main__":
                        dest='inputfile',
                        default='')
 
+    parser.add_option ('-v', '--version',  help='version of the delphes card to use, options are: fcc_v01, cms',
+                       dest='version',
+                       default='')
+
     (options, args) = parser.parse_args()
-    njobs    = int(options.njobs)
-    events   = int(options.events)
-    mode     = options.mode
-    process  = options.process
-    queue    = options.queue
-    test     = options.test
+    njobs      = int(options.njobs)
+    events     = int(options.events)
+    mode       = options.mode
+    process    = options.process
+    queue      = options.queue
+    test       = options.test
     pythiacard = options.inputfile
+    version    = options.version
     rundir = os.getcwd()
     nbjobsSub=0
 
+
+################# Loop over the gridpacks
     for pr in param.gridpacklist:
         if process!='' and process !=pr:continue
 
         i=0
         njobstmp=njobs
+        ################# continue if job already exist and process if not
         while i<njobstmp:
             if outdict.jobexits(sample=pr,jobid=i): 
                 print 'job i ',i,'  exists    njobs ',njobs
@@ -117,12 +171,14 @@ if __name__=="__main__":
 
             LHEexist=False
             LHEfile=''
+            ################# break if already exist
             for j in indict[pr]:
                 if i==j['jobid'] and j['status']=='done':
                     LHEexist=True
                     LHEfile=j['out']
                     break
                 
+            ################# if no LHE proceed
             if not LHEexist:
                 print 'LHE does not exist, continue'
                 i+=1
@@ -130,32 +186,37 @@ if __name__=="__main__":
                 if i>len(indict[pr]): break
                 continue
 
-            logdir=Dir+"/BatchOutputs/%s/%s/"%(param.version,pr)
+            eosbase='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select'
+            logdir=Dir+"/BatchOutputs/%s/%s/"%(version,pr)
             os.system("mkdir -p %s"%logdir)
             frunname = 'job%i.sh'%(i)
             frun = open(logdir+'/'+frunname, 'w')
             commands.getstatusoutput('chmod 777 %s/%s'%(logdir,frunname))
             frun.write('#!/bin/bash\n')
-            frun.write('localdir=$PWD\n')
-            frun.write('cd %s\n'%(FCCSW))
-            frun.write('source ./init.sh\n')
-            frun.write('cd $localdir\n')
+            frun.write('source %s\n'%(stack))
             frun.write('mkdir job%i_%s\n'%(i,pr))
+            frun.write('cd job%i_%s\n'%(i,pr))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
-            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select mkdir %s%s\n'%(param.outdir_delphes,pr))
-            frun.write('cd job%i_%s\n'%(i,pr))
-            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp %s .\n'%(LHEfile))
+            frun.write('%s mkdir %s%s\n'%(eosbase,param.delphes_dir,pr))
+            frun.write('%s cp %s .\n'%(eosbase,LHEfile))
             frun.write('gunzip -c %s > events.lhe\n'%LHEfile.split('/')[-1])
+            
+            frun.write('%s cp %s%s/card.tcl .\n'%(eosbase,))
+            if 'fcc' in version:
+                frun.write('%s cp %s%s/muonMomentumResolutionVsP.tcl .\n'%(eosbase,))
+                frun.write('%s cp %s%s/momentumResolutionVsP.tcl .\n'%(eosbase,))
+
+
+            
+
             frun.write('cp %s/Sim/SimDelphesInterface/options/PythiaDelphes_config.py .\n'%(FCCSW))
 #            frun.write('cp %sGeneration/data/Pythia_LHEinput_batch.cmd card.cmd\n'%(FCCSW))
             frun.write('cp %s card.cmd\n'%(pythiacard))
             frun.write('echo "Beams:LHEF = events.lhe" >> card.cmd\n')
-            frun.write('cp %s/Sim/SimDelphesInterface/data/FCChh_DelphesCard_Baseline_v01.tcl card.tcl\n'%(FCCSW))
-            frun.write('cp %s/Sim/SimDelphesInterface/data/muonMomentumResolutionVsP.tcl .\n'%(FCCSW))
-            frun.write('cp %s/Sim/SimDelphesInterface/data/momentumResolutionVsP.tcl .\n'%(FCCSW))
+           
             frun.write('%s/run fccrun.py PythiaDelphes_config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%i.root --nevents=%i\n'%(FCCSW,i,events))
-            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp events%i.root %s%s/events%i.root\n'%(i,param.outdir_delphes,pr,i))
+            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp events%i.root %s%s/events%i.root\n'%(i,param.delphes_dir,pr,i))
             frun.write('cd ..\n')
             frun.write('rm -rf job%i_%s\n'%(i,pr))
             print pr
@@ -166,7 +227,7 @@ if __name__=="__main__":
                 if test==False:
                     job,batchid=SubmitToBatch(cmdBatch,10)
                     nbjobsSub+=job
-                    outdict.addjob(sample=pr,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/events%i.root'%(param.outdir_delphes,pr,i),batchid=batchid,script='%s/%s'%(logdir,frunname),inputlhe=LHEfile,plots='none')
+                    outdict.addjob(sample=pr,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/events%i.root'%(param.delphes_dir,pr,i),batchid=batchid,script='%s/%s'%(logdir,frunname),inputlhe=LHEfile,plots='none')
             elif mode=='local':
                 os.system('./tmp/%s'%frunname)
 
