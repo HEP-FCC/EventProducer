@@ -124,6 +124,7 @@ if __name__=="__main__":
 
 
             os.system("mkdir -p %s"%logdir+'/job%s/'%str(i))
+            os.system('export LSB_JOB_REPORT_MAIL="N"')
             frunname = 'job%i.sh'%(i)
             frun = open(logdir+'/job%s/'%str(i)+frunname, 'w')
             commands.getstatusoutput('chmod 777 %s/%s'%(logdir+'/job%s'%str(i),frunname))
@@ -132,7 +133,6 @@ if __name__=="__main__":
             frun.write('unset PYTHONPATH\n')
             frun.write('mkdir job%i_%s\n'%(i,pr))
             frun.write('cd job%i_%s\n'%(i,pr))
-
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
             frun.write('source %s\n'%(para.stack))
