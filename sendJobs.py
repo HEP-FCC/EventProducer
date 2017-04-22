@@ -41,7 +41,6 @@ def SubmitToBatch(cmd,nbtrials):
     for i in range(nbtrials):            
         outputCMD = getCommandOutput(cmd)
         stderr=outputCMD["stderr"].split('\n')
-        jobid=outputCMD["stdout"].split()[1].replace("<","").replace(">","")
 
         for line in stderr :
             if line=="":
@@ -53,6 +52,8 @@ def SubmitToBatch(cmd,nbtrials):
                 print "Trial : "+str(i)+" / "+str(nbtrials)
                 time.sleep(10)
                 break
+
+        jobid=outputCMD["stdout"].split()[1].replace("<","").replace(">","")
             
         if submissionStatus==1:
             return 1,jobid
