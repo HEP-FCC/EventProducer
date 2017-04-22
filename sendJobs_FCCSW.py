@@ -81,7 +81,6 @@ def SubmitToBatch(cmd,nbtrials):
     for i in range(nbtrials):            
         outputCMD = getCommandOutput(cmd)
         stderr=outputCMD["stderr"].split('\n')
-        jobid=outputCMD["stdout"].split()[1].replace("<","").replace(">","")
 
         for line in stderr :
             if line=="":
@@ -93,6 +92,8 @@ def SubmitToBatch(cmd,nbtrials):
                 print "Trial : "+str(i)+" / "+str(nbtrials)
                 time.sleep(10)
                 break
+
+        jobid=outputCMD["stdout"].split()[1].replace("<","").replace(">","")
             
         if submissionStatus==1:
             return 1,jobid
@@ -193,6 +194,9 @@ if __name__=="__main__":
             frun = open(logdir+'/'+frunname, 'w')
             commands.getstatusoutput('chmod 777 %s/%s'%(logdir,frunname))
             frun.write('#!/bin/bash\n')
+            frun.write('unset LD_LIBRARY_PATH\n')
+            frun.write('unset PYTHONHOME\n')
+            frun.write('unset PYTHONPATH\n')
             frun.write('source %s\n'%(stack))
             frun.write('mkdir job%i_%s\n'%(i,pr))
             frun.write('cd job%i_%s\n'%(i,pr))
