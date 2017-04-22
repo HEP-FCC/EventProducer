@@ -9,6 +9,8 @@ stack=fccsw_dir+'init_fcc_stack.sh'
 fccsw=fccsw_dir+'fccsw/0.8/x86_64-slc6-gcc49-dbg/'
 
 gridpacklist = {
+'pp_w012j_5f':['w + 0,1,2 jets 5 flavor scheme','inclusive','xqcut = 30, qCut = 45','1.4995e06', '0.724'],
+'pp_z012j_5f':['z + 0,1,2 jets 5 flavor scheme','inclusive','xqcut = 30, qCut = 45', '5.1839e05', '0.691'],
 'pp_jjaa01j_5f':['dijet diphoton + 0,1 jets 5 flavor scheme','','xqcut = 20, qCut = 30','55.72','0.236'],
 'pp_jjaa_5f':['dijet diphoton','','','17.97','1.0'],
 'pp_jjja01j_5f':['photon +jets + 0,1 jets 5 flavor scheme','','xqcut = 20, qCut = 25','4.133e+05','0.143'],
@@ -21,6 +23,7 @@ gridpacklist = {
 'pp_bbh':['bbar plus higgs','inclusive','50 < mbb < 300','0.916','1.0'],
 'pp_zh':['z plus higgs production','inclusive','','7.42','1.0'],
 'pp_hh':['gluon gluon fusion di-higgs','inclusive','','0.65','1.0'],
+'pp_vbf_hh':['vector boson fusion di-higgs','inclusive','', '0.06612','1.0'],
 'pp_vbf_v01j_5f_HT_0_2000':['vbf vector boson + 0/1 jets','0 < HT < 2000','xqcut = 40, qCut = 60','1.151e+07','1.0'],
 'pp_vbf_v01j_5f_HT_2000_4000':['vbf vector boson + 0/1 jets','2000 < HT < 4000','xqcut = 40, qCut = 60','1.912e+04','1.0'],
 'pp_vbf_v01j_5f_HT_4000_7200':['vbf vector boson + 0/1 jets','4000 < HT < 7200','xqcut = 40, qCut = 60','400.9','1.0'],
