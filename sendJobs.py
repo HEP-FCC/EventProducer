@@ -1,21 +1,8 @@
 ##python sendJobs.py -n 10 -e 20000  -p "pp_w012j_5f"
 ##python sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa"
+##python sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa*" all processes
 ##python sendJobs.py -n 10 -e 10000  -p "pp_jjaa01j_5f" -q "1nd"
 import json, sys
-read='/afs/cern.ch/work/h/helsens/public/FCCDicts/readLHE.json'
-readf=None
-with open(read,'r') as f:
-    readf = json.load(f)
-    if readf['read']['value'] == "True":
-        print 'can not run jobs now, an other script is already linked to the dictonary, please retry a bit later'
-        sys.exit(3)
-    elif readf['read']['value'] == "False":
-        readf['read']['value'] = "True"
-    else:
-        print 'unknown value: ',readf['read']['value']
-with open(read, 'w') as f:
-    json.dump(readf, f)
-
 import glob, os, sys,subprocess,cPickle
 import commands
 import time
@@ -25,8 +12,35 @@ import paramsig
 import dicwriter as dicr
 
 
-
 mydict=dicr.dicwriter('/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json')
+read='/afs/cern.ch/work/h/helsens/public/FCCDicts/readLHE.json'
+readf=None
+
+#__________________________________________________________
+def finalize():
+    with open(read,'r') as f:
+        readf = json.load(f)
+        if readf['read']['value'] == "True":
+            readf['read']['value'] = "False"
+        else:
+            print 'unknown value, not sure why you are here: ',readf['read']['value']
+    with open(read, 'w') as f:
+        json.dump(readf, f)
+
+
+#__________________________________________________________
+def isreading():
+    with open(read,'r') as f:
+        readf = json.load(f)
+        if readf['read']['value'] == "True":
+            print 'can not run jobs now, an other script is already linked to the dictonary, please retry a bit later'
+            sys.exit(3)
+        elif readf['read']['value'] == "False":
+            readf['read']['value'] = "True"
+        else:
+            print 'unknown value: ',readf['read']['value']
+    with open(read, 'w') as f:
+        json.dump(readf, f)
 
 #__________________________________________________________
 def getCommandOutput(command):
@@ -81,7 +95,10 @@ if __name__=="__main__":
                        dest='mode',
                        default='batch')
 
-    parser.add_option ('-p', '--process',  help='process, example B_4p',
+    parser.add_option ('-p', '--process',  help='Specify here the process. Examples:                    '
+'1) pp_vh012j_5f: will send only the process that matches exactely pp_vh012j_5f                        '
+'2) pp_vh012j_5f*: will send all the processes that contains pp_vh012j_5f                                  '
+'3) If nothing specified, will proceed with sending all existing processes, take care!',
                        dest='process',
                        default='')
 
@@ -102,12 +119,17 @@ if __name__=="__main__":
     test     = options.test
     rundir = os.getcwd()
     nbjobsSub=0
-     
+
+    isreading()
 
     import param as para
 
     for pr in para.gridpacklist:
-        if process!='' and process not in pr:continue
+        if '*' in process:
+            if (process!='') and (process not in pr): continue
+        else:
+            if (process!='') and (process != pr): continue
+
         i=0
         njobstmp=njobs
         while i<njobstmp:
@@ -168,15 +190,6 @@ if __name__=="__main__":
     print 'succesfully sent %i  jobs'%nbjobsSub
     mydict.write()
 
-    with open(read,'r') as f:
-        readf = json.load(f)
-        if readf['read']['value'] == "True":
-            readf['read']['value'] = "False"
-        else:
-            print 'unknown value, not sure why you are here: ',readf['read']['value']
-    with open(read, 'w') as f:
-        json.dump(readf, f)
-
-
+    finalize()
     
 
