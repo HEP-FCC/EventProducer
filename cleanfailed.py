@@ -3,15 +3,33 @@ import json
 import os
 import os.path
 import sys
+import param as para
+import isreading as isr
 
 if len(sys.argv)!=2:
-    print 'usage: python cleanfailed.py indict.json'
+    print 'usage: python cleanfailed.py FCC or LHE'
     exit(3)
 
-indict=sys.argv[1]
+indict=''
+inread=''
+if sys.argv[1]=='LHE':
+    indict=para.lhe_dic
+    inread=para.readlhe_dic
+elif sys.argv[1]=='FCC':
+    indict=para.fcc_dic
+    inread=para.readfcc_dic
+else:
+    print 'unrecognized mode ',sys.argv[1],'  possible values are FCC or LHE'
+    sys.exit(3)
+
 if os.path.isfile(indict)==False:
     print 'dictonary does not exists '
-    exit(3)
+    sys.exit(3)
+
+
+readdic=isr.isreading(inread, indict)
+readdic.backup('cleanfailed')
+readdic.reading()
 
 mydict=None
 mynewdict={}
@@ -28,3 +46,6 @@ for s in mydict:
         
 with open(indict, 'w') as f:
     json.dump(mynewdict, f)
+
+readdic.comparedics()
+readdic.finalize()

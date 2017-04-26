@@ -1,3 +1,9 @@
+#dicts
+lhe_dic='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json'
+fcc_dic='/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_v0_0.json'
+readlhe_dic='/afs/cern.ch/work/h/helsens/public/FCCDicts/readLHE.json'
+readfcc_dic='/afs/cern.ch/work/h/helsens/public/FCCDicts/readFCC.json'
+
 gp_dir  = '/eos/fcc/hh/generation/mg5_amcatnlo/gridpacks/'
 lhe_dir = '/eos/fcc/hh/generation/mg5_amcatnlo/lhe/'
 delphes_dir = '/eos/fcc/hh/generation/DelphesEvents/'

@@ -28,7 +28,6 @@ class dicwriter():
 
     def addjob(self,sample,jobid,queue,nevents,status,log,out,batchid,script):
         if self.jobexits(sample,jobid): 
-            print 'job already exist '
             return
         exist=False
         for s in self.mydict:
@@ -39,6 +38,25 @@ class dicwriter():
             self.mydict[sample]=[{'jobid':jobid,'queue':queue,'nevents':nevents,'status':status,'log':log,'out':out,'batchid':batchid,'script':script}]
         return
     
+
+
+    def addjob_new(self, dic):
+        if self.jobexits(dic['sample'],dic['jobid']): 
+            return
+
+        toadd={}
+        for k, v in dic.iteritems():
+            toadd.update({'%s'%k:'%s'%v})
+ 
+        exist=False
+        for s in self.mydict:
+            if s==dic['sample']: 
+                exist=True
+                self.mydict[dic['sample']].append(toadd)
+        if not exist:
+            self.mydict[dic['sample']]=[toadd]
+        return
+
     def write(self):
         with open(self.outname, 'w') as f:
             json.dump(self.mydict, f)

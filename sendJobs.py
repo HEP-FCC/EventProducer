@@ -7,40 +7,12 @@ import glob, os, sys,subprocess,cPickle
 import commands
 import time
 import random
-import param
-import paramsig
 import dicwriter as dicr
+import isreading as isr
+import param as para
 
-
-mydict=dicr.dicwriter('/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json')
-read='/afs/cern.ch/work/h/helsens/public/FCCDicts/readLHE.json'
-readf=None
-
-#__________________________________________________________
-def finalize():
-    with open(read,'r') as f:
-        readf = json.load(f)
-        if readf['read']['value'] == "True":
-            readf['read']['value'] = "False"
-        else:
-            print 'unknown value, not sure why you are here: ',readf['read']['value']
-    with open(read, 'w') as f:
-        json.dump(readf, f)
-
-
-#__________________________________________________________
-def isreading():
-    with open(read,'r') as f:
-        readf = json.load(f)
-        if readf['read']['value'] == "True":
-            print 'can not run jobs now, an other script is already linked to the dictonary, please retry a bit later'
-            sys.exit(3)
-        elif readf['read']['value'] == "False":
-            readf['read']['value'] = "True"
-        else:
-            print 'unknown value: ',readf['read']['value']
-    with open(read, 'w') as f:
-        json.dump(readf, f)
+mydict=dicr.dicwriter(para.lhe_dic)
+readdic=isr.isreading(para.readlhe_dic, para.lhe_dic)
 
 #__________________________________________________________
 def getCommandOutput(command):
@@ -120,9 +92,8 @@ if __name__=="__main__":
     rundir = os.getcwd()
     nbjobsSub=0
 
-    isreading()
-
-    import param as para
+    readdic.backup('sendJobs')
+    readdic.reading()
 
     for pr in para.gridpacklist:
         if '*' in process:
@@ -189,7 +160,7 @@ if __name__=="__main__":
 
     print 'succesfully sent %i  jobs'%nbjobsSub
     mydict.write()
-
-    finalize()
+    readdic.comparedics(para.lhe_dic)
+    readdic.finalize()
     
 
