@@ -1,25 +1,42 @@
-#python jobchecker.py /afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json
+#python jobchecker.py LHE or FCC
 import json
 import subprocess
 import sys
 import os.path
 import ROOT as r
+import isreading as isr
+import param as para
 
 force=False
 
 if len(sys.argv)>4 or len(sys.argv)<2:
-    print 'usage: python jobchecker.py indict.json (process)'
+    print 'usage: python jobchecker.py LHE/FCC (process)'
     exit(3)
 
+indict=''
+inread=''
+if sys.argv[1]=='LHE':
+    indict=para.lhe_dic
+    inread=para.readlhe_dic
+elif sys.argv[1]=='FCC':
+    indict=para.fcc_dic
+    inread=para.readfcc_dic
+else:
+    print 'unrecognized mode ',sys.argv[1],'  possible values are FCC or LHE'
+    sys.exit(3)
 
-indict=sys.argv[1]
 if os.path.isfile(indict)==False:
     print 'dictonary does not exists '
-    exit(3)
+    sys.exit(3)
 
 inprocess=''
 if len(sys.argv)==3:
     inprocess=sys.argv[2]
+
+
+readdic=isr.isreading(inread, indict)
+readdic.backup('jobchecker')
+readdic.reading()
 
 mydict=None
 with open(indict) as f:
@@ -126,5 +143,12 @@ for s in mydict:
 
     print sprint,'  \t\t',njobs,'\t\t  ',evttot
     firstprocess=False
+
+
 with open(indict, 'w') as f:
     json.dump(mydict, f)
+
+
+readdic.comparedics()
+readdic.finalize()
+    

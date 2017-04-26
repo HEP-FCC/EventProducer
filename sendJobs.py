@@ -1,16 +1,18 @@
 ##python sendJobs.py -n 10 -e 20000  -p "pp_w012j_5f"
 ##python sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa"
+##python sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa*" all processes
 ##python sendJobs.py -n 10 -e 10000  -p "pp_jjaa01j_5f" -q "1nd"
-
+import json, sys
 import glob, os, sys,subprocess,cPickle
 import commands
 import time
 import random
-import param
-import paramsig
 import dicwriter as dicr
+import isreading as isr
+import param as para
 
-mydict=dicr.dicwriter('/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json')
+mydict=dicr.dicwriter(para.lhe_dic)
+readdic=isr.isreading(para.readlhe_dic, para.lhe_dic)
 
 #__________________________________________________________
 def getCommandOutput(command):
@@ -25,7 +27,6 @@ def SubmitToBatch(cmd,nbtrials):
     for i in range(nbtrials):            
         outputCMD = getCommandOutput(cmd)
         stderr=outputCMD["stderr"].split('\n')
-        jobid=outputCMD["stdout"].split()[1].replace("<","").replace(">","")
 
         for line in stderr :
             if line=="":
@@ -37,6 +38,8 @@ def SubmitToBatch(cmd,nbtrials):
                 print "Trial : "+str(i)+" / "+str(nbtrials)
                 time.sleep(10)
                 break
+
+        jobid=outputCMD["stdout"].split()[1].replace("<","").replace(">","")
             
         if submissionStatus==1:
             return 1,jobid
@@ -64,7 +67,10 @@ if __name__=="__main__":
                        dest='mode',
                        default='batch')
 
-    parser.add_option ('-p', '--process',  help='process, example B_4p',
+    parser.add_option ('-p', '--process',  help='Specify here the process. Examples:                    '
+'1) pp_vh012j_5f: will send only the process that matches exactely pp_vh012j_5f                        '
+'2) pp_vh012j_5f*: will send all the processes that contains pp_vh012j_5f                                  '
+'3) If nothing specified, will proceed with sending all existing processes, take care!',
                        dest='process',
                        default='')
 
@@ -85,12 +91,16 @@ if __name__=="__main__":
     test     = options.test
     rundir = os.getcwd()
     nbjobsSub=0
-     
 
-    import param as para
+    readdic.backup('sendJobs')
+    readdic.reading()
 
     for pr in para.gridpacklist:
-        if process!='' and process !=pr:continue
+        if '*' in process:
+            if (process!='') and (process not in pr): continue
+        else:
+            if (process!='') and (process != pr): continue
+
         i=0
         njobstmp=njobs
         while i<njobstmp:
@@ -104,27 +114,28 @@ if __name__=="__main__":
                 print 'job does not exists: ',i
 
             logdir=Dir+"/BatchOutputs/%s"%(pr)
-            print 'logdir  ',logdir
+            eosbase='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select'
+
 
             os.system("mkdir -p %s"%logdir+'/job%s/'%str(i))
             os.system('export LSB_JOB_REPORT_MAIL="N"')
             frunname = 'job%i.sh'%(i)
             frun = open(logdir+'/job%s/'%str(i)+frunname, 'w')
             commands.getstatusoutput('chmod 777 %s/%s'%(logdir+'/job%s'%str(i),frunname))
-            frun.write('mkdir job%i_%s\n'%(i,pr))
             frun.write('unset LD_LIBRARY_PATH\n')
             frun.write('unset PYTHONHOME\n')
             frun.write('unset PYTHONPATH\n')
-	    frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
-            frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
-            frun.write('source /afs/cern.ch/exp/fcc/sw/0.8/init_fcc_stack.sh\n')
-            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select mkdir %s%s\n'%(para.outdir,pr))
+            frun.write('mkdir job%i_%s\n'%(i,pr))
             frun.write('cd job%i_%s\n'%(i,pr))
-            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp %s/%s.tar.gz .\n'%(para.indir,pr))
+            frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
+            frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
+            frun.write('source %s\n'%(para.stack))
+            frun.write('%s mkdir %s%s\n'%(eosbase, para.lhe_dir,pr))
+            frun.write('%s cp %s/%s.tar.gz .\n'%(eosbase,para.gp_dir,pr))
             frun.write('tar -zxf %s.tar.gz\n'%pr)
             frun.write('cd process/\n')
             frun.write('./run.sh %i %i\n'%(events,i+1))
-            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp events.lhe.gz %s/%s/events%i.lhe.gz\n'%(para.outdir,pr,i))
+            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp events.lhe.gz %s/%s/events%i.lhe.gz\n'%(para.lhe_dir,pr,i))
             frun.write('cd ..\n')
             frun.write('rm -rf job%i_%s\n'%(i,pr))
             print pr
@@ -138,7 +149,7 @@ if __name__=="__main__":
                 if test==False:
                     job,batchid=SubmitToBatch(cmdBatch,10)
                     nbjobsSub+=job
-                    mydict.addjob(sample=pr,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/events%i.lhe.gz'%(para.outdir,pr,i),batchid=batchid,script='%s/%s'%(logdir,frunname))
+                    mydict.addjob(sample=pr,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/events%i.lhe.gz'%(para.lhe_dir,pr,i),batchid=batchid,script='%s/%s'%(logdir,frunname))
 
             elif mode=='local':
                 os.system('./tmp/%s'%frunname)
@@ -149,8 +160,7 @@ if __name__=="__main__":
 
     print 'succesfully sent %i  jobs'%nbjobsSub
     mydict.write()
-
-
-
+    readdic.comparedics(para.lhe_dic)
+    readdic.finalize()
     
 
