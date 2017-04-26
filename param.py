@@ -1,10 +1,8 @@
 indir ='/eos/fcc/hh/generation/mg5_amcatnlo/gridpacks/'
 outdir='/eos/fcc/hh/generation/mg5_amcatnlo/lhe/'
 
-#version='old'
 version='v0_0'
 outdir_delphes='/eos/fcc/hh/generation/DelphesEvents/%s/'%version
-
 
 gridpacklist = {
 'pp_jjaa01j_5f':['dijet diphoton + 0,1 jets 5 flavor scheme','','xqcut = 20, qCut = 30','55.72','0.236'],
@@ -71,14 +69,14 @@ gridpacklist = {
 'pp_vv012j_5f_HT_2900_5300':['di-vector boson + 0/1/2 jets','2900 < HT < 5300','xqcut = 40, qCut = 60','7.973','1.0'],
 'pp_vv012j_5f_HT_5300_8800':['di-vector boson + 0/1/2 jets','5300 < HT < 8800','xqcut = 40, qCut = 60','0.9271','1.0'],
 'pp_vv012j_5f_HT_8800_100000':['di-vector boson + 0/1/2 jets','8800 < HT < 100000','xqcut = 40, qCut = 60','0.1247','1.0'],
-'pp_vv012j_5f':['di-vector boson + 0/1/2 jets','inclusive','xqcut = 40, qCut = 60','3.39e+04','0.457'],
+'pp_vv012j_5f':['di-vector boson + 0/1/2 jets','inclusive','xqcut = 40, qCut = 60','3.39e+04','0.458'],
 'pp_tv012j_5f_HT_0_500':['top pair off-shell t* -> Wj + 0/1/2 jets','0 < HT < 500','xqcut = 60, qCut = 90','3000','1.0'],
 'pp_tv012j_5f_HT_500_1500':['top pair off-shell t* -> Wj + 0/1/2 jets','500 < HT < 1500','xqcut = 60, qCut = 90','1124','1.0'],
 'pp_tv012j_5f_HT_1500_2800':['top pair off-shell t* -> Wj + 0/1/2 jets','1500 < HT < 2800','xqcut = 60, qCut = 90','72.13','1.0'],
 'pp_tv012j_5f_HT_2800_4700':['top pair off-shell t* -> Wj + 0/1/2 jets','2800 < HT < 4700','xqcut = 60, qCut = 90','7.738','1.0'],
 'pp_tv012j_5f_HT_4700_7400':['top pair off-shell t* -> Wj + 0/1/2 jets','4700 < HT < 7400','xqcut = 60, qCut = 90','0.7973','1.0'],
 'pp_tv012j_5f_HT_7400_100000':['top pair off-shell t* -> Wj + 0/1/2 jets','7400 < HT < 100000','xqcut = 60, qCut = 90','0.09901','1.0'],
-'pp_tv012j_5f':['top pair off-shell t* -> Wj + 0/1/2 jets','inclusive','xqcut = 60, qCut = 90','4210','1.0'],
+'pp_tv012j_5f':['top pair off-shell t* -> Wj + 0/1/2 jets','inclusive','xqcut = 60, qCut = 90','4210','0.461'],
 'pp_tth01j_5f_HT_0_1100':['higgs associated with top pair + 0/1 jets','0 < HT < 1100','xqcut = 80, qCut = 120','36.94','1.0'],
 'pp_tth01j_5f_HT_1100_2700':['higgs associated with top pair + 0/1 jets','1100 < HT < 2700','xqcut = 80, qCut = 120','7.466','1.0'],
 'pp_tth01j_5f_HT_2700_4900':['higgs associated with top pair + 0/1 jets','2700 < HT < 4900','xqcut = 80, qCut = 120','0.4224','1.0'],
@@ -112,10 +110,10 @@ gridpacklist = {
 'pp_vvv01j_5f_HT_1200_3000':['tri-vector boson + 0/1 jets','1200 < HT < 3000','xqcut = 60, qCut = 90','2.093','1.0'],
 'pp_vvv01j_5f_HT_3000_6000':['tri-vector boson + 0/1 jets','3000 < HT < 6000','xqcut = 60, qCut = 90','0.2028','1.0'],
 'pp_vvv01j_5f_HT_6000_100000':['tri-vector boson + 0/1 jets','6000 < HT < 100000','xqcut = 60, qCut = 90','0.02111','1.0'],
-'pp_vvv01j_5f':['tri-vector boson + 0/1 jets','inclusive','xqcut = 60, qCut = 90','75.87','1.0'],
-'gg_aa01j_5f':['gluon fusion di-photon + 0/1 jets','inclusive','xqcut = 20, qCut = 30','848.2','1.0'],
-'pp_aa012j_5f':['di-photon + 0/1/2 jets','inclusive','xqcut = 20, qCut = 30','7030','1.0'],
-'pp_aj012j_5f':['photon + jet + 0/1/2 jets','inclusive','xqcut = 20, qCut = 30','6.759e+06','1.0'],
-'pp_jj012j_5f':['di-jet + 0/1/2 jets','inclusive','xqcut = 20, qCut = 30','6.563e+09','1.0'],
+'pp_vvv01j_5f':['tri-vector boson + 0/1 jets','inclusive','xqcut = 60, qCut = 90','75.87','0.525'],
+'gg_aa01j_5f':['gluon fusion di-photon + 0/1 jets','inclusive','xqcut = 20, qCut = 30','848.2','0.576'],
+'pp_aa012j_5f':['di-photon + 0/1/2 jets','inclusive','xqcut = 20, qCut = 30','7030','0.307'],
+'pp_aj012j_5f':['photon + jet + 0/1/2 jets','inclusive','xqcut = 20, qCut = 30','6.759e+06','0.133'],
+'pp_jj012j_5f':['di-jet + 0/1/2 jets','inclusive','xqcut = 20, qCut = 30','6.563e+09','0.141'],
 'pp_hh01j_5f':['gluon fusion di-higgs + 0/1 jets','inclusive','xqcut = 60, qCut = 90','1.113','1.0'],
 }
