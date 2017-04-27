@@ -130,4 +130,5 @@ gridpacklist = {
 'pp_aj012j_5f':['photon + jet + 0/1/2 jets','inclusive','xqcut = 20, qCut = 30','6.759e+06','0.133'],
 'pp_jj012j_5f':['di-jet + 0/1/2 jets','inclusive','xqcut = 20, qCut = 30','6.563e+09','0.141'],
 'pp_hh01j_5f':['gluon fusion di-higgs + 0/1 jets','inclusive','xqcut = 60, qCut = 90','1.113','1.0'],
+'pp_llll_5f':['Z/gamma* Z/gamma* to 4l','inclusive','xqcut = 40, qCut = 60','0.6045','1.0'],
 }
