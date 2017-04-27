@@ -3,6 +3,7 @@ import os, sys
 import time
 import datetime
 
+#__________________________________________________________
 class isreading():
     def __init__(self,inread, indic):
         self.read=inread
@@ -24,18 +25,62 @@ class isreading():
 
 
 #__________________________________________________________
-    def comparedics(self):
+    def comparedics(self,nf=0):
         size_ld=os.path.getsize(self.localdic)
         size_od=os.path.getsize(self.dicread)
-        if size_od>size_ld:
-            print 'entries have been correctly added. remove local dictionnary.'
-            os.system('rm %s'%(self.localdic))
-        elif size_od==size_ld:
-            print 'no entries have been added. remove local dictionnary.'
-            os.system('rm %s'%(self.localdic))
+        ns_local=0
+        ns_read=0
+        nf_local=0
+        nf_read=0
+
+        with open(self.localdic,'r') as f:
+            try:
+                readf = json.load(f)
+                for s in readf:
+                    ns_local+=1
+                    for j in readf[s]:
+                        nf_local+=1
+            except ValueError:
+                print '\033[91m ----Local dictionnary is corrupted, can not be opened----  \033[0m'
+                print '\033[91m ----Please contact clement.helsens@cern.ch or michele.selvaggi@cern.ch---- \033[0m'
+                return
+            
+            
+        with open(self.dicread,'r') as f:
+            try:
+                readf = json.load(f)
+                for s in readf:
+                    ns_read+=1
+                    for j in readf[s]:
+                        nf_read+=1
+            except ValueError:
+                print '\033[91m ----Official dictionnary is corrupted, can not be opened----  \033[0m'
+                print '\033[91m ----Please contact clement.helsens@cern.ch or michele.selvaggi@cern.ch---- \033[0m'
+                return
+
+        print 'ns_read ',ns_read,'  ns_local  ',ns_local,'  nf_read  ',nf_read,'  nf_local  ',nf_local
+        if nf==0:
+            if nf_read>nf_local:
+                print 'entries have been correctly added. remove local dictionnary.'
+                os.system('rm %s'%(self.localdic))
+            elif nf_read==nf_local and ns_read==ns_local:
+                print 'no entries have been added, only changed job status. Remove local dictionnary.'
+                os.system('rm %s'%(self.localdic))
+            else:
+                print '\033[91m ----Entries have been incorrectly added, dictionnary is truncated----  \033[0m'
+                print '\033[91m ----Please contact clement.helsens@cern.ch or michele.selvaggi@cern.ch---- \033[0m'
         else:
-            print '\033[91m ----Entries have been incorrectly added, dictionnary is truncated----  \033[0m'
-            print '\033[91m ----Please contact clement.helsens@cern.ch or michele.selvaggi@cern.ch---- \033[0m'
+            if nf_read+nf>nf_local:
+                print 'entries have been correctly added. remove local dictionnary.'
+                os.system('rm %s'%(self.localdic))
+            elif nf_read+nf==nf_local and ns_read==ns_local:
+                print 'entries have been removed, for failed jobs. Remove local dictionnary.'
+                os.system('rm %s'%(self.localdic))
+            else:
+                print '\033[91m ----Entries have been incorrectly added, dictionnary is truncated----  \033[0m'
+                print '\033[91m ----Please contact clement.helsens@cern.ch or michele.selvaggi@cern.ch---- \033[0m'
+
+
         return
 
 #__________________________________________________________

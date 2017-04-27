@@ -30,7 +30,7 @@ if os.path.isfile(indict)==False:
 readdic=isr.isreading(inread, indict)
 readdic.backup('cleanfailed')
 readdic.reading()
-
+nfailed=0
 mydict=None
 mynewdict={}
 with open(indict) as f:
@@ -40,6 +40,7 @@ for s in mydict:
     for j in xrange(len(mydict[s])):
         if mydict[s][j]['status']=='failed': 
             print 'job failed ',j,'  ',mydict[s][j]['script']
+            nfailed+=1
             os.system('rm -rf %s'%(mydict[s][j]['script']))
             os.system('rm -rf %s'%(mydict[s][j]['log']))
         else: mynewdict[s].append(mydict[s][j])
@@ -47,5 +48,5 @@ for s in mydict:
 with open(indict, 'w') as f:
     json.dump(mynewdict, f)
 
-readdic.comparedics()
+readdic.comparedics(nf=nfailed)
 readdic.finalize()
