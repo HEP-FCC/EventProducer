@@ -160,7 +160,7 @@ if __name__=="__main__":
 
     print 'succesfully sent %i  jobs'%nbjobsSub
     mydict.write()
-    readdic.comparedics(para.lhe_dic)
+    readdic.comparedics()
     readdic.finalize()
     
 
