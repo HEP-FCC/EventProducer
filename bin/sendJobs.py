@@ -1,18 +1,18 @@
-'''Script to send jobs to batch running examples:
+#Script to send jobs to batch running examples:
+#
+#To run 10 jobs of 10000 events a single process pp_hh_bbaa on the 1nd queue:
+#python sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa" -q 1nd
+#
+#To run 10 jobs of 10000 events for all processes that contains pp_hh_bbaa  on the 1nd queue:
+#python sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa*" 
+#
+#To run 10 jobs of 10000 events for all processes in that exists in the config/param.py:
+#python sendJobs.py -n 10 -e 10000 -q "1nd"
+#
+#To run a test job
+#python sendJobs.py -n 1 -e 1  -p "pp_hh_bbaa" -q 1nd --test
 
-To run 10 jobs of 10000 events a single process pp_hh_bbaa on the 1nd queue:
-python sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa" -q 1nd
-
-To run 10 jobs of 10000 events for all processes that contains pp_hh_bbaa  on the 1nd queue:
-python sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa*" 
-
-To run 10 jobs of 10000 events for all processes in that exists in the config/param.py:
-python sendJobs.py -n 10 -e 10000 -q "1nd"
-
-
-python sendJobs.py -n 1 -e 1  -p "pp_hh_bbaa" -q 1nd --test
-'''
-
+#!/usr/bin/env python
 import json, sys
 import glob, os, sys,subprocess,cPickle
 import commands
