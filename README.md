@@ -1,4 +1,22 @@
-# LHEventProducer
+# EventProducer
+
+[]() Clone and initialisation
+-------------------------
+
+If you do not attempt to contribute to the repository, simply clone it:
+```
+git clone git@github.com:clementhelsens/EventProducer.git
+```
+
+If you aim at contributing to the repository, you need to fork and then clone the forked repository:
+```
+git clone git@github.com:YOURGITUSERNAME/EventProducer.git
+```
+
+Then initialise:
+```
+source ./init.sh
+```
 
 []() Generate LHE files
 -------------------------
