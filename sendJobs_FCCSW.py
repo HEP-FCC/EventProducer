@@ -20,53 +20,6 @@ with open(indictname) as f:
     indict = json.load(f)
 outdict=dicr.dicwriter('/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_%s.json'%param.version)
 
-#jets multiplicities for matching
-jetmultflags = {
-'01j':1, 
-'012j':2, 
-'0123j':3, 
-'01234j':4, 
-'012345j':5
-}
-
-
-#__________________________________________________________
-def matching(pr):
-   ################ find max jet multiplicity
-   nJetsMax = -1 
-   for flag, jetmult in jetmultflags.iteritems():
-      if flag in pr:
-          nJetsMax = jetmult
-
-   ################ find qCut value
-   
-   # case where no matching should be applied
-   if nJetsMax < 0:
-      print '   No merging applied'
-      return ''
-      
-   
-   # if find njetsMax but qCut value is not specified
-   elif nJetsMax > 0 and 'qCut' not in desc[2]:
-      print '   qCut value not specified for process {}.'.format(pr)
-      print '   Please specify qCut value. Not submitting a job for this process...'
-      return ''
-
-   else:
-      qcutstr = desc[2].split(",")[1]
-      qCut = qcutstr.split("=",1)[1].strip()
-
-      print '   Merging with parameters (nJetMax = {}, qCut = {} GeV) will be applied for {}'.format(nJetsMax, qCut, pr)
-
-      os.system('cp {} tmp.cmd'.format(cardmatching))
-      with open('tmp.cmd', 'a') as myfile:
-         myfile.write('JetMatching:nJetMax = {}\n'.format(nJetsMax))
-         myfile.write('JetMatching:qCut = {}\n'.format(qCut))
-
-      
-      ### TBD: SEND JOB USING 'tmp.cmd'
-      os.system('rm tmp.cmd')
-
 
 #__________________________________________________________
 def getCommandOutput(command):
