@@ -74,7 +74,7 @@ class isreading():
                 print 'entries have been correctly added. remove local dictionnary.'
                 os.system('rm %s'%(self.localdic))
             elif nf_read+nf==nf_local and ns_read==ns_local:
-                print 'entries have been removed, for failed jobs. Remove local dictionnary.'
+                print '%i entries have been removed, for failed jobs. Remove local dictionnary.'%nf
                 os.system('rm %s'%(self.localdic))
             else:
                 print '\033[91m ----Entries have been incorrectly added, dictionnary is truncated----  \033[0m'
