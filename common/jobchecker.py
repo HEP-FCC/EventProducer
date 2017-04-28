@@ -4,8 +4,10 @@ import subprocess
 import sys
 import os.path
 import ROOT as r
-import isreading as isr
-import param as para
+
+import EventProducer.config.param as para
+import EventProducer.common.isreading as isr
+
 
 force=False
 

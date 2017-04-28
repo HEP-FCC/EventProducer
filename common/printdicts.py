@@ -1,10 +1,11 @@
 #python printdicts.py /afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json /afs/cern.ch/user/h/helsens/www/LHEevents.txt
 #python printdicts.py /afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_v0_0.json /afs/cern.ch/user/h/helsens/www/Delphesevents.txt
 import json
-import param as para
 import sys
 import os.path
 import re
+
+import EventProducer.config.param as para
 
 
 if len(sys.argv)!=3:

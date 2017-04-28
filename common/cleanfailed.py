@@ -3,8 +3,9 @@ import json
 import os
 import os.path
 import sys
-import param as para
-import isreading as isr
+
+import EventProducer.config.param as para
+import EventProducer.common.isreading as isr
 
 if len(sys.argv)!=2:
     print 'usage: python cleanfailed.py FCC or LHE'

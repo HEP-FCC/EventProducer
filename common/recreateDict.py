@@ -1,8 +1,9 @@
-import dicwriter as dicr
-import param as para
 import os.path
 import subprocess
 import sys
+
+import EventProducer.common.dicwriter as dicr
+import EventProducer.config.param as para
 
 mydict=dicr.dicwriter('/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict_recreate.json')
 process=''

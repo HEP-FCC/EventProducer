@@ -5,17 +5,20 @@
 # - "procDict.json" contains a skimmed dictionary containing information for physics analysis
 
 import subprocess, glob
-import json, param
+import json
 import ast, os
 
 import re
+
+import EventProducer.config.param as para
+
 
 version = 'v0_0'
 
 eosdir = 'root://eospublic.cern.ch/'
 
-lhe = '/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json'
-fcc = '/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_{}.json'.format(version)
+lhe = para.lhe_dic
+fcc = para.fcc_dic
 
 lheDict=None
 with open(lhe) as f:
@@ -39,7 +42,7 @@ heppyFile.write('import heppy.framework.config as cfg\n')
 heppyFile.write('\n')
 
 # write paramfile
-paramFile = 'param.py'
+paramFile = 'config/param.py'
 # parse param file
 with open(paramFile) as f:
     infile = f.readlines()
@@ -58,14 +61,14 @@ for process in fccDict:
    print ''
    
    # extract cross-section from param file
-   if process not in param.gridpacklist:
+   if process not in para.gridpacklist:
        print 'process :', process, 'not found in param.py --> skipping process'
        heppyFile.write(']\n')
        heppyFile.write(')\n')
        heppyFile.write('\n')
        continue
    else: 
-       xsec = float(param.gridpacklist[process][3])
+       xsec = float(para.gridpacklist[process][3])
    # compute matching efficiency
    for jobfcc in fccDict[process]:
        if jobfcc['nevents']>0 and jobfcc['status']== 'done':
@@ -130,7 +133,7 @@ procDict.write('\n')
 procDict.write('}\n')
 
 # replace existing param.py file
-os.system("mv tmp.py param.py")
+os.system("mv tmp.py config/param.py")
 
 
 
