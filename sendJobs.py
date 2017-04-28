@@ -1,7 +1,16 @@
-##python sendJobs.py -n 10 -e 20000  -p "pp_w012j_5f"
-##python sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa"
-##python sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa*" all processes
-##python sendJobs.py -n 10 -e 10000  -p "pp_jjaa01j_5f" -q "1nd"
+'''Script to send jobs to batch running examples:
+
+To run 10 jobs of 10000 events a single process pp_hh_bbaa on the 1nd queue:
+python sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa" -q 1nd
+
+To run 10 jobs of 10000 events for all processes that contains pp_hh_bbaa  on the 1nd queue:
+python sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa*" 
+
+To run 10 jobs of 10000 events for all processes in that exists in the config/param.py:
+python sendJobs.py -n 10 -e 10000 -q "1nd"
+
+'''
+
 import json, sys
 import glob, os, sys,subprocess,cPickle
 import commands
@@ -9,7 +18,7 @@ import time
 import random
 import dicwriter as dicr
 import isreading as isr
-import param as para
+from config.param import param as para
 
 mydict=dicr.dicwriter(para.lhe_dic)
 readdic=isr.isreading(para.readlhe_dic, para.lhe_dic)
