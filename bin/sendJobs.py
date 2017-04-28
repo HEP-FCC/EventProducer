@@ -18,8 +18,8 @@ import glob, os, sys,subprocess,cPickle
 import commands
 import time
 import random
-import dicwriter as dicr
-import isreading as isr
+import EventProducer.common.dicwriter as dicr
+import EventProducer.common.isreading as isr
 import EventProducer.config.param as para
 
 mydict=dicr.dicwriter(para.lhe_dic)

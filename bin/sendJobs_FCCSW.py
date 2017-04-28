@@ -9,16 +9,17 @@ import time
 import random
 import param
 import json
-import dicwriter_FCC as dicr
-
+import EventProducer.config.param as para
+import EventProducer.common.dicwriter_FCC as dicr
+import EventProducer.common.isreading as isr
 
 #python sendJobs_FCCSW.py -n 1 -p BBB_4p
 
-indictname='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json'
+indictname=para.lhe_dic
 indict=None
 with open(indictname) as f:
     indict = json.load(f)
-outdict=dicr.dicwriter('/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_%s.json'%param.version)
+outdict=dicr.dicwriter(param.fcc_dic)
 
 
 #__________________________________________________________
