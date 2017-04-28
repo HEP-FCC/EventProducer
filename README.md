@@ -1,4 +1,12 @@
-# LHEventProducer
+# EventProducer
+
+[]() Clone and initialisation
+-------------------------
+
+If you do not attempt to contribute to the repository, simply clone it:
+```
+git clone git@github.com:clementhelsens/EventProducer.git
+```
 
 []() Generate LHE files
 -------------------------
