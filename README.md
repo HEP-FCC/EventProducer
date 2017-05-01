@@ -28,13 +28,13 @@ To send jobs starting from a gridpack, do the following:
 Then simply run:
 
 ```
-python sendJobs.py -n <NumberOfJobs> -e <NumberOfEventsPerJob> -q <BatchQueueName> -p <ProcessName>
+python bin/sendJobs.py -n <NumberOfJobs> -e <NumberOfEventsPerJob> -q <BatchQueueName> -p <ProcessName>
 ```
 
 example:
 
 ```
-python sendJobs.py -n 1 -e 200 -q 1nh -p pp_hh_bbaa
+python bin/sendJobs.py -n 1 -e 200 -q 1nh -p pp_hh_bbaa
 ```
 
 []() Generate FCCSW files 
@@ -58,13 +58,13 @@ python cleanfailed.py /afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesd
 Run jobs:
 
 ```
-python sendJobs_FCCSW.py -n <NumberOfJobs> -e <NumberOfEventsPerJob> -q <BatchQueueName> -p <ProcessName> -i <PythiaCard>
+python bin/sendJobs_FCCSW.py -n <NumberOfJobs> -e <NumberOfEventsPerJob> -q <BatchQueueName> -p <ProcessName> -i <PythiaCard>
 ```
 
 Example:
 
 ```
-python sendJobs_FCCSW.py -i $FCCUSERPATH/Generation/data/Pythia_LHEinput.cmd -n 1 -e 200 -q 1nh -p pp_hh_bbaa --test
+python bin/sendJobs_FCCSW.py -i $FCCUSERPATH/Generation/data/Pythia_LHEinput.cmd -n 1 -e 200 -q 1nh -p pp_hh_bbaa --test
 ``` 
 
 -
