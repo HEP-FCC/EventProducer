@@ -1,33 +1,30 @@
-#export FCCUSERPATH=/afs/cern.ch/user/h/helsens/FCCsoft/FCCSOFT/newEDM2/FCCSW/
-#python sendJobs_FCCSW.py -n 10 -p pp_w012j_5f -q 8nh -e -1 -i $FCCUSERPATH/Generation/data/Pythia_LHEinput_Matching.cmd
-#python sendJobs_FCCSW.py -n 100 -p pp_hh_bbaa -q 8nh -e -1 -i $FCCUSERPATH/Generation/data/Pythia_LHEinput.cmd
+#python bin/sendJobs_FCCSW.py -n 10 -p pp_h012j_5f -q 8nh -e -1 -d haa --test
 
 
 import glob, os, sys,subprocess,cPickle
 import commands
 import time
 import random
-import param
 import json
+
 import EventProducer.config.param as para
 import EventProducer.common.dicwriter_FCC as dicr
 import EventProducer.common.isreading as isr
 
-#python sendJobs_FCCSW.py -n 1 -p BBB_4p
-
+eosbase='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select'
 indictname=para.lhe_dic
 indict=None
-with open(indictname) as f:
+with open(indictname,'r') as f:
     indict = json.load(f)
-outdict=dicr.dicwriter(param.fcc_dic)
 
+outdict=dicr.dicwriter(para.fcc_dic)
+readdic=isr.isreading(para.readfcc_dic, para.fcc_dic)
 
 #__________________________________________________________
 def getCommandOutput(command):
     p = subprocess.Popen(command, shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
     stdout,stderr = p.communicate()
     return {"stdout":stdout, "stderr":stderr, "returncode":p.returncode}
-
 
 #__________________________________________________________
 def SubmitToBatch(cmd,nbtrials):
@@ -55,6 +52,18 @@ def SubmitToBatch(cmd,nbtrials):
         if i==nbtrials-1:
             print "failed sumbmitting after: "+str(nbtrials)+" trials, will exit"
             return 0,jobid
+
+
+#__________________________________________________________
+def eosexist(myfile):
+    cmd='%s ls %s'%(eosbase,myfile)
+    p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
+    p.wait()
+    if len(p.stderr.readline())==0:
+        return True
+    else: 
+        return False
+
 
 #__________________________________________________________
 if __name__=="__main__":
@@ -85,10 +94,11 @@ if __name__=="__main__":
 
     parser.add_option('-t','--test',
                       action='store_true', dest='test', default=False,
-                      help='don\'t send to batch nor write to the dictonary')
+                      help='do not send to batch nor write to the dictonary')
 
-    parser.add_option ('-i', '--inputfile',  help='pythia 8 configuration file, example $FCCUSERPATH/Generation/data/Pythia_LHEinput.cmd',
-                       dest='inputfile',
+    parser.add_option ('-d', '--decay',  help='decay in pythia 8 configuration file, example haa.      '
+                       'Pythia cards for all the processes needs to be stored in %s'%para.pythiacards_dir,
+                       dest='decay',
                        default='')
 
     parser.add_option ('-v', '--version',  help='version of the delphes card to use, options are: fcc_v01, cms',
@@ -102,15 +112,66 @@ if __name__=="__main__":
     process    = options.process
     queue      = options.queue
     test       = options.test
-    pythiacard = options.inputfile
+    decay      = options.decay
     version    = options.version
     rundir = os.getcwd()
     nbjobsSub=0
 
 
+    if version not in ['fcc_v01', 'cms']:
+        print 'version of the cards should be: fcc_v01, cms'
+        sys.exit(3)
+
+    delphescards_mmr = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_mmr)
+    if eosexist(delphescards_mmr)==False:
+        print 'delphes card does not exist: ',delphescard_mmr
+        sys.exit(3)
+
+    delphescards_mr = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_mr)
+    if eosexist(delphescards_mr)==False:
+        print 'delphes card does not exist: ',delphescard_mr
+        sys.exit(3)
+
+    delphescards_base = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_base)
+    if eosexist(delphescards_base)==False:
+        print 'delphes card does not exist: ',delphescard_base
+        sys.exit(3)
+
+    fccconfig = '%s%s'%(para.fccconfig_dir,para.fccconfig)
+    if eosexist(fccconfig)==False:
+        print 'fcc config file does not exist: ',fccconfig
+        sys.exit(3)
+
+    readdic.backup('sendJobs_FCCSW')
+    readdic.reading()
+
+
 ################# Loop over the gridpacks
-    for pr in param.gridpacklist:
+    for pr in para.gridpacklist:
         if process!='' and process !=pr:continue
+
+        pythiacard='%spythia%s.cmd'%(para.pythiacards_dir,pr)
+        if decay!='':
+            pythiacard='%spythia_%s_%s.cmd'%(para.pythiacards_dir,pr,decay)
+
+        if eosexist(pythiacard)==False:
+            print 'pythia card does not exist: ',pythiacard
+            readdic.comparedics()
+            readdic.finalize()
+            sys.exit(3)
+
+        #check that the specified decay exists
+        if decay not in para.decaylist[pr]:
+            print 'decay ==%s== does not exist for process ==%s=='%(decay,process)
+            readdic.comparedics()
+            readdic.finalize()
+            sys.exit(3)
+
+        pr_decay=pr
+        if decay!='':
+            pr_decay=pr+'_'+decay
+        print '====',pr_decay,'===='
+
 
         i=0
         njobstmp=njobs
@@ -141,8 +202,7 @@ if __name__=="__main__":
                 if i>len(indict[pr]): break
                 continue
 
-            eosbase='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select'
-            logdir=Dir+"/BatchOutputs/%s/%s/"%(version,pr)
+            logdir=Dir+"/BatchOutputs/%s/%s/"%(version,pr_decay)
             os.system("mkdir -p %s"%logdir)
             frunname = 'job%i.sh'%(i)
             frun = open(logdir+'/'+frunname, 'w')
@@ -151,33 +211,27 @@ if __name__=="__main__":
             frun.write('unset LD_LIBRARY_PATH\n')
             frun.write('unset PYTHONHOME\n')
             frun.write('unset PYTHONPATH\n')
-            frun.write('source %s\n'%(stack))
-            frun.write('mkdir job%i_%s\n'%(i,pr))
-            frun.write('cd job%i_%s\n'%(i,pr))
+            frun.write('source %s\n'%(para.stack))
+            frun.write('mkdir job%i_%s\n'%(i,pr_decay))
+            frun.write('cd job%i_%s\n'%(i,pr_decay))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
-            frun.write('%s mkdir %s%s\n'%(eosbase,param.delphes_dir,pr))
+            frun.write('%s mkdir %s%s\n'%(eosbase,para.delphes_dir,pr_decay))
             frun.write('%s cp %s .\n'%(eosbase,LHEfile))
-            frun.write('gunzip -c %s > events.lhe\n'%LHEfile.split('/')[-1])
-            
-            frun.write('%s cp %s%s/card.tcl .\n'%(eosbase,))
+            frun.write('gunzip -c %s > events.lhe\n'%LHEfile.split('/')[-1])          
+            frun.write('%s cp %s .\n'%(eosbase,delphescards_base))
             if 'fcc' in version:
-                frun.write('%s cp %s%s/muonMomentumResolutionVsP.tcl .\n'%(eosbase,))
-                frun.write('%s cp %s%s/momentumResolutionVsP.tcl .\n'%(eosbase,))
-
-
-            
-
-            frun.write('cp %s/Sim/SimDelphesInterface/options/PythiaDelphes_config.py .\n'%(FCCSW))
-#            frun.write('cp %sGeneration/data/Pythia_LHEinput_batch.cmd card.cmd\n'%(FCCSW))
-            frun.write('cp %s card.cmd\n'%(pythiacard))
+                frun.write('%s cp %s .\n'%(eosbase,delphescards_mmr))
+                frun.write('%s cp %s .\n'%(eosbase,delphescards_mr))
+            frun.write('%s cp %s config.py \n'%(eosbase,fccconfig))
+            frun.write('%s cp %s card.cmd\n'%(eosbase,pythiacard))
             frun.write('echo "Beams:LHEF = events.lhe" >> card.cmd\n')
            
-            frun.write('%s/run fccrun.py PythiaDelphes_config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%i.root --nevents=%i\n'%(FCCSW,i,events))
-            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp events%i.root %s%s/events%i.root\n'%(i,param.delphes_dir,pr,i))
+            frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%i.root --nevents=%i\n'%(para.fccsw,i,events))
+            frun.write('%s cp events%i.root %s%s/events%i.root\n'%(eosbase,i,para.delphes_dir,pr_decay,i))
             frun.write('cd ..\n')
-            frun.write('rm -rf job%i_%s\n'%(i,pr))
-            print pr
+            frun.write('rm -rf job%i_%s\n'%(i,pr_decay))
+            print pr_decay
 
             if mode=='batch':
                 cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -cwd%s %s" %(queue, logdir,logdir+'/'+frunname)
@@ -185,7 +239,7 @@ if __name__=="__main__":
                 if test==False:
                     job,batchid=SubmitToBatch(cmdBatch,10)
                     nbjobsSub+=job
-                    outdict.addjob(sample=pr,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/events%i.root'%(param.delphes_dir,pr,i),batchid=batchid,script='%s/%s'%(logdir,frunname),inputlhe=LHEfile,plots='none')
+                    outdict.addjob(sample=pr_decay,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/events%i.root'%(para.delphes_dir,pr_decay,i),batchid=batchid,script='%s/%s'%(logdir,frunname),inputlhe=LHEfile,plots='none')
             elif mode=='local':
                 os.system('./tmp/%s'%frunname)
 
@@ -194,7 +248,8 @@ if __name__=="__main__":
             i+=1
     print 'succesfully sent %i  jobs'%nbjobsSub
     outdict.write()
-
+    readdic.comparedics()
+    readdic.finalize()
 
 
     
