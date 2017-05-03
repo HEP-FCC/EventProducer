@@ -1,19 +1,50 @@
 #dicts
-lhe_dic='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json'
-fcc_dic='/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_v0_0.json'
-readlhe_dic='/afs/cern.ch/work/h/helsens/public/FCCDicts/readLHE.json'
-readfcc_dic='/afs/cern.ch/work/h/helsens/public/FCCDicts/readFCC.json'
+##LHE dictionnary
+lhe_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json'
+##FCC events dictionnary
+fcc_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_v0_0.json'
 
-gp_dir  = '/eos/fcc/hh/generation/mg5_amcatnlo/gridpacks/'
-lhe_dir = '/eos/fcc/hh/generation/mg5_amcatnlo/lhe/'
+##LHE read file true/false
+readlhe_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/readLHE.json'
+##FCC read file true/false
+readfcc_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/readFCC.json'
+
+##eos directory for MG5@MCatNLO gridpacks
+gp_dir      = '/eos/fcc/hh/generation/mg5_amcatnlo/gridpacks/'
+##eos directory for lhe files
+lhe_dir     = '/eos/fcc/hh/generation/mg5_amcatnlo/lhe/'
+##eos directory for FCCSW pythia delphes files
 delphes_dir = '/eos/fcc/hh/generation/DelphesEvents/'
 
+##where the delphes cards are stored
 delphescards_dir = '/eos/fcc/hh/delphescards/'
+##where the pythia cards are stored
+pythiacards_dir  = '/eos/fcc/hh/pythiacards/'
+##where the FCC config script is stored
+fccconfig_dir    = '/eos/fcc/hh/config/'
 
+##muom momentum delphes resolution card
+delphescard_mmr='muonMomentumResolutionVsP.tcl'
+##momentum resolution delphes card
+delphescard_mr='momentumResolutionVsP.tcl'
+##delphes base card
+delphescard_base='card.tcl'
+##FCC config script name
+fccconfig='PythiaDelphes_config.py'
+
+##base dir of FCCSW
 fccsw_dir='/cvmfs/fcc.cern.ch/sw/0.8/'
+##init script for FCCSW
 stack=fccsw_dir+'init_fcc_stack.sh'
-fccsw=fccsw_dir+'fccsw/0.8/x86_64-slc6-gcc49-dbg/'
+##FCCSW dir
+fccsw=fccsw_dir+'fccsw/0.8/x86_64-slc6-gcc49-opt/'
 
+##list of possible decays
+decaylist = {
+'pp_h012j_5f':['','haa']
+}
+
+##Gridpack list
 gridpacklist = {
 'pp_w012j_5f':['w + 0,1,2 jets 5 flavor scheme','inclusive','xqcut = 30, qCut = 45','1.4995e06','0.724'],
 'pp_z012j_5f':['z + 0,1,2 jets 5 flavor scheme','inclusive','xqcut = 30, qCut = 45','5.1839e05','0.691'],
