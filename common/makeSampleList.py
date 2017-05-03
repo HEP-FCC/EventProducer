@@ -105,7 +105,10 @@ for process in fccDict:
    # parse new param file
    with open(paramFile) as f:
        lines = f.readlines()
+       isgp=False
        for line in xrange(len(lines)):
+           if 'gridpacklist' in lines[line]: isgp==True
+           if isgp==False: continue
            if process == lines[line].rsplit(':', 1)[0].replace("'", ""):
                ll = ast.literal_eval(lines[line].rsplit(':', 1)[1][:-2])	        
                infile[line] = "'{}':['{}','{}','{}','{}','{}'],\n".format(process, ll[0],ll[1],ll[2],ll[3], matchingEff)
