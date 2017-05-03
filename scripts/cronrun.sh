@@ -1,15 +1,16 @@
-source /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/init.sh
 source /cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/Python-env.sh
 source /cvmfs/sft.cern.ch/lcg/releases/LCG_87/ROOT/6.08.02/x86_64-slc6-gcc49-opt/ROOT-env.sh
-
 source /afs/cern.ch/user/h/helsens/eosfcc.sh
-python /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/common/jobchecker.py LHE
-python /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/common/cleanfailed.py LHE
+cd /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/
+source ./init.sh
 
-python /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/common/jobchecker.py FCC
-python /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/common/cleanfailed.py FCC
+python common/jobchecker.py LHE
+python common/cleanfailed.py LHE
 
-python /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/common/printdicts.py /afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json /afs/cern.ch/user/h/helsens/www/LHEevents.txt
-python /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/common/printdicts.py /afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_v0_0.json /afs/cern.ch/user/h/helsens/www/Delphesevents.txt
+python common/jobchecker.py FCC
+python common/cleanfailed.py FCC
 
-python /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/common/makeSampleList.py  /afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_v0_0.json
+python common/printdicts.py /afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json /afs/cern.ch/user/h/helsens/www/LHEevents.txt
+python common/printdicts.py /afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_v0_0.json /afs/cern.ch/user/h/helsens/www/Delphesevents.txt
+
+python common/makeSampleList.py  /afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_v0_0.json
