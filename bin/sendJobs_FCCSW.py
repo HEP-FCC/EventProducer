@@ -142,6 +142,9 @@ if __name__=="__main__":
         print 'fcc config file does not exist: ',fccconfig
         sys.exit(3)
 
+    if version not in para.fcc_dic:
+        print 'mismatch between version of fcc dic in param ===%s=== and version requested by user ===%s==='%(para.fcc_dic,version)
+
     readdic.backup('sendJobs_FCCSW')
     readdic.reading()
 
@@ -216,7 +219,7 @@ if __name__=="__main__":
             frun.write('cd job%i_%s\n'%(i,pr_decay))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
-            frun.write('%s mkdir %s%s\n'%(eosbase,para.delphes_dir,pr_decay))
+            frun.write('%s mkdir %s%s/%s\n'%(eosbase,para.delphes_dir,version,pr_decay))
             frun.write('%s cp %s .\n'%(eosbase,LHEfile))
             frun.write('gunzip -c %s > events.lhe\n'%LHEfile.split('/')[-1])          
             frun.write('%s cp %s .\n'%(eosbase,delphescards_base))
@@ -228,7 +231,7 @@ if __name__=="__main__":
             frun.write('echo "Beams:LHEF = events.lhe" >> card.cmd\n')
            
             frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%i.root --nevents=%i\n'%(para.fccsw,i,events))
-            frun.write('%s cp events%i.root %s%s/events%i.root\n'%(eosbase,i,para.delphes_dir,pr_decay,i))
+            frun.write('%s cp events%i.root %s%s/%s/events%i.root\n'%(eosbase,i,para.delphes_dir,version,pr_decay,i))
             frun.write('cd ..\n')
             frun.write('rm -rf job%i_%s\n'%(i,pr_decay))
             print pr_decay
@@ -239,7 +242,7 @@ if __name__=="__main__":
                 if test==False:
                     job,batchid=SubmitToBatch(cmdBatch,10)
                     nbjobsSub+=job
-                    outdict.addjob(sample=pr_decay,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/events%i.root'%(para.delphes_dir,pr_decay,i),batchid=batchid,script='%s/%s'%(logdir,frunname),inputlhe=LHEfile,plots='none')
+                    outdict.addjob(sample=pr_decay,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/%s/events%i.root'%(para.delphes_dir,version,pr_decay,i),batchid=batchid,script='%s/%s'%(logdir,frunname),inputlhe=LHEfile,plots='none')
             elif mode=='local':
                 os.system('./tmp/%s'%frunname)
 
