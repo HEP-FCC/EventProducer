@@ -35,7 +35,7 @@ for pr in para.gridpacklist:
             
             nevents=int(stdoutplit[0])
             os.system('rm %s/%s'%(filecounting,f.replace('.gz','')))
-        
+
             if nevents%1000!=0:
                 dic = {'sample':pr, 
                        'jobid':int(f.replace('events','').replace('.lhe.gz','')),
@@ -44,7 +44,7 @@ for pr in para.gridpacklist:
                        'out':'%s%s/%s'%(para.lhe_dir,pr,f)
                        }
                 mydict.addjob_new(dic)
-                print f,'   ',nevents
+                print 'BAD FILE============',f,'==========   ',nevents
             else:
                 dic = {'sample':pr, 
                        'jobid':int(f.replace('events','').replace('.lhe.gz','')),
@@ -53,4 +53,6 @@ for pr in para.gridpacklist:
                        'out':'%s%s/%s'%(para.lhe_dir,pr,f)
                        }
                 mydict.addjob_new(dic)
+                print f,'   ',nevents
+
     mydict.write()
