@@ -49,7 +49,7 @@ for s, value in sorted(indict.items()):
     print '------------------------------- ',s
     for j in value:
         if j['status']=='done':
-            evttot+=j['nevents']
+            evttot+=int(j['nevents'])
             njobs+=1
             outdir=j['out']
             outdirtmp=j['out']

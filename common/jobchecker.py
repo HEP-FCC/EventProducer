@@ -59,11 +59,11 @@ for s in mydict:
 
             if (j['status']== 'done' or j['status']== 'bad')and '.root' not in j['out']:
                 njobs+=1
-                evttot+=j['nevents']
+                evttot+=int(j['nevents'])
                 continue
             if j['status']=='done' and '.root' in j['out'] and j['nevents']>0:
                 njobs+=1
-                evttot+=j['nevents']
+                evttot+=int(j['nevents'])
                 continue
 
 
