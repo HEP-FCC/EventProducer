@@ -1,16 +1,16 @@
 #Script to send jobs to batch running examples:
 #
 #To run 10 jobs of 10000 events a single process pp_hh_bbaa on the 1nd queue:
-#python sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa" -q 1nd
+#python bin/sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa" -q 1nd
 #
 #To run 10 jobs of 10000 events for all processes that contains pp_hh_bbaa  on the 1nd queue:
-#python sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa*" 
+#python bin/sendJobs.py -n 10 -e 10000  -p "pp_hh_bbaa*" 
 #
 #To run 10 jobs of 10000 events for all processes in that exists in the config/param.py:
-#python sendJobs.py -n 10 -e 10000 -q "1nd"
+#python bin/sendJobs.py -n 10 -e 10000 -q "1nd"
 #
 #To run a test job
-#python sendJobs.py -n 1 -e 1  -p "pp_hh_bbaa" -q 1nd --test
+#python bin/sendJobs.py -n 1 -e 1  -p "pp_hh_bbaa" -q 1nd --test
 
 #!/usr/bin/env python
 import json, sys
@@ -46,18 +46,18 @@ def SubmitToBatch(cmd,nbtrials):
                 break
             else:
                 print "++++++++++++ERROR submitting, will retry"
+                print "error: ",stderr
                 print "Trial : "+str(i)+" / "+str(nbtrials)
                 time.sleep(10)
                 break
-
-        jobid=outputCMD["stdout"].split()[1].replace("<","").replace(">","")
             
         if submissionStatus==1:
+            jobid=outputCMD["stdout"].split()[1].replace("<","").replace(">","")
             return 1,jobid
         
         if i==nbtrials-1:
             print "failed sumbmitting after: "+str(nbtrials)+" trials, will exit"
-            return 0,jobid
+            return 0,0
 
 #__________________________________________________________
 if __name__=="__main__":
@@ -160,7 +160,8 @@ if __name__=="__main__":
                 if test==False:
                     job,batchid=SubmitToBatch(cmdBatch,10)
                     nbjobsSub+=job
-                    mydict.addjob(sample=pr,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/events%i.lhe.gz'%(para.lhe_dir,pr,i),batchid=batchid,script='%s/%s'%(logdir,frunname))
+                    if job==1:
+                        mydict.addjob(sample=pr,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/events%i.lhe.gz'%(para.lhe_dir,pr,i),batchid=batchid,script='%s/%s'%(logdir,frunname))
 
             elif mode=='local':
                 os.system('./tmp/%s'%frunname)

@@ -40,18 +40,18 @@ def SubmitToBatch(cmd,nbtrials):
                 break
             else:
                 print "++++++++++++ERROR submitting, will retry"
+                print "error: ",stderr
                 print "Trial : "+str(i)+" / "+str(nbtrials)
                 time.sleep(10)
                 break
-
-        jobid=outputCMD["stdout"].split()[1].replace("<","").replace(">","")
             
         if submissionStatus==1:
+            jobid=outputCMD["stdout"].split()[1].replace("<","").replace(">","")
             return 1,jobid
         
         if i==nbtrials-1:
             print "failed sumbmitting after: "+str(nbtrials)+" trials, will exit"
-            return 0,jobid
+            return 0,0
 
 
 #__________________________________________________________
