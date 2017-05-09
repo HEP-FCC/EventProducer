@@ -172,4 +172,8 @@ gridpacklist = {
 'pp_hh01j_5f':['gluon fusion di-higgs + 0/1 jets','inclusive','xqcut = 60, qCut = 90','1.113','1.0'],
 'pp_llll_5f':['Z/gamma* Z/gamma* to 4l','inclusive','xqcut = 40, qCut = 60','0.6045','1.0'],
 'pp_llll01j_5f':['Z/gamma* Z/gamma* to 4l','inclusive','xqcut = 40, qCut = 60','0.899','1.0'],
+'pp_llll01j_5f_HT_0_800':['Z/gamma* Z/gamma* to 4l + 0/1 jets','0 < HT < 800','xqcut = 40, qCut = 60','0.8786','1.0'],
+'pp_llll01j_5f_HT_800_2000':['Z/gamma* Z/gamma* to 4l + 0/1 jets','800 < HT < 2000','xqcut = 40, qCut = 60','0.01657','1.0'],
+'pp_llll01j_5f_HT_2000_4000':['Z/gamma* Z/gamma* to 4l + 0/1 jets','2000 < HT < 4000','xqcut = 40, qCut = 60','0.001004','1.0'],
+'pp_llll01j_5f_HT_4000_100000':['Z/gamma* Z/gamma* to 4l + 0/1 jets','4000 < HT < 100000','xqcut = 40, qCut = 60','9.656e-05','1.0'],
 }
