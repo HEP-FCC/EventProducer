@@ -6,7 +6,7 @@ import socket
 import getpass
 #__________________________________________________________
 def write(towrite):
-    outfile = open('/afs/cern.ch/work/h/helsens/public/FCCDicts/sendJobsCron.log', 'a')
+    outfile = open('/afs/cern.ch/work/h/helsens/public/FCCDicts/sendJobs.log', 'a')
     towrite=towrite+'\n'
     outfile.write(towrite)
 
@@ -22,9 +22,9 @@ def getNjobs(cmd,nbtrials):
     cmdStatus=0
     for i in range(nbtrials):         
         outputCMD = getCommandOutput(cmd)
-        stderr=outputCMD["stderr"].split('\n')
-        for line in stderr :
-            if line=="":
+	stderr=outputCMD["stderr"].split('\n')
+	for line in stderr :
+	    if line=="" or line=="No unfinished job found":
                 cmdStatus=1
                 break
             else:
@@ -48,7 +48,7 @@ def getNjobs(cmd,nbtrials):
 
 #__________________________________________________________
 def can_send(trials=10, period=60, threshold=0):
-    cmd="bjobs -u helsens | grep 'PEND\|RUN' | wc -l"
+    cmd="bjobs -u selvaggi | grep 'PEND\|RUN' | wc -l"
     while True:
         njobs=getNjobs(cmd,nbtrials)
 	if njobs > threshold:
@@ -115,7 +115,7 @@ if __name__=="__main__":
 
         for p in process_list:
             if p=='': continue
-            cmd = 'python /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/bin/sendJobs.py -n {} -e {} -q {} -p {}'.format(njobs, events, queue, p)
+            cmd = 'python /afs/cern.ch/work/s/selvaggi/private/EventProducer/bin/sendJobs.py -n {} -e {} -q {} -p {}'.format(njobs, events, queue, p)
             write('')
             write('----------------------------------------------------------------------')
             write('Process: {}'.format(p))
