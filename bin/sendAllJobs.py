@@ -1,5 +1,5 @@
 #!/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/bin/python
-#./sendAllJobs.py -n 500 -e 10000 -q 1nd -f process_list.txt
+#.bin/sendAllJobs.py -n 4 -e 10000 -q 1nd -f process_list_short.txt
 
 import os, time, subprocess, datetime
 import socket
@@ -24,7 +24,7 @@ def getNjobs(cmd,nbtrials):
         outputCMD = getCommandOutput(cmd)
         stderr=outputCMD["stderr"].split('\n')
         for line in stderr :
-            if line=="":
+            if line=="" or line=="No unfinished job found":
                 cmdStatus=1
                 break
             else:
@@ -40,7 +40,6 @@ def getNjobs(cmd,nbtrials):
         if cmdStatus==1:
             return njobs
 
-        
         if i==nbtrials-1:
             write('failed trying the command ===%s=== after: %i trials, will exit'%(s,nbtrials))
             return 0
@@ -49,14 +48,13 @@ def getNjobs(cmd,nbtrials):
 #__________________________________________________________
 def can_send(trials=10, period=60, threshold=0):
     cmd="bjobs -u helsens | grep 'PEND\|RUN' | wc -l"
-    while True:
-        njobs=getNjobs(cmd,nbtrials)
-	if njobs > threshold:
-	    write('cannot submit yet, since {} jobs are running or pending. Sleep for {} seconds'.format(njobs, period))
-	else:
-            write('can submit, since only {} jobs are running or pending.'.format(njobs))
-            return True
-        time.sleep(period)
+    njobs=getNjobs(cmd,nbtrials)
+    if njobs > threshold:
+        write('cannot submit yet, since {} jobs are running or pending. Will try next crontab'.format(njobs))
+        return False
+    else:
+        write('can submit, since only {} jobs are running or pending.'.format(njobs))
+        return True
 
 #__________________________________________________________
 def getdatetime():    
@@ -113,24 +111,52 @@ if __name__=="__main__":
     with open(pfile) as f:
         process_list = f.read().splitlines()    
 
-        for p in process_list:
-            if p=='': continue
-            cmd = 'python /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/bin/sendJobs.py -n {} -e {} -q {} -p {}'.format(njobs, events, queue, p)
+    if can_send(nbtrials, sleep, threshold):
+        for process in process_list:
+            if process=='': continue
+            cmd = 'python /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/bin/sendJobs.py -n {} -e {} -q {} -p {}'.format(njobs, events, queue, process)
             write('')
             write('----------------------------------------------------------------------')
-            write('Process: {}'.format(p))
-            write('')
-                
-            if can_send(nbtrials, sleep, threshold):
-                write('')
-                write('TIME  %s'%getdatetime())
-                write('Start submission for process: {}'.format(p))
-                write('command:  %s'%cmd)
-                my_env = os.environ
-                p=subprocess.Popen(cmd, shell=True)
-                p.communicate()
-
             write('TIME  %s'%getdatetime())
-        write('=================================================================')
-        write('=================END the execution of the script=================')
-        write('=================================================================')
+            write('----------------------------------------------------------------------')
+            write('Start submission for process: {}'.format(process))
+            write('')
+            write('command:  %s'%cmd)
+            
+            p=subprocess.Popen(cmd, shell=True)
+            p.communicate()
+            
+            write('')
+            write('----------------------------------------------------------------------')
+            write('TIME  %s'%getdatetime())
+            write('----------------------------------------------------------------------')
+            write('End submission for process: {}'.format(process))
+                
+    
+    write('----------------------------------------------------------------------')
+    write('run the jobchecker')
+    cmd = 'python /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/common/jobchecker.py LHE'
+    p=subprocess.Popen(cmd, shell=True)
+    p.communicate()
+    
+    write('----------------------------------------------------------------------')
+    write('run the cleanfailed')
+    cmd = 'python /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/common/cleanfailed.py LHE'
+    p=subprocess.Popen(cmd, shell=True)
+    p.communicate()
+
+    write('----------------------------------------------------------------------')
+    write('run the printdic')
+    cmd = 'python /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/common/printdicts.py /afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json /afs/cern.ch/user/h/helsens/www/LHEevents.txt'
+    p=subprocess.Popen(cmd, shell=True)
+    p.communicate()
+
+    write('----------------------------------------------------------------------')
+    write('remove the LSF outputs')
+    cmd = 'rm -rf /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/LSF_*'
+    p=subprocess.Popen(cmd, shell=True)
+    p.communicate()
+
+    write('=================================================================')
+    write('=================END the execution of the script=================')
+    write('=================================================================')
