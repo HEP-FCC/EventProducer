@@ -59,6 +59,27 @@ def SubmitToBatch(cmd,nbtrials):
             print "failed sumbmitting after: "+str(nbtrials)+" trials, will exit"
             return 0,0
 
+
+#__________________________________________________________
+def SubmitToCondor(cmd,nbtrials):
+    submissionStatus=0
+    for i in xrange(nbtrials):            
+        outputCMD = getCommandOutput(cmd)
+        stderr=outputCMD["stderr"].split('\n')
+        stdout=outputCMD["stdout"].split('\n')
+
+        if len(stderr)==1 and stderr[0]=='' :
+            print "------------GOOD SUB"
+            submissionStatus=1
+        else:
+            print "++++++++++++ERROR submitting, will retry"
+            print "Trial : "+str(i)+" / "+str(nbtrials)
+            print "stderr : ",stderr
+            print "stderr : ",len(stderr)
+
+            time.sleep(10)
+ 
+
 #__________________________________________________________
 if __name__=="__main__":
     Dir = os.getcwd()
