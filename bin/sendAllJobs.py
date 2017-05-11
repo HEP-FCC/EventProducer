@@ -1,5 +1,5 @@
 #!/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/bin/python
-#.bin/sendAllJobs.py -n 4 -e 10000 -q 1nd -f process_list_short.txt
+#.bin/sendAllJobs.py -n 4 -q 1nd -f process_list_short.txt
 
 import os, time, subprocess, datetime
 import socket
@@ -81,10 +81,6 @@ if __name__=="__main__":
                        dest='njobs',
                        default='')
 
-    parser.add_option ('-e', '--events',  help='number of events per job',
-                       dest='events',
-                       default='')
-
     parser.add_option ('-q', '--queue',  help='queue',
                        dest='queue',
                        default='')
@@ -95,7 +91,6 @@ if __name__=="__main__":
 
     (options, args) = parser.parse_args()
     njobs  = options.njobs
-    events = options.events
     pfile  = options.file
     queue  = options.queue
     
@@ -103,7 +98,7 @@ if __name__=="__main__":
     sleep=60
     threshold=500
 
-    write('input parameters: njobs=%s  events=%s  queue=%s  file=%s'%(njobs, events, queue, pfile))
+    write('input parameters: njobs=%s  queue=%s  file=%s'%(njobs, queue, pfile))
     write('job parameters: sleep=%i  nbtrials=%i  threshold=%i'%(sleep, nbtrials,threshold))
 
     process_list = []
@@ -112,7 +107,9 @@ if __name__=="__main__":
         process_list = f.read().splitlines()    
 
     if can_send(nbtrials, sleep, threshold):
-        for process in process_list:
+        for p in process_list:
+            process = p.split()[0]
+            events =  p.split()[1]
             if process=='': continue
             cmd = 'python /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/bin/sendJobs.py -n {} -e {} -q {} -p {}'.format(njobs, events, queue, process)
             write('')
