@@ -153,7 +153,7 @@ if __name__=="__main__":
 
     write('----------------------------------------------------------------------')
     write('remove the LSF outputs')
-    cmd = 'rm -rf /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/LSF_*'
+    cmd = 'rm -rf /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/LSFJOB_*'
     p=subprocess.Popen(cmd, shell=True)
     p.communicate()
 

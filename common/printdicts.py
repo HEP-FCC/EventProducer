@@ -44,6 +44,11 @@ ntot_files=0
 for s, value in sorted(indict.items()):
     evttot=0
     njobs=0
+    njobs_bad=0
+    njobs_pending=0
+    njobs_running=0
+    njobs_failed=0
+
     outdir=''
     outdirtmp=''
     print '------------------------------- ',s
@@ -53,6 +58,14 @@ for s, value in sorted(indict.items()):
             njobs+=1
             outdir=j['out']
             outdirtmp=j['out']
+
+        if j['status']=='bad':njobs_bad+=1
+        if j['status']=='running':njobs_running+=1
+        if j['status']=='submitted':njobs_pending+=1
+        if j['status']=='failed':njobs_failed+=1
+
+            
+            
 
     try: 
         teststring=para.gridpacklist[s][0]
@@ -67,9 +80,9 @@ for s, value in sorted(indict.items()):
         raise
     cmd=''
     if not matching:
-        cmd='%s,,%s,,%i,,%s,,%s,,%s,,%s\n'%(s,comma_me(str(evttot)),njobs,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][3])
+        cmd='%s,,%s,,%i,,%i,,%i,,%s,,%s,,%s,,%s\n'%(s,comma_me(str(evttot)),njobs,njobs_bad, njobs_running ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][3])
     else:
-         cmd='%s,,%s,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(s,comma_me(str(evttot)),njobs,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][2],para.gridpacklist[s][3],para.gridpacklist[s][4])
+         cmd='%s,,%s,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(s,comma_me(str(evttot)),njobs ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][2],para.gridpacklist[s][3],para.gridpacklist[s][4])
     OutFile.write(cmd)               
    
     ntot_events+=int(evttot)
