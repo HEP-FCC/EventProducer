@@ -5,11 +5,11 @@
 #  this script produces validation plots for the HT binning procedure
 #  to run it :
 #
-#  python validateHtBinning.py - p [process] - n [nevents]
+#  python validateHtBinning.py -p [process] -n [nevents]
 #
 #  e. g
 #
-#  python validateHtBinning.py - p pp_h012j_5f - n 100000
+#  python validateHtBinning.py -p pp_h012j_5f -n 100000
 #
 ##################################################################################
 
