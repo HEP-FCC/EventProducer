@@ -74,11 +74,15 @@ if __name__=="__main__":
 
     parser.add_option ('-n','--njobs', help='Number of jobs to submit',
                        dest='njobs',
-                       default='10')
+                       default='10000')
+
+    parser.add_option ('-i','--neventmax', help='Number events to produce (summing lhe input events)',
+                       dest='ninput',
+                       default='100000')
 
     parser.add_option ('-e', '--events',  help='Number of event per job. default is 100',
                        dest='events',
-                       default='10000')
+                       default='-1')
 
     parser.add_option ('-m', '--mode',  help='Running mode [batch, local]. Default is batch',
                        dest='mode',
@@ -114,6 +118,7 @@ if __name__=="__main__":
     test       = options.test
     decay      = options.decay
     version    = options.version
+    ninput     = int(options.ninput)
     rundir = os.getcwd()
     nbjobsSub=0
 
@@ -153,7 +158,7 @@ if __name__=="__main__":
     for pr in para.gridpacklist:
         if process!='' and process !=pr:continue
 
-        pythiacard='%spythia%s.cmd'%(para.pythiacards_dir,pr)
+        pythiacard='%spythia_%s.cmd'%(para.pythiacards_dir,pr)
         if decay!='':
             pythiacard='%spythia_%s_%s.cmd'%(para.pythiacards_dir,pr,decay)
 
@@ -177,6 +182,7 @@ if __name__=="__main__":
 
 
         i=0
+        nevtmax=0
         njobstmp=njobs
         ################# continue if job already exist and process if not
         while i<njobstmp:
@@ -204,6 +210,7 @@ if __name__=="__main__":
                 njobstmp+=1
                 if i>len(indict[pr]): break
                 continue
+
 
             logdir=Dir+"/BatchOutputs/%s/%s/"%(version,pr_decay)
             os.system("mkdir -p %s"%logdir)
@@ -249,6 +256,16 @@ if __name__=="__main__":
             else: 
                 print 'unknow running mode: %s'%(mode)
             i+=1
+
+            nevtmax+=int(j['nevents'])
+            print '===============================================',nevtmax,'   ',ninput
+            if nevtmax>=ninput:
+                print 'succesfully sent %i  jobs'%nbjobsSub
+                outdict.write()
+                readdic.comparedics()
+                readdic.finalize()
+                sys.exit(3)
+
     print 'succesfully sent %i  jobs'%nbjobsSub
     outdict.write()
     readdic.comparedics()
