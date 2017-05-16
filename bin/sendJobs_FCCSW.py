@@ -170,11 +170,11 @@ if __name__=="__main__":
 
         #check that the specified decay exists
         if pr in para.decaylist:
-	    if decay not in para.decaylist[pr]:
-        	print 'decay ==%s== does not exist for process ==%s=='%(decay,process)
-        	readdic.comparedics()
-        	readdic.finalize()
-        	sys.exit(3)
+            if decay not in para.decaylist[pr]:
+                print 'decay ==%s== does not exist for process ==%s=='%(decay,process)
+                readdic.comparedics()
+                readdic.finalize()
+                sys.exit(3)
 
         pr_decay=pr
         if decay!='':
