@@ -3,7 +3,7 @@
 lhe_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json'
 ##FCC events dictionnary
 fcc_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_v0_0.json'
-#fcc_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_fcc_v01.json'
+fcc_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_fcc_v01.json'
 
 ##LHE read file true/false
 readlhe_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/readLHE.json'
