@@ -107,7 +107,7 @@ if __name__=="__main__":
 
     parser.add_option ('-v', '--version',  help='version of the delphes card to use, options are: fcc_v01, cms',
                        dest='version',
-                       default='')
+                       default='fcc_v01')
 
     (options, args) = parser.parse_args()
     njobs      = int(options.njobs)
@@ -169,11 +169,12 @@ if __name__=="__main__":
             sys.exit(3)
 
         #check that the specified decay exists
-        if decay not in para.decaylist[pr]:
-            print 'decay ==%s== does not exist for process ==%s=='%(decay,process)
-            readdic.comparedics()
-            readdic.finalize()
-            sys.exit(3)
+        if pr in para.decaylist:
+            if decay not in para.decaylist[pr]:
+                print 'decay ==%s== does not exist for process ==%s=='%(decay,process)
+                readdic.comparedics()
+                readdic.finalize()
+                sys.exit(3)
 
         pr_decay=pr
         if decay!='':

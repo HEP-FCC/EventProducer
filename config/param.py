@@ -42,7 +42,10 @@ fccsw=fccsw_dir+'fccsw/0.8.1/x86_64-slc6-gcc49-opt/'
 
 ##list of possible decays
 decaylist = {
-'pp_h012j_5f':['','haa']
+'pp_h012j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'pp_vbf_h01j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'pp_tth01j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'pp_vh012j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 }
 
 ##Gridpack list

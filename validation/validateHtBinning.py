@@ -5,11 +5,11 @@
 #  this script produces validation plots for the HT binning procedure
 #  to run it :
 #
-#  python validateHtBinning.py - p [process] - n [nevents]
+#  python validateHtBinning.py -p [process] -n [nevents]
 #
 #  e. g
 #
-#  python validateHtBinning.py - p pp_h012j_5f - n 100000
+#  python validateHtBinning.py -p pp_h012j_5f -n 100000
 #
 ##################################################################################
 
@@ -42,7 +42,8 @@ def main(parser):
     process = options.process
     nEventsMax = options.nevents
     
-    processName = '{}_HT'.format(process)
+    #processName = '{}_HT'.format(process)
+    processName = process
     
     lhe = para.lhe_dic
     lheDict=None
@@ -73,6 +74,7 @@ def main(parser):
     
     legLog = legLin.Clone()
     
+    index = 0
     for proc in para.gridpacklist:
         
         # loop over bins
@@ -87,10 +89,18 @@ def main(parser):
             htLinBin[proc].Reset()
             htLogBin[proc].Reset()
             
-            htstring = proc.split('HT')[1]
-            htmin = htstring.split('_')[1]
-            htmax = htstring.split('_')[2]
-            
+            if len(proc.split('HT')) > 1:
+	        htstring = proc.split('HT')[1]
+                htmin = htstring.split('_')[1]
+                htmax = htstring.split('_')[2]
+                nMax = nEventsMax
+	    else:
+	        htstring = ''
+	        htmin = ''
+                htmax = ''
+	        nMax = nEventsMax*100
+		inc_id = index
+	    
             htLinBin[proc].SetName("htLin{}".format(htstring))
             htLogBin[proc].SetName("htLog{}".format(htstring))
             
@@ -110,21 +120,26 @@ def main(parser):
                     os.system('/bin/gunzip {}'.format(eoslhebase))
                     fillHtHistos(lhename, htLinBin[proc], htLogBin[proc])
                     os.system('/bin/rm {}'.format(lhename))
-                    
-                    if nlhe >= nEventsMax:
+                    		    
+                    if nlhe >= nMax:
                         break
 
             htLinBin[proc].Scale(xsec/nlhe)
             htLogBin[proc].Scale(xsec/nlhe)
-            
-            htLin.Add(htLinBin[proc])
-            htLog.Add(htLogBin[proc])
             
             histosLin.append(htLinBin[proc])
             histosLog.append(htLogBin[proc])
 
             htLinBin[proc].Write()
             htLogBin[proc].Write()
+
+            index +=1
+
+    htLin = histosLin[inc_id].Clone()
+    htLog = histosLog[inc_id].Clone()
+
+    del histosLin[inc_id]
+    del histosLog[inc_id]
 
     histosLin.sort(key=lambda x: x.GetMean())
     histosLog.sort(key=lambda x: x.GetMean())
@@ -137,8 +152,8 @@ def main(parser):
     htLin.Write()
     htLog.Write()
     
-    legLin.AddEntry(htLin, 'all',"l")
-    legLog.AddEntry(htLog, 'all',"l")
+    legLin.AddEntry(htLin, 'inclusive',"l")
+    legLog.AddEntry(htLog, 'inclusive',"l")
     
     drawMultiHisto('{}_lin'.format(process), legLin, 'png', [htLin] + histosLin)
     drawMultiHisto('{}_log'.format(process), legLog, 'png', [htLog] + histosLog)
