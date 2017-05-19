@@ -35,6 +35,11 @@ def addEntry(process, processlhe, xsec, kf, lheDict, fccDict, heppyFile, procDic
                    # add file to heppy sample list 
                    heppyFile.write("           '{}/{}',\n".format(eosdir,jobfcc['out']))
                    break
+
+   heppyFile.write(']\n')
+   heppyFile.write(')\n')
+   heppyFile.write('\n')
+
    # skip process if do not find corresponding lhes
    if nlhe == 0:
        print 'did not find any LHE event for process', process
@@ -156,11 +161,6 @@ if __name__=="__main__":
 
            with open("tmp.py", "w") as f1:
                f1.writelines(infile)
-
-           heppyFile.write(']\n')
-           heppyFile.write(')\n')
-           heppyFile.write('\n')
-
 
     procDict.close()
     # parse param file
