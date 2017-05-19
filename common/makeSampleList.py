@@ -5,138 +5,176 @@
 # - "procDict.json" contains a skimmed dictionary containing information for physics analysis
 
 import subprocess, glob
-import json
+import json, time, datetime
 import ast, os
-
+import collections
 import re
-
 import EventProducer.config.param as para
 
-
-version = 'v0_0'
-
-eosdir = 'root://eospublic.cern.ch/'
-
-lhe = para.lhe_dic
-fcc = para.fcc_dic
-
-lheDict=None
-with open(lhe) as f:
-   lheDict = json.load(f)
-
-fccDict=None
-with open(fcc) as f:
-   fccDict = json.load(f)
-
-nmatched = 0
-nlhe = 0
-njobs = 0
-
-# write header for heppy file
-procDict = open('tmp.json', 'w')
-procDict.write('{\n')
-
-# write header for heppy file
-heppyFile = open('heppySampleList.py', 'w')
-heppyFile.write('import heppy.framework.config as cfg\n')
-heppyFile.write('\n')
-
-# write paramfile
-paramFile = 'config/param.py'
-# parse param file
-with open(paramFile) as f:
-    infile = f.readlines()
-
-for process in fccDict:
+#______________________________________________________________________________________________________
+def addEntry(process, processlhe, xsec, kf, lheDict, fccDict, heppyFile, procDict):
+   
    nmatched = 0
    nlhe = 0
    njobs = 0
-
+   
    heppyFile.write('{} = cfg.MCComponent(\n'.format(process))
    heppyFile.write("    \'{}\',\n".format(process))
    heppyFile.write('    files=[\n')
 
-   print ''
-   print '------ ', process, '-------------'
-   print ''
-   
-   # extract cross-section from param file
-   if process not in para.gridpacklist:
-       print 'process :', process, 'not found in param.py --> skipping process'
-       heppyFile.write(']\n')
-       heppyFile.write(')\n')
-       heppyFile.write('\n')
-       continue
-   else: 
-       xsec = float(para.gridpacklist[process][3])
-   # compute matching efficiency
+   matchingEff = 1.0
+
    for jobfcc in fccDict[process]:
        if jobfcc['nevents']>0 and jobfcc['status']== 'done':
-           for joblhe in lheDict[process]:
+           for joblhe in lheDict[processlhe]:
                if joblhe['jobid'] == jobfcc['jobid'] and joblhe['status']== 'done':
                    nlhe += joblhe['nevents']
                    nmatched+=jobfcc['nevents']
                    njobs+=1
-                   
+
                    # add file to heppy sample list 
                    heppyFile.write("           '{}/{}',\n".format(eosdir,jobfcc['out']))
                    break
+
+   heppyFile.write(']\n')
+   heppyFile.write(')\n')
+   heppyFile.write('\n')
+
    # skip process if do not find corresponding lhes
    if nlhe == 0:
        print 'did not find any LHE event for process', process
        heppyFile.write(']\n')
        heppyFile.write(')\n')
        heppyFile.write('\n')
-       continue
+       return matchingEff
+       
    if nmatched == 0:
        print 'did not find any FCCSW event for process', process
        heppyFile.write(']\n')
        heppyFile.write(')\n')
        heppyFile.write('\n')
-       continue
+       return matchingEff
 
    # compute matching efficiency
    matchingEff = round(float(nmatched)/nlhe, 3)
-   entry = '   "{}": {{"numberOfEvents": {}, "crossSection": {}, "matchingEfficiency": {}}},\n'.format(process, nmatched, xsec, matchingEff)
-   print 'N: {}, xsec: {} pb, eff: {}'.format(nmatched, xsec, matchingEff)
-   
+   entry = '   "{}": {{"numberOfEvents": {}, "crossSection": {}, "kfactor": {}, "matchingEfficiency": {}}},\n'.format(process, nmatched, xsec, kf, matchingEff)
+   print 'N: {}, xsec: {} , kf: {} pb, eff: {}'.format(nmatched, xsec, kf, matchingEff)
+
    procDict.write(entry)
-   
-   # parse new param file
-   with open(paramFile) as f:
-       lines = f.readlines()
-       isgp=False
-       for line in xrange(len(lines)):
-           if 'gridpacklist' in lines[line]: isgp==True
-           if isgp==False: continue
-           if process == lines[line].rsplit(':', 1)[0].replace("'", ""):
-               ll = ast.literal_eval(lines[line].rsplit(':', 1)[1][:-2])	        
-               infile[line] = "'{}':['{}','{}','{}','{}','{}'],\n".format(process, ll[0],ll[1],ll[2],ll[3], matchingEff)
 
-   with open("tmp.py", "w") as f1:
-       f1.writelines(infile)
+   return matchingEff
 
-   heppyFile.write(']\n')
-   heppyFile.write(')\n')
-   heppyFile.write('\n')
+#_______________________________________________________________________________________________________
+if __name__=="__main__":
 
+    eosdir = 'root://eospublic.cern.ch/'
 
-procDict.close()
-# parse param file
+    heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/heppySampleList.py'
+    procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/procDict.json'
 
-# strip last comma
-with open('tmp.json', 'r') as myfile:
-    data=myfile.read()
-    newdata = data[:-2]
+    lhe = para.lhe_dic
+    fcc = para.fcc_dic
 
-# close header for heppy file
-procDict = open('procDict.json', 'w')
-procDict.write(newdata)
-procDict.write('\n')
-procDict.write('}\n')
+    # make backups
+    ts = time.time()
+    st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d_%H-%M-%S')
+    user = os.environ['USER']
 
-# replace existing param.py file
-os.system("mv tmp.py config/param.py")
+    suffix = '_{}_{}'.format(user,st)
+    heppyListbk = '{}_{}'.format(heppyList,suffix)
+    procListbk = '{}_{}'.format(procList,suffix)
 
+    os.system('cp {} {}'.format(heppyList, heppyListbk))
+    os.system('cp {} {}'.format(procList, procListbk))
 
+    lheDict=None
+    with open(lhe) as f:
+       lheDict = json.load(f)
 
+    fccDict=None
+    with open(fcc) as f:
+       fccDict = json.load(f)
+
+    nmatched = 0
+    nlhe = 0
+    njobs = 0
+
+    # write header for heppy file
+    procDict = open('tmp.json', 'w')
+    procDict.write('{\n')
+
+    # write header for heppy file
+    heppyFile = open(heppyList, 'w')
+    heppyFile.write('import heppy.framework.config as cfg\n')
+    heppyFile.write('\n')
+
+    # write paramfile
+    paramFile = 'config/param.py'
+    # parse param file
+    with open(paramFile) as f:
+        infile = f.readlines()
+
+    process_list = fccDict.keys()
+    process_list.sort()
+
+    # start loop over fcc dict 
+    for process in process_list:
+
+       print ''
+       print '------ ', process, '-------------'
+       print ''
+
+       # maybe this was a decayed process, so it cannot be found as such in in the param file
+       br = 1.0
+       decay = ''
+       for dec in para.branching_ratios:
+           if dec in process:
+               br = para.branching_ratios[dec]
+               decay = dec
+       if br < 1.0 and decay != '':
+           print decay, br
+           decstr = '_{}'.format(decay)
+           proc_param = process.replace(decstr,'')
+           print process, proc_param
+           xsec = float(para.gridpacklist[proc_param][3])*br
+           kf = float(para.gridpacklist[proc_param][4])
+           matchingEff = addEntry(process, proc_param, xsec, kf, lheDict, fccDict, heppyFile, procDict)
+
+       elif process not in para.gridpacklist:
+           print 'process :', process, 'not found in param.py --> skipping process'
+           continue
+       else: 
+           xsec = float(para.gridpacklist[process][3])
+           kf = float(para.gridpacklist[process][4])
+           matchingEff = addEntry(process, process, xsec, kf, lheDict, fccDict, heppyFile, procDict)
+           print matchingEff
+           # parse new param file
+           with open(paramFile) as f:
+               lines = f.readlines()
+               isgp=False
+ 	       for line in xrange(len(lines)):
+		   if 'gridpacklist' in str(lines[line]): isgp=True
+		   if isgp==False: continue
+		   if process == lines[line].rsplit(':', 1)[0].replace("'", ""):
+		       ll = ast.literal_eval(lines[line].rsplit(':', 1)[1][:-2])                
+		       infile[line] = "'{}':['{}','{}','{}','{}','{}','{}'],\n".format(process, ll[0],ll[1],ll[2],ll[3],ll[4], matchingEff)
+
+           with open("tmp.py", "w") as f1:
+               f1.writelines(infile)
+
+    procDict.close()
+    # parse param file
+
+    # strip last comma
+    with open('tmp.json', 'r') as myfile:
+        data=myfile.read()
+        newdata = data[:-2]
+
+    # close header for heppy file
+    procDict = open(procList, 'w')
+    procDict.write(newdata)
+    procDict.write('\n')
+    procDict.write('}\n')
+
+    # replace existing param.py file
+    os.system("mv tmp.py config/param.py")
