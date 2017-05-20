@@ -27,8 +27,8 @@ def addEntry(process, processlhe, xsec, kf, lheDict, fccDict, heppyFile, procDic
    for jobfcc in fccDict[process]:
        if jobfcc['nevents']>0 and jobfcc['status']== 'done':
            for joblhe in lheDict[processlhe]:
-               if joblhe['jobid'] == jobfcc['jobid'] and joblhe['status']== 'done':
-                   nlhe += joblhe['nevents']
+	       if int(joblhe['jobid']) == jobfcc['jobid'] and joblhe['status']== 'done':
+		   nlhe += int(joblhe['nevents'])
                    nmatched+=jobfcc['nevents']
                    njobs+=1
 
@@ -43,16 +43,10 @@ def addEntry(process, processlhe, xsec, kf, lheDict, fccDict, heppyFile, procDic
    # skip process if do not find corresponding lhes
    if nlhe == 0:
        print 'did not find any LHE event for process', process
-       heppyFile.write(']\n')
-       heppyFile.write(')\n')
-       heppyFile.write('\n')
        return matchingEff
        
    if nmatched == 0:
        print 'did not find any FCCSW event for process', process
-       heppyFile.write(']\n')
-       heppyFile.write(')\n')
-       heppyFile.write('\n')
        return matchingEff
 
    # compute matching efficiency
@@ -132,10 +126,8 @@ if __name__=="__main__":
                br = para.branching_ratios[dec]
                decay = dec
        if br < 1.0 and decay != '':
-           print decay, br
            decstr = '_{}'.format(decay)
            proc_param = process.replace(decstr,'')
-           print process, proc_param
            xsec = float(para.gridpacklist[proc_param][3])*br
            kf = float(para.gridpacklist[proc_param][4])
            matchingEff = addEntry(process, proc_param, xsec, kf, lheDict, fccDict, heppyFile, procDict)
@@ -147,7 +139,6 @@ if __name__=="__main__":
            xsec = float(para.gridpacklist[process][3])
            kf = float(para.gridpacklist[process][4])
            matchingEff = addEntry(process, process, xsec, kf, lheDict, fccDict, heppyFile, procDict)
-           print matchingEff
            # parse new param file
            with open(paramFile) as f:
                lines = f.readlines()
