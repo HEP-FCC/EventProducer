@@ -186,7 +186,7 @@ if __name__=="__main__":
         njobstmp=njobs
         ################# continue if job already exist and process if not
         while i<njobstmp:
-            if outdict.jobexits(sample=pr,jobid=i): 
+	    if outdict.jobexits(sample=pr,jobid=i): 
                 print 'job i ',i,'  exists    njobs ',njobs
                 i+=1
                 njobstmp+=1
@@ -198,7 +198,7 @@ if __name__=="__main__":
             LHEfile=''
             ################# break if already exist
             for j in indict[pr]:
-                if i==j['jobid'] and j['status']=='done':
+		if i==int(j['jobid']) and j['status']=='done':
                     LHEexist=True
                     LHEfile=j['out']
                     break
