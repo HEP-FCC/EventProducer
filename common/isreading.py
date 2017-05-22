@@ -70,7 +70,7 @@ class isreading():
                 print '\033[91m ----Entries have been incorrectly added, dictionnary is truncated----  \033[0m'
                 print '\033[91m ----Please contact clement.helsens@cern.ch or michele.selvaggi@cern.ch---- \033[0m'
 
-        if nf==0 and ns!=0:
+        elif nf==0 and ns!=0:
             if ns_read+ns==ns_local:
                 print '%i samples have been removed. Remove local dictionnary.'%ns
                 os.system('rm %s'%(self.localdic))
