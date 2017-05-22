@@ -1,4 +1,4 @@
-AF#dicts
+#dicts
 ##LHE dictionnary
 lhe_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json'
 ##FCC events dictionnary
