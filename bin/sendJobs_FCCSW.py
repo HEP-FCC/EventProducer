@@ -78,7 +78,7 @@ if __name__=="__main__":
 
     parser.add_option ('-i','--neventmax', help='Number events to produce (summing lhe input events)',
                        dest='ninput',
-                       default='100000')
+                       default='-1')
 
     parser.add_option ('-e', '--events',  help='Number of event per job. default is 100',
                        dest='events',
@@ -123,7 +123,7 @@ if __name__=="__main__":
     nbjobsSub=0
 
 
-    if version not in ['fcc_v01', 'cms']:
+    if version not in ['fcc_v01', 'cms','clement','fcc_vbftest']:
         print 'version of the cards should be: fcc_v01, cms'
         sys.exit(3)
 
@@ -156,8 +156,9 @@ if __name__=="__main__":
 
 ################# Loop over the gridpacks
     for pr in para.gridpacklist:
+        #print process, '    ',pr
         if process!='' and process !=pr:continue
-
+        print '======================================',process
         pythiacard='%spythia_%s.cmd'%(para.pythiacards_dir,pr)
         if decay!='':
             pythiacard='%spythia_%s_%s.cmd'%(para.pythiacards_dir,pr,decay)
@@ -257,13 +258,14 @@ if __name__=="__main__":
                 print 'unknow running mode: %s'%(mode)
             i+=1
 
-            nevtmax+=int(j['nevents'])
+            if ninput>0:nevtmax+=int(j['nevents'])
             print '===============================================',nevtmax,'   ',ninput
-            if nevtmax>=ninput:
+            if (nevtmax>=ninput and ninput>0):
                 print 'succesfully sent %i  jobs'%nbjobsSub
                 outdict.write()
                 readdic.comparedics()
                 readdic.finalize()
+                print 'ere'
                 sys.exit(3)
 
     print 'succesfully sent %i  jobs'%nbjobsSub
