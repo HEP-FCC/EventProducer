@@ -198,7 +198,7 @@ if __name__=="__main__":
             LHEfile=''
             ################# break if already exist
             for j in indict[pr]:
-                if i==j['jobid'] and j['status']=='done':
+                if i==int(j['jobid']) and j['status']=='done':
                     LHEexist=True
                     LHEfile=j['out']
                     break
