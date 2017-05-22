@@ -49,5 +49,5 @@ for s in mydict:
 with open(indict, 'w') as f:
     json.dump(mynewdict, f)
 
-readdic.comparedics(nf=nfailed)
+readdic.comparedics(nf=nfailed, ns=0)
 readdic.finalize()

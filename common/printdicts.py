@@ -82,7 +82,8 @@ for s, value in sorted(indict.items()):
     if not matching:
         cmd='%s,,%s,,%i,,%i,,%i,,%s,,%s,,%s,,%s\n'%(s,comma_me(str(evttot)),njobs,njobs_bad, njobs_running ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][3])
     else:
-         cmd='%s,,%s,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(s,comma_me(str(evttot)),njobs ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][2],para.gridpacklist[s][3],para.gridpacklist[s][4])
+
+        cmd='%s,,%s,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(s,comma_me(str(evttot)),njobs,njobs_bad, njobs_running ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][2],para.gridpacklist[s][3],para.gridpacklist[s][4])
     OutFile.write(cmd)               
    
     ntot_events+=int(evttot)

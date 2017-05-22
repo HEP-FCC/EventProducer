@@ -25,7 +25,7 @@ class isreading():
 
 
 #__________________________________________________________
-    def comparedics(self,nf=0):
+    def comparedics(self,nf=0,ns=0):
         size_ld=os.path.getsize(self.localdic)
         size_od=os.path.getsize(self.dicread)
         ns_local=0
@@ -59,7 +59,7 @@ class isreading():
                 return
 
         print 'ns_read ',ns_read,'  ns_local  ',ns_local,'  nf_read  ',nf_read,'  nf_local  ',nf_local
-        if nf==0:
+        if nf==0 and ns==0:
             if nf_read>nf_local:
                 print 'entries have been correctly added. remove local dictionnary.'
                 os.system('rm %s'%(self.localdic))
@@ -69,6 +69,12 @@ class isreading():
             else:
                 print '\033[91m ----Entries have been incorrectly added, dictionnary is truncated----  \033[0m'
                 print '\033[91m ----Please contact clement.helsens@cern.ch or michele.selvaggi@cern.ch---- \033[0m'
+
+        if nf==0 and ns!=0:
+            if ns_read+ns==ns_local:
+                print '%i samples have been removed. Remove local dictionnary.'%ns
+                os.system('rm %s'%(self.localdic))
+
         else:
             if nf_read+nf>nf_local:
                 print 'entries have been correctly added. remove local dictionnary.'
