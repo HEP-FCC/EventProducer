@@ -127,7 +127,7 @@ if __name__=="__main__":
     readdic.backup('sendJobs')
     readdic.reading()
 
-    processfound=False
+    processFound=False
     for pr in para.gridpacklist:
         if '*' in process:
             if (process!='') and (process not in pr): continue
