@@ -18,8 +18,11 @@ inread=''
 if sys.argv[1]=='LHE':
     indict=para.lhe_dic
     inread=para.readlhe_dic
+elif sys.argv[1]=='FCC':
+    indict=para.fcc_dic
+    inread=para.readfcc_dic
 else:
-    print 'unrecognized mode ',sys.argv[1],'  possible values are LHE'
+    print 'unrecognized mode ',sys.argv[1],'  possible values are LHE/FCC'
     sys.exit(3)
 
 if os.path.isfile(indict)==False:
@@ -27,7 +30,6 @@ if os.path.isfile(indict)==False:
     sys.exit(3)
 
 process=sys.argv[2]
-
 
 readdic=isr.isreading(inread, indict)
 readdic.backup('removeProcess')
@@ -39,23 +41,16 @@ mydict=None
 with open(indict) as f:
     mydict = json.load(f)
 
-
-
 mynewdict={}
 
 for element in mydict:
     if process == str(element):
-        print process,'    ',str(element)
-
-        continue
+	continue
     else:
         mynewdict[element]=mydict[element]
 
-
-
 with open(indict, 'w') as f:
     json.dump(mynewdict, f)
-
 
 readdic.comparedics(nf=0,ns=1)
 readdic.finalize()
