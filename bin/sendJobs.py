@@ -127,12 +127,13 @@ if __name__=="__main__":
     readdic.backup('sendJobs')
     readdic.reading()
 
+    processfound=False
     for pr in para.gridpacklist:
         if '*' in process:
             if (process!='') and (process not in pr): continue
         else:
             if (process!='') and (process != pr): continue
-
+        processFound=True
         i=0
         njobstmp=njobs
         while i<njobstmp:
@@ -191,7 +192,10 @@ if __name__=="__main__":
                 print 'unknow running mode: %s'%(mode)
             i+=1
 
-    print 'succesfully sent %i  jobs'%nbjobsSub
+    if processFound==False: 
+        print 'process ===========',process,'============ not fonund in param.py, please check'
+    else:
+        print 'succesfully sent %i  jobs'%nbjobsSub
     mydict.write()
     readdic.comparedics()
     readdic.finalize()

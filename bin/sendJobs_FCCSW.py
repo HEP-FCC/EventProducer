@@ -153,11 +153,14 @@ if __name__=="__main__":
     readdic.backup('sendJobs_FCCSW')
     readdic.reading()
 
+    processfound=False
 
 ################# Loop over the gridpacks
     for pr in para.gridpacklist:
         #print process, '    ',pr
         if process!='' and process !=pr:continue
+        processfound=True
+
         print '======================================',process
         pythiacard='%spythia_%s.cmd'%(para.pythiacards_dir,pr)
         if decay!='':
@@ -267,8 +270,10 @@ if __name__=="__main__":
                 readdic.finalize()
                 print 'ere'
                 sys.exit(3)
-
-    print 'succesfully sent %i  jobs'%nbjobsSub
+    if processFound==False: 
+        print 'process ===========',process,'============ not fonund in param.py, please check'
+    else:
+        print 'succesfully sent %i  jobs'%nbjobsSub
     outdict.write()
     readdic.comparedics()
     readdic.finalize()
