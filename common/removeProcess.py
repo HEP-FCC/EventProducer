@@ -45,7 +45,8 @@ mynewdict={}
 
 for element in mydict:
     if process == str(element):
-	continue
+        print process,'    ',str(element)
+        continue
     else:
         mynewdict[element]=mydict[element]
 
