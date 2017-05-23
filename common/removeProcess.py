@@ -8,7 +8,6 @@ import ROOT as r
 import EventProducer.config.param as para
 import EventProducer.common.isreading as isr
 
-print len(sys.argv)
 if len(sys.argv)!=3:
     print 'usage: python removeProcess.py LHE/FCC process'
     exit(3)
