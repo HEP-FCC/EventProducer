@@ -172,14 +172,29 @@ if __name__=="__main__":
             readdic.finalize()
             sys.exit(3)
 
+        pr_noht=''
+        if '_HT_' in pr:
+            ssplit=pr.split('_')
+            stest=''
+            for s in xrange(0,len(ssplit)-3):
+                stest+=ssplit[s]+'_'
+            pr_noht= stest[0:len(stest)-1]
+
         #check that the specified decay exists
-        if pr in para.decaylist and decay != '':
+        if pr in para.decaylist and decay != '' and '_HT_' not in pr:
             if decay not in para.decaylist[pr]:
                 print 'decay ==%s== does not exist for process ==%s=='%(decay,process)
                 readdic.comparedics()
                 readdic.finalize()
                 sys.exit(3)
 
+        #check that the specified decay exists
+        if pr_noht in para.decaylist and decay != '' and '_HT_' in pr:
+            if decay not in para.decaylist[pr_noht]:
+                print 'decay ==%s== does not exist for process ==%s=='%(decay,process)
+                readdic.comparedics()
+                readdic.finalize()
+                sys.exit(3)
         pr_decay=pr
         if decay!='':
             pr_decay=pr+'_'+decay
