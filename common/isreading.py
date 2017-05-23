@@ -14,6 +14,7 @@ class isreading():
         self.user=os.environ['USER']
         self.dicread=indic
         self.localdic=''
+        self.script=''
 
 #__________________________________________________________
     def backup(self,code):
@@ -21,6 +22,7 @@ class isreading():
         st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d_%H-%M-%S')
         self.localdic='%s_%s_%s_%s'%(self.dicread,self.user,code,st)
         os.system('cp %s %s'%(self.dicread,self.localdic))
+        self.script=code
         return
 
 
@@ -101,11 +103,16 @@ class isreading():
 #__________________________________________________________
     def reading(self):
         if self.readf['read']['value'] == "True":
-            print 'can not run jobs now, an other script is already linked to the dictonary, please retry a bit later.'
+            print 'can not run jobs now!'
+            print 'USER ===%s=== is running the script ===%s===, this is why the dictonary is not accessible'%(self.user, self.script)
+            print 'please retry a bit later or contact ===%s=== as it is possible that the script has crashed'%(self.user)
             print 'If it continues to happend, please contact clement.helsens@cern.ch or michele.selvaggi@cern.ch'
             sys.exit(3)
         elif self.readf['read']['value'] == "False":
             self.readf['read']['value'] = "True"
+            self.readf['read']['user'] = self.user
+            self.readf['read']['script'] = self.script
+
         else:
             print 'unknown value: ',self.readf['read']['value']
         self.write()
