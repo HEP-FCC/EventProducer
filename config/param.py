@@ -128,6 +128,7 @@ gridpacklist = {
 'pp_vbf_hh01j_5f_HT_4000_7200':['vbf di-higgs + 0/1 jets','4000 < HT < 7200','xqcut = 60, qCut = 90','7.489e-05','1.0','1.0'],
 'pp_vbf_hh01j_5f_HT_7200_100000':['vbf di-higgs + 0/1 jets','7200 < HT < 100000','xqcut = 60, qCut = 90','8.888e-06','1.0','1.0'],
 'pp_vbf_hh01j_5f':['vbf di-higgs + 0/1 jets','inclusive','xqcut = 60, qCut = 90','0.06453','1.0','1.0'],
+'pp_tthh01j_5f':['top pair di-higgs + 0/1 jets','inclusive','xqcut = 100, qCut = 150','0.1164','1.0','1.0'],
 'pp_v0123j_5f_HT_0_1500':['vector boson + 0/1/2/3 jets','0 < HT < 1500','xqcut = 30, qCut = 45','8.889e+06','1.20','0.231'],
 'pp_v0123j_5f_HT_1500_2900':['vector boson + 0/1/2/3 jets','1500 < HT < 2900','xqcut = 30, qCut = 45','2868','1.20','0.257'],
 'pp_v0123j_5f_HT_2900_5100':['vector boson + 0/1/2/3 jets','2900 < HT < 5100','xqcut = 30, qCut = 45','300.8','1.20','0.244'],
