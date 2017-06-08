@@ -2,7 +2,6 @@
 ##LHE dictionnary
 lhe_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json'
 ##FCC events dictionnary
-fcc_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_v0_0.json'
 fcc_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_fcc_v01.json'
 
 ##LHE read file true/false
@@ -14,6 +13,7 @@ readfcc_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/readFCC.json'
 gp_dir      = '/eos/fcc/hh/generation/mg5_amcatnlo/gridpacks/'
 ##eos directory for lhe files
 lhe_dir     = '/eos/fcc/hh/generation/mg5_amcatnlo/lhe/'
+
 ##eos directory for FCCSW pythia delphes files
 delphes_dir = '/eos/fcc/hh/generation/DelphesEvents/'
 
@@ -40,7 +40,12 @@ stack=fccsw_dir+'init_fcc_stack.sh'
 ##FCCSW dir
 fccsw=fccsw_dir+'fccsw/0.8.1/x86_64-slc6-gcc49-opt/'
 
-##list of possible decays
+#list of processes only with Pythia, meaning no LHE
+pythialist={
+'pp_Zprime_3TeV_eemumu':['Z\' 3TeV','electrons','','1.0','1.0','1.0']
+}
+
+##list of possible decays of LHE files
 decaylist = {
 'pp_h012j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'pp_vbf_h01j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
