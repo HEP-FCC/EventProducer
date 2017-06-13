@@ -123,3 +123,33 @@ class isreading():
         with open(self.read, 'w') as f:
             json.dump(self.readf, f)
         return
+
+
+#__________________________________________________________
+if __name__=="__main__":
+    import EventProducer.config.param as para
+
+    if sys.argv[1]!='secret':
+        print 'this is not how to run the script ;0'
+        sys.exit(3)
+
+    inread=''
+
+    if sys.argv[2]=='LHE':
+        inread=para.readlhe_dic
+    elif sys.argv[2]=='FCC':
+        inread=para.readfcc_dic
+    else:
+        print 'unrecognized mode ',sys.argv[2],'  possible values are FCC or LHE'
+        sys.exit(3)
+
+
+    print inread
+    with open(inread,'r') as f:
+        inreadf = json.load(f)
+        if inreadf['read']['value'] == "True":
+            print 'to false'
+            inreadf['read']['value'] = "False"
+            with open(inread, 'w') as f2:
+                json.dump(inreadf, f2)
+            
