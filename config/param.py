@@ -42,7 +42,14 @@ fccsw=fccsw_dir+'fccsw/0.8.1/x86_64-slc6-gcc49-opt/'
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={
-'pp_Zprime_3TeV_eemumu':['Z\' 3TeV','electrons','','1.0','1.0','1.0']
+'pp_Zprime_5TeV_ll':['5TeV Z\' -> ll (l=e,mu,tau)','','','4.751e-4','1.0','1.0'],
+'pp_Zprime_10TeV_ll':['10TeV Z\' -> ll (l=e,mu,tau)','','','3.460e-5','1.0','1.0'],
+'pp_Zprime_15TeV_ll':['15TeV Z\' -> ll (l=e,mu,tau)','','','5.801e-6','1.0','1.0'],
+'pp_Zprime_20TeV_ll':['20TeV Z\' -> ll (l=e,mu,tau)','','','1.304e-6','1.0','1.0'],
+'pp_Zprime_25TeV_ll':['25TeV Z\' -> ll (l=e,mu,tau)','','','3.416e-7','1.0','1.0'],
+'pp_Zprime_30TeV_ll':['30TeV Z\' -> ll (l=e,mu,tau)','','','9.752e-8','1.0','1.0'],
+'pp_Zprime_35TeV_ll':['35TeV Z\' -> ll (l=e,mu,tau)','','','3.060e-8','1.0','1.0'],
+'pp_Zprime_40TeV_ll':['40TeV Z\' -> ll (l=e,mu,tau)','','','1.790e-8','1.0','1.0']
 }
 
 ##list of possible decays of LHE files
@@ -188,11 +195,11 @@ gridpacklist = {
 'pp_ttv01j_5f_HT_4900_8100':['top pair + boson + 0/1 jets','4900 < HT < 8100','xqcut = 80, qCut = 120','0.2143','1.14','0.73'],
 'pp_ttv01j_5f_HT_8100_100000':['top pair + boson + 0/1 jets','8100 < HT < 100000','xqcut = 80, qCut = 120','0.02413','1.14','0.744'],
 'pp_ttv01j_5f':['top pair + boson + 0/1 jets','inclusive','xqcut = 80, qCut = 120','258.3','1.14','0.553'],
-'pp_ll012j_5f_HT_0_200':['V -> ll (l=e,mu,ve,vm,vt) + ','0 < HT < 200','xqcut = 30, qCut = 45','1.158e+04','1.20','1.0'],
-'pp_ll012j_5f_HT_200_700':['V -> ll (l=e,mu,ve,vm,vt) + ','200 < HT < 700','xqcut = 30, qCut = 45','717.3','1.20','1.0'],
-'pp_ll012j_5f_HT_700_1500':['V -> ll (l=e,mu,ve,vm,vt) + ','700 < HT < 1500','xqcut = 30, qCut = 45','37.04','1.20','1.0'],
-'pp_ll012j_5f_HT_1500_2700':['V -> ll (l=e,mu,ve,vm,vt) + ','1500 < HT < 2700','xqcut = 30, qCut = 45','3.723','1.20','1.0'],
-'pp_ll012j_5f_HT_2700_4200':['V -> ll (l=e,mu,ve,vm,vt) + ','2700 < HT < 4200','xqcut = 30, qCut = 45','0.4862','1.20','1.0'],
+'pp_ll012j_5f_HT_0_200':['V -> ll (l=e,mu,ve,vm,vt) + ','0 < HT < 200','xqcut = 30, qCut = 45','1.158e+04','1.20','0.852'],
+'pp_ll012j_5f_HT_200_700':['V -> ll (l=e,mu,ve,vm,vt) + ','200 < HT < 700','xqcut = 30, qCut = 45','717.3','1.20','0.476'],
+'pp_ll012j_5f_HT_700_1500':['V -> ll (l=e,mu,ve,vm,vt) + ','700 < HT < 1500','xqcut = 30, qCut = 45','37.04','1.20','0.511'],
+'pp_ll012j_5f_HT_1500_2700':['V -> ll (l=e,mu,ve,vm,vt) + ','1500 < HT < 2700','xqcut = 30, qCut = 45','3.723','1.20','0.55'],
+'pp_ll012j_5f_HT_2700_4200':['V -> ll (l=e,mu,ve,vm,vt) + ','2700 < HT < 4200','xqcut = 30, qCut = 45','0.4862','1.20','0.56'],
 'pp_ll012j_5f_HT_4200_8000':['V -> ll (l=e,mu,ve,vm,vt) + ','4200 < HT < 8000','xqcut = 30, qCut = 45','0.1125','1.20','1.0'],
 'pp_ll012j_5f_HT_8000_15000':['V -> ll (l=e,mu,ve,vm,vt) + ','8000 < HT < 15000','xqcut = 30, qCut = 45','0.008175','1.20','1.0'],
 'pp_ll012j_5f_HT_15000_25000':['V -> ll (l=e,mu,ve,vm,vt) + ','15000 < HT < 25000','xqcut = 30, qCut = 45','0.000314','1.20','1.0'],
