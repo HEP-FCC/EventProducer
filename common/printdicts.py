@@ -1,16 +1,31 @@
-#python printdicts.py /afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json /afs/cern.ch/user/h/helsens/www/LHEevents.txt
-#python printdicts.py /afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_v0_0.json /afs/cern.ch/user/h/helsens/www/Delphesevents.txt
+#python printdicts.py LHE /afs/cern.ch/user/h/helsens/www/LHEevents.txt
+#python printdicts.py FCC /afs/cern.ch/user/h/helsens/www/Delphesevents.txt
 import json
 import sys
 import os.path
 import re
 
 import EventProducer.config.param as para
+import EventProducer.common.isreading as isr
 
 
 if len(sys.argv)!=3:
-    print 'usage: python printdicts.py indict.json outfile.txt'
+    print 'usage: python printdicts.py LHE/FCC outfile.txt'
     exit(3)
+
+matching=False
+indictname=''
+inread=''
+if sys.argv[1]=='LHE':
+    indictname=para.lhe_dic
+    inread=para.readlhe_dic
+elif sys.argv[1]=='FCC':
+    indictname=para.fcc_dic
+    inread=para.readfcc_dic
+    matching=True
+else:
+    print 'unrecognized mode ',sys.argv[1],'  possible values are FCC or LHE'
+    sys.exit(3)
 
 
 def comma_me(amount):
@@ -22,10 +37,10 @@ def comma_me(amount):
         return comma_me(new)
 
 
-indictname=sys.argv[1]
-matching=False
-if 'LHE' not in indictname:
-    matching=True
+readdic=isr.isreading(inread, indictname)
+readdic.backup('printdic')
+readdic.reading()
+
 
 if os.path.isfile(indictname)==False:
     print 'dictonary does not exists '
@@ -65,8 +80,9 @@ for s, value in sorted(indict.items()):
         if j['status']=='failed':njobs_failed+=1
 
             
-            
-
+    news=s
+    ispythiaonly=False
+    print '====================================',s
     try: 
         teststring=para.gridpacklist[s][0]
     except IOError as e:
@@ -75,18 +91,56 @@ for s, value in sorted(indict.items()):
         print "Could not convert data to an integer."
     except KeyError, e:
         print 'I got a KeyError - reason "%s"' % str(e)
+        ssplit=s.split('_')
+        stest=''
+        ntest=1
+        if '_HT_' in s: ntest=4
+        for s in xrange(0,len(ssplit)-ntest):
+            stest+=ssplit[s]+'_'
+
+        stest= stest[0:len(stest)-1]
+        s=stest
+        try: 
+            teststringdecay=para.decaylist[stest][0]
+        except IOError as e:
+            print "I/O error({0}): {1}".format(e.errno, e.strerror)
+        except ValueError:
+            print "Could not convert data to an integer."
+        except KeyError, e:
+            print 'I got a KeyError - reason "%s"' % str(e)
+            try:
+                teststringpythia=para.pythialist[news][0]
+                ispythiaonly=True
+            except IOError as e:
+                print "I/O error({0}): {1}".format(e.errno, e.strerror)
+            except ValueError:
+                print "Could not convert data to an integer."
+            except KeyError, e:
+                print 'I got a KeyError - reason "%s"' % str(e)
+            
     except:
         print "Unexpected error:", sys.exc_info()[0]
         raise
-    cmd=''
-    if not matching:
-        cmd='%s,,%s,,%i,,%i,,%i,,%s,,%s,,%s,,%s\n'%(s,comma_me(str(evttot)),njobs,njobs_bad, njobs_running ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][3])
-    else:
 
-        cmd='%s,,%s,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(s,comma_me(str(evttot)),njobs,njobs_bad, njobs_running ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][2],para.gridpacklist[s][3],para.gridpacklist[s][4])
+    cmd=''
+    if not matching and not ispythiaonly:
+        cmd='%s,,%s,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),njobs,njobs_bad, njobs_running ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][2],para.gridpacklist[s][3])
+    elif  matching and not ispythiaonly:
+        cmd='%s,,%s,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),njobs,njobs_bad, njobs_running ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][3],para.gridpacklist[s][4],para.gridpacklist[s][5])
+    elif  ispythiaonly:
+        cmd='%s,,%s,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),njobs,njobs_bad, njobs_running ,outdir.replace(outdirtmp.split('/')[-1],''),para.pythialist[news][0],para.pythialist[news][1],para.pythialist[news][3],para.pythialist[news][4],para.pythialist[news][5])
+        ispythiaonly=False
     OutFile.write(cmd)               
-   
+
+##     0          1            2                 3           4           5
+## description/comment/matching parameters/cross section/kfactor/matching efficiency
+
+
+
     ntot_events+=int(evttot)
     ntot_files+=int(njobs)
 cmd='%s,,%s,,%i,,%s,,%s,,%s,,%s\n'%('total',comma_me(str(ntot_events)),ntot_files,'','','','')
 OutFile.write(cmd)
+
+readdic.comparedics()
+readdic.finalize()
