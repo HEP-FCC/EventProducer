@@ -10,7 +10,7 @@ python common/cleanfailed.py LHE
 python common/jobchecker.py FCC
 python common/cleanfailed.py FCC
 
-python common/printdicts.py /afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json /afs/cern.ch/user/h/helsens/www/LHEevents.txt
-python common/printdicts.py /afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_v0_0.json /afs/cern.ch/user/h/helsens/www/Delphesevents.txt
+python common/printdicts.py LHE /afs/cern.ch/user/h/helsens/www/LHEevents.txt
+python common/printdicts.py FCC /afs/cern.ch/user/h/helsens/www/Delphesevents.txt
 
-python common/makeSampleList.py
+#python common/makeSampleList.py
