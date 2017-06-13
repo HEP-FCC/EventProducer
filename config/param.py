@@ -42,14 +42,22 @@ fccsw=fccsw_dir+'fccsw/0.8.1/x86_64-slc6-gcc49-opt/'
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={
-'pp_Zprime_5TeV_ll':['5TeV Z\' -> ll (l=e,mu,tau)','','','4.751e-4','1.0','1.0'],
-'pp_Zprime_10TeV_ll':['10TeV Z\' -> ll (l=e,mu,tau)','','','3.460e-5','1.0','1.0'],
-'pp_Zprime_15TeV_ll':['15TeV Z\' -> ll (l=e,mu,tau)','','','5.801e-6','1.0','1.0'],
-'pp_Zprime_20TeV_ll':['20TeV Z\' -> ll (l=e,mu,tau)','','','1.304e-6','1.0','1.0'],
-'pp_Zprime_25TeV_ll':['25TeV Z\' -> ll (l=e,mu,tau)','','','3.416e-7','1.0','1.0'],
-'pp_Zprime_30TeV_ll':['30TeV Z\' -> ll (l=e,mu,tau)','','','9.752e-8','1.0','1.0'],
-'pp_Zprime_35TeV_ll':['35TeV Z\' -> ll (l=e,mu,tau)','','','3.060e-8','1.0','1.0'],
-'pp_Zprime_40TeV_ll':['40TeV Z\' -> ll (l=e,mu,tau)','','','1.790e-8','1.0','1.0']
+'pp_Zprime_5TeV_ll':['5TeV Z\' -> ll (l=e,mu,tau)','','','1.043e-1','1.0','1.0'],
+'pp_Zprime_10TeV_ll':['10TeV Z\' -> ll (l=e,mu,tau)','','','5.914e-3','1.0','1.0'],
+'pp_Zprime_15TeV_ll':['15TeV Z\' -> ll (l=e,mu,tau)','','','7.989e-4','1.0','1.0'],
+'pp_Zprime_20TeV_ll':['20TeV Z\' -> ll (l=e,mu,tau)','','','1.639e-4','1.0','1.0'],
+'pp_Zprime_25TeV_ll':['25TeV Z\' -> ll (l=e,mu,tau)','','','4.437e-5','1.0','1.0'],
+'pp_Zprime_30TeV_ll':['30TeV Z\' -> ll (l=e,mu,tau)','','','1.375e-5','1.0','1.0'],
+'pp_Zprime_35TeV_ll':['35TeV Z\' -> ll (l=e,mu,tau)','','','4.821e-6','1.0','1.0'],
+'pp_Zprime_40TeV_ll':['40TeV Z\' -> ll (l=e,mu,tau)','','','2.171e-6','1.0','1.0'],
+'pp_Zprime_5TeV_ttbar':['5TeV Z\' -> ttbar','','','1.194e-1','1.0','1.0'],
+'pp_Zprime_10TeV_ttbar':['10TeV Z\' -> ttbar','','','6.712e-3','1.0','1.0'],
+'pp_Zprime_15TeV_ttbar':['15TeV Z\' -> ttbar','','','9.280e-4','1.0','1.0'],
+'pp_Zprime_20TeV_ttbar':['20TeV Z\' -> ttbar','','','1.914e-4','1.0','1.0'],
+'pp_Zprime_25TeV_ttbar':['25TeV Z\' -> ttbar','','','4.987e-5','1.0','1.0'],
+'pp_Zprime_30TeV_ttbar':['30TeV Z\' -> ttbar','','','1.512e-5','1.0','1.0'],
+'pp_Zprime_35TeV_ttbar':['35TeV Z\' -> ttbar','','','5.578e-6','1.0','1.0'],
+'pp_Zprime_40TeV_ttbar':['40TeV Z\' -> ttbar','','','2.413e-6','1.0','1.0']
 }
 
 ##list of possible decays of LHE files
