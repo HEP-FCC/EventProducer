@@ -175,7 +175,7 @@ if __name__=="__main__":
 
             if mode=='batch':
                     #cmdBatch = 'bsub -o %s%s/%s/log_job%i.log -q 8nh %s/tmp/%s'%(para.outdir,pr,ht.replace('.tar.gz',''),i,Dir,frunname)
-                cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -outdir %s -cwd %s %s" %(queue,logdir+'/job%s/'%(str(i)),logdir+'/job%s/'%(str(i)),logdir+'/job%s/'%(str(i))+frunname)
+                cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -o %s -cwd %s %s" %(queue,logdir+'/job%s/'%(str(i)),logdir+'/job%s/'%(str(i)),logdir+'/job%s/'%(str(i))+frunname)
                 #print cmdBatch
                 
                 batchid=-1
