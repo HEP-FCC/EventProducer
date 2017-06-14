@@ -7,6 +7,14 @@ import datetime
 class isreading():
     def __init__(self,inread, indic):
         self.read=inread
+
+        self.fexist=self.exist(inread)
+        if not self.fexist: 
+            print 'read file ', inread, ' does not exist. Create it'
+            file_handle = open(self.read,"w")
+            file_handle.write('{"read": {"user": "", "value": "False", "script": ""}}\n')
+            file_handle.close()
+
         self.readf = None
         with open(self.read,'r') as f:
             self.readf = json.load(f)
@@ -15,6 +23,12 @@ class isreading():
         self.dicread=indic
         self.localdic=''
         self.script=''
+
+
+#__________________________________________________________
+    def exist(self,infile):
+        if not os.path.exists(infile): return False
+        return True
 
 #__________________________________________________________
     def backup(self,code):
@@ -127,11 +141,14 @@ class isreading():
 
 #__________________________________________________________
 if __name__=="__main__":
-    import EventProducer.config.param as para
-
     if sys.argv[1]!='secret':
         print 'this is not how to run the script ;0'
         sys.exit(3)
+
+    if sys.argv[1]=="secret":
+        import EventProducer.config.param_test as para
+    else:
+        import EventProducer.config.param as para
 
     inread=''
 
