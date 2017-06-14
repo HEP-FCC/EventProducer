@@ -1,4 +1,5 @@
 #python bin/sendJobs_FCCSW.py -n 10 -p pp_h012j_5f -q 8nh -e -1 -d haa --test
+#python bin/sendJobs_FCCSW.py secret -n 1 -e -1  -p "pp_h012j_5f" -q 1nh --test
 
 
 import glob, os, sys,subprocess,cPickle
@@ -7,9 +8,14 @@ import time
 import random
 import json
 
-import EventProducer.config.param as para
 import EventProducer.common.dicwriter_FCC as dicr
 import EventProducer.common.isreading as isr
+secret=False
+if sys.argv[1]=="secret":
+    import EventProducer.config.param_test as para
+    secret=True
+else:
+    import EventProducer.config.param as para
 
 eosbase='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select'
 indictname=para.lhe_dic
@@ -123,7 +129,7 @@ if __name__=="__main__":
     nbjobsSub=0
 
 
-    if version not in ['fcc_v01', 'cms','clement','fcc_vbftest']:
+    if version not in ['fcc_v01', 'cms'] and not secret :
         print 'version of the cards should be: fcc_v01, cms'
         sys.exit(3)
 
@@ -245,7 +251,13 @@ if __name__=="__main__":
             frun.write('cd job%i_%s\n'%(i,pr_decay))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
-            frun.write('%s mkdir %s%s/%s\n'%(eosbase,para.delphes_dir,version,pr_decay))
+            if secret:
+                frun.write('%s mkdir %s\n'%(eosbase, para.delphes_dir))
+                frun.write('%s mkdir %s/%s\n'%(eosbase,para.delphes_dir,pr_decay))
+            else:
+                frun.write('%s mkdir %s%s/%s\n'%(eosbase,para.delphes_dir,version))
+                frun.write('%s mkdir %s%s/%s\n'%(eosbase,para.delphes_dir,version,pr_decay))
+
             frun.write('%s cp %s .\n'%(eosbase,LHEfile))
             frun.write('gunzip -c %s > events.lhe\n'%LHEfile.split('/')[-1])          
             frun.write('%s cp %s .\n'%(eosbase,delphescards_base))
@@ -257,7 +269,12 @@ if __name__=="__main__":
             frun.write('echo "Beams:LHEF = events.lhe" >> card.cmd\n')
            
             frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%i.root --nevents=%i\n'%(para.fccsw,i,events))
-            frun.write('%s cp events%i.root %s%s/%s/events%i.root\n'%(eosbase,i,para.delphes_dir,version,pr_decay,i))
+            
+            if secret:
+                frun.write('%s cp events%i.root %s/%s/events%i.root\n'%(eosbase,i,para.delphes_dir,pr_decay,i))
+            else:
+                frun.write('%s cp events%i.root %s%s/%s/events%i.root\n'%(eosbase,i,para.delphes_dir,version,pr_decay,i))
+            
             frun.write('cd ..\n')
             frun.write('rm -rf job%i_%s\n'%(i,pr_decay))
             print pr_decay
@@ -268,7 +285,10 @@ if __name__=="__main__":
                 if test==False:
                     job,batchid=SubmitToBatch(cmdBatch,10)
                     nbjobsSub+=job
-                    outdict.addjob(sample=pr_decay,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/%s/events%i.root'%(para.delphes_dir,version,pr_decay,i),batchid=batchid,script='%s/%s'%(logdir,frunname),inputlhe=LHEfile,plots='none')
+                    if secret:
+                        outdict.addjob(sample=pr_decay,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s/%s/events%i.root'%(para.delphes_dir,pr_decay,i),batchid=batchid,script='%s/%s'%(logdir,frunname),inputlhe=LHEfile,plots='none')
+                    else:
+                        outdict.addjob(sample=pr_decay,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/%s/events%i.root'%(para.delphes_dir,version,pr_decay,i),batchid=batchid,script='%s/%s'%(logdir,frunname),inputlhe=LHEfile,plots='none')
             elif mode=='local':
                 os.system('./tmp/%s'%frunname)
 

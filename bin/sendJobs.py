@@ -11,6 +11,10 @@
 #
 #To run a test job
 #python bin/sendJobs.py -n 1 -e 1  -p "pp_hh_bbaa" -q 1nd --test
+#
+#to run secret test mode
+#python bin/sendJobs.py secret -n 1 -e 1  -p "pp_hh_bbaa" -q 1nd --test
+
 
 #!/usr/bin/env python
 import json, sys
@@ -20,10 +24,16 @@ import time
 import random
 import EventProducer.common.dicwriter as dicr
 import EventProducer.common.isreading as isr
-import EventProducer.config.param as para
+
+if sys.argv[1]=="secret":
+    import EventProducer.config.param_test as para
+else:
+    import EventProducer.config.param as para
+
 
 mydict=dicr.dicwriter(para.lhe_dic)
 readdic=isr.isreading(para.readlhe_dic, para.lhe_dic)
+eosbase='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select'
 
 #__________________________________________________________
 def getCommandOutput(command):
@@ -59,6 +69,16 @@ def SubmitToBatch(cmd,nbtrials):
             print "failed sumbmitting after: "+str(nbtrials)+" trials, will exit"
             return 0,0
 
+
+#__________________________________________________________
+def eosexist(myfile):
+    cmd='%s ls %s'%(eosbase,myfile)
+    p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
+    p.wait()
+    if len(p.stderr.readline())==0:
+        return True
+    else: 
+        return False
 
 #__________________________________________________________
 def SubmitToCondor(cmd,nbtrials):
@@ -123,6 +143,11 @@ if __name__=="__main__":
     test     = options.test
     rundir = os.getcwd()
     nbjobsSub=0
+    
+    gptotest='%s/%s.tar.gz'%(para.gp_dir,process)
+    if eosexist(gptotest)==False:
+        print 'Gridpack=======',gptotest,'======= does not exist'
+        sys.exit(3)
 
     readdic.backup('sendJobs')
     readdic.reading()
@@ -147,7 +172,6 @@ if __name__=="__main__":
                 print 'job does not exists: ',i
 
             logdir=Dir+"/BatchOutputs/%s"%(pr)
-            eosbase='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select'
 
 
             os.system("mkdir -p %s"%logdir+'/job%s/'%str(i))
@@ -163,12 +187,13 @@ if __name__=="__main__":
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
             frun.write('source %s\n'%(para.stack))
+            frun.write('%s mkdir %s\n'%(eosbase, para.lhe_dir))
             frun.write('%s mkdir %s%s\n'%(eosbase, para.lhe_dir,pr))
             frun.write('%s cp %s/%s.tar.gz .\n'%(eosbase,para.gp_dir,pr))
             frun.write('tar -zxf %s.tar.gz\n'%pr)
             frun.write('cd process/\n')
             frun.write('./run.sh %i %i\n'%(events,i+1))
-            frun.write('/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp events.lhe.gz %s/%s/events%i.lhe.gz\n'%(para.lhe_dir,pr,i))
+            frun.write('%s cp events.lhe.gz %s/%s/events%i.lhe.gz\n'%(eosbase, para.lhe_dir,pr,i))
             frun.write('cd ..\n')
             frun.write('rm -rf job%i_%s\n'%(i,pr))
             print pr
