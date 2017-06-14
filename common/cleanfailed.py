@@ -1,13 +1,19 @@
-#python cleanfailed.py /afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json
+#python cleanfailed.py LHE/FCC secret
 import json
 import os
 import os.path
 import sys
 
-import EventProducer.config.param as para
 import EventProducer.common.isreading as isr
 
-if len(sys.argv)!=2:
+if "secret" in sys.argv:
+    import EventProducer.config.param_test as para
+    secret=True
+else:
+    import EventProducer.config.param as para
+
+
+if len(sys.argv)>4 or len(sys.argv)<2:
     print 'usage: python cleanfailed.py FCC or LHE'
     exit(3)
 

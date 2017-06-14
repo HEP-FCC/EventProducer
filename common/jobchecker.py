@@ -1,17 +1,23 @@
-#python jobchecker.py LHE or FCC
+#python common/jobchecker.py LHE or FCC
+#python common/jobchecker.py LHE/FCC secret
+
 import json
 import subprocess
 import sys
 import os.path
 import ROOT as r
 
-import EventProducer.config.param as para
 import EventProducer.common.isreading as isr
 
+if "secret" in sys.argv:
+    import EventProducer.config.param_test as para
+    secret=True
+else:
+    import EventProducer.config.param as para
 
 force=False
 
-if len(sys.argv)>4 or len(sys.argv)<2:
+if len(sys.argv)>5 or len(sys.argv)<2:
     print 'usage: python jobchecker.py LHE/FCC (process)'
     exit(3)
 
@@ -32,7 +38,7 @@ if os.path.isfile(indict)==False:
     sys.exit(3)
 
 inprocess=''
-if len(sys.argv)==3:
+if len(sys.argv)==3 and sys.argv[2]!='secret':
     inprocess=sys.argv[2]
 
 
@@ -52,9 +58,7 @@ for s in mydict:
     if inprocess!='':
         if inprocess!=s: continue
 
-
     for j in mydict[s]:
-
         if force==False:
 
             if (j['status']== 'done' or j['status']== 'bad')and '.root' not in j['out']:
