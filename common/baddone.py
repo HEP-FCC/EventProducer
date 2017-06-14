@@ -10,7 +10,7 @@ import EventProducer.common.isreading as isr
 
 print len(sys.argv)
 if len(sys.argv)!=2:
-    print 'usage: python baddone.py LHE'
+    print 'usage: python common/baddone.py LHE'
     exit(3)
 
 indict=''
