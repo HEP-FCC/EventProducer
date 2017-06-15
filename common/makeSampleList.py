@@ -27,8 +27,8 @@ def addEntry(process, processlhe, xsec, kf, lheDict, fccDict, heppyFile, procDic
    for jobfcc in fccDict[process]:
        if jobfcc['nevents']>0 and jobfcc['status']== 'done':
            for joblhe in lheDict[processlhe]:
-	       if int(joblhe['jobid']) == jobfcc['jobid'] and joblhe['status']== 'done':
-		   nlhe += int(joblhe['nevents'])
+               if int(joblhe['jobid']) == jobfcc['jobid'] and joblhe['status']== 'done':
+                   nlhe += int(joblhe['nevents'])
                    nmatched+=jobfcc['nevents']
                    njobs+=1
 
@@ -58,6 +58,37 @@ def addEntry(process, processlhe, xsec, kf, lheDict, fccDict, heppyFile, procDic
 
    return matchingEff
 
+#______________________________________________________________________________________________________
+def addEntryPythia(process, xsec, kf, fccDict, heppyFile, procDict):
+   
+   heppyFile.write('{} = cfg.MCComponent(\n'.format(process))
+   heppyFile.write("    \'{}\',\n".format(process))
+   heppyFile.write('    files=[\n')	
+
+   nmatched = 0
+   njobs = 0
+   matchingEff = 1.0
+
+   for jobfcc in fccDict[process]:
+       if jobfcc['nevents']>0 and jobfcc['status']== 'done':
+	   nmatched+=jobfcc['nevents']
+           njobs+=1
+           heppyFile.write("           '{}/{}',\n".format(eosdir,jobfcc['out']))
+
+   heppyFile.write(']\n')
+   heppyFile.write(')\n')
+   heppyFile.write('\n')
+       
+   if nmatched == 0:
+       print 'did not find any FCCSW event for process', process
+       return matchingEff
+
+   # compute matching efficiency
+   entry = '   "{}": {{"numberOfEvents": {}, "crossSection": {}, "kfactor": {}, "matchingEfficiency": {}}},\n'.format(process, nmatched, xsec, kf, matchingEff)
+   print 'N: {}, xsec: {} , kf: {} pb, eff: {}'.format(nmatched, xsec, kf, matchingEff)
+   procDict.write(entry)
+   return matchingEff
+   
 #_______________________________________________________________________________________________________
 if __name__=="__main__":
 
@@ -132,6 +163,11 @@ if __name__=="__main__":
            kf = float(para.gridpacklist[proc_param][4])
            matchingEff = addEntry(process, proc_param, xsec, kf, lheDict, fccDict, heppyFile, procDict)
 
+       elif process in para.pythialist:
+           xsec = float(para.pythialist[process][3])
+           kf = float(para.pythialist[process][4])
+           matchingEff = addEntryPythia(process, xsec, kf, fccDict, heppyFile, procDict)
+
        elif process not in para.gridpacklist:
            print 'process :', process, 'not found in param.py --> skipping process'
            continue
@@ -143,12 +179,12 @@ if __name__=="__main__":
            with open(paramFile) as f:
                lines = f.readlines()
                isgp=False
- 	       for line in xrange(len(lines)):
-		   if 'gridpacklist' in str(lines[line]): isgp=True
-		   if isgp==False: continue
-		   if process == lines[line].rsplit(':', 1)[0].replace("'", ""):
-		       ll = ast.literal_eval(lines[line].rsplit(':', 1)[1][:-2])                
-		       infile[line] = "'{}':['{}','{}','{}','{}','{}','{}'],\n".format(process, ll[0],ll[1],ll[2],ll[3],ll[4], matchingEff)
+               for line in xrange(len(lines)):
+                   if 'gridpacklist' in str(lines[line]): isgp=True
+                   if isgp==False: continue
+                   if process == lines[line].rsplit(':', 1)[0].replace("'", ""):
+                       ll = ast.literal_eval(lines[line].rsplit(':', 1)[1][:-2])                
+                       infile[line] = "'{}':['{}','{}','{}','{}','{}','{}'],\n".format(process, ll[0],ll[1],ll[2],ll[3],ll[4], matchingEff)
 
            with open("tmp.py", "w") as f1:
                f1.writelines(infile)
