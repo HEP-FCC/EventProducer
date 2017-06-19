@@ -6,15 +6,14 @@ import commands
 import time
 import random
 import json
+import importlib
+import ntpath
 
-import EventProducer.config.param as para
+#import EventProducer.config.param as para
 import EventProducer.common.dicwriter_FCC as dicr
 import EventProducer.common.isreading as isr
 
 eosbase='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select'
-
-outdict=dicr.dicwriter(para.fcc_dic)
-readdic=isr.isreading(para.readfcc_dic, para.fcc_dic)
 
 #__________________________________________________________
 def getCommandOutput(command):
@@ -84,6 +83,10 @@ if __name__=="__main__":
                        dest='process',
                        default='')
 
+    parser.add_option ('-c', '--config',  help='config file, ex: config/param.py',
+                       dest='config',
+                       default='config/param.py')
+
     parser.add_option ('-q', '--queue',  help='lxbatch queue, default 8nh',
                        dest='queue',
                        default='8nh')
@@ -104,9 +107,17 @@ if __name__=="__main__":
     queue      = options.queue
     test       = options.test
     version    = options.version
+    config     = options.config
     rundir = os.getcwd()
     nbjobsSub=0
 
+
+    dirpath = os.path.dirname(os.path.abspath(os.path.expanduser(config)))
+    sys.path.append(dirpath)
+    para = importlib.import_module(os.path.splitext(ntpath.basename(config))[0])
+
+    outdict=dicr.dicwriter(para.fcc_dic)
+    readdic=isr.isreading(para.readfcc_dic, para.fcc_dic)
 
     if version not in ['fcc_v01', 'cms']:
         print 'version of the cards should be: fcc_v01, cms'
