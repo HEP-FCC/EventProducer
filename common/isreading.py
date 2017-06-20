@@ -145,8 +145,9 @@ if __name__=="__main__":
         print 'this is not how to run the script ;0'
         sys.exit(3)
 
-    if sys.argv[1]=="secret":
-        import EventProducer.config.param_test as para
+    if len(sys.argv)==4:
+        if sys.argv[3]=="secret":
+            import EventProducer.config.param_test as para
     else:
         import EventProducer.config.param as para
 
