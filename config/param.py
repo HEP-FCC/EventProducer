@@ -50,6 +50,7 @@ pythialist={
 'pp_Zprime_30TeV_ll':['30TeV Z\' -> ll (l=e,mu,tau)','','','1.375e-5','1.0','1.0'],
 'pp_Zprime_35TeV_ll':['35TeV Z\' -> ll (l=e,mu,tau)','','','4.821e-6','1.0','1.0'],
 'pp_Zprime_40TeV_ll':['40TeV Z\' -> ll (l=e,mu,tau)','','','2.171e-6','1.0','1.0'],
+'pp_Zprime_2TeV_ttbar':['2TeV Z\' -> ttbar','','','2.757','1.0','1.0'],
 'pp_Zprime_5TeV_ttbar':['5TeV Z\' -> ttbar','','','1.194e-1','1.0','1.0'],
 'pp_Zprime_10TeV_ttbar':['10TeV Z\' -> ttbar','','','6.712e-3','1.0','1.0'],
 'pp_Zprime_15TeV_ttbar':['15TeV Z\' -> ttbar','','','9.280e-4','1.0','1.0'],
