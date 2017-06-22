@@ -10,19 +10,19 @@ readlhe_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/readLHE.json'
 readfcc_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/readFCC.json'
 
 ##eos directory for MG5@MCatNLO gridpacks
-gp_dir      = '/eos/fcc/hh/generation/mg5_amcatnlo/gridpacks/'
+gp_dir      = '/eos/experiment/fcc/hh/generation/mg5_amcatnlo/gridpacks/'
 ##eos directory for lhe files
-lhe_dir     = '/eos/fcc/hh/generation/mg5_amcatnlo/lhe/'
+lhe_dir     = '/eos/experiment/fcc/hh/generation/mg5_amcatnlo/lhe/'
 
 ##eos directory for FCCSW pythia delphes files
-delphes_dir = '/eos/fcc/hh/generation/DelphesEvents/'
+delphes_dir = '/eos/experiment/fcc/hh/generation/DelphesEvents/'
 
 ##where the delphes cards are stored
-delphescards_dir = '/eos/fcc/hh/delphescards/'
+delphescards_dir = '/eos/experiment/fcc/hh/delphescards/'
 ##where the pythia cards are stored
-pythiacards_dir  = '/eos/fcc/hh/pythiacards/'
+pythiacards_dir  = '/eos/experiment/fcc/hh/pythiacards/'
 ##where the FCC config script is stored
-fccconfig_dir    = '/eos/fcc/hh/config/'
+fccconfig_dir    = '/eos/experiment/fcc/hh/config/'
 
 ##muom momentum delphes resolution card
 delphescard_mmr='muonMomentumResolutionVsP.tcl'
