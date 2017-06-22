@@ -217,7 +217,7 @@ if __name__=="__main__":
                 njobstmp+=1
                 continue
             else:
-                print 'job does not exists: ',i
+                print 'job does not exists: ',i,' sending'
 
             LHEexist=False
             LHEfile=''

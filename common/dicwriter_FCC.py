@@ -5,7 +5,7 @@ class dicwriter():
         self.outname=outname
         self.fexist=self.exist()
         if not self.fexist: 
-            print 'dictionnary ', outname, ' does not exist'
+            print 'dictionnary ', outname, ' does not exist. Create it'
             file_handle = open(self.outname,"w")
             file_handle.write('{}\n')
             file_handle.close()

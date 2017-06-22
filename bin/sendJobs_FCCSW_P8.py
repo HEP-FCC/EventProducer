@@ -13,8 +13,6 @@ import ntpath
 import EventProducer.common.dicwriter_FCC as dicr
 import EventProducer.common.isreading as isr
 
-eosbase='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select'
-
 #__________________________________________________________
 def getCommandOutput(command):
     p = subprocess.Popen(command, shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
@@ -51,7 +49,7 @@ def SubmitToBatch(cmd,nbtrials):
 
 #__________________________________________________________
 def eosexist(myfile):
-    cmd='%s ls %s'%(eosbase,myfile)
+    cmd='ls %s'%(myfile)
     p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
     p.wait()
     if len(p.stderr.readline())==0:
@@ -167,7 +165,7 @@ if __name__=="__main__":
             njobstmp+=1
             continue
         else:
-            print 'job does not exists: ',i
+            print 'job does not exists: ',i,' sending'
 
 
         logdir=Dir+"/BatchOutputs/%s/%s/"%(version,process)
@@ -184,15 +182,15 @@ if __name__=="__main__":
         frun.write('cd job%i_%s\n'%(i,process))
         frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
         frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
-        frun.write('%s mkdir %s%s/%s\n'%(eosbase,para.delphes_dir,version,process))
-        frun.write('%s cp %s .\n'%(eosbase,delphescards_base))
+        frun.write('mkdir %s%s/%s\n'%(para.delphes_dir,version,process))
+        frun.write('cp %s .\n'%(delphescards_base))
         if 'fcc' in version:
-            frun.write('%s cp %s .\n'%(eosbase,delphescards_mmr))
-            frun.write('%s cp %s .\n'%(eosbase,delphescards_mr))
-        frun.write('%s cp %s config.py \n'%(eosbase,fccconfig))
-        frun.write('%s cp %s card.cmd\n'%(eosbase,pythiacard))           
+            frun.write('cp %s .\n'%(delphescards_mmr))
+            frun.write('cp %s .\n'%(delphescards_mr))
+        frun.write('cp %s config.py \n'%(fccconfig))
+        frun.write('cp %s card.cmd\n'%(pythiacard))           
         frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%i.root --nevents=%i\n'%(para.fccsw,i,events))
-        frun.write('%s cp events%i.root %s%s/%s/events%i.root\n'%(eosbase,i,para.delphes_dir,version,process,i))
+        frun.write('cp events%i.root %s%s/%s/events%i.root\n'%(i,para.delphes_dir,version,process,i))
         frun.write('cd ..\n')
         frun.write('rm -rf job%i_%s\n'%(i,process))
 

@@ -169,7 +169,7 @@ if __name__=="__main__":
                 continue
 
             else:
-                print 'job does not exists: ',i
+                print 'job does not exists: ',i,' sending'
 
             logdir=Dir+"/BatchOutputs/%s"%(pr)
 
