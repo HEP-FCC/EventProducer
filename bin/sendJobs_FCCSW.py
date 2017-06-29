@@ -17,7 +17,6 @@ if sys.argv[1]=="secret":
 else:
     import EventProducer.config.param as para
 
-eosbase='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select'
 indictname=para.lhe_dic
 indict=None
 with open(indictname,'r') as f:
@@ -62,7 +61,7 @@ def SubmitToBatch(cmd,nbtrials):
 
 #__________________________________________________________
 def eosexist(myfile):
-    cmd='%s ls %s'%(eosbase,myfile)
+    cmd='ls %s'%(myfile)
     p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
     p.wait()
     if len(p.stderr.readline())==0:
@@ -252,28 +251,28 @@ if __name__=="__main__":
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
             if secret:
-                frun.write('%s mkdir %s\n'%(eosbase, para.delphes_dir))
-                frun.write('%s mkdir %s/%s\n'%(eosbase,para.delphes_dir,pr_decay))
+                frun.write('mkdir %s\n'%(para.delphes_dir))
+                frun.write('mkdir %s/%s\n'%(para.delphes_dir,pr_decay))
             else:
-                frun.write('%s mkdir %s%s/%s\n'%(eosbase,para.delphes_dir,version))
-                frun.write('%s mkdir %s%s/%s\n'%(eosbase,para.delphes_dir,version,pr_decay))
+                frun.write('mkdir %s/%s\n'%(para.delphes_dir,version))
+                frun.write('mkdir %s%s/%s\n'%(para.delphes_dir,version,pr_decay))
 
-            frun.write('%s cp %s .\n'%(eosbase,LHEfile))
+            frun.write('cp %s .\n'%(LHEfile))
             frun.write('gunzip -c %s > events.lhe\n'%LHEfile.split('/')[-1])          
-            frun.write('%s cp %s .\n'%(eosbase,delphescards_base))
+            frun.write('cp %s .\n'%(delphescards_base))
             if 'fcc' in version:
-                frun.write('%s cp %s .\n'%(eosbase,delphescards_mmr))
-                frun.write('%s cp %s .\n'%(eosbase,delphescards_mr))
-            frun.write('%s cp %s config.py \n'%(eosbase,fccconfig))
-            frun.write('%s cp %s card.cmd\n'%(eosbase,pythiacard))
+                frun.write('cp %s .\n'%(delphescards_mmr))
+                frun.write('cp %s .\n'%(delphescards_mr))
+            frun.write('cp %s config.py \n'%(fccconfig))
+            frun.write('cp %s card.cmd\n'%(pythiacard))
             frun.write('echo "Beams:LHEF = events.lhe" >> card.cmd\n')
            
             frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%i.root --nevents=%i\n'%(para.fccsw,i,events))
             
             if secret:
-                frun.write('%s cp events%i.root %s/%s/events%i.root\n'%(eosbase,i,para.delphes_dir,pr_decay,i))
+                frun.write('cp events%i.root %s/%s/events%i.root\n'%(i,para.delphes_dir,pr_decay,i))
             else:
-                frun.write('%s cp events%i.root %s%s/%s/events%i.root\n'%(eosbase,i,para.delphes_dir,version,pr_decay,i))
+                frun.write('cp events%i.root %s%s/%s/events%i.root\n'%(i,para.delphes_dir,version,pr_decay,i))
             
             frun.write('cd ..\n')
             frun.write('rm -rf job%i_%s\n'%(i,pr_decay))
