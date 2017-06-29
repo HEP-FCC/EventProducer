@@ -132,15 +132,16 @@ if __name__=="__main__":
         print 'version of the cards should be: fcc_v01, cms'
         sys.exit(3)
 
-    delphescards_mmr = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_mmr)
-    if eosexist(delphescards_mmr)==False:
-        print 'delphes card does not exist: ',delphescard_mmr
-        sys.exit(3)
+    if version ==  'fcc_v01':
+        delphescards_mmr = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_mmr)
+        if eosexist(delphescards_mmr)==False:
+            print 'delphes card does not exist: ',delphescard_mmr
+            sys.exit(3)
 
-    delphescards_mr = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_mr)
-    if eosexist(delphescards_mr)==False:
-        print 'delphes card does not exist: ',delphescard_mr
-        sys.exit(3)
+        delphescards_mr = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_mr)
+        if eosexist(delphescards_mr)==False:
+            print 'delphes card does not exist: ',delphescard_mr
+            sys.exit(3)
 
     delphescards_base = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_base)
     if eosexist(delphescards_base)==False:
