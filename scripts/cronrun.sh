@@ -13,4 +13,4 @@ python common/cleanfailed.py FCC
 python common/printdicts.py LHE /afs/cern.ch/user/h/helsens/www/LHEevents.txt
 python common/printdicts.py FCC /afs/cern.ch/user/h/helsens/www/Delphesevents.txt
 
-#python common/makeSampleList.py
+python common/makeSampleList.py
