@@ -109,40 +109,39 @@ if __name__=="__main__":
     rundir = os.getcwd()
     nbjobsSub=0
 
-
     dirpath = os.path.dirname(os.path.abspath(os.path.expanduser(config)))
     sys.path.append(dirpath)
     para = importlib.import_module(os.path.splitext(ntpath.basename(config))[0])
 
-    outdict=dicr.dicwriter(para.fcc_dic)
-    readdic=isr.isreading(para.readfcc_dic, para.fcc_dic)
-
-    if version not in ['fcc_v01', 'cms']:
+    if version not in para.fcc_versions:
         print 'version of the cards should be: fcc_v01, cms'
         sys.exit(3)
 
+    fcc_dic=para.fcc_dic.replace('VERSION',version)
+    readfcc_dic=para.readfcc_dic.replace('VERSION',version)
+
+    outdict=dicr.dicwriter(fcc_dic)
+    readdic=isr.isreading(readfcc_dic, fcc_dic)
+
     delphescards_mmr = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_mmr)
-    if eosexist(delphescards_mmr)==False:
-        print 'delphes card does not exist: ',delphescard_mmr
+    if eosexist(delphescards_mmr)==False and version != 'cms':
+        print 'delphes card does not exist: ',delphescards_mmr
         sys.exit(3)
 
     delphescards_mr = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_mr)
-    if eosexist(delphescards_mr)==False:
-        print 'delphes card does not exist: ',delphescard_mr
+    if eosexist(delphescards_mr)==False and version != 'cms':
+        print 'delphes card does not exist: ',delphescards_mr
         sys.exit(3)
 
     delphescards_base = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_base)
     if eosexist(delphescards_base)==False:
-        print 'delphes card does not exist: ',delphescard_base
+        print 'delphes card does not exist: ',delphescards_base
         sys.exit(3)
 
     fccconfig = '%s%s'%(para.fccconfig_dir,para.fccconfig)
     if eosexist(fccconfig)==False:
         print 'fcc config file does not exist: ',fccconfig
         sys.exit(3)
-
-    if version not in para.fcc_dic:
-        print 'mismatch between version of fcc dic in param ===%s=== and version requested by user ===%s==='%(para.fcc_dic,version)
 
     readdic.backup('sendJobs_FCCSW_P8')
     readdic.reading()
@@ -182,7 +181,7 @@ if __name__=="__main__":
         frun.write('cd job%i_%s\n'%(i,process))
         frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
         frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
-        frun.write('mkdir %s%s/%s\n'%(para.delphes_dir,version,process))
+        frun.write('mkdir -p %s%s/%s\n'%(para.delphes_dir,version,process))
         frun.write('cp %s .\n'%(delphescards_base))
         if 'fcc' in version:
             frun.write('cp %s .\n'%(delphescards_mmr))
