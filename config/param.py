@@ -64,7 +64,16 @@ pythialist={
 'pp_Zprime_25TeV_ttbar':['25TeV Z\' -> ttbar','','','4.987e-5','1.0','1.0'],
 'pp_Zprime_30TeV_ttbar':['30TeV Z\' -> ttbar','','','1.512e-5','1.0','1.0'],
 'pp_Zprime_35TeV_ttbar':['35TeV Z\' -> ttbar','','','5.578e-6','1.0','1.0'],
-'pp_Zprime_40TeV_ttbar':['40TeV Z\' -> ttbar','','','2.413e-6','1.0','1.0']
+'pp_Zprime_40TeV_ttbar':['40TeV Z\' -> ttbar','','','2.413e-6','1.0','1.0'],
+'pp_RSGraviton_2TeV_ww':['2TeV Z\' -> WW','','','1','1.0','1.0'],
+'pp_RSGraviton_5TeV_ww':['5TeV Z\' -> WW','','','1','1.0','1.0'],
+'pp_RSGraviton_10TeV_ww':['10TeV Z\' -> WW','','','1','1.0','1.0'],
+'pp_RSGraviton_15TeV_ww':['15TeV Z\' -> WW','','','1','1.0','1.0'],
+'pp_RSGraviton_20TeV_ww':['20TeV Z\' -> WW','','','1','1.0','1.0'],
+'pp_RSGraviton_25TeV_ww':['25TeV Z\' -> WW','','','1','1.0','1.0'],
+'pp_RSGraviton_30TeV_ww':['30TeV Z\' -> WW','','','1','1.0','1.0'],
+'pp_RSGraviton_35TeV_ww':['35TeV Z\' -> WW','','','1','1.0','1.0'],
+'pp_RSGraviton_40TeV_ww':['40TeV Z\' -> WW','','','1','1.0','1.0'],
 }
 
 ##list of possible decays of LHE files
