@@ -8,7 +8,7 @@ import subprocess
 import sys
 import os.path
 import ROOT as r
-
+import os.path
 import EventProducer.common.isreading as isr
 
 if "secret" in sys.argv:
@@ -121,8 +121,7 @@ for s in mydict:
 #For ROOT files
 ##########################################################
                 if '.root' in j['out']:
-                    toOpen='root://eospublic.cern.ch/'+j['out']
-                    f=r.TFile.Open(toOpen)
+                    f=r.TFile.Open(j['out'])
                     if f:
                         tree=f.Get('events')
                         print j['out'],'  ',tree.GetEntries()
@@ -131,8 +130,9 @@ for s in mydict:
                         j['status']='done'
                         f.Close()
                     else:
-                        print 'no file, job failed'
-                        j['status']='failed'
+                        if os.path.isfile(j['out']): 
+                            print 'no file, job failed'
+                            j['status']='failed'
 
         else:
             cmd='bjobs %s'%(j['batchid'])
