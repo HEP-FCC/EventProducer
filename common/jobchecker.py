@@ -130,6 +130,9 @@ for s in mydict:
                         evttot+=j['nevents']
                         j['status']='done'
                         f.Close()
+                    else:
+                        print 'no file, job failed'
+                        j['status']='failed'
 
         else:
             cmd='bjobs %s'%(j['batchid'])
