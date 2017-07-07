@@ -151,14 +151,20 @@ if __name__=="__main__":
     else:
         import EventProducer.config.param as para
 
-    inread=''
 
+
+    inread=''
     if sys.argv[2]=='LHE':
         inread=para.readlhe_dic
-    elif sys.argv[2]=='FCC':
-        inread=para.readfcc_dic
+    elif 'FCC_' in sys.argv[2]:
+        version=sys.argv[2].replace('FCC_','')
+        if version not in para.fcc_versions:
+            print 'version of the cards should be: fcc_v01, cms'
+            print '======================%s======================'%version
+            sys.exit(3)
+        inread=para.readfcc_dic.replace('VERSION',version)
     else:
-        print 'unrecognized mode ',sys.argv[2],'  possible values are FCC or LHE'
+        print 'unrecognized mode ',sys.argv[1],'  possible values are FCC or LHE'
         sys.exit(3)
 
 
