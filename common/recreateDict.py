@@ -17,13 +17,13 @@ for pr in para.gridpacklist:
     if os.path.isdir(filecounting)==False:
         os.system('mkdir %s'%filecounting)
 
-    cmd='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select ls %s%s'%(para.lhe_dir,pr)
+    cmd='ls %s%s'%(para.lhe_dir,pr)
     p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
     stdout,stderr = p.communicate()
 
     print 'n files =',len(stdout.split('\n'))
     for f in stdout.split('\n'):
-        cmd='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp %s%s/%s %s'%(para.lhe_dir,pr,f,filecounting)
+        cmd='cp %s%s/%s %s'%(para.lhe_dir,pr,f,filecounting)
         p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
         stdout,stderr = p.communicate()
         if os.path.isfile('%s/%s'%(filecounting,f)):
@@ -36,7 +36,7 @@ for pr in para.gridpacklist:
             nevents=int(stdoutplit[0])
             os.system('rm %s/%s'%(filecounting,f.replace('.gz','')))
 
-            if nevents%1000!=0:
+            if nevents==0:
                 dic = {'sample':pr, 
                        'jobid':int(f.replace('events','').replace('.lhe.gz','')),
                        'nevents':nevents,
