@@ -22,9 +22,6 @@ indict=None
 with open(indictname,'r') as f:
     indict = json.load(f)
 
-outdict=dicr.dicwriter(para.fcc_dic)
-readdic=isr.isreading(para.readfcc_dic, para.fcc_dic)
-
 #__________________________________________________________
 def getCommandOutput(command):
     p = subprocess.Popen(command, shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
@@ -127,21 +124,27 @@ if __name__=="__main__":
     rundir = os.getcwd()
     nbjobsSub=0
 
-
-    if version not in ['fcc_v01', 'cms'] and not secret :
+    if version not in para.fcc_versions:
         print 'version of the cards should be: fcc_v01, cms'
         sys.exit(3)
 
-    if version ==  'fcc_v01':
-        delphescards_mmr = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_mmr)
-        if eosexist(delphescards_mmr)==False:
-            print 'delphes card does not exist: ',delphescard_mmr
-            sys.exit(3)
+#############
+    fcc_dic=para.fcc_dic.replace('VERSION',version)
+    readfcc_dic=para.readfcc_dic.replace('VERSION',version)
 
-        delphescards_mr = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_mr)
-        if eosexist(delphescards_mr)==False:
-            print 'delphes card does not exist: ',delphescard_mr
-            sys.exit(3)
+    outdict=dicr.dicwriter(fcc_dic)
+    readdic=isr.isreading(readfcc_dic, fcc_dic)
+#############
+
+    delphescards_mmr = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_mmr)
+    if eosexist(delphescards_mmr)==False and version != 'cms':
+        print 'delphes card does not exist: ',delphescard_mmr
+        sys.exit(3)
+
+    delphescards_mr = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_mr)
+    if eosexist(delphescards_mr)==False and version != 'cms':
+        print 'delphes card does not exist: ',delphescard_mr
+        sys.exit(3)
 
     delphescards_base = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_base)
     if eosexist(delphescards_base)==False:
@@ -152,9 +155,6 @@ if __name__=="__main__":
     if eosexist(fccconfig)==False:
         print 'fcc config file does not exist: ',fccconfig
         sys.exit(3)
-
-    if version not in para.fcc_dic:
-        print 'mismatch between version of fcc dic in param ===%s=== and version requested by user ===%s==='%(para.fcc_dic,version)
 
     readdic.backup('sendJobs_FCCSW')
     readdic.reading()
@@ -252,11 +252,11 @@ if __name__=="__main__":
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
             if secret:
-                frun.write('mkdir %s\n'%(para.delphes_dir))
-                frun.write('mkdir %s/%s\n'%(para.delphes_dir,pr_decay))
+                frun.write('mkdir -p %s\n'%(para.delphes_dir))
+                frun.write('mkdir -p %s/%s\n'%(para.delphes_dir,pr_decay))
             else:
-                frun.write('mkdir %s/%s\n'%(para.delphes_dir,version))
-                frun.write('mkdir %s%s/%s\n'%(para.delphes_dir,version,pr_decay))
+                frun.write('mkdir -p %s/%s\n'%(para.delphes_dir,version))
+                frun.write('mkdir -p %s%s/%s\n'%(para.delphes_dir,version,pr_decay))
 
             frun.write('cp %s .\n'%(LHEfile))
             frun.write('gunzip -c %s > events.lhe\n'%LHEfile.split('/')[-1])          

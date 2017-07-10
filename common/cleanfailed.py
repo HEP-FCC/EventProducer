@@ -1,4 +1,7 @@
 #python cleanfailed.py LHE/FCC secret
+#python cleanfailed.py LHE/FCC_fcc_v01 secret
+#python cleanfailed.py LHE/FCC_cms secret
+
 import json
 import os
 import os.path
@@ -17,14 +20,21 @@ if len(sys.argv)>4 or len(sys.argv)<2:
     print 'usage: python cleanfailed.py FCC or LHE'
     exit(3)
 
+
+
 indict=''
 inread=''
 if sys.argv[1]=='LHE':
     indict=para.lhe_dic
     inread=para.readlhe_dic
-elif sys.argv[1]=='FCC':
-    indict=para.fcc_dic
-    inread=para.readfcc_dic
+elif 'FCC_' in sys.argv[1]:
+    version=sys.argv[1].replace('FCC_','')
+    if version not in para.fcc_versions:
+        print 'version of the cards should be: fcc_v01, cms'
+        print '======================%s======================'%version
+        sys.exit(3)
+    indict=para.fcc_dic.replace('VERSION',version)
+    inread=para.readfcc_dic.replace('VERSION',version)
 else:
     print 'unrecognized mode ',sys.argv[1],'  possible values are FCC or LHE'
     sys.exit(3)

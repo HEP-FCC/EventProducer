@@ -177,7 +177,17 @@ if __name__=="__main__":
             os.system("mkdir -p %s"%logdir+'/job%s/'%str(i))
             os.system('export LSB_JOB_REPORT_MAIL="N"')
             frunname = 'job%i.sh'%(i)
-            frun = open(logdir+'/job%s/'%str(i)+frunname, 'w')
+
+ 
+
+            frun = None
+            try:
+                frun = open(logdir+'/job%s/'%str(i)+frunname, 'w')
+            except IOError as e:
+                print "I/O error({0}): {1}".format(e.errno, e.strerror)
+                time.sleep(10)
+                frun = open(logdir+'/job%s/'%str(i)+frunname, 'w')
+
             commands.getstatusoutput('chmod 777 %s/%s'%(logdir+'/job%s'%str(i),frunname))
             frun.write('unset LD_LIBRARY_PATH\n')
             frun.write('unset PYTHONHOME\n')

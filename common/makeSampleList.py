@@ -10,7 +10,7 @@ import ast, os
 import collections
 import re
 import EventProducer.config.param as para
-
+import sys
 #______________________________________________________________________________________________________
 def addEntry(process, processlhe, xsec, kf, lheDict, fccDict, heppyFile, procDict):
    
@@ -33,7 +33,7 @@ def addEntry(process, processlhe, xsec, kf, lheDict, fccDict, heppyFile, procDic
                    njobs+=1
 
                    # add file to heppy sample list 
-                   heppyFile.write("           '{}/{}',\n".format(eosdir,jobfcc['out']))
+                   heppyFile.write("           '{}',\n".format(jobfcc['out']))
                    break
 
    heppyFile.write(']\n')
@@ -73,7 +73,7 @@ def addEntryPythia(process, xsec, kf, fccDict, heppyFile, procDict):
        if jobfcc['nevents']>0 and jobfcc['status']== 'done':
 	   nmatched+=jobfcc['nevents']
            njobs+=1
-           heppyFile.write("           '{}/{}',\n".format(eosdir,jobfcc['out']))
+           heppyFile.write("           '{}',\n".format(jobfcc['out']))
 
    heppyFile.write(']\n')
    heppyFile.write(')\n')
@@ -92,13 +92,22 @@ def addEntryPythia(process, xsec, kf, fccDict, heppyFile, procDict):
 #_______________________________________________________________________________________________________
 if __name__=="__main__":
 
-    eosdir = 'root://eospublic.cern.ch/'
 
-    heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/heppySampleList.py'
-    procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/procDict.json'
+    heppyList = ''
+    procList = ''
+    fcc=''
+    lhe=''
+    version=sys.argv[1]
+    if version not in para.fcc_versions:
+        print 'version of the cards should be: fcc_v01, cms'
+        print '======================%s======================'%version
+        sys.exit(3)
+    else:
+        fcc=para.fcc_dic.replace('VERSION',version)
+        heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/heppySampleList_%s.py'%version
+        procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/procDict_%s.json'%version
+        lhe = para.lhe_dic
 
-    lhe = para.lhe_dic
-    fcc = para.fcc_dic
 
     # make backups
     ts = time.time()

@@ -1,12 +1,14 @@
 #python common/jobchecker.py LHE or FCC
-#python common/jobchecker.py LHE/FCC secret
+#python common/jobchecker.py LHE_version/FCC secret
+#python common/jobchecker.py LHE/FCC_fcc_v01 secret
+#python common/jobchecker.py LHE/FCC_cms secret
 
 import json
 import subprocess
 import sys
 import os.path
 import ROOT as r
-
+import os.path
 import EventProducer.common.isreading as isr
 
 if "secret" in sys.argv:
@@ -26,15 +28,20 @@ inread=''
 if sys.argv[1]=='LHE':
     indict=para.lhe_dic
     inread=para.readlhe_dic
-elif sys.argv[1]=='FCC':
-    indict=para.fcc_dic
-    inread=para.readfcc_dic
+elif 'FCC_' in sys.argv[1]:
+    version=sys.argv[1].replace('FCC_','')
+    if version not in para.fcc_versions:
+        print 'version of the cards should be: fcc_v01, cms'
+        print '======================%s======================'%version
+        sys.exit(3)
+    indict=para.fcc_dic.replace('VERSION',version)
+    inread=para.readfcc_dic.replace('VERSION',version)
 else:
     print 'unrecognized mode ',sys.argv[1],'  possible values are FCC or LHE'
     sys.exit(3)
 
 if os.path.isfile(indict)==False:
-    print 'dictonary does not exists '
+    print 'dictonary does not exists ',indict
     sys.exit(3)
 
 inprocess=''
@@ -114,8 +121,7 @@ for s in mydict:
 #For ROOT files
 ##########################################################
                 if '.root' in j['out']:
-                    toOpen='root://eospublic.cern.ch/'+j['out']
-                    f=r.TFile.Open(toOpen)
+                    f=r.TFile.Open(j['out'])
                     if f:
                         tree=f.Get('events')
                         print j['out'],'  ',tree.GetEntries()
@@ -123,6 +129,10 @@ for s in mydict:
                         evttot+=j['nevents']
                         j['status']='done'
                         f.Close()
+                    else:
+                        if os.path.isfile(j['out']): 
+                            print 'no file, job failed'
+                            j['status']='failed'
 
         else:
             cmd='bjobs %s'%(j['batchid'])

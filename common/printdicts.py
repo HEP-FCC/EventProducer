@@ -1,5 +1,6 @@
-#python printdicts.py LHE /afs/cern.ch/user/h/helsens/www/LHEevents.txt
-#python printdicts.py FCC /afs/cern.ch/user/h/helsens/www/Delphesevents.txt
+#python common/printdicts.py LHE /afs/cern.ch/user/h/helsens/www/LHEevents.txt
+#python common/printdicts.py FCC_fcc_v01 /afs/cern.ch/user/h/helsens/www/Delphesevents_fcc_v01.txt
+#python common/printdicts.py FCC_cms /afs/cern.ch/user/h/helsens/www/Delphesevents_cms.txt
 import json
 import sys
 import os.path
@@ -14,14 +15,21 @@ if len(sys.argv)!=3:
     exit(3)
 
 matching=False
+
+
 indictname=''
 inread=''
 if sys.argv[1]=='LHE':
     indictname=para.lhe_dic
     inread=para.readlhe_dic
-elif sys.argv[1]=='FCC':
-    indictname=para.fcc_dic
-    inread=para.readfcc_dic
+elif 'FCC_' in sys.argv[1]:
+    version=sys.argv[1].replace('FCC_','')
+    if version not in para.fcc_versions:
+        print 'version of the cards should be: fcc_v01, cms'
+        print '======================%s======================'%version
+        sys.exit(3)
+    indictname=para.fcc_dic.replace('VERSION',version)
+    inread=para.readfcc_dic.replace('VERSION',version)
     matching=True
 else:
     print 'unrecognized mode ',sys.argv[1],'  possible values are FCC or LHE'
@@ -122,13 +130,22 @@ for s, value in sorted(indict.items()):
         print "Unexpected error:", sys.exc_info()[0]
         raise
 
+
+    nfileseos=0
+    if sys.argv[1]=='LHE':
+        nfileseos=len(os.listdir('%s%s'%(para.lhe_dir,s)))
+    elif 'FCC_' in sys.argv[1]:
+        nfileseos=len(os.listdir('%s%s/%s'%(para.delphes_dir,sys.argv[1].replace('FCC_',''),news)))
+
+    print 'nfiles on eos :  ',nfileseos
+
     cmd=''
     if not matching and not ispythiaonly:
-        cmd='%s,,%s,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),njobs,njobs_bad, njobs_running ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][2],para.gridpacklist[s][3])
+        cmd='%s,,%s,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),njobs,njobs_bad, njobs_running,nfileseos  ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][2],para.gridpacklist[s][3])
     elif  matching and not ispythiaonly:
-        cmd='%s,,%s,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),njobs,njobs_bad, njobs_running ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][3],para.gridpacklist[s][4],para.gridpacklist[s][5])
+        cmd='%s,,%s,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),njobs,njobs_bad, njobs_running,nfileseos ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][3],para.gridpacklist[s][4],para.gridpacklist[s][5])
     elif  ispythiaonly:
-        cmd='%s,,%s,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),njobs,njobs_bad, njobs_running ,outdir.replace(outdirtmp.split('/')[-1],''),para.pythialist[news][0],para.pythialist[news][1],para.pythialist[news][3],para.pythialist[news][4],para.pythialist[news][5])
+        cmd='%s,,%s,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),njobs,njobs_bad, njobs_running,nfileseos ,outdir.replace(outdirtmp.split('/')[-1],''),para.pythialist[news][0],para.pythialist[news][1],para.pythialist[news][3],para.pythialist[news][4],para.pythialist[news][5])
         ispythiaonly=False
     OutFile.write(cmd)               
 
