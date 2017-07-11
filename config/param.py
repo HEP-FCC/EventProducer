@@ -190,7 +190,7 @@ gridpacklist = {
 'pp_vv012j_4f_HT_8800_15000':['di-vector boson + 0/1/2 jets (4f)','8800 < HT < 15000','xqcut = 40, qCut = 60','0.1286','1.70','0.571'],
 'pp_vv012j_4f_HT_15000_25000':['di-vector boson + 0/1/2 jets (4f)','15000 < HT < 25000','xqcut = 40, qCut = 60','0.009475','1.70','0.617'],
 'pp_vv012j_4f_HT_25000_35000':['di-vector boson + 0/1/2 jets (4f)','25000 < HT < 35000','xqcut = 40, qCut = 60','0.0003517','1.70','0.69'],
-'pp_vv012j_4f_HT_35000_100000':['di-vector boson + 0/1/2 jets (4f)','35000 < HT < 100000','xqcut = 40, qCut = 60','2.07e-05','1.70','1.0'],
+'pp_vv012j_4f_HT_35000_100000':['di-vector boson + 0/1/2 jets (4f)','35000 < HT < 100000','xqcut = 40, qCut = 60','2.07e-05','1.70','0.758'],
 'pp_vv012j_5f':['di-vector boson + 0/1/2 jets','inclusive','xqcut = 40, qCut = 60','3.39e+04','1.70','0.457'],
 'pp_jj012j_5f_HT_0_500':['di-jet + 0/1/2 jets','0 < HT < 500','xqcut = 20, qCut = 30','6.517e+09','1.0','0.141'],
 'pp_jj012j_5f_HT_500_1000':['di-jet + 0/1/2 jets','500 < HT < 1000','xqcut = 20, qCut = 30','1.642e+07','1.0','0.092'],
