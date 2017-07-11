@@ -92,7 +92,7 @@ for s in mydict:
                     filecounting='filecounting'
                     if os.path.isdir(filecounting)==False:
                         os.system('mkdir %s'%filecounting)
-                    cmd='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp %s %s'%(j['out'],filecounting)
+                    cmd='cp %s %s'%(j['out'],filecounting)
                     print cmd
                     p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
                     stdout,stderr = p.communicate()
