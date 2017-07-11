@@ -65,17 +65,17 @@ pythialist={
 'pp_Zprime_30TeV_ttbar':['30TeV Z\' -> ttbar','','','3.16759213029e-05','1.0','1.0'],
 'pp_Zprime_35TeV_ttbar':['35TeV Z\' -> ttbar','','','9.65649631373e-06','1.0','1.0'],
 'pp_Zprime_40TeV_ttbar':['40TeV Z\' -> ttbar','','','3.4131033281e-06','1.0','1.0'],
-'pp_RSGraviton_2TeV_ww':['2TeV Z\' -> WW','','','1','1.811e1','1.0'],
-'pp_RSGraviton_5TeV_ww':['5TeV Z\' -> WW','','','1','2.892e-1','1.0'],
-'pp_RSGraviton_10TeV_ww':['10TeV Z\' -> WW','','','1','7.686e-3','1.0'],
-'pp_RSGraviton_15TeV_ww':['15TeV Z\' -> WW','','','1','7.386e-4','1.0'],
-'pp_RSGraviton_20TeV_ww':['20TeV Z\' -> WW','','','1','1.182e-4','1.0'],
-'pp_RSGraviton_25TeV_ww':['25TeV Z\' -> WW','','','1','2.284e-5','1.0'],
-'pp_RSGraviton_30TeV_ww':['30TeV Z\' -> WW','','','1','5.253e-6','1.0'],
-'pp_RSGraviton_35TeV_ww':['35TeV Z\' -> WW','','','1','1.215e-6','1.0'],
-'pp_RSGraviton_40TeV_ww':['40TeV Z\' -> WW','','','1','2.984e-7','1.0'],
-'pp_jj_M_0_500':['di-jet','0 < M < 500','','6.517e+09','1.0','0.141'],
-'pp_jj_M_500_1000':['di-jet','500 < M < 1000','','1.642e+07','1.0','0.092'],
+'pp_RSGraviton_2TeV_ww':['2TeV Z\' -> WW','','','1.811e1','1.0','1.0'],
+'pp_RSGraviton_5TeV_ww':['5TeV Z\' -> WW','','','2.892e-1','1.0','1.0'],
+'pp_RSGraviton_10TeV_ww':['10TeV Z\' -> WW','','','7.686e-3','1.0','1.0'],
+'pp_RSGraviton_15TeV_ww':['15TeV Z\' -> WW','','','7.386e-4','1.0','1.0'],
+'pp_RSGraviton_20TeV_ww':['20TeV Z\' -> WW','','','1.182e-4','1.0','1.0'],
+'pp_RSGraviton_25TeV_ww':['25TeV Z\' -> WW','','','2.284e-5','1.0','1.0'],
+'pp_RSGraviton_30TeV_ww':['30TeV Z\' -> WW','','','5.253e-6','1.0','1.0'],
+'pp_RSGraviton_35TeV_ww':['35TeV Z\' -> WW','','','1.215e-6','1.0','1.0'],
+'pp_RSGraviton_40TeV_ww':['40TeV Z\' -> WW','','','2.984e-7','1.0','1.0'],
+'pp_jj_M_0_500':['di-jet','0 < M < 500','','6.517e+09','1.0','0.092'],
+'pp_jj_M_500_1000':['di-jet','500 < M < 1000','','1.642e+07','1.0','0.141'],
 'pp_jj_M_1000_2000':['di-jet','1000 < M < 2000','','1.673e+06','1.0','0.071'],
 'pp_jj_M_2000_4000':['di-jet','2000 < M < 4000','','1.32e+05','1.0','0.057'],
 'pp_jj_M_4000_7200':['di-jet','4000 < M < 7200','','7316','1.0','0.048'],
@@ -84,6 +84,7 @@ pythialist={
 'pp_jj_M_25000_35000':['di-jet','25000 < M < 35000','','0.1759','1.0','0.041'],
 'pp_jj_M_35000_100000':['di-jet','35000 < M < 100000','','0.007654','1.0','0.043'],
 }
+
 
 ##list of possible decays of LHE files
 decaylist = {
@@ -238,7 +239,7 @@ gridpacklist = {
 'pp_ttv01j_5f_HT_8100_100000':['top pair + boson + 0/1 jets','8100 < HT < 100000','xqcut = 80, qCut = 120','0.02413','1.14','0.744'],
 'pp_ttv01j_5f':['top pair + boson + 0/1 jets','inclusive','xqcut = 80, qCut = 120','258.3','1.14','0.553'],
 'pp_ll012j_5f_HT_0_200':['V -> ll (l=e,mu,ve,vm,vt) + ','0 < HT < 200','xqcut = 30, qCut = 45','1.158e+04','1.20','0.85'],
-'pp_ll012j_5f_HT_200_700':['V -> ll (l=e,mu,ve,vm,vt) + ','200 < HT < 700','xqcut = 30, qCut = 45','717.3','1.20','0.465'],
+'pp_ll012j_5f_HT_200_700':['V -> ll (l=e,mu,ve,vm,vt) + ','200 < HT < 700','xqcut = 30, qCut = 45','717.3','1.20','0.464'],
 'pp_ll012j_5f_HT_700_1500':['V -> ll (l=e,mu,ve,vm,vt) + ','700 < HT < 1500','xqcut = 30, qCut = 45','37.04','1.20','0.448'],
 'pp_ll012j_5f_HT_1500_2700':['V -> ll (l=e,mu,ve,vm,vt) + ','1500 < HT < 2700','xqcut = 30, qCut = 45','3.723','1.20','0.449'],
 'pp_ll012j_5f_HT_2700_4200':['V -> ll (l=e,mu,ve,vm,vt) + ','2700 < HT < 4200','xqcut = 30, qCut = 45','0.4862','1.20','0.45'],
@@ -276,5 +277,5 @@ gridpacklist = {
 'pp_vvv01j_5f_HT_6000_100000':['tri-vector boson + 0/1 jets','6000 < HT < 100000','xqcut = 60, qCut = 90','0.02111','1.05','0.893'],
 'pp_vvv01j_5f':['tri-vector boson + 0/1 jets','inclusive','xqcut = 60, qCut = 90','75.87','1.05','0.525'],
 #DM signals Caterina Doglioni
-'pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1'],
+'pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1.0'],
 }
