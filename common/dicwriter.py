@@ -23,7 +23,7 @@ class dicwriter():
         for s in self.mydict:
             if s==sample: 
                 for j in self.mydict[sample]:
-                    if jobid==j['jobid']: return True
+                    if jobid==int(j['jobid']): return True
         return False
 
     def addjob(self,sample,jobid,queue,nevents,status,log,out,batchid,script):
