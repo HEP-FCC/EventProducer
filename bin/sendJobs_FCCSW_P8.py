@@ -170,7 +170,16 @@ if __name__=="__main__":
         logdir=Dir+"/BatchOutputs/%s/%s/"%(version,process)
         os.system("mkdir -p %s"%logdir)
         frunname = 'job%i.sh'%(i)
-        frun = open(logdir+'/'+frunname, 'w')
+
+        frun = None
+        try:
+            frun = open(logdir+'/'+frunname, 'w')
+        except IOError as e:
+            print "I/O error({0}): {1}".format(e.errno, e.strerror)
+            time.sleep(10)
+            frun = open(logdir+'/'+frunname, 'w')
+
+
         commands.getstatusoutput('chmod 777 %s/%s'%(logdir,frunname))
         frun.write('#!/bin/bash\n')
         frun.write('unset LD_LIBRARY_PATH\n')
