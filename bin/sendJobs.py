@@ -33,7 +33,6 @@ else:
 
 mydict=dicr.dicwriter(para.lhe_dic)
 readdic=isr.isreading(para.readlhe_dic, para.lhe_dic)
-eosbase='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select'
 
 #__________________________________________________________
 def getCommandOutput(command):
@@ -72,7 +71,7 @@ def SubmitToBatch(cmd,nbtrials):
 
 #__________________________________________________________
 def eosexist(myfile):
-    cmd='%s ls %s'%(eosbase,myfile)
+    cmd='ls %s'%(myfile)
     p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
     p.wait()
     if len(p.stderr.readline())==0:
@@ -195,15 +194,14 @@ if __name__=="__main__":
             frun.write('mkdir job%i_%s\n'%(i,pr))
             frun.write('cd job%i_%s\n'%(i,pr))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
-            frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
             frun.write('source %s\n'%(para.stack))
-            frun.write('%s mkdir %s\n'%(eosbase, para.lhe_dir))
-            frun.write('%s mkdir %s%s\n'%(eosbase, para.lhe_dir,pr))
-            frun.write('%s cp %s/%s.tar.gz .\n'%(eosbase,para.gp_dir,pr))
+            frun.write('mkdir %s\n'%(para.lhe_dir))
+            frun.write('mkdir %s%s\n'%(para.lhe_dir,pr))
+            frun.write('cp %s/%s.tar.gz .\n'%(para.gp_dir,pr))
             frun.write('tar -zxf %s.tar.gz\n'%pr)
             frun.write('cd process/\n')
             frun.write('./run.sh %i %i\n'%(events,i+1))
-            frun.write('%s cp events.lhe.gz %s/%s/events%i.lhe.gz\n'%(eosbase, para.lhe_dir,pr,i))
+            frun.write('cp events.lhe.gz %s/%s/events%i.lhe.gz\n'%(para.lhe_dir,pr,i))
             frun.write('cd ..\n')
             frun.write('rm -rf job%i_%s\n'%(i,pr))
             print pr

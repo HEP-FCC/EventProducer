@@ -260,7 +260,6 @@ if __name__=="__main__":
             frun.write('mkdir job%i_%s\n'%(i,pr_decay))
             frun.write('cd job%i_%s\n'%(i,pr_decay))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
-            frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
             if secret:
                 frun.write('mkdir -p %s\n'%(para.delphes_dir))
                 frun.write('mkdir -p %s/%s\n'%(para.delphes_dir,pr_decay))

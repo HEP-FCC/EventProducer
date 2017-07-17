@@ -189,7 +189,6 @@ if __name__=="__main__":
         frun.write('mkdir job%i_%s\n'%(i,process))
         frun.write('cd job%i_%s\n'%(i,process))
         frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
-        frun.write('source /afs/cern.ch/project/eos/installation/client/etc/setup.sh\n')
         frun.write('mkdir -p %s%s/%s\n'%(para.delphes_dir,version,process))
         frun.write('cp %s .\n'%(delphescards_base))
         if 'fcc' in version:

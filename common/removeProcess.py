@@ -9,7 +9,7 @@ import EventProducer.config.param as para
 import EventProducer.common.isreading as isr
 
 if len(sys.argv)!=3:
-    print 'usage: python removeProcess.py LHE/FCC process'
+    print 'usage: python removeProcess.py LHE/FCC_fcc_v01/FCC_cms process'
     exit(3)
 
 indict=''
@@ -17,9 +17,14 @@ inread=''
 if sys.argv[1]=='LHE':
     indict=para.lhe_dic
     inread=para.readlhe_dic
-elif sys.argv[1]=='FCC':
-    indict=para.fcc_dic
-    inread=para.readfcc_dic
+elif 'FCC_' in sys.argv[1]:
+    version=sys.argv[1].replace('FCC_','')
+    if version not in para.fcc_versions:
+        print 'version of the cards should be: fcc_v01, cms'
+        print '======================%s======================'%version
+        sys.exit(3)
+    indict=para.fcc_dic.replace('VERSION',version)
+    inread=para.readfcc_dic.replace('VERSION',version)
 else:
     print 'unrecognized mode ',sys.argv[1],'  possible values are LHE/FCC'
     sys.exit(3)

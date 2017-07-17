@@ -8,7 +8,6 @@ import ROOT as r
 import EventProducer.config.param as para
 import EventProducer.common.isreading as isr
 
-print len(sys.argv)
 if len(sys.argv)!=2:
     print 'usage: python common/baddone.py LHE'
     exit(3)
@@ -42,10 +41,15 @@ for s in mydict:
         if j['status'] == 'bad':
             cmd='ls %s'%(j['out'])
             p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
+
+           #if p.stdout.readline().split()[0]==j['out'].split('/')[-1]:
+            #if p.stdout.readline()==j['out']+'\n':
+
+
             p.wait()
             print cmd
-            if len(p.stderr.readline())==0: 
-                if p.stdout.readline().split()[0]==j['out'].split('/')[-1]:
+            if len(p.stderr.readline())==0:
+                if p.stdout.readline()==j['out']+'\n':
                     if '.root' not in j['out']:
                         filecounting='filecounting'
                         if os.path.isdir(filecounting)==False:
