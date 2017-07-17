@@ -79,11 +79,13 @@ for s in mydict:
 
 
 
-        cmd='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select ls %s'%(j['out'])
+        #cmd='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select ls %s'%(j['out'])
+        cmd='ls %s'%(j['out'])
         p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
         p.wait()
         if len(p.stderr.readline())==0: 
-            if p.stdout.readline().split()[0]==j['out'].split('/')[-1]:
+            #if p.stdout.readline().split()[0]==j['out'].split('/')[-1]:
+            if p.stdout.readline()==j['out']+'\n':
 
 ##########################################################
 #For LHE files
