@@ -40,7 +40,7 @@ for s in mydict:
     for j in mydict[s]:
         
         if j['status'] == 'bad':
-            cmd='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select ls %s'%(j['out'])
+            cmd='ls %s'%(j['out'])
             p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
             p.wait()
             print cmd
@@ -50,7 +50,7 @@ for s in mydict:
                         filecounting='filecounting'
                         if os.path.isdir(filecounting)==False:
                             os.system('mkdir %s'%filecounting)
-                        cmd='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select cp %s %s'%(j['out'],filecounting)
+                        cmd='cp %s %s'%(j['out'],filecounting)
                         p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
                         stdout,stderr = p.communicate()
                         if os.path.isfile('%s/%s'%(filecounting,j['out'].split('/')[-1])):

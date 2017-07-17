@@ -78,8 +78,6 @@ for s in mydict:
                 continue
 
 
-
-        #cmd='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select ls %s'%(j['out'])
         cmd='ls %s'%(j['out'])
         p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
         p.wait()
