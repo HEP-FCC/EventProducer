@@ -167,6 +167,12 @@ if __name__=="__main__":
         if process!='' and process !=pr:continue
         processFound=True
 
+
+        try: 
+            indict[pr]
+        except KeyError, e:
+            print 'I got a KeyError - reason "%s"' % str(e)
+            continue
         print '======================================',process
         pythiacard='%spythia_%s.cmd'%(para.pythiacards_dir,pr)
         if decay!='':
@@ -217,7 +223,7 @@ if __name__=="__main__":
                 njobstmp+=1
                 continue
             else:
-                print 'job does not exists: ',i,' sending'
+                print 'job does not exists: ',i
 
             LHEexist=False
             LHEfile=''
@@ -230,7 +236,7 @@ if __name__=="__main__":
                 
             ################# if no LHE proceed
             if not LHEexist:
-                print 'LHE does not exist, continue'
+                print 'LHE does not exists: ',i,', continue'
                 i+=1
                 njobstmp+=1
                 if i>len(indict[pr]): break
@@ -315,7 +321,7 @@ if __name__=="__main__":
                 print 'ere'
                 sys.exit(3)
     if processFound==False: 
-        print 'process ===========',process,'============ not fonund in param.py, please check'
+        print 'process ===========',process,'============ not found in param.py, please check'
     else:
         print 'succesfully sent %i  jobs'%nbjobsSub
     outdict.write()
