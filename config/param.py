@@ -2,7 +2,6 @@
 ##LHE dictionnary
 lhe_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json'
 ##FCC events dictionnary
-fcc_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_fcc_v01.json'
 fcc_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_VERSION.json'
 
 fcc_versions=['fcc_v01', 'cms']
@@ -10,7 +9,6 @@ fcc_versions=['fcc_v01', 'cms']
 ##LHE read file true/false
 readlhe_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/readLHE.json'
 ##FCC read file true/false
-readfcc_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/readFCC.json'
 readfcc_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/readFCC_VERSION.json'
 
 ##eos directory for MG5@MCatNLO gridpacks
@@ -22,11 +20,11 @@ lhe_dir     = '/eos/experiment/fcc/hh/generation/mg5_amcatnlo/lhe/'
 delphes_dir = '/eos/experiment/fcc/hh/generation/DelphesEvents/'
 
 ##where the delphes cards are stored
-delphescards_dir = '/eos/experiment/fcc/hh/delphescards/'
+delphescards_dir = '/eos/experiment/fcc/hh/utils/delphescards/'
 ##where the pythia cards are stored
-pythiacards_dir  = '/eos/experiment/fcc/hh/pythiacards/'
+pythiacards_dir  = '/eos/experiment/fcc/hh/utils/pythiacards/'
 ##where the FCC config script is stored
-fccconfig_dir    = '/eos/experiment/fcc/hh/config/'
+fccconfig_dir    = '/eos/experiment/fcc/hh/utils/config/'
 
 ##muom momentum delphes resolution card
 delphescard_mmr='muonMomentumResolutionVsP.tcl'
