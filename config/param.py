@@ -343,6 +343,10 @@ gridpacklist = {
 'pp_w0123j_4f_HT_2000_5000':['w + 0/1/2/3 jets','2000 < HT < 5000','xqcut = 30, qCut = 45','273.7','1.20','1.0'],
 'pp_w0123j_4f_HT_5000_100000':['w + 0/1/2/3 jets','5000 < HT < 100000','xqcut = 30, qCut = 45','11.11','1.20','1.0'],
 'pp_w0123j_4f':['w + 0/1/2/3 jets','inclusive','xqcut = 30, qCut = 45','1.599e+06','1.20','1.0'],
+'pp_tt_nlo':['ttbar @NLO','pT(top) > 2.5 TeV','','2.008e-02','1.0','1.0'],
+'pp_vv_nlo':['VV (W/Z) @NLO','pT(V) > 2.5 TeV','','2.926e-04','1.0','1.0'],
+'pp_ee_nlo':['e+e- @NLO','m(ee) > 5 TeV','','1.553e-04','1.0','1.0'],
+'pp_mumu_nlo':['m+m- @NLO','m(mumu) > 5 TeV','','1.553e-04','1.0','1.0'],
 
 #DM signals Caterina Doglioni
 'pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1.0'],
