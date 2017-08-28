@@ -126,6 +126,7 @@ pythialist={
 
 decaylist = {
 'pp_h012j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'pp_hh01j_5f':['hhaabb'],
 'pp_vbf_h01j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hnunununu'],
 'pp_tth01j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'pp_vh012j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
@@ -149,6 +150,7 @@ branching_ratios = {
 'htautau':6.272E-02,
 'zll':0.307,
 'wlv':3*0.108,
+'hhaabb':2*2.270E-03*5.824E-01,
 }
 
 ##Gridpack list
@@ -173,6 +175,8 @@ gridpacklist = {
 'pp_bbbbj_4f_PT_0_250':['4b + jet','0 < PT < 250','','2516','2.0','1.0'],
 'pp_bbbbj_4f_PT_250_500':['4b + jet','250 < PT < 500','','224.3','2.0','1.0'],
 'pp_bbbbj_4f_PT_500_1000':['4b + jet','500 < PT < 1000','','20.99','2.0','1.0'],
+'pp_bbbbj_4f_PT_500_inf':['4b + jet','500 < PT','','57.71','2.0','1.0'],
+'pp_bbbbj_4f_PT_200_500':['4b + jet','200 < PT < 500','','756.4','2.0','1.0'],
 'pp_bbbbj_4f_PT_1000_100000':['4b + jet','1000 < PT < 100000','','0.2959','2.0','1.0'],
 'pp_z012j_5f':['z + 0,1,2 jets 5 flavor scheme','inclusive','xqcut = 30, qCut = 45','5.1839e05','1.0','0.691'],
 'pp_tth':['ttbar plus higgs','inclusive','','23.37','1.0','1.0'],
@@ -343,10 +347,11 @@ gridpacklist = {
 'pp_w0123j_4f_HT_2000_5000':['w + 0/1/2/3 jets','2000 < HT < 5000','xqcut = 30, qCut = 45','273.7','1.20','1.0'],
 'pp_w0123j_4f_HT_5000_100000':['w + 0/1/2/3 jets','5000 < HT < 100000','xqcut = 30, qCut = 45','11.11','1.20','1.0'],
 'pp_w0123j_4f':['w + 0/1/2/3 jets','inclusive','xqcut = 30, qCut = 45','1.599e+06','1.20','1.0'],
+'pp_jjj_5f_PT_500_inf':['tri-jet','pT(leading) > 500 GeV','','3.236e+04','2.0','0.999'],
 'pp_tt_nlo':['ttbar @NLO','pT(top) > 2.5 TeV','','2.008e-02','1.0','1.0'],
 'pp_vv_nlo':['VV (W/Z) @NLO','pT(V) > 2.5 TeV','','2.926e-04','1.0','1.0'],
-'pp_ee_nlo':['e+e- @NLO','m(ee) > 5 TeV','','1.553e-04','1.0','1.0'],
-'pp_mumu_nlo':['m+m- @NLO','m(mumu) > 5 TeV','','1.553e-04','1.0','1.0'],
+'pp_ee_nlo':['e+e- @NLO','m(ee) > 5 TeV','','1.553e-04','1.0','0.393'],
+'pp_mumu_nlo':['m+m- @NLO','m(mumu) > 5 TeV','','1.553e-04','1.0','0.393'],
 
 #DM signals Caterina Doglioni
 'pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1.0'],
