@@ -33,7 +33,7 @@ def addEntry(process, processlhe, xsec, kf, lheDict, fccDict, heppyFile, procDic
                    njobs+=1
 
                    # add file to heppy sample list 
-                   heppyFile.write("           '{}',\n".format(jobfcc['out']))
+                   heppyFile.write("           'root://eospublic.cern.ch/{}',\n".format(jobfcc['out']))
                    break
 
    heppyFile.write(']\n')
@@ -63,7 +63,7 @@ def addEntryPythia(process, xsec, kf, fccDict, heppyFile, procDict):
    
    heppyFile.write('{} = cfg.MCComponent(\n'.format(process))
    heppyFile.write("    \'{}\',\n".format(process))
-   heppyFile.write('    files=[\n')	
+   heppyFile.write('    files=[\n')     
 
    nmatched = 0
    njobs = 0
@@ -71,7 +71,7 @@ def addEntryPythia(process, xsec, kf, fccDict, heppyFile, procDict):
 
    for jobfcc in fccDict[process]:
        if jobfcc['nevents']>0 and jobfcc['status']== 'done':
-	   nmatched+=jobfcc['nevents']
+           nmatched+=jobfcc['nevents']
            njobs+=1
            heppyFile.write("           '{}',\n".format(jobfcc['out']))
 
