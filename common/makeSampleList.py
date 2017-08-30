@@ -63,7 +63,7 @@ def addEntryPythia(process, xsec, kf, fccDict, heppyFile, procDict):
    
    heppyFile.write('{} = cfg.MCComponent(\n'.format(process))
    heppyFile.write("    \'{}\',\n".format(process))
-   heppyFile.write('    files=[\n')	
+   heppyFile.write('    files=[\n')     
 
    nmatched = 0
    njobs = 0
@@ -71,7 +71,7 @@ def addEntryPythia(process, xsec, kf, fccDict, heppyFile, procDict):
 
    for jobfcc in fccDict[process]:
        if jobfcc['nevents']>0 and jobfcc['status']== 'done':
-	   nmatched+=jobfcc['nevents']
+           nmatched+=jobfcc['nevents']
            njobs+=1
            heppyFile.write("           '{}',\n".format(jobfcc['out']))
 
@@ -167,7 +167,7 @@ if __name__=="__main__":
                decay = dec
        if br < 1.0 and decay != '':
            decstr = '_{}'.format(decay)
-	   proc_param = process.replace(decstr,'')
+           proc_param = process.replace(decstr,'')
            xsec = float(para.gridpacklist[proc_param][3])*br
            kf = float(para.gridpacklist[proc_param][4])
            matchingEff = addEntry(process, proc_param, xsec, kf, lheDict, fccDict, heppyFile, procDict)
