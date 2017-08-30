@@ -13,6 +13,8 @@ python common/cleanfailed.py FCC_fcc_v01
 python common/jobchecker.py FCC_cms
 python common/cleanfailed.py FCC_cms
 
+python common/baddone.py  LHE
+
 python common/printdicts.py LHE /afs/cern.ch/user/h/helsens/www/LHEevents.txt
 python common/printdicts.py FCC_fcc_v01 /afs/cern.ch/user/h/helsens/www/Delphesevents_fcc_v01.txt
 python common/printdicts.py FCC_cms /afs/cern.ch/user/h/helsens/www/Delphesevents_cms.txt
