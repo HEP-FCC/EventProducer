@@ -177,12 +177,20 @@ if __name__=="__main__":
         pythiacard='%spythia_%s.cmd'%(para.pythiacards_dir,pr)
         if decay!='':
             pythiacard='%spythia_%s_%s.cmd'%(para.pythiacards_dir,pr,decay)
-
+            
         if eosexist(pythiacard)==False:
             print 'pythia card does not exist: ',pythiacard
-            readdic.comparedics()
-            readdic.finalize()
-            sys.exit(3)
+
+            while input != 'y' and input != 'n':
+                input = raw_input( 'do you want to use the default pythia card [y/n]' )
+
+                if input=='n':
+                    print 'exit'
+                    readdic.comparedics()
+                    readdic.finalize()
+                    sys.exit(3)
+                elif input=='y':
+                    pythiacard='%spythia_default.cmd'%(para.pythiacards_dir)
 
         pr_noht=''
         if '_HT_' in pr:
