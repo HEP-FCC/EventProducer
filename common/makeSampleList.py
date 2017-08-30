@@ -33,7 +33,7 @@ def addEntry(process, processlhe, xsec, kf, lheDict, fccDict, heppyFile, procDic
                    njobs+=1
 
                    # add file to heppy sample list 
-                   heppyFile.write("           '{}',\n".format(jobfcc['out']))
+                   heppyFile.write("           'root://eospublic.cern.ch/{}',\n".format(jobfcc['out']))
                    break
 
    heppyFile.write(']\n')
@@ -167,7 +167,7 @@ if __name__=="__main__":
                decay = dec
        if br < 1.0 and decay != '':
            decstr = '_{}'.format(decay)
-           proc_param = process.replace(decstr,'')
+	   proc_param = process.replace(decstr,'')
            xsec = float(para.gridpacklist[proc_param][3])*br
            kf = float(para.gridpacklist[proc_param][4])
            matchingEff = addEntry(process, proc_param, xsec, kf, lheDict, fccDict, heppyFile, procDict)
