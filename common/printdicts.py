@@ -135,7 +135,8 @@ for s, value in sorted(indict.items()):
     if sys.argv[1]=='LHE':
         nfileseos=len(os.listdir('%s%s'%(para.lhe_dir,s)))
     elif 'FCC_' in sys.argv[1]:
-        nfileseos=len(os.listdir('%s%s/%s'%(para.delphes_dir,sys.argv[1].replace('FCC_',''),news)))
+        if os.path.isdir('%s%s/%s'%(para.delphes_dir,sys.argv[1].replace('FCC_',''),news)): 
+            nfileseos=len(os.listdir('%s%s/%s'%(para.delphes_dir,sys.argv[1].replace('FCC_',''),news)))
 
     print 'nfiles on eos :  ',nfileseos
 
