@@ -162,13 +162,13 @@ if __name__=="__main__":
         njobstmp=njobs
         while i<njobstmp:
             if mydict.jobexits(sample=pr,jobid=i): 
-                print 'job i ',i,'  exists    njobs ',njobs
+                print 'job ',i,' exists, continue'
                 i+=1
                 njobstmp+=1
                 continue
 
             else:
-                print 'job does not exists: ',i,' sending'
+                print 'job ',i,' does not exists, sending'
 
             logdir=Dir+"/BatchOutputs/%s"%(pr)
 
