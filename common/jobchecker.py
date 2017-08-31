@@ -114,8 +114,14 @@ for s in mydict:
                         os.system('rm %s/%s'%(filecounting,j['out'].split('/')[-1].replace('.gz','')))
 
                     else:
-                        print "not able to copy file %s please check"%j['out']
-
+                        print "not able to copy file %s checking size"%j['out']
+                        size=os.path.getsize(j['out'])
+                        print 'file size  :  ',size,'  ',type(size)
+                        if size==0:
+                            print 'bad job'
+                            j['status']='bad'
+                        else:
+                            print "size ok %s please check"%j['out']
 
 ##########################################################
 #For ROOT files
@@ -125,9 +131,18 @@ for s in mydict:
                     if f:
                         tree=f.Get('events')
                         print j['out'],'  ',tree.GetEntries()
-                        j['nevents'] = tree.GetEntries()
-                        evttot+=j['nevents']
-                        j['status']='done'
+                        if tree.GetEntries()==0:
+                            print '0 entries, job failed'
+                            j['status']='failed'
+                        else:
+                            posentries=tree.GetEntries("mcEventWeights.value>0.")
+                            negentries=tree.GetEntries("mcEventWeights.value<0.")
+                            if negentries>0:
+                                print 'NLO ',posentries,'   ',negentries,'  ',posentries-negentries
+                                j['nweights'] = posentries-negentries
+                            j['nevents'] = tree.GetEntries()
+                            evttot+=j['nevents']
+                            j['status']='done'
                         f.Close()
                     else:
                         if os.path.isfile(j['out']): 
