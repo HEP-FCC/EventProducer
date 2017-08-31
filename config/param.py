@@ -351,7 +351,7 @@ gridpacklist = {
 'pp_tt_nlo':['ttbar @NLO','pT(top) > 2.5 TeV','','2.008e-02','1.0','1.0'],
 'pp_vv_nlo':['VV (W/Z) @NLO','pT(V) > 2.5 TeV','','2.926e-04','1.0','1.0'],
 'pp_ee_nlo':['e+e- @NLO','m(ee) > 5 TeV','','1.553e-04','1.0','0.393'],
-'pp_mumu_nlo':['m+m- @NLO','m(mumu) > 5 TeV','','1.553e-04','1.0','0.393'],
+'pp_mumu_nlo':['m+m- @NLO','m(mumu) > 5 TeV','','1.553e-04','1.0','1.0'],
 'pp_wj_4f_M_5000_inf':['w+ 1j','m(wj) > 5 TeV','','0.3314','2.0','1.0'],
 
 #DM signals Caterina Doglioni
