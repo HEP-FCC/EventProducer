@@ -66,6 +66,7 @@ ntot_events=0
 ntot_files=0
 for s, value in sorted(indict.items()):
     evttot=0
+    sumw=0
     njobs=0
     njobs_bad=0
     njobs_pending=0
@@ -81,7 +82,10 @@ for s, value in sorted(indict.items()):
             njobs+=1
             outdir=j['out']
             outdirtmp=j['out']
-
+            try:
+                sumw+=int(j['nweights'])
+            except KeyError, e:
+                sumw+=0
         if j['status']=='bad':njobs_bad+=1
         if j['status']=='running':njobs_running+=1
         if j['status']=='submitted':njobs_pending+=1
@@ -142,11 +146,11 @@ for s, value in sorted(indict.items()):
 
     cmd=''
     if not matching and not ispythiaonly:
-        cmd='%s,,%s,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),njobs,njobs_bad, njobs_running,nfileseos  ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][2],para.gridpacklist[s][3])
+        cmd='%s,,%s,,%s,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),comma_me(str(sumw)),njobs,njobs_bad, njobs_running,nfileseos  ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][2],para.gridpacklist[s][3])
     elif  matching and not ispythiaonly:
-        cmd='%s,,%s,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),njobs,njobs_bad, njobs_running,nfileseos ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][3],para.gridpacklist[s][4],para.gridpacklist[s][5])
+        cmd='%s,,%s,,%s,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),comma_me(str(sumw)),njobs,njobs_bad, njobs_running,nfileseos ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][3],para.gridpacklist[s][4],para.gridpacklist[s][5])
     elif  ispythiaonly:
-        cmd='%s,,%s,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),njobs,njobs_bad, njobs_running,nfileseos ,outdir.replace(outdirtmp.split('/')[-1],''),para.pythialist[news][0],para.pythialist[news][1],para.pythialist[news][3],para.pythialist[news][4],para.pythialist[news][5])
+        cmd='%s,,%s,,%s,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),comma_me(str(sumw)),njobs,njobs_bad, njobs_running,nfileseos ,outdir.replace(outdirtmp.split('/')[-1],''),para.pythialist[news][0],para.pythialist[news][1],para.pythialist[news][3],para.pythialist[news][4],para.pythialist[news][5])
         ispythiaonly=False
     OutFile.write(cmd)               
 
@@ -157,7 +161,7 @@ for s, value in sorted(indict.items()):
 
     ntot_events+=int(evttot)
     ntot_files+=int(njobs)
-cmd='%s,,%s,,%i,,%s,,%s,,%s,,%s\n'%('total',comma_me(str(ntot_events)),ntot_files,'','','','')
+cmd='%s,,%s,,%s,,%i,,%s,,%s,,%s,,%s\n'%('total',comma_me(str(ntot_events)),'',ntot_files,'','','','')
 OutFile.write(cmd)
 
 readdic.comparedics()
