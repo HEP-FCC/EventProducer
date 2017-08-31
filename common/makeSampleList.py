@@ -15,6 +15,7 @@ import sys
 def addEntry(process, processlhe, xsec, kf, lheDict, fccDict, heppyFile, procDict):
    
    nmatched = 0
+   nweights = 0
    nlhe = 0
    njobs = 0
    
@@ -30,6 +31,10 @@ def addEntry(process, processlhe, xsec, kf, lheDict, fccDict, heppyFile, procDic
                if int(joblhe['jobid']) == jobfcc['jobid'] and joblhe['status']== 'done':
                    nlhe += int(joblhe['nevents'])
                    nmatched+=jobfcc['nevents']
+                   try:
+                       nweights+=int(jobfcc['nweights'])
+                   except KeyError, e:
+                       nweights+=0
                    njobs+=1
 
                    # add file to heppy sample list 
@@ -51,8 +56,9 @@ def addEntry(process, processlhe, xsec, kf, lheDict, fccDict, heppyFile, procDic
 
    # compute matching efficiency
    matchingEff = round(float(nmatched)/nlhe, 3)
-   entry = '   "{}": {{"numberOfEvents": {}, "crossSection": {}, "kfactor": {}, "matchingEfficiency": {}}},\n'.format(process, nmatched, xsec, kf, matchingEff)
-   print 'N: {}, xsec: {} , kf: {} pb, eff: {}'.format(nmatched, xsec, kf, matchingEff)
+   if nweights==0: nweights=nmatched
+   entry = '   "{}": {{"numberOfEvents": {}, "sumOfWeights": {}, "crossSection": {}, "kfactor": {}, "matchingEfficiency": {}}},\n'.format(process, nmatched, nweights, xsec, kf, matchingEff)
+   print 'N: {}, Nw:{}, xsec: {} , kf: {} pb, eff: {}'.format(nmatched, nweights, xsec, kf, matchingEff)
 
    procDict.write(entry)
 
@@ -66,12 +72,17 @@ def addEntryPythia(process, xsec, kf, fccDict, heppyFile, procDict):
    heppyFile.write('    files=[\n')     
 
    nmatched = 0
+   nweights = 0
    njobs = 0
    matchingEff = 1.0
 
    for jobfcc in fccDict[process]:
        if jobfcc['nevents']>0 and jobfcc['status']== 'done':
            nmatched+=jobfcc['nevents']
+           try:
+               nweights+=int(jobfcc['nweights'])
+           except KeyError, e:
+               nweights+=0
            njobs+=1
            heppyFile.write("           '{}',\n".format(jobfcc['out']))
 
@@ -83,9 +94,9 @@ def addEntryPythia(process, xsec, kf, fccDict, heppyFile, procDict):
        print 'did not find any FCCSW event for process', process
        return matchingEff
 
-   # compute matching efficiency
-   entry = '   "{}": {{"numberOfEvents": {}, "crossSection": {}, "kfactor": {}, "matchingEfficiency": {}}},\n'.format(process, nmatched, xsec, kf, matchingEff)
-   print 'N: {}, xsec: {} , kf: {} pb, eff: {}'.format(nmatched, xsec, kf, matchingEff)
+   if nweights==0: nweights=nmatched
+   entry = '   "{}": {{"numberOfEvents": {}, "sumOfWeights": {}, "crossSection": {}, "kfactor": {}, "matchingEfficiency": {}}},\n'.format(process, nmatched, nweights, xsec, kf, matchingEff)
+   print 'N: {}, Nw:{}, xsec: {} , kf: {} pb, eff: {}'.format(nmatched, nweights, xsec, kf, matchingEff)
    procDict.write(entry)
    return matchingEff
    
