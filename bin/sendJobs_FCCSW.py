@@ -226,12 +226,12 @@ if __name__=="__main__":
         ################# continue if job already exist and process if not
         while i<njobstmp:
             if outdict.jobexits(sample=pr_decay,jobid=i): 
-                print 'job i ',i,'  exists    njobs ',njobs
+                print 'job i ',i,'  exists, continue'
                 i+=1
                 njobstmp+=1
                 continue
             else:
-                print 'job does not exists: ',i
+                print 'job ',i,' does not exists'
 
             LHEexist=False
             LHEfile=''
@@ -300,7 +300,6 @@ if __name__=="__main__":
             
             frun.write('cd ..\n')
             frun.write('rm -rf job%i_%s\n'%(i,pr_decay))
-            print pr_decay
 
             if mode=='batch':
                 cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -cwd%s %s" %(queue, logdir,logdir+'/'+frunname)
