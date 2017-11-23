@@ -354,6 +354,23 @@ gridpacklist = {
 'pp_mumu_nlo':['m+m- @NLO','m(mumu) > 5 TeV','','1.553e-04','1.0','1.0'],
 'pp_wj_4f_M_5000_inf':['w+ 1j','m(wj) > 5 TeV','','0.3314','2.0','1.0'],
 'pp_vj_4f_M_5000_inf':['w/z+ 1j','m(vj) > 5 TeV','','0.4679','2.0','1.0'],
+'pp_www_4f':['WWW (4FS)','inclusive','','1.686','2.5','1.0'],
+'pp_wwz_4f':['WWZ (4FS)','inclusive','','1.437','2.8','1.0'],
+'pp_wzz_5f':['WZZ','inclusive','','0.4479','3.0','1.0'],
+'pp_zzz_5f':['ZZZ','inclusive','','0.151','1.7','1.0'],
+'pp_wwwz_4f':['WWWZ (4FS)','inclusive','','0.01792','3.3','1.0'],
+'pp_wwww_4f':['WWWW (4FS)','inclusive','','0.01361','3.0','1.0'],
+'pp_wwzz_4f':['WWZZ (4FS)','inclusive','','0.01247','2.7','1.0'],
+'pp_wzzz_5f':['WZZZ','inclusive','','0.001633','1.5','1.0'],
+'pp_zzzz_5f':['ZZZZ','inclusive','','0.000461','1.7','1.0'],
+'pp_tttt_5f':['tttt','inclusive','','2.316','2.1','1.0'],
+'pp_ttz_5f':['ttZ','inclusive','','38.05','1.5','1.0'],
+'pp_ttw_5f':['ttW','inclusive','','6.545','2.5','1.0'],
+'pp_ttww_4f':['ttWW (4FS)','inclusive','','0.7827','1.4','1.0'],
+'pp_ttwz_5f':['ttWZ','inclusive','','0.07427','2.3','1.0'],
+'pp_ttzz_5f':['ttZZ','inclusive','','0.1206','1.3','1.0'],
+
+
 
 #DM signals Caterina Doglioni
 'pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1.0'],
