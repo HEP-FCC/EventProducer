@@ -373,7 +373,7 @@ gridpacklist = {
 'pp_ttww_4f':['ttWW (4FS)','inclusive','','0.7827','1.4','1.0'],
 'pp_ttwz_5f':['ttWZ','inclusive','','0.07427','2.3','1.0'],
 'pp_ttzz_5f':['ttZZ','inclusive','','0.1206','1.3','1.0'],
-
+'pp_tt4l_4f':['tt4l non resonant','inclusive','','4.122e-05','1.3','1.0'],
 
 
 #DM signals Caterina Doglioni
