@@ -374,6 +374,13 @@ gridpacklist = {
 'pp_ttwz_5f':['ttWZ','inclusive','','0.07427','2.3','1.0'],
 'pp_ttzz_5f':['ttZZ','inclusive','','0.1206','1.3','1.0'],
 'pp_tt4l_4f':['tt4l non resonant','inclusive','','4.122e-05','1.3','1.0'],
+'pp_hh_lambda050_5f':['HH, H->bb, H undec., kl = 0.50','','','1.545','1.0','1.0'],
+'pp_hh_lambda090_5f':['HH, H->bb, H undec., kl = 0.90','','','1.182','1.0','1.0'],
+'pp_hh_lambda095_5f':['HH, H->bb, H undec., kl = 0.95','','','1.142','1.0','1.0'],
+'pp_hh_lambda100_5f':['HH, H->bb, H undec., kl = 1.00 (SM)','','','1.104','1.0','1.0'],
+'pp_hh_lambda105_5f':['HH, H->bb, H undec., kl = 1.05','','','1.065','1.0','1.0'],
+'pp_hh_lambda110_5f':['HH, H->bb, H undec., kl = 1.10','','','1.029','1.0','1.0'],
+'pp_hh_lambda150_5f':['HH, H->bb, H undec., kl = 1.50','','','0.7769','1.0','1.0'],
 
 
 #DM signals Caterina Doglioni
