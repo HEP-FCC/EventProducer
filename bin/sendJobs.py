@@ -197,11 +197,11 @@ if __name__=="__main__":
             frun.write('source %s\n'%(para.stack))
             frun.write('mkdir %s\n'%(para.lhe_dir))
             frun.write('mkdir %s%s\n'%(para.lhe_dir,pr))
-            frun.write('cp %s/%s.tar.gz .\n'%(para.gp_dir,pr))
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s/%s.tar.gz .\n'%(para.gp_dir,pr))
             frun.write('tar -zxf %s.tar.gz\n'%pr)
             frun.write('cd process/\n')
             frun.write('./run.sh %i %i\n'%(events,i+1))
-            frun.write('cp events.lhe.gz %s/%s/events%i.lhe.gz\n'%(para.lhe_dir,pr,i))
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events%i.lhe.gz\n'%(para.lhe_dir,pr,i))
             frun.write('cd ..\n')
             frun.write('rm -rf job%i_%s\n'%(i,pr))
             print pr

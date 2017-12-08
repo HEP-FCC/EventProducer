@@ -138,17 +138,17 @@ if __name__=="__main__":
 
     delphescards_mmr = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_mmr)
     if eosexist(delphescards_mmr)==False and version != 'cms':
-        print 'delphes card does not exist: ',delphescard_mmr
+        print 'delphes card does not exist: ',delphescards_mmr
         sys.exit(3)
 
     delphescards_mr = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_mr)
     if eosexist(delphescards_mr)==False and version != 'cms':
-        print 'delphes card does not exist: ',delphescard_mr
+        print 'delphes card does not exist: ',delphescards_mr
         sys.exit(3)
 
     delphescards_base = '%s%s/%s'%(para.delphescards_dir,version,para.delphescard_base)
     if eosexist(delphescards_base)==False:
-        print 'delphes card does not exist: ',delphescard_base
+        print 'delphes card does not exist: ',delphescards_base
         sys.exit(3)
 
     fccconfig = '%s%s'%(para.fccconfig_dir,para.fccconfig)
@@ -281,22 +281,22 @@ if __name__=="__main__":
                 frun.write('mkdir -p %s/%s\n'%(para.delphes_dir,version))
                 frun.write('mkdir -p %s%s/%s\n'%(para.delphes_dir,version,pr_decay))
 
-            frun.write('cp %s .\n'%(LHEfile))
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(LHEfile))
             frun.write('gunzip -c %s > events.lhe\n'%LHEfile.split('/')[-1])          
-            frun.write('cp %s .\n'%(delphescards_base))
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_base))
             if 'fcc' in version:
-                frun.write('cp %s .\n'%(delphescards_mmr))
-                frun.write('cp %s .\n'%(delphescards_mr))
-            frun.write('cp %s config.py \n'%(fccconfig))
-            frun.write('cp %s card.cmd\n'%(pythiacard))
+                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mmr))
+                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mr))
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s config.py \n'%(fccconfig))
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
             frun.write('echo "Beams:LHEF = events.lhe" >> card.cmd\n')
            
             frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%i.root --nevents=%i\n'%(para.fccsw,i,events))
             
             if secret:
-                frun.write('cp events%i.root %s/%s/events%i.root\n'%(i,para.delphes_dir,pr_decay,i))
+                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events%i.root %s/%s/events%i.root\n'%(i,para.delphes_dir,pr_decay,i))
             else:
-                frun.write('cp events%i.root %s%s/%s/events%i.root\n'%(i,para.delphes_dir,version,pr_decay,i))
+                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events%i.root %s%s/%s/events%i.root\n'%(i,para.delphes_dir,version,pr_decay,i))
             
             frun.write('cd ..\n')
             frun.write('rm -rf job%i_%s\n'%(i,pr_decay))
