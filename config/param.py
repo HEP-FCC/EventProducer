@@ -4,7 +4,7 @@ lhe_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json'
 ##FCC events dictionnary
 fcc_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_VERSION.json'
 
-fcc_versions=['fcc_v01', 'cms']
+fcc_versions=['fcc_v01', 'fcc_v02', 'cms']
 
 ##LHE read file true/false
 readlhe_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/readLHE.json'

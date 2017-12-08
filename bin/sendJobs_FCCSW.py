@@ -125,7 +125,7 @@ if __name__=="__main__":
     nbjobsSub=0
 
     if version not in para.fcc_versions:
-        print 'version of the cards should be: fcc_v01, cms'
+        print 'version of the cards should be: fcc_v01, fcc_v02, cms'
         sys.exit(3)
 
 #############
