@@ -1,4 +1,6 @@
 #python bin/sendJobs_FCCSW_P8.py -n 1 -p pp_Zprime_5TeV_ll -e 10000
+#python bin/sendJobs_FCCSW_P8.py -n 1 -p pp_Zprime_5TeV_ll -e 10000 
+#python bin/sendJobs_FCCSW_P8.py -n 1 -p pp_Zprime_5TeV_ll -e 10000 -v fcc_v02
 
 
 import glob, os, sys,subprocess,cPickle
@@ -93,7 +95,7 @@ if __name__=="__main__":
                       action='store_true', dest='test', default=False,
                       help='do not send to batch nor write to the dictonary')
 
-    parser.add_option ('-v', '--version',  help='version of the delphes card to use, options are: fcc_v01, cms',
+    parser.add_option ('-v', '--version',  help='version of the delphes card to use, options are: fcc_v01, fcc_v02, cms',
                        dest='version',
                        default='fcc_v01')
 

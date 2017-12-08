@@ -1,5 +1,6 @@
 #python bin/sendJobs_FCCSW.py -n 10 -p pp_h012j_5f -q 8nh -e -1 -d haa --test
 #python bin/sendJobs_FCCSW.py secret -n 1 -e -1  -p "pp_h012j_5f" -q 1nh --test
+#python bin/sendJobs_FCCSW.py -n 1 -p pp_h012j_5f -q 8nh -e -1 -v fcc_v02
 
 
 import glob, os, sys,subprocess,cPickle
