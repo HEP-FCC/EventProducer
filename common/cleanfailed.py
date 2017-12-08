@@ -60,6 +60,8 @@ for s in mydict:
             nfailed+=1
             os.system('rm -rf %s'%(mydict[s][j]['script']))
             os.system('rm -rf %s'%(mydict[s][j]['log']))
+            os.system('rm -rf %s'%(mydict[s][j]['out']))
+
         else: mynewdict[s].append(mydict[s][j])
         
 with open(indict, 'w') as f:
