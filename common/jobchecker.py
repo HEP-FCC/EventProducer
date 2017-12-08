@@ -94,9 +94,10 @@ for s in mydict:
                         os.system('mkdir %s'%filecounting)
                     cmd='cp %s %s'%(j['out'],filecounting)
                     print cmd
+                    size=os.path.getsize(j['out'])
                     p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
                     stdout,stderr = p.communicate()
-                    if os.path.isfile('%s/%s'%(filecounting,j['out'].split('/')[-1])):
+                    if os.path.isfile('%s/%s'%(filecounting,j['out'].split('/')[-1])) and size>0:
                         os.system('gunzip %s/%s'%(filecounting,j['out'].split('/')[-1]))
                         cmd='grep \"<event>\" %s/%s | wc -l'%(filecounting,j['out'].split('/')[-1].replace('.gz',''))
                         p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
@@ -109,6 +110,8 @@ for s in mydict:
                             j['status']='done'
 
                         else:
+                            if int(stdoutplit[0])==0:
+                                j['status']='failed'
                             print 'job is bad exp %s obs %i'%(j['nevents'],int(stdoutplit[0]))
                             j['status']='bad'
                         os.system('rm %s/%s'%(filecounting,j['out'].split('/')[-1].replace('.gz','')))
@@ -119,7 +122,8 @@ for s in mydict:
                         print 'file size  :  ',size,'  ',type(size)
                         if size==0:
                             print 'bad job'
-                            j['status']='bad'
+                            j['status']='failed'
+                            os.system('rm %s'%(j['out']))
                         else:
                             print "size ok %s please check"%j['out']
 
@@ -129,20 +133,32 @@ for s in mydict:
                 if '.root' in j['out']:
                     f=r.TFile.Open(j['out'])
                     if f:
-                        tree=f.Get('events')
-                        print j['out'],'  ',tree.GetEntries()
-                        if tree.GetEntries()==0:
-                            print '0 entries, job failed'
+                        size=os.path.getsize(j['out'])
+                        print '--------------------   ',size
+                        if size==0:
+                            print 'bad job'
                             j['status']='failed'
+
                         else:
-                            posentries=tree.GetEntries("mcEventWeights.value>0.")
-                            negentries=tree.GetEntries("mcEventWeights.value<0.")
-                            if negentries>0:
-                                print 'NLO ',posentries,'   ',negentries,'  ',posentries-negentries
-                                j['nweights'] = posentries-negentries
-                            j['nevents'] = tree.GetEntries()
-                            evttot+=j['nevents']
-                            j['status']='done'
+                            lok=[key.GetName() for key in r.gDirectory.GetListOfKeys()]
+                            if 'events' not in lok:
+                                 print 'no trees, job failed'
+                                 j['status']='failed'
+                                 continue
+                            tree=f.Get('events')    
+                            print j['out'],'  ',tree.GetEntries()
+                            if tree.GetEntries()==0:
+                                print '0 entries, job failed'
+                                j['status']='failed'
+                            else:
+                                posentries=tree.GetEntries("mcEventWeights.value>0.")
+                                negentries=tree.GetEntries("mcEventWeights.value<0.")
+                                if negentries>0:
+                                    print 'NLO ',posentries,'   ',negentries,'  ',posentries-negentries
+                                    j['nweights'] = posentries-negentries
+                                    j['nevents'] = tree.GetEntries()
+                                    evttot+=j['nevents']
+                                    j['status']='done'
                         f.Close()
                     else:
                         if os.path.isfile(j['out']): 
