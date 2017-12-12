@@ -84,6 +84,7 @@ for s, value in sorted(indict.items()):
             outdirtmp=j['out']
             try:
                 sumw+=int(j['nweights'])
+                if s=='pp_ttv01j_5f': print sumw,'   ',j['nweights']
             except KeyError, e:
                 sumw+=0
         if j['status']=='bad':njobs_bad+=1
@@ -145,6 +146,7 @@ for s, value in sorted(indict.items()):
     print 'nfiles on eos :  ',nfileseos
 
     cmd=''
+    print '-----fefefeefefefefefe----------',comma_me(str(sumw))
     if not matching and not ispythiaonly:
         cmd='%s,,%s,,%s,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),comma_me(str(sumw)),njobs,njobs_bad, njobs_running,nfileseos  ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][2],para.gridpacklist[s][3])
     elif  matching and not ispythiaonly:

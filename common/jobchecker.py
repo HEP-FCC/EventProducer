@@ -17,7 +17,7 @@ if "secret" in sys.argv:
 else:
     import EventProducer.config.param as para
 
-force=False
+force=True
 
 if len(sys.argv)>5 or len(sys.argv)<2:
     print 'usage: python jobchecker.py LHE/FCC (process)'
@@ -156,9 +156,11 @@ for s in mydict:
                                 if negentries>0:
                                     print 'NLO ',posentries,'   ',negentries,'  ',posentries-negentries
                                     j['nweights'] = posentries-negentries
-                                    j['nevents'] = tree.GetEntries()
-                                    evttot+=j['nevents']
-                                    j['status']='done'
+                                    print 'weight  ',j['nweights']
+                                else :j['nweights'] = posentries
+                                j['nevents'] = tree.GetEntries()
+                                evttot+=j['nevents']
+                                j['status']='done'
                         f.Close()
                     else:
                         if os.path.isfile(j['out']): 
