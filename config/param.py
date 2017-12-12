@@ -122,6 +122,9 @@ pythialist={
 'pp_vv_M_10000_15000':['di-boson','10000 < M < 15000 and pT > 2500.','','3.647e-03','3.0','1.0'],
 'pp_vv_M_15000_100000':['di-boson','15000 < M < 100000 and pT > 2500.','','1.841e-03','3.0','1.0'],
 
+'pythia_pp_tt_Pt2500toInf':['ttbar','pT > 2500.','','0.5','3.0','1.0'],
+'pythia_pp_jj_Pt2500toInf':['dijet','pT > 2500.','','150.','3.0','1.0'],
+'pythia_pp_vv_Pt2500toInf':['di-boson','pT > 2500.','','0.02','3.0','1.0'],
 
 }
 
@@ -137,8 +140,10 @@ decaylist = {
 'pp_v0123j_5f':['znunu'],
 'pp_z0123j_4f':['zll'],
 'pp_w0123j_4f':['wlv'],
-
+'pp_ttz_5f':['znunu'],
 }
+
+
 
 ##list of decays branching ratios 
 # from https://twiki.cern.ch/twiki/bin/view/LHCPhysics/CERNYellowReportPageBR 
@@ -155,7 +160,11 @@ branching_ratios = {
 'zll':0.307,
 'wlv':3*0.108,
 'hhaabb':2*2.270E-03*5.824E-01,
+'znunu':0.205,
 }
+
+
+
 
 ##Gridpack list
 ##     0          1            2                 3           4           5
