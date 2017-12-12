@@ -33,7 +33,7 @@ delphescard_mr='momentumResolutionVsP.tcl'
 ##delphes base card
 delphescard_base='card.tcl'
 ##FCC config script name
-fccconfig='PythiaDelphes_config.py'
+fccconfig='PythiaDelphes_config_v02.py'
 
 ##base dir of FCCSW
 fccsw_dir='/cvmfs/fcc.cern.ch/sw/0.8.2/'
