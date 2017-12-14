@@ -34,7 +34,7 @@ python bin/sendJobs.py -n <NumberOfJobs> -e <NumberOfEventsPerJob> -q <BatchQueu
 example:
 
 ```
-python bin/sendJobs.py -n 1 -e 200 -q 1nh -p pp_hh_bbaa
+python bin/sendJobs.py -n 10 -e 10000 -q 8nh -p pp_ttz_5f
 ```
 
 []() Generate FCCSW files 
@@ -49,10 +49,9 @@ export FCCUSERPATH=<UserFccPath>
 Check dictionary (optional):
 
 ```
-python jobchecker.py /afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json
-python cleanfailed.py /afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict.json
-python jobchecker.py /afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_v0_0.json
-python cleanfailed.py /afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphesdict_v0_0.json
+python common/jobchecker.py LHE
+python common/cleanfailed.py LHE
+
 ```
 
 Run jobs:
