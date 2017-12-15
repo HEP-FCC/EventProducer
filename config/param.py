@@ -141,6 +141,14 @@ decaylist = {
 'pp_z0123j_4f':['zll'],
 'pp_w0123j_4f':['wlv'],
 'pp_ttz_5f':['znunu'],
+
+'pp_hh_lambda050_5f':['haa'],
+'pp_hh_lambda090_5f':['haa'],
+'pp_hh_lambda095_5f':['haa'],
+'pp_hh_lambda100_5f':['haa'],
+'pp_hh_lambda105_5f':['haa'],
+'pp_hh_lambda110_5f':['haa'],
+'pp_hh_lambda150_5f':['haa'],
 }
 
 
