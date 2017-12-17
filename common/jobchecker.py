@@ -10,6 +10,22 @@ import os.path
 import ROOT as r
 import os.path
 import EventProducer.common.isreading as isr
+import warnings
+
+
+# adding this because heppy does not handle root recovered trees'
+#_____________________________________________________________
+def isValidROOTfile(infile):
+    valid = True
+    with warnings.catch_warnings(record=True) as was:
+        f=r.TFile.Open(infile)
+        ctrlstr = 'probably not closed'
+        for w in was:
+            if ctrlstr in str(w.message):
+                valid = False
+    return valid
+#________________________________________________________________
+
 
 if "secret" in sys.argv:
     import EventProducer.config.param_test as para
@@ -17,7 +33,8 @@ if "secret" in sys.argv:
 else:
     import EventProducer.config.param as para
 
-force=False
+#force=False
+force=True
 
 if len(sys.argv)>5 or len(sys.argv)<2:
     print 'usage: python jobchecker.py LHE/FCC (process)'
@@ -130,7 +147,14 @@ for s in mydict:
 ##########################################################
 #For ROOT files
 ##########################################################
+
                 if '.root' in j['out']:
+                    if not isValidROOTfile(j['out']):
+                        print 'corrupt file'
+                        j['status']='failed'
+                        continue 
+
+
                     f=r.TFile.Open(j['out'])
                     if f:
                         size=os.path.getsize(j['out'])
