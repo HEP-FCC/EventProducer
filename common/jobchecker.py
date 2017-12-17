@@ -33,8 +33,7 @@ if "secret" in sys.argv:
 else:
     import EventProducer.config.param as para
 
-#force=False
-force=True
+force=False
 
 if len(sys.argv)>5 or len(sys.argv)<2:
     print 'usage: python jobchecker.py LHE/FCC (process)'
