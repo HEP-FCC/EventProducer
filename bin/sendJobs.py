@@ -16,6 +16,10 @@
 #python bin/sendJobs.py secret -n 1 -e 1  -p "pp_hh_bbaa" -q 1nd --test
 
 
+#to run HE-LHC
+#python bin/sendJobs.py HELHC -n 1 -e 1  -p "pp_hh_bbaa" -q 1nd --test
+
+
 #!/usr/bin/env python
 import json, sys
 import glob, os, sys,subprocess,cPickle
@@ -25,8 +29,8 @@ import random
 import EventProducer.common.dicwriter as dicr
 import EventProducer.common.isreading as isr
 
-if sys.argv[1]=="secret":
-    import EventProducer.config.param_test as para
+if sys.argv[1]=="HELHC":
+    import EventProducer.config.param_HELHC as para
 else:
     import EventProducer.config.param as para
 
