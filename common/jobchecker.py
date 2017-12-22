@@ -1,7 +1,5 @@
-#python common/jobchecker.py LHE or FCC
-#python common/jobchecker.py LHE_version/FCC secret
-#python common/jobchecker.py LHE/FCC_fcc_v01 secret
-#python common/jobchecker.py LHE/FCC_cms secret
+#python common/jobchecker.py LHE/FCC_fcc_v01/FCC_fcc_v01/FCC_cms
+#python common/jobchecker.py LHE/helhc_v01 HELHC
 
 import json
 import subprocess
@@ -11,7 +9,8 @@ import ROOT as r
 import os.path
 import EventProducer.common.isreading as isr
 import warnings
-
+import EventProducer.common.utils as ut
+import warnings
 
 # adding this because heppy does not handle root recovered trees'
 #_____________________________________________________________
@@ -148,7 +147,7 @@ for s in mydict:
 ##########################################################
 
                 if '.root' in j['out']:
-                    if not isValidROOTfile(j['out']):
+                    if not ut.isValidROOTfile(j['out']):
                         print 'corrupt file'
                         j['status']='failed'
                         continue 
@@ -200,6 +199,8 @@ for s in mydict:
 
             if "EXIT" in stdoutplit or "DONE" in stdoutplit or ("is" in stderrplit and "not"  in stderrplit and "<%s>"%(j['batchid'])  in stderrplit):
                 print 'job failed'
+                j['status']='failed'
+            elif j['batchid']==-1:
                 j['status']='failed'
             else:
                 print '----->> job running or pending'
