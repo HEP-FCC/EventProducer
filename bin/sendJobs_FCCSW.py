@@ -190,7 +190,7 @@ if __name__=="__main__":
                 s = sys.stdin.readline()
                 if s=="y\n":
                     print 'use default card'
-                     pythiacard='%spythia_default.cmd'%(para.pythiacards_dir)
+                    pythiacard='%spythia_default.cmd'%(para.pythiacards_dir)
                 else:
                     print 'exit'
                     readdic.comparedics()
