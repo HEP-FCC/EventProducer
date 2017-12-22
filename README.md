@@ -1,5 +1,8 @@
 # EventProducer
 
+This package is used to centrally produced events for FCC-hh studies at center of mass energy of 100TeV.
+It can also be used to run HE-LHC studies using specific options.
+
 []() Clone and initialisation
 -------------------------
 
@@ -21,20 +24,26 @@ source ./init.sh
 []() Generate LHE files
 -------------------------
 
-To send jobs starting from a gridpack, do the following:
-   - place gridpack in eos ```/eos/fcc/hh/generation/mg5_amcatnlo/gridpacks```
-   - add to ```param.py``` the job name corresponding to the gridpack name
+To send jobs starting from a gridpack that does not exist, do the following:
+   - place gridpack in eos ```/eos/experiment/fcc/hh/generation/mg5_amcatnlo/gridpacks```
+   - add to ```param.py``` or ```param_HELHC.py``` the job name corresponding to the gridpack name in the ```gridpacklist``` list, depending on the study.
 
-Then simply run:
+If the gridpack already exists or has been properly added, then simply run:
 
 ```
 python bin/sendJobs.py -n <NumberOfJobs> -e <NumberOfEventsPerJob> -q <BatchQueueName> -p <ProcessName>
 ```
 
-example:
+example to send 10 jobs of 10 000 events of ttz using 8nh queue of lsf for FCC:
 
 ```
 python bin/sendJobs.py -n 10 -e 10000 -q 8nh -p pp_ttz_5f
+```
+
+example to send 10 jobs of 10 000 events of ttz using 8nh queue of lsf for HE-LHC:
+
+```
+python HELHC bin/sendJobs.py -n 10 -e 10000 -q 8nh -p pp_ttz_5f
 ```
 
 []() Generate FCCSW files 
@@ -66,4 +75,8 @@ Example:
 python bin/sendJobs_FCCSW.py -i $FCCUSERPATH/Generation/data/Pythia_LHEinput.cmd -n 1 -e 200 -q 1nh -p pp_hh_bbaa --test
 ``` 
 
--
+
+[]() Cleaning up
+--------------------------
+
+Scripts are used to check that the jobs have been properly processed.
