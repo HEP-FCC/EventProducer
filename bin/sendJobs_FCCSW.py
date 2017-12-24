@@ -8,6 +8,7 @@ import commands
 import time
 import random
 import json
+from select import select
 
 import EventProducer.common.dicwriter_FCC as dicr
 import EventProducer.common.isreading as isr
@@ -182,16 +183,22 @@ if __name__=="__main__":
         if eosexist(pythiacard)==False:
             print 'pythia card does not exist: ',pythiacard
 
-            while input != 'y' and input != 'n':
-                input = raw_input( 'do you want to use the default pythia card [y/n]' )
-
-                if input=='n':
+            timeout = 60
+            print "do you want to use the default pythia card [y/n] (60sec to reply)"
+            rlist, _, _ = select([sys.stdin], [], [], timeout)
+            if rlist:
+                s = sys.stdin.readline()
+                if s=="y\n":
+                    print 'use default card'
+                    pythiacard='%spythia_default.cmd'%(para.pythiacards_dir)
+                else:
                     print 'exit'
                     readdic.comparedics()
                     readdic.finalize()
                     sys.exit(3)
-                elif input=='y':
-                    pythiacard='%spythia_default.cmd'%(para.pythiacards_dir)
+            else:
+                print "timeout, use default card"
+                pythiacard='%spythia_default.cmd'%(para.pythiacards_dir)
 
         pr_noht=''
         if '_HT_' in pr:

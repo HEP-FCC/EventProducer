@@ -28,7 +28,7 @@ class dicwriter():
 
     def addjob(self,sample,jobid,queue,nevents,status,log,out,batchid,script,inputlhe,plots):
         if self.jobexits(sample,jobid): 
-            print 'job already exist '
+            print 'job already exist ',sample,'   ',jobid
             return
         exist=False
         for s in self.mydict:

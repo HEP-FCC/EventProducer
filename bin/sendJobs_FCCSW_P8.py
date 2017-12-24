@@ -99,6 +99,10 @@ if __name__=="__main__":
                        dest='version',
                        default='fcc_v01')
 
+    parser.add_option('-f','--fakeadd',
+                      action='store_true', dest='fakeadd', default=False,
+                      help='add fake jobs to the dictonary')
+
     (options, args) = parser.parse_args()
     njobs      = int(options.njobs)
     events     = int(options.events)
@@ -108,6 +112,7 @@ if __name__=="__main__":
     test       = options.test
     version    = options.version
     config     = options.config
+    fakeadd    = options.fakeadd
     rundir = os.getcwd()
     nbjobsSub=0
 
@@ -206,9 +211,11 @@ if __name__=="__main__":
         if mode=='batch':
             cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -cwd%s %s" %(queue, logdir,logdir+'/'+frunname)
             batchid=-1
-            if test==False:
+            if test==False and fakeadd==False:
                 job,batchid=SubmitToBatch(cmdBatch,10)
                 nbjobsSub+=job
+                outdict.addjob(sample=process,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/%s/events%i.root'%(para.delphes_dir,version,process,i),batchid=batchid,script='%s/%s'%(logdir,frunname),inputlhe='Pythia8',plots='none')
+            elif test==False and fakeadd==True:
                 outdict.addjob(sample=process,jobid=i,queue=queue,nevents=events,status='submitted',log='%s/LSFJOB_%i'%(logdir,int(batchid)),out='%s%s/%s/events%i.root'%(para.delphes_dir,version,process,i),batchid=batchid,script='%s/%s'%(logdir,frunname),inputlhe='Pythia8',plots='none')
         elif mode=='local':
             os.system('./tmp/%s'%frunname)

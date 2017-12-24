@@ -173,12 +173,15 @@ if __name__=="__main__":
        br = 1.0
        decay = ''
        for dec in para.branching_ratios:
-           if dec in process:
+           dec_proc = process.split('_')[-1]
+           if dec in process and dec_proc == dec:
                br = para.branching_ratios[dec]
                decay = dec
        if br < 1.0 and decay != '':
+           print 'decay---------- '
            decstr = '_{}'.format(decay)
            proc_param = process.replace(decstr,'')
+           print '--------------  ',decstr,'  --  ',proc_param
            xsec = float(para.gridpacklist[proc_param][3])*br
            kf = float(para.gridpacklist[proc_param][4])
            matchingEff = addEntry(process, proc_param, xsec, kf, lheDict, fccDict, heppyFile, procDict)
