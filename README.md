@@ -70,7 +70,7 @@ python bin/sendJobs_FCCSW.py -n 10 -p pp_ttz_5f -d znunu -q 8nh -v fcc_v02
 
 Please note that the decay in pythia is optional.
 
-[]() Generate FCCSW files from Pyhtia8
+[]() Generate FCCSW files from Pythia8
 --------------------------
 
 Pythia8 manual: http://home.thep.lu.se/~torbjorn/pythia81html/Welcome.html
