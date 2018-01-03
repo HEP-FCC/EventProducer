@@ -8,7 +8,7 @@ import ROOT as r
 import json
 import EventProducer.common.utils as ut
 import EventProducer.common.checker as chk
-import EventProducer.common.send_lhe as slhe
+import EventProducer.bin.send_lhe as slhe
 
 
 #__________________________________________________________
@@ -17,7 +17,7 @@ if __name__=="__main__":
     import argparse
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('-p','--process', type=str, help='Name of the process to use to send jobs or for the check', default='')
+    parser.add_argument('-s','--sample', type=str, help='Name of the sample to use to send jobs or for the check', default='')
 
     genTypeGroup = parser.add_mutually_exclusive_group(required = True) # Type of events to generate
     genTypeGroup.add_argument("--reco", action='store_true', help="reco events")
@@ -103,9 +103,9 @@ if __name__=="__main__":
         if args.dir!='':
             print 'using a specific input directory ',args.dir
             indir=args.dir
-        if args.process!='':
-            print 'using a specific process ',args.process
-        checker=chk.checker(indict, indir, inread, para, fext, args.process)
+        if args.sample!='':
+            print 'using a specific sample ',args.sample
+        checker=chk.checker(indict, indir, inread, para, fext, args.sample)
         checker.check()
 
     
@@ -120,8 +120,8 @@ if __name__=="__main__":
  
         if sendOpt=='lhe':
             print 'preparing to send lhe jobs from madgraph gridpacks'
-            sendlhe=slhe.send_lhe(njobs,events, args.sample, args.lsf, args.queue)
-
+            sendlhe=slhe.send_lhe(args.numJobs,args.numEvents, args.sample, args.lsf, args.queue, para)
+            sendlhe.send()
         elif sendOpt=='lhep8':
             print 'preparing to send FCCSW jobs from lhe'
         elif sendOpt=='p8':
