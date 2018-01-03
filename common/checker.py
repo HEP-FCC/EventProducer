@@ -14,14 +14,15 @@ import EventProducer.common.isreading as isr
 class checker():
 
 #__________________________________________________________
-    def __init__(self,indict, indir, inread, para, fext):
+    def __init__(self,indict, indir, inread, para, fext, process):
         self.indict = indict
         self.indir  = indir
         self.inread = inread
         self.para   = para
         self.fext   = fext
         self.mydict = None
-        
+        self.process = process
+
 #__________________________________________________________
     def checkFile_lhe(self, f):
         count=0
@@ -134,10 +135,12 @@ class checker():
             if len(All_files)==0:continue
         
             keys=l.split('/')
-            if keys[-1]!='':sample=keys[-1]
-            else:sample=keys[len(keys)-2]
+            if keys[-1]!='':process=keys[-1]
+            else:process=keys[len(keys)-2]
             
-            print 'sample  ',sample
+            print 'process from the input directory ',process
+            if self.process!='' and self.process!=process: 
+                continue
             ntot=0
             for f in All_files:
                 if not os.path.isfile(f): 
@@ -148,7 +151,7 @@ class checker():
                 jobid=f.split('_')[-1]
                 jobid=jobid.replace(self.fext,'')
                 userid=ut.find_owner(f)
-                if self.mydict.jobexits(sample,int(jobid)):
+                if self.mydict.jobexits(process,int(jobid)):
                     print 'already exists, continue'
                     continue
 
@@ -156,7 +159,7 @@ class checker():
                     nevts, check=self.checkFile_root(f, self.para.treename)
                     status='DONE'
                     if not check: status='BAD' 
-                    dic = {'sample':sample, 
+                    dic = {'sample':process, 
                            'jobid':jobid,
                            'nevents':nevts,
                            'status':status,
@@ -172,7 +175,7 @@ class checker():
                     nevts,check=self.checkFile_lhe(f)
                     status='DONE'
                     if not check: status='BAD' 
-                    dic = {'sample':sample, 
+                    dic = {'sample':process, 
                            'jobid':jobid,
                            'nevents':nevts,
                            'status':status,
