@@ -34,3 +34,58 @@ def testeos(f,fs):
 #__________________________________________________________
 def find_owner(filename):
     return getpwuid(os.stat(filename).st_uid).pw_name
+
+#__________________________________________________________
+def SubmitToCondor(cmd,nbtrials):
+    submissionStatus=0
+    cmd=cmd.replace('//','/')
+    for i in xrange(nbtrials):            
+        outputCMD = getCommandOutput(cmd)
+        stderr=outputCMD["stderr"].split('\n')
+        stdout=outputCMD["stdout"].split('\n')
+
+        if len(stderr)==1 and stderr[0]=='' :
+            print "------------GOOD SUB"
+            submissionStatus=1
+        else:
+            print "++++++++++++ERROR submitting, will retry"
+            print "Trial : "+str(i)+" / "+str(nbtrials)
+            print "stderr : ",stderr
+            print "stderr : ",len(stderr)
+
+            time.sleep(10)
+
+            
+        if submissionStatus==1:
+            return 1,0
+        
+        if i==nbtrials-1:
+            print "failed sumbmitting after: "+str(nbtrials)+" trials, will exit"
+            return 0,0
+
+#__________________________________________________________
+def SubmitToLsf(cmd,nbtrials):
+    submissionStatus=0
+    for i in range(nbtrials):            
+        outputCMD = ut.getCommandOutput(cmd)
+        stderr=outputCMD["stderr"].split('\n')
+
+        for line in stderr :
+            if line=="":
+                print "------------GOOD SUB"
+                submissionStatus=1
+                break
+            else:
+                print "++++++++++++ERROR submitting, will retry"
+                print "error: ",stderr
+                print "Trial : "+str(i)+" / "+str(nbtrials)
+                time.sleep(10)
+                break
+            
+        if submissionStatus==1:
+            jobid=outputCMD["stdout"].split()[1].replace("<","").replace(">","")
+            return 1,jobid
+        
+        if i==nbtrials-1:
+            print "failed sumbmitting after: "+str(nbtrials)+" trials, will exit"
+            return 0,0
