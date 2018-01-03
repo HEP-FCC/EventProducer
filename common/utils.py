@@ -4,6 +4,10 @@ import subprocess
 import os
 from pwd import getpwuid
 import sys
+from datetime import datetime
+
+import EventProducer.config.users as us
+
 # adding this because heppy does not handle root recovered trees'
 #_____________________________________________________________
 def isValidROOTfile(infile):
@@ -67,7 +71,7 @@ def SubmitToCondor(cmd,nbtrials):
 def SubmitToLsf(cmd,nbtrials):
     submissionStatus=0
     for i in range(nbtrials):            
-        outputCMD = ut.getCommandOutput(cmd)
+        outputCMD = getCommandOutput(cmd)
         stderr=outputCMD["stderr"].split('\n')
 
         for line in stderr :
@@ -99,3 +103,16 @@ def eosexist(myfile):
         return True
     else: 
         return False
+
+#__________________________________________________________
+def getuid(user):
+    userext=-999999
+    for key, value in us.users.iteritems():
+        if key==user: 
+            userext=value
+    if userext<0:
+        print 'user not known ',user,'   exit'
+        sys.exit(3)
+    seed = int(datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:-3])
+    uniqueID='%i%i'%(seed,userext)
+    return uniqueID
