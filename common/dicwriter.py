@@ -23,7 +23,7 @@ class dicwriter():
         for s in self.mydict:
             if s==sample: 
                 for j in self.mydict[sample]:
-                    if jobid==int(j['jobid']): return True
+                    if int(jobid)==int(j['jobid']): return True
         return False
 
     def addjob(self,sample,jobid,queue,nevents,status,log,out,batchid,script):
@@ -42,6 +42,7 @@ class dicwriter():
 
     def addjob_new(self, dic):
         if self.jobexits(dic['sample'],dic['jobid']): 
+            print 'job already exists in the dic'
             return
 
         toadd={}
