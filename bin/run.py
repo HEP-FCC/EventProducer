@@ -8,6 +8,7 @@ import ROOT as r
 import json
 import EventProducer.common.utils as ut
 import EventProducer.common.checker as chk
+import EventProducer.common.send_lhe as slhe
 
 
 #__________________________________________________________
@@ -15,6 +16,8 @@ if __name__=="__main__":
 
     import argparse
     parser = argparse.ArgumentParser()
+
+    parser.add_argument('-p','--process', type=str, help='Name of the process to use to send jobs or for the check', default='')
 
     genTypeGroup = parser.add_mutually_exclusive_group(required = True) # Type of events to generate
     genTypeGroup.add_argument("--reco", action='store_true', help="reco events")
@@ -33,19 +36,19 @@ if __name__=="__main__":
 
     sendjobGroup = parser.add_argument_group('type of jobs to send')
     sendjobGroup.add_argument('--type', type=str, required = '--send' in sys.argv, help='type of jobs to send', choices = ['lhe','lhep8','p8'])
-
+    sendjobGroup.add_argument('-q', '--queue', type=str, default='8nh', help='lxbatch queue (default: 8nh)', choices=['1nh','8nh','1nd','2nd','1nw'])
+    sendjobGroup.add_argument('-n','--numEvents', type=int, help='Number of simulation events per job', default=10000)
+    sendjobGroup.add_argument('-N','--numJobs', type=int, default = 10, help='Number of jobs to submit')
+    
     args, _ = parser.parse_known_args()
-    sendOpt = args.type
 
     batchGroup = parser.add_mutually_exclusive_group(required = args.send) # Where to submit jobs
     batchGroup.add_argument("--lsf", action='store_true', help="Submit with LSF")
     batchGroup.add_argument("--condor", action='store_true', help="Submit with condor")
 
-    lsfGroup = parser.add_argument_group('lsf queue')
-    lsfGroup.add_argument('-q', '--queue', type=str, default='8nh', help='lxbatch queue (default: 8nh)', choices=['1nh','8nh','1nd','2nd','1nw'])
-    #condorGroup = parser.add_argument_group('condor queue')
-    #condorGroup.add_argument('-q', '--queue', required = '--condor', type=str, default='nextweek', help='condor queue (default: nextweek)', choices=['nextweek'])
-
+    args, _ = parser.parse_known_args()
+    sendOpt = args.type
+    
 
     if args.FCC:
         import EventProducer.config.param as para
@@ -100,7 +103,9 @@ if __name__=="__main__":
         if args.dir!='':
             print 'using a specific input directory ',args.dir
             indir=args.dir
-        checker=chk.checker(indict, indir, inread, para, fext)
+        if args.process!='':
+            print 'using a specific process ',args.process
+        checker=chk.checker(indict, indir, inread, para, fext, args.process)
         checker.check()
 
     
@@ -115,6 +120,8 @@ if __name__=="__main__":
  
         if sendOpt=='lhe':
             print 'preparing to send lhe jobs from madgraph gridpacks'
+            sendlhe=slhe.send_lhe(njobs,events, args.sample, args.lsf, args.queue)
+
         elif sendOpt=='lhep8':
             print 'preparing to send FCCSW jobs from lhe'
         elif sendOpt=='p8':
