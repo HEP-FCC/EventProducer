@@ -89,3 +89,13 @@ def SubmitToLsf(cmd,nbtrials):
         if i==nbtrials-1:
             print "failed sumbmitting after: "+str(nbtrials)+" trials, will exit"
             return 0,0
+
+#__________________________________________________________
+def eosexist(myfile):
+    cmd='ls %s'%(myfile)
+    p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
+    p.wait()
+    if len(p.stderr.readline())==0:
+        return True
+    else: 
+        return False
