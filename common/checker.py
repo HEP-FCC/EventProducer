@@ -159,7 +159,7 @@ class checker():
                     nevts, check=self.checkFile_root(f, self.para.treename)
                     status='DONE'
                     if not check: status='BAD' 
-                    dic = {'sample':process, 
+                    dic = {'process':process, 
                            'jobid':jobid,
                            'nevents':nevts,
                            'status':status,
@@ -175,7 +175,7 @@ class checker():
                     nevts,check=self.checkFile_lhe(f)
                     status='DONE'
                     if not check: status='BAD' 
-                    dic = {'sample':process, 
+                    dic = {'process':process, 
                            'jobid':jobid,
                            'nevents':nevts,
                            'status':status,
