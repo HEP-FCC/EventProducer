@@ -97,7 +97,7 @@ def SubmitToLsf(cmd,nbtrials):
 #__________________________________________________________
 def file_exist(myfile):
     import os.path
-    if os.path.isfile(fname): return True
+    if os.path.isfile(myfile): return True
     else: return False
 
 #__________________________________________________________
@@ -118,3 +118,25 @@ def getuid(user):
     seed = int(datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:-3])
     uniqueID='%i%i'%(seed,userext)
     return uniqueID
+
+#__________________________________________________________
+def getuid2(user):
+    import random
+    userext=-999999
+    for key, value in us.users.iteritems():
+        if key==user: 
+            userext=value
+    if userext<0:
+        print 'user not known ',user,'   exit'
+        sys.exit(3)
+    
+    seed = '%i%i%i%i%i%i%i%i%i'%(random.randint(0,1),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 userext)
+    return seed
