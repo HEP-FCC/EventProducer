@@ -41,7 +41,14 @@ class send_lhe():
 
             for i in xrange(self.njobs):
                 uid = int(ut.getuid(self.user))
-                frunname = 'job%i.sh'%(uid) 
+                uid = ut.getuid2(self.user)
+
+                print 'uid  ',uid, '    ',type(uid)
+                if ut.file_exist('%s/%s/events_%s_%s.lhe.gz'%(self.para.lhe_dir,pr, self.user,uid)):
+                    print 'already exist, continue'
+                    continue
+
+                frunname = 'job%s.sh'%(uid) 
                 frunfull = '%s/%s'%(logdir,frunname)
 
                 frun = None
@@ -56,8 +63,8 @@ class send_lhe():
                 frun.write('unset LD_LIBRARY_PATH\n')
                 frun.write('unset PYTHONHOME\n')
                 frun.write('unset PYTHONPATH\n')
-                frun.write('mkdir job%i_%s\n'%(uid,pr))
-                frun.write('cd job%i_%s\n'%(uid,pr))
+                frun.write('mkdir job%s_%s\n'%(uid,pr))
+                frun.write('cd job%s_%s\n'%(uid,pr))
                 frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
                 frun.write('source %s\n'%(self.para.stack))
                 frun.write('mkdir %s\n'%(self.para.lhe_dir))
@@ -65,12 +72,12 @@ class send_lhe():
                 frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s/%s.tar.gz .\n'%(self.para.gp_dir,pr))
                 frun.write('tar -zxf %s.tar.gz\n'%pr)
                 frun.write('cd process/\n')
-                frun.write('./run.sh %i %i\n'%(self.events,uid))
-                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events_%s_%i.lhe.gz\n'%(self.para.lhe_dir,pr, self.user,uid))
+                frun.write('./run.sh %i %i\n'%(self.events,int(uid)))
+                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events_%s_%s.lhe.gz\n'%(self.para.lhe_dir,pr, self.user,uid))
                 frun.write('cd ..\n')
-                frun.write('rm -rf job%i_%s\n'%(uid,pr))
+                frun.write('rm -rf job%s_%s\n'%(uid,pr))
 
-                cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -o %s -cwd %s %s" %(self.queue,logdir+'/job%s/'%(str(uid)),logdir+'/job%s/'%(str(uid)),logdir+'/'+frunname)
+                cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -o %s -cwd %s %s" %(self.queue,logdir+'/job%s/'%(uid),logdir+'/job%s/'%(uid),logdir+'/'+frunname)
                 print cmdBatch
                 
                 batchid=-1
