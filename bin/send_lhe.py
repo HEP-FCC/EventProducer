@@ -16,9 +16,7 @@ class send_lhe():
         self.queue   = queue
         self.user    = os.environ['USER']
         self.para    = para
-        self.batch   = 'condor'
-        if self.islsf:
-            self.batch='lsf'
+
 #__________________________________________________________
     def send(self):
         Dir = os.getcwd()
@@ -67,7 +65,7 @@ class send_lhe():
                 frun.write('tar -zxf %s.tar.gz\n'%pr)
                 frun.write('cd process/\n')
                 frun.write('./run.sh %i %i\n'%(self.events,uid))
-                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events_%s_%s_%i.lhe.gz\n'%(self.para.lhe_dir,pr,self.batch, self.user,uid))
+                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events_%s_%i.lhe.gz\n'%(self.para.lhe_dir,pr, self.user,uid))
                 frun.write('cd ..\n')
                 frun.write('rm -rf job%i_%s\n'%(uid,pr))
 
