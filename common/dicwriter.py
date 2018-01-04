@@ -41,12 +41,13 @@ class dicwriter():
 
 
     def addjob_new(self, dic):
-        if self.jobexits(dic['sample'],dic['jobid']): 
+        if self.jobexits(dic['process'],dic['jobid']): 
             print 'job already exists in the dic'
             return
 
         toadd={}
         for k, v in dic.iteritems():
+            if k=='sample':continue
             toadd.update({'%s'%k:'%s'%v})
  
         exist=False
