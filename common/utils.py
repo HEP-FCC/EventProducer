@@ -95,15 +95,17 @@ def SubmitToLsf(cmd,nbtrials):
             return 0,0
 
 #__________________________________________________________
-def eosexist(myfile):
-    cmd='ls %s'%(myfile)
-    p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
-    p.wait()
-    if len(p.stderr.readline())==0:
-        return True
-    else: 
-        return False
+def file_exist(myfile):
+    import os.path
+    if os.path.isfile(fname): return True
+    else: return False
 
+#__________________________________________________________
+def dir_exist(mydir):
+    import os.path
+    if os.path.exists(mydir): return True
+    else: return False
+  
 #__________________________________________________________
 def getuid(user):
     userext=-999999

@@ -23,7 +23,7 @@ class send_lhe():
         nbjobsSub=0
     
         gptotest='%s/%s.tar.gz'%(self.para.gp_dir,self.process)
-        if ut.eosexist(gptotest)==False:
+        if ut.file_exist(gptotest)==False:
             print 'Gridpack=======',gptotest,'======= does not exist'
             sys.exit(3)
 
@@ -36,7 +36,8 @@ class send_lhe():
             processFound=True
             
             logdir=Dir+"/BatchOutputs/%s"%(pr)
-            os.system("mkdir -p %s"%logdir)
+            if not ut.dir_exist(logdir):
+                os.system("mkdir -p %s"%logdir)
 
             for i in xrange(self.njobs):
                 uid = int(ut.getuid(self.user))
