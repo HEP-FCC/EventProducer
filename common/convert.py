@@ -15,13 +15,6 @@ if __name__=="__main__":
     baserootdir=sys.argv[2]
     ldir=[x[0] for x in os.walk(basedir)]
     user=os.environ['USER']
-    userext=-999999
-    for key, value in us.users.iteritems():
-        if key==user: 
-            userext=value
-    if userext<0:
-        print 'user not known ',user,'   exit'
-        sys.exit(3)
     exten=''
     for l in ldir:
         All_files = glob.glob("%s/*events*"%(l))
@@ -40,8 +33,9 @@ if __name__=="__main__":
                  
             allrootfiles=glob.glob('%s/%s/%s'%(baserootdir,process,f.split('/')[-1].replace('lhe.gz','root')))
             if user in ut.find_owner(f):
-                seed = int(datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:-3])
-                uniqueID='%s_%i%i'%(user,seed,userext)
+                seed = ut.getuid2(user)
+
+                uniqueID='%s_%s'%(user,seed)
                 outfile = 'events_%s%s'%(uniqueID,exten)
                 if len(allrootfiles)>0:
                     outfileroot = 'events_%s.root'%(uniqueID)
