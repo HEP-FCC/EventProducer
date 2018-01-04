@@ -41,7 +41,7 @@ if __name__=="__main__":
             allrootfiles=glob.glob('%s/%s/%s'%(baserootdir,process,f.split('/')[-1].replace('lhe.gz','root')))
             if user in ut.find_owner(f):
                 seed = int(datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:-3])
-                uniqueID='%s_%s_%i%i'%('lsf',user,seed,userext)
+                uniqueID='%s_%i%i'%(user,seed,userext)
                 outfile = 'events_%s%s'%(uniqueID,exten)
                 if len(allrootfiles)>0:
                     outfileroot = 'events_%s.root'%(uniqueID)
