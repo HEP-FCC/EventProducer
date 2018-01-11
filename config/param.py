@@ -125,7 +125,7 @@ pythialist={
 'pp_tt_Pt2500toInf':['ttbar','pT > 2500.','','0.5','3.0','1.0'],
 'pp_jj_Pt2500toInf':['dijet','pT > 2500.','','150.','3.0','1.0'],
 'pp_vv_Pt2500toInf':['di-boson','pT > 2500.','','0.02','3.0','1.0'],
-'pp_ll_Pt5000toInf':['di-lepton','pT > 5000.','','0.02','3.0','1.0'],
+'pp_ll_Pt5000toInf':['di-lepton','pT > 5000.','','2.775e-5','3.0','1.0'],
 
 }
 
