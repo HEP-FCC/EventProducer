@@ -421,6 +421,10 @@ gridpacklist = {
 'pp_mumu012j_mhcut_5f_HT_700_900':['mu+ mu- + 0/1/2 jets','700 < HT < 900','xqcut = 30, qCut = 40','0.3945','1.20','1.0'],
 'pp_mumu012j_mhcut_5f_HT_900_1100':['mu+ mu- + 0/1/2 jets','900 < HT < 1100','xqcut = 30, qCut = 40','0.1691','1.20','1.0'],
 'pp_mumu012j_mhcut_5f_HT_1100_100000':['mu+ mu- + 0/1/2 jets','1100 < HT < 100000','xqcut = 30, qCut = 40','0.2093','1.20','1.0'],
+'pp_lla01j_mhcut_5f_HT_0_100':['l+ l- gamma + 0/1 jets','0 < HT < 100','xqcut = 30, qCut = 40','39.52','1.50','1.0'],
+'pp_lla01j_mhcut_5f_HT_100_300':['l+ l- gamma + 0/1 jets','100 < HT < 300','xqcut = 30, qCut = 40','1.326','1.50','1.0'],
+'pp_lla01j_mhcut_5f_HT_300_500':['l+ l- gamma + 0/1 jets','300 < HT < 500','xqcut = 30, qCut = 40','0.004548','1.50','1.0'],
+'pp_lla01j_mhcut_5f_HT_500_100000':['l+ l- gamma + 0/1 jets','500 < HT < 100000','xqcut = 30, qCut = 40','0.002727','1.50','1.0'],
 
 # xsec is given by 2*xsec(NLO)*BR(H->bb), then NNLL/NLO kfactor = 1.33/1.15 is applied according to prescription I.7.8 in Higgs XSECWG YR4 (1610.07922) with delta_t=-0.315
 # lambda dep xsec(NLO) from 100TeV version of Fig.12 left plot in 1608.04798 (from private conversation with Gudrun Heinrich)
