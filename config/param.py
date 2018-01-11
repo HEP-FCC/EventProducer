@@ -402,11 +402,11 @@ gridpacklist = {
 'pp_ttzz_5f':['ttZZ','inclusive','','0.1206','1.3','0.0'],
 'pp_tt4l_4f':['tt4l non resonant','inclusive','','4.122e-05','1.3','1.0'],
 'pp_tt2l_4f':['tt2l non resonant','inclusive','','4.389','1.5','1.0'],
-'pp_mumu012j_mhcut_5f':['mu+ mu- + 0/1/2 jets','50 < m(mumu) < 200','','1.4e+04','1.0','1.0'],
-'pp_lla01j_mhcut_5f':['l+ l- gamma + 0/1 jets','50 < m(lla) < 200','','639.1','1.0','1.0'],
-'gg_aa01j_mhcut_5f':['gluon fusion di-photon + 0/1 jets','50 < m(aa) < 200','','484.2','1.0','1.0'],
-'pp_aa012j_mhcut_5f':['di-photon + 0/1/2 jets','50 < m(aa) < 200','','1530','1.0','1.0'],
-'pp_llll01j_mhcut_5f':['4l + 0/1 jets','50 < m(4l) < 200','','0.1517','1.0','1.0'],
+'pp_mumu012j_mhcut_5f':['mu+ mu- + 0/1/2 jets','50 < m(mumu) < 200','','1.4e+04','1.0','0.753'],
+'pp_lla01j_mhcut_5f':['l+ l- gamma + 0/1 jets','50 < m(lla) < 200','','639.1','1.0','0.78'],
+'gg_aa01j_mhcut_5f':['gluon fusion di-photon + 0/1 jets','50 < m(aa) < 200','','484.2','1.0','0.592'],
+'pp_aa012j_mhcut_5f':['di-photon + 0/1/2 jets','50 < m(aa) < 200','','1530','1.0','0.403'],
+'pp_llll01j_mhcut_5f':['4l + 0/1 jets','50 < m(4l) < 200','','0.1517','1.0','0.813'],
 # xsec is given by 2*xsec(NLO)*BR(H->bb), then NNLL/NLO kfactor = 1.33/1.15 is applied according to prescription I.7.8 in Higgs XSECWG YR4 (1610.07922) with delta_t=-0.315
 # lambda dep xsec(NLO) from 100TeV version of Fig.12 left plot in 1608.04798 (from private conversation with Gudrun Heinrich)
 'pp_hh_lambda050_5f':['HH, H->bb, H undec., kl = 0.50','','','1.92258','1.16','1.0'],
