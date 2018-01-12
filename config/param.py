@@ -425,7 +425,10 @@ gridpacklist = {
 'pp_lla01j_mhcut_5f_HT_100_300':['l+ l- gamma + 0/1 jets','100 < HT < 300','xqcut = 30, qCut = 40','1.326','1.50','1.0'],
 'pp_lla01j_mhcut_5f_HT_300_500':['l+ l- gamma + 0/1 jets','300 < HT < 500','xqcut = 30, qCut = 40','0.004548','1.50','1.0'],
 'pp_lla01j_mhcut_5f_HT_500_100000':['l+ l- gamma + 0/1 jets','500 < HT < 100000','xqcut = 30, qCut = 40','0.002727','1.50','1.0'],
-
+'pp_llll01j_mhcut_5f_HT_0_200':['Z/gamma* Z/gamma* to 4l + 0/1 jets','0 < HT < 200','xqcut = 40, qCut = 60','0.04957','1.60','1.0'],
+'pp_llll01j_mhcut_5f_HT_200_500':['Z/gamma* Z/gamma* to 4l + 0/1 jets','200 < HT < 500','xqcut = 40, qCut = 60','0.0002159','1.60','1.0'],
+'pp_llll01j_mhcut_5f_HT_500_1100':['Z/gamma* Z/gamma* to 4l + 0/1 jets','500 < HT < 1100','xqcut = 40, qCut = 60','5.573e-06','1.60','1.0'],
+'pp_llll01j_mhcut_5f_HT_1100_100000':['Z/gamma* Z/gamma* to 4l + 0/1 jets','1100 < HT < 100000','xqcut = 40, qCut = 60','1.361e-07','1.60','1.0'],
 # xsec is given by 2*xsec(NLO)*BR(H->bb), then NNLL/NLO kfactor = 1.33/1.15 is applied according to prescription I.7.8 in Higgs XSECWG YR4 (1610.07922) with delta_t=-0.315
 # lambda dep xsec(NLO) from 100TeV version of Fig.12 left plot in 1608.04798 (from private conversation with Gudrun Heinrich)
 # for now keep kfactor 1.75/1.15 obtained directly from NNLL (for sake of comparison with YR)
