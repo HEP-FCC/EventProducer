@@ -6,7 +6,8 @@ import sys
 import os.path
 import re
 
-import EventProducer_master.config.param as para
+#import EventProducer_master.config.param as para
+import EventProducer.config.param as para
 
 
 if len(sys.argv)!=3:
