@@ -6,8 +6,7 @@ import sys
 import os.path
 import re
 
-import EventProducer.config.param as para
-import EventProducer.common.isreading as isr
+import EventProducer_master.config.param as para
 
 
 if len(sys.argv)!=3:
@@ -45,9 +44,7 @@ def comma_me(amount):
         return comma_me(new)
 
 
-readdic=isr.isreading(inread, indictname)
-readdic.backup('printdic')
-readdic.reading()
+
 
 
 if os.path.isfile(indictname)==False:
@@ -64,7 +61,7 @@ with open(indictname) as f:
 OutFile   = open(outfile, 'w')
 ntot_events=0
 ntot_files=0
-for s, value in sorted(indict.items()):
+for proc, value in sorted(indict.items()):
     evttot=0
     sumw=0
     njobs=0
@@ -75,7 +72,7 @@ for s, value in sorted(indict.items()):
 
     outdir=''
     outdirtmp=''
-    print '------------------------------- ',s
+    print '------------------------------- ',proc, type(proc)
     for j in value:
         if j['status']=='done':
             evttot+=int(j['nevents'])
@@ -84,7 +81,7 @@ for s, value in sorted(indict.items()):
             outdirtmp=j['out']
             try:
                 sumw+=int(j['nweights'])
-                if s=='pp_ttv01j_5f': print sumw,'   ',j['nweights']
+                if proc=='pp_ttv01j_5f': print sumw,'   ',j['nweights']
             except KeyError, e:
                 sumw+=0
         if j['status']=='bad':njobs_bad+=1
@@ -93,26 +90,28 @@ for s, value in sorted(indict.items()):
         if j['status']=='failed':njobs_failed+=1
 
             
-    news=s
+    news=str(proc)
+    proc=str(proc)
+    print '------------------------------- ',proc, type(proc)
+
     ispythiaonly=False
-    print '====================================',s
     try: 
-        teststring=para.gridpacklist[s][0]
+        teststring=para.gridpacklist[proc][0]
     except IOError as e:
         print "I/O error({0}): {1}".format(e.errno, e.strerror)
     except ValueError:
         print "Could not convert data to an integer."
     except KeyError, e:
-        print 'I got a KeyError - reason "%s"' % str(e)
-        ssplit=s.split('_')
+        print 'I got a KeyError 1 - reason "%s"' % str(e)
+        ssplit=proc.split('_')
         stest=''
         ntest=1
-        if '_HT_' in s: ntest=4
-        for s in xrange(0,len(ssplit)-ntest):
-            stest+=ssplit[s]+'_'
+        if '_HT_' in proc: ntest=4
+        for proc in xrange(0,len(ssplit)-ntest):
+            stest+=ssplit[proc]+'_'
 
         stest= stest[0:len(stest)-1]
-        s=stest
+        proc=stest
         try: 
             teststringdecay=para.decaylist[stest][0]
         except IOError as e:
@@ -120,7 +119,7 @@ for s, value in sorted(indict.items()):
         except ValueError:
             print "Could not convert data to an integer."
         except KeyError, e:
-            print 'I got a KeyError - reason "%s"' % str(e)
+            print 'I got a KeyError 2 - reason "%s"' % str(e)
             try:
                 teststringpythia=para.pythialist[news][0]
                 ispythiaonly=True
@@ -129,7 +128,7 @@ for s, value in sorted(indict.items()):
             except ValueError:
                 print "Could not convert data to an integer."
             except KeyError, e:
-                print 'I got a KeyError - reason "%s"' % str(e)
+                print 'I got a KeyError 3 - reason "%s"' % str(e)
             
     except:
         print "Unexpected error:", sys.exc_info()[0]
@@ -138,19 +137,19 @@ for s, value in sorted(indict.items()):
 
     nfileseos=0
     if sys.argv[1]=='LHE':
-        nfileseos=len(os.listdir('%s%s'%(para.lhe_dir,s)))
+        nfileseos=len(os.listdir('%s%s'%(para.lhe_dir,proc)))
     elif 'FCC_' in sys.argv[1]:
         if os.path.isdir('%s%s/%s'%(para.delphes_dir,sys.argv[1].replace('FCC_',''),news)): 
             nfileseos=len(os.listdir('%s%s/%s'%(para.delphes_dir,sys.argv[1].replace('FCC_',''),news)))
 
     print 'nfiles on eos :  ',nfileseos
-
+    print 's  ',type(proc),'  news  ',type(news)
     cmd=''
     print '-----fefefeefefefefefe----------',comma_me(str(sumw))
     if not matching and not ispythiaonly:
-        cmd='%s,,%s,,%s,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),comma_me(str(sumw)),njobs,njobs_bad, njobs_running,nfileseos  ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][2],para.gridpacklist[s][3])
+        cmd='%s,,%s,,%s,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),comma_me(str(sumw)),njobs,njobs_bad, njobs_running,nfileseos  ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[proc][0],para.gridpacklist[proc][1],para.gridpacklist[proc][2],para.gridpacklist[proc][3])
     elif  matching and not ispythiaonly:
-        cmd='%s,,%s,,%s,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),comma_me(str(sumw)),njobs,njobs_bad, njobs_running,nfileseos ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[s][0],para.gridpacklist[s][1],para.gridpacklist[s][3],para.gridpacklist[s][4],para.gridpacklist[s][5])
+        cmd='%s,,%s,,%s,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),comma_me(str(sumw)),njobs,njobs_bad, njobs_running,nfileseos ,outdir.replace(outdirtmp.split('/')[-1],''),para.gridpacklist[proc][0],para.gridpacklist[proc][1],para.gridpacklist[proc][3],para.gridpacklist[proc][4],para.gridpacklist[proc][5])
     elif  ispythiaonly:
         cmd='%s,,%s,,%s,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,comma_me(str(evttot)),comma_me(str(sumw)),njobs,njobs_bad, njobs_running,nfileseos ,outdir.replace(outdirtmp.split('/')[-1],''),para.pythialist[news][0],para.pythialist[news][1],para.pythialist[news][3],para.pythialist[news][4],para.pythialist[news][5])
         ispythiaonly=False
@@ -166,5 +165,3 @@ for s, value in sorted(indict.items()):
 cmd='%s,,%s,,%s,,%i,,%s,,%s,,%s,,%s\n'%('total',comma_me(str(ntot_events)),'',ntot_files,'','','','')
 OutFile.write(cmd)
 
-readdic.comparedics()
-readdic.finalize()
