@@ -50,6 +50,7 @@ readdic.reading()
 nfailed=0
 mydict=None
 mynewdict={}
+user=os.environ['USER']
 with open(indict) as f:
     mydict = json.load(f)
 for s in mydict:
@@ -58,9 +59,10 @@ for s in mydict:
         if mydict[s][j]['status']=='failed': 
             print 'job failed ',j,'  ',mydict[s][j]['script']
             nfailed+=1
-            os.system('rm -rf %s'%(mydict[s][j]['script']))
-            os.system('rm -rf %s'%(mydict[s][j]['log']))
-            os.system('rm -rf %s'%(mydict[s][j]['out']))
+            if user in (mydict[s][j]['script']):
+                os.system('rm -rf %s'%(mydict[s][j]['script']))
+                os.system('rm -rf %s'%(mydict[s][j]['log']))
+                os.system('rm -rf %s'%(mydict[s][j]['out']))
 
         else: mynewdict[s].append(mydict[s][j])
         
