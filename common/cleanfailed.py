@@ -57,6 +57,7 @@ for s in mydict:
     mynewdict[s]=[]
     for j in xrange(len(mydict[s])):
         if mydict[s][j]['status']=='failed' and user in (mydict[s][j]['script']): 
+
             print 'job failed ',j,'  ',mydict[s][j]['script']
             nfailed+=1
             os.system('rm -rf %s'%(mydict[s][j]['script']))

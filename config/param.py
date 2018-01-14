@@ -351,6 +351,7 @@ gridpacklist = {
 'pp_h012j_5f_HT_0_100':['gluon fusion higgs (finite mt) + 0/1/2 jets','0 < HT < 100','xqcut = 30, qCut = 45','312.9','3.76','0.404'],
 'pp_h012j_5f_HT_100_400':['gluon fusion higgs (finite mt) + 0/1/2 jets','100 < HT < 400','xqcut = 30, qCut = 45','220.4','3.76','0.317'],
 'pp_h012j_5f_HT_400_1000':['gluon fusion higgs (finite mt) + 0/1/2 jets','400 < HT < 1000','xqcut = 30, qCut = 45','47.28','3.76','0.312'],
+'pp_h012j_5f_HT_400_100000':['gluon fusion higgs (finite mt) + 0/1/2 jets','400 < HT < 100000','xqcut = 30, qCut = 45','51.44','3.76','0.312'],
 'pp_h012j_5f_HT_1000_1900':['gluon fusion higgs (finite mt) + 0/1/2 jets','1000 < HT < 1900','xqcut = 30, qCut = 45','3.587','3.76','0.31'],
 'pp_h012j_5f_HT_1900_4400':['gluon fusion higgs (finite mt) + 0/1/2 jets','1900 < HT < 4400','xqcut = 30, qCut = 45','0.277','3.76','0.296'],
 'pp_h012j_5f_HT_4400_8500':['gluon fusion higgs (finite mt) + 0/1/2 jets','4400 < HT < 8500','xqcut = 30, qCut = 45','0.003902','3.76','0.27'],
@@ -436,6 +437,7 @@ gridpacklist = {
 'pp_llll01j_mhcut_5f_HT_1100_100000':['Z/gamma* Z/gamma* to 4l + 0/1 jets','1100 < HT < 100000','xqcut = 40, qCut = 60','1.361e-07','1.60','0.972'],
 'gg_aa01j_mhcut_5f_HT_0_200':['gluon fusion di-photon + 0/1 jets','0 < HT < 200','xqcut = 20, qCut = 30','60.21','2.0','1.0'],
 'gg_aa01j_mhcut_5f_HT_200_500':['gluon fusion di-photon + 0/1 jets','200 < HT < 500','xqcut = 20, qCut = 30','0.026','2.0','1.0'],
+'gg_aa01j_mhcut_5f_HT_200_100000':['gluon fusion di-photon + 0/1 jets','200 < HT < 100000','xqcut = 20, qCut = 30','0.02618','2.0','1.0'],
 'gg_aa01j_mhcut_5f_HT_500_100000':['gluon fusion di-photon + 0/1 jets','500 < HT < 100000','xqcut = 20, qCut = 30','0.0002481','2.0','1.0'],
 
 
