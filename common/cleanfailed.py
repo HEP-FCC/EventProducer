@@ -7,13 +7,13 @@ import os
 import os.path
 import sys
 
-import EventProducer.common.isreading as isr
+import EventProducer_master.common.isreading as isr
 
 if "secret" in sys.argv:
-    import EventProducer.config.param_test as para
+    import EventProducer_master.config.param_test as para
     secret=True
 else:
-    import EventProducer.config.param as para
+    import EventProducer_master.config.param as para
 
 
 if len(sys.argv)>4 or len(sys.argv)<2:
@@ -56,14 +56,13 @@ with open(indict) as f:
 for s in mydict:
     mynewdict[s]=[]
     for j in xrange(len(mydict[s])):
-        if mydict[s][j]['status']=='failed': 
+        if mydict[s][j]['status']=='failed' and user in (mydict[s][j]['script']): 
             print 'job failed ',j,'  ',mydict[s][j]['script']
             nfailed+=1
-            if user in (mydict[s][j]['script']):
-                os.system('rm -rf %s'%(mydict[s][j]['script']))
-                os.system('rm -rf %s'%(mydict[s][j]['log']))
-                os.system('rm -rf %s'%(mydict[s][j]['out']))
-
+            os.system('rm -rf %s'%(mydict[s][j]['script']))
+            os.system('rm -rf %s'%(mydict[s][j]['log']))
+            os.system('rm -rf %s'%(mydict[s][j]['out']))
+            
         else: mynewdict[s].append(mydict[s][j])
         
 with open(indict, 'w') as f:
