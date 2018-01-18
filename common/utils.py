@@ -120,6 +120,18 @@ def getuid(user):
     return uniqueID
 
 #__________________________________________________________
+def getuserid(user):
+    userext=-999999
+    for key, value in us.users.iteritems():
+        if key==user: 
+            userext=value
+    if userext<0:
+        print 'user not known ',user,'   exit'
+        sys.exit(3)
+    return userext
+
+
+#__________________________________________________________
 def getuid2(user):
     import random
     userext=-999999
