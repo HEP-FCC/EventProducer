@@ -7,7 +7,6 @@ import os.path
 import re
 
 import EventProducer.config.param as para
-import EventProducer.common.isreading as isr
 
 
 if len(sys.argv)!=3:
@@ -45,9 +44,6 @@ def comma_me(amount):
         return comma_me(new)
 
 
-readdic=isr.isreading(inread, indictname)
-readdic.backup('printdic')
-readdic.reading()
 
 
 if os.path.isfile(indictname)==False:
@@ -166,5 +162,3 @@ for s, value in sorted(indict.items()):
 cmd='%s,,%s,,%s,,%i,,%s,,%s,,%s,,%s\n'%('total',comma_me(str(ntot_events)),'',ntot_files,'','','','')
 OutFile.write(cmd)
 
-readdic.comparedics()
-readdic.finalize()
