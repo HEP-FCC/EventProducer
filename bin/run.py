@@ -1,3 +1,7 @@
+#python bin/run.py --FCC --LHE --send --g mg -p pp_ee_lo -n 1000 -N 1 --lsf -q 1nh
+#python bin/run.py --FCC --LHE --check --dir /eos/experiment/fcc/hh/generation/mg5_amcatnlo/lhe/mg_pp_ee_lo/
+
+
 import glob, os, sys
 import commands
 import time
@@ -34,7 +38,8 @@ if __name__=="__main__":
     checkTypeGroup.add_argument("--dir", help="input directory, optional", default='')
 
     sendjobGroup = parser.add_argument_group('type of jobs to send')
-    sendjobGroup.add_argument('--type', type=str, required = '--send' in sys.argv, help='type of jobs to send', choices = ['lhep8','p8'])
+    sendjobGroup.add_argument('--type', type=str, required = '--send' in sys.argv and '--reco'  in sys.argv , help='type of jobs to send', choices = ['lhep8','p8'])
+    sendjobGroup.add_argument('-g', '--gen', type=str, required = '--send' in sys.argv , help='Generator to use', choices = ['mg','pw'])
     sendjobGroup.add_argument('-q', '--queue', type=str, default='8nh', help='lxbatch queue (default: 8nh)', choices=['1nh','8nh','1nd','2nd','1nw'])
     sendjobGroup.add_argument('-n','--numEvents', type=int, help='Number of simulation events per job', default=10000)
     sendjobGroup.add_argument('-N','--numJobs', type=int, default = 10, help='Number of jobs to submit')
@@ -78,11 +83,18 @@ if __name__=="__main__":
     indir=None
     fext=None
     if args.LHE:
-        indict=para.lhe_dic
         inread=para.readlhe_dic
-        indir=para.lhe_dir
-        fext=para.lhe_ext
-        print 'Running LHE production system'
+        indict=para.lhe_dic
+
+        if args.gen=="mg":
+            indir=para.lhe_dir_mg
+            fext=para.lhe_ext_mg
+            print 'Running LHE production system with madgraph GP'
+        elif args.gen=="mg":
+            indir=para.lhe_dir_pw
+            fext=para.lhe_ext_pw
+            print 'Running LHE production system with madgraph GP'
+   
     elif args.reco:
         indict=para.fcc_dic.replace('VERSION',version)
         inread=para.readfcc_dic.replace('VERSION',version)
@@ -118,8 +130,8 @@ if __name__=="__main__":
             print 'queue  ', args.queue
  
         if args.LHE:
-            print 'preparing to send lhe jobs from madgraph gridpacks'
-            sendlhe=slhe.send_lhe(args.numJobs,args.numEvents, args.process, args.lsf, args.queue, para)
+            print 'preparing to send lhe jobs from madgraph gridpacks for process {}'.format(args.process)
+            sendlhe=slhe.send_lhe(args.numJobs,args.numEvents, args.process, args.lsf, args.queue, para, args.gen)
             sendlhe.send()
         elif args.reco:
             if sendOpt=='lhep8':

@@ -7,12 +7,22 @@ eostest_size=1312594
 lhe_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHE.json'
 ##LHE read file true/false
 readlhe_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHE_read.json'
+
+
 ##eos directory for MG5@MCatNLO gridpacks
-gp_dir      = '/eos/experiment/fcc/hh/generation/mg5_amcatnlo/gridpacks/'
+gp_dir_mg      = '/eos/experiment/fcc/hh/generation/mg5_amcatnlo/gridpacks/'
 ##eos directory for lhe files
-lhe_dir     = '/eos/experiment/fcc/hh/generation/mg5_amcatnlo/lhe/'
+lhe_dir_mg     = '/eos/experiment/fcc/hh/generation/mg5_amcatnlo/lhe/'
 ##extension
-lhe_ext='.lhe.gz'
+lhe_ext_mg     ='.lhe.gz'
+
+
+##eos directory for MG5@MCatNLO gridpacks
+gp_dir_pw      = '/eos/experiment/fcc/hh/generation/powheg/gridpacks/'
+##eos directory for lhe files
+lhe_dir_pw     = '/eos/experiment/fcc/hh/generation/powheg/lhe/'
+##extension
+lhe_ext_pw     ='.lhe.gz'
 
 ##FCC events dictionnary
 fcc_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphes_VERSION.json'
@@ -190,13 +200,11 @@ branching_ratios = {
 }
 
 
-
-
-##Gridpack list
+##Gridpack list for MG5@MC@NLO
 ##     0          1            2                 3           4           5
 ## description/comment/matching parameters/cross section/kfactor/matching efficiency
 
-gridpacklist = {
+gridpacklist_mg = {
 'pp_w012j_5f':['w + 0,1,2 jets 5 flavor scheme','inclusive','xqcut = 30, qCut = 45','1.4995e06','1.0','0.724'],
 'pp_z012j_5f':['z + 0,1,2 jets 5 flavor scheme','inclusive','xqcut = 30, qCut = 45','5.1839e05','1.0','0.691'],
 'pp_jjaa01j_5f':['dijet diphoton + 0,1 jets 5 flavor scheme','','xqcut = 20, qCut = 30','55.72','1.0','0.236'],
@@ -484,4 +492,14 @@ gridpacklist = {
 
 #DM signals Caterina Doglioni
 'pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1.0'],
+}
+
+
+##Gridpack list for MG5@MC@NLO
+##     0          1            2                 3           4           5
+## description/comment/matching parameters/cross section/kfactor/matching efficiency
+
+gridpacklist_pw = {
+
+
 }
