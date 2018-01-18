@@ -159,6 +159,6 @@ for proc, value in sorted(indict.items()):
 
     ntot_events+=int(evttot)
     ntot_files+=int(njobs)
-cmd='%s,,%s,,%s,,%i,,%s,,%s,,%s,,%s\n'%('total',comma_me(str(ntot_events)),'',comma_me(str(ntot_files)),'','','','')
+cmd='%s,,%s,,%s,,%s,,%s,,%s,,%s,,%s\n'%('total',comma_me(str(ntot_events)),'',comma_me(str(ntot_files)),'','','','')
 OutFile.write(cmd)
 
