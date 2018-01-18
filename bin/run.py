@@ -1,4 +1,3 @@
-#python check_outputs.py /eos/experiment/fcc/hh/simulation/samples/v01
 import glob, os, sys
 import commands
 import time
@@ -35,7 +34,7 @@ if __name__=="__main__":
     checkTypeGroup.add_argument("--dir", help="input directory, optional", default='')
 
     sendjobGroup = parser.add_argument_group('type of jobs to send')
-    sendjobGroup.add_argument('--type', type=str, required = '--send' in sys.argv, help='type of jobs to send', choices = ['lhe','lhep8','p8'])
+    sendjobGroup.add_argument('--type', type=str, required = '--send' in sys.argv, help='type of jobs to send', choices = ['lhep8','p8'])
     sendjobGroup.add_argument('-q', '--queue', type=str, default='8nh', help='lxbatch queue (default: 8nh)', choices=['1nh','8nh','1nd','2nd','1nw'])
     sendjobGroup.add_argument('-n','--numEvents', type=int, help='Number of simulation events per job', default=10000)
     sendjobGroup.add_argument('-N','--numJobs', type=int, default = 10, help='Number of jobs to submit')
@@ -118,12 +117,13 @@ if __name__=="__main__":
             print 'send to condor'
             print 'queue  ', args.queue
  
-        if sendOpt=='lhe':
+        if args.LHE:
             print 'preparing to send lhe jobs from madgraph gridpacks'
             sendlhe=slhe.send_lhe(args.numJobs,args.numEvents, args.process, args.lsf, args.queue, para)
             sendlhe.send()
-        elif sendOpt=='lhep8':
-            print 'preparing to send FCCSW jobs from lhe'
-        elif sendOpt=='p8':
-            print 'preparing to send FCCSW jobs from pythia8'
+        elif args.reco:
+            if sendOpt=='lhep8':
+                print 'preparing to send FCCSW jobs from lhe'
+            elif sendOpt=='p8':
+                print 'preparing to send FCCSW jobs from pythia8 directly'
 
