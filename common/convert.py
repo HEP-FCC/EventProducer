@@ -1,4 +1,6 @@
-#python common/convert.py /eos/experiment/fcc/hh/generation/mg5_amcatnlo/lhe/pp_ee_nlo/ "/eos/experiment/fcc/hh/generation/DelphesEvents/fcc_v0*"
+#python common/convert.py /eos/experiment/fcc/hh/generation/mg5_amcatnlo/lhe/pp_ee_nlo/
+#python common/convert.py /eos/experiment/fcc/hh/generation/DelphesEvents/fcc_v01/pp_ee_nlo/
+
 import glob, os, sys
 import commands
 
@@ -12,7 +14,6 @@ import EventProducer.common.utils as ut
 if __name__=="__main__":
 
     basedir=sys.argv[1]
-    baserootdir=sys.argv[2]
     ldir=[x[0] for x in os.walk(basedir)]
     user=os.environ['USER']
     exten=''
@@ -30,24 +31,27 @@ if __name__=="__main__":
                 exten='.root'
             elif '.lhe.gz' in f:
                 exten='.lhe.gz'
-                 
-            allrootfiles=glob.glob('%s/%s/%s'%(baserootdir,process,f.split('/')[-1].replace('lhe.gz','root')))
+            
+            ori_id=f.split('/')[-1].replace('events','')
+            ori_id=ori_id.split('.')[0]
+            
             if user in ut.find_owner(f):
-                seed = ut.getuid2(user)
+                baseid=''
+                for i in xrange(9-len(ori_id)):
+                    baseid+='0'
+                ori_id=int(ori_id)
+                ori_id+=1
+                new_id=baseid+str(ori_id)
+                print ori_id,'    ',new_id
 
-                uniqueID='%s_%s'%(user,seed)
+                uniqueID='%s_%s'%(user,new_id)
                 outfile = 'events_%s%s'%(uniqueID,exten)
-                if len(allrootfiles)>0:
-                    outfileroot = 'events_%s.root'%(uniqueID)
-                    for r in allrootfiles:
-                        baseroot = r.rsplit('/',1)[0]
-                        print "ROOT ----------- "+baseroot+"/"+outfileroot
-                        os.system('mv %s %s/%s'%(r,baseroot,outfileroot))
-                print "LHE ONLY ----------- "+basedir+outfile
+ 
 
-                
+                print 'mv %s %s'%(f,basedir+outfile)
+                  
                 os.system('mv %s %s'%(f,basedir+outfile))
-                time.sleep(0.05)
+                time.sleep(0.01)
 
 
 
