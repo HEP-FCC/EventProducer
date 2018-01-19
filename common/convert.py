@@ -1,5 +1,9 @@
-#python common/convert.py /eos/experiment/fcc/hh/generation/mg5_amcatnlo/lhe/pp_ee_nlo/
-#python common/convert.py /eos/experiment/fcc/hh/generation/DelphesEvents/fcc_v01/pp_ee_nlo/
+#python common/convert.py /eos/experiment/fcc/hh/generation/mg5_amcatnlo/lhe/pp_ee_nlo/ files
+#python common/convert.py /eos/experiment/fcc/hh/generation/DelphesEvents/fcc_v01/pp_ee_nlo/ files
+#python common/convert.py /eos/experiment/fcc/helhc/generation/gridpacks/ gp
+#python common/convert.py /eos/experiment/fcc/helhc/generation/lhe/ process
+
+
 
 import glob, os, sys
 import commands
@@ -11,9 +15,7 @@ import EventProducer.config.users as us
 import EventProducer.common.utils as ut
 
 #__________________________________________________________
-if __name__=="__main__":
-
-    basedir=sys.argv[1]
+def runFiles(basedir):
     ldir=[x[0] for x in os.walk(basedir)]
     user=os.environ['USER']
     exten=''
@@ -26,6 +28,9 @@ if __name__=="__main__":
             process=l.split('/')[len(ltmp)-2]
         print 'process  ',process
         for f in All_files:
+            
+            if len(f.split('/')[-1])>20: continue
+
             if not os.path.isfile(f): continue
             if '.root' in f:
                 exten='.root'
@@ -47,11 +52,53 @@ if __name__=="__main__":
                 uniqueID='%s_%s'%(user,new_id)
                 outfile = 'events_%s%s'%(uniqueID,exten)
  
-
-                print 'mv %s %s'%(f,basedir+outfile)
-                  
-                os.system('mv %s %s'%(f,basedir+outfile))
+                cmd = 'mv %s %s'%(f,basedir+outfile)
+                print cmd
+                #os.system(cmd)
                 time.sleep(0.01)
 
+
+#__________________________________________________________
+def runProcess(basedir):
+    ldir=[x[0] for x in os.walk(basedir)]
+    for l in ldir:
+        All_files = glob.glob("%s/*tar.gz"%(l))
+        for f in All_files:
+            if not os.path.isfile(f): continue
+            print 'mv %s %s'%(f,basedir+outfile)
+
+
+#__________________________________________________________
+def runGP(basedir):
+    ldir=[x[0] for x in os.walk(basedir)]
+    for l in ldir:
+        All_files = glob.glob("%s/*tar.gz"%(l))
+        for f in All_files:
+            if not os.path.isfile(f): continue
+            infile=f.split('/')[-1]
+            if infile[0:3]=="mg_": continue
+            outfile = 'mg_%s'%(infile)
+            cmd = 'mv %s %s'%(f,basedir+outfile)
+            print cmd
+            os.system(cmd)
+            time.sleep(0.01)
+
+
+#__________________________________________________________
+if __name__=="__main__":
+
+    if len(sys.argv)!=3:
+        print 'usage: python common/convert.py directory process/files/gp'
+        sys.exit(3)
+    basedir=sys.argv[1]
+    
+    if sys.argv[2]=='files':
+        runFiles(basedir)
+
+    elif sys.argv[2]=='process':
+        runProcess(basedir)
+
+    elif sys.argv[2]=='gp':
+        runGP(basedir)
 
 
