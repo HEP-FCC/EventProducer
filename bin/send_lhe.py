@@ -8,7 +8,7 @@ import EventProducer.common.utils as ut
 class send_lhe():
 
 #__________________________________________________________
-    def __init__(self,njobs,events, process, islsf, queue, para, gen):
+    def __init__(self,njobs,events, process, islsf, queue, para):
         self.njobs   = njobs
         self.events  = events
         self.process = process
@@ -16,21 +16,15 @@ class send_lhe():
         self.queue   = queue
         self.user    = os.environ['USER']
         self.para    = para
-        self.gen     = gen
 
 #__________________________________________________________
     def send(self):
         Dir = os.getcwd()
         nbjobsSub=0
 
-        gplist=self.para.gridpacklist_mg
-        lhedir=self.para.lhe_dir_mg
-        gpdir=self.para.gp_dir_mg
-
-        if self.gen=='pw':
-            gplist=self.para.gridpacklist_pw
-            lhedir=self.para.lhe_dir_pw
-            gpdir=self.para.gp_dir_pw
+        gplist=self.para.gridpacklist
+        lhedir=self.para.lhe_dir
+        gpdir=self.para.gp_dir
 
         gptotest='%s/%s.tar.gz'%(gpdir,self.process)
         if ut.file_exist(gptotest)==False:
@@ -47,7 +41,6 @@ class send_lhe():
             print 'process ',self.process,' not found, exit'
             sys.exit(3)
 
-        pr='%s_%s'%(self.gen,self.process)
         logdir=Dir+"/BatchOutputs/%s"%(pr)
         if not ut.dir_exist(logdir):
             os.system("mkdir -p %s"%logdir)
