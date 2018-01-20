@@ -1,35 +1,44 @@
 #python common/printdicts.py LHE /afs/cern.ch/user/h/helsens/www/LHEevents.txt
 #python common/printdicts.py FCC_fcc_v01 /afs/cern.ch/user/h/helsens/www/Delphesevents_fcc_v01.txt
 #python common/printdicts.py FCC_cms /afs/cern.ch/user/h/helsens/www/Delphesevents_cms.txt
+
+#python common/printdicts.py FCC LHE /afs/cern.ch/user/h/helsens/www/LHEevents.txt
+#python common/printdicts.py FCC DEL fcc_v01 /afs/cern.ch/user/h/helsens/www/Delphesevents_fcc_v01.txt
+
+
 import json
 import sys
 import os.path
 import re
 
-#import EventProducer_master.config.param as para
-import EventProducer.config.param as para
-
-
-if len(sys.argv)!=3:
-    print 'usage: python printdicts.py LHE/FCC outfile.txt'
+if len(sys.argv)<3:
+    print 'usage: python printdicts.py FCC/HELHC LHE/DEL /version'
     exit(3)
+
+if sys.argv[1]=="FCC":
+    import EventProducer.config.param as para
+elif sys.argv[1]=="HELHC":
+    import EventProducer.config.param_HELHC as para
+else:
+    print 'unknown case' 
+    sys.exit(3)
+
 
 matching=False
 
 
 indictname=''
-inread=''
-if sys.argv[1]=='LHE':
+outfile=''
+if sys.argv[2]=='LHE':
     indictname=para.lhe_dic
-    inread=para.readlhe_dic
-elif 'FCC_' in sys.argv[1]:
-    version=sys.argv[1].replace('FCC_','')
+    outfile=para.lhe_web
+elif sys.argv[2] == 'DEL':
+    version=sys.argv[3]
     if version not in para.fcc_versions:
         print 'version of the cards should be: fcc_v01, cms'
         print '======================%s======================'%version
         sys.exit(3)
     indictname=para.fcc_dic.replace('VERSION',version)
-    inread=para.readfcc_dic.replace('VERSION',version)
     matching=True
 else:
     print 'unrecognized mode ',sys.argv[1],'  possible values are FCC or LHE'
@@ -48,12 +57,9 @@ if os.path.isfile(indictname)==False:
     print 'dictonary does not exists '
     exit(3)
 
-outfile=sys.argv[2]
-
 indict=None
 with open(indictname) as f:
     indict = json.load(f)
-
 
 OutFile   = open(outfile, 'w')
 ntot_events=0
@@ -71,7 +77,7 @@ for proc, value in sorted(indict.items()):
     outdirtmp=''
     print '------------------------------- ',proc, type(proc)
     for j in value:
-        if j['status']=='done':
+        if j['status']=='DONE':
             evttot+=int(j['nevents'])
             njobs+=1
             outdir=j['out']
@@ -133,11 +139,11 @@ for proc, value in sorted(indict.items()):
 
 
     nfileseos=0
-    if sys.argv[1]=='LHE':
+    if sys.argv[2]=='LHE':
         nfileseos=len(os.listdir('%s%s'%(para.lhe_dir,proc)))
-    elif 'FCC_' in sys.argv[1]:
-        if os.path.isdir('%s%s/%s'%(para.delphes_dir,sys.argv[1].replace('FCC_',''),news)): 
-            nfileseos=len(os.listdir('%s%s/%s'%(para.delphes_dir,sys.argv[1].replace('FCC_',''),news)))
+    elif 'DEL' in sys.argv[2]:
+        if os.path.isdir('%s%s/%s'%(para.delphes_dir,sys.argv[3],news)): 
+            nfileseos=len(os.listdir('%s%s/%s'%(para.delphes_dir,sys.argv[3],news)))
 
     print 'nfiles on eos :  ',nfileseos
     print 's  ',type(proc),'  news  ',type(news)
