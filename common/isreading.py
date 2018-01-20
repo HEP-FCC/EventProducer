@@ -118,6 +118,7 @@ class isreading():
     def reading(self):
         if self.readf['read']['value'] == "True":
             print 'can not run jobs now!'
+            print 'the file is ',self.read
             print 'USER ===%s=== is running the script ===%s===, this is why the dictonary is not accessible'%(self.user, self.script)
             print 'please retry a bit later or contact ===%s=== as it is possible that the script has crashed'%(self.user)
             print 'If it continues to happend, please contact clement.helsens@cern.ch or michele.selvaggi@cern.ch'
@@ -145,19 +146,20 @@ if __name__=="__main__":
         print 'this is not how to run the script ;0'
         sys.exit(3)
 
-    if len(sys.argv)==4:
-        if sys.argv[3]=="secret":
-            import EventProducer.config.param_test as para
-    else:
+    if sys.argv[2]=='FCC':
         import EventProducer.config.param as para
-
-
+    elif sys.argv[2]=='HELHC':
+        import EventProducer.config.param_HELHC as para
+    else:
+        print 'not known mode'
+        sys.exit(3)
 
     inread=''
-    if sys.argv[2]=='LHE':
+    if sys.argv[3]=='LHE':
         inread=para.readlhe_dic
-    elif 'FCC_' in sys.argv[2]:
-        version=sys.argv[2].replace('FCC_','')
+        print '---------------------------',inread
+    elif 'FCC_' in sys.argv[3]:
+        version=sys.argv[3].replace('FCC_','')
         if version not in para.fcc_versions:
             print 'version of the cards should be: fcc_v01, cms'
             print '======================%s======================'%version
