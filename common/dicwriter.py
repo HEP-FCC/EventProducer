@@ -26,21 +26,8 @@ class dicwriter():
                     if int(jobid)==int(j['jobid']): return True
         return False
 
-    def addjob(self,sample,jobid,queue,nevents,status,log,out,batchid,script):
-        if self.jobexits(sample,jobid): 
-            return
-        exist=False
-        for s in self.mydict:
-            if s==sample: 
-                exist=True
-                self.mydict[sample].append({'jobid':jobid,'queue':queue,'nevents':nevents,'status':status,'log':log,'out':out,'batchid':batchid,'script':script})
-        if not exist:
-            self.mydict[sample]=[{'jobid':jobid,'queue':queue,'nevents':nevents,'status':status,'log':log,'out':out,'batchid':batchid,'script':script}]
-        return
-    
-
-
-    def addjob_new(self, dic):
+ 
+    def addjob(self, dic):
         if self.jobexits(dic['process'],dic['jobid']): 
             print 'job already exists in the dic'
             return
@@ -52,11 +39,11 @@ class dicwriter():
  
         exist=False
         for s in self.mydict:
-            if s==dic['sample']: 
+            if s==dic['process']: 
                 exist=True
-                self.mydict[dic['sample']].append(toadd)
+                self.mydict[dic['process']].append(toadd)
         if not exist:
-            self.mydict[dic['sample']]=[toadd]
+            self.mydict[dic['process']]=[toadd]
         return
 
     def write(self):
