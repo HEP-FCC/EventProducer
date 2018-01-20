@@ -1,4 +1,4 @@
-#python bin/run.py --FCC --LHE --send --g mg -p pp_ee_lo -n 1000 -N 1 --lsf -q 1nh
+#python bin/run.py --FCC --LHE --send -p mg_pp_ee_lo -n 1000 -N 1 --lsf -q 1nh
 #python bin/run.py --FCC --LHE --check --dir /eos/experiment/fcc/hh/generation/mg5_amcatnlo/lhe/mg_pp_ee_lo/
 
 
