@@ -150,5 +150,5 @@ def getuid2(user):
                                  random.randint(0,9),
                                  random.randint(0,9),
                                  random.randint(0,9),
-                                 userext)
+                                 random.randint(0,9))
     return seed
