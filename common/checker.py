@@ -168,7 +168,7 @@ class checker():
                            'user':userid,
                            'provenance':''
                            }
-                    self.mydict.addjob_new(dic)
+                    self.mydict.addjob(dic)
                     continue
                 
                 elif '.lhe.gz' in self.fext:
@@ -183,7 +183,7 @@ class checker():
                            'size':os.path.getsize(f),
                            'user':userid
                            }
-                    self.mydict.addjob_new(dic)
+                    self.mydict.addjob(dic)
                     continue
                 else:
                     print 'not correct file extension %s'%self.fext
