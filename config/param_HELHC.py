@@ -2,6 +2,10 @@
 eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size=1312594
 
+#web
+lhe_web="/afs/cern.ch/user/h/helsens/www/data/LHEevents_helhc.txt"
+delphes_web="/afs/cern.ch/user/h/helsens/www/data/Delphesevents_VERSION.txt"
+
 #dicts
 ##LHE dictionnary
 lhe_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHE_HELHC.json'
@@ -58,12 +62,12 @@ fccsw=fccsw_dir+'fccsw/0.8.2/x86_64-slc6-gcc62-opt/'
 #list of processes only with Pythia, meaning no LHE
 pythialist={
 'p8_pp_Zprime_2TeV_ll':['2TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','5.276e-2','1.0','1.0'],
-'p8_pp_Zprime_4TeV_ll':['4TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','3.778e-3','1.0','1.0'],
-'p8_pp_Zprime_6TeV_ll':['6TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','3.778e-3','1.0','1.0'],
-'p8_pp_Zprime_8TeV_ll':['8TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','3.778e-3','1.0','1.0'],
-'p8_pp_Zprime_10TeV_ll':['10TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','3.778e-3','1.0','1.0'],
-'p8_pp_Zprime_12TeV_ll':['12TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','4.749e-5','1.0','1.0'],
-'p8_pp_Zprime_14TeV_ll':['14TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','e-4','1.0','1.0'],
+'p8_pp_Zprime_4TeV_ll':['4TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','1.267e-2','1.0','1.0'],
+'p8_pp_Zprime_6TeV_ll':['6TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','1.306e-3','1.0','1.0'],
+'p8_pp_Zprime_8TeV_ll':['8TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','2.125e-4','1.0','1.0'],
+'p8_pp_Zprime_10TeV_ll':['10TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','4.749e-5','1.0','1.0'],
+'p8_pp_Zprime_12TeV_ll':['12TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','1.578e-5','1.0','1.0'],
+'p8_pp_Zprime_14TeV_ll':['14TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','7.688e-6','1.0','1.0'],
 
 'p8_pp_Zprime_2TeV_ttbar':['2TeV Z\' -> ttbar','','','7.6378','1.0','1.0'],
 'p8_pp_Zprime_5TeV_ttbar':['5TeV Z\' -> ttbar','','','0.305493','1.0','1.0'],
