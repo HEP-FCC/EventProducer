@@ -456,6 +456,9 @@ gridpacklist = {
 'pp_llaj_mhcut_5f_HT_150_100000':['l+ l- gamma + 1 jet','150 < HT < 100000','','0.2045','','1.0'],
 'gg_aaj_mhcut_5f_HT_0_150':['gluon fusion di-photon + 1 jet','0 < HT < 150','','53.86','','1.0'],
 'gg_aaj_mhcut_5f_HT_150_100000':['gluon fusion di-photon + 1 jet','150 < HT < 100000','','0.08556','','1.0'],
+'pp_mumuj_mhcut_5f_HT_0_100':['mu+ mu- + 1 jet','0 < HT < 100','','103.8','','1.0'],
+'pp_mumuj_mhcut_5f_HT_100_500':['mu+ mu- + 1 jet','100 < HT < 500','','11.74','','1.0'],
+'pp_mumuj_mhcut_5f_HT_500_100000':['mu+ mu- + 1 jet','500 < HT < 100000','','0.1245','','1.0'],
 
 # xsec is given by 2*xsec(NLO)*BR(H->bb), then NNLL/NLO kfactor = 1.33/1.15 is applied according to prescription I.7.8 in Higgs XSECWG YR4 (1610.07922) with delta_t=-0.315
 # lambda dep xsec(NLO) from 100TeV version of Fig.12 left plot in 1608.04798 (from private conversation with Gudrun Heinrich)
