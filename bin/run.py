@@ -1,5 +1,6 @@
-#python bin/run.py --FCC --LHE --send -p mg_pp_ee_lo -n 1000 -N 1 --lsf -q 1nh
-#python bin/run.py --FCC --LHE --check --dir /eos/experiment/fcc/hh/generation/mg5_amcatnlo/lhe/mg_pp_ee_lo/
+#python bin/run.py --HELHC --LHE --send -p mg_pp_ee_lo -n 1000 -N 1 --lsf -q 1nh
+#python bin/run.py --HELHC --LHE --check --dir /eos/experiment/fcc/helhc/generation/lhe/
+#python bin/run.py --HELHC --LHE --web
 
 
 import glob, os, sys
@@ -12,7 +13,7 @@ import json
 import EventProducer.common.utils as ut
 import EventProducer.common.checker as chk
 import EventProducer.bin.send_lhe as slhe
-
+import EventProducer.common.printdicts as pdic
 
 #__________________________________________________________
 if __name__=="__main__":
@@ -33,6 +34,8 @@ if __name__=="__main__":
     jobTypeGroup = parser.add_mutually_exclusive_group(required = True) # Type of events to generate
     jobTypeGroup.add_argument("--check", action='store_true', help="run the jobchecker")
     jobTypeGroup.add_argument("--send", action='store_true', help="send the jobs")
+    jobTypeGroup.add_argument("--clean", action='store_true', help="clean the dictionnary and eos from bad jobs")
+    jobTypeGroup.add_argument("--web", action='store_true', help="print the dictionnary for webpage")
 
     checkTypeGroup = parser.add_argument_group('arguments for check')
     checkTypeGroup.add_argument("--dir", help="input directory, optional", default='')
@@ -63,14 +66,6 @@ if __name__=="__main__":
         print 'problem, need to specify --FCC or --HELHC'
         sys.exit(3)
 
-    if args.check:
-        print 'running the check'
-    elif args.send:
-        print 'sending jobs'
-    else:
-        print 'problem, need to specify --check or --send'
-        sys.exit(3)
-
 
     versionGroup = parser.add_argument_group('recontruction version')
     versionGroup.add_argument('--version', type=str, required = '--reco' in sys.argv, help='Version to use', choices = para.fcc_versions)
@@ -81,6 +76,7 @@ if __name__=="__main__":
     inread=None
     indir=None
     fext=None
+
     if args.LHE:
         inread=para.readlhe_dic
         indict=para.lhe_dic
@@ -103,6 +99,7 @@ if __name__=="__main__":
     
 
     if args.check:
+        print 'running the check'
         if args.dir!='':
             print 'using a specific input directory ',args.dir
             indir=args.dir
@@ -113,7 +110,7 @@ if __name__=="__main__":
 
     
     elif args.send:
-        
+        print 'sending jobs'        
         if args.lsf:
             print 'send to lsf'
             print 'queue  ', args.queue
@@ -131,3 +128,21 @@ if __name__=="__main__":
             elif sendOpt=='p8':
                 print 'preparing to send FCCSW jobs from pythia8 directly'
 
+    elif args.web:
+        if args.LHE: 
+            print 'create web page for LHE'         
+            printdic=pdic.printdicts(indict, para.lhe_web, False, True, para)
+            printdic.run()
+        elif args.reco:
+            for v in para.fcc_versions:
+                print 'create web page for reco version %s'%v
+                indictname = indict.replace('VERSION',v)
+                webpage=para.delphes_web.replace('VERSION',v)
+                printdic=pdic.printdicts(indictname, webpage, True, False, para, v)
+                printdic.run()
+
+    elif args.clean:
+        print 'clean the dictionnary and eos'
+    else:
+        print 'problem, need to specify --check or --send'
+        sys.exit(3)
