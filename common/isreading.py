@@ -56,7 +56,8 @@ class isreading():
                     ns_local+=1
                     for j in readf[s]:
                         nf_local+=1
-            except ValueError:
+            except ValueError, e:
+                print "\033[91m ----Value error({0}): {1}----  \033[0m".format(e.errno, e.strerror)
                 print '\033[91m ----Local dictionnary is corrupted, can not be opened----  \033[0m'
                 print '\033[91m ----Please contact clement.helsens@cern.ch or michele.selvaggi@cern.ch---- \033[0m'
                 return
@@ -69,7 +70,8 @@ class isreading():
                     ns_read+=1
                     for j in readf[s]:
                         nf_read+=1
-            except ValueError:
+            except ValueError, e:
+                print "\033[91m ----Value error({0}): {1}----  \033[0m".format(e.errno, e.strerror)
                 print '\033[91m ----Official dictionnary is corrupted, can not be opened----  \033[0m'
                 print '\033[91m ----Please contact clement.helsens@cern.ch or michele.selvaggi@cern.ch---- \033[0m'
                 return
