@@ -34,14 +34,14 @@ class send_lhe():
 
         processFound=False
         for pr in gplist:
-            if self.process in pr: 
+            if self.process == pr: 
                 processFound=True
 
         if not processFound:
             print 'process ',self.process,' not found, exit'
             sys.exit(3)
 
-        logdir=Dir+"/BatchOutputs/%s"%(pr)
+        logdir=Dir+"/BatchOutputs/%s"%(self.process)
         if not ut.dir_exist(logdir):
             os.system("mkdir -p %s"%logdir)
 
@@ -50,7 +50,7 @@ class send_lhe():
             uid = ut.getuid2(self.user)
 
             print 'uid  ',uid, '    ',type(uid)
-            if ut.file_exist('%s/%s/events_%s_%s.lhe.gz'%(lhedir,pr, self.user,uid)):
+            if ut.file_exist('%s/%s/events_%s_%s.lhe.gz'%(lhedir,self.process, self.user,uid)):
                 print 'already exist, continue'
                 continue
 
@@ -69,19 +69,19 @@ class send_lhe():
             frun.write('unset LD_LIBRARY_PATH\n')
             frun.write('unset PYTHONHOME\n')
             frun.write('unset PYTHONPATH\n')
-            frun.write('mkdir job%s_%s\n'%(uid,pr))
-            frun.write('cd job%s_%s\n'%(uid,pr))
+            frun.write('mkdir job%s_%s\n'%(uid,self.process))
+            frun.write('cd job%s_%s\n'%(uid,self.process))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('source %s\n'%(self.para.stack))
             frun.write('mkdir %s\n'%(lhedir))
-            frun.write('mkdir %s%s\n'%(lhedir,pr))
+            frun.write('mkdir %s%s\n'%(lhedir,self.process))
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s/%s.tar.gz .\n'%(gpdir,self.process))
-            frun.write('tar -zxf %s.tar.gz\n'%pr)
+            frun.write('tar -zxf %s.tar.gz\n'%self.process)
             frun.write('cd process/\n')
             frun.write('./run.sh %i %i\n'%(self.events,int(uid)))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events_%s_%s.lhe.gz\n'%(lhedir,pr, self.user,uid))
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events_%s_%s.lhe.gz\n'%(lhedir,self.process, self.user,uid))
             frun.write('cd ..\n')
-            frun.write('rm -rf job%s_%s\n'%(uid,pr))
+            frun.write('rm -rf job%s_%s\n'%(uid,self.process))
 
             cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -o %s -cwd %s %s" %(self.queue,logdir+'/job%s/'%(uid),logdir+'/job%s/'%(uid),logdir+'/'+frunname)
             print cmdBatch
