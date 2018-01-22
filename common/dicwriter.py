@@ -34,7 +34,7 @@ class dicwriter():
 
         toadd={}
         for k, v in dic.iteritems():
-            if k=='sample':continue
+            if k=='process':continue
             toadd.update({'%s'%k:'%s'%v})
  
         exist=False
