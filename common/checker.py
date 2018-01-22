@@ -163,7 +163,7 @@ class checker():
                            'jobid':jobid,
                            'nevents':nevts,
                            'status':status,
-                           'out':l,
+                           'out':f,
                            'size':os.path.getsize(f),
                            'user':userid,
                            'provenance':''
@@ -179,7 +179,7 @@ class checker():
                            'jobid':jobid,
                            'nevents':nevts,
                            'status':status,
-                           'out':l,
+                           'out':f,
                            'size':os.path.getsize(f),
                            'user':userid
                            }
