@@ -3,67 +3,51 @@ import json
 import subprocess
 import sys
 import os.path
-import ROOT as r
 
 import EventProducer.config.param as para
 import EventProducer.common.isreading as isr
 
-if len(sys.argv)!=3:
-    print 'usage: python removeProcess.py LHE/FCC_fcc_v01/FCC_fcc_v02/FCC_cms process'
-    exit(3)
-
-indict=''
-inread=''
-version=''
-if sys.argv[1]=='LHE':
-    indict=para.lhe_dic
-    inread=para.readlhe_dic
-elif 'FCC_' in sys.argv[1]:
-    version=sys.argv[1].replace('FCC_','')
-    if version not in para.fcc_versions:
-        print 'version of the cards should be: fcc_v01, fcc_v02, cms'
-        print '======================%s======================'%version
-        sys.exit(3)
-    indict=para.fcc_dic.replace('VERSION',version)
-    inread=para.readfcc_dic.replace('VERSION',version)
-else:
-    print 'unrecognized mode ',sys.argv[1],'  possible values are LHE/FCC'
-    sys.exit(3)
-
-if os.path.isfile(indict)==False:
-    print 'dictonary does not exists '
-    sys.exit(3)
-
-process=sys.argv[2]
-
-readdic=isr.isreading(inread, indict)
-readdic.backup('removeProcess')
-readdic.reading()
-
-#indict='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHEdict_REMOVE_OUT.json'
-
-mydict=None
-with open(indict) as f:
-    mydict = json.load(f)
-
-mynewdict={}
-
-for element in mydict:
-    if process == str(element):
-        print process,'    ',str(element)
-        continue
-    else:
-        mynewdict[element]=mydict[element]
-
-with open(indict, 'w') as f:
-    json.dump(mynewdict, f)
-
-readdic.comparedics(nf=0,ns=1)
-readdic.finalize()
+class removeProcess():
 
 
-import os
-print 'remove process in eos'
-cmd="rm %s/%s/%s/event*.root"%(para.delphes_dir,version,process)
-print cmd
-os.system(cmd)
+#__________________________________________________________
+    def __init__(self, indict, inread, process, indir):
+        self.indict = indict
+        self.inread = inread
+        self.process = process
+        self.indir = indir
+        if os.path.isfile(self.indict)==False:
+            print 'dictonary does not exists '
+            sys.exit(3)
+
+        self.readdic=isr.isreading(self.inread, self.indict)
+        self.readdic.backup('removeProcess')
+        self.readdic.reading()
+
+
+#__________________________________________________________
+    def remove(self):
+        mydict=None
+        with open(self.indict) as f:
+            mydict = json.load(f)
+
+        mynewdict={}
+        for element in mydict:
+            if self.process == str(element):
+                print self.process,'    ',str(element)
+                continue
+            else:
+                mynewdict[element]=mydict[element]
+
+        with open(self.indict, 'w') as f:
+            json.dump(mynewdict, f)
+
+        self.readdic.comparedics(nf=0,ns=1)
+        self.readdic.finalize()
+
+
+        import os
+        print 'remove process in eos'
+        cmd="rm %s/%s/events*"%(self.indir, self.process)
+        print cmd
+        os.system(cmd)
