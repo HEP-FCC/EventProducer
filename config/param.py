@@ -72,15 +72,6 @@ pythialist={
 'pp_Zprime_30TeV_ttbar':['30TeV Z\' -> ttbar','','','3.16759213029e-05','1.0','1.0'],
 'pp_Zprime_35TeV_ttbar':['35TeV Z\' -> ttbar','','','9.65649631373e-06','1.0','1.0'],
 'pp_Zprime_40TeV_ttbar':['40TeV Z\' -> ttbar','','','3.4131033281e-06','1.0','1.0'],
-'pp_Zprime_mumu_5f_Mzp_40TeV':['','Zp->mu+mu-','','5.819e-06','1.0','1.0'],
-'pp_Zprime_mumu_5f_Mzp_20TeV':['','Zp->mu+mu-','','1.136e-05','1.0','1.0'],
-'pp_Zprime_mumu_5f_Mzp_15TeV':['','Zp->mu+mu-','','1.717e-05','1.0','1.0'],
-'pp_Zprime_mumu_5f_Mzp_25TeV':['','Zp->mu+mu-','','9.823e-06','1.0','1.0'],
-'pp_Zprime_mumu_5f_Mzp_5TeV':['','Zp->mu+mu-','','0.000332','1.0','1.0'],
-'pp_Zprime_mumu_5f_Mzp_45TeV':['','Zp->mu+mu-','','4.64e-06','1.0','1.0'],
-'pp_Zprime_mumu_5f_Mzp_35TeV':['','Zp->mu+mu-','','7.108e-06','1.0','1.0'],
-'pp_Zprime_mumu_5f_Mzp_10TeV':['','Zp->mu+mu-','','4.497e-05','1.0','1.0'],
-'pp_Zprime_mumu_5f_Mzp_30TeV':['','Zp->mu+mu-','','8.493e-06','1.0','1.0'],
 'pp_RSGraviton_2TeV_ww':['2TeV Z\' -> WW','','','1.811e1','1.0','1.0'],
 'pp_RSGraviton_5TeV_ww':['5TeV Z\' -> WW','','','2.892e-1','1.0','1.0'],
 'pp_RSGraviton_10TeV_ww':['10TeV Z\' -> WW','','','7.686e-3','1.0','1.0'],
@@ -490,6 +481,16 @@ gridpacklist = {
 'pp_hhj_lambda110_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.10','inclusive','','0.05209','2.71','1.0'],
 'pp_hhj_lambda150_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.50','inclusive','','0.03793','2.71','1.0'],
 
+#Zprime signals to fit flavor anomalie Ben Allanach https://arxiv.org/abs/1710.06363
+'pp_Zprime_mumu_5f_Mzp_40TeV':['','Zp->mu+mu-','','5.819e-06','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_20TeV':['','Zp->mu+mu-','','1.136e-05','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_15TeV':['','Zp->mu+mu-','','1.717e-05','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_25TeV':['','Zp->mu+mu-','','9.823e-06','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_5TeV':['','Zp->mu+mu-','','0.000332','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_45TeV':['','Zp->mu+mu-','','4.64e-06','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_35TeV':['','Zp->mu+mu-','','7.108e-06','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_10TeV':['','Zp->mu+mu-','','4.497e-05','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_30TeV':['','Zp->mu+mu-','','8.493e-06','1.0','1.0'],
 
 #DM signals Caterina Doglioni
 'pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1.0'],
