@@ -486,13 +486,13 @@ gridpacklist = {
 'pp_hh_lambda105_5f':['HH, H->bb, H undec., kl = 1.05','','','1.25848','1.52','1.0'],
 'pp_hh_lambda110_5f':['HH, H->bb, H undec., kl = 1.10','','','1.20914','1.52','1.0'],
 'pp_hh_lambda150_5f':['HH, H->bb, H undec., kl = 1.50','','','0.88070','1.52','1.0'],
-'pp_hhj_lambda050_5f':['HH + 1 jet, pT(HH) > 200, kl = 0.50','inclusive','','0.08285','2.71','1.0'],
-'pp_hhj_lambda090_5f':['HH + 1 jet, pT(HH) > 200, kl = 0.90','inclusive','','0.06107','2.71','1.0'],
-'pp_hhj_lambda095_5f':['HH + 1 jet, pT(HH) > 200, kl = 0.95','inclusive','','0.05870','2.71','1.0'],
-'pp_hhj_lambda100_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.00','inclusive','','0.05644','2.71','1.0'],
-'pp_hhj_lambda105_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.05','inclusive','','0.05424','2.71','1.0'],
-'pp_hhj_lambda110_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.10','inclusive','','0.05209','2.71','1.0'],
-'pp_hhj_lambda150_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.50','inclusive','','0.03793','2.71','1.0'],
+'pp_hhj_lambda050_5f':['HH + 1 jet, pT(HH) > 200, kl = 0.50','inclusive','','0.08285','1.95','1.0'],
+'pp_hhj_lambda090_5f':['HH + 1 jet, pT(HH) > 200, kl = 0.90','inclusive','','0.06107','1.95','1.0'],
+'pp_hhj_lambda095_5f':['HH + 1 jet, pT(HH) > 200, kl = 0.95','inclusive','','0.05870','1.95','1.0'],
+'pp_hhj_lambda100_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.00','inclusive','','0.05644','1.95','1.0'],
+'pp_hhj_lambda105_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.05','inclusive','','0.05424','1.95','1.0'],
+'pp_hhj_lambda110_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.10','inclusive','','0.05209','1.95','1.0'],
+'pp_hhj_lambda150_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.50','inclusive','','0.03793','1.95','1.0'],
 
 
 #DM signals Caterina Doglioni
