@@ -459,6 +459,23 @@ gridpacklist = {
 'pp_mumuj_mhcut_5f_HT_0_100':['mu+ mu- + 1 jet','0 < HT < 100','','103.8','','1.0'],
 'pp_mumuj_mhcut_5f_HT_100_500':['mu+ mu- + 1 jet','100 < HT < 500','','11.74','','1.0'],
 'pp_mumuj_mhcut_5f_HT_500_100000':['mu+ mu- + 1 jet','500 < HT < 100000','','0.1245','','1.0'],
+'pp_Zprime_mumu_5f_Mzp_40TeV':['','Zp->mu+mu-','','5.819e-06','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_20TeV':['','Zp->mu+mu-','','1.136e-05','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_15TeV':['','Zp->mu+mu-','','1.717e-05','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_25TeV':['','Zp->mu+mu-','','9.823e-06','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_5TeV':['','Zp->mu+mu-','','0.000332','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_45TeV':['','Zp->mu+mu-','','4.64e-06','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_35TeV':['','Zp->mu+mu-','','7.108e-06','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_10TeV':['','Zp->mu+mu-','','4.497e-05','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_30TeV':['','Zp->mu+mu-','','8.493e-06','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_2TeV':['','inclusive','','0.002573','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_12TeV':['','inclusive','','2.803e-05','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_16TeV':['','inclusive','','1.548e-05','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_4TeV':['','inclusive','','0.0005878','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_18TeV':['','inclusive','','1.321e-05','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_14TeV':['','inclusive','','1.968e-05','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_8TeV':['','inclusive','','8.857e-05','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_6TeV':['','inclusive','','0.000202','1.0','1.0'],
 
 # xsec is given by 2*xsec(NLO)*BR(H->bb), then NNLL/NLO kfactor = 1.33/1.15 is applied according to prescription I.7.8 in Higgs XSECWG YR4 (1610.07922) with delta_t=-0.315
 # lambda dep xsec(NLO) from 100TeV version of Fig.12 left plot in 1608.04798 (from private conversation with Gudrun Heinrich)
