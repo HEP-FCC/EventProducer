@@ -1,7 +1,6 @@
 # EventProducer
 
-This package is used to centrally produced events for FCC-hh studies at center of mass energy of 100TeV.
-It can also be used to run HE-LHC studies using specific options. 
+This package is used to centrally produced events for FCC-hh, HE-LHC at a center of mass of 100 and 27TeV respectively. Any other future collider can also be supported by this framework. 
 In order to use it, please get in contact with clement.helsens@cern.ch as running this package requieres specific rights.
 
 []() Clone and initialisation
@@ -9,7 +8,7 @@ In order to use it, please get in contact with clement.helsens@cern.ch as runnin
 
 If you do not attempt to contribute to the repository, simply clone it:
 ```
-git clone git@github.com:clementhelsens/EventProducer.git
+git clone git@github.com:FCC-hh-framework/EventProducer.git
 ```
 
 If you aim at contributing to the repository, you need to fork and then clone the forked repository:
@@ -22,23 +21,26 @@ Then initialise:
 source ./init.sh
 ```
 
-[]() Generate LHE files
+[]() Generate LHE files from gripacks
 -------------------------
 
-To send jobs starting from a gridpack that does not exist, do the following:
-   - place gridpack in eos ```/eos/experiment/fcc/hh/generation/mg5_amcatnlo/gridpacks```
-   - add to ```param.py``` or ```param_HELHC.py``` the job name corresponding to the gridpack name in the ```gridpacklist``` list, depending on the study.
+To send jobs starting from a gridpack that does not exist but that you have produced, do the following:
+   - place gridpack on eos 
+    - for FCC ```/eos/experiment/fcc/hh/generation/gridpacks/```
+    - for HELHC ```/eos/experiment/fcc/helhc/generation/gridpacks/```
+   - if the gridpack is from Madgraph, name it ```mg_process```, if from powheg please name it ```pw_process```,
+   - add to ```param_FCC.py``` or ```param_HELHC.py``` an entry corresponding to the gridpack name in the ```gridpacklist``` list, depending on the study.
 
-If the gridpack already exists or has been properly added, then simply run:
-
-```
-python bin/sendJobs.py -n <NumberOfJobs> -e <NumberOfEventsPerJob> -q <BatchQueueName> -p <ProcessName>
-```
-
-example to send 10 jobs of 10 000 events of ttz using 8nh queue of lsf for FCC:
+If the gridpack already exists or has been properly added to the ```param```, then simply run:
 
 ```
-python bin/sendJobs.py -n 10 -e 10000 -q 8nh -p pp_ttz_5f
+python bin/run.py --FCC/HELHC --LHE --send -p <process> -n <nevents> -N <njobs> --lsf -q 1nh
+```
+
+example to send 10 jobs of 10 000 events of di-electron events using 1nh queue of lsf for HELHC:
+
+```
+python bin/run.py --HELHC --LHE --send -p mg_pp_ee_lo -n 10000 -N 10 --lsf -q 1nh
 ```
 
 example to send 10 jobs of 10 000 events of ttz using 8nh queue of lsf for HE-LHC:
