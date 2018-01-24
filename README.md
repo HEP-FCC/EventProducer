@@ -44,52 +44,51 @@ To send jobs starting from a gridpack that does not exist but that you have prod
 If the gridpack already exists or has been properly added to the ```param```, then simply run:
 
 ```
-python bin/run.py --FCC/HELHC --LHE --send -p <process> -n <nevents> -N <njobs> --lsf -q 1nh
+python bin/run.py --FCC/HELHC --LHE --send --lsf -p <process> -n <nevents> -N <njobs> -q <queue>
 ```
 
 example to send 10 jobs of 10 000 events of di-electron events with Mll> 2TeV using 1nh queue of lsf for HELHC:
 
 ```
-python bin/run.py --HELHC --LHE --send -p mg_pp_ee_lo -n 10000 -N 10 --lsf -q 1nh
+python bin/run.py --HELHC --LHE --send --lsf -p mg_pp_ee_lo -n 10000 -N 10 -q 1nh
 ```
 
 
 Generate FCCSW files from the LHE and decay with Pyhtia8
 ========================================================
 
-1. if you want to let pythia decay without specifiying anything, you can use the default card
-1. make sure that decay is in ```decaylist``` and ```branching_ratios``` of ```param_FCC.py``` or ```param_HELHC.py```
-1. create appropriate pythia8 card, by appending standard card with decay syntax if needed and add it to the proper directory, example:
+1. if you want to let pythia decay without specifiying anything, you can use the default card, but if you have requested extra partons at matrix element, you might need to specify matching parameters to your pythia card
+1. if you want to use a specific decay, make sure that the decay you want is in ```decaylist``` and ```branching_ratios``` of the ```param```
+1. then create appropriate pythia8 card, by appending standard card with decay syntax if needed and add it to the proper directory, example:
 ```
 /eos/experiment/fcc/hh/utils/pythiacards/pythia_pp_ttz_5f_znunu.cmd
 ```
 
 1. Run jobs:
 
-
 ```
-python bin/sendJobs_FCCSW.py -n <NumberOfJobs> -e <NumberOfEventsPerJob> -q <BatchQueueName> -p <ProcessName> -d <PythiaDecay>
+python bin/run.py --FCC/HELHC --reco --send --type lhep8 --lsf -p <process> -N <njobs> -q <queue> --version <version>
 ```
 
 Example produce 10 jobs of FCC Delphes events of ttz decaying the Z to neutrinos. :
 
 ```
-python bin/sendJobs_FCCSW.py -n 10 -p pp_ttz_5f -d znunu -q 8nh -v fcc_v02
+python bin/run.py --FCC --reco --send --lsf -p mg_pp_ttz_5f --type lhep8 -N 10 -q 8nh --version fcc_v02
 ``` 
 
-Please note that the decay in pythia is optional.
+Please note that the decay in pythia is optional, and that there is no need to specify the number of events to run on as it will by default run over all the events present in the LHE file
 
 Generate FCCSW files from Pythia8
 =================================
 
 Pythia8 manual: http://home.thep.lu.se/~torbjorn/pythia81html/Welcome.html
 
-1) Define process in pythialist in config/param.py
-2) Write Pythia8 process card and put it in: /eos/experiment/fcc/hh/utils/pythiacards/
+1. Define process in pythialist in config/param.py
+1. Write Pythia8 process card and put it in: /eos/experiment/fcc/hh/utils/pythiacards/
 
-ex: pythia_pp_Zprime_10TeV_ttbar.cmd
+ex: p8_pp_Zprime_10TeV_ttbar.cmd
 
-3) send jobs
+1. send jobs
 
 python bin/sendJobs_FCCSW_P8.py -n 10 -e 10000 -p pp_Zprime_10TeV_ttbar -q 8nh -v fcc_v02
 
