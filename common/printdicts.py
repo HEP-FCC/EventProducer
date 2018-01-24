@@ -71,7 +71,8 @@ class printdicts():
                 
             news=str(proc)
             proc=str(proc)
-            print '------------------------------- ',proc, type(proc)
+            print '------------------------------- proc  ',proc, type(proc)
+            print '------------------------------- news  ',news, type(news)
 
             ispythiaonly=False
             try: 
@@ -125,13 +126,15 @@ class printdicts():
             print 's  ',type(proc),'  news  ',type(news)
             cmd=''
             print '-----fefefeefefefefefe----------',self.comma_me(str(sumw))
+            print '-----ispythi----------',ispythiaonly
+
             if not self.matching and not ispythiaonly:
                 cmd='%s,,%s,,%i,,%i,,%i,,%.2f,,%s,,%s,,%s,,%s,,%s\n'%(news,self.comma_me(str(evttot)),njobs,njobs_bad,nfileseos,size  ,outdir.replace(outdirtmp.split('/')[-1],''),self.para.gridpacklist[proc][0],self.para.gridpacklist[proc][1],self.para.gridpacklist[proc][2],self.para.gridpacklist[proc][3])
                 print size
-            elif  matching and not ispythiaonly:
+            elif  self.matching and not ispythiaonly:
                 cmd='%s,,%s,,%s,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,self.comma_me(str(evttot)),self.comma_me(str(sumw)),njobs,njobs_bad,nfileseos, size ,outdir.replace(outdirtmp.split('/')[-1],''),self.para.gridpacklist[proc][0],self.para.gridpacklist[proc][1],self.para.gridpacklist[proc][3],self.para.gridpacklist[proc][4],self.para.gridpacklist[proc][5])
             elif  ispythiaonly:
-                cmd='%s,,%s,,%s,,%i,,%i,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,self.comma_me(str(evttot)),self.comma_me(str(sumw)),njobs,njobs_bad, njobs_running,nfileseos ,outdir.replace(outdirtmp.split('/')[-1],''),self.para.pythialist[news][0],self.para.pythialist[news][1],self.para.pythialist[news][3],self.para.pythialist[news][4],self.para.pythialist[news][5])
+                cmd='%s,,%s,,%s,,%i,,%i,,%i,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,self.comma_me(str(evttot)),self.comma_me(str(sumw)),njobs,njobs_bad,nfileseos, size ,outdir.replace(outdirtmp.split('/')[-1],''),self.para.pythialist[news][0],self.para.pythialist[news][1],self.para.pythialist[news][3],self.para.pythialist[news][4],self.para.pythialist[news][5])
                 ispythiaonly=False
             self.OutFile.write(cmd)               
 
