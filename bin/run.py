@@ -4,6 +4,11 @@
 #python bin/run.py --HELHC --LHE --clean -p mg_pp_ee_lo
 #python bin/run.py --HELHC --LHE --remove -p mg_pp_ee_lo
 
+#python bin/run.py --HELHC --reco --send -p mg_pp_ee_lo --type lhep8 -N 1 --lsf -q 1nh --version helhc_v01
+#python bin/run.py --HELHC --reco --send -p pp_Zprime_10TeV_ll -n 10000 --type p8 -N 1 --lsf -q 1nh --version helhc_v01
+#python bin/run.py --HELHC --reco --check --version helhc_v01
+#python bin/run.py --HELHC --reco --web
+
 
 import sys
 
@@ -14,6 +19,8 @@ import EventProducer.common.cleanfailed as clf
 import EventProducer.common.removeProcess as rmp
 
 import EventProducer.bin.send_lhe as slhe
+import EventProducer.bin.send_p8 as sp8
+import EventProducer.bin.send_lhep8 as slhep8
 
 #__________________________________________________________
 if __name__=="__main__":
@@ -46,7 +53,7 @@ if __name__=="__main__":
     sendjobGroup.add_argument('-q', '--queue', type=str, default='8nh', help='lxbatch queue (default: 8nh)', choices=['1nh','8nh','1nd','2nd','1nw'])
     sendjobGroup.add_argument('-n','--numEvents', type=int, help='Number of simulation events per job', default=10000)
     sendjobGroup.add_argument('-N','--numJobs', type=int, default = 10, help='Number of jobs to submit')
-    
+
     args, _ = parser.parse_known_args()
 
     batchGroup = parser.add_mutually_exclusive_group(required = args.send) # Where to submit jobs
@@ -70,6 +77,10 @@ if __name__=="__main__":
 
     versionGroup = parser.add_argument_group('recontruction version')
     versionGroup.add_argument('--version', type=str, required = '--reco' in sys.argv, help='Version to use', choices = para.fcc_versions)
+    decaylist=[d for d in para.decaylist]
+    print decaylist
+    sendjobGroup.add_argument('-d', '--decay', type=str, default='', help='pythia8 decay when needed', choices=decaylist)
+
     args, _ = parser.parse_known_args()
     version = args.version
 
@@ -126,8 +137,12 @@ if __name__=="__main__":
         elif args.reco:
             if sendOpt=='lhep8':
                 print 'preparing to send FCCSW jobs from lhe'
+                sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.queue, para, version, args.decay)
+                sendlhep8.send()
             elif sendOpt=='p8':
                 print 'preparing to send FCCSW jobs from pythia8 directly'
+                sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.queue, para, version)
+                sendp8.send()
 
     elif args.web:
         if args.LHE: 
@@ -136,7 +151,7 @@ if __name__=="__main__":
             printdic.run()
         elif args.reco:
             print 'create web page for reco version %s'%version
-            webpage=para.delphes_web.replace('VERSION',v)
+            webpage=para.delphes_web.replace('VERSION',version)
             printdic=pdic.printdicts(indict, webpage, True, False, para, version)
             printdic.run()
 
