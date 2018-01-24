@@ -20,8 +20,7 @@ Then initialise:
 ```
 source ./init.sh
 ```
-
-[Generate LHE events from gridpacks]() Generate LHE files from gripacks
+[Generate LHE events from gridpacks](#GenerateLHE) Generate LHE files from gripacks
 -------------------------
 
 To send jobs starting from a gridpack that does not exist but that you have produced, do the following:
