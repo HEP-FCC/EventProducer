@@ -105,26 +105,22 @@ python bin/run.py --HELHC --reco --send --type p8 --lsf -p pp_Zprime_10TeV_ttbar
 Generating the dictionnary
 ==========================
 
+```
+python bin/run.py --HELHC --LHE --check --dir /eos/experiment/fcc/helhc/generation/lhe/
+python bin/run.py --HELHC --reco --check --version helhc_v01
+```
 Cleaning bad jobs
 =================
+
+```
+python bin/run.py --HELHC --LHE --clean -p mg_pp_ee_lo
+python bin/run.py --HELHC --LHE --remove -p mg_pp_ee_lo
+```
 
 Update the webpage
 ==================
 
-
-[]() Cleaning up
---------------------------
-
-Scripts are used to check that the jobs have been properly processed.
-For LHE
 ```
-python common/jobchecker.py LHE
-python common/cleanfailed.py LHE
+python bin/run.py --HELHC --LHE --web
+python bin/run.py --HELHC --reco --web --version helhc_v01
 ```
-
-For FCCSW events version 02
-```
-python common/jobchecker.py FCC_fcc_v02
-python common/cleanfailed.py FCC_fcc_v02
-```
-
