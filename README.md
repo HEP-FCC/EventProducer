@@ -13,6 +13,9 @@ Table of contents
   * [Generate LHE events from gridpacks](#generate-lhe-events-from-gridpacks)
   * [Generate FCCSW files from the LHE and decay with Pyhtia8](#generate-fccsw-files-from-the-lhe-and-decay-with-pyhtia8)
   * [Generate FCCSW files from Pythia8](#generate-fccsw-files-from-pythia8)
+  * [Generating the dictionnary](#generating-the-dictionnary)
+  * [Cleaning bad jobs](#cleaning-bad-jobs)
+  * [Update the webpage](#update-the-webpage)
 
 Clone and initialisation
 ========================
@@ -81,16 +84,32 @@ Please note that the decay in pythia is optional, and that there is no need to s
 Generate FCCSW files from Pythia8
 =================================
 
-Pythia8 manual: http://home.thep.lu.se/~torbjorn/pythia81html/Welcome.html
+The Pythia8 manual is available here: http://home.thep.lu.se/~torbjorn/pythia81html/Welcome.html
 
-1. Define process in pythialist in config/param.py
-1. Write Pythia8 process card and put it in: /eos/experiment/fcc/hh/utils/pythiacards/
+1. Define process in pythialist in the ```param``` corresponding to your job flavour
+1. Write Pythia8 process card and put it in: ```/eos/experiment/fcc/hh/utils/pythiacards/``` or ```/eos/experiment/fcc/helhc/utils/pythiacards/```
 
-ex: p8_pp_Zprime_10TeV_ttbar.cmd
+exemple ```p8_pp_Zprime_10TeV_ttbar.cmd```
 
 1. send jobs
 
-python bin/sendJobs_FCCSW_P8.py -n 10 -e 10000 -p pp_Zprime_10TeV_ttbar -q 8nh -v fcc_v02
+```
+python bin/run.py --FCC/HELHC --reco --send --type p8 --lsf -p <process> -n <nevents> -N <njobs> -q <queue> --version <version>
+```
+Example produce 1 job of 10000 events of Z' to ttbar
+
+```
+python bin/run.py --HELHC --reco --send --type p8 --lsf -p pp_Zprime_10TeV_ttbar -n 10000 -N 1 --lsf -q 1nh --version helhc_v01
+```
+
+Generating the dictionnary
+==========================
+
+Cleaning bad jobs
+=================
+
+Update the webpage
+==================
 
 
 []() Cleaning up
