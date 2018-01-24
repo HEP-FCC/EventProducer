@@ -15,110 +15,33 @@ import ntpath
 import EventProducer.common.dicwriter_FCC as dicr
 import EventProducer.common.isreading as isr
 
-#__________________________________________________________
-def getCommandOutput(command):
-    p = subprocess.Popen(command, shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
-    stdout,stderr = p.communicate()
-    return {"stdout":stdout, "stderr":stderr, "returncode":p.returncode}
+class send_lhe():
 
 #__________________________________________________________
-def SubmitToBatch(cmd,nbtrials):
-    submissionStatus=0
-    for i in range(nbtrials):            
-        outputCMD = getCommandOutput(cmd)
-        stderr=outputCMD["stderr"].split('\n')
-
-        for line in stderr :
-            if line=="":
-                print "------------GOOD SUB"
-                submissionStatus=1
-                break
-            else:
-                print "++++++++++++ERROR submitting, will retry"
-                print "error: ",stderr
-                print "Trial : "+str(i)+" / "+str(nbtrials)
-                time.sleep(10)
-                break
-            
-        if submissionStatus==1:
-            jobid=outputCMD["stdout"].split()[1].replace("<","").replace(">","")
-            return 1,jobid
-        
-        if i==nbtrials-1:
-            print "failed sumbmitting after: "+str(nbtrials)+" trials, will exit"
-            return 0,0
+    def __init__(self,njobs, events, process, islsf, queue, para, version):
+        self.njobs   = njobs
+        self.events  = events
+        self.process = process
+        self.islsf   = islsf
+        self.queue   = queue
+        self.user    = os.environ['USER']
+        self.para    = para
+        self.version = version
 
 
 #__________________________________________________________
-def eosexist(myfile):
-    cmd='ls %s'%(myfile)
-    p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
-    p.wait()
-    if len(p.stderr.readline())==0:
-        return True
-    else: 
-        return False
+    def send(self):
 
+        Dir = os.getcwd()
+        rundir = os.getcwd()
+        nbjobsSub=0
 
-#__________________________________________________________
-if __name__=="__main__":
-    Dir = os.getcwd()
-    
-    from optparse import OptionParser
-    parser = OptionParser()
+  
 
-    parser.add_option ('-n','--njobs', help='Number of jobs to submit',
-                       dest='njobs',
-                       default='10000')
-
-    parser.add_option ('-e', '--events',  help='Number of event per job. default is 1000',
-                       dest='events',
-                       default='1000')
-
-    parser.add_option ('-m', '--mode',  help='Running mode [batch, local]. Default is batch',
-                       dest='mode',
-                       default='batch')
-
-    parser.add_option ('-p', '--process',  help='process, example pp_Zprime_3TeV_eemumu. This is the name that is entered as a key in the dictionnary, and should match an existing card in eos /eos/fcc/hh/pythiacards/',
-                       dest='process',
-                       default='')
-
-    parser.add_option ('-c', '--config',  help='config file, ex: config/param.py',
-                       dest='config',
-                       default='config/param.py')
-
-    parser.add_option ('-q', '--queue',  help='lxbatch queue, default 8nh',
-                       dest='queue',
-                       default='8nh')
-
-    parser.add_option('-t','--test',
-                      action='store_true', dest='test', default=False,
-                      help='do not send to batch nor write to the dictonary')
-
-    parser.add_option ('-v', '--version',  help='version of the delphes card to use, options are: fcc_v01, fcc_v02, cms',
-                       dest='version',
-                       default='fcc_v01')
-
-    parser.add_option('-f','--fakeadd',
-                      action='store_true', dest='fakeadd', default=False,
-                      help='add fake jobs to the dictonary')
-
-    (options, args) = parser.parse_args()
-    njobs      = int(options.njobs)
-    events     = int(options.events)
-    mode       = options.mode
-    process    = options.process
-    queue      = options.queue
-    test       = options.test
     version    = options.version
-    config     = options.config
     fakeadd    = options.fakeadd
     rundir = os.getcwd()
     nbjobsSub=0
-
-    dirpath = os.path.dirname(os.path.abspath(os.path.expanduser(config)))
-    sys.path.append(dirpath)
-    para = importlib.import_module(os.path.splitext(ntpath.basename(config))[0])
 
     if version not in para.fcc_versions:
         print 'version of the cards should be: fcc_v01, cms'

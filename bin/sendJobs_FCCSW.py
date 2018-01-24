@@ -2,7 +2,8 @@
 #python bin/sendJobs_FCCSW.py secret -n 1 -e -1  -p "pp_h012j_5f" -q 1nh --test
 #python bin/sendJobs_FCCSW.py -n 1 -p pp_h012j_5f -q 8nh -e -1 -v fcc_v02
 
-
+  #     lhedict=self.para.lhe_dic
+   #  for proc, value in sorted(self.indict.items()):
 import glob, os, sys,subprocess,cPickle
 import commands
 import time
