@@ -1,10 +1,21 @@
-# EventProducer
+EventProducer
+=============
 
 This package is used to centrally produced events for FCC-hh, HE-LHC at a center of mass of 100 and 27TeV respectively. Any other future collider can also be supported by this framework. 
 In order to use it, please get in contact with clement.helsens@cern.ch as running this package requieres specific rights.
 
-[]() Clone and initialisation
--------------------------
+
+Table of contents
+=================
+  * [EventProducer](eventproducer)
+  * [Table of contents](#table-of-contents)
+  * [Clone and initialisation](#clone-and-initilisation)
+  * [Generate LHE events from gridpacks](#generate-lhe-events-from-gridpacks)
+  * [Generate FCCSW files from the LHE and decay with Pyhtia8](#generate-fccsw-files-from-the-lhe-and-decay-with-pyhtia8)
+  * [Generate FCCSW files from Pythia8](#generate-fccsw-files-from-pythia8)
+
+Clone and initialisation
+========================
 
 If you do not attempt to contribute to the repository, simply clone it:
 ```
@@ -20,8 +31,8 @@ Then initialise:
 ```
 source ./init.sh
 ```
-[Generate LHE events from gridpacks](#GenerateLHE) Generate LHE files from gripacks
--------------------------
+Generate LHE files from gripacks
+================================
 
 To send jobs starting from a gridpack that does not exist but that you have produced, do the following:
    - place gridpack on eos 
@@ -43,8 +54,9 @@ python bin/run.py --HELHC --LHE --send -p mg_pp_ee_lo -n 10000 -N 10 --lsf -q 1n
 ```
 
 
-[Generate FCCSW EDM root files with Delphes]() Generate FCCSW files from the LHE and decay with Pyhtia8
---------------------------
+Generate FCCSW files from the LHE and decay with Pyhtia8
+========================================================
+
 1. if you want to let pythia decay without specifiying anything, you can use the default card
 1. make sure that decay is in ```decaylist``` and ```branching_ratios``` of ```param_FCC.py``` or ```param_HELHC.py```
 1. create appropriate pythia8 card, by appending standard card with decay syntax if needed and add it to the proper directory, example:
@@ -67,8 +79,8 @@ python bin/sendJobs_FCCSW.py -n 10 -p pp_ttz_5f -d znunu -q 8nh -v fcc_v02
 
 Please note that the decay in pythia is optional.
 
-[]() Generate FCCSW files from Pythia8
---------------------------
+Generate FCCSW files from Pythia8
+=================================
 
 Pythia8 manual: http://home.thep.lu.se/~torbjorn/pythia81html/Welcome.html
 
