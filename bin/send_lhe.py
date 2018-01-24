@@ -2,7 +2,6 @@
 import os, sys
 import commands
 import time
-import random
 import EventProducer.common.utils as ut
 
 class send_lhe():
@@ -46,11 +45,11 @@ class send_lhe():
             os.system("mkdir -p %s"%logdir)
 
         for i in xrange(self.njobs):
-            uid = int(ut.getuid(self.user))
+            #uid = int(ut.getuid(self.user))
             uid = ut.getuid2(self.user)
 
             print 'uid  ',uid, '    ',type(uid)
-            if ut.file_exist('%s/%s/events_%s_%s.lhe.gz'%(lhedir,self.process, self.user,uid)):
+            if ut.file_exist('%s/%s/events_%s.lhe.gz'%(lhedir,self.process,uid)):
                 print 'already exist, continue'
                 continue
 
