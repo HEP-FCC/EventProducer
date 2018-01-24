@@ -7,7 +7,7 @@ In order to use it, please get in contact with clement.helsens@cern.ch as runnin
 
 Table of contents
 =================
-  * [EventProducer](eventproducer)
+  * [EventProducer](#eventproducer)
   * [Table of contents](#table-of-contents)
   * [Clone and initialisation](#clone-and-initilisation)
   * [Generate LHE events from gridpacks](#generate-lhe-events-from-gridpacks)
