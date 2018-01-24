@@ -21,7 +21,7 @@ Then initialise:
 source ./init.sh
 ```
 
-[]() Generate LHE files from gripacks
+[Generate LHE events from gridpacks]() Generate LHE files from gripacks
 -------------------------
 
 To send jobs starting from a gridpack that does not exist but that you have produced, do the following:
@@ -37,27 +37,23 @@ If the gridpack already exists or has been properly added to the ```param```, th
 python bin/run.py --FCC/HELHC --LHE --send -p <process> -n <nevents> -N <njobs> --lsf -q 1nh
 ```
 
-example to send 10 jobs of 10 000 events of di-electron events using 1nh queue of lsf for HELHC:
+example to send 10 jobs of 10 000 events of di-electron events with Mll> 2TeV using 1nh queue of lsf for HELHC:
 
 ```
 python bin/run.py --HELHC --LHE --send -p mg_pp_ee_lo -n 10000 -N 10 --lsf -q 1nh
 ```
 
-example to send 10 jobs of 10 000 events of ttz using 8nh queue of lsf for HE-LHC:
 
-```
-python HELHC bin/sendJobs.py -n 10 -e 10000 -q 8nh -p pp_ttz_5f
-```
-
-[]() Generate FCCSW files from the LHE and decay with Pyhtia8
+[Generate FCCSW EDM root files with Delphes]() Generate FCCSW files from the LHE and decay with Pyhtia8
 --------------------------
-1. make sure decay is in ```decaylist``` and ```branching_ratios``` of ```param.py``` or ```param_HELHC.py```
-2. create appropriate pythia8 card, by appending standard card with decay syntax if needed and add it to the proper directory, example:
+1. if you want to let pythia decay without specifiying anything, you can use the default card
+1. make sure that decay is in ```decaylist``` and ```branching_ratios``` of ```param_FCC.py``` or ```param_HELHC.py```
+1. create appropriate pythia8 card, by appending standard card with decay syntax if needed and add it to the proper directory, example:
 ```
 /eos/experiment/fcc/hh/utils/pythiacards/pythia_pp_ttz_5f_znunu.cmd
 ```
 
-3. Run jobs:
+1. Run jobs:
 
 
 ```
