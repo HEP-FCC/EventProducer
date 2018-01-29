@@ -79,7 +79,6 @@ pythialist={
 'p8_pp_RSGraviton_10TeV_ww':['10TeV Z\' -> WW','','','7.686e-3','1.0','1.0'],
 'p8_pp_RSGraviton_15TeV_ww':['15TeV Z\' -> WW','','','7.386e-4','1.0','1.0'],
 
-
 }
 
 
@@ -139,12 +138,12 @@ branching_ratios = {
 ## description/comment/matching parameters/cross section/kfactor/matching efficiency
 
 gridpacklist = {
-'mg_pp_ee_lo':['','inclusive','','0.000621','1.0','1.0'],
-'mg_pp_mumu_lo':['','inclusive','','0.000621','1.0','1.0'],
-'mg_pp_tt_lo':['','inclusive','','11.09','1.0','1.0'],
-'mg_pp_jj_lo':['','inclusive','','3871','1.0','1.0'],
-'mg_pp_vv_lo':['','inclusive','','0.1562','1.0','1.0'],
-'mg_pp_vj_lo':['','inclusive','','18.54','1.0','1.0'],
+'mg_pp_ee_lo':['di-electron','pT(e)>1TeV','','0.000621','1.0','1.0'],
+'mg_pp_mumu_lo':['di-muon','pT(mu)>1TeV','','0.000621','1.0','1.0'],
+'mg_pp_tt_lo':['top pair','pT(t)>0.5TeV','','11.09','1.0','1.0'],
+'mg_pp_jj_lo':['di-jet','pT(j)>0.5TeV','','3871','1.0','1.0'],
+'mg_pp_vv_lo':['di-boson','pT(v)>0.5TeV','','0.1562','1.0','1.0'],
+'mg_pp_vj_lo':['boson+1jet','pT(v,j)>0.5TeV','','18.54','1.0','1.0'],
 
 }
 
