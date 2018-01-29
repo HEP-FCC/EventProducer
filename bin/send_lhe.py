@@ -3,6 +3,7 @@ import os, sys
 import commands
 import time
 import EventProducer.common.utils as ut
+import EventProducer.common.makeyaml as my
 
 class send_lhe():
 
@@ -30,25 +31,30 @@ class send_lhe():
             print 'Gridpack=======',gptotest,'======= does not exist'
             sys.exit(3)
 
-
-        processFound=False
-        for pr in gplist:
-            if self.process == pr: 
-                processFound=True
-
-        if not processFound:
-            print 'process ',self.process,' not found, exit'
+        try:
+            gplist[self.process]
+        except KeyError, e:
+            print 'process %s does not exist as gridpack, exit'%self.process
             sys.exit(3)
 
-        logdir=Dir+"/BatchOutputs/%s"%(self.process)
+        logdir=Dir+"/BatchOutputs/lhe/%s"%(self.process)
         if not ut.dir_exist(logdir):
             os.system("mkdir -p %s"%logdir)
 
-        for i in xrange(self.njobs):
+
+        yamldir = '%s/lhe/%s'%(self.para.yamldir,self.process)
+        if not ut.dir_exist(yamldir):
+            os.system("mkdir -p %s"%yamldir)
+
+
+        while nbjobsSub<self.njobs:
             #uid = int(ut.getuid(self.user))
             uid = ut.getuid2(self.user)
+            myyaml = my.makeyaml(yamldir, uid)
+            if not myyaml: 
+                print 'job %s already exists'%uid
+                continue
 
-            print 'uid  ',uid, '    ',type(uid)
             if ut.file_exist('%s/%s/events_%s.lhe.gz'%(lhedir,self.process,uid)):
                 print 'already exist, continue'
                 continue
