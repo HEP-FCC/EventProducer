@@ -6,11 +6,8 @@ eostest_size=1312594
 lhe_web="/afs/cern.ch/user/h/helsens/www/data/LHEevents_helhc.txt"
 delphes_web="/afs/cern.ch/user/h/helsens/www/data/Delphesevents_VERSION.txt"
 
-#dicts
-##LHE dictionnary
-lhe_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHE_HELHC.json'
-##LHE read file true/false
-readlhe_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/LHE_HELHC_read.json'
+#yaml directory
+yamldir='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/'
 
 
 ##eos directory for MG5@MCatNLO gridpacks
@@ -20,14 +17,8 @@ lhe_dir     = '/eos/experiment/fcc/helhc/generation/lhe/'
 ##extension
 lhe_ext     ='.lhe.gz'
 
-
-
-##FCC events dictionnary
-fcc_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphes_VERSION.json'
 ##FCC versions
 fcc_versions=['helhc_v01']
-##FCC read file true/false
-readfcc_dic ='/afs/cern.ch/work/h/helsens/public/FCCDicts/PythiaDelphes_VERSION_read.json'
 
 ##eos directory for FCCSW pythia delphes files
 delphes_dir = '/eos/experiment/fcc/helhc/generation/DelphesEvents/'
