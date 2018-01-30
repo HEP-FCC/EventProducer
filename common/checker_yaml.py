@@ -8,9 +8,6 @@ import ROOT as r
 import json
 import yaml
 import EventProducer.common.utils as ut
-import EventProducer.common.dicwriter as dicr
-import EventProducer.common.isreading as isr
-
 
 class checker_yaml():
 
