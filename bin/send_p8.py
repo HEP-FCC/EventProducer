@@ -8,6 +8,7 @@ import commands
 import time
 import json
 import EventProducer.common.utils as ut
+import EventProducer.common.makeyaml as my
 
 
 class send_p8():
@@ -38,6 +39,15 @@ class send_p8():
             print 'process %s does not exist, exit'%self.process
             sys.exit(3)
 
+        logdir=Dir+"/BatchOutputs/%s/%s/"%(self.version,self.process)
+        if not ut.dir_exist(logdir):
+            os.system("mkdir -p %s"%logdir)
+
+        yamldir = '%s/%s/%s'%(self.para.yamldir,self.version,self.process)
+        if not ut.dir_exist(yamldir):
+            os.system("mkdir -p %s"%yamldir)
+
+
         delphescards_mmr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mmr)
         if ut.file_exist(delphescards_mmr)==False and self.version != 'cms' and 'helhc' not in self.version:
             print 'delphes card does not exist: ',delphescards_mmr,' , exit'
@@ -66,28 +76,31 @@ class send_p8():
             sys.exit(3)
 
  
-        for i in xrange(self.njobs):
+
+        while nbjobsSub<self.njobs:
+
             uid = ut.getuid2(self.user)
+            myyaml = my.makeyaml(yamldir, uid)
+            if not myyaml: 
+                print 'job %s already exists'%uid
+                continue
             outfile='%s/%s/events_%s.root'%(outdir,self.process,uid)
-            print 'uid  ',uid, '    ',type(uid)
             if ut.file_exist(outfile):
                 print 'file %s already exist, continue'%outfile
                 continue
 
-            logdir=Dir+"/BatchOutputs/%s/%s/"%(self.version,self.process)
-            os.system("mkdir -p %s"%logdir)
             frunname = 'job%s.sh'%(uid)
+            frunfull = '%s/%s'%(logdir,frunname)
 
             frun = None
             try:
-                frun = open(logdir+'/'+frunname, 'w')
+                frun = open(frunfull, 'w')
             except IOError as e:
                 print "I/O error({0}): {1}".format(e.errno, e.strerror)
                 time.sleep(10)
-                frun = open(logdir+'/'+frunname, 'w')
+                frun = open(frunfull, 'w')
 
-
-            commands.getstatusoutput('chmod 777 %s/%s'%(logdir,frunname))
+            commands.getstatusoutput('chmod 777 %s'%(frunfull))
             frun.write('#!/bin/bash\n')
             frun.write('unset LD_LIBRARY_PATH\n')
             frun.write('unset PYTHONHOME\n')
@@ -112,7 +125,7 @@ class send_p8():
             frun.write('rm -rf job%s_%s\n'%(uid,self.process))
 
 
-            cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -cwd%s %s" %(self.queue, logdir,logdir+'/'+frunname)
+            cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -cwd%s %s" %(self.queue, logdir,frunfull)
 
             batchid=-1
             job,batchid=ut.SubmitToLsf(cmdBatch,10)
