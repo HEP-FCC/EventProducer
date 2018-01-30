@@ -22,8 +22,6 @@ if __name__=="__main__":
     import argparse
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('-p','--process', type=str, help='Name of the process to use to send jobs or for the check', default='')
-
     genTypeGroup = parser.add_mutually_exclusive_group(required = True) # Type of events to generate
     genTypeGroup.add_argument("--reco", action='store_true', help="reco events")
     genTypeGroup.add_argument("--LHE", action='store_true', help="LHE events")
@@ -72,12 +70,21 @@ if __name__=="__main__":
 
     versionGroup = parser.add_argument_group('recontruction version')
     versionGroup.add_argument('--version', type=str, required = '--reco' in sys.argv, help='Version to use', choices = para.fcc_versions)
+
     decaylist=[]
     for key, value in para.decaylist.iteritems():
         for v in value:
             if v  not in decaylist: decaylist.append(v)
-        
+    
     sendjobGroup.add_argument('-d', '--decay', type=str, default='', help='pythia8 decay when needed', choices=decaylist)
+
+    processlist=[]
+    for key, value in para.pythialist.iteritems():
+        processlist.append(key)
+    for key, value in para.gridpacklist.iteritems():
+        processlist.append(key)
+    print processlist
+    parser.add_argument('-p','--process', type=str, help='Name of the process to use to send jobs or for the check', default='', choices=processlist)
 
     args, _ = parser.parse_known_args()
     version = args.version
