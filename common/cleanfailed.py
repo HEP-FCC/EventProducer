@@ -45,9 +45,12 @@ class cleanfailed():
                            nfailed+=1
                            cmd="rm %s"%(tmpf['processing']['out'])
                            print cmd
+                           os.system(cmd)
+
                            cmd="rm %s"%(f)
                            print cmd
-                           #os.system(cmd)
+                           os.system(cmd)
+
                     except yaml.YAMLError as exc:
                         print(exc)
 
