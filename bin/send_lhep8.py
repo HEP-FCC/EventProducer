@@ -2,14 +2,14 @@
 #python bin/sendJobs_FCCSW.py secret -n 1 -e -1  -p "pp_h012j_5f" -q 1nh --test
 #python bin/sendJobs_FCCSW.py -n 1 -p pp_h012j_5f -q 8nh -e -1 -v fcc_v02
 
-  #     lhedict=self.para.lhe_dic
-   #  for proc, value in sorted(self.indict.items()):
 import os, sys
 import commands
 import time
-import json
+import yaml
+import glob
 from select import select
 import EventProducer.common.utils as ut
+import EventProducer.common.makeyaml as my
 
 class send_lhep8():
 
@@ -25,12 +25,6 @@ class send_lhep8():
         self.decay   = decay
         self.user    = os.environ['USER']
 
-        self.lhedict=self.para.lhe_dic
-        self.indict=None
-        with open(self.lhedict,'r') as f:
-            self.indict = json.load(f)
-
-
 
 #__________________________________________________________
     def send(self):
@@ -43,12 +37,6 @@ class send_lhep8():
             gplist[self.process]
         except KeyError, e:
             print 'process %s does not exist as gridpack'%self.process
-            sys.exit(3)
-
-        try:
-           self.indict[self.process]
-        except KeyError, e:
-            print 'process %s does not exist in the LHE dictionary'%self.process
             sys.exit(3)
 
         delphescards_mmr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mmr)
@@ -73,9 +61,9 @@ class send_lhep8():
 
 
         print '======================================',self.process
-        pythiacard='%spythia_%s.cmd'%(self.para.pythiacards_dir,self.process)
+        pythiacard='%s%s.cmd'%(self.para.pythiacards_dir,self.process)
         if self.decay!='':
-            pythiacard='%spythia_%s_%s.cmd'%(self.para.pythiacards_dir,self.process,self.decay)
+            pythiacard='%s%s_%s.cmd'%(self.para.pythiacards_dir,self.process,self.decay)
             
         if ut.file_exist(pythiacard)==False:
             print 'pythia card does not exist: ',pythiacard
@@ -86,13 +74,13 @@ class send_lhep8():
                 s = sys.stdin.readline()
                 if s=="y\n":
                     print 'use default card'
-                    pythiacard='%spythia_default.cmd'%(self.para.pythiacards_dir)
+                    pythiacard='%sp8_pp_default.cmd'%(self.para.pythiacards_dir)
                 else:
                     print 'exit'
                     sys.exit(3)
             else:
                 print "timeout, use default card"
-                pythiacard='%spythia_default.cmd'%(self.para.pythiacards_dir)
+                pythiacard='%sp8_pp_default.cmd'%(self.para.pythiacards_dir)
 
         pr_noht=''
         if '_HT_' in self.process:
@@ -119,47 +107,77 @@ class send_lhep8():
         print '====',pr_decay,'===='
 
 
-        if len(self.indict[self.process])<self.njobs:
-            print 'only %i LHE file exists, will not run all the jobs requested'%len(self.indict[self.process])
+        logdir=Dir+"/BatchOutputs/%s/%s/"%(self.version,pr_decay)
+        if not ut.dir_exist(logdir):
+            os.system("mkdir -p %s"%logdir)
+     
+        yamldir = '%s/%s/%s'%(self.para.yamldir,self.version,pr_decay)
+        if not ut.dir_exist(yamldir):
+            os.system("mkdir -p %s"%yamldir)
+
+        yamllhedir = '%s/lhe/%s'%(self.para.yamldir,self.process)
+  
+        All_files = glob.glob("%s/events_*.yaml"%yamllhedir)
+        if len(All_files)==0:
+            print 'there is no LHE files checked for process %s exit'%self.process
+            sys.exit(3)
+
+        if len(All_files)<self.njobs:
+            print 'only %i LHE file exists, will not run all the jobs requested'%len(All_files)
 
         nbjobsSub=0
         ntmp=0
         processp8 = self.process.replace('mg_','mgp8_')
-        for s in self.indict[self.process]:
-            if ntmp == self.njobs: break
-            ntmp+=1
-            if s['status']=='BAD':continue
-            outfile='%s/%s/events_%s.root'%(outdir,processp8,s['jobid'])
+
+        for i in xrange(len(All_files)):
+
+            if nbjobsSub == self.njobs: break
+
+            tmpf=None
+            with open(All_files[i], 'r') as stream:
+                try:
+                    tmpf = yaml.load(stream)
+                    if tmpf['processing']['status']!='DONE': continue
+                    
+                except yaml.YAMLError as exc:
+                    print(exc)
+
+            jobid=tmpf['processing']['jobid']
+
+            myyaml = my.makeyaml(yamldir, jobid)
+            if not myyaml: 
+                print 'job %s already exists'%jobid
+                continue
+
+            outfile='%s/%s/events_%s.root'%(outdir,processp8,jobid)
             if ut.file_exist(outfile):
                 print 'outfile already exist, continue  ',outfile
-            print type(s['jobid'])
 
-            logdir=Dir+"/BatchOutputs/%s/%s/"%(self.version,pr_decay)
-            os.system("mkdir -p %s"%logdir)
-            frunname = 'job%s.sh'%(s['jobid'])
+            frunname = 'job%s.sh'%(jobid)
+            frunfull = '%s/%s'%(logdir,frunname)
 
             frun = None
             try:
-                frun = open(logdir+'/'+frunname, 'w')
+                frun = open(frunfull, 'w')
             except IOError as e:
                 print "I/O error({0}): {1}".format(e.errno, e.strerror)
                 time.sleep(10)
-                frun = open(logdir+'/'+frunname, 'w')
+                frun = open(frunfull, 'w')
 
 
 
-            commands.getstatusoutput('chmod 777 %s/%s'%(logdir,frunname))
+            commands.getstatusoutput('chmod 777 %s'%(frunfull))
             frun.write('#!/bin/bash\n')
             frun.write('unset LD_LIBRARY_PATH\n')
             frun.write('unset PYTHONHOME\n')
             frun.write('unset PYTHONPATH\n')
             frun.write('source %s\n'%(self.para.stack))
-            frun.write('mkdir job%s_%s\n'%(s['jobid'],pr_decay))
-            frun.write('cd job%s_%s\n'%(s['jobid'],pr_decay))
+            frun.write('mkdir job%s_%s\n'%(jobid,pr_decay))
+            frun.write('cd job%s_%s\n'%(jobid,pr_decay))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('mkdir -p %s%s/%s\n'%(self.para.delphes_dir,self.version,pr_decay.replace('mg_','mgp8_')))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(s['out']))
-            frun.write('gunzip -c %s > events.lhe\n'%s['out'].split('/')[-1])          
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(tmpf['processing']['out']))
+            frun.write('gunzip -c %s > events.lhe\n'%tmpf['processing']['out'].split('/')[-1])          
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_base))
             if 'fcc' in self.version:
                 frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mmr))
@@ -169,13 +187,13 @@ class send_lhep8():
             frun.write('echo "Beams:LHEF = events.lhe" >> card.cmd\n')
             if 'helhc' in self.version:
                 frun.write('echo " Beams:eCM = 27000." >> card.cmd\n')
-            frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,s['jobid'],self.events))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events_%s.root %s\n'%(s['jobid'],outfile))
+            frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,jobid,self.events))
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events_%s.root %s\n'%(jobid,outfile))
             
             frun.write('cd ..\n')
-            frun.write('rm -rf job%s_%s\n'%(s['jobid'],pr_decay))
+            frun.write('rm -rf job%s_%s\n'%(jobid,pr_decay))
 
-            cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -cwd%s %s" %(self.queue, logdir,logdir+'/'+frunname)
+            cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -cwd%s %s" %(self.queue, logdir,frunfull)
              
             batchid=-1
             job,batchid=ut.SubmitToLsf(cmdBatch,10)
