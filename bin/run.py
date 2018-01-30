@@ -5,12 +5,12 @@
 #python bin/run.py --HELHC --LHE --remove -p mg_pp_ee_lo
 #python bin/run.py --HELHC --LHE --clean -p mg_pp_ee_lo
 
-#python bin/run.py --HELHC --reco --send -p mg_pp_ee_lo --type lhep8 -N 1 --lsf -q 1nh --version helhc_v01
+#python bin/run.py --HELHC --reco --send -p mg_pp_tt_lo --type lhep8 -N 1 --lsf -q 1nh --version helhc_v01
 #python bin/run.py --HELHC --reco --send -p p8_pp_Zprime_10TeV_ll -n 10000 --type p8 -N 1 --lsf -q 1nh --version helhc_v01
 #python bin/run.py --HELHC --reco --check --version helhc_v01
 #python bin/run.py --HELHC --reco --merge --version helhc_v01
 #python bin/run.py --HELHC --reco --web --version helhc_v01
-#python bin/run.py --HELHC --reco --remove -p mgp8_pp_ee_lo
+#python bin/run.py --HELHC --reco --remove -p mgp8_pp_tt_lo --version helhc_v01
 #python bin/run.py --HELHC --reco --clean --version helhc_v01 -p p8_pp_Zprime_10TeV_ttbar
 
 import sys
@@ -83,7 +83,6 @@ if __name__=="__main__":
         processlist.append(key)
     for key, value in para.gridpacklist.iteritems():
         processlist.append(key)
-    print processlist
     parser.add_argument('-p','--process', type=str, help='Name of the process to use to send jobs or for the check', default='', choices=processlist)
 
     args, _ = parser.parse_known_args()
