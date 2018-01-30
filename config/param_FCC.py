@@ -6,6 +6,8 @@ eostest_size=1312594
 lhe_web="/afs/cern.ch/user/h/helsens/www/data/LHEevents.txt"
 delphes_web="/afs/cern.ch/user/h/helsens/www/data/Delphesevents_VERSION.txt"
 
+#yaml directory
+yamldir='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCC/'
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'
