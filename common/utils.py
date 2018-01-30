@@ -22,6 +22,15 @@ def isValidROOTfile(infile):
 
 
 #__________________________________________________________
+def getsize(f):
+    exist=os.path.isfile(f)
+    if exist:
+        size = os.path.getsize(f)
+        return size
+    return -1
+
+
+#__________________________________________________________
 def getCommandOutput(command):
     p = subprocess.Popen(command, shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
     stdout,stderr = p.communicate()
