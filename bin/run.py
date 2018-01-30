@@ -6,7 +6,7 @@
 #python bin/run.py --HELHC --LHE --clean -p mg_pp_ee_lo
 
 #python bin/run.py --HELHC --reco --send -p mg_pp_ee_lo --type lhep8 -N 1 --lsf -q 1nh --version helhc_v01
-#python bin/run.py --HELHC --reco --send -p pp_Zprime_10TeV_ll -n 10000 --type p8 -N 1 --lsf -q 1nh --version helhc_v01
+#python bin/run.py --HELHC --reco --send -p p8_pp_Zprime_10TeV_ll -n 10000 --type p8 -N 1 --lsf -q 1nh --version helhc_v01
 #python bin/run.py --HELHC --reco --check --version helhc_v01
 #python bin/run.py --HELHC --reco --merge --version helhc_v01
 #python bin/run.py --HELHC --reco --web --version helhc_v01
