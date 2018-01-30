@@ -68,7 +68,9 @@ class printdicts():
                     except KeyError, e:
                         sumw+=0
                 if j['status']=='BAD':njobs_bad+=1
-                
+         
+            proc = proc.replace('mgp8_','mg_')
+       
             news=str(proc)
             proc=str(proc)
             print '------------------------------- proc  ',proc, type(proc)
@@ -132,7 +134,8 @@ class printdicts():
                 cmd='%s,,%s,,%i,,%i,,%i,,%.2f,,%s,,%s,,%s,,%s,,%s\n'%(news,self.comma_me(str(evttot)),njobs,njobs_bad,nfileseos,size  ,outdir.replace(outdirtmp.split('/')[-1],''),self.para.gridpacklist[proc][0],self.para.gridpacklist[proc][1],self.para.gridpacklist[proc][2],self.para.gridpacklist[proc][3])
                 print size
             elif  self.matching and not ispythiaonly:
-                cmd='%s,,%s,,%s,,%i,,%i,,%i,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,self.comma_me(str(evttot)),self.comma_me(str(sumw)),njobs,njobs_bad,nfileseos, size ,outdir.replace(outdirtmp.split('/')[-1],''),self.para.gridpacklist[proc][0],self.para.gridpacklist[proc][1],self.para.gridpacklist[proc][3],self.para.gridpacklist[proc][4],self.para.gridpacklist[proc][5])
+                cmd='%s,,%s,,%s,,%i,,%i,,%i,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,self.comma_me(str(evttot)),self.comma_me(str(sumw)),njobs,njobs_bad,nfileseos, size ,outdir.replace(outdirtmp.split('/')[-1],''),self.para.gridpacklist[proc][0],self.para.gridpacklist[proc][1],self.para.gridpacklist[proc][3],self.para.gridpacklist[proc][4],self.para.gridpacklist[proc][5])
+                print size
             elif  ispythiaonly:
                 cmd='%s,,%s,,%s,,%i,,%i,,%i,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,self.comma_me(str(evttot)),self.comma_me(str(sumw)),njobs,njobs_bad,nfileseos, size ,outdir.replace(outdirtmp.split('/')[-1],''),self.para.pythialist[news][0],self.para.pythialist[news][1],self.para.pythialist[news][3],self.para.pythialist[news][4],self.para.pythialist[news][5])
                 ispythiaonly=False
@@ -146,6 +149,8 @@ class printdicts():
             self.ntot_events+=int(evttot)
             self.ntot_files+=int(njobs)
             self.tot_size+=float(size)
-        cmd='%s,,%s,,%s,,%s,,%s,,%.2f,,%s,,%s\n'%('total',self.comma_me(str(self.ntot_events)),self.comma_me(str(self.ntot_files)),'','',self.tot_size,'','')
+        if not self.matching and not ispythiaonly:cmd='%s,,%s,,%s,,%s,,%s,,%.2f,,%s,,%s\n'%('total',self.comma_me(str(self.ntot_events)),self.comma_me(str(self.ntot_files)),'','',self.tot_size,'','')
+        else: cmd='%s,,%s,,%s,,%s,,%s,,%s,,%.2f,,%s,,%s\n'%('total',self.comma_me(str(self.ntot_events)),'',self.comma_me(str(self.ntot_files)),'','',self.tot_size,'','')
+
         self.OutFile.write(cmd)
 
