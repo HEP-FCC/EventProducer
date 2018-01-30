@@ -149,7 +149,7 @@ if __name__=="__main__":
         sys.exit(3)
 
     if sys.argv[2]=='FCC':
-        import EventProducer.config.param as para
+        import EventProducer.config.param_FCC as para
     elif sys.argv[2]=='HELHC':
         import EventProducer.config.param_HELHC as para
     else:
