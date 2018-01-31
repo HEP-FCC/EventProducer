@@ -1,5 +1,5 @@
 #python bin/run.py --HELHC --LHE --send -p mg_pp_ee_lo -n 10000 -N 100 --lsf -q 1nh
-#python bin/run.py --HELHC --LHE --check --dir /eos/experiment/fcc/helhc/generation/lhe/
+#python bin/run.py --HELHC --LHE --check --process mg_gg_aa01j_mhcut_5f_HT_0_100
 #python bin/run.py --HELHC --LHE --merge
 #python bin/run.py --HELHC --LHE --web
 #python bin/run.py --HELHC --LHE --remove -p mg_pp_ee_lo
@@ -37,9 +37,6 @@ if __name__=="__main__":
     jobTypeGroup.add_argument("--clean", action='store_true', help="clean the dictionnary and eos from bad jobs")
     jobTypeGroup.add_argument("--web", action='store_true', help="print the dictionnary for webpage")
     jobTypeGroup.add_argument("--remove", action='store_true', help="remove a specific process from the dictionary and from eos" )
-
-    checkTypeGroup = parser.add_argument_group('arguments for check')
-    checkTypeGroup.add_argument("--dir", help="input directory, optional", default='')
 
     sendjobGroup = parser.add_argument_group('type of jobs to send')
     sendjobGroup.add_argument('--type', type=str, required = '--send' in sys.argv and '--reco'  in sys.argv , help='type of jobs to send', choices = ['lhep8','p8'])
@@ -112,9 +109,6 @@ if __name__=="__main__":
 
     if args.check:
         print 'running the check'
-        if args.dir!='':
-            print 'using a specific input directory ',args.dir
-            indir=args.dir
         if args.process!='':
             print 'using a specific process ',args.process
         import EventProducer.common.checker_yaml as chky
@@ -125,7 +119,8 @@ if __name__=="__main__":
     elif args.merge:
         print 'running the merger'
         import EventProducer.common.merger as mgr
-        merger = mgr.merger(para.yamldir)
+        isLHE=args.LHE
+        merger = mgr.merger(para.yamldir, isLHE, version)
         merger.merge()
 
     elif args.send:
