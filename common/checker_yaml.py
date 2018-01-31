@@ -108,11 +108,13 @@ class checker_yaml():
     
         f=r.TFile.Open(f)
         tt=tf.Get(tname)
-        if tt.GetEntries()==0:
+        nentries=tt.GetEntries()
+        if nentries==0:
             print 'file has 0 entries ===%s=== must be deleted'%f
             return 0,False
-
-        return int(tt.GetEntries()),True
+        
+        print  '%i events in the file, job is good'%nentries
+        return int(nentries),True
 
 #__________________________________________________________
     def makeyamldir(self, outdir):
@@ -127,21 +129,23 @@ class checker_yaml():
 #__________________________________________________________
     def check(self):
 
-        ldir=[x[0] for x in os.walk(self.indir)]
-
+        #ldir=[x[0] for x in os.walk(self.indir)]
+        ldir=next(os.walk(self.indir))[1]
+        
         if not ut.testeos(self.para.eostest,self.para.eostest_size):
             print 'eos seems to have problems, should check, will exit'
             sys.exit(3)
     
         for l in ldir:
-            All_files = glob.glob("%s/events_*%s"%(l,self.fext))
+            print '--------------------- ',l
+            process=l
+            All_files = glob.glob("%s/%s/events_*%s"%(self.indir,l,self.fext))
+            print 'number of files  ',len(All_files)
             if len(All_files)==0:continue
         
-            keys=l.split('/')
-            if keys[-1]!='':process=keys[-1]
-            else:process=keys[len(keys)-2]            
+            if l=='lhe' or l=='BADLYMOVED' or l=="__restored_files__": continue
             print 'process from the input directory ',process
-            if self.process!='' and self.process!=process: 
+            if self.process!='' and self.process!=l: 
                 continue
 
             outdir = self.makeyamldir(self.yamldir+process)
@@ -151,7 +155,6 @@ class checker_yaml():
                 if not os.path.isfile(f): 
                     print 'file does not exists... %s'%f
                     continue
-                print '-----------',f
             
                 jobid=f.split('_')[-1]
                 jobid=jobid.replace(self.fext,'')
@@ -159,6 +162,7 @@ class checker_yaml():
 
                 outfile='%sevents_%s.yaml'%(outdir,jobid)
                 if ut.file_exist(outfile) and ut.getsize(outfile)> 80: continue
+                print '-----------',f
 
                 if '.root' in self.fext:
                     nevts, check=self.checkFile_root(f, self.para.treename)

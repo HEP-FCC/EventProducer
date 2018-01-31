@@ -5,17 +5,21 @@ import glob
 class merger():
 
 #__________________________________________________________
-    def __init__(self, indir):
-        self.indir  = indir
+    def __init__(self, indir, isLHE, version):
+        if isLHE:
+            self.indir = indir+'lhe/'
+        else:
+            self.indir = indir+version+'/'
 
 #__________________________________________________________
     def merge(self):
         
-        ldir=[x[0] for x in os.walk(self.indir)]
-        print ldir
+        ldir=next(os.walk(self.indir))[1]
+        print self.indir
+        #ldir=[x[0] for x in os.walk(self.indir)]
        
         for l in ldir:
-            outfile=l+'/merge.yaml'
+            outfile=self.indir+'/'+l+'/merge.yaml'
             totsize=0
             totevents=0
             process=None
@@ -24,9 +28,10 @@ class merger():
 
             ndone=0
             nbad=0
-            All_files = glob.glob("%s/events_*.yaml"%l)
+            All_files = glob.glob("%s/%s/events_*.yaml"%(self.indir,l))
             if len(All_files)==0:continue
 
+            print 'merging process %s  %i files'%(l,len(All_files))
             for f in All_files:
                 if not os.path.isfile(f): 
                     print 'file does not exists... %s'%f
@@ -35,7 +40,8 @@ class merger():
                 with open(f, 'r') as stream:
                     try:
                        tmpf = yaml.load(stream)
-                       if tmpf['processing']['status']!='DONE':
+                       if tmpf['processing']['status']=='sending': continue
+                       if tmpf['processing']['status']=='BAD':
                            nbad+=1
                            outfilesbad.append(tmpf['processing']['out'].split('/')[-1])
                            continue

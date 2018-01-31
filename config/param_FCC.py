@@ -393,12 +393,13 @@ gridpacklist = {
 'mg_pp_mumu_nlo':['m+m- @NLO','m(mumu) > 5 TeV','','1.553e-04','1.0','1.0'],
 'mg_pp_wj_4f_M_5000_inf':['w+ 1j','m(wj) > 5 TeV','','0.3314','2.0','1.0'],
 'mg_pp_vj_4f_M_5000_inf':['w/z+ 1j','m(vj) > 5 TeV','','0.4679','2.0','1.0'],
-'mg_pp_ee_lo':['','m > 10 TeV','','9.428e-06','1.0','1.0'],
-'mg_pp_mumu_lo':['','m > 10 TeV','','9.428e-06','1.0','1.0'],
-'mg_pp_tt_lo':['','m > 5 TeV','','0.1373','1.0','1.0'],
-'mg_pp_jj_lo':['','m > 5 TeV','','43.05','1.0','1.0'],
-'mg_pp_jj_lo_filter_pTjet7.5TeV':['','m > 15 TeV','','0.07777','1.0','1.0'],
-'mg_pp_vv_lo':['','m > 5 TeV','','0.00316','1.0','1.0'],
+'mg_pp_ee_lo':['','m > 10 TeV','','9.428e-06','2.0','1.0'],
+'mg_pp_mumu_lo':['','m > 10 TeV','','9.428e-06','2.0','1.0'],
+'mg_pp_mumu_lo_2TeV':['','m > 2 TeV','','0.00717','2.0','1.0'],
+'mg_pp_tt_lo':['','m > 5 TeV','','0.1373','2.0','1.0'],
+'mg_pp_jj_lo':['','m > 5 TeV','','43.05','2.0','1.0'],
+'mg_pp_jj_lo_filter_pTjet7.5TeV':['','m > 15 TeV','','0.07777','2.0','1.0'],
+'mg_pp_vv_lo':['','m > 5 TeV','','0.00316','2.0','1.0'],
 'mg_pp_www_4f':['WWW (4FS)','inclusive','','1.686','2.5','1.0'],
 'mg_pp_wwz_4f':['WWZ (4FS)','inclusive','','1.437','2.8','1.0'],
 'mg_pp_wzz_5f':['WZZ','inclusive','','0.4479','3.0','1.0'],
@@ -449,10 +450,33 @@ gridpacklist = {
 'mg_gg_aa01j_mhcut_5f_HT_200_500':['gluon fusion di-photon + 0/1 jets','200 < HT < 500','xqcut = 20, qCut = 30','0.026','2.0','0.915'],
 'mg_gg_aa01j_mhcut_5f_HT_200_100000':['gluon fusion di-photon + 0/1 jets','200 < HT < 100000','xqcut = 20, qCut = 30','0.02618','2.0','0.917'],
 'mg_gg_aa01j_mhcut_5f_HT_500_100000':['gluon fusion di-photon + 0/1 jets','500 < HT < 100000','xqcut = 20, qCut = 30','0.0002481','2.0','0.956'],
+'mg_pp_llaj_mhcut_5f_HT_0_150':['l+ l- gamma + 1 jet','0 < HT < 150','','5.504','','1.0'],
+'mg_pp_llaj_mhcut_5f_HT_150_100000':['l+ l- gamma + 1 jet','150 < HT < 100000','','0.2045','','1.0'],
+'mg_gg_aaj_mhcut_5f_HT_0_150':['gluon fusion di-photon + 1 jet','0 < HT < 150','','53.86','','1.0'],
+'mg_gg_aaj_mhcut_5f_HT_150_100000':['gluon fusion di-photon + 1 jet','150 < HT < 100000','','0.08556','','1.0'],
+'mg_pp_mumuj_mhcut_5f_HT_0_100':['mu+ mu- + 1 jet','0 < HT < 100','','103.8','','1.0'],
+'mg_pp_mumuj_mhcut_5f_HT_100_500':['mu+ mu- + 1 jet','100 < HT < 500','','11.74','','1.0'],
+'mg_pp_mumuj_mhcut_5f_HT_500_100000':['mu+ mu- + 1 jet','500 < HT < 100000','','0.1245','','1.0'],
+#Zprime signals to fit flavor anomalie Ben Allanach https://arxiv.org/abs/1710.06363
+'mg_pp_Zprime_mumu_5f_Mzp_2TeV':['','Zp->mu+mu-','','0.002573','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_4TeV':['','Zp->mu+mu-','','0.0005878','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_5TeV':['','Zp->mu+mu-','','0.000332','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_6TeV':['','Zp->mu+mu-','','0.000202','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_8TeV':['','Zp->mu+mu-','','8.857e-05','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_10TeV':['','Zp->mu+mu-','','4.497e-05','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_12TeV':['','Zp->mu+mu-','','2.803e-05','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_15TeV':['','Zp->mu+mu-','','1.717e-05','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_14TeV':['','Zp->mu+mu-','','1.968e-05','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_16TeV':['','Zp->mu+mu-','','1.548e-05','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_18TeV':['','Zp->mu+mu-','','1.321e-05','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_20TeV':['','Zp->mu+mu-','','1.136e-05','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_25TeV':['','Zp->mu+mu-','','9.823e-06','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_30TeV':['','Zp->mu+mu-','','8.493e-06','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_35TeV':['','Zp->mu+mu-','','7.108e-06','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_40TeV':['','Zp->mu+mu-','','5.819e-06','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_45TeV':['','Zp->mu+mu-','','4.64e-06','1.0','1.0'],
 
-
-
-# xsec is given by 2*xsec(NLO)*BR(H->bb), then NNLL/NLO kfactor = 1.33/1.15 is applied according to prescription I.7.8 in Higgs XSECWG YR4 (1610.07922) with delta_t=-0.315
+# xsec is given by 2*xsec(NLO)*BR(H->bb), then NNLL/NLO kfactor = 1.33/1.15 is app_mglied according to prescription I.7.8 in Higgs XSECWG YR4 (1610.07922) with delta_t=-0.315
 # lambda dep xsec(NLO) from 100TeV version of Fig.12 left plot in 1608.04798 (from private conversation with Gudrun Heinrich)
 # for now keep kfactor 1.75/1.15 obtained directly from NNLL (for sake of comparison with YR)
 'mg_pp_hh_lambda050_5f':['HH, H->bb, H undec., kl = 0.50','','','1.92258','1.52','1.0'],
@@ -470,17 +494,22 @@ gridpacklist = {
 'mg_pp_hh_lambda105_5f':['HH, H->bb, H undec., kl = 1.05','','','1.25848','1.52','1.0'],
 'mg_pp_hh_lambda110_5f':['HH, H->bb, H undec., kl = 1.10','','','1.20914','1.52','1.0'],
 'mg_pp_hh_lambda150_5f':['HH, H->bb, H undec., kl = 1.50','','','0.88070','1.52','1.0'],
-'mg_pp_hhj_lambda050_5f':['HH + 1 jet, pT(HH) > 200, kl = 0.50','inclusive','','0.08285','2.71','1.0'],
-'mg_pp_hhj_lambda090_5f':['HH + 1 jet, pT(HH) > 200, kl = 0.90','inclusive','','0.06107','2.71','1.0'],
-'mg_pp_hhj_lambda095_5f':['HH + 1 jet, pT(HH) > 200, kl = 0.95','inclusive','','0.05870','2.71','1.0'],
-'mg_pp_hhj_lambda100_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.00','inclusive','','0.05644','2.71','1.0'],
-'mg_pp_hhj_lambda105_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.05','inclusive','','0.05424','2.71','1.0'],
-'mg_pp_hhj_lambda110_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.10','inclusive','','0.05209','2.71','1.0'],
-'mg_pp_hhj_lambda150_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.50','inclusive','','0.03793','2.71','1.0'],
-
+'mg_pp_hhj_lambda050_5f':['HH + 1 jet, pT(HH) > 200, kl = 0.50','inclusive','','0.08285','1.95','1.0'],
+'mg_pp_hhj_lambda090_5f':['HH + 1 jet, pT(HH) > 200, kl = 0.90','inclusive','','0.06107','1.95','1.0'],
+'mg_pp_hhj_lambda095_5f':['HH + 1 jet, pT(HH) > 200, kl = 0.95','inclusive','','0.05870','1.95','1.0'],
+'mg_pp_hhj_lambda100_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.00','inclusive','','0.05644','1.95','1.0'],
+'mg_pp_hhj_lambda105_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.05','inclusive','','0.05424','1.95','1.0'],
+'mg_pp_hhj_lambda110_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.10','inclusive','','0.05209','1.95','1.0'],
+'mg_pp_hhj_lambda150_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.50','inclusive','','0.03793','1.95','1.0'],
 
 #DM signals Caterina Doglioni
 'mg_pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1.0'],
+
+#ADDED BY CLEMENT TO FIX PRINTER
+'mg_gg_aa01j_mhcut_5f_HT_100_300':['gluon fusion di-photon + 0/1 jets','0 < HT < 500','xqcut = 20, qCut = 30','850.4','2.0','0.578'],
+'mg_gg_aa01j_mhcut_5f_HT_200_10000':['gluon fusion di-photon + 0/1 jets','200 < HT < 100000','xqcut = 20, qCut = 30','0.02618','2.0','0.917'],
+
+
 }
 
 

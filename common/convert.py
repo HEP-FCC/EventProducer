@@ -13,7 +13,10 @@ import random
 from datetime import datetime
 import EventProducer.config.users as us
 import EventProducer.common.utils as ut
-
+#mg_pp_tt012j_5f_HT_2100_3400
+#mg_pp_tt012j_5f_HT_25000_35000
+#mg_pp_tt012j_5f_HT_3400_5300
+#mg_pp_tt012j_5f_HT_35000_100000
 #__________________________________________________________
 def runFiles(basedir):
     ldir=[x[0] for x in os.walk(basedir)]
@@ -28,8 +31,7 @@ def runFiles(basedir):
             process=l.split('/')[len(ltmp)-2]
         print 'process  ',process
         for f in All_files:
-            
-            if len(f.split('/')[-1])>20: continue
+            if len(f.split('/')[-1])>19 or 'events_' in f: continue
 
             if not os.path.isfile(f): continue
             if '.root' in f:
@@ -40,22 +42,40 @@ def runFiles(basedir):
             ori_id=f.split('/')[-1].replace('events','')
             ori_id=ori_id.split('.')[0]
             
-            if user in ut.find_owner(f):
+            if user in ut.find_owner(f) or user=='helsens':
                 baseid=''
-                for i in xrange(9-len(ori_id)):
-                    baseid+='0'
                 ori_id=int(ori_id)
                 ori_id+=1
+                for i in xrange(9-len(str(ori_id))):
+                    baseid+='0'
+
                 new_id=baseid+str(ori_id)
                 print ori_id,'    ',new_id
 
-                uniqueID='%s_%s'%(user,new_id)
+                uniqueID='%s'%(new_id)
                 outfile = 'events_%s%s'%(uniqueID,exten)
  
-                cmd = 'mv %s %s'%(f,basedir+outfile)
+                cmd = 'mv %s %s'%(f,l+'/'+outfile)
+                #cmdBAD = 'mv %s %s'%(f,basedir+'/'+outfile)
+
                 print cmd
-                #os.system(cmd)
+                os.system(cmd)
                 time.sleep(0.01)
+
+
+#__________________________________________________________
+def runListEmpty(basedir):
+    ldir=[x[0] for x in os.walk(basedir)]
+    for l in ldir:
+        All_files = glob.glob("%s/*events*"%(l))
+        if len(All_files)==0:
+            process = l.split('/')[-1]
+            if process=='':
+                ltmp=l.split('/')
+                process=l.split('/')[len(ltmp)-2]
+            print 'empty process  ',process
+        continue
+  
 
 
 #__________________________________________________________
@@ -102,3 +122,5 @@ if __name__=="__main__":
         runGP(basedir)
 
 
+    elif sys.argv[2]=='listempty':
+        runListEmpty(basedir)
