@@ -398,6 +398,7 @@ gridpacklist = {
 'mg_pp_mumu_lo_2TeV':['','m > 2 TeV','','0.00717','2.0','1.0'],
 'mg_pp_tt_lo':['','m > 5 TeV','','0.1373','2.0','1.0'],
 'mg_pp_jj_lo':['','m > 5 TeV','','43.05','2.0','1.0'],
+'mg_pp_jj_lo_filter_pTjet7.5TeV':['','m > 15 TeV','','0.07777','2.0','1.0'],
 'mg_pp_vv_lo':['','m > 5 TeV','','0.00316','2.0','1.0'],
 'mg_pp_www_4f':['WWW (4FS)','inclusive','','1.686','2.5','1.0'],
 'mg_pp_wwz_4f':['WWZ (4FS)','inclusive','','1.437','2.8','1.0'],
