@@ -20,13 +20,15 @@ class checker_yaml():
         self.yamldir = self.para.yamldir
         if 'lhe' in self.fext:
            self.yamldir = self.yamldir+'lhe/'
+           self.yamlcheck = para.yamlcheck_lhe
+
         elif 'root' in  self.fext:
             self.yamldir = self.yamldir+version+'/'
+            self.yamlcheck = para.yamlcheck_reco.replace('VERSION',version)
         else:
             print 'file extension not known... exit'
             sys.exit(3)
 
-        
 
 #__________________________________________________________
     def checkFile_lhe(self, f):
@@ -142,7 +144,6 @@ class checker_yaml():
             All_files = glob.glob("%s/%s/events_*%s"%(self.indir,l,self.fext))
             print 'number of files  ',len(All_files)
             if len(All_files)==0:continue
-        
             if l=='lhe' or l=='BADLYMOVED' or l=="__restored_files__": continue
             print 'process from the input directory ',process
             if self.process!='' and self.process!=l: 
@@ -151,6 +152,7 @@ class checker_yaml():
             outdir = self.makeyamldir(self.yamldir+process)
 
             ntot=0
+            hasbeenchecked=False
             for f in All_files:
                 if not os.path.isfile(f): 
                     print 'file does not exists... %s'%f
@@ -162,6 +164,7 @@ class checker_yaml():
 
                 outfile='%sevents_%s.yaml'%(outdir,jobid)
                 if ut.file_exist(outfile) and ut.getsize(outfile)> 80: continue
+                hasbeenchecked=True
                 print '-----------',f
 
                 if '.root' in self.fext:
@@ -202,3 +205,7 @@ class checker_yaml():
                 else:
                     print 'not correct file extension %s'%self.fext
     
+            if hasbeenchecked:ut.yamlstatus(self.yamlcheck, process, False)
+
+
+

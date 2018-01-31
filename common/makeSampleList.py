@@ -9,7 +9,6 @@ import json, time, datetime
 import ast, os
 import collections
 import re
-import EventProducer.config.param as para
 import sys
 #______________________________________________________________________________________________________
 def addEntry(process, processlhe, xsec, kf, lheDict, fccDict, heppyFile, procDict):
@@ -26,11 +25,11 @@ def addEntry(process, processlhe, xsec, kf, lheDict, fccDict, heppyFile, procDic
    matchingEff = 1.0
 
    for jobfcc in fccDict[process]:
-       if jobfcc['nevents']>0 and jobfcc['status']== 'done':
+       if int(jobfcc['nevents'])>0 and jobfcc['status']== 'DONE':
            for joblhe in lheDict[processlhe]:
-               if int(joblhe['jobid']) == jobfcc['jobid'] and joblhe['status']== 'done':
+               if joblhe['jobid'] == jobfcc['jobid'] and joblhe['status']== 'DONE':
                    nlhe += int(joblhe['nevents'])
-                   nmatched+=jobfcc['nevents']
+                   nmatched+= int(jobfcc['nevents'])
                    try:
                        nweights+=int(jobfcc['nweights'])
                    except KeyError, e:
@@ -77,8 +76,8 @@ def addEntryPythia(process, xsec, kf, fccDict, heppyFile, procDict):
    matchingEff = 1.0
 
    for jobfcc in fccDict[process]:
-       if jobfcc['nevents']>0 and jobfcc['status']== 'done':
-           nmatched+=jobfcc['nevents']
+       if int(jobfcc['nevents'])>0 and jobfcc['status']== 'DONE':
+           nmatched+=int(jobfcc['nevents'])
            try:
                nweights+=int(jobfcc['nweights'])
            except KeyError, e:
@@ -104,19 +103,27 @@ def addEntryPythia(process, xsec, kf, fccDict, heppyFile, procDict):
 if __name__=="__main__":
 
 
+    
+
     heppyList = ''
     procList = ''
     fcc=''
     lhe=''
     version=sys.argv[1]
+    if 'fcc' in version:
+        import EventProducer.config.param_FCC as para
+    elif 'helhc' in version:
+        import EventProducer.config.param_HELHC as para
+
+
     if version not in para.fcc_versions:
         print 'version of the cards should be: fcc_v01, cms'
         print '======================%s======================'%version
         sys.exit(3)
     else:
         fcc=para.fcc_dic.replace('VERSION',version)
-        heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/heppySampleList_%s.py'%version
-        procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/procDict_%s.json'%version
+        heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/TEST_heppySampleList_%s.py'%version
+        procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/TEST_procDict_%s.json'%version
         lhe = para.lhe_dic
 
 
@@ -168,36 +175,37 @@ if __name__=="__main__":
        print ''
        print '------ ', process, '-------------'
        print ''
-
+       if 'mgp8_' in process:
+           processhad=process.replace('mgp8_','mg_')
        # maybe this was a decayed process, so it cannot be found as such in in the param file
        br = 1.0
        decay = ''
        for dec in para.branching_ratios:
-           dec_proc = process.split('_')[-1]
-           if dec in process and dec_proc == dec:
+           dec_proc = processhad.split('_')[-1]
+           if dec in processhad and dec_proc == dec:
                br = para.branching_ratios[dec]
                decay = dec
        if br < 1.0 and decay != '':
            print 'decay---------- '
            decstr = '_{}'.format(decay)
-           proc_param = process.replace(decstr,'')
+           proc_param = processhad.replace(decstr,'')
            print '--------------  ',decstr,'  --  ',proc_param
            xsec = float(para.gridpacklist[proc_param][3])*br
            kf = float(para.gridpacklist[proc_param][4])
-           matchingEff = addEntry(process, proc_param, xsec, kf, lheDict, fccDict, heppyFile, procDict)
+           matchingEff = addEntry(processhad, proc_param, xsec, kf, lheDict, fccDict, heppyFile, procDict)
 
        elif process in para.pythialist:
            xsec = float(para.pythialist[process][3])
            kf = float(para.pythialist[process][4])
            matchingEff = addEntryPythia(process, xsec, kf, fccDict, heppyFile, procDict)
 
-       elif process not in para.gridpacklist:
-           print 'process :', process, 'not found in param.py --> skipping process'
+       elif processhad not in para.gridpacklist:
+           print 'process :', processhad, 'not found in param.py --> skipping process'
            continue
        else: 
-           xsec = float(para.gridpacklist[process][3])
-           kf = float(para.gridpacklist[process][4])
-           matchingEff = addEntry(process, process, xsec, kf, lheDict, fccDict, heppyFile, procDict)
+           xsec = float(para.gridpacklist[processhad][3])
+           kf = float(para.gridpacklist[processhad][4])
+           matchingEff = addEntry(process, processhad, xsec, kf, lheDict, fccDict, heppyFile, procDict)
            # parse new param file
            with open(paramFile) as f:
                lines = f.readlines()

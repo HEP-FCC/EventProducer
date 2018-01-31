@@ -8,7 +8,6 @@ import glob
 import os.path
 import sys
 
-
 class cleanfailed():
 
 #__________________________________________________________

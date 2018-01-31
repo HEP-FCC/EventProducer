@@ -2,9 +2,11 @@ import warnings
 import ROOT as r
 import subprocess
 import os
-from pwd import getpwuid
 import sys
+import yaml
+
 from datetime import datetime
+from pwd import getpwuid
 
 import EventProducer.config.users as us
 
@@ -161,3 +163,51 @@ def getuid2(user):
                                  random.randint(0,9),
                                  random.randint(0,9))
     return seed
+
+
+
+#__________________________________________________________
+def yamlcheck(yamlfile, process):
+#if no input file
+    if not file_exist(yamlfile):
+        return False
+    
+    doc = None
+    with open(yamlfile) as f:
+        try:
+            doc = yaml.load(f)
+        except yaml.YAMLError as exc:
+            print(exc)
+    try: 
+        value = doc[process]
+        if value: return True
+        return False
+    except KeyError, e:
+        print 'Process %s does not exist' % str(e)
+        return False
+
+  
+    
+       
+
+#__________________________________________________________
+def yamlstatus(yamlfile, process, status):
+#if no input file
+    if not file_exist(yamlfile):
+        dic={process:True}
+        with open(yamlfile, 'w') as f:
+            yaml.dump(dic, f, default_flow_style=False)
+        return
+
+#if change the value of existing process
+    doc = None
+    with open(yamlfile) as f:
+        try:
+            doc = yaml.load(f)
+        except yaml.YAMLError as exc:
+            print(exc)
+    doc[process] = status
+
+    with open(yamlfile, 'w') as f:
+        yaml.dump(doc, f, default_flow_style=False)
+

@@ -120,7 +120,7 @@ if __name__=="__main__":
         print 'running the merger'
         import EventProducer.common.merger as mgr
         isLHE=args.LHE
-        merger = mgr.merger(para.yamldir, isLHE, version)
+        merger = mgr.merger(para.yamldir, isLHE, version, para)
         merger.merge()
 
     elif args.send:
