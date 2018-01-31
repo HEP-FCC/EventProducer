@@ -47,14 +47,13 @@ class printer():
 #__________________________________________________________
     def run(self):
         
-        ldir=[x[0] for x in os.walk(self.indir)]
+        #ldir=[x[0] for x in os.walk(self.indir)]
+        ldir=next(os.walk(self.indir))[1]
+
         for l in ldir:
-        
-            mergefile=l+'/merge.yaml'
+            process=l
+            mergefile=self.indir+'/'+l+'/merge.yaml'
             if not ut.file_exist(mergefile): continue
-            keys=l.split('/')
-            if keys[-1]!='':process=keys[-1]
-            else:process=keys[len(keys)-2]           
             print '--------------  process  ',process
 
             tmpf=None
@@ -158,7 +157,7 @@ class printer():
             self.ntot_bad+=float(bad_tot)
             self.ntot_eos+=float(nfileseos)
             self.ntot_sumw+=float(sumw_tot)
-        if not self.matching and not ispythiaonly:
+        if not self.matching:
             cmd='%s,,%s,,%s,,%s,,%s,,%.2f,,%s,,%s\n'%('total',self.comma_me(str(self.ntot_events)),self.comma_me(str(self.ntot_files)),
                                                       self.comma_me(str(self.ntot_bad)),self.comma_me(str(self.ntot_eos)),self.tot_size,'','')
         else: 
