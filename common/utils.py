@@ -211,3 +211,8 @@ def yamlstatus(yamlfile, process, status):
     with open(yamlfile, 'w') as f:
         yaml.dump(doc, f, default_flow_style=False)
 
+
+#__________________________________________________________
+def gettimestamp():
+    timestamp= int(datetime.utcnow().strftime('%Y%m%d%H%M'))
+    return timestamp
