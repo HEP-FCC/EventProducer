@@ -8,6 +8,8 @@ delphes_web="/afs/cern.ch/user/h/helsens/www/data/Delphesevents_VERSION.txt"
 
 #yaml directory
 yamldir='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/HELHC/'
+yamlcheck_lhe='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/HELHC/lhe/check.yaml'
+yamlcheck_reco='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/HELHC/VERSION/check.yaml'
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/helhc/generation/gridpacks/'
