@@ -1,6 +1,7 @@
 import yaml
 import os
 import EventProducer.common.utils as ut
+from datetime import datetime
 
 def makeyaml(outdir, uid):
 
@@ -12,10 +13,11 @@ def makeyaml(outdir, uid):
 
     outfile='%sevents_%s.yaml'%(outdir,uid)
     if ut.file_exist(outfile): return False
-
     data = {
         'processing' : {
-            'status' : 'sending'
+            'status' : 'sending',
+            'timestamp':ut.gettimestamp(),
+
             } 
         }
 
