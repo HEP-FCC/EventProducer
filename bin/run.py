@@ -35,6 +35,8 @@ if __name__=="__main__":
     jobTypeGroup.add_argument("--merge", action='store_true', help="merge the yaml for all the processes")
     jobTypeGroup.add_argument("--send", action='store_true', help="send the jobs")
     jobTypeGroup.add_argument("--clean", action='store_true', help="clean the dictionnary and eos from bad jobs")
+    jobTypeGroup.add_argument("--cleanold", action='store_true', help="clean the yaml from old jobs (more than 72 hours)")
+
     jobTypeGroup.add_argument("--web", action='store_true', help="print the dictionnary for webpage")
     jobTypeGroup.add_argument("--remove", action='store_true', help="remove a specific process from the dictionary and from eos" )
 
@@ -76,10 +78,16 @@ if __name__=="__main__":
     sendjobGroup.add_argument('-d', '--decay', type=str, default='', help='pythia8 decay when needed', choices=decaylist)
 
     processlist=[]
-    for key, value in para.pythialist.iteritems():
-        processlist.append(key)
-    for key, value in para.gridpacklist.iteritems():
-        processlist.append(key)
+    if (args.reco and args.type=="p8") or args.check or args.clean or args.merge:
+        for key, value in para.pythialist.iteritems():
+            processlist.append(key)
+    if args.LHE or args.check or args.clean or args.merge:
+        for key, value in para.gridpacklist.iteritems():
+            processlist.append(key)
+    if (args.reco and args.type=="lhep8") or  args.check or args.clean or args.merge:
+        for key, value in para.gridpacklist.iteritems():
+            processlist.append(key.replace('mg_','mgp8_'))
+
     parser.add_argument('-p','--process', type=str, help='Name of the process to use to send jobs or for the check', default='', choices=processlist)
 
     args, _ = parser.parse_known_args()
@@ -87,16 +95,21 @@ if __name__=="__main__":
 
     indir=None
     yamldir=None
+    yamlcheck=None
     fext=None
 
     if args.LHE:
         indir=para.lhe_dir
         fext=para.lhe_ext
         yamldir=para.yamldir+'lhe'
+        yamlcheck=para.yamlcheck_lhe
+
     elif args.reco:
         indir='%s%s'%(para.delphes_dir,version)
         fext=para.delphes_ext
         yamldir=para.yamldir+version
+        yamlcheck=para.yamlcheck_reco.replace('VERSION',version)
+
         print 'Running reco production system with version %s'%version
     else:
         print 'problem, need to specify --reco or --LHE'
@@ -112,15 +125,14 @@ if __name__=="__main__":
         if args.process!='':
             print 'using a specific process ',args.process
         import EventProducer.common.checker_yaml as chky
-        checker=chky.checker_yaml(indir, para, fext, args.process, version)
+        checker=chky.checker_yaml(indir, para, fext, args.process,  yamldir, yamlcheck)
         checker.check()
 
-    
     elif args.merge:
         print 'running the merger'
         import EventProducer.common.merger as mgr
         isLHE=args.LHE
-        merger = mgr.merger(para.yamldir, isLHE, version, para)
+        merger = mgr.merger( para, args.process, yamldir, yamlcheck)
         merger.merge()
 
     elif args.send:
@@ -148,6 +160,7 @@ if __name__=="__main__":
                 import EventProducer.bin.send_p8 as sp8
                 sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.queue, para, version)
                 sendp8.send()
+        ut.yamlstatus(yamlcheck, args.process, False)
 
     elif args.web:
         if args.LHE: 
@@ -180,8 +193,16 @@ if __name__=="__main__":
     elif args.clean:
         print 'clean the dictionnary and eos'
         import EventProducer.common.cleanfailed as clf
-        clean=clf.cleanfailed(indir, yamldir, args.process)
+        clean=clf.cleanfailed(indir, yamldir, yamlcheck, args.process)
         clean.clean()
+
+
+    elif args.cleanold:
+        print 'clean the dictionnary from old jobs that have not been checked'
+        import EventProducer.common.cleanfailed as clf
+        clean=clf.cleanfailed(indir, yamldir, args.process)
+        clean.cleanoldjobs()
+
     else:
         print 'problem, need to specify --check or --send'
         sys.exit(3)
