@@ -6,14 +6,10 @@ import EventProducer.common.utils as ut
 class merger():
 
 #__________________________________________________________
-    def __init__(self, indir, isLHE, version, para):
-        if isLHE:
-            self.indir = indir+'lhe/'
-            self.yamlcheck = para.yamlcheck_lhe
-        else:
-            self.indir = indir+version+'/'
-            self.yamlcheck = para.yamlcheck_reco.replace('VERSION',version)
-
+    def __init__(self, para, process, yamldir, yamlcheck):
+        self.indir = yamldir
+        self.yamlcheck = yamlcheck
+        self.process = process
 #__________________________________________________________
     def merge(self):
         
@@ -22,6 +18,8 @@ class merger():
         #ldir=[x[0] for x in os.walk(self.indir)]
        
         for l in ldir:
+            if self.process!='' and self.process!=l: 
+                continue
             outfile=self.indir+'/'+l+'/merge.yaml'
             totsize=0
             totevents=0
@@ -34,11 +32,8 @@ class merger():
             All_files = glob.glob("%s/%s/events_*.yaml"%(self.indir,l))
             if len(All_files)==0:continue
 
-
             #continue if process has been checked
             if ut.yamlcheck(self.yamlcheck, l):continue
-
-
 
             print 'merging process %s  %i files'%(l,len(All_files))
             for f in All_files:
