@@ -12,22 +12,14 @@ import EventProducer.common.utils as ut
 class checker_yaml():
 
 #__________________________________________________________
-    def __init__(self, indir, para, fext, process, version):
+    def __init__(self, indir, para, fext, process, yamldir, yamlcheck):
         self.indir  = indir
         self.para   = para
         self.fext   = fext
         self.process = process
-        self.yamldir = self.para.yamldir
-        if 'lhe' in self.fext:
-           self.yamldir = self.yamldir+'lhe/'
-           self.yamlcheck = para.yamlcheck_lhe
+        self.yamldir = yamldir
+        self.yamlcheck = yamlcheck
 
-        elif 'root' in  self.fext:
-            self.yamldir = self.yamldir+version+'/'
-            self.yamlcheck = para.yamlcheck_reco.replace('VERSION',version)
-        else:
-            print 'file extension not known... exit'
-            sys.exit(3)
 
 
 #__________________________________________________________
@@ -139,6 +131,11 @@ class checker_yaml():
             sys.exit(3)
     
         for l in ldir:
+            if self.process!='' and self.process!=l: 
+                continue
+            #continue if process has been checked
+            if ut.yamlcheck(self.yamlcheck, l):continue
+
             print '--------------------- ',l
             process=l
             All_files = glob.glob("%s/%s/events_*%s"%(self.indir,l,self.fext))
@@ -146,8 +143,6 @@ class checker_yaml():
             if len(All_files)==0:continue
             if l=='lhe' or l=='BADLYMOVED' or l=="__restored_files__": continue
             print 'process from the input directory ',process
-            if self.process!='' and self.process!=l: 
-                continue
 
             outdir = self.makeyamldir(self.yamldir+process)
 
