@@ -151,12 +151,11 @@ class checker_yaml():
             print 'process from the input directory ',process
 
             outdir = self.makeyamldir(self.yamldir+process)
-            ntot=0
             hasbeenchecked=False
+            nevents_tot=0
+            njobsdone_tot=0
+            njobsbad_tot=0
             for f in All_files:
-                nevents_tot=0
-                njobsdone_tot=0
-                njobsbad_tot=0
 
                 self.count = 0
                 if not os.path.isfile(f): 
