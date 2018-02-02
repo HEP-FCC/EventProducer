@@ -11,7 +11,7 @@ class merger():
         self.yamlcheck = yamlcheck
         self.process = process
 #__________________________________________________________
-    def merge(self):
+    def merge(self, force):
         
         ldir=next(os.walk(self.indir))[1]
         print self.indir
@@ -33,7 +33,7 @@ class merger():
             if len(All_files)==0:continue
 
             #continue if process has been checked
-            if ut.yamlcheck(self.yamlcheck, l):continue
+            if ut.yamlcheck(self.yamlcheck, l) and not force:continue
 
             print 'merging process %s  %i files'%(l,len(All_files))
             for f in All_files:
