@@ -216,3 +216,13 @@ def yamlstatus(yamlfile, process, status):
 def gettimestamp():
     timestamp= int(datetime.utcnow().strftime('%Y%m%d%H%M'))
     return timestamp
+
+#__________________________________________________________
+def getdate_str():
+    timestamp = datetime.utcnow().strftime('%Y_%m_%d')
+    return timestamp
+
+#__________________________________________________________
+def gettime_str():
+    timestamp = datetime.utcnow().strftime('%H:%M')
+    return timestamp
