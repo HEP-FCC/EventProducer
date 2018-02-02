@@ -121,7 +121,8 @@ class printer():
                 if os.path.isdir('%s%s/%s'%(self.para.delphes_dir,self.version,news)): 
                     nfileseos=len(os.listdir('%s%s/%s'%(self.para.delphes_dir,self.version,news)))
 
-            print 'nfiles on eos :  ',nfileseos
+            print 'nevents               : %i'%events_tot
+            print 'nfiles on eos/checked : %i/%i'%(nfileseos,files_tot)
             cmd=''
 
             if not self.matching and not ispythiaonly:
