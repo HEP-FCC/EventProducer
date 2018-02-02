@@ -19,12 +19,12 @@ class checker_yaml():
         self.process = process
         self.yamldir = yamldir
         self.yamlcheck = yamlcheck
+        self.count = 0
 
 
 
 #__________________________________________________________
     def checkFile_lhe(self, f):
-        count=0
         size=os.path.getsize(f)
         if size==0:
             print 'file size is 0, job is bad'
@@ -34,11 +34,18 @@ class checker_yaml():
         if os.path.isdir(filecounting)==False:
             os.system('mkdir %s'%filecounting)
         cmd='cp %s %s'%(f,filecounting)
-        print cmd
         outputCMD = ut.getCommandOutput(cmd)
         fcount='%s/%s'%(filecounting,f.split('/')[-1])
         if os.path.isfile(fcount):
-            os.system('gunzip %s'%(fcount))
+            cmd='gunzip %s'%(fcount)
+            outputCMD = ut.getCommandOutput(cmd)
+            stderr=outputCMD["stderr"]
+            if len(stderr)>0:
+                print 'can not unzip the file, try again (count %i)'%self.count
+                self.count+=1
+                os.system('rm %s'%(fcount))
+                return -1,False
+
             cmd='grep \"<event>\" %s | wc -l'%(fcount.replace('.gz',''))
             outputCMD = ut.getCommandOutput(cmd)
             stdoutplit=outputCMD["stdout"].split(' ')
@@ -48,19 +55,17 @@ class checker_yaml():
                 os.system('rm %s'%(fcount.replace('.gz','')))
                 return 0,False
             else: 
-                print '%i events in the file, job is good'%nevts
+                print '%i events in file %s, job is good'%(nevts,f)
                 os.system('rm %s'%(fcount.replace('.gz','')))
                 return nevts,True
         else:
-            print 'file not properly copied... try again (count %i)'%count
+            print 'file not properly copied... try again (count %i)'%self.count
             if not ut.testeos(self.para.eostest,self.para.eostest_size):
                 print 'eos seems to have problems, should check, will exit'
                 sys.exit(3)
-            count+=1
-            checkFile_lhe(f)
-            if count==10:
-                print 'can not copy the file, declare it wrong'
-                return -1, False
+            self.count+=1
+            return -1, False
+
 
 #__________________________________________________________
     def checkFile_root(self, f, tname):
@@ -118,10 +123,11 @@ class checker_yaml():
     
         if  outdir[-1]!='/':
             outdir+='/'
+
         return outdir
 
 #__________________________________________________________
-    def check(self):
+    def check(self, force, statfile):
 
         #ldir=[x[0] for x in os.walk(self.indir)]
         ldir=next(os.walk(self.indir))[1]
@@ -134,21 +140,25 @@ class checker_yaml():
             if self.process!='' and self.process!=l: 
                 continue
             #continue if process has been checked
-            if ut.yamlcheck(self.yamlcheck, l):continue
+            if ut.yamlcheck(self.yamlcheck, l) and not force :continue
 
             print '--------------------- ',l
             process=l
             All_files = glob.glob("%s/%s/events_*%s"%(self.indir,l,self.fext))
             print 'number of files  ',len(All_files)
             if len(All_files)==0:continue
-            if l=='lhe' or l=='BADLYMOVED' or l=="__restored_files__": continue
+            if l=='lhe' or l=="__restored_files__": continue
             print 'process from the input directory ',process
 
             outdir = self.makeyamldir(self.yamldir+process)
-
             ntot=0
             hasbeenchecked=False
             for f in All_files:
+                nevents_tot=0
+                njobsdone_tot=0
+                njobsbad_tot=0
+
+                self.count = 0
                 if not os.path.isfile(f): 
                     print 'file does not exists... %s'%f
                     continue
@@ -158,7 +168,7 @@ class checker_yaml():
                 userid=ut.find_owner(f)
 
                 outfile='%sevents_%s.yaml'%(outdir,jobid)
-                if ut.file_exist(outfile) and ut.getsize(outfile)> 80: continue
+                if ut.file_exist(outfile) and ut.getsize(outfile)> 100 and not force: continue
                 hasbeenchecked=True
                 print '-----------',f
 
@@ -166,6 +176,13 @@ class checker_yaml():
                     nevts, check=self.checkFile_root(f, self.para.treename)
                     status='DONE'
                     if not check: status='BAD' 
+
+                    if status=='DONE':
+                        nevents_tot+=nevts
+                        njobsdone_tot+=1
+                    else:
+                        njobsbad_tot+=1
+
                     dic = {'processing':{
                             'process':process, 
                             'jobid':jobid,
@@ -182,8 +199,21 @@ class checker_yaml():
                 
                 elif '.lhe.gz' in self.fext:
                     nevts,check=self.checkFile_lhe(f)
+                    while nevts==-1 and not check:
+                        nevts,check=self.checkFile_lhe(f)
+                        if self.count==10:
+                            print 'can not copy or unzip the file, declare it wrong'
+                            break
+
                     status='DONE'
                     if not check: status='BAD' 
+
+                    if status=='DONE':
+                        nevents_tot+=nevts
+                        njobsdone_tot+=1
+                    else:
+                        njobsbad_tot+=1
+
                     dic = {'processing':{
                             'process':process, 
                             'jobid':jobid,
@@ -199,8 +229,14 @@ class checker_yaml():
                     continue
                 else:
                     print 'not correct file extension %s'%self.fext
-    
-            if hasbeenchecked:ut.yamlstatus(self.yamlcheck, process, False)
+            
+            if hasbeenchecked:
+                ut.yamlstatus(self.yamlcheck, process, False)
+                cmdp='date=%s time=%s njobs=%i nevents=%i njobbad=%i process=%s\n'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot,njobsbad_tot,process)
+                with open(statfile, "a") as myfile:
+                    myfile.write(cmdp)
+
+                print cmdp
 
 
 
