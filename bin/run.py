@@ -36,7 +36,6 @@ if __name__=="__main__":
     jobTypeGroup.add_argument("--send", action='store_true', help="send the jobs")
     jobTypeGroup.add_argument("--clean", action='store_true', help="clean the dictionnary and eos from bad jobs")
     jobTypeGroup.add_argument("--cleanold", action='store_true', help="clean the yaml from old jobs (more than 72 hours)")
-
     jobTypeGroup.add_argument("--web", action='store_true', help="print the dictionnary for webpage")
     jobTypeGroup.add_argument("--remove", action='store_true', help="remove a specific process from the dictionary and from eos" )
 
@@ -81,14 +80,12 @@ if __name__=="__main__":
     if (args.reco and args.type=="p8") or args.check or args.clean or args.merge:
         for key, value in para.pythialist.iteritems():
             processlist.append(key)
-    if args.LHE or args.check or args.clean or args.merge:
+    if args.LHE or args.check or args.clean or args.merge or args.reco:
         for key, value in para.gridpacklist.iteritems():
             processlist.append(key)
-    if (args.reco and args.type=="lhep8") or  args.check or args.clean or args.merge:
-        for key, value in para.gridpacklist.iteritems():
-            processlist.append(key.replace('mg_','mgp8_'))
 
     parser.add_argument('-p','--process', type=str, help='Name of the process to use to send jobs or for the check', default='', choices=processlist)
+    parser.add_argument('--force', action='store_true', help='Force the type of process', default=False)
 
     args, _ = parser.parse_known_args()
     version = args.version
@@ -97,18 +94,21 @@ if __name__=="__main__":
     yamldir=None
     yamlcheck=None
     fext=None
+    statfile=None
 
     if args.LHE:
         indir=para.lhe_dir
         fext=para.lhe_ext
-        yamldir=para.yamldir+'lhe'
+        yamldir=para.yamldir+'lhe/'
         yamlcheck=para.yamlcheck_lhe
+        statfile=para.lhe_stat
 
     elif args.reco:
         indir='%s%s'%(para.delphes_dir,version)
         fext=para.delphes_ext
-        yamldir=para.yamldir+version
+        yamldir=para.yamldir+version+'/'
         yamlcheck=para.yamlcheck_reco.replace('VERSION',version)
+        statfile=para.delphes_stat.replace('VERSION',version)
 
         print 'Running reco production system with version %s'%version
     else:
@@ -126,14 +126,14 @@ if __name__=="__main__":
             print 'using a specific process ',args.process
         import EventProducer.common.checker_yaml as chky
         checker=chky.checker_yaml(indir, para, fext, args.process,  yamldir, yamlcheck)
-        checker.check()
+        checker.check(args.force, statfile)
 
     elif args.merge:
         print 'running the merger'
         import EventProducer.common.merger as mgr
         isLHE=args.LHE
         merger = mgr.merger( para, args.process, yamldir, yamlcheck)
-        merger.merge()
+        merger.merge(args.force)
 
     elif args.send:
         print 'sending jobs'        
@@ -200,7 +200,7 @@ if __name__=="__main__":
     elif args.cleanold:
         print 'clean the dictionnary from old jobs that have not been checked'
         import EventProducer.common.cleanfailed as clf
-        clean=clf.cleanfailed(indir, yamldir, args.process)
+        clean=clf.cleanfailed(indir, yamldir, yamlcheck, args.process)
         clean.cleanoldjobs()
 
     else:
