@@ -232,7 +232,9 @@ class checker_yaml():
             if hasbeenchecked:
                 ut.yamlstatus(self.yamlcheck, process, False)
                 cmdp='date=%s time=%s njobs=%i nevents=%i njobbad=%i process=%s\n'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot,njobsbad_tot,process)
+                stat_exist=ut.file_exist(statfile)
                 with open(statfile, "a") as myfile:
+                    if not stat_exist: myfile.write('<link href="/afs/cern.ch/user/h/helsens/www/style/txtstyle.css" rel="stylesheet" type="text/css" />\n')
                     myfile.write(cmdp)
 
                 print cmdp
