@@ -2,6 +2,10 @@
 eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size=1312594
 
+#stat
+lhe_stat="/afs/cern.ch/user/h/helsens/www/data/statlhe_HELHC.txt"
+delphes_stat="/afs/cern.ch/user/h/helsens/www/data/statdelphesVERSION_HELHC.txt"
+
 #web
 lhe_web="/afs/cern.ch/user/h/helsens/www/data/LHEevents_helhc.txt"
 delphes_web="/afs/cern.ch/user/h/helsens/www/data/Delphesevents_VERSION.txt"
