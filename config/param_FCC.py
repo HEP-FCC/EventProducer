@@ -3,8 +3,8 @@ eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size=1312594
 
 #stat
-lhe_stat="/afs/cern.ch/user/h/helsens/www/data/statlhe_FCC.txt"
-delphes_stat="/afs/cern.ch/user/h/helsens/www/data/statdelphesVERSION_FCC.txt"
+lhe_stat="/afs/cern.ch/user/h/helsens/www/data/statlhe_FCC.html"
+delphes_stat="/afs/cern.ch/user/h/helsens/www/data/statdelphesVERSION_FCC.html"
 
 #web
 lhe_web="/afs/cern.ch/user/h/helsens/www/data/LHEevents.txt"
