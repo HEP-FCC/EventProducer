@@ -15,6 +15,10 @@ yamldir='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCC/'
 yamlcheck_lhe='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCC/lhe/check.yaml'
 yamlcheck_reco='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCC/VERSION/check.yaml'
 
+#heppy and proc lists
+heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/HELHC_heppySampleList_VERSION.py'
+procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/HELHC_procDict_VERSION.json'
+
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'
 ##eos directory for lhe files
