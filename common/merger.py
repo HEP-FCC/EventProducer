@@ -52,7 +52,8 @@ class merger():
                        totsize+=tmpf['processing']['size']
                        totevents+=tmpf['processing']['nevents']
                        process=tmpf['processing']['process']
-                       outfiles.append(tmpf['processing']['out'].split('/')[-1])
+                       tmplist=[tmpf['processing']['out'].split('/')[-1], tmpf['processing']['nevents']]
+                       outfiles.append(tmplist)
                        outdir=tmpf['processing']['out'].replace(tmpf['processing']['out'].split('/')[-1],'')
 
                        ndone+=1
