@@ -3,236 +3,218 @@
 # this script updates param.py with matching efficiencies and produces two files:
 # - "heppySampleList.py" contains the list of FCCSW root files properly formatted for heppy
 # - "procDict.json" contains a skimmed dictionary containing information for physics analysis
-
-import subprocess, glob
-import json, time, datetime
-import ast, os
-import collections
-import re
+import json
+import ast
+import os
 import sys
+import yaml
+import EventProducer.common.utils as ut
+
+
+class makeSampleList():
+
+#__________________________________________________________
+    def __init__(self, para, version):
+        self.para = para
+        self.heppyList = self.para.heppyList.replace('VERSION',version)
+        self.procList  = self.para.procList.replace('VERSION',version)
+        self.version   = version
 #______________________________________________________________________________________________________
-def addEntry(process, processlhe, xsec, kf, lheDict, fccDict, heppyFile, procDict):
-   
-   nmatched = 0
-   nweights = 0
-   nlhe = 0
-   njobs = 0
-   
-   heppyFile.write('{} = cfg.MCComponent(\n'.format(process))
-   heppyFile.write("    \'{}\',\n".format(process))
-   heppyFile.write('    files=[\n')
+    def addEntry(self, process, yaml_lhe, yaml_reco, xsec, kf, heppyFile, procDict):
+        if 'mgp8_' in process:
+            processhad=process.replace('mgp8_','mg_')
 
-   matchingEff = 1.0
+        yaml_lhe=yaml_lhe+'/'+processhad+'/merge.yaml'
+        if not ut.file_exist(yaml_lhe): 
+            print 'no merged file lhe for process %s continue'%process
+            return 1.0
 
-   for jobfcc in fccDict[process]:
-       if int(jobfcc['nevents'])>0 and jobfcc['status']== 'DONE':
-           for joblhe in lheDict[processlhe]:
-               if joblhe['jobid'] == jobfcc['jobid'] and joblhe['status']== 'DONE':
-                   nlhe += int(joblhe['nevents'])
-                   nmatched+= int(jobfcc['nevents'])
-                   try:
-                       nweights+=int(jobfcc['nweights'])
-                   except KeyError, e:
-                       nweights+=0
-                   njobs+=1
 
-                   # add file to heppy sample list 
-                   heppyFile.write("           'root://eospublic.cern.ch/{}',\n".format(jobfcc['out']))
-                   break
+        nmatched = 0
+        nweights = 0
+        nlhe = 0
+ 
+        heppyFile.write('{} = cfg.MCComponent(\n'.format(process))
+        heppyFile.write("    \'{}\',\n".format(process))
+        heppyFile.write('    files=[\n')
 
-   heppyFile.write(']\n')
-   heppyFile.write(')\n')
-   heppyFile.write('\n')
+        matchingEff = 1.0
 
-   # skip process if do not find corresponding lhes
-   if nlhe == 0:
-       print 'did not find any LHE event for process', process
-       return matchingEff
+        
+        ylhe=None
+        with open(yaml_lhe, 'r') as stream:
+            try:
+                ylhe = yaml.load(stream)
+            except yaml.YAMLError as exc:
+                print(exc)
+
+        yreco=None
+        with open(yaml_reco, 'r') as stream:
+            try:
+                yreco = yaml.load(stream)
+            except yaml.YAMLError as exc:
+                print(exc)
+
+        nmatched+= int(yreco['merge']['nevents'])
+        for f in ylhe['merge']['outfiles']:
+            if any(f[0].replace('.lhe.gz','') in s for s in yreco['merge']['outfiles']):
+                nlhe+=int(f[1])
+                heppyFile.write("           'root://eospublic.cern.ch/{}/{}',\n".format(yreco['merge']['outdir'],f[0].replace('.lhe.gz','.root')))
+
+
+        heppyFile.write(']\n')
+        heppyFile.write(')\n')
+        heppyFile.write('\n')
+
+        # skip process if do not find corresponding lhes
+        if nlhe == 0:
+            print 'did not find any LHE event for process', process
+            return matchingEff
        
-   if nmatched == 0:
-       print 'did not find any FCCSW event for process', process
-       return matchingEff
+        if nmatched == 0:
+            print 'did not find any FCCSW event for process', process
+            return matchingEff
 
-   # compute matching efficiency
-   matchingEff = round(float(nmatched)/nlhe, 3)
-   if nweights==0: nweights=nmatched
-   entry = '   "{}": {{"numberOfEvents": {}, "sumOfWeights": {}, "crossSection": {}, "kfactor": {}, "matchingEfficiency": {}}},\n'.format(process, nmatched, nweights, xsec, kf, matchingEff)
-   print 'N: {}, Nw:{}, xsec: {} , kf: {} pb, eff: {}'.format(nmatched, nweights, xsec, kf, matchingEff)
+        # compute matching efficiency
+        matchingEff = round(float(nmatched)/nlhe, 3)
+        if nweights==0: nweights=nmatched
+        entry = '   "{}": {{"numberOfEvents": {}, "sumOfWeights": {}, "crossSection": {}, "kfactor": {}, "matchingEfficiency": {}}},\n'.format(process, nmatched, nweights, xsec, kf, matchingEff)
+        print 'N: {}, Nw:{}, xsec: {} , kf: {} pb, eff: {}'.format(nmatched, nweights, xsec, kf, matchingEff)
 
-   procDict.write(entry)
+        procDict.write(entry)
 
-   return matchingEff
+        return matchingEff
 
 #______________________________________________________________________________________________________
-def addEntryPythia(process, xsec, kf, fccDict, heppyFile, procDict):
-   
-   heppyFile.write('{} = cfg.MCComponent(\n'.format(process))
-   heppyFile.write("    \'{}\',\n".format(process))
-   heppyFile.write('    files=[\n')     
+    def addEntryPythia(self,process, xsec, kf, yamldir_reco, heppyFile, procDict):
 
-   nmatched = 0
-   nweights = 0
-   njobs = 0
-   matchingEff = 1.0
+       heppyFile.write('{} = cfg.MCComponent(\n'.format(process))
+       heppyFile.write("    \'{}\',\n".format(process))
+       heppyFile.write('    files=[\n')     
 
-   for jobfcc in fccDict[process]:
-       if int(jobfcc['nevents'])>0 and jobfcc['status']== 'DONE':
-           nmatched+=int(jobfcc['nevents'])
+       nmatched = 0
+       nweights = 0
+       matchingEff = 1.0
+
+       yreco=None
+       with open(yamldir_reco, 'r') as stream:
            try:
-               nweights+=int(jobfcc['nweights'])
-           except KeyError, e:
-               nweights+=0
-           njobs+=1
-           heppyFile.write("           '{}',\n".format(jobfcc['out']))
+               yreco = yaml.load(stream)
+           except yaml.YAMLError as exc:
+               print(exc)
 
-   heppyFile.write(']\n')
-   heppyFile.write(')\n')
-   heppyFile.write('\n')
+       nmatched+= int(yreco['merge']['nevents'])
+       for f in yreco['merge']['outfiles']:
+           heppyFile.write("           'root://eospublic.cern.ch/{}/{}',\n".format(yreco['merge']['outdir'],f))
+
+       heppyFile.write(']\n')
+       heppyFile.write(')\n')
+       heppyFile.write('\n')
        
-   if nmatched == 0:
-       print 'did not find any FCCSW event for process', process
-       return matchingEff
+       if nmatched == 0:
+           print 'did not find any FCCSW event for process', process
+           return matchingEff
 
-   if nweights==0: nweights=nmatched
-   entry = '   "{}": {{"numberOfEvents": {}, "sumOfWeights": {}, "crossSection": {}, "kfactor": {}, "matchingEfficiency": {}}},\n'.format(process, nmatched, nweights, xsec, kf, matchingEff)
-   print 'N: {}, Nw:{}, xsec: {} , kf: {} pb, eff: {}'.format(nmatched, nweights, xsec, kf, matchingEff)
-   procDict.write(entry)
-   return matchingEff
+       if nweights==0: nweights=nmatched
+       entry = '   "{}": {{"numberOfEvents": {}, "sumOfWeights": {}, "crossSection": {}, "kfactor": {}, "matchingEfficiency": {}}},\n'.format(process, nmatched, nweights, xsec, kf, matchingEff)
+       print 'N: {}, Nw:{}, xsec: {} , kf: {} pb, eff: {}'.format(nmatched, nweights, xsec, kf, matchingEff)
+       procDict.write(entry)
+       return matchingEff
    
 #_______________________________________________________________________________________________________
-if __name__=="__main__":
+    def makelist(self):
 
+        yamldir_lhe=self.para.yamldir+'lhe/'
+        yamldir_reco=self.para.yamldir+self.version+'/'
 
-    
+        nmatched = 0
+        nlhe = 0
 
-    heppyList = ''
-    procList = ''
-    fcc=''
-    lhe=''
-    version=sys.argv[1]
-    if 'fcc' in version:
-        import EventProducer.config.param_FCC as para
-    elif 'helhc' in version:
-        import EventProducer.config.param_HELHC as para
+        # write header for heppy file
+        procDict = open('tmp.json', 'w')
+        procDict.write('{\n')
 
+        # write header for heppy file
+        heppyFile = open(self.heppyList, 'w')
+        heppyFile.write('import heppy.framework.config as cfg\n')
+        heppyFile.write('\n')
 
-    if version not in para.fcc_versions:
-        print 'version of the cards should be: fcc_v01, cms'
-        print '======================%s======================'%version
-        sys.exit(3)
-    else:
-        fcc=para.fcc_dic.replace('VERSION',version)
-        heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/TEST_heppySampleList_%s.py'%version
-        procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/TEST_procDict_%s.json'%version
-        lhe = para.lhe_dic
+        # parse param file
+        with open(self.para.module_name) as f:
+            infile = f.readlines()
 
+        ldir=next(os.walk(yamldir_reco))[1]
 
-    # make backups
-    ts = time.time()
-    st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d_%H-%M-%S')
-    user = os.environ['USER']
+        for l in ldir:
+            processhad=None
+            process=l
+            yaml_reco=yamldir_reco+'/'+l+'/merge.yaml'
+            if not ut.file_exist(yaml_reco): 
+                print 'no merged yaml for process %s continue'%l
+                continue
 
-    suffix = '_{}_{}'.format(user,st)
-    heppyListbk = '{}_{}'.format(heppyList,suffix)
-    procListbk = '{}_{}'.format(procList,suffix)
+            print ''
+            print '------ ', process, '-------------'
+            print ''
+            if 'mgp8_' in process:
+                processhad=process.replace('mgp8_','mg_')
+            else: processhad=process
+            # maybe this was a decayed process, so it cannot be found as such in in the param file
+            br = 1.0
+            decay = ''
+            for dec in self.para.branching_ratios:
+                dec_proc = processhad.split('_')[-1]
+                if dec in processhad and dec_proc == dec:
+                    br = self.para.branching_ratios[dec]
+                    decay = dec
+            if br < 1.0 and decay != '':
+                print 'decay---------- '
+                decstr = '_{}'.format(decay)
+                proc_param = processhad.replace(decstr,'')
+                print '--------------  ',decstr,'  --  ',proc_param
+                xsec = float(self.para.gridpacklist[proc_param][3])*br
+                kf = float(self.para.gridpacklist[proc_param][4])
+                matchingEff = self.addEntry(process, yamldir_lhe, yaml_reco, xsec, kf, heppyFile, procDict)
 
-    os.system('cp {} {}'.format(heppyList, heppyListbk))
-    os.system('cp {} {}'.format(procList, procListbk))
+            elif process in self.para.pythialist:
+                xsec = float(self.para.pythialist[process][3])
+                kf = float(self.para.pythialist[process][4])
+                matchingEff = self.addEntryPythia(process, xsec, kf, yaml_reco, heppyFile, procDict)
 
-    lheDict=None
-    with open(lhe) as f:
-       lheDict = json.load(f)
+            elif processhad not in self.para.gridpacklist:
+                print 'process :', processhad, 'not found in param.py --> skipping process'
+                continue
+            else: 
+                xsec = float(self.para.gridpacklist[processhad][3])
+                kf = float(self.para.gridpacklist[processhad][4])
+                matchingEff = self.addEntry(process, yamldir_lhe, yaml_reco, xsec, kf, heppyFile, procDict)
+                # parse new param file
+                with open(self.para.module_name) as f:
+                    lines = f.readlines()
+                    isgp=False
+                    for line in xrange(len(lines)):
+                        if 'gridpacklist' in str(lines[line]): isgp=True
+                        if isgp==False: continue
+                        if process == lines[line].rsplit(':', 1)[0].replace("'", ""):
+                            ll = ast.literal_eval(lines[line].rsplit(':', 1)[1][:-2])                
+                            infile[line] = "'{}':['{}','{}','{}','{}','{}','{}'],\n".format(process, ll[0],ll[1],ll[2],ll[3],ll[4], matchingEff)
 
-    fccDict=None
-    with open(fcc) as f:
-       fccDict = json.load(f)
+                with open("tmp.py", "w") as f1:
+                   f1.writelines(infile)
 
-    nmatched = 0
-    nlhe = 0
-    njobs = 0
+        procDict.close()
+        # parse param file
 
-    # write header for heppy file
-    procDict = open('tmp.json', 'w')
-    procDict.write('{\n')
+        # strip last comma
+        with open('tmp.json', 'r') as myfile:
+            data=myfile.read()
+            newdata = data[:-2]
 
-    # write header for heppy file
-    heppyFile = open(heppyList, 'w')
-    heppyFile.write('import heppy.framework.config as cfg\n')
-    heppyFile.write('\n')
+        # close header for heppy file
+        procDict = open(self.procList, 'w')
+        procDict.write(newdata)
+        procDict.write('\n')
+        procDict.write('}\n')
 
-    # write paramfile
-    paramFile = 'config/param.py'
-    # parse param file
-    with open(paramFile) as f:
-        infile = f.readlines()
-
-    process_list = fccDict.keys()
-    process_list.sort()
-
-    # start loop over fcc dict 
-    for process in process_list:
-
-       print ''
-       print '------ ', process, '-------------'
-       print ''
-       if 'mgp8_' in process:
-           processhad=process.replace('mgp8_','mg_')
-       # maybe this was a decayed process, so it cannot be found as such in in the param file
-       br = 1.0
-       decay = ''
-       for dec in para.branching_ratios:
-           dec_proc = processhad.split('_')[-1]
-           if dec in processhad and dec_proc == dec:
-               br = para.branching_ratios[dec]
-               decay = dec
-       if br < 1.0 and decay != '':
-           print 'decay---------- '
-           decstr = '_{}'.format(decay)
-           proc_param = processhad.replace(decstr,'')
-           print '--------------  ',decstr,'  --  ',proc_param
-           xsec = float(para.gridpacklist[proc_param][3])*br
-           kf = float(para.gridpacklist[proc_param][4])
-           matchingEff = addEntry(processhad, proc_param, xsec, kf, lheDict, fccDict, heppyFile, procDict)
-
-       elif process in para.pythialist:
-           xsec = float(para.pythialist[process][3])
-           kf = float(para.pythialist[process][4])
-           matchingEff = addEntryPythia(process, xsec, kf, fccDict, heppyFile, procDict)
-
-       elif processhad not in para.gridpacklist:
-           print 'process :', processhad, 'not found in param.py --> skipping process'
-           continue
-       else: 
-           xsec = float(para.gridpacklist[processhad][3])
-           kf = float(para.gridpacklist[processhad][4])
-           matchingEff = addEntry(process, processhad, xsec, kf, lheDict, fccDict, heppyFile, procDict)
-           # parse new param file
-           with open(paramFile) as f:
-               lines = f.readlines()
-               isgp=False
-               for line in xrange(len(lines)):
-                   if 'gridpacklist' in str(lines[line]): isgp=True
-                   if isgp==False: continue
-                   if process == lines[line].rsplit(':', 1)[0].replace("'", ""):
-                       ll = ast.literal_eval(lines[line].rsplit(':', 1)[1][:-2])                
-                       infile[line] = "'{}':['{}','{}','{}','{}','{}','{}'],\n".format(process, ll[0],ll[1],ll[2],ll[3],ll[4], matchingEff)
-
-           with open("tmp.py", "w") as f1:
-               f1.writelines(infile)
-
-    procDict.close()
-    # parse param file
-
-    # strip last comma
-    with open('tmp.json', 'r') as myfile:
-        data=myfile.read()
-        newdata = data[:-2]
-
-    # close header for heppy file
-    procDict = open(procList, 'w')
-    procDict.write(newdata)
-    procDict.write('\n')
-    procDict.write('}\n')
-
-    # replace existing param.py file
-    os.system("mv tmp.py config/param.py")
+         # replace existing param.py file
+         #os.system("mv tmp.py %s"%self.para.module_name)

@@ -1,10 +1,12 @@
+#module
+module_name='config/param_FCC.py'
 #eos tests
 eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size=1312594
 
 #stat
-lhe_stat="/afs/cern.ch/user/h/helsens/www/data/statlhe_FCC.txt"
-delphes_stat="/afs/cern.ch/user/h/helsens/www/data/statdelphesVERSION_FCC.txt"
+lhe_stat="/afs/cern.ch/user/h/helsens/www/data/statlhe_FCC.html"
+delphes_stat="/afs/cern.ch/user/h/helsens/www/data/statdelphesVERSION_FCC.html"
 
 #web
 lhe_web="/afs/cern.ch/user/h/helsens/www/data/LHEevents.txt"
@@ -14,6 +16,10 @@ delphes_web="/afs/cern.ch/user/h/helsens/www/data/Delphesevents_VERSION.txt"
 yamldir='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCC/'
 yamlcheck_lhe='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCC/lhe/check.yaml'
 yamlcheck_reco='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCC/VERSION/check.yaml'
+
+#heppy and proc lists
+heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCC_heppySampleList_VERSION.py'
+procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCC_procDict_VERSION.json'
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'
