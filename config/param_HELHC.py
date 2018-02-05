@@ -1,3 +1,6 @@
+#module
+module_name='config/param_HELHC.py'
+
 #eos tests
 eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size=1312594
