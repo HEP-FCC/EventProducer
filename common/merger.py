@@ -14,7 +14,7 @@ class merger():
     def merge(self, force):
         
         ldir=next(os.walk(self.indir))[1]
-        print self.indir
+        print self.indir,'  ====  ',self.process
         #ldir=[x[0] for x in os.walk(self.indir)]
        
         for l in ldir:
@@ -43,20 +43,19 @@ class merger():
                 
                 with open(f, 'r') as stream:
                     try:
-                       tmpf = yaml.load(stream)
-                       if tmpf['processing']['status']=='sending': continue
-                       if tmpf['processing']['status']=='BAD':
-                           nbad+=1
-                           outfilesbad.append(tmpf['processing']['out'].split('/')[-1])
-                           continue
-                       totsize+=tmpf['processing']['size']
-                       totevents+=tmpf['processing']['nevents']
-                       process=tmpf['processing']['process']
-                       tmplist=[tmpf['processing']['out'].split('/')[-1], tmpf['processing']['nevents']]
-                       outfiles.append(tmplist)
-                       outdir=tmpf['processing']['out'].replace(tmpf['processing']['out'].split('/')[-1],'')
-
-                       ndone+=1
+                        tmpf = yaml.load(stream)
+                        if tmpf['processing']['status']=='sending': continue
+                        if tmpf['processing']['status']=='BAD':
+                            nbad+=1
+                            outfilesbad.append(tmpf['processing']['out'].split('/')[-1])
+                            continue
+                        totsize+=tmpf['processing']['size']
+                        totevents+=tmpf['processing']['nevents']
+                        process=tmpf['processing']['process']
+                        tmplist=[tmpf['processing']['out'].split('/')[-1], tmpf['processing']['nevents']]
+                        outfiles.append(tmplist)
+                        outdir=tmpf['processing']['out'].replace(tmpf['processing']['out'].split('/')[-1],'')
+                        ndone+=1
                     except yaml.YAMLError as exc:
                         print(exc)
                         
