@@ -84,6 +84,10 @@ if __name__=="__main__":
     if args.LHE or args.check or args.clean or args.merge or args.reco:
         for key, value in para.gridpacklist.iteritems():
             processlist.append(key)
+    if args.reco and args.remove:
+        for key, value in para.gridpacklist.iteritems():
+            processlist.append('mgp8_'+key[3:])
+
 
     parser.add_argument('-p','--process', type=str, help='Name of the process to use to send jobs or for the check', default='', choices=processlist)
     parser.add_argument('--force', action='store_true', help='Force the type of process', default=False)
