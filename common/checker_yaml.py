@@ -1,11 +1,6 @@
 #python check_outputs.py /eos/experiment/fcc/hh/simulation/samples/v01
-import glob, os, sys,subprocess,cPickle
-import commands
-import time
-import random
-from datetime import datetime
+import glob, os, sys
 import ROOT as r
-import json
 import yaml
 import EventProducer.common.utils as ut
 
@@ -27,6 +22,7 @@ class checker_yaml():
     def checkFile_lhe(self, f):
         size=os.path.getsize(f)
         if size==0:
+            self.count+=1
             print 'file size is 0, job is bad'
             return -1,False
 
@@ -147,7 +143,7 @@ class checker_yaml():
             All_files = glob.glob("%s/%s/events_*%s"%(self.indir,l,self.fext))
             print 'number of files  ',len(All_files)
             if len(All_files)==0:continue
-            if l=='lhe' or l=="__restored_files__": continue
+            if l=='lhe' or l=="__restored_files__" or l=="backup": continue
             print 'process from the input directory ',process
 
             outdir = self.makeyamldir(self.yamldir+process)
@@ -231,7 +227,7 @@ class checker_yaml():
             
             if hasbeenchecked:
                 ut.yamlstatus(self.yamlcheck, process, False)
-                cmdp='date=%s <span class="espace"/> time=%s <span class="espace"/> njobs=%i <span class="espace"/> nevents=%i <span class="espace"/> njobbad=%i <span class="espace"/> process=%s <br>\n'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot,njobsbad_tot,process)
+                cmdp='<pre>date=%s <span class="espace"/> time=%s <span class="espace"/> njobs=%i <span class="espace"/> nevents=%i <span class="espace"/> njobbad=%i <span class="espace"/> process=%s </pre>\n'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot,njobsbad_tot,process)
                 stat_exist=ut.file_exist(statfile)
                 with open(statfile, "a") as myfile:
                     if not stat_exist: 
