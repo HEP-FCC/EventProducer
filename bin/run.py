@@ -125,12 +125,17 @@ if __name__=="__main__":
         print 'running the check'
         if args.process!='':
             print 'using a specific process ',args.process
+            if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
         import EventProducer.common.checker_yaml as chky
+        print args.process
         checker=chky.checker_yaml(indir, para, fext, args.process,  yamldir, yamlcheck)
         checker.check(args.force, statfile)
 
     elif args.merge:
         print 'running the merger'
+        if args.process!='':
+            print 'using a specific process ',args.process
+            if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
         import EventProducer.common.merger as mgr
         isLHE=args.LHE
         merger = mgr.merger( para, args.process, yamldir, yamlcheck)
@@ -168,7 +173,7 @@ if __name__=="__main__":
             print 'create web page for LHE'         
             import EventProducer.common.printer as prt
             printdic=prt.printer(yamldir,para.lhe_web, False, True, para)
-            printdic.run()
+            printdic.run(yamlcheck)
 
 
         elif args.reco:
