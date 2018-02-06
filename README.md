@@ -13,9 +13,10 @@ Table of contents
   * [Generate LHE events from gridpacks](#generate-lhe-events-from-gridpacks)
   * [Generate FCCSW files from the LHE and decay with Pyhtia8](#generate-fccsw-files-from-the-lhe-and-decay-with-pyhtia8)
   * [Generate FCCSW files from Pythia8](#generate-fccsw-files-from-pythia8)
-  * [Generating the dictionnary](#generating-the-dictionnary)
-  * [Cleaning bad jobs](#cleaning-bad-jobs)
-  * [Update the webpage](#update-the-webpage)
+  * [Expert mode](#expert mode)
+        * [Updating the database](#updating-the-database)
+        * [Cleaning bad jobs](#cleaning-bad-jobs)
+        * [Update the webpage](#update-the-webpage)
 
 Clone and initialisation
 ========================
@@ -102,25 +103,81 @@ Example produce 1 job of 10000 events of Z' to ttbar
 python bin/run.py --HELHC --reco --send --type p8 --lsf -p pp_Zprime_10TeV_ttbar -n 10000 -N 1 --lsf -q 1nh --version helhc_v01
 ```
 
-Generating the dictionnary
+Expert mode
+===========
+The following commands should be run with care, as they update the database, webapge etc...
+They run every two hours with crontab, thus you will eventually know when your sample is ready to be used.
+The ```--force``` option is used to force the script to run as to optimze running time, processes that have not been flagged will not be checked.
+
+Updating the database
 ==========================
 
+1) First one needs to check the files that have been produced. 
+Example for LHE:
 ```
-python bin/run.py --HELHC --LHE --check --dir /eos/experiment/fcc/helhc/generation/lhe/
-python bin/run.py --HELHC --reco --check --version helhc_v01
+python bin/run.py --HELHC --LHE --check [--process process] [--force]
 ```
+
+Example for Delphes events:
+```
+python bin/run.py --HELHC --reco --check --version helhc_v01 [--process process] [--force]
+```
+
+2) Then the checked files needs to be merged:
+Example for LHE:
+```
+python bin/run.py --HELHC --LHE --merge [--process process] [--force]
+```
+
+Example for Delphes events:
+```
+python bin/run.py --HELHC --reco --merge --version helhc_v01 [--process process] [--force]
+```
+
 Cleaning bad jobs
 =================
+To clean jobs that are flagged as bad, the following command can be used for LHE:
+```
+python bin/run.py --HELHC --LHE --clean [--process process]
+```
+
+and for Delphes
+```
+python bin/run.py --HELHC --reco --clean --version helhc_v01 [--process process]
+```
+
+As the code checks the files that are in the end written on eos, we need to clean also old jobs that don't produced outputs 3 days after they started.
+To do so run the following command for LHE
+```
+python bin/run.py --HELHC --LHE --cleanold [--process process]
+```
+
+and for Delphes
+```
+python bin/run.py --HELHC --reco --cleanold --version helhc_v01 [--process process]
+```
+
+If you want to completly remove a process, the following command can be used with care for LHE:
 
 ```
-python bin/run.py --HELHC --LHE --clean -p mg_pp_ee_lo
-python bin/run.py --HELHC --LHE --remove -p mg_pp_ee_lo
+python bin/run.py --HELHC --LHE --remove --process process 
 ```
+
+and for Delphes
+```
+python bin/run.py --HELHC --reco --remove --process process --version helhc_v01
+```
+
 
 Update the webpage
 ==================
 
+The webpage can be updated after the files have been checked and merged by running for LHE
 ```
 python bin/run.py --HELHC --LHE --web
+```
+
+and for Delphes
+```
 python bin/run.py --HELHC --reco --web --version helhc_v01
 ```
