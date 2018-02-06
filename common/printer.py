@@ -45,7 +45,7 @@ class printer():
 
 
 #__________________________________________________________
-    def run(self):
+    def run(self,yamlcheck):
         
         #ldir=[x[0] for x in os.walk(self.indir)]
         ldir=next(os.walk(self.indir))[1]
@@ -123,23 +123,26 @@ class printer():
 
             print 'nevents               : %i'%events_tot
             print 'nfiles on eos/checked : %i/%i'%(nfileseos,files_tot)
+            if nfileseos>files_tot:
+                ut.yamlstatus(yamlcheck, process, False)
+
             cmd=''
 
             if not self.matching and not ispythiaonly:
-                cmd='%s,,%s,,%i,,%i,,%i,,%.2f,,%s,,%s,,%s,,%s,,%s\n'%(news,self.comma_me(str(events_tot)),
+                cmd='%s,,%s,,%i,,%i,,%i,,%.2f,,%s,,%s,,%s,,%s,,%s\n'%(process,self.comma_me(str(events_tot)),
                                                                       files_tot,bad_tot,nfileseos,size_tot  ,
                                                                       tmpf['merge']['outdir'],
                                                                       self.para.gridpacklist[proc][0],self.para.gridpacklist[proc][1],
                                                                       self.para.gridpacklist[proc][2],self.para.gridpacklist[proc][3])
             elif  self.matching and not ispythiaonly:
-                cmd='%s,,%s,,%s,,%i,,%i,,%i,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,self.comma_me(str(events_tot)),self.comma_me(str(sumw_tot)),
+                cmd='%s,,%s,,%s,,%i,,%i,,%i,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n'%(process,self.comma_me(str(events_tot)),self.comma_me(str(sumw_tot)),
                                                                               files_tot,bad_tot,nfileseos, size_tot ,
                                                                               tmpf['merge']['outdir'],
                                                                               self.para.gridpacklist[proc][0],self.para.gridpacklist[proc][1]
                                                                               ,self.para.gridpacklist[proc][3],self.para.gridpacklist[proc][4],self.para.gridpacklist[proc][5])
 
             elif  ispythiaonly:
-                cmd='%s,,%s,,%s,,%i,,%i,,%i,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n'%(news,self.comma_me(str(events_tot)),self.comma_me(str(sumw_tot)),
+                cmd='%s,,%s,,%s,,%i,,%i,,%i,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n'%(process,self.comma_me(str(events_tot)),self.comma_me(str(sumw_tot)),
                                                                               files_tot,bad_tot,nfileseos, size_tot ,
                                                                               tmpf['merge']['outdir'],
                                                                               self.para.pythialist[news][0],self.para.pythialist[news][1],
