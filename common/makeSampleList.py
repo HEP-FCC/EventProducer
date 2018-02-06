@@ -20,13 +20,21 @@ class makeSampleList():
         self.procList  = self.para.procList.replace('VERSION',version)
         self.version   = version
 #______________________________________________________________________________________________________
-    def addEntry(self, process, yaml_lhe, yaml_reco, xsec, kf, heppyFile, procDict):
+    def addEntry(self, process, yaml_lhe, yaml_reco, xsec, kf, heppyFile, procDict,proc_param=''):
+        processhad=process
         if 'mgp8_' in process:
             processhad=process.replace('mgp8_','mg_')
+        if  proc_param!='':
+            processhad=proc_param.replace('mgp8_','mg_')
+        
 
         yaml_lhe=yaml_lhe+'/'+processhad+'/merge.yaml'
+        print 'lhe yaml    ',yaml_lhe
+        print 'reco yaml    ',yaml_reco
+
         if not ut.file_exist(yaml_lhe): 
             print 'no merged file lhe for process %s continue'%process
+            sys.exit(3)
             return 1.0
 
 
@@ -57,7 +65,8 @@ class makeSampleList():
 
         nmatched+= int(yreco['merge']['nevents'])
         for f in ylhe['merge']['outfiles']:
-            if any(f[0].replace('.lhe.gz','') in s for s in yreco['merge']['outfiles']):
+           
+            if any(f[0].replace('.lhe.gz','') in s[0] for s in yreco['merge']['outfiles']):
                 nlhe+=int(f[1])
                 heppyFile.write("           'root://eospublic.cern.ch/{}/{}',\n".format(yreco['merge']['outdir'],f[0].replace('.lhe.gz','.root')))
 
@@ -105,7 +114,7 @@ class makeSampleList():
 
        nmatched+= int(yreco['merge']['nevents'])
        for f in yreco['merge']['outfiles']:
-           heppyFile.write("           'root://eospublic.cern.ch/{}/{}',\n".format(yreco['merge']['outdir'],f))
+           heppyFile.write("           'root://eospublic.cern.ch/{}/{}',\n".format(yreco['merge']['outdir'],f[0]))
 
        heppyFile.write(']\n')
        heppyFile.write(')\n')
@@ -148,6 +157,7 @@ class makeSampleList():
         for l in ldir:
             processhad=None
             process=l
+
             yaml_reco=yamldir_reco+'/'+l+'/merge.yaml'
             if not ut.file_exist(yaml_reco): 
                 print 'no merged yaml for process %s continue'%l
@@ -174,7 +184,7 @@ class makeSampleList():
                 print '--------------  ',decstr,'  --  ',proc_param
                 xsec = float(self.para.gridpacklist[proc_param][3])*br
                 kf = float(self.para.gridpacklist[proc_param][4])
-                matchingEff = self.addEntry(process, yamldir_lhe, yaml_reco, xsec, kf, heppyFile, procDict)
+                matchingEff = self.addEntry(process, yamldir_lhe, yaml_reco, xsec, kf, heppyFile, procDict,proc_param)
 
             elif process in self.para.pythialist:
                 xsec = float(self.para.pythialist[process][3])
