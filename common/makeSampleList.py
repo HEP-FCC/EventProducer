@@ -192,7 +192,7 @@ class makeSampleList():
                 matchingEff = self.addEntryPythia(process, xsec, kf, yaml_reco, heppyFile, procDict)
 
             elif processhad not in self.para.gridpacklist:
-                print 'process :', processhad, 'not found in param.py --> skipping process'
+                print 'process :', processhad, 'not found in %s --> skipping process'%self.para.module_name
                 continue
             else: 
                 xsec = float(self.para.gridpacklist[processhad][3])
