@@ -65,7 +65,7 @@ Generate FCCSW files from the LHE and decay with Pyhtia8
 1. if you want to use a specific decay, make sure that the decay you want is in ```decaylist``` and ```branching_ratios``` of the ```param```
 1. then create appropriate pythia8 card, by appending standard card with decay syntax if needed and add it to the proper directory, example:
 ```
-/eos/experiment/fcc/hh/utils/pythiacards/pythia_pp_ttz_5f_znunu.cmd
+/eos/experiment/fcc/hh/utils/pythiacards/p8_pp_ttz_5f_znunu.cmd
 ```
 
 1. Run jobs:
@@ -77,7 +77,7 @@ python bin/run.py --FCC/HELHC --reco --send --type lhep8 --lsf -p <process> -N <
 Example produce 10 jobs of FCC Delphes events of ttz decaying the Z to neutrinos. :
 
 ```
-python bin/run.py --FCC --reco --send --lsf -p mg_pp_ttz_5f --type lhep8 -N 10 -q 8nh --version fcc_v02
+python bin/run.py --FCC --reco --send --type lhep8 --lsf -p mg_pp_ttz_5f -N 10 -q 8nh --version fcc_v02
 ``` 
 
 Please note that the decay in pythia is optional, and that there is no need to specify the number of events to run on as it will by default run over all the events present in the LHE file
@@ -100,7 +100,7 @@ python bin/run.py --FCC/HELHC --reco --send --type p8 --lsf -p <process> -n <nev
 Example produce 1 job of 10000 events of Z' to ttbar
 
 ```
-python bin/run.py --HELHC --reco --send --type p8 --lsf -p pp_Zprime_10TeV_ttbar -n 10000 -N 1 --lsf -q 1nh --version helhc_v01
+python bin/run.py --HELHC --reco --send --type p8 --lsf -p p8_pp_Zprime_10TeV_ttbar -n 10000 -N 1 --lsf -q 1nh --version helhc_v01
 ```
 
 Expert mode
