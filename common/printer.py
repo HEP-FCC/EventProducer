@@ -123,30 +123,40 @@ class printer():
 
             print 'nevents               : %i'%events_tot
             print 'nfiles on eos/checked : %i/%i'%(nfileseos,files_tot)
-            if nfileseos>files_tot:
+            marked_b=''
+            marked_e=''
+
+            if nfileseos>files_tot+bad_tot:
                 ut.yamlstatus(yamlcheck, process, False)
+                marked_b='<h2><mark>'
+                marked_e='</mark></h2>'
 
             cmd=''
 
             if not self.matching and not ispythiaonly:
-                cmd='%s,,%s,,%i,,%i,,%i,,%.2f,,%s,,%s,,%s,,%s,,%s\n'%(process,self.comma_me(str(events_tot)),
-                                                                      files_tot,bad_tot,nfileseos,size_tot  ,
-                                                                      tmpf['merge']['outdir'],
-                                                                      self.para.gridpacklist[proc][0],self.para.gridpacklist[proc][1],
-                                                                      self.para.gridpacklist[proc][2],self.para.gridpacklist[proc][3])
-            elif  self.matching and not ispythiaonly:
-                cmd='%s,,%s,,%s,,%i,,%i,,%i,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n'%(process,self.comma_me(str(events_tot)),self.comma_me(str(sumw_tot)),
-                                                                              files_tot,bad_tot,nfileseos, size_tot ,
+                cmd='%s,,%s,,%s%i%s,,%i,,%s%i%s,,%.2f,,%s,,%s,,%s,,%s,,%s\n'%(process,self.comma_me(str(events_tot)),
+                                                                              marked_b,files_tot,marked_e,bad_tot,
+                                                                              marked_b,nfileseos,marked_e,size_tot,
                                                                               tmpf['merge']['outdir'],
-                                                                              self.para.gridpacklist[proc][0],self.para.gridpacklist[proc][1]
-                                                                              ,self.para.gridpacklist[proc][3],self.para.gridpacklist[proc][4],self.para.gridpacklist[proc][5])
+                                                                              self.para.gridpacklist[proc][0],self.para.gridpacklist[proc][1],
+                                                                              self.para.gridpacklist[proc][2],self.para.gridpacklist[proc][3])
+            elif  self.matching and not ispythiaonly:
+                cmd='%s,,%s,,%s,,%s%i%s,,%i,,%s%i%s,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n'%(process,self.comma_me(str(events_tot)),self.comma_me(str(sumw_tot)),
+                                                                                      marked_b,files_tot,marked_e,bad_tot,
+                                                                                      marked_b,nfileseos,marked_e, size_tot ,
+                                                                                      tmpf['merge']['outdir'],
+                                                                                      self.para.gridpacklist[proc][0],self.para.gridpacklist[proc][1]
+                                                                                      ,self.para.gridpacklist[proc][3],self.para.gridpacklist[proc][4],
+                                                                                      self.para.gridpacklist[proc][5])
 
             elif  ispythiaonly:
-                cmd='%s,,%s,,%s,,%i,,%i,,%i,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n'%(process,self.comma_me(str(events_tot)),self.comma_me(str(sumw_tot)),
-                                                                              files_tot,bad_tot,nfileseos, size_tot ,
-                                                                              tmpf['merge']['outdir'],
-                                                                              self.para.pythialist[news][0],self.para.pythialist[news][1],
-                                                                              self.para.pythialist[news][3],self.para.pythialist[news][4],self.para.pythialist[news][5])
+                cmd='%s,,%s,,%s,,%s%i%s,,%i,,%s%i%s,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n'%(process,self.comma_me(str(events_tot)),self.comma_me(str(sumw_tot)),
+                                                                                      marked_b,files_tot,marked_e,bad_tot,
+                                                                                      marked_b,nfileseos,marked_e, size_tot ,
+                                                                                      tmpf['merge']['outdir'],
+                                                                                      self.para.pythialist[news][0],self.para.pythialist[news][1],
+                                                                                      self.para.pythialist[news][3],self.para.pythialist[news][4],
+                                                                                      self.para.pythialist[news][5])
                 ispythiaonly=False
             self.OutFile.write(cmd)               
 
