@@ -173,9 +173,9 @@ if __name__=="__main__":
         ut.yamlstatus(yamlcheck, args.process, False)
 
     elif args.web:
+        import EventProducer.common.printer as prt
         if args.LHE: 
             print 'create web page for LHE'         
-            import EventProducer.common.printer as prt
             printdic=prt.printer(yamldir,para.lhe_web, False, True, para)
             printdic.run(yamlcheck)
 
@@ -183,9 +183,8 @@ if __name__=="__main__":
         elif args.reco:
             print 'create web page for reco version %s'%version
             webpage=para.delphes_web.replace('VERSION',version)
-            import EventProducer.common.printer as prt
             printdic=prt.printer(yamldir, webpage, True, False, para, version)
-            printdic.run()
+            printdic.run(yamlcheck)
 
     elif args.remove:
         if args.process=='':
