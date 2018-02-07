@@ -84,6 +84,10 @@ if __name__=="__main__":
     if args.LHE or args.check or args.clean or args.merge or args.reco:
         for key, value in para.gridpacklist.iteritems():
             processlist.append(key)
+    if args.reco and args.remove:
+        for key, value in para.gridpacklist.iteritems():
+            processlist.append('mgp8_'+key[3:])
+
 
     parser.add_argument('-p','--process', type=str, help='Name of the process to use to send jobs or for the check', default='', choices=processlist)
     parser.add_argument('--force', action='store_true', help='Force the type of process', default=False)
@@ -125,12 +129,17 @@ if __name__=="__main__":
         print 'running the check'
         if args.process!='':
             print 'using a specific process ',args.process
+            if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
         import EventProducer.common.checker_yaml as chky
+        print args.process
         checker=chky.checker_yaml(indir, para, fext, args.process,  yamldir, yamlcheck)
         checker.check(args.force, statfile)
 
     elif args.merge:
         print 'running the merger'
+        if args.process!='':
+            print 'using a specific process ',args.process
+            if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
         import EventProducer.common.merger as mgr
         isLHE=args.LHE
         merger = mgr.merger( para, args.process, yamldir, yamlcheck)
@@ -164,19 +173,18 @@ if __name__=="__main__":
         ut.yamlstatus(yamlcheck, args.process, False)
 
     elif args.web:
+        import EventProducer.common.printer as prt
         if args.LHE: 
             print 'create web page for LHE'         
-            import EventProducer.common.printer as prt
             printdic=prt.printer(yamldir,para.lhe_web, False, True, para)
-            printdic.run()
+            printdic.run(yamlcheck)
 
 
         elif args.reco:
             print 'create web page for reco version %s'%version
             webpage=para.delphes_web.replace('VERSION',version)
-            import EventProducer.common.printer as prt
             printdic=prt.printer(yamldir, webpage, True, False, para, version)
-            printdic.run()
+            printdic.run(yamlcheck)
 
     elif args.remove:
         if args.process=='':

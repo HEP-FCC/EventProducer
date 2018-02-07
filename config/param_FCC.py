@@ -63,6 +63,15 @@ fccsw=fccsw_dir+'fccsw/0.8.2/x86_64-slc6-gcc62-opt/'
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={
+'p8_pp_ExcitedQ_10TeV_qq':['10TeV Excited quark Lambda 10TeV','','','2.368','1.0','1.0'],
+'p8_pp_ExcitedQ_15TeV_qq':['15TeV Excited quark Lambda 15TeV','','','2.746e-1','1.0','1.0'],
+'p8_pp_ExcitedQ_20TeV_qq':['20TeV Excited quark Lambda 20TeV','','','4.783e-2','1.0','1.0'],
+'p8_pp_ExcitedQ_25TeV_qq':['25TeV Excited quark Lambda 25TeV','','','1.055e-2','1.0','1.0'],
+'p8_pp_ExcitedQ_30TeV_qq':['30TeV Excited quark Lambda 30TeV','','','2.446e-3','1.0','1.0'],
+'p8_pp_ExcitedQ_35TeV_qq':['35TeV Excited quark Lambda 35TeV','','','6.188e-4','1.0','1.0'],
+'p8_pp_ExcitedQ_40TeV_qq':['40TeV Excited quark Lambda 40TeV','','','1.575e-4','1.0','1.0'],
+'p8_pp_ExcitedQ_45TeV_qq':['45TeV Excited quark Lambda 45TeV','','','4.017e-5','1.0','1.0'],
+'p8_pp_ExcitedQ_50TeV_qq':['50TeV Excited quark Lambda 50TeV','','','9.765e-6','1.0','1.0'],
 'p8_pp_Zprime_5TeV_ll':['5TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','1.043e-1','1.0','1.0'],
 'p8_pp_Zprime_10TeV_ll':['10TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','5.914e-3','1.0','1.0'],
 'p8_pp_Zprime_15TeV_ll':['15TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','7.989e-4','1.0','1.0'],
@@ -413,7 +422,7 @@ gridpacklist = {
 'mg_pp_mumu_lo_2TeV':['','m > 2 TeV','','0.00717','2.0','1.0'],
 'mg_pp_tt_lo':['','m > 5 TeV','','0.1373','2.0','1.0'],
 'mg_pp_jj_lo':['','m > 5 TeV','','43.05','2.0','1.0'],
-'mg_pp_jj_lo_filter_pTjet7.5TeV':['','m > 15 TeV','','0.07777','2.0','1.0'],
+'mg_pp_jj_lo_filter_pTjet7_5TeV':['','m > 15 TeV','','0.07777','2.0','1.0'],
 'mg_pp_vv_lo':['','m > 5 TeV','','0.00316','2.0','1.0'],
 'mg_pp_www_4f':['WWW (4FS)','inclusive','','1.686','2.5','1.0'],
 'mg_pp_wwz_4f':['WWZ (4FS)','inclusive','','1.437','2.8','1.0'],
