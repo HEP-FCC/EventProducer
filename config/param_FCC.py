@@ -158,6 +158,7 @@ pythialist={
 'p8_pp_vv_Pt2500toInf':['di-boson','pT > 2500.','','1.377e-2','3.0','1.0'],
 'p8_pp_ll_Pt5000toInf':['di-lepton','pT > 5000.','','2.775e-5','3.0','1.0'],
 
+
 }
 
 
@@ -535,6 +536,13 @@ gridpacklist = {
 'mg_gg_aa01j_mhcut_5f_HT_100_300':['gluon fusion di-photon + 0/1 jets','0 < HT < 500','xqcut = 20, qCut = 30','850.4','2.0','0.578'],
 'mg_gg_aa01j_mhcut_5f_HT_200_10000':['gluon fusion di-photon + 0/1 jets','200 < HT < 100000','xqcut = 20, qCut = 30','0.02618','2.0','0.917'],
 'mg_pp_hhj_lambda200_5f':['HH + 1 jet, pT(HH) > 200, kl = 2.00','inclusive','','0.03793','1.95','1.0'],
+
+#ADDED by HAND to fix 
+'mg_pp_t2tt_mstop_3000_mlsp':['susy sample loukas','inclusive','','','',''],
+'mg_pp_t2tt_mstop_3000_mlsp_2500':['susy sample loukas','inclusive','','','',''],
+'mg_pp_t2tt_mstop_6000_mlsp_3000':['susy sample loukas','inclusive','','','',''],
+'mg_pp_t2tt_mstop_7500_mlsp_2000':['susy sample loukas','inclusive','','','',''],
+'mg_pp_t2tt_mstop_9500_mlsp_1':['susy sample loukas','inclusive','','','','']
 
 
 }
