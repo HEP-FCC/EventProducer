@@ -227,7 +227,7 @@ class checker_yaml():
             
             if hasbeenchecked:
                 ut.yamlstatus(self.yamlcheck, process, False)
-                cmdp='<pre>date=%s <span class="espace"/> time=%s <span class="espace"/> njobs=%i <span class="espace"/> nevents=%i <span class="espace"/> njobbad=%i <span class="espace"/> process=%s </pre>\n'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot,njobsbad_tot,process)
+                cmdp='<pre>date=%s \t time=%s njobs=%i \t nevents=%i \t njobbad=%i \t process=%s </pre>\n'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot,njobsbad_tot,process)
                 stat_exist=ut.file_exist(statfile)
                 with open(statfile, "a") as myfile:
                     if not stat_exist: 
