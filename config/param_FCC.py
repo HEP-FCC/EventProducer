@@ -528,6 +528,10 @@ gridpacklist = {
 'mg_pp_hhj_lambda110_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.10','inclusive','','0.05209','1.95','1.0'],
 'mg_pp_hhj_lambda150_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.50','inclusive','','0.03793','1.95','1.0'],
 
+#VBS samples
+'mg_pp_wwjj_2l2v_LL':['WW(LL) + jj EWK same sign','inclusive','','0.489','1.0','1.0'],
+'mg_pp_wwjj_2l2v_TT':['WW(TT) + jj EWK same sign','inclusive','','4.51','1.0','1.0'],
+'mg_pp_wwjj_2l2v_TL':['WW(TL) + jj EWK same sign','inclusive','','2.8','1.0','1.0'],
 
 #DM signals Caterina Doglioni
 'mg_pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1.0'],
