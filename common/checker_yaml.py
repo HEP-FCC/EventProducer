@@ -136,6 +136,7 @@ class checker_yaml():
             if self.process!='' and self.process!=l: 
                 continue
             #continue if process has been checked
+            if l=='BADPYTHIA' or l=='lhe' or l=="__restored_files__" or l=="backup": continue
             if ut.yamlcheck(self.yamlcheck, l) and not force :continue
 
             print '--------------------- ',l
@@ -143,7 +144,7 @@ class checker_yaml():
             All_files = glob.glob("%s/%s/events_*%s"%(self.indir,l,self.fext))
             print 'number of files  ',len(All_files)
             if len(All_files)==0:continue
-            if l=='lhe' or l=="__restored_files__" or l=="backup": continue
+            
             print 'process from the input directory ',process
 
             outdir = self.makeyamldir(self.yamldir+process)
