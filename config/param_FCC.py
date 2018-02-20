@@ -533,6 +533,20 @@ gridpacklist = {
 'mg_pp_wwjj_2l2v_TT':['WW(TT) + jj EWK same sign','inclusive','','4.51','1.0','1.0'],
 'mg_pp_wwjj_2l2v_TL':['WW(TL) + jj EWK same sign','inclusive','','2.8','1.0','1.0'],
 
+
+#SUSY stop samples
+'mg_mg_pp_stopstop_5f_mStop_1TeV':['stop pair production','inclusive','','2.525','1.0','1.0'],
+'mg_mg_pp_stopstop_5f_mStop_2TeV':['','inclusive','','0.0924','1.0','1.0'],
+'mg_mg_pp_stopstop_5f_mStop_3TeV':['','inclusive','','0.01071','1.0','1.0'],
+'mg_mg_pp_stopstop_5f_mStop_4TeV':['','inclusive','','0.002052','1.0','1.0'],
+'mg_mg_pp_stopstop_5f_mStop_5TeV':['','inclusive','','0.0005199','1.0','1.0'],
+'mg_mg_pp_stopstop_5f_mStop_6TeV':['','inclusive','','0.0001573','1.0','1.0'],
+'mg_mg_pp_stopstop_5f_mStop_7TeV':['','inclusive','','5.359e-05','1.0','1.0'],
+'mg_mg_pp_stopstop_5f_mStop_8TeV':['','inclusive','','1.985e-05','1.0','1.0'],
+'mg_mg_pp_stopstop_5f_mStop_9TeV':['','inclusive','','7.897e-06','1.0','1.0'],
+'mg_mg_pp_stopstop_5f_mStop_10TeV':['','inclusive','','3.295e-06','1.0','1.0'],
+'mg_mg_pp_stopstop_5f_mStop_11TeV':['','inclusive','','1.422e-06','1.0','1.0'],
+
 #DM signals Caterina Doglioni
 'mg_pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1.0'],
 
