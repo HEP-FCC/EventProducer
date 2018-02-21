@@ -189,6 +189,18 @@ decaylist = {
 'mg_pp_hhj_lambda150_5f':['hhbbbb'],
 'mg_pp_hhj_lambda050_5f':['hhbbbb'],
 
+#stop to top neutralino decays, need to specify one for each possible neutralino mass
+'mg_pp_stopstop_5f_mStop_1TeV':['mChi_0p5TeV'],
+'mg_pp_stopstop_5f_mStop_2TeV':['mChi_0p5TeV','mChi_1p5TeV'],
+'mg_pp_stopstop_5f_mStop_3TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV'],
+'mg_pp_stopstop_5f_mStop_4TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV','mChi_3p5TeV'],
+'mg_pp_stopstop_5f_mStop_5TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV','mChi_3p5TeV','mChi_4p5TeV'],
+'mg_pp_stopstop_5f_mStop_6TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV','mChi_3p5TeV','mChi_4p5TeV','mChi_5p5TeV'],
+'mg_pp_stopstop_5f_mStop_7TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV','mChi_3p5TeV','mChi_4p5TeV','mChi_5p5TeV','mChi_6p5TeV'],
+'mg_pp_stopstop_5f_mStop_8TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV','mChi_3p5TeV','mChi_4p5TeV','mChi_5p5TeV','mChi_6p5TeV','mChi_7p5TeV'],
+'mg_pp_stopstop_5f_mStop_9TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV','mChi_3p5TeV','mChi_4p5TeV','mChi_5p5TeV','mChi_6p5TeV','mChi_7p5TeV','mChi_8p5TeV'],
+'mg_pp_stopstop_5f_mStop_10TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV','mChi_3p5TeV','mChi_4p5TeV','mChi_5p5TeV','mChi_6p5TeV','mChi_7p5TeV','mChi_8p5TeV','mChi_9p5TeV'],
+'mg_pp_stopstop_5f_mStop_11TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV','mChi_3p5TeV','mChi_4p5TeV','mChi_5p5TeV','mChi_6p5TeV','mChi_7p5TeV','mChi_8p5TeV','mChi_9p5TeV','mChi_10p5TeV'],
 }
 
 
@@ -210,6 +222,19 @@ branching_ratios = {
 'hhaabb':2*2.270E-03*5.824E-01,
 'hhbbbb':5.824E-01*5.824E-01,
 'znunu':0.205,
+
+#stop to top neutralino decays, need to specify one for each possible neutralino mass
+'mChi_0p5TeV':1.0,
+'mChi_1p5TeV':1.0,
+'mChi_2p5TeV':1.0,
+'mChi_3p5TeV':1.0,
+'mChi_4p5TeV':1.0,
+'mChi_5p5TeV':1.0,
+'mChi_6p5TeV':1.0,
+'mChi_7p5TeV':1.0,
+'mChi_8p5TeV':1.0,
+'mChi_9p5TeV':1.0,
+'mChi_10p5TeV':1.0,
 }
 
 
@@ -535,17 +560,17 @@ gridpacklist = {
 
 
 #SUSY stop samples
-'mg_mg_pp_stopstop_5f_mStop_1TeV':['stop pair production','inclusive','','2.525','1.0','1.0'],
-'mg_mg_pp_stopstop_5f_mStop_2TeV':['','inclusive','','0.0924','1.0','1.0'],
-'mg_mg_pp_stopstop_5f_mStop_3TeV':['','inclusive','','0.01071','1.0','1.0'],
-'mg_mg_pp_stopstop_5f_mStop_4TeV':['','inclusive','','0.002052','1.0','1.0'],
-'mg_mg_pp_stopstop_5f_mStop_5TeV':['','inclusive','','0.0005199','1.0','1.0'],
-'mg_mg_pp_stopstop_5f_mStop_6TeV':['','inclusive','','0.0001573','1.0','1.0'],
-'mg_mg_pp_stopstop_5f_mStop_7TeV':['','inclusive','','5.359e-05','1.0','1.0'],
-'mg_mg_pp_stopstop_5f_mStop_8TeV':['','inclusive','','1.985e-05','1.0','1.0'],
-'mg_mg_pp_stopstop_5f_mStop_9TeV':['','inclusive','','7.897e-06','1.0','1.0'],
-'mg_mg_pp_stopstop_5f_mStop_10TeV':['','inclusive','','3.295e-06','1.0','1.0'],
-'mg_mg_pp_stopstop_5f_mStop_11TeV':['','inclusive','','1.422e-06','1.0','1.0'],
+'mg_pp_stopstop_5f_mStop_1TeV':['stop pair production','inclusive','','2.525','1.0','1.0'],
+'mg_pp_stopstop_5f_mStop_2TeV':['','inclusive','','0.0924','1.0','1.0'],
+'mg_pp_stopstop_5f_mStop_3TeV':['','inclusive','','0.01071','1.0','1.0'],
+'mg_pp_stopstop_5f_mStop_4TeV':['','inclusive','','0.002052','1.0','1.0'],
+'mg_pp_stopstop_5f_mStop_5TeV':['','inclusive','','0.0005199','1.0','1.0'],
+'mg_pp_stopstop_5f_mStop_6TeV':['','inclusive','','0.0001573','1.0','1.0'],
+'mg_pp_stopstop_5f_mStop_7TeV':['','inclusive','','5.359e-05','1.0','1.0'],
+'mg_pp_stopstop_5f_mStop_8TeV':['','inclusive','','1.985e-05','1.0','1.0'],
+'mg_pp_stopstop_5f_mStop_9TeV':['','inclusive','','7.897e-06','1.0','1.0'],
+'mg_pp_stopstop_5f_mStop_10TeV':['','inclusive','','3.295e-06','1.0','1.0'],
+'mg_pp_stopstop_5f_mStop_11TeV':['','inclusive','','1.422e-06','1.0','1.0'],
 
 #DM signals Caterina Doglioni
 'mg_pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1.0'],
