@@ -87,7 +87,6 @@ pythialist={
 'p8_pp_Zprime_10TeV_ttbar':['10TeV Z\' -> ttbar','','','0.0175724','1.0','1.0'],
 'p8_pp_Zprime_15TeV_ttbar':['15TeV Z\' -> ttbar','','','0.002439429','1.0','1.0'],
 'p8_pp_Zprime_20TeV_ttbar':['20TeV Z\' -> ttbar','','','0.0004845249','1.0','1.0'],
-'p8_pp_Zprime_20TeV_ttbar_qcdBDTtrain':['20TeV Z\' -> ttbar','','','0.0004845249','1.0','1.0'],
 'p8_pp_Zprime_25TeV_ttbar':['25TeV Z\' -> ttbar','','','0.0001164359','1.0','1.0'],
 'p8_pp_Zprime_30TeV_ttbar':['30TeV Z\' -> ttbar','','','3.16759213029e-05','1.0','1.0'],
 'p8_pp_Zprime_35TeV_ttbar':['35TeV Z\' -> ttbar','','','9.65649631373e-06','1.0','1.0'],
@@ -97,8 +96,6 @@ pythialist={
 'p8_pp_RSGraviton_10TeV_ww':['10TeV Z\' -> WW','','','7.686e-3','1.0','1.0'],
 'p8_pp_RSGraviton_15TeV_ww':['15TeV Z\' -> WW','','','7.386e-4','1.0','1.0'],
 'p8_pp_RSGraviton_20TeV_ww':['20TeV Z\' -> WW','','','1.182e-4','1.0','1.0'],
-'p8_pp_RSGraviton_20TeV_ww_qcdBDTtrain':['20TeV Z\' -> WW','','','1.182e-4','1.0','1.0'],
-
 'p8_pp_RSGraviton_25TeV_ww':['25TeV Z\' -> WW','','','2.284e-5','1.0','1.0'],
 'p8_pp_RSGraviton_30TeV_ww':['30TeV Z\' -> WW','','','5.253e-6','1.0','1.0'],
 'p8_pp_RSGraviton_35TeV_ww':['35TeV Z\' -> WW','','','1.215e-6','1.0','1.0'],
@@ -158,6 +155,9 @@ pythialist={
 'p8_pp_vv_Pt2500toInf':['di-boson','pT > 2500.','','1.377e-2','3.0','1.0'],
 'p8_pp_ll_Pt5000toInf':['di-lepton','pT > 5000.','','2.775e-5','3.0','1.0'],
 
+'p8_pp_RSGraviton_20TeV_ww_tagger':['20TeV Z\' -> WW','','','1.182e-4','1.0','1.0'],
+'p8_pp_Zprime_20TeV_ttbar_tagger':['20TeV Z\' -> ttbar','','','0.0004845249','1.0','1.0'],
+'p8_pp_jj_lo_tagger':['20TeV Z\' -> ttbar','','','0.0004845249','1.0','1.0'],
 
 }
 
