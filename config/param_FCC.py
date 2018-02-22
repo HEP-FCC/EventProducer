@@ -173,7 +173,7 @@ decaylist = {
 'mg_pp_v0123j_5f':['znunu'],
 'mg_pp_z0123j_4f':['zll'],
 'mg_pp_w0123j_4f':['wlv'],
-'mg_pp_ttz_5f':['znunu'],
+'mg_pp_ttz_5f':['znunu', 'zbb'],
 'mg_pp_hh_lambda050_5f':['haa'],
 'mg_pp_hh_lambda090_5f':['haa'],
 'mg_pp_hh_lambda095_5f':['haa'],
@@ -218,6 +218,7 @@ branching_ratios = {
 'hbb':5.824E-01,
 'htautau':6.272E-02,
 'zll':0.307,
+'zbb':0.152,
 'wlv':3*0.108,
 'hhaabb':2*2.270E-03*5.824E-01,
 'hhbbbb':5.824E-01*5.824E-01,
@@ -585,9 +586,12 @@ gridpacklist = {
 'mg_pp_t2tt_mstop_3000_mlsp_2500':['susy sample loukas','inclusive','','','',''],
 'mg_pp_t2tt_mstop_6000_mlsp_3000':['susy sample loukas','inclusive','','','',''],
 'mg_pp_t2tt_mstop_7500_mlsp_2000':['susy sample loukas','inclusive','','','',''],
-'mg_pp_t2tt_mstop_9500_mlsp_1':['susy sample loukas','inclusive','','','','']
+'mg_pp_t2tt_mstop_9500_mlsp_1':['susy sample loukas','inclusive','','','',''],
 
 
+#boosted ttH background samples
+'mg_pp_ttj_4f':['tt + 1j in 4f','pT(j) > 150 GeV','','4789','1.0','1.0'],
+'mg_pp_ttbb_4f':['tt+bb in 4f','pT(bb) > 150 GeV','','86.69','1.0','1.0'],
 }
 
 
