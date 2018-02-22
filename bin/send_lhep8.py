@@ -63,7 +63,7 @@ class send_lhep8():
         print '======================================',self.process
         pythiacard='%s%s.cmd'%(self.para.pythiacards_dir,self.process.replace('mg_pp','p8_pp').replace('mg_gg','p8_gg'))
         if self.decay!='':
-            pythiacard='%s%s_%s.cmd'%(self.para.pythiacards_dir,self.process,self.decay)
+            pythiacard='%s%s_%s.cmd'%(self.para.pythiacards_dir,self.process.replace('mg_pp','p8_pp').replace('mg_gg','p8_gg'),self.decay)
             
         if ut.file_exist(pythiacard)==False:
             print 'pythia card does not exist: ',pythiacard
