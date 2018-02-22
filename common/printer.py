@@ -117,9 +117,9 @@ class printer():
             nfileseos=0
             if self.isLHE:
                 nfileseos=len(os.listdir('%s%s'%(self.para.lhe_dir,proc)))
-            else:
-                if os.path.isdir('%s%s/%s'%(self.para.delphes_dir,self.version,news)): 
-                    nfileseos=len(os.listdir('%s%s/%s'%(self.para.delphes_dir,self.version,news)))
+            else:                    
+                if os.path.isdir('%s%s/%s'%(self.para.delphes_dir,self.version,process)): 
+                    nfileseos=len(os.listdir('%s%s/%s'%(self.para.delphes_dir,self.version,process)))
 
             print 'nevents               : %i'%events_tot
             print 'nfiles on eos/checked : %i/%i'%(nfileseos,files_tot)
@@ -175,7 +175,8 @@ class printer():
             cmd='%s,,%s,,%s,,%s,,%s,,%.2f,,%s,,%s\n'%('total',self.comma_me(str(self.ntot_events)),self.comma_me(str(self.ntot_files)),
                                                       self.comma_me(str(self.ntot_bad)),self.comma_me(str(self.ntot_eos)),self.tot_size,'','')
         else: 
-            cmd='%s,,%s,,%s,,%s,,%s,,%s,,%.2f,,%s,,%s\n'%('total',self.comma_me(str(self.ntot_events)),self.comma_me(str(self.ntot_sumw)),self.comma_me(str(self.ntot_files)),
+            cmd='%s,,%s,,%s,,%s,,%s,,%s,,%.2f,,%s,,%s\n'%('total',self.comma_me(str(self.ntot_events)),self.comma_me(str(self.ntot_sumw)),
+                                                          self.comma_me(str(self.ntot_files)),
                                                           self.comma_me(str(self.ntot_bad)),self.comma_me(str(self.ntot_eos)),self.tot_size,'','')
 
         self.OutFile.write(cmd)
