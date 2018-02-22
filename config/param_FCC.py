@@ -588,6 +588,9 @@ gridpacklist = {
 'mg_pp_t2tt_mstop_9500_mlsp_1':['susy sample loukas','inclusive','','','','']
 
 
+#boosted ttH background samples
+'mg_pp_ttj_4f':['tt + 1j in 4f','pT(j) > 150 GeV','','4789','1.0','1.0'],
+'mg_pp_ttbb_4f':['tt+bb in 4f','pT(bb) > 150 GeV','','86.69','1.0','1.0'],
 }
 
 
