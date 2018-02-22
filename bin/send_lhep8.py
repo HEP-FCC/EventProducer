@@ -127,7 +127,7 @@ class send_lhep8():
 
         nbjobsSub=0
         ntmp=0
-        processp8 = self.process.replace('mg_','mgp8_')
+        processp8 = pr_decay.replace('mg_pp','mgp8_pp').replace('mg_gg','mgp8_gg')
 
         for i in xrange(len(All_files)):
 
