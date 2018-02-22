@@ -106,12 +106,13 @@ class send_lhep8():
             pr_decay=self.process+'_'+self.decay
         print '====',pr_decay,'===='
 
+        processp8 = pr_decay.replace('mg_pp','mgp8_pp').replace('mg_gg','mgp8_gg')
 
-        logdir=Dir+"/BatchOutputs/%s/%s/"%(self.version,pr_decay)
+        logdir=Dir+"/BatchOutputs/%s/%s/"%(self.version,processp8)
         if not ut.dir_exist(logdir):
             os.system("mkdir -p %s"%logdir)
      
-        yamldir = '%s/%s/%s'%(self.para.yamldir,self.version,pr_decay)
+        yamldir = '%s/%s/%s'%(self.para.yamldir,self.version,processp8)
         if not ut.dir_exist(yamldir):
             os.system("mkdir -p %s"%yamldir)
 
@@ -127,7 +128,6 @@ class send_lhep8():
 
         nbjobsSub=0
         ntmp=0
-        processp8 = pr_decay.replace('mg_pp','mgp8_pp').replace('mg_gg','mgp8_gg')
 
         for i in xrange(len(All_files)):
 
@@ -172,10 +172,10 @@ class send_lhep8():
             frun.write('unset PYTHONHOME\n')
             frun.write('unset PYTHONPATH\n')
             frun.write('source %s\n'%(self.para.stack))
-            frun.write('mkdir job%s_%s\n'%(jobid,pr_decay))
-            frun.write('cd job%s_%s\n'%(jobid,pr_decay))
+            frun.write('mkdir job%s_%s\n'%(jobid,processp8))
+            frun.write('cd job%s_%s\n'%(jobid,processp8))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
-            frun.write('mkdir -p %s%s/%s\n'%(self.para.delphes_dir,self.version,pr_decay.replace('mg_','mgp8_')))
+            frun.write('mkdir -p %s%s/%s\n'%(self.para.delphes_dir,self.version,processp8))
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(tmpf['processing']['out']))
             frun.write('gunzip -c %s > events.lhe\n'%tmpf['processing']['out'].split('/')[-1])          
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_base))
@@ -191,7 +191,7 @@ class send_lhep8():
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events_%s.root %s\n'%(jobid,outfile))
             
             frun.write('cd ..\n')
-            frun.write('rm -rf job%s_%s\n'%(jobid,pr_decay))
+            frun.write('rm -rf job%s_%s\n'%(jobid,processp8))
 
             cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -cwd%s %s" %(self.queue, logdir,frunfull)
              
