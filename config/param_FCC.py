@@ -156,9 +156,13 @@ pythialist={
 'p8_pp_ll_Pt5000toInf':['di-lepton','pT > 5000.','','2.775e-5','3.0','1.0'],
 
 # training event based BDT samples
+#'p8_pp_Zprime_20TeV_ttbar_qcdBDTtrain':['20TeV Z\' -> ttbar','','','0.0004845249','1.0','1.0'],
+#'p8_pp_RSGraviton_20TeV_ww_qcdBDTtrain':['20TeV Z\' -> WW','','','1.182e-4','1.0','1.0'],
+
+# training anti-QCD tagger samples
 'p8_pp_RSGraviton_20TeV_ww_tagger':['20TeV Z\' -> WW','','','1.182e-4','1.0','1.0'],
 'p8_pp_Zprime_20TeV_ttbar_tagger':['20TeV Z\' -> ttbar','','','0.0004845249','1.0','1.0'],
-'p8_pp_jj_lo_tagger':['dijet','pThat > 2500 and bias2SelectionPow = 6.0','','','0.0004845249','1.0','1.0'],
+'p8_pp_jj_lo_tagger':['dijet','pThat > 2500 and bias2SelectionPow = 6.0','','0.0004845249','1.0','1.0'],
 
 }
 
