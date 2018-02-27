@@ -155,9 +155,10 @@ pythialist={
 'p8_pp_vv_Pt2500toInf':['di-boson','pT > 2500.','','1.377e-2','3.0','1.0'],
 'p8_pp_ll_Pt5000toInf':['di-lepton','pT > 5000.','','2.775e-5','3.0','1.0'],
 
+# training event based BDT samples
 'p8_pp_RSGraviton_20TeV_ww_tagger':['20TeV Z\' -> WW','','','1.182e-4','1.0','1.0'],
 'p8_pp_Zprime_20TeV_ttbar_tagger':['20TeV Z\' -> ttbar','','','0.0004845249','1.0','1.0'],
-'p8_pp_jj_lo_tagger':['20TeV Z\' -> ttbar','','','0.0004845249','1.0','1.0'],
+'p8_pp_jj_lo_tagger':['dijet','pThat > 2500 and bias2SelectionPow = 6.0','','','0.0004845249','1.0','1.0'],
 
 }
 
@@ -450,7 +451,6 @@ gridpacklist = {
 'mg_pp_mumu_lo_2TeV':['','m > 2 TeV','','0.00717','2.0','1.0'],
 'mg_pp_tt_lo':['','m > 5 TeV','','0.1373','2.0','1.0'],
 'mg_pp_jj_lo':['','m > 5 TeV','','43.05','2.0','1.0'],
-'mg_pp_jj_lo_filter_pTjet7_5TeV':['','m > 15 TeV','','0.07777','2.0','1.0'],
 'mg_pp_vv_lo':['','m > 5 TeV','','0.00316','2.0','1.0'],
 'mg_pp_www_4f':['WWW (4FS)','inclusive','','1.686','2.5','1.0'],
 'mg_pp_wwz_4f':['WWZ (4FS)','inclusive','','1.437','2.8','1.0'],
@@ -573,6 +573,12 @@ gridpacklist = {
 'mg_pp_stopstop_5f_mStop_10TeV':['','inclusive','','3.295e-06','1.0','1.0'],
 'mg_pp_stopstop_5f_mStop_11TeV':['','inclusive','','1.422e-06','1.0','1.0'],
 
+#FCNC top
+'mg_pp_tt_tlep_act':['top pair FCNC tca','','','1.0','1.0','1.0'],
+'mg_pp_tt_tlep_aut':['top pair FCNC tua','','','1.0','1.0','1.0'],
+'mg_pp_ta_tlep_act_pt_1000_inf':['top pair FCNC tca','pT>1TeV','','1.0','1.0','1.0'],
+'mg_pp_ta_tlep_aut_pt_1000_inf':['top pair FCNC tua','pT>1TeV','','1.0','1.0','1.0'],
+
 #DM signals Caterina Doglioni
 'mg_pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1.0'],
 
@@ -592,6 +598,10 @@ gridpacklist = {
 #boosted ttH background samples
 'mg_pp_ttj_4f':['tt + 1j in 4f','pT(j) > 150 GeV','','4789','1.0','1.0'],
 'mg_pp_ttbb_4f':['tt+bb in 4f','pT(bb) > 150 GeV','','86.69','1.0','1.0'],
+
+# training event based BDT samples
+#'mg_pp_jj_lo_filter_pTjet7_5TeV':['','m > 15 TeV','','0.07777','2.0','1.0'],
+
 }
 
 
