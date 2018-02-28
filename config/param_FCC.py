@@ -18,8 +18,8 @@ yamlcheck_lhe='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCC/lhe/check.ya
 yamlcheck_reco='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCC/VERSION/check.yaml'
 
 #heppy and proc lists
-heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCC_heppySampleList_VERSION.py'
-procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCC_procDict_VERSION.json'
+heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/test_FCC_heppySampleList_VERSION.py'
+procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/test_FCC_procDict_VERSION.json'
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'
@@ -195,17 +195,17 @@ decaylist = {
 'mg_pp_hhj_lambda050_5f':['hhbbbb'],
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
-'mg_pp_stopstop_5f_mStop_1TeV':['mChi_0p5TeV'],
-'mg_pp_stopstop_5f_mStop_2TeV':['mChi_0p5TeV','mChi_1p5TeV'],
-'mg_pp_stopstop_5f_mStop_3TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV'],
-'mg_pp_stopstop_5f_mStop_4TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV','mChi_3p5TeV'],
-'mg_pp_stopstop_5f_mStop_5TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV','mChi_3p5TeV','mChi_4p5TeV'],
-'mg_pp_stopstop_5f_mStop_6TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV','mChi_3p5TeV','mChi_4p5TeV','mChi_5p5TeV'],
-'mg_pp_stopstop_5f_mStop_7TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV','mChi_3p5TeV','mChi_4p5TeV','mChi_5p5TeV','mChi_6p5TeV'],
-'mg_pp_stopstop_5f_mStop_8TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV','mChi_3p5TeV','mChi_4p5TeV','mChi_5p5TeV','mChi_6p5TeV','mChi_7p5TeV'],
-'mg_pp_stopstop_5f_mStop_9TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV','mChi_3p5TeV','mChi_4p5TeV','mChi_5p5TeV','mChi_6p5TeV','mChi_7p5TeV','mChi_8p5TeV'],
-'mg_pp_stopstop_5f_mStop_10TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV','mChi_3p5TeV','mChi_4p5TeV','mChi_5p5TeV','mChi_6p5TeV','mChi_7p5TeV','mChi_8p5TeV','mChi_9p5TeV'],
-'mg_pp_stopstop_5f_mStop_11TeV':['mChi_0p5TeV','mChi_1p5TeV','mChi_2p5TeV','mChi_3p5TeV','mChi_4p5TeV','mChi_5p5TeV','mChi_6p5TeV','mChi_7p5TeV','mChi_8p5TeV','mChi_9p5TeV','mChi_10p5TeV'],
+'mg_pp_stopstop_5f_mStop_1TeV':['mChi0p5TeV'],
+'mg_pp_stopstop_5f_mStop_2TeV':['mChi0p5TeV','mChi1p5TeV'],
+'mg_pp_stopstop_5f_mStop_3TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV'],
+'mg_pp_stopstop_5f_mStop_4TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV','mChi3p5TeV'],
+'mg_pp_stopstop_5f_mStop_5TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV','mChi3p5TeV','mChi4p5TeV'],
+'mg_pp_stopstop_5f_mStop_6TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV','mChi3p5TeV','mChi4p5TeV','mChi5p5TeV'],
+'mg_pp_stopstop_5f_mStop_7TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV','mChi3p5TeV','mChi4p5TeV','mChi5p5TeV','mChi6p5TeV'],
+'mg_pp_stopstop_5f_mStop_8TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV','mChi3p5TeV','mChi4p5TeV','mChi5p5TeV','mChi6p5TeV','mChi7p5TeV'],
+'mg_pp_stopstop_5f_mStop_9TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV','mChi3p5TeV','mChi4p5TeV','mChi5p5TeV','mChi6p5TeV','mChi7p5TeV','mChi8p5TeV'],
+'mg_pp_stopstop_5f_mStop_10TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV','mChi3p5TeV','mChi4p5TeV','mChi5p5TeV','mChi6p5TeV','mChi7p5TeV','mChi8p5TeV','mChi9p5TeV'],
+'mg_pp_stopstop_5f_mStop_11TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV','mChi3p5TeV','mChi4p5TeV','mChi5p5TeV','mChi6p5TeV','mChi7p5TeV','mChi8p5TeV','mChi9p5TeV','mChi10p5TeV'],
 }
 
 
@@ -230,17 +230,17 @@ branching_ratios = {
 'znunu':0.205,
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
-'mChi_0p5TeV':1.0,
-'mChi_1p5TeV':1.0,
-'mChi_2p5TeV':1.0,
-'mChi_3p5TeV':1.0,
-'mChi_4p5TeV':1.0,
-'mChi_5p5TeV':1.0,
-'mChi_6p5TeV':1.0,
-'mChi_7p5TeV':1.0,
-'mChi_8p5TeV':1.0,
-'mChi_9p5TeV':1.0,
-'mChi_10p5TeV':1.0,
+'mChi0p5TeV':1.0,
+'mChi1p5TeV':1.0,
+'mChi2p5TeV':1.0,
+'mChi3p5TeV':1.0,
+'mChi4p5TeV':1.0,
+'mChi5p5TeV':1.0,
+'mChi6p5TeV':1.0,
+'mChi7p5TeV':1.0,
+'mChi8p5TeV':1.0,
+'mChi9p5TeV':1.0,
+'mChi10p5TeV':1.0,
 }
 
 
@@ -582,7 +582,7 @@ gridpacklist = {
 'mg_pp_tt_tlep_aut':['top pair FCNC tua','','','1.0','1.0','1.0'],
 'mg_pp_ta_tlep_act_pt_1000_inf':['top pair FCNC tca','pT>1TeV','','1.0','1.0','1.0'],
 'mg_pp_ta_tlep_aut_pt_1000_inf':['top pair FCNC tua','pT>1TeV','','1.0','1.0','1.0'],
-
+'mg_pp_tt_hadronic_aut':['top pair FCNC tua','pT>1TeV','','1.0','1.0','1.0'],
 #DM signals Caterina Doglioni
 'mg_pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1.0'],
 
@@ -604,7 +604,7 @@ gridpacklist = {
 'mg_pp_ttbb_4f':['tt+bb in 4f','pT(bb) > 150 GeV','','86.69','1.0','1.0'],
 
 # training event based BDT samples
-#'mg_pp_jj_lo_filter_pTjet7_5TeV':['','m > 15 TeV','','0.07777','2.0','1.0'],
+'mg_pp_jj_lo_filter_pTjet7_5TeV':['','m > 15 TeV','','0.07777','2.0','1.0'],
 
 }
 
