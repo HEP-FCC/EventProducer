@@ -48,6 +48,8 @@ class merger():
                         if tmpf['processing']['status']=='BAD':
                             nbad+=1
                             outfilesbad.append(tmpf['processing']['out'].split('/')[-1])
+                            outdir=tmpf['processing']['out'].replace(tmpf['processing']['out'].split('/')[-1],'')
+
                             continue
                         totsize+=tmpf['processing']['size']
                         totevents+=tmpf['processing']['nevents']
@@ -72,5 +74,5 @@ class merger():
                    }
             with open(outfile, 'w') as outyaml:
                 yaml.dump(dic, outyaml, default_flow_style=False) 
-            
-            ut.yamlstatus(self.yamlcheck, process, True)
+            if ndone+nbad==len(All_files):
+                ut.yamlstatus(self.yamlcheck, process, True)
