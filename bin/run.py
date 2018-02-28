@@ -87,7 +87,7 @@ if __name__=="__main__":
     if args.LHE or args.check or args.clean or args.merge or args.reco:
         for key, value in para.gridpacklist.iteritems():
             processlist.append(key)
-    if args.reco and args.remove:
+    if args.reco and (args.remove or args.clean):
         for key, value in para.gridpacklist.iteritems():
             processlist.append('mgp8_'+key[3:])
 
