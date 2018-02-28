@@ -177,7 +177,7 @@ class makeSampleList():
                 if dec in processhad and dec_proc == dec:
                     br = self.para.branching_ratios[dec]
                     decay = dec
-            if br < 1.0 and decay != '':
+            if decay != '':
                 print 'decay---------- '
                 decstr = '_{}'.format(decay)
                 proc_param = processhad.replace(decstr,'')
