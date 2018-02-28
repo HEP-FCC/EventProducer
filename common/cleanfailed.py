@@ -23,6 +23,7 @@ class cleanfailed():
         All_files = []
         if self.process=='':All_files = glob.glob("%s/*/merge.yaml"%self.yamldir)
         else:All_files = glob.glob("%s/merge.yaml"%self.yamldir)
+        print "========================= %s/merge.yaml"%self.yamldir
         for f in All_files:
             print '=====================    ',f
             with open(f, 'r') as stream:
