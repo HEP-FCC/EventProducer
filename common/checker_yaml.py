@@ -164,7 +164,20 @@ class checker_yaml():
                 userid=ut.find_owner(f)
 
                 outfile='%sevents_%s.yaml'%(outdir,jobid)
-                if ut.file_exist(outfile) and ut.getsize(outfile)> 100 and not force: continue
+                if ut.file_exist(outfile) and ut.getsize(outfile)> 100 and not force:
+                    doc = None
+                    with open(outfile) as ftmp:
+                        try:
+                            doc = yaml.load(ftmp)
+                        except yaml.YAMLError as exc:
+                            print(exc)
+                        try: 
+                            value = doc['processing']['status']
+                            if value=='DONE': continue
+        
+                        except KeyError, e:
+                            print 'status %s does not exist' % str(e)
+
                 hasbeenchecked=True
                 print '-----------',f
 
