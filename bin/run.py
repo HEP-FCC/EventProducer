@@ -81,6 +81,9 @@ if __name__=="__main__":
     if (args.reco and args.type=="p8") or args.check or args.clean or args.merge:
         for key, value in para.pythialist.iteritems():
             processlist.append(key)
+        for key, value in para.decaylist.iteritems():
+            for v in value:
+                processlist.append("%s_%s"%(key,v))
     if args.LHE or args.check or args.clean or args.merge or args.reco:
         for key, value in para.gridpacklist.iteritems():
             processlist.append(key)
