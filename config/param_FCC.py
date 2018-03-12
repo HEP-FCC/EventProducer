@@ -195,20 +195,29 @@ decaylist = {
 'mg_pp_hhj_lambda050_5f':['hhbbbb'],
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
-'mg_pp_stopstop_5f_mStop_1TeV':['mChi0p5TeV'],
-'mg_pp_stopstop_5f_mStop_2TeV':['mChi0p5TeV','mChi1p5TeV'],
-'mg_pp_stopstop_5f_mStop_3TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV'],
-'mg_pp_stopstop_5f_mStop_4TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV','mChi3p5TeV'],
-'mg_pp_stopstop_5f_mStop_5TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV','mChi3p5TeV','mChi4p5TeV'],
-'mg_pp_stopstop_5f_mStop_6TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV','mChi3p5TeV','mChi4p5TeV','mChi5p5TeV'],
-'mg_pp_stopstop_5f_mStop_7TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV','mChi3p5TeV','mChi4p5TeV','mChi5p5TeV','mChi6p5TeV'],
-'mg_pp_stopstop_5f_mStop_8TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV','mChi3p5TeV','mChi4p5TeV','mChi5p5TeV','mChi6p5TeV','mChi7p5TeV'],
-'mg_pp_stopstop_5f_mStop_9TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV','mChi3p5TeV','mChi4p5TeV','mChi5p5TeV','mChi6p5TeV','mChi7p5TeV','mChi8p5TeV'],
-'mg_pp_stopstop_5f_mStop_10TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV','mChi3p5TeV','mChi4p5TeV','mChi5p5TeV','mChi6p5TeV','mChi7p5TeV','mChi8p5TeV','mChi9p5TeV'],
-'mg_pp_stopstop_5f_mStop_11TeV':['mChi0p5TeV','mChi1p5TeV','mChi2p5TeV','mChi3p5TeV','mChi4p5TeV','mChi5p5TeV','mChi6p5TeV','mChi7p5TeV','mChi8p5TeV','mChi9p5TeV','mChi10p5TeV'],
+{
+'mg_pp_stopstop_5f_mStop_1p0TeV':['mChi0p5TeV'],
+'mg_pp_stopstop_5f_mStop_1p5TeV':['mChi0p5TeV','mChi1p0TeV'],
+'mg_pp_stopstop_5f_mStop_2p0TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV'],
+'mg_pp_stopstop_5f_mStop_2p5TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV'],
+'mg_pp_stopstop_5f_mStop_3p0TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV'],
+'mg_pp_stopstop_5f_mStop_3p5TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV'],
+'mg_pp_stopstop_5f_mStop_4p0TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV'],
+'mg_pp_stopstop_5f_mStop_4p5TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV','mChi4p0TeV'],
+'mg_pp_stopstop_5f_mStop_5p0TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV','mChi4p0TeV','mChi4p5TeV'],
+'mg_pp_stopstop_5f_mStop_5p5TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV','mChi4p0TeV','mChi4p5TeV','mChi5p0TeV'],
+'mg_pp_stopstop_5f_mStop_6p0TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV','mChi4p0TeV','mChi4p5TeV','mChi5p0TeV','mChi5p5TeV'],
+'mg_pp_stopstop_5f_mStop_6p5TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV','mChi4p0TeV','mChi4p5TeV','mChi5p0TeV','mChi5p5TeV','mChi6p0TeV'],
+'mg_pp_stopstop_5f_mStop_7p0TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV','mChi4p0TeV','mChi4p5TeV','mChi5p0TeV','mChi5p5TeV','mChi6p0TeV','mChi6p5TeV'],
+'mg_pp_stopstop_5f_mStop_7p5TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV','mChi4p0TeV','mChi4p5TeV','mChi5p0TeV','mChi5p5TeV','mChi6p0TeV','mChi6p5TeV','mChi7p0TeV'],
+'mg_pp_stopstop_5f_mStop_8p0TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV','mChi4p0TeV','mChi4p5TeV','mChi5p0TeV','mChi5p5TeV','mChi6p0TeV','mChi6p5TeV','mChi7p0TeV','mChi7p5TeV'],
+'mg_pp_stopstop_5f_mStop_8p5TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV','mChi4p0TeV','mChi4p5TeV','mChi5p0TeV','mChi5p5TeV','mChi6p0TeV','mChi6p5TeV','mChi7p0TeV','mChi7p5TeV','mChi8p0TeV'],
+'mg_pp_stopstop_5f_mStop_9p0TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV','mChi4p0TeV','mChi4p5TeV','mChi5p0TeV','mChi5p5TeV','mChi6p0TeV','mChi6p5TeV','mChi7p0TeV','mChi7p5TeV','mChi8p0TeV','mChi8p5TeV'],
+'mg_pp_stopstop_5f_mStop_9p5TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV','mChi4p0TeV','mChi4p5TeV','mChi5p0TeV','mChi5p5TeV','mChi6p0TeV','mChi6p5TeV','mChi7p0TeV','mChi7p5TeV','mChi8p0TeV','mChi8p5TeV','mChi9p0TeV'],
+'mg_pp_stopstop_5f_mStop_10p0TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV','mChi4p0TeV','mChi4p5TeV','mChi5p0TeV','mChi5p5TeV','mChi6p0TeV','mChi6p5TeV','mChi7p0TeV','mChi7p5TeV','mChi8p0TeV','mChi8p5TeV','mChi9p0TeV','mChi9p5TeV'],
+'mg_pp_stopstop_5f_mStop_10p5TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV','mChi4p0TeV','mChi4p5TeV','mChi5p0TeV','mChi5p5TeV','mChi6p0TeV','mChi6p5TeV','mChi7p0TeV','mChi7p5TeV','mChi8p0TeV','mChi8p5TeV','mChi9p0TeV','mChi9p5TeV','mChi10p0TeV'],
+'mg_pp_stopstop_5f_mStop_11p0TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV','mChi4p0TeV','mChi4p5TeV','mChi5p0TeV','mChi5p5TeV','mChi6p0TeV','mChi6p5TeV','mChi7p0TeV','mChi7p5TeV','mChi8p0TeV','mChi8p5TeV','mChi9p0TeV','mChi9p5TeV','mChi10p0TeV','mChi10p5TeV'],
 }
-
-
 
 ##list of decays branching ratios 
 # from https://twiki.cern.ch/twiki/bin/view/LHCPhysics/CERNYellowReportPageBR 
@@ -230,17 +239,28 @@ branching_ratios = {
 'znunu':0.205,
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
-'mChi0p5TeV':1.0,
+{
+'mChi1p0TeV':1.0,
 'mChi1p5TeV':1.0,
+'mChi2p0TeV':1.0,
 'mChi2p5TeV':1.0,
+'mChi3p0TeV':1.0,
 'mChi3p5TeV':1.0,
+'mChi4p0TeV':1.0,
 'mChi4p5TeV':1.0,
+'mChi5p0TeV':1.0,
 'mChi5p5TeV':1.0,
+'mChi6p0TeV':1.0,
 'mChi6p5TeV':1.0,
+'mChi7p0TeV':1.0,
 'mChi7p5TeV':1.0,
+'mChi8p0TeV':1.0,
 'mChi8p5TeV':1.0,
+'mChi9p0TeV':1.0,
 'mChi9p5TeV':1.0,
+'mChi10p0TeV':1.0,
 'mChi10p5TeV':1.0,
+'mChi11p0TeV':1.0,
 }
 
 
