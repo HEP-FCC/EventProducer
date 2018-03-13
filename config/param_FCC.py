@@ -195,7 +195,6 @@ decaylist = {
 'mg_pp_hhj_lambda050_5f':['hhbbbb'],
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
-{
 'mg_pp_stopstop_5f_mStop_1p0TeV':['mChi0p5TeV'],
 'mg_pp_stopstop_5f_mStop_1p5TeV':['mChi0p5TeV','mChi1p0TeV'],
 'mg_pp_stopstop_5f_mStop_2p0TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV'],
@@ -239,7 +238,6 @@ branching_ratios = {
 'znunu':0.205,
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
-{
 'mChi1p0TeV':1.0,
 'mChi1p5TeV':1.0,
 'mChi2p0TeV':1.0,
@@ -593,22 +591,22 @@ gridpacklist = {
 'mg_pp_stopstop_5f_mStop_2p5TeV':['','inclusive','','0.02884','1.0','1.4'],
 'mg_pp_stopstop_5f_mStop_3p0TeV':['','inclusive','','0.01071','1.0','1.4'],
 'mg_pp_stopstop_5f_mStop_3p5TeV':['','inclusive','','0.004491','1.0','1.4'],
-'mg_pp_stopstop_5f_mStop_4p0TeV':['','inclusive','','0.002052','1.0','1.4'],
-'mg_pp_stopstop_5f_mStop_4p5TeV':['','inclusive','','0.001006','1.0','1.4'],
-'mg_pp_stopstop_5f_mStop_5p0TeV':['','inclusive','','0.0005199','1.0','1.4'],
-'mg_pp_stopstop_5f_mStop_5p5TeV':['','inclusive','','0.0002802','1.0','1.4'],
-'mg_pp_stopstop_5f_mStop_6p0TeV':['','inclusive','','0.0001573','1.0','1.4'],
-'mg_pp_stopstop_5f_mStop_6p5TeV':['','inclusive','','9.056e-05','1.0','1.4'],
-'mg_pp_stopstop_5f_mStop_7p0TeV':['','inclusive','','5.359e-05','1.0','1.4'],
-'mg_pp_stopstop_5f_mStop_7p5TeV':['','inclusive','','3.238e-05','1.0','1.4'],
-'mg_pp_stopstop_5f_mStop_8p0TeV':['','inclusive','','1.985e-05','1.0','1.4'],
-'mg_pp_stopstop_5f_mStop_8p5TeV':['','inclusive','','1.241e-05','1.0','1.4'],
-'mg_pp_stopstop_5f_mStop_9p0TeV':['','inclusive','','7.897e-06','1.0','1.4'],
-'mg_pp_stopstop_5f_mStop_9p5TeV':['','inclusive','','5.088e-06','1.0','1.4'],
-'mg_pp_stopstop_5f_mStop_10p0TeV':['','inclusive','','3.295e-06','1.0','1.4'],
-'mg_pp_stopstop_5f_mStop_10p5TeV':['','inclusive','','2.155e-06','1.0','1.4'],
-'mg_pp_stopstop_5f_mStop_11p0TeV':['','inclusive','','1.422e-06','1.0','1.4'],
-'mg_pp_stopstop_5f_mStop_11p5TeV':['','inclusive','','9.507e-07','1.0','1.4'],
+'mg_pp_stopstop_5f_mStop_4p0TeV':['','inclusive','','0.002052','1.0','1.45'],
+'mg_pp_stopstop_5f_mStop_4p5TeV':['','inclusive','','0.001006','1.0','1.45'],
+'mg_pp_stopstop_5f_mStop_5p0TeV':['','inclusive','','0.0005199','1.0','1.45'],
+'mg_pp_stopstop_5f_mStop_5p5TeV':['','inclusive','','0.0002802','1.0','1.45'],
+'mg_pp_stopstop_5f_mStop_6p0TeV':['','inclusive','','0.0001573','1.0','1.50'],
+'mg_pp_stopstop_5f_mStop_6p5TeV':['','inclusive','','9.056e-05','1.0','1.50'],
+'mg_pp_stopstop_5f_mStop_7p0TeV':['','inclusive','','5.359e-05','1.0','1.57'],
+'mg_pp_stopstop_5f_mStop_7p5TeV':['','inclusive','','3.238e-05','1.0','1.57'],
+'mg_pp_stopstop_5f_mStop_8p0TeV':['','inclusive','','1.985e-05','1.0','1.65'],
+'mg_pp_stopstop_5f_mStop_8p5TeV':['','inclusive','','1.241e-05','1.0','1.65'],
+'mg_pp_stopstop_5f_mStop_9p0TeV':['','inclusive','','7.897e-06','1.0','1.7'],
+'mg_pp_stopstop_5f_mStop_9p5TeV':['','inclusive','','5.088e-06','1.0','1.7'],
+'mg_pp_stopstop_5f_mStop_10p0TeV':['','inclusive','','3.295e-06','1.0','1.75'],
+'mg_pp_stopstop_5f_mStop_10p5TeV':['','inclusive','','2.155e-06','1.0','1.75'],
+'mg_pp_stopstop_5f_mStop_11p0TeV':['','inclusive','','1.422e-06','1.0','1.80'],
+'mg_pp_stopstop_5f_mStop_11p5TeV':['','inclusive','','9.507e-07','1.0','1.80'],
 
 #FCNC top
 'mg_pp_tt_tlep_act':['top pair FCNC tca','','','1.0','1.0','1.0'],
