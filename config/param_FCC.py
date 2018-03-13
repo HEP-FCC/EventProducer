@@ -195,7 +195,6 @@ decaylist = {
 'mg_pp_hhj_lambda050_5f':['hhbbbb'],
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
-{
 'mg_pp_stopstop_5f_mStop_1p0TeV':['mChi0p5TeV'],
 'mg_pp_stopstop_5f_mStop_1p5TeV':['mChi0p5TeV','mChi1p0TeV'],
 'mg_pp_stopstop_5f_mStop_2p0TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV'],
@@ -239,7 +238,6 @@ branching_ratios = {
 'znunu':0.205,
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
-{
 'mChi1p0TeV':1.0,
 'mChi1p5TeV':1.0,
 'mChi2p0TeV':1.0,
