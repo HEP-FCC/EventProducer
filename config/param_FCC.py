@@ -628,7 +628,8 @@ gridpacklist = {
 'mg_pp_tta':['top pair FCNC tua','pT>1TeV','','1.0','1.0','1.0'],
 'mg_pp_wa':['top pair FCNC tua','pT>1TeV','','1.0','1.0','1.0'],
 'mg_pp_tajets':['top pair FCNC tua','pT>1TeV','','1.0','1.0','1.0'],
-
+'ch_pp_wbj_fcnc_ku':['fcnc_tGu','inclusive','','1720','1.52',''],
+'ch_pp_wbj_fcnc_kc':['fcnc_tGc','inclusive','','574.8','1.4',''],
 #DM signals Caterina Doglioni
 'mg_pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1.0'],
 
