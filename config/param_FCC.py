@@ -605,10 +605,10 @@ gridpacklist = {
 'mg_pp_stopstop_5f_mStop_8p5TeV':['','inclusive','','1.241e-05','1.0','1.65'],
 'mg_pp_stopstop_5f_mStop_9p0TeV':['','inclusive','','7.897e-06','1.0','1.7'],
 'mg_pp_stopstop_5f_mStop_9p5TeV':['','inclusive','','5.088e-06','1.0','1.7'],
-'mg_pp_stopstop_5f_mStop_10p0TeV':['','inclusive','','3.295e-06','1.0','1.7'],
-'mg_pp_stopstop_5f_mStop_10p5TeV':['','inclusive','','2.155e-06','1.0','1.7'],
-'mg_pp_stopstop_5f_mStop_11p0TeV':['','inclusive','','1.422e-06','1.0','1.7'],
-'mg_pp_stopstop_5f_mStop_11p5TeV':['','inclusive','','9.507e-07','1.0','1.7'],
+'mg_pp_stopstop_5f_mStop_10p0TeV':['','inclusive','','3.295e-06','1.0','1.75'],
+'mg_pp_stopstop_5f_mStop_10p5TeV':['','inclusive','','2.155e-06','1.0','1.75'],
+'mg_pp_stopstop_5f_mStop_11p0TeV':['','inclusive','','1.422e-06','1.0','1.80'],
+'mg_pp_stopstop_5f_mStop_11p5TeV':['','inclusive','','9.507e-07','1.0','1.80'],
 
 #FCNC top
 'mg_pp_tt_tlep_act':['top pair FCNC tca','','','1.0','1.0','1.0'],
