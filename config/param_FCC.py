@@ -18,8 +18,8 @@ yamlcheck_lhe='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCC/lhe/check.ya
 yamlcheck_reco='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCC/VERSION/check.yaml'
 
 #heppy and proc lists
-heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/test_FCC_heppySampleList_VERSION.py'
-procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/test_FCC_procDict_VERSION.json'
+heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCC_heppySampleList_VERSION.py'
+procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCC_procDict_VERSION.json'
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'
@@ -72,9 +72,17 @@ pythialist={
 'p8_pp_ExcitedQ_40TeV_qq':['40TeV Excited quark Lambda 40TeV','','','1.575e-4','1.0','1.0'],
 'p8_pp_ExcitedQ_45TeV_qq':['45TeV Excited quark Lambda 45TeV','','','4.017e-5','1.0','1.0'],
 'p8_pp_ExcitedQ_50TeV_qq':['50TeV Excited quark Lambda 50TeV','','','9.765e-6','1.0','1.0'],
+'p8_pp_Zprime_2TeV_ll':['2TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','1','1.0','1.0'],
+'p8_pp_Zprime_4TeV_ll':['4TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','1','1.0','1.0'],
 'p8_pp_Zprime_5TeV_ll':['5TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','1.043e-1','1.0','1.0'],
+'p8_pp_Zprime_6TeV_ll':['6TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','1','1.0','1.0'],
+'p8_pp_Zprime_8TeV_ll':['8TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','1','1.0','1.0'],
 'p8_pp_Zprime_10TeV_ll':['10TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','5.914e-3','1.0','1.0'],
+'p8_pp_Zprime_12TeV_ll':['12TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','1','1.0','1.0'],
+'p8_pp_Zprime_14TeV_ll':['14TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','1','1.0','1.0'],
 'p8_pp_Zprime_15TeV_ll':['15TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','7.989e-4','1.0','1.0'],
+'p8_pp_Zprime_16TeV_ll':['16TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','1','1.0','1.0'],
+'p8_pp_Zprime_18TeV_ll':['18TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','1','1.0','1.0'],
 'p8_pp_Zprime_20TeV_ll':['20TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','1.639e-4','1.0','1.0'],
 'p8_pp_Zprime_25TeV_ll':['25TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','4.437e-5','1.0','1.0'],
 'p8_pp_Zprime_30TeV_ll':['30TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','1.375e-5','1.0','1.0'],
@@ -452,6 +460,7 @@ gridpacklist = {
 'mg_pp_ee_lo':['','m > 10 TeV','','9.428e-06','2.0','1.0'],
 'mg_pp_mumu_lo':['','m > 10 TeV','','9.428e-06','2.0','1.0'],
 'mg_pp_tautau_lo':['','m > 5 TeV','','0.0002289','2.0','1.0'],
+'mg_pp_tautau_lo_PT_1000_2500':['','2.5> PT > 1 TeV','','0.007309','2.0','1.0'],  
 'mg_pp_mumu_lo_2TeV':['','m > 2 TeV','','0.00717','2.0','1.0'],
 'mg_pp_tt_lo':['','m > 5 TeV','','0.1373','2.0','1.0'],
 'mg_pp_jj_lo':['','pT > 2.5 TeV','','43.05','2.0','1.0'],
@@ -584,6 +593,12 @@ gridpacklist = {
 'mg_pp_ta_tlep_act_pt_1000_inf':['top pair FCNC tca','pT>1TeV','','1.0','1.0','1.0'],
 'mg_pp_ta_tlep_aut_pt_1000_inf':['top pair FCNC tua','pT>1TeV','','1.0','1.0','1.0'],
 'mg_pp_tt_hadronic_aut':['top pair FCNC tua','pT>1TeV','','1.0','1.0','1.0'],
+'mg_pp_tt_aut':['top pair FCNC tua','pT>1TeV','','1.0','1.0','1.0'],
+'mg_pp_tt_act':['top pair FCNC tua','pT>1TeV','','1.0','1.0','1.0'],
+'mg_pp_tta':['top pair FCNC tua','pT>1TeV','','1.0','1.0','1.0'],
+'mg_pp_wa':['top pair FCNC tua','pT>1TeV','','1.0','1.0','1.0'],
+'mg_pp_tajets':['top pair FCNC tua','pT>1TeV','','1.0','1.0','1.0'],
+
 #DM signals Caterina Doglioni
 'mg_pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1.0'],
 
