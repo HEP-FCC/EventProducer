@@ -89,7 +89,8 @@ if __name__=="__main__":
             processlist.append(key)
     if args.reco and (args.remove or args.clean):
         for key, value in para.gridpacklist.iteritems():
-            processlist.append('mgp8_'+key[3:])
+            if key[0:3]=='mg_': processlist.append('mgp8_'+key[3:])
+            if key[0:3]=='ch_': processlist.append('chp8_'+key[3:])
 
 
     parser.add_argument('-p','--process', type=str, help='Name of the process to use to send jobs or for the check', default='', choices=processlist)
@@ -133,6 +134,7 @@ if __name__=="__main__":
         if args.process!='':
             print 'using a specific process ',args.process
             if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
+            if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
         import EventProducer.common.checker_yaml as chky
         print args.process
         checker=chky.checker_yaml(indir, para, fext, args.process,  yamldir, yamlcheck)
@@ -143,6 +145,7 @@ if __name__=="__main__":
         if args.process!='':
             print 'using a specific process ',args.process
             if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
+            if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
         import EventProducer.common.merger as mgr
         isLHE=args.LHE
         merger = mgr.merger( para, args.process, yamldir, yamlcheck)

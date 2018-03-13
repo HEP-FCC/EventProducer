@@ -225,6 +225,7 @@ class makeSampleList():
         procDict.write(newdata)
         procDict.write('\n')
         procDict.write('}\n')
-
-         # replace existing param.py file
-         #os.system("mv tmp.py %s"%self.para.module_name)
+        
+        # replace existing param.py file
+        os.system("mv tmp.py %s"%self.para.module_name)
+        os.system("rm tmp.json")
