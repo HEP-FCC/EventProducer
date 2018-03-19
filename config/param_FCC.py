@@ -534,6 +534,8 @@ gridpacklist = {
 'mg_gg_aa01j_mhcut_5f_HT_200_500':['gluon fusion di-photon + 0/1 jets','200 < HT < 500','xqcut = 20, qCut = 30','0.026','2.0','0.915'],
 'mg_gg_aa01j_mhcut_5f_HT_200_100000':['gluon fusion di-photon + 0/1 jets','200 < HT < 100000','xqcut = 20, qCut = 30','0.02618','2.0','0.917'],
 'mg_gg_aa01j_mhcut_5f_HT_500_100000':['gluon fusion di-photon + 0/1 jets','500 < HT < 100000','xqcut = 20, qCut = 30','0.0002481','2.0','0.956'],
+'mg_gg_aa01j_mhcut_5f_HT_100_300':['gluon fusion di-photon + 0/1 jets','0 < HT < 500','xqcut = 20, qCut = 30','850.4','2.0','0.578'],
+'mg_gg_aa01j_mhcut_5f_HT_200_10000':['gluon fusion di-photon + 0/1 jets','200 < HT < 100000','xqcut = 20, qCut = 30','0.02618','2.0','0.917'],
 'mg_pp_llaj_mhcut_5f_HT_0_150':['l+ l- gamma + 1 jet','0 < HT < 150','','5.504','','1.0'],
 'mg_pp_llaj_mhcut_5f_HT_150_100000':['l+ l- gamma + 1 jet','150 < HT < 100000','','0.2045','','1.0'],
 'mg_gg_aaj_mhcut_5f_HT_0_150':['gluon fusion di-photon + 1 jet','0 < HT < 150','','53.86','','1.0'],
@@ -585,6 +587,7 @@ gridpacklist = {
 'mg_pp_hhj_lambda105_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.05','inclusive','','0.05424','1.95','1.0'],
 'mg_pp_hhj_lambda110_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.10','inclusive','','0.05209','1.95','1.0'],
 'mg_pp_hhj_lambda150_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.50','inclusive','','0.03793','1.95','1.0'],
+'mg_pp_hhj_lambda200_5f':['HH + 1 jet, pT(HH) > 200, kl = 2.00','inclusive','','0.03793','1.95','1.0'],
 
 #VBS samples
 'mg_pp_wwjj_2l2v_LL':['WW(LL) + jj EWK same sign','inclusive','','0.489','1.0','1.0'],
@@ -628,22 +631,11 @@ gridpacklist = {
 'mg_pp_tta':['top pair FCNC tua','pT>1TeV','','1.0','1.0','1.0'],
 'mg_pp_wa':['top pair FCNC tua','pT>1TeV','','1.0','1.0','1.0'],
 'mg_pp_tajets':['top pair FCNC tua','pT>1TeV','','1.0','1.0','1.0'],
-'ch_pp_wbj_fcnc_ku':['fcnc_tGu','inclusive','','1720','1.52',''],
-'ch_pp_wbj_fcnc_kc':['fcnc_tGc','inclusive','','574.8','1.4',''],
+'ch_pp_wbj_fcnc_ku':['fcnc_tGu','inclusive','','1720','1.52','1.0'],
+'ch_pp_wbj_fcnc_kc':['fcnc_tGc','inclusive','','574.8','1.4','1.0'],
 #DM signals Caterina Doglioni
 'mg_pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1.0'],
 
-#ADDED BY CLEMENT TO FIX PRINTER
-'mg_gg_aa01j_mhcut_5f_HT_100_300':['gluon fusion di-photon + 0/1 jets','0 < HT < 500','xqcut = 20, qCut = 30','850.4','2.0','0.578'],
-'mg_gg_aa01j_mhcut_5f_HT_200_10000':['gluon fusion di-photon + 0/1 jets','200 < HT < 100000','xqcut = 20, qCut = 30','0.02618','2.0','0.917'],
-'mg_pp_hhj_lambda200_5f':['HH + 1 jet, pT(HH) > 200, kl = 2.00','inclusive','','0.03793','1.95','1.0'],
-
-#ADDED by HAND to fix 
-'mg_pp_t2tt_mstop_3000_mlsp':['susy sample loukas','inclusive','','','',''],
-'mg_pp_t2tt_mstop_3000_mlsp_2500':['susy sample loukas','inclusive','','','',''],
-'mg_pp_t2tt_mstop_6000_mlsp_3000':['susy sample loukas','inclusive','','','',''],
-'mg_pp_t2tt_mstop_7500_mlsp_2000':['susy sample loukas','inclusive','','','',''],
-'mg_pp_t2tt_mstop_9500_mlsp_1':['susy sample loukas','inclusive','','','',''],
 
 
 #boosted ttH background samples
