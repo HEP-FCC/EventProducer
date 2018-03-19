@@ -82,8 +82,12 @@ if __name__=="__main__":
         for key, value in para.pythialist.iteritems():
             processlist.append(key)
         for key, value in para.decaylist.iteritems():
+            newkey=key
+            if key[0:3]=='mg_': newkey='mgp8_'+key[3:]
+            if key[0:3]=='ch_': newkey='chp8_'+key[3:]
             for v in value:
-                processlist.append("%s_%s"%(key,v))
+                processlist.append("%s_%s"%(newkey,v))
+                
     if args.LHE or args.check or args.clean or args.merge or args.reco:
         for key, value in para.gridpacklist.iteritems():
             processlist.append(key)
