@@ -30,4 +30,8 @@ class removeProcess():
         cmd="rm %s/%s/events*"%(self.yamldir, self.process)
         print cmd
         os.system(cmd)
- 
+        print 'remove merged yaml'
+        cmd="rm %s/%s/merge.yaml"%(self.yamldir, self.process)
+        print cmd
+        os.system(cmd)
+
