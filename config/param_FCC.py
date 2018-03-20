@@ -542,6 +542,7 @@ gridpacklist = {
 'mg_gg_aa01j_mhcut_5f_HT_500_100000':['gluon fusion di-photon + 0/1 jets','500 < HT < 100000','xqcut = 20, qCut = 30','0.0002481','2.0','0.956'],
 'mg_pp_llaj_mhcut_5f_HT_0_150':['l+ l- gamma + 1 jet','0 < HT < 150','','5.504','','1.0'],
 'mg_pp_llaj_mhcut_5f_HT_150_100000':['l+ l- gamma + 1 jet','150 < HT < 100000','','0.2045','','1.0'],
+'mg_pp_llaj_mhcut_5f':['l+ l- gamma + 1 jet','100 < m(lla) <150','','1.989','','1.0'],
 'mg_gg_aaj_mhcut_5f_HT_0_150':['gluon fusion di-photon + 1 jet','0 < HT < 150','','53.86','','1.0'],
 'mg_gg_aaj_mhcut_5f_HT_150_100000':['gluon fusion di-photon + 1 jet','150 < HT < 100000','','0.08556','','1.0'],
 'mg_pp_mumuj_mhcut_5f_HT_0_100':['mu+ mu- + 1 jet','0 < HT < 100','','103.8','','1.0'],
