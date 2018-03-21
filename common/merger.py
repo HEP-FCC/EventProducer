@@ -30,7 +30,10 @@ class merger():
             ndone=0
             nbad=0
             All_files = glob.glob("%s/%s/events_*.yaml"%(self.indir,l))
-            if len(All_files)==0:continue
+            if len(All_files)==0:
+                if os.path.isfile("%s/%s/merge.yaml"%(self.indir,l)):
+                    os.system("rm %s/%s/merge.yaml"%(self.indir,l))
+                continue
 
             #continue if process has been checked
             if ut.yamlcheck(self.yamlcheck, l) and not force:continue
@@ -49,6 +52,7 @@ class merger():
                             nbad+=1
                             outfilesbad.append(tmpf['processing']['out'].split('/')[-1])
                             outdir=tmpf['processing']['out'].replace(tmpf['processing']['out'].split('/')[-1],'')
+                            process=tmpf['processing']['process']
 
                             continue
                         totsize+=tmpf['processing']['size']

@@ -84,17 +84,17 @@ class cleanfailed():
                     try:
                        tmpf = yaml.load(stream)
                        if tmpf['processing']['status']=='sending':
-                           if ut.gettimestamp() - tmpf['processing']['timestamp']>6000:
+                           if ut.gettimestamp() - tmpf['processing']['timestamp']>8000:
                                print 'job %s is running since too long, will delete the yaml'%(f)
-                           #cmd="rm %s"%(tmpf['processing']['out'])
-                           #print cmd
-                           #os.system(cmd)
 
-                           #cmd="rm %s"%(f)
-                           #print cmd
-                           #os.system(cmd)
+                           cmd="rm %s"%(f)
+                           print cmd
+                           os.system(cmd)
 
                     except yaml.YAMLError as exc:
                         print(exc)
+                    except IOError as e:
+                        print(e)
+                        
 
    
