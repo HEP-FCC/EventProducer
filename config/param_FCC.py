@@ -246,6 +246,7 @@ branching_ratios = {
 'znunu':0.205,
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
+'mChi0p5TeV':1.0,
 'mChi1p0TeV':1.0,
 'mChi1p5TeV':1.0,
 'mChi2p0TeV':1.0,
