@@ -66,9 +66,13 @@ class send_mglhe():
             seed = str(uid)
             basename =  self.procname+ '_'+seed
 
+	    cwd = os.getcwd()
+	    script = cwd + '/bin/submitMG.sh '
+
+
             cmdBatch = 'bsub -o '+jobsdir+'/std/'+basename +'.out -e '+jobsdir+'/std/'+basename +'.err -q '+self.queue
             cmdBatch += ' -R "rusage[mem={}:pool={}]"'.format(self.memory,self.disk)
-            cmdBatch +=' -J '+basename+' "./bin/submitMG.sh '+mg5card+' '+self.procname+' '+outdir+' '+seed+' '+str(self.nev)+' '+cuts+' '+model+'"'
+            cmdBatch +=' -J '+basename +' "'+script + mg5card+' '+self.procname+' '+outdir+' '+seed+' '+str(self.nev)+' '+cuts+' '+model+'"'
 
             print cmdBatch
                 
