@@ -1,0 +1,24 @@
+import model loop_sm_hh
+generate p p > h h [QCD]
+
+output DUMMYPROCESS
+
+######## DELIMITER (!!! NEED THIS LINE !!!) ##################
+
+set run_mode 1
+set cluster_type lsf
+set cluster_queue 1nh
+set cluster_status_update 30 15
+set lhapdf /afs/cern.ch/work/s/selvaggi/public/LHAPDF-6.1.6/build/bin/lhapdf-config
+
+launch DUMMYPROCESS
+set iseed DUMMYSEED
+set nevents DUMMYNEVENTS
+
+set ebeam1 50000
+set ebeam2 50000
+
+set pdlabel lhapdf
+set lhaid 260000
+
+set use_syst False

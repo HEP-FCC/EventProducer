@@ -653,6 +653,8 @@ gridpacklist = {
 # training event based BDT samples
 'mg_pp_jj_lo_filter_pTjet7_5TeV':['','m > 15 TeV','','0.07777','2.0','1.0'],
 
+'mg_pp_hh_test':['','','','1.0','1.0','1.0'],
+
 }
 
 
