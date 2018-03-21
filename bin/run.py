@@ -13,6 +13,8 @@
 #python bin/run.py --HELHC --reco --remove -p mgp8_pp_tt_lo --version helhc_v01
 #python bin/run.py --HELHC --reco --clean --version helhc_v01 -p p8_pp_Zprime_10TeV_ttbar
 
+#python bin/run.py --FCC --LHE --send --version fcc_v02 -p mg_pp_ee_test --typelhe mg --mg5card pp_hh.mg5 --model loop_sm_hh.tar -N 2 -n 10000 -q 8nh --lsf
+
 import sys
 import EventProducer.common.utils as ut
 
@@ -42,19 +44,27 @@ if __name__=="__main__":
 
     sendjobGroup = parser.add_argument_group('type of jobs to send')
     sendjobGroup.add_argument('--type', type=str, required = '--send' in sys.argv and '--reco'  in sys.argv , help='type of jobs to send', choices = ['lhep8','p8'])
+    sendjobGroup.add_argument('--typelhe', type=str, required = '--send' in sys.argv and '--LHE'  in sys.argv , help='type of jobs to send', choices = ['gp','mg'], default='gp')
     sendjobGroup.add_argument('-q', '--queue', type=str, default='8nh', help='lxbatch queue (default: 8nh)', choices=['1nh','8nh','1nd','2nd','1nw'])
     sendjobGroup.add_argument('-n','--numEvents', type=int, help='Number of simulation events per job', default=10000)
     sendjobGroup.add_argument('-N','--numJobs', type=int, default = 10, help='Number of jobs to submit')
 
     args, _ = parser.parse_known_args()
-
+    
     batchGroup = parser.add_mutually_exclusive_group(required = args.send) # Where to submit jobs
     batchGroup.add_argument("--lsf", action='store_true', help="Submit with LSF")
     batchGroup.add_argument("--condor", action='store_true', help="Submit with condor")
+    
+
+    mgGroup = parser.add_argument_group('mggroup')
+    mgGroup.add_argument("--mg5card", type=str, help="MG5 configuration", default='card.mg5')
+    mgGroup.add_argument("--cutfile", type=str, help="additional cuts", default='cuts.f')
+    mgGroup.add_argument("--model", type=str, help="extra model", default='model.tgz')
+    mgGroup.add_argument("--memory", type=str, help="Memory", default='4000')
+    mgGroup.add_argument("--disk", type=str, help="Storage on batch", default='2000')
 
     args, _ = parser.parse_known_args()
     sendOpt = args.type
-    
 
     if args.FCC:
         import EventProducer.config.param_FCC as para
@@ -165,10 +175,21 @@ if __name__=="__main__":
             print 'queue  ', args.queue
  
         if args.LHE:
-            print 'preparing to send lhe jobs from madgraph gridpacks for process {}'.format(args.process)
-            import EventProducer.bin.send_lhe as slhe
-            sendlhe=slhe.send_lhe(args.numJobs,args.numEvents, args.process, args.lsf, args.queue, para)
-            sendlhe.send()
+            
+            if args.typelhe == 'gp':
+            
+                print 'preparing to send lhe jobs from madgraph gridpacks for process {}'.format(args.process)
+                import EventProducer.bin.send_lhe as slhe
+                sendlhe=slhe.send_lhe(args.numJobs,args.numEvents, args.process, args.lsf, args.queue, para)
+                sendlhe.send()
+            
+            elif args.typelhe == 'mg':
+
+                print 'preparing to send lhe jobs from madgraph standalone for process {}'.format(args.process)
+                import EventProducer.bin.send_mglhe as mglhe
+                sendlhe=mglhe.send_mglhe( args.lsf, args.mg5card, args.cutfile, args.model, para, args.process, args.numJobs, args.numEvents, args.queue, args.memory, args.disk)
+                sendlhe.send()
+            
         elif args.reco:
             if sendOpt=='lhep8':
                 print 'preparing to send FCCSW jobs from lhe'
