@@ -62,7 +62,7 @@ class send_mglhe():
                 print 'already exist, continue'
                 continue
     
-            print 'Submitting job '+str(uid)+' out of '+str(self.njobs)
+            print 'Submitting job '+str(nbjobsSub)+' out of '+str(self.njobs)
             seed = str(uid)
             basename =  self.procname+ '_'+seed
 
