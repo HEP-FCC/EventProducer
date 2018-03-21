@@ -6,7 +6,7 @@ import EventProducer.common.utils as ut
 class merger():
 
 #__________________________________________________________
-    def __init__(self, para, process, yamldir, yamlcheck):
+    def __init__(self, process, yamldir, yamlcheck):
         self.indir = yamldir
         self.yamlcheck = yamlcheck
         self.process = process

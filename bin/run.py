@@ -152,7 +152,7 @@ if __name__=="__main__":
             if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
         import EventProducer.common.merger as mgr
         isLHE=args.LHE
-        merger = mgr.merger( para, args.process, yamldir, yamlcheck)
+        merger = mgr.merger( args.process, yamldir, yamlcheck)
         merger.merge(args.force)
 
     elif args.send:
