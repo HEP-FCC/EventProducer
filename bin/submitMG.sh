@@ -55,7 +55,7 @@ echo "Configuring process..."
 # add cuts.f if specified
 if [ -f "${CUTFILE}" ]; then
     echo "Adding cuts.f file"
-    cp ${CUTFILE} outdir/SubProcesses/cuts.f
+    cp ${CUTFILE} DUMMYPROCESS/SubProcesses/cuts.f
 else
     echo "cuts.f file not specified, using the default one"
 fi;
