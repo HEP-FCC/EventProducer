@@ -15,7 +15,7 @@ Table of contents
   * [Generate FCCSW files from the LHE and decay with Pyhtia8](#generate-fccsw-files-from-the-lhe-and-decay-with-pyhtia8)
   * [Generate FCCSW files from Pythia8](#generate-fccsw-files-from-pythia8)
   * [Expert mode](#expert-mode)
-  * [Updating the database](#updating-the-database)
+     * [Updating the database](#updating-the-database)
      * [Cleaning bad jobs](#cleaning-bad-jobs)
      * [Update the webpage](#update-the-webpage)
      * [Create the sample list for analyses](#create-the-sample-list-for-analyses)
