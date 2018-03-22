@@ -544,10 +544,10 @@ gridpacklist = {
 'mg_gg_aa01j_mhcut_5f_HT_100_300':['gluon fusion di-photon + 0/1 jets','0 < HT < 500','xqcut = 20, qCut = 30','850.4','2.0','0.578'],
 'mg_gg_aa01j_mhcut_5f_HT_200_10000':['gluon fusion di-photon + 0/1 jets','200 < HT < 100000','xqcut = 20, qCut = 30','0.02618','2.0','0.917'],
 'mg_pp_llaj_mhcut_5f_HT_0_150':['l+ l- gamma + 1 jet','0 < HT < 150','','5.504','','1.0'],
-'mg_pp_llaj_mhcut_5f_HT_150_100000':['l+ l- gamma + 1 jet','150 < HT < 100000','','0.2045','','1.0'],
-'mg_pp_llaj_mhcut_5f':['l+ l- gamma + 1 jet','100 < m(lla) <150','','1.989','','1.0'],
-'mg_gg_aaj_mhcut_5f_HT_0_150':['gluon fusion di-photon + 1 jet','0 < HT < 150','','53.86','','1.0'],
-'mg_gg_aaj_mhcut_5f_HT_150_100000':['gluon fusion di-photon + 1 jet','150 < HT < 100000','','0.08556','','1.0'],
+'mg_pp_llaj_mhcut_5f_HT_150_100000':['l+ l- gamma + 1 jet','150 < HT < 100000','','0.2045','1','1.0'],
+'mg_pp_llaj_mhcut_5f':              ['l+ l- gamma + 1 jet','100 < m(lla) <150','','1.989','1','1.0'],
+'mg_gg_aaj_mhcut_5f_HT_0_150':['gluon fusion di-photon + 1 jet','0 < HT < 150','','53.86','1','1.0'],
+'mg_gg_aaj_mhcut_5f_HT_150_100000':['gluon fusion di-photon + 1 jet','150 < HT < 100000','','0.08556','1','1.0'],
 'mg_pp_mumuj_mhcut_5f_HT_0_100':['mu+ mu- + 1 jet','0 < HT < 100','','103.8','','1.0'],
 'mg_pp_mumuj_mhcut_5f_HT_100_500':['mu+ mu- + 1 jet','100 < HT < 500','','11.74','','1.0'],
 'mg_pp_mumuj_mhcut_5f_HT_500_100000':['mu+ mu- + 1 jet','500 < HT < 100000','','0.1245','','1.0'],
@@ -652,8 +652,6 @@ gridpacklist = {
 
 # training event based BDT samples
 'mg_pp_jj_lo_filter_pTjet7_5TeV':['','m > 15 TeV','','0.07777','2.0','1.0'],
-
-'mg_pp_hh_test':['','','','1.0','1.0','1.0'],
 
 }
 
