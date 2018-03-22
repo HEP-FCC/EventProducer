@@ -11,6 +11,7 @@ Table of contents
   * [Table of contents](#table-of-contents)
   * [Clone and initialisation](#clone-and-initilisation)
   * [Generate LHE events from gridpacks](#generate-lhe-events-from-gridpacks)
+  * [Generate LHE files directly from MG5](#generate-lhe-files-directly-from-mg5)
   * [Generate FCCSW files from the LHE and decay with Pyhtia8](#generate-fccsw-files-from-the-lhe-and-decay-with-pyhtia8)
   * [Generate FCCSW files from Pythia8](#generate-fccsw-files-from-pythia8)
   * [Expert mode](#expert mode)
@@ -48,17 +49,17 @@ To send jobs starting from a gridpack that does not exist but that you have prod
 If the gridpack already exists or has been properly added to the ```param```, then simply run:
 
 ```
-python bin/run.py --FCC/HELHC --LHE --send --lsf -p <process> -n <nevents> -N <njobs> -q <queue>
+python bin/run.py --FCC/HELHC --LHE --send --lsf --typelhe gp -p <process> -n <nevents> -N <njobs> -q <queue>
 ```
 
 example to send 10 jobs of 10 000 events of di-electron events with Mll> 2TeV using 1nh queue of lsf for HELHC:
 
 ```
-python bin/run.py --HELHC --LHE --send --lsf -p mg_pp_ee_lo -n 10000 -N 10 -q 1nh
+python bin/run.py --HELHC --LHE --send --lsf --typelhe gp -p mg_pp_ee_lo -n 10000 -N 10 -q 1nh
 ```
 
 
-Generate LHE files directly from MG5 
+Generate LHE files directly from MG5
 =====================================
 
 To send jobs directly from MG5, you need a configuration file (see in ```examples``` directory ```*.mg5```) and, optionally:
@@ -68,7 +69,7 @@ To send jobs directly from MG5, you need a configuration file (see in ```example
 As before, you need to add the process to the ```config/param_FCC.py``` file. Thn you can run with the following command:
 
 ```
-python bin/run.py --FCC --LHE --send --version fcc_v02 -p mg_pp_hh_test --typelhe mg --mg5card examples/pp_hh.mg5 --model models/loop_sm_hh.tar -N 2 -n 10000 -q 8nh --lsf  --memory 16000. --disk 8000.
+python bin/run.py --FCC --LHE --send --lsf --typelhe mg -p mg_pp_hh_test --mg5card examples/pp_hh.mg5 --model models/loop_sm_hh.tar -N 2 -n 10000 -q 8nh  --memory 16000. --disk 8000.
 ```
 
 
