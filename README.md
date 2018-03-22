@@ -14,7 +14,7 @@ Table of contents
   * [Generate LHE files directly from MG5](#generate-lhe-files-directly-from-mg5)
   * [Generate FCCSW files from the LHE and decay with Pyhtia8](#generate-fccsw-files-from-the-lhe-and-decay-with-pyhtia8)
   * [Generate FCCSW files from Pythia8](#generate-fccsw-files-from-pythia8)
-  * [Expert mode](#expert mode)
+  * [Expert mode](#expert-mode)
         * [Updating the database](#updating-the-database)
         * [Cleaning bad jobs](#cleaning-bad-jobs)
         * [Update the webpage](#update-the-webpage)
