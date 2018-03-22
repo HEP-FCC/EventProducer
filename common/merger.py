@@ -80,3 +80,5 @@ class merger():
                 yaml.dump(dic, outyaml, default_flow_style=False) 
             if ndone+nbad==len(All_files):
                 ut.yamlstatus(self.yamlcheck, process, True)
+            else:
+                ut.yamlstatus(self.yamlcheck, process, False)
