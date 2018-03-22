@@ -1,7 +1,3 @@
-#python cleanfailed.py LHE/FCC secret
-#python cleanfailed.py LHE/FCC_fcc_v01 secret
-#python cleanfailed.py LHE/FCC_cms secret
-
 import yaml
 import os
 import glob
