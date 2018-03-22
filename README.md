@@ -18,6 +18,7 @@ Table of contents
         * [Updating the database](#updating-the-database)
         * [Cleaning bad jobs](#cleaning-bad-jobs)
         * [Update the webpage](#update-the-webpage)
+        * [Create the sample list for analyses](#create-the-sample-list-for-analyses)
 
 Clone and initialisation
 ========================
@@ -198,3 +199,13 @@ and for Delphes
 ```
 python bin/run.py --HELHC --reco --web --version helhc_v01
 ```
+
+
+Create the sample list for analyses
+===================================
+
+To create the list of samples to be used in physics analyses
+```
+python bin/run.py --FCC --reco --sample --version fcc_v02
+```
+
