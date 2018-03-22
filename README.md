@@ -68,7 +68,7 @@ To send jobs directly from MG5, you need a configuration file (see in ```example
 As before, you need to add the process to the ```config/param_FCC.py``` file. Thn you can run with the following command:
 
 ```
-python bin/run.py --FCC --LHE --send --version fcc_v02 -p mg_pp_hh_test --typelhe mg --mg5card examples/pp_hh.mg5 --model models/loop_sm_hh.tar -N 2 -n 10000 -q 8nh --lsf  --memory 16000. --disk 8000.
+python bin/run.py --FCC --LHE --send --version fcc_v02 -p mg_pp_hh_test --typelhe mg --mg5card mg5/examples/pp_hh.mg5 --model mg5/models/loop_sm_hh.tar -N 2 -n 10000 -q 8nh --lsf  --memory 16000. --disk 8000.
 ```
 
 
