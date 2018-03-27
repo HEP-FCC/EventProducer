@@ -1,4 +1,3 @@
-#python jobchecker.py LHE or FCC
 import EventProducer.common.utils as ut
 import os, sys
 
