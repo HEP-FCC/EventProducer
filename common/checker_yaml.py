@@ -1,4 +1,3 @@
-#python check_outputs.py /eos/experiment/fcc/hh/simulation/samples/v01
 import glob, os, sys
 import ROOT as r
 import yaml
