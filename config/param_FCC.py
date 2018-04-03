@@ -651,7 +651,7 @@ gridpacklist = {
 #DM signals Caterina Doglioni
 'mg_pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1.0'],
 
-
+'ch_pp_wbj_fcnc_kc':['fcnc_tGc','inclusive','','574.8','1.4','1.0'],
 
 #boosted ttH background samples
 'mg_pp_ttj_4f':['tt + 1j in 4f','pT(j) > 150 GeV','','4789','1.0','1.0'],
