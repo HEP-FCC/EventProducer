@@ -5,6 +5,7 @@ import os
 import sys
 import yaml
 import time
+import random
 from datetime import datetime
 from pwd import getpwuid
 
@@ -51,7 +52,7 @@ def find_owner(filename):
     return getpwuid(os.stat(filename).st_uid).pw_name
 
 #__________________________________________________________
-def SubmitToCondor(cmd,nbtrials):
+def SubmitToCondor(cmd,nbtrials,nsub):
     submissionStatus=0
     cmd=cmd.replace('//','/')
     for i in xrange(nbtrials):            
@@ -60,7 +61,7 @@ def SubmitToCondor(cmd,nbtrials):
         stdout=outputCMD["stdout"].split('\n')
 
         if len(stderr)==1 and stderr[0]=='' :
-            print "------------GOOD SUB"
+            print "------------GOOD SUB ",nsub
             submissionStatus=1
         else:
             print "++++++++++++ERROR submitting, will retry"
@@ -79,7 +80,7 @@ def SubmitToCondor(cmd,nbtrials):
             return 0,0
 
 #__________________________________________________________
-def SubmitToLsf(cmd,nbtrials):
+def SubmitToLsf(cmd,nbtrials,nsub):
     submissionStatus=0
     for i in range(nbtrials):            
         outputCMD = getCommandOutput(cmd)
@@ -87,7 +88,7 @@ def SubmitToLsf(cmd,nbtrials):
 
         for line in stderr :
             if line=="":
-                print "------------GOOD SUB"
+                print "------------GOOD SUB ",nsub
                 submissionStatus=1
                 break
             else:
@@ -144,7 +145,6 @@ def getuserid(user):
 
 #__________________________________________________________
 def getuid2(user):
-    import random
     userext=-999999
     for key, value in us.users.iteritems():
         if key==user: 
@@ -169,6 +169,8 @@ def getuid2(user):
 #__________________________________________________________
 def yamlcheck(yamlfile, process):
 #if no input file
+    print 'yamlfile ',yamlfile
+    print 'process  ',process
     if not file_exist(yamlfile):
         return False
     
