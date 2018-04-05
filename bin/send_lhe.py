@@ -92,8 +92,8 @@ class send_lhe():
             print cmdBatch
                 
             batchid=-1
-            job,batchid=ut.SubmitToLsf(cmdBatch,10)
-            nbjobsSub+=job    
+            job,batchid=ut.SubmitToLsf(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
+            nbjobsSub+=job
         print 'succesfully sent %i  jobs'%nbjobsSub
   
     

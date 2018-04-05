@@ -128,7 +128,7 @@ class send_p8():
             cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -cwd%s %s" %(self.queue, logdir,frunfull)
 
             batchid=-1
-            job,batchid=ut.SubmitToLsf(cmdBatch,10)
+            job,batchid=ut.SubmitToLsf(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
             nbjobsSub+=job    
         print 'succesfully sent %i  jobs'%nbjobsSub
 
