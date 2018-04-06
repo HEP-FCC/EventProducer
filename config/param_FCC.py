@@ -550,9 +550,9 @@ gridpacklist = {
 'mg_pp_llaj_mhcut_5f':              ['l+ l- gamma + 1 jet','100 < m(lla) <150','','1.989','1','1.0'],
 'mg_gg_aaj_mhcut_5f_HT_0_150':['gluon fusion di-photon + 1 jet','0 < HT < 150','','53.86','1','1.0'],
 'mg_gg_aaj_mhcut_5f_HT_150_100000':['gluon fusion di-photon + 1 jet','150 < HT < 100000','','0.08556','1','1.0'],
-'mg_pp_mumuj_mhcut_5f_HT_0_100':['mu+ mu- + 1 jet','0 < HT < 100','','103.8','','1.0'],
-'mg_pp_mumuj_mhcut_5f_HT_100_500':['mu+ mu- + 1 jet','100 < HT < 500','','11.74','','1.0'],
-'mg_pp_mumuj_mhcut_5f_HT_500_100000':['mu+ mu- + 1 jet','500 < HT < 100000','','0.1245','','1.0'],
+'mg_pp_mumuj_mhcut_5f_HT_0_100':['mu+ mu- + 1 jet','0 < HT < 100','','103.8','1.20','1.0'],
+'mg_pp_mumuj_mhcut_5f_HT_100_500':['mu+ mu- + 1 jet','100 < HT < 500','','11.74','1.20','1.0'],
+'mg_pp_mumuj_mhcut_5f_HT_500_100000':['mu+ mu- + 1 jet','500 < HT < 100000','','0.1245','1.20','1.0'],
 #Zprime signals to fit flavor anomalie Ben Allanach https://arxiv.org/abs/1710.06363
 'mg_pp_Zprime_mumu_5f_Mzp_2TeV':['','Zp->mu+mu-','','0.002573','1.0','1.0'],
 'mg_pp_Zprime_mumu_5f_Mzp_4TeV':['','Zp->mu+mu-','','0.0005878','1.0','1.0'],
