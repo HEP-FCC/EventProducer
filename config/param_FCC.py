@@ -485,7 +485,8 @@ gridpacklist = {
 'mg_pp_mumu_lo':['','m > 10 TeV','','9.428e-06','2.0','1.0'],
 'mg_pp_tautau_lo':['','m > 5 TeV','','0.0002289','2.0','1.0'],
 'mg_pp_tautau_lo_PT_1000_2500':['','2.5> PT > 1 TeV','','0.007309','2.0','1.0'],  
-'mg_pp_mumu_lo_2TeV':['','m > 2 TeV','','0.00717','2.0','1.0'],
+'mg_pp_mumu_lo_2TeV':['','pT > 2 TeV','','0.00717','2.0','1.0'],
+'mg_pp_mumu_lo_2_5TeV':['','5TeV > pT > 2 TeV','','0.0005549','2.0','1.0'],
 'mg_pp_tt_lo':['','m > 5 TeV','','0.1373','2.0','1.0'],
 'mg_pp_jj_lo':['','pT > 2.5 TeV','','43.05','2.0','1.0'],
 'mg_pp_jj_lo_5f':['','pT > 2.5 TeV','','44.64','2.0','1.0'],
@@ -651,7 +652,7 @@ gridpacklist = {
 #DM signals Caterina Doglioni
 'mg_pp_DMSimp_V_jj_gq0p25_gdm1p00_mDM0p01_mMed30p00':['30TeV DM mediator','di-jet','','1','1','1.0'],
 
-
+'ch_pp_wbj_fcnc_kc':['fcnc_tGc','inclusive','','574.8','1.4','1.0'],
 
 #boosted ttH background samples
 'mg_pp_ttj_4f':['tt + 1j in 4f','pT(j) > 150 GeV','','4789','1.0','1.0'],
