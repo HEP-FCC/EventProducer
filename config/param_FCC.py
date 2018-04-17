@@ -511,6 +511,7 @@ gridpacklist = {
 'mg_pp_tt4l_4f':['tt4l non resonant','inclusive','','4.122e-05','1.3','1.0'],
 'mg_pp_tt2l_4f':['tt2l non resonant','inclusive','','4.389','1.5','1.0'],
 'mg_pp_lllljj_5f':['ZZbb non resonant','inclusive','','0.242','1.0','1.0'],
+'mg_pp_llll01j_mhcut_5f':['4l + 0/1 jets','50 < m(4l) < 200','','0.1517','1.0','0.813'],
 'mg_pp_mumu012j_mhcut_5f':['mu+ mu- + 0/1/2 jets','50 < m(mumu) < 200','','1.4e+04','1.0','0.753'],
 'mg_pp_lla01j_mhcut_5f':['l+ l- gamma + 0/1 jets','50 < m(lla) < 200','','639.1','1.0','0.78'],
 'mg_gg_aa01j_mhcut_5f':['gluon fusion di-photon + 0/1 jets','50 < m(aa) < 200','','484.2','1.0','0.592'],
