@@ -64,8 +64,10 @@ fccsw=fccsw_dir+'fccsw/0.8.2/x86_64-slc6-gcc62-opt/'
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={
+'dummy':['','','','','',''],
 'p8_pp_Zprime_2TeV_ll':['2TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','5.276e-2','1.0','1.0'],
 'p8_pp_Zprime_4TeV_ll':['4TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','1.267e-2','1.0','1.0'],
+'p8_pp_Zprime_5TeV_ll':['5TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','-9999','1.0','1.0'],
 'p8_pp_Zprime_6TeV_ll':['6TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','1.306e-3','1.0','1.0'],
 'p8_pp_Zprime_8TeV_ll':['8TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','2.125e-4','1.0','1.0'],
 'p8_pp_Zprime_10TeV_ll':['10TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','4.749e-5','1.0','1.0'],
@@ -73,13 +75,23 @@ pythialist={
 'p8_pp_Zprime_14TeV_ll':['14TeV Z\'(SSM) -> ll (l=e,mu,tau)','','','7.688e-6','1.0','1.0'],
 
 'p8_pp_Zprime_2TeV_ttbar':['2TeV Z\' -> ttbar','','','7.6378','1.0','1.0'],
+'p8_pp_Zprime_4TeV_ttbar':['4TeV Z\' -> ttbar','','','-9999','1.0','1.0'],
 'p8_pp_Zprime_5TeV_ttbar':['5TeV Z\' -> ttbar','','','0.305493','1.0','1.0'],
+'p8_pp_Zprime_6TeV_ttbar':['6TeV Z\' -> ttbar','','','-9999','1.0','1.0'],
+'p8_pp_Zprime_8TeV_ttbar':['8TeV Z\' -> ttbar','','','-9999','1.0','1.0'],
 'p8_pp_Zprime_10TeV_ttbar':['10TeV Z\' -> ttbar','','','0.0175724','1.0','1.0'],
+'p8_pp_Zprime_12TeV_ttbar':['12TeV Z\' -> ttbar','','','-9999','1.0','1.0'],
+'p8_pp_Zprime_14TeV_ttbar':['14TeV Z\' -> ttbar','','','-9999','1.0','1.0'],
 'p8_pp_Zprime_15TeV_ttbar':['15TeV Z\' -> ttbar','','','0.002439429','1.0','1.0'],
 
 'p8_pp_RSGraviton_2TeV_ww':['2TeV Z\' -> WW','','','1.811e1','1.0','1.0'],
+'p8_pp_RSGraviton_4TeV_ww':['4TeV Z\' -> WW','','','-9999','1.0','1.0'],
 'p8_pp_RSGraviton_5TeV_ww':['5TeV Z\' -> WW','','','2.892e-1','1.0','1.0'],
+'p8_pp_RSGraviton_6TeV_ww':['6TeV Z\' -> WW','','','-9999','1.0','1.0'],
+'p8_pp_RSGraviton_8TeV_ww':['8TeV Z\' -> WW','','','-9999','1.0','1.0'],
 'p8_pp_RSGraviton_10TeV_ww':['10TeV Z\' -> WW','','','7.686e-3','1.0','1.0'],
+'p8_pp_RSGraviton_12TeV_ww':['12TeV Z\' -> WW','','','-9999','1.0','1.0'],
+'p8_pp_RSGraviton_14TeV_ww':['14TeV Z\' -> WW','','','-9999','1.0','1.0'],
 'p8_pp_RSGraviton_15TeV_ww':['15TeV Z\' -> WW','','','7.386e-4','1.0','1.0'],
 
 }
@@ -141,6 +153,7 @@ branching_ratios = {
 ## description/comment/matching parameters/cross section/kfactor/matching efficiency
 
 gridpacklist = {
+'dummy':['','','','','',''],
 'mg_pp_ee_lo':['di-electron','pT(e)>1TeV','','0.000621','1.0','1.0'],
 'mg_pp_mumu_lo':['di-muon','pT(mu)>1TeV','','0.000621','1.0','1.0'],
 'mg_pp_tt_lo':['top pair','pT(t)>0.5TeV','','11.09','1.0','1.0'],
