@@ -104,10 +104,25 @@ class printer():
                 print "Unexpected error:", sys.exc_info()[0]
                 raise
 
+            
+            if not ispythiaonly:
+                try:
+                    stupidtest=self.para.gridpacklist[proc]
+                except KeyError, e:
+                    print 'changing proc :',proc,'  to dummy'
+                    proc='dummy'
+            if ispythiaonly:
+                try :
+                    stupidtest=self.para.pythialist[news]
+                except KeyError, e:
+                    print 'changing proc pythia :',news,'  to dummy'
+                    news='dummy'
+
 
             nfileseos=0
             if self.isLHE:
-                nfileseos=len(os.listdir('%s%s'%(self.para.lhe_dir,proc)))
+                if os.path.isdir('%s%s'%(self.para.lhe_dir,proc)):
+                    nfileseos=len(os.listdir('%s%s'%(self.para.lhe_dir,proc)))
             else:                    
                 if os.path.isdir('%s%s/%s'%(self.para.delphes_dir,self.version,process)): 
                     nfileseos=len(os.listdir('%s%s/%s'%(self.para.delphes_dir,self.version,process)))
