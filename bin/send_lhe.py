@@ -37,7 +37,10 @@ class send_lhe():
             print 'process %s does not exist as gridpack, exit'%self.process
             sys.exit(3)
 
-        logdir=Dir+"/BatchOutputs/lhe/%s"%(self.process)
+        acctype='FCC'
+        if 'HELHC' in self.para.module_name:  acctype='HELHC'
+
+        logdir=Dir+"/BatchOutputs/%s/lhe/%s"%(acctype,self.process)
         if not ut.dir_exist(logdir):
             os.system("mkdir -p %s"%logdir)
 
@@ -89,7 +92,7 @@ class send_lhe():
             frun.write('rm -rf job%s_%s\n'%(uid,self.process))
 
             cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -o %s -cwd %s %s" %(self.queue,logdir+'/job%s/'%(uid),logdir+'/job%s/'%(uid),logdir+'/'+frunname)
-            print cmdBatch
+            #print cmdBatch
                 
             batchid=-1
             job,batchid=ut.SubmitToLsf(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))

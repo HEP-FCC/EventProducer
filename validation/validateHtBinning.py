@@ -19,8 +19,15 @@ import ROOT
 import math
 from LHEevent import *
 from LHEfile import *
-import EventProducer.config.param as para
+FCC=False
+
+if FCC:
+    import EventProducer.config.param_FCC as para
+else:
+    import EventProducer.config.param_HELHC as para
 import json
+import yaml
+
 import ntpath
 import os
 import argparse
@@ -45,12 +52,10 @@ def main(parser):
     #processName = '{}_HT'.format(process)
     processName = process
     
-    lhe = para.lhe_dic
-    lheDict=None
-    with open(lhe) as f:
-        lheDict = json.load(f)
 
-    htLin = ROOT.TH1D("htLin", "htLin",100, 0., 30000.)
+    yamldir=para.yamldir+'lhe/'
+ 
+    htLin = ROOT.TH1D("htLin", "htLin",100, 0., 40000.)
     htLog = ROOT.TH1D("htLog", "htLog",100, 2., 5.)
            
     htLin.GetXaxis().SetTitle("H_{T} [GeV]")
@@ -75,11 +80,12 @@ def main(parser):
     legLog = legLin.Clone()
     
     index = 0
+    inc_id = 0
     for proc in para.gridpacklist:
         
         # loop over bins
         if processName in proc:
-            
+            print 'process ',proc
             nlhe = 0
             xsec = float(para.gridpacklist[proc][3])
             
@@ -108,22 +114,30 @@ def main(parser):
             htLogBin[proc].SetTitle('{} < H_{{T}} < {}'.format(htmin, htmax))
             
             # loop over lhe file for given bin
-            for joblhe in lheDict[proc]:
-                if joblhe['status']== 'done':
-                    nlhe += int(joblhe['nevents'])
-                    eoslhe = joblhe['out']
-                    eoslhebase = ntpath.basename(eoslhe)
-                    lhename = os.path.splitext(eoslhebase)[0]
-                    if os.path.isfile(lhename):
-                        os.system('/bin/rm {}'.format(lhename))
-                    os.system('{} cp {} {}'.format(eos, eoslhe, eoslhebase))
-                    os.system('/bin/gunzip {}'.format(eoslhebase))
-                    fillHtHistos(lhename, htLinBin[proc], htLogBin[proc])
-                    os.system('/bin/rm {}'.format(lhename))
-                    		    
-                    if nlhe >= nMax:
-                        break
 
+            tmpf=None
+            with open(yamldir+proc+'/merge.yaml', 'r') as stream:
+                try:
+                    tmpf = yaml.load(stream)
+                except yaml.YAMLError as exc:
+                    print(exc)
+
+            for f in tmpf['merge']['outfiles']:
+                nlhe += int(f[1])
+                eoslhe = tmpf['merge']['outdir']+f[0]
+                eoslhebase = ntpath.basename(eoslhe)
+                lhename = os.path.splitext(eoslhebase)[0]
+                if os.path.isfile(lhename):
+                    os.system('/bin/rm {}'.format(lhename))
+                os.system('cp {} {}'.format(eoslhe, eoslhebase))
+                os.system('/bin/gunzip {}'.format(eoslhebase))
+                fillHtHistos(lhename, htLinBin[proc], htLogBin[proc])
+                os.system('/bin/rm {}'.format(lhename))   
+                if nlhe >= nMax:
+                    break
+
+            #if proc=='mg_pp_vv_5f_HT_27000_100000':
+            #    xsec=xsec*10.
             htLinBin[proc].Scale(xsec/nlhe)
             htLogBin[proc].Scale(xsec/nlhe)
             
@@ -134,12 +148,12 @@ def main(parser):
             htLogBin[proc].Write()
 
             index +=1
-
+            
     htLin = histosLin[inc_id].Clone()
     htLog = histosLog[inc_id].Clone()
 
-    del histosLin[inc_id]
-    del histosLog[inc_id]
+    #del histosLin[inc_id]
+    #del histosLog[inc_id]
 
     histosLin.sort(key=lambda x: x.GetMean())
     histosLog.sort(key=lambda x: x.GetMean())
@@ -160,24 +174,20 @@ def main(parser):
 
 #__________________________________________________________
 def fillHtHistos(lheFile, htLin, htLog):
-
+    print lheFile
     myLHEfile = LHEfile(lheFile)
     myLHEfile.setMax(99999)
     eventsReadIn = myLHEfile.readEvents()
-
     for oneEvent in eventsReadIn:
         # read the event content
         myLHEevent = LHEevent()
-        
         myLHEevent.fillEvent(oneEvent)
-        
+
         ht = 0.0
         for i in range(0,len(myLHEevent.Particles)):
             p = myLHEevent.Particles[i]
-            
             if p['Status'] == 1: 
                ht += math.sqrt(p['Px']**2 + p['Py']**2)
-        
         if ht > 1.0:
             htLin.Fill(ht)
             htLog.Fill(math.log10(ht))

@@ -155,12 +155,51 @@ branching_ratios = {
 gridpacklist = {
 'dummy':['','','','','',''],
 'mg_pp_ee_lo':['di-electron','pT(e)>1TeV','','0.000621','1.0','1.0'],
-'mg_pp_mumu_lo':['di-muon','pT(mu)>1TeV','','0.000621','1.0','1.0'],
-'mg_pp_tt_lo':['top pair','pT(t)>0.5TeV','','11.09','1.0','1.0'],
-'mg_pp_jj_lo':['di-jet','pT(j)>0.5TeV','','3871','1.0','1.0'],
-'mg_pp_vv_lo':['di-boson','pT(v)>0.5TeV','','0.1562','1.0','1.0'],
-'mg_pp_vj_lo':['boson+1jet','pT(v,j)>0.5TeV','','18.54','1.0','1.0'],
+'mg_pp_ee_5f_HT_500_1000':['ee','500 < HT < 1000','no matching','0.1267','2.00','1.0'],
+'mg_pp_ee_5f_HT_1000_2000':['ee','1000 < HT < 2000','no matching','0.01034','2.00','1.0'],
+'mg_pp_ee_5f_HT_2000_5000':['ee','2000 < HT < 5000','no matching','0.0006172','2.00','1.0'],
+'mg_pp_ee_5f_HT_5000_10000':['ee','5000 < HT < 10000','no matching','2.603e-06','2.00','1.0'],
+'mg_pp_ee_5f_HT_10000_27000':['ee','10000 < HT < 27000','no matching','6.65e-09','2.00','1.0'],
 
+'mg_pp_mumu_lo':['di-muon','pT(mu)>1TeV','','0.000621','1.0','1.0'],
+'mg_pp_mumu_5f_HT_500_1000':['mumu','500 < HT < 1000','no matching','0.1267','2.00','1.0'],
+'mg_pp_mumu_5f_HT_1000_2000':['mumu','1000 < HT < 2000','no matching','0.01034','2.00','1.0'],
+'mg_pp_mumu_5f_HT_2000_5000':['mumu','2000 < HT < 5000','no matching','0.0006172','2.00','1.0'],
+'mg_pp_mumu_5f_HT_5000_10000':['mumu','5000 < HT < 10000','no matching','2.603e-06','2.00','1.0'],
+'mg_pp_mumu_5f_HT_10000_27000':['mumu','10000 < HT < 27000','no matching','6.65e-09','2.00','1.0'],
+
+'mg_pp_tautau_5f_HT_500_1000':['tautau','500 < HT < 1000','no matching','0.1267','2.00','1.0'],
+'mg_pp_tautau_5f_HT_1000_2000':['tautau','1000 < HT < 2000','no matching','0.01034','2.00','1.0'],
+'mg_pp_tautau_5f_HT_2000_5000':['tautau','2000 < HT < 5000','no matching','0.0006172','2.00','1.0'],
+'mg_pp_tautau_5f_HT_5000_10000':['tautau','5000 < HT < 10000','no matching','2.603e-06','2.00','1.0'],
+'mg_pp_tautau_5f_HT_10000_27000':['tautau','10000 < HT < 27000','no matching','6.65e-09','2.00','1.0'],
+
+'mg_pp_tt_lo':['top pair','pT(t)>0.5TeV','','11.09','1.0','1.0'],
+'mg_pp_tt_5f_HT_500_1000':['di top','500 < HT < 1000','no matching','164.4','2.00','1.0'],
+'mg_pp_tt_5f_HT_1000_2000':['di top','1000 < HT < 2000','no matching','10.72','2.00','1.0'],
+'mg_pp_tt_5f_HT_2000_5000':['di top','2000 < HT < 5000','no matching','0.3235','2.00','1.0'],
+'mg_pp_tt_5f_HT_5000_10000':['di top','5000 < HT < 10000','no matching','0.0008756','2.00','1.0'],
+'mg_pp_tt_5f_HT_10000_27000':['di top','10000 < HT < 27000','no matching','1.214e-06','2.00','1.0'],
+
+'mg_pp_jj_lo':['di-jet','pT(j)>0.5TeV','','3871','1.0','1.0'],
+'mg_pp_jj_5f_HT_500_1000':['di jet 5f','500 < HT < 1000','no matching','9.202e+04','2.00','1.0'],
+'mg_pp_jj_5f_HT_1000_2000':['di jet 5f','1000 < HT < 2000','no matching','3966','2.00','1.0'],
+'mg_pp_jj_5f_HT_2000_5000':['di jet 5f','2000 < HT < 5000','no matching','118','2.00','1.0'],
+'mg_pp_jj_5f_HT_5000_10000':['di jet 5f','5000 < HT < 10000','no matching','0.3968','2.00','1.0'],
+'mg_pp_jj_5f_HT_10000_27000':['di jet 5f','10000 < HT < 27000','no matching','0.0008586','2.00','1.0'],
+
+'mg_pp_vv_lo':['di-boson','pT(v)>0.5TeV','','0.1562','1.0','1.0'],
+'mg_pp_vv_5f_HT_500_1000':['di boson','500 < HT < 1000','no matching','1.74','2.00','1.0'],
+'mg_pp_vv_5f_HT_1000_2000':['di boson','1000 < HT < 2000','no matching','0.1483','2.00','1.0'],
+'mg_pp_vv_5f_HT_2000_5000':['di boson','2000 < HT < 5000','no matching','0.008341','2.00','1.0'],
+'mg_pp_vv_5f_HT_5000_10000':['di boson','5000 < HT < 10000','no matching','4.367e-05','2.00','1.0'],
+'mg_pp_vv_5f_HT_10000_27000':['di boson','10000 < HT < 27000','no matching','7.496e-08','2.00','1.0'],
+
+'mg_pp_vj_5f_HT_500_1000':['v+jet 5f','500 < HT < 1000','no matching','277.3','2.00','1.0'],
+'mg_pp_vj_5f_HT_1000_2000':['v+jet 5f','1000 < HT < 2000','no matching','18.03','2.00','1.0'],
+'mg_pp_vj_5f_HT_2000_5000':['v+jet 5f','2000 < HT < 5000','no matching','0.7608','2.00','1.0'],
+'mg_pp_vj_5f_HT_5000_10000':['v+jet 5f','5000 < HT < 10000','no matching','0.003244','2.00','1.0'],
+'mg_pp_vj_5f_HT_10000_27000':['v+jet 5f','10000 < HT < 27000','no matching','4.769e-06','2.00','1.0'],
 }
 
 
