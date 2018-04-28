@@ -147,6 +147,7 @@ gridpacklist = {
 'mg_pp_jj_lo':['di-jet','pT(j)>0.5TeV','','3871','1.0','1.0'],
 'mg_pp_vv_lo':['di-boson','pT(v)>0.5TeV','','0.1562','1.0','1.0'],
 'mg_pp_vj_lo':['boson+1jet','pT(v,j)>0.5TeV','','18.54','1.0','1.0'],
+'mg_pp_jjja_5f':['photon +jets','','','1.125e+04','1.0','1.0'],
 
 }
 
