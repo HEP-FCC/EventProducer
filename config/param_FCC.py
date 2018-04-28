@@ -659,6 +659,19 @@ gridpacklist = {
 'mg_pp_zzjj_4l_TT':['ZZ(TT) + jj EWK ','inclusive','','51.23','1.0','1.0'],
 'mg_pp_zzjj_4l_LL':['ZZ(LL) + jj EWK ','inclusive','','51.23','1.0','1.0'],
 
+'mg_pp_zzjj_4l_QED4_QCD0_LL':['ZZ(LL) + jj EWK','inclusive','','0.489','1.0','1.0'],
+'mg_pp_zzjj_4l_QED4_QCD0_TL':['ZZ(TL) + jj EWK','inclusive','','0.489','1.0','1.0'],
+'mg_pp_zzjj_4l_QED4_QCD0_TT':['ZZ(TT) + jj EWK','inclusive','','0.489','1.0','1.0'],
+'mg_pp_zzjj_4l_QED2_QCD2_LL':['ZZ(LL) + jj QCD','inclusive','','0.489','1.0','1.0'],
+'mg_pp_zzjj_4l_QED2_QCD2_TL':['ZZ(TL) + jj QCD','inclusive','','0.489','1.0','1.0'],
+'mg_pp_zzjj_4l_QED2_QCD2_TT':['ZZ(TT) + jj QCD','inclusive','','0.489','1.0','1.0'],
+'mg_pp_wwjj_ss_2l2v_QED4_QCD0_LL':['WW(LL) + jj EWK same sign','inclusive','','0.489','1.0','1.0'],
+'mg_pp_wwjj_ss_2l2v_QED4_QCD0_TL':['WW(TL) + jj EWK same sign','inclusive','','0.489','1.0','1.0'],
+'mg_pp_wwjj_ss_2l2v_QED4_QCD0_TT':['WW(TT) + jj EWK same sign','inclusive','','0.489','1.0','1.0'],
+'mg_pp_wwjj_ss_2l2v_QED2_QCD2_LL':['WW(LL) + jj QCD same sign','inclusive','','0.489','1.0','1.0'],
+'mg_pp_wwjj_ss_2l2v_QED2_QCD2_TL':['WW(LL) + jj QCD same sign','inclusive','','0.489','1.0','1.0'],
+'mg_pp_wwjj_ss_2l2v_QED2_QCD2_TT':['WW(LL) + jj QCD same sign','inclusive','','0.489','1.0','1.0'],
+
 
 #SUSY stop samples
 'mg_pp_stopstop_5f_mStop_0p5TeV':['','inclusive','','49.97','1.4','1.'],

@@ -188,6 +188,10 @@ gridpacklist = {
 'mg_pp_jj_5f_HT_5000_10000':['di jet 5f','5000 < HT < 10000','no matching','0.3968','2.00','1.0'],
 'mg_pp_jj_5f_HT_10000_27000':['di jet 5f','10000 < HT < 27000','no matching','0.0008586','2.00','1.0'],
 
+
+'mg_pp_jjja_5f':['photon +jets','','','1.125e+04','1.0','1.0'],
+
+'mg_pp_vj_lo':['boson+1jet','pT(v,j)>0.5TeV','','18.54','1.0','1.0'],
 'mg_pp_vv_lo':['di-boson','pT(v)>0.5TeV','','0.1562','1.0','1.0'],
 'mg_pp_vv_5f_HT_500_1000':['di boson','500 < HT < 1000','no matching','1.74','2.00','1.0'],
 'mg_pp_vv_5f_HT_1000_2000':['di boson','1000 < HT < 2000','no matching','0.1483','2.00','1.0'],
