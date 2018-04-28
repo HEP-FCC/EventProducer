@@ -1,5 +1,6 @@
 #python bin/run.py --HELHC --LHE --send -p mg_pp_ee_lo -n 10000 -N 100 --lsf -q 1nh --typelhe gp
 #python bin/run.py --HELHC --LHE --check --process mg_gg_aa01j_mhcut_5f_HT_0_100
+#python bin/run.py --HELHC --LHE --checkeos --process mg_gg_aa01j_mhcut_5f_HT_0_100
 #python bin/run.py --HELHC --LHE --merge
 #python bin/run.py --HELHC --LHE --web
 #python bin/run.py --HELHC --LHE --remove -p mg_pp_ee_lo
@@ -34,6 +35,7 @@ if __name__=="__main__":
 
     jobTypeGroup = parser.add_mutually_exclusive_group(required = True) # Type of events to generate
     jobTypeGroup.add_argument("--check", action='store_true', help="run the jobchecker")
+    jobTypeGroup.add_argument("--checkeos", action='store_true', help="run the checker for number of files in eos and in the merge yaml")
     jobTypeGroup.add_argument("--merge", action='store_true', help="merge the yaml for all the processes")
     jobTypeGroup.add_argument("--send", action='store_true', help="send the jobs")
     jobTypeGroup.add_argument("--clean", action='store_true', help="clean the dictionnary and eos from bad jobs")
@@ -88,7 +90,8 @@ if __name__=="__main__":
     sendjobGroup.add_argument('-d', '--decay', type=str, default='', help='pythia8 decay when needed', choices=decaylist)
 
     processlist=[]
-    if (args.reco and args.type=="p8") or args.check or args.clean or args.merge:
+    print '---------------------------------------------------------------------- ',args.type
+    if (args.reco and args.type=="p8") or args.check or args.clean or args.cleanold or args.merge:
         for key, value in para.pythialist.iteritems():
             processlist.append(key)
         for key, value in para.decaylist.iteritems():
@@ -97,14 +100,15 @@ if __name__=="__main__":
             if key[0:3]=='ch_': newkey='chp8_'+key[3:]
             for v in value:
                 processlist.append("%s_%s"%(newkey,v))
-                
     if args.LHE or args.check or args.clean or args.merge or args.reco:
         for key, value in para.gridpacklist.iteritems():
             processlist.append(key)
-    if args.reco and (args.remove or args.clean):
+    if args.reco and (args.remove or args.clean or args.cleanold):
+        print '-------------------------------------------------frrfwrf--------------------- ',args.type
         for key, value in para.gridpacklist.iteritems():
             if key[0:3]=='mg_': processlist.append('mgp8_'+key[3:])
             if key[0:3]=='ch_': processlist.append('chp8_'+key[3:])
+    
 
 
     parser.add_argument('-p','--process', type=str, help='Name of the process to use to send jobs or for the check', default='', choices=processlist)
@@ -154,6 +158,20 @@ if __name__=="__main__":
         checker=chky.checker_yaml(indir, para, fext, args.process,  yamldir, yamlcheck)
         checker.check(args.force, statfile)
 
+
+    elif args.checkeos:
+        print 'running the checkeos'
+        if args.process!='':
+            print 'using a specific process ',args.process
+            if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
+            if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
+        import EventProducer.common.checker_eos as chkeos
+        print args.process
+        checkereos=chkeos.checker_eos(yamldir, indir, args.process)
+                                    #(indirafs, indireos, process, version):
+
+        checkereos.check(para)
+
     elif args.merge:
         print 'running the merger'
         if args.process!='':
@@ -195,13 +213,13 @@ if __name__=="__main__":
                 print 'preparing to send FCCSW jobs from lhe'
                 import EventProducer.bin.send_lhep8 as slhep8
                 sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.queue, para, version, args.decay)
-                sendlhep8.send()
+                sendlhep8.send(args.force)
             elif sendOpt=='p8':
                 print 'preparing to send FCCSW jobs from pythia8 directly'
                 import EventProducer.bin.send_p8 as sp8
                 sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.queue, para, version)
                 sendp8.send()
-        ut.yamlstatus(yamlcheck, args.process, False)
+        #ut.yamlstatus(yamlcheck, args.process, False)
 
     elif args.web:
         import EventProducer.common.printer as prt

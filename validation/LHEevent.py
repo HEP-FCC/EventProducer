@@ -4,13 +4,15 @@ class LHEevent():
         self.Particles = []
         
     def fillEvent(self, lheLines):
+  
+
         # check that this is a good event
         if lheLines[0].find("<event>") == -1 or lheLines[-1].find("</event>") == -1:
             print "THIS IS NOT A LHE EVENT"
             return 0
         # read the model
         begin = 2
-	end = -1
+	end = len(lheLines)-1
 	for i in range(begin,len(lheLines)):
 	    if lheLines[i].find("<scales") == 0:
 	       end = i

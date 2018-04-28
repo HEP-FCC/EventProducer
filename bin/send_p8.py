@@ -39,7 +39,10 @@ class send_p8():
             print 'process %s does not exist, exit'%self.process
             sys.exit(3)
 
-        logdir=Dir+"/BatchOutputs/%s/%s/"%(self.version,self.process)
+        acctype='FCC'
+        if 'HELHC' in self.para.module_name:  acctype='HELHC'
+
+        logdir=Dir+"/BatchOutputs/%s/%s/%s/"%(acctype,self.version,self.process)
         if not ut.dir_exist(logdir):
             os.system("mkdir -p %s"%logdir)
 
@@ -125,7 +128,7 @@ class send_p8():
             frun.write('rm -rf job%s_%s\n'%(uid,self.process))
 
 
-            cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -cwd%s %s" %(self.queue, logdir,frunfull)
+            cmdBatch="bsub -M 2000000 -R \"pool=20000\" -q %s -o %s -cwd %s %s" %(self.queue, logdir+'/job%s/'%(uid),logdir+'/job%s/'%(uid),frunfull)
 
             batchid=-1
             job,batchid=ut.SubmitToLsf(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))

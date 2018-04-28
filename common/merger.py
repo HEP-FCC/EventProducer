@@ -36,7 +36,9 @@ class merger():
                 continue
 
             #continue if process has been checked
-            if ut.yamlcheck(self.yamlcheck, l) and not force:continue
+            #if ut.yamlcheck(self.yamlcheck, l) and not force:continue
+            print '%s/%s/check'%(self.indir,l)
+            if not ut.file_exist('%s/%s/check'%(self.indir,l)): continue
 
             print 'merging process %s  %i files'%(l,len(All_files))
             for f in All_files:
@@ -47,6 +49,7 @@ class merger():
                 with open(f, 'r') as stream:
                     try:
                         tmpf = yaml.load(stream)
+                        if ut.getsize(f)==0: continue
                         if tmpf['processing']['status']=='sending': continue
                         if tmpf['processing']['status']=='BAD':
                             nbad+=1
@@ -64,6 +67,9 @@ class merger():
                         ndone+=1
                     except yaml.YAMLError as exc:
                         print(exc)
+                    except IOError as exc:
+                        print "I/O error({0}): {1}".format(exc.errno, exc.strerror)
+                        print "outfile ",f
                         
             dic = {'merge':{
                     'process':process, 
@@ -78,7 +84,7 @@ class merger():
                    }
             with open(outfile, 'w') as outyaml:
                 yaml.dump(dic, outyaml, default_flow_style=False) 
-            if ndone+nbad==len(All_files):
-                ut.yamlstatus(self.yamlcheck, process, True)
-            else:
-                ut.yamlstatus(self.yamlcheck, process, False)
+#            if ndone+nbad==len(All_files):
+#                ut.yamlstatus(self.yamlcheck, process, True)
+#            else:
+#                ut.yamlstatus(self.yamlcheck, process, False)

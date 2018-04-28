@@ -195,6 +195,8 @@ class makeSampleList():
                 print 'process :', processhad, 'not found in %s --> skipping process'%self.para.module_name
                 continue
             else: 
+                print 'self.para.gridpacklist[processhad][3]   ',self.para.gridpacklist[processhad][3]
+                print 'self.para.gridpacklist[processhad][4]   ',self.para.gridpacklist[processhad][4]
                 xsec = float(self.para.gridpacklist[processhad][3])
                 kf = float(self.para.gridpacklist[processhad][4])
                 matchingEff = self.addEntry(process, yamldir_lhe, yaml_reco, xsec, kf, heppyFile, procDict)

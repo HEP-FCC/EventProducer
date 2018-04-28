@@ -41,6 +41,18 @@ class printer():
         #ldir=[x[0] for x in os.walk(self.indir)]
         ldir=next(os.walk(self.indir))[1]
 
+#        checkfiles=''
+#        if self.isLHE: checkfiles='%s/files.yaml'%(self.para.lhe_dir)
+#        else:          checkfiles='%s/%s/files.yaml'%(self.para.delphes_dir,self.version)
+#
+#        tmpcheck=None
+#        with open(checkfiles, 'r') as stream:
+#            try:
+#                tmpcheck = yaml.load(stream)
+#            except yaml.YAMLError as exc:
+#                print(exc)
+
+
         for l in ldir:
             process=l
             mergefile=self.indir+'/'+l+'/merge.yaml'
@@ -104,10 +116,26 @@ class printer():
                 print "Unexpected error:", sys.exc_info()[0]
                 raise
 
+            
+            if not ispythiaonly:
+                try:
+                    stupidtest=self.para.gridpacklist[proc]
+                except KeyError, e:
+                    print 'changing proc :',proc,'  to dummy'
+                    proc='dummy'
+            if ispythiaonly:
+                try :
+                    stupidtest=self.para.pythialist[news]
+                except KeyError, e:
+                    print 'changing proc pythia :',news,'  to dummy'
+                    news='dummy'
+
 
             nfileseos=0
+#            nfileseos=tmpcheck[proc]['neos']
             if self.isLHE:
-                nfileseos=len(os.listdir('%s%s'%(self.para.lhe_dir,proc)))
+                if os.path.isdir('%s%s'%(self.para.lhe_dir,proc)):
+                    nfileseos=len(os.listdir('%s%s'%(self.para.lhe_dir,proc)))
             else:                    
                 if os.path.isdir('%s%s/%s'%(self.para.delphes_dir,self.version,process)): 
                     nfileseos=len(os.listdir('%s%s/%s'%(self.para.delphes_dir,self.version,process)))
@@ -118,7 +146,7 @@ class printer():
             marked_e=''
 
             if nfileseos>files_tot+bad_tot:
-                ut.yamlstatus(yamlcheck, process, False)
+                #ut.yamlstatus(yamlcheck, process, False)
                 marked_b='<h2><mark>'
                 marked_e='</mark></h2>'
 

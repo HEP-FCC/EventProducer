@@ -40,7 +40,7 @@ class cleanfailed():
                             cmd="rm %s/%s"%(self.yamldir,r.replace('.lhe.gz','.yaml').replace('.root','.yaml'))
                             os.system(cmd)
 
-                        ut.yamlstatus(self.yamlcheck,tmpf['merge']['process'] , False)
+                        #ut.yamlstatus(self.yamlcheck,tmpf['merge']['process'] , False)
                     
                 except yaml.YAMLError as exc:
                     print(exc)
@@ -63,10 +63,11 @@ class cleanfailed():
                 All_files = glob.glob("%s/%s/events_*.yaml"%(self.yamldir,l))
             else:
                 All_files = glob.glob("%s/events_*.yaml"%(self.yamldir))
-
+                print "%s/events_*.yaml"%(self.yamldir)
             if len(All_files)==0:continue
             process=l            
-            if self.process!='' and self.process!=process: 
+            if self.process!='' and self.process!=process:
+                print process
                 continue
 
             print 'process from the input directory ',process
@@ -80,7 +81,17 @@ class cleanfailed():
                     try:
                        tmpf = yaml.load(stream)
                        if tmpf['processing']['status']=='sending':
-                           if ut.gettimestamp() - tmpf['processing']['timestamp']>20000:
+                           #from datetime import datetime
+                           #import time
+                           #ts = time.time()
+                           #print(ts)
+                           #ds=str(tmpf['processing']['timestamp'])
+                           #d = datetime(int(ds[0:4]), int(ds[5:6]), int(ds[7:8]), int(ds[9:10]), int(ds[11:12]))
+                           #print int(ds[0:4]), int(ds[4:6]), int(ds[6:8]), int(ds[8:10]), int(ds[10:12])
+                           #dt=datetime.timestamp()
+                           #print dt
+
+                           if ut.gettimestamp() - tmpf['processing']['timestamp']>15000:
                                print 'job %s is running since too long  %i  , will delete the yaml'%(f,ut.gettimestamp() - tmpf['processing']['timestamp'])
                                cmd="rm %s"%(f)
                                print cmd

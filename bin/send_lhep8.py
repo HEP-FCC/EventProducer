@@ -27,7 +27,7 @@ class send_lhep8():
 
 
 #__________________________________________________________
-    def send(self):
+    def send(self, force):
 
         Dir = os.getcwd()
     
@@ -65,7 +65,7 @@ class send_lhep8():
         if self.decay!='':
             pythiacard='%s%s_%s.cmd'%(self.para.pythiacards_dir,self.process.replace('mg_pp','p8_pp').replace('mg_gg','p8_gg'),self.decay)
             
-        if ut.file_exist(pythiacard)==False:
+        if ut.file_exist(pythiacard)==False and not force:
             print 'pythia card does not exist: ',pythiacard
             timeout = 60
             print "do you want to use the default pythia card [y/n] (60sec to reply)"
@@ -81,6 +81,9 @@ class send_lhep8():
             else:
                 print "timeout, use default card"
                 pythiacard='%sp8_pp_default.cmd'%(self.para.pythiacards_dir)
+        elif ut.file_exist(pythiacard)==False and force:
+            print "force argument, use default card"
+            pythiacard='%sp8_pp_default.cmd'%(self.para.pythiacards_dir)
 
         pr_noht=''
         if '_HT_' in self.process:
@@ -108,7 +111,10 @@ class send_lhep8():
 
         processp8 = pr_decay.replace('mg_pp','mgp8_pp').replace('mg_gg','mgp8_gg')
 
-        logdir=Dir+"/BatchOutputs/%s/%s/"%(self.version,processp8)
+        acctype='FCC'
+        if 'HELHC' in self.para.module_name:  acctype='HELHC'
+
+        logdir=Dir+"/BatchOutputs/%s/%s/%s/"%(acctype,self.version,processp8)
         if not ut.dir_exist(logdir):
             os.system("mkdir -p %s"%logdir)
      
@@ -193,8 +199,8 @@ class send_lhep8():
             frun.write('cd ..\n')
             frun.write('rm -rf job%s_%s\n'%(jobid,processp8))
 
-            cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -cwd%s %s" %(self.queue, logdir,frunfull)
-             
+            cmdBatch="bsub -M 3000000 -R \"pool=40000\" -q %s -o %s -cwd %s %s" %(self.queue, logdir+'/job%s/'%(jobid), logdir+'/job%s/'%(jobid),frunfull)
+
             batchid=-1
             job,batchid=ut.SubmitToLsf(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
             nbjobsSub+=job    
