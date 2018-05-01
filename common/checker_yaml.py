@@ -164,6 +164,11 @@ class checker_yaml():
                 userid=ut.find_owner(f)
 
                 outfile='%sevents_%s.yaml'%(outdir,jobid)
+                if  ut.getsize(outfile)==0:
+                    cmd="rm %s"%(outfile)
+                    print 'file size 0, remove and continue   ',cmd
+                    os.system(cmd)
+                    continue
                 if ut.file_exist(outfile) and ut.getsize(outfile)> 100 and not force:
                     doc = None
                     with open(outfile) as ftmp:

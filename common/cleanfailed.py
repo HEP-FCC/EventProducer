@@ -77,6 +77,13 @@ class cleanfailed():
                     print 'file does not exists... %s'%f
                     continue
                 
+
+                if ut.getsize(f)==0: 
+                    print 'file size 0 %s  will delete the yaml'%(f)
+                    cmd="rm %s"%(f)
+                    print cmd
+                    os.system(cmd)
+                    continue
                 with open(f, 'r') as stream:
                     try:
                        tmpf = yaml.load(stream)

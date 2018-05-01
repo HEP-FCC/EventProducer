@@ -8,4 +8,5 @@ users={'helsens':1,
        'asung':8,
        'pmandrik':9,
        'jtanaka':10,
-       'perfilov':11}
+       'perfilov':11,
+       'amoreira':12}
