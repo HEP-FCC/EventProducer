@@ -143,6 +143,7 @@ class send_lhep8():
             with open(All_files[i], 'r') as stream:
                 try:
                     tmpf = yaml.load(stream)
+                    if ut.getsize(All_files[i])==0:continue
                     if tmpf['processing']['status']!='DONE': continue
                     
                 except yaml.YAMLError as exc:
