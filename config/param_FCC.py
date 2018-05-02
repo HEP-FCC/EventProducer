@@ -619,6 +619,31 @@ gridpacklist = {
 'mg_pp_Zprime_mumu_5f_Mzp_40TeV':['','Zp->mu+mu-','','5.819e-06','1.0','1.0'],
 'mg_pp_Zprime_mumu_5f_Mzp_45TeV':['','Zp->mu+mu-','','4.64e-06','1.0','1.0'],
 
+#Leptoquarks signals to fit flavor anomalies 
+'mg_pp_LQ_mumu_5f_MLQ_2TeV':['bs->mumu (t-channel LQ)','','','1.183e-06','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_4TeV':['bs->mumu (t-channel LQ)','','','3.892e-06','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_6TeV':['bs->mumu (t-channel LQ)','','','5.98e-06','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_8TeV':['bs->mumu (t-channel LQ)','','','7.485e-06','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_10TeV':['bs->mumu (t-channel LQ)','','','8.529e-06','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_12TeV':['bs->mumu (t-channel LQ)','','','9.259e-06','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_14TeV':['bs->mumu (t-channel LQ)','','','9.876e-06','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_16TeV':['bs->mumu (t-channel LQ)','','','1.028e-05','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_18TeV':['bs->mumu (t-channel LQ)','','','1.059e-05','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_20TeV':['bs->mumu (t-channel LQ)','','','1.085e-05','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_22TeV':['bs->mumu (t-channel LQ)','','','1.105e-05','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_24TeV':['bs->mumu (t-channel LQ)','','','1.12e-05','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_26TeV':['bs->mumu (t-channel LQ)','','','1.133e-05','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_28TeV':['bs->mumu (t-channel LQ)','','','1.142e-05','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_30TeV':['bs->mumu (t-channel LQ)','','','1.152e-05','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_32TeV':['bs->mumu (t-channel LQ)','','','1.158e-05','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_34TeV':['bs->mumu (t-channel LQ)','','','1.175e-05','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_36TeV':['bs->mumu (t-channel LQ)','','','1.18e-05','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_38TeV':['bs->mumu (t-channel LQ)','','','1.179e-05','1.0','1.0'],
+'mg_pp_LQ_mumu_5f_MLQ_40TeV':['bs->mumu (t-channel LQ)','','','1.188e-05','1.0','1.0'],
+
+
+
+
 # xsec is given by 2*xsec(NLO)*BR(H->bb), then NNLL/NLO kfactor = 1.33/1.15 is app_mglied according to prescription I.7.8 in Higgs XSECWG YR4 (1610.07922) with delta_t=-0.315
 # lambda dep xsec(NLO) from 100TeV version of Fig.12 left plot in 1608.04798 (from private conversation with Gudrun Heinrich)
 # for now keep kfactor 1.75/1.15 obtained directly from NNLL (for sake of comparison with YR)
