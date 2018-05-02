@@ -91,7 +91,7 @@ if __name__=="__main__":
 
     processlist=[]
     print '---------------------------------------------------------------------- ',args.type
-    if (args.reco and args.type=="p8") or args.check or args.clean or args.cleanold or args.merge:
+    if (args.reco and args.type=="p8") or args.check or args.checkeos or args.clean or args.cleanold or args.merge:
         for key, value in para.pythialist.iteritems():
             processlist.append(key)
         for key, value in para.decaylist.iteritems():
@@ -100,7 +100,7 @@ if __name__=="__main__":
             if key[0:3]=='ch_': newkey='chp8_'+key[3:]
             for v in value:
                 processlist.append("%s_%s"%(newkey,v))
-    if args.LHE or args.check or args.clean or args.merge or args.reco:
+    if args.LHE or args.check or args.checkeos or args.clean or args.merge or args.reco:
         for key, value in para.gridpacklist.iteritems():
             processlist.append(key)
     if args.reco and (args.remove or args.clean or args.cleanold):
