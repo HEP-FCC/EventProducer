@@ -184,6 +184,7 @@ decaylist = {
 'mg_pp_hh01j_5f':['hhaabb'],
 'mg_pp_vbf_h01j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hnunununu'],
 'mg_pp_tth01j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_bbh_5f':['haa'],
 'mg_pp_vh012j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_v0123j_5f':['znunu'],
 'mg_pp_z0123j_4f':['zll'],
