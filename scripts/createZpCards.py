@@ -62,16 +62,17 @@ models['CHI'] = [-0.7831560083e+00, 0.3915780041e+00, 0.0000000000e+00, -0.39157
 models['ETA'] = [0.4795831523e+00, 0.1598610508e+00, 0.0000000000e+00, 0.6394442031e+00, -0.4795831523e+00, 0.1598610508e+00, -0.1598610508e+00, -0.1598610508e+00]  
 models['I']   = [-0.6191391874e+00, 0.6191391874e+00, 0.0000000000e+00, -0.3910519505e-12, 0.6191391874e+00, 0.6191391874e+00, 0.6191391874e+00, 0.6191391874e+00]   
 
+listOfCards = 'listZp.txt'
+
 for ecm in [27, 100]:
 
     if not os.path.exists(outdir_local[ecm]):
           os.makedirs(outdir_local[ecm])
 
-    for mass in masses[ecm]:
+    for name, values in models.iteritems():
 
-        for name, values in models.iteritems():
+        for mass in masses[ecm]:
 
-        
             newcard = dummycard
             newcard = newcard.replace('DUMMYECM', str(ecm*1000))
             newcard = newcard.replace('DUMMYMASS', str(mass*1000))
@@ -92,7 +93,14 @@ for ecm in [27, 100]:
             with open(card, "w") as f:
               f.write(newcard)
 
+            # append card location into a list (can be used for computing xsecs) 
+            abscardloc = os.path.abspath(card)
+            with open(listOfCards, 'a') as ll:
+              ll.write(abscardloc+'\n')
+
+
             dest = outdir_eos[ecm]+ '/'+ cardloc
-            cmd = 'eos cp --streams=1000 {} root://eospublic.cern.ch/{}'.format(card, dest)
-            print cmd
-	    #os.system(cmd)
+            
+            #cmd = 'eos cp --streams=1000 {} root://eospublic.cern.ch/{}'.format(card, dest)
+            #print cmd
+            #os.system(cmd)
