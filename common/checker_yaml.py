@@ -180,7 +180,7 @@ class checker_yaml():
                             print "I/O error({0}): {1}".format(exc.errno, exc.strerror)
                             print "outfile ",outfile
                         try: 
-                            value = doc['processing']['status']
+                            if doc!=None:value = doc['processing']['status']
                             if value=='DONE': continue
         
                         except KeyError, e:
