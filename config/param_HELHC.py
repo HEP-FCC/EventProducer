@@ -236,7 +236,31 @@ gridpacklist = {
 'mg_pp_jj_5f_HT_10000_27000':['di jet 5f','10000 < HT < 27000','no matching','0.0008586','2.00','1.0'],
 
 
+'mg_pp_tth01j_5f':['higgs associated with top pair + 0/1 jets','inclusive','xqcut = 80, qCut = 120','3.274','1.22','0.612'],
+'mg_pp_jjaa_5f':['dijet diphoton','','','5.941','1.0','1.0'],
 'mg_pp_jjja_5f':['photon +jets','','','1.125e+04','1.0','1.0'],
+'mg_pp_hh_5f_kl_0500':['HH, H->bb, H undec., kl = ','inclusive','','0.1612','1.0','1.0'],
+'mg_pp_hh_5f_kl_0750':['HH, H->bb, H undec., kl = ','inclusive','','0.1349','1.0','1.0'],
+'mg_pp_hh_5f_kl_0800':['HH, H->bb, H undec., kl = ','inclusive','','0.1307','1.0','1.0'],
+'mg_pp_hh_5f_kl_0850':['HH, H->bb, H undec., kl = ','inclusive','','0.1253','1.0','1.0'],
+'mg_pp_hh_5f_kl_0875':['HH, H->bb, H undec., kl = ','inclusive','','0.1231','1.0','1.0'],
+'mg_pp_hh_5f_kl_0900':['HH, H->bb, H undec., kl = ','inclusive','','0.1213','1.0','1.0'],
+'mg_pp_hh_5f_kl_0925':['HH, H->bb, H undec., kl = ','inclusive','','0.1192','1.0','1.0'],
+'mg_pp_hh_5f_kl_0950':['HH, H->bb, H undec., kl = ','inclusive','','0.1169','1.0','1.0'],
+'mg_pp_hh_5f_kl_0975':['HH, H->bb, H undec., kl = ','inclusive','','0.1148','1.0','1.0'],
+'mg_pp_hh_5f_kl_1000':['HH, H->bb, H undec., kl = ','inclusive','','0.1127','1.0','1.0'],
+'mg_pp_hh_5f_kl_1025':['HH, H->bb, H undec., kl = ','inclusive','','0.11','1.0','1.0'],
+'mg_pp_hh_5f_kl_1050':['HH, H->bb, H undec., kl = ','inclusive','','0.1084','1.0','1.0'],
+'mg_pp_hh_5f_kl_1075':['HH, H->bb, H undec., kl = ','inclusive','','0.1059','1.0','1.0'],
+'mg_pp_hh_5f_kl_1100':['HH, H->bb, H undec., kl = ','inclusive','','0.1039','1.0','1.0'],
+'mg_pp_hh_5f_kl_1125':['HH, H->bb, H undec., kl = ','inclusive','','0.1019','1.0','1.0'],
+'mg_pp_hh_5f_kl_1150':['HH, H->bb, H undec., kl = ','inclusive','','0.1005','1.0','1.0'],
+'mg_pp_hh_5f_kl_1200':['HH, H->bb, H undec., kl = ','inclusive','','0.09671','1.0','1.0'],
+'mg_pp_hh_5f_kl_1250':['HH, H->bb, H undec., kl = ','inclusive','','0.09307','1.0','1.0'],
+'mg_pp_hh_5f_kl_1500':['HH, H->bb, H undec., kl = ','inclusive','','0.07687','1.0','1.0'],
+
+
+'mg_pp_bbh_4f':['bbar plus higgs','50 < mbb < 300','','1.0','1.0','1.0'],
 
 'mg_pp_vj_lo':['boson+1jet','pT(v,j)>0.5TeV','','18.54','1.0','1.0'],
 'mg_pp_vv_lo':['di-boson','pT(v)>0.5TeV','','0.1562','1.0','1.0'],
@@ -251,6 +275,9 @@ gridpacklist = {
 'mg_pp_vj_5f_HT_2000_5000':['v+jet 5f','2000 < HT < 5000','no matching','0.7608','2.00','1.0'],
 'mg_pp_vj_5f_HT_5000_10000':['v+jet 5f','5000 < HT < 10000','no matching','0.003244','2.00','1.0'],
 'mg_pp_vj_5f_HT_10000_27000':['v+jet 5f','10000 < HT < 27000','no matching','4.769e-06','2.00','1.0'],
+
+
+
 }
 
 
