@@ -77,7 +77,7 @@ class send_mglhe():
             print cmdBatch
                 
             batchid=-1
-            job,batchid=ut.SubmitToLsf(cmdBatch,10)
+            job,batchid=ut.SubmitToLsf(cmdBatch,10,1)
             nbjobsSub+=job
 
         print 'succesfully sent %i  jobs'%nbjobsSub
