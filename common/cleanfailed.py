@@ -98,7 +98,7 @@ class cleanfailed():
                            #dt=datetime.timestamp()
                            #print dt
 
-                           if ut.gettimestamp() - tmpf['processing']['timestamp']>15000:
+                           if ut.gettimestamp() - tmpf['processing']['timestamp']>18000:
                                print 'job %s is running since too long  %i  , will delete the yaml'%(f,ut.gettimestamp() - tmpf['processing']['timestamp'])
                                cmd="rm %s"%(f)
                                print cmd
