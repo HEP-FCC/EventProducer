@@ -156,29 +156,32 @@ decaylist = {
 'mg_pp_hh01j_5f':['hhaabb'],
 'mg_pp_vbf_h01j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hnunununu'],
 'mg_pp_tth01j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_bbh_4f':['haa'],
 'mg_pp_vh012j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_v0123j_5f':['znunu'],
 'mg_pp_z0123j_4f':['zll'],
 'mg_pp_w0123j_4f':['wlv'],
 'mg_pp_ttz_5f':['znunu'],
-'mg_pp_hh_lambda050_5f':['haa'],
-'mg_pp_hh_lambda090_5f':['haa'],
-'mg_pp_hh_lambda095_5f':['haa'],
-'mg_pp_hh_lambda100_5f':['haa'],
-'mg_pp_hh_lambda105_5f':['haa'],
-'mg_pp_hh_lambda110_5f':['haa'],
-'mg_pp_hh_lambda150_5f':['haa'],
-'mg_pp_hhj_lambda090_5f':['hhbbbb'],
-'mg_pp_hhj_lambda095_5f':['hhbbbb'],
-'mg_pp_hhj_lambda100_5f':['hhbbbb'],
-'mg_pp_hhj_lambda105_5f':['hhbbbb'],
-'mg_pp_hhj_lambda110_5f':['hhbbbb'],
-'mg_pp_hhj_lambda150_5f':['hhbbbb'],
-'mg_pp_hhj_lambda050_5f':['hhbbbb'],
-
+'mg_pp_hh_5f_kl_0500_5f':['haa'],
+'mg_pp_hh_5f_kl_0750_5f':['haa'],
+'mg_pp_hh_5f_kl_0800_5f':['haa'],
+'mg_pp_hh_5f_kl_0850_5f':['haa'],
+'mg_pp_hh_5f_kl_0875_5f':['haa'],
+'mg_pp_hh_5f_kl_0900_5f':['haa'],
+'mg_pp_hh_5f_kl_0925_5f':['haa'],
+'mg_pp_hh_5f_kl_0950_5f':['haa'],
+'mg_pp_hh_5f_kl_0975_5f':['haa'],
+'mg_pp_hh_5f_kl_1000_5f':['haa'],
+'mg_pp_hh_5f_kl_1025_5f':['haa'],
+'mg_pp_hh_5f_kl_1050_5f':['haa'],
+'mg_pp_hh_5f_kl_1075_5f':['haa'],
+'mg_pp_hh_5f_kl_1100_5f':['haa'],
+'mg_pp_hh_5f_kl_1125_5f':['haa'],
+'mg_pp_hh_5f_kl_1150_5f':['haa'],
+'mg_pp_hh_5f_kl_1200_5f':['haa'],
+'mg_pp_hh_5f_kl_1250_5f':['haa'],
+'mg_pp_hh_5f_kl_1500_5f':['haa'],
 }
-
-
 
 ##list of decays branching ratios 
 # from https://twiki.cern.ch/twiki/bin/view/LHCPhysics/CERNYellowReportPageBR 
@@ -241,7 +244,31 @@ gridpacklist = {
 'mg_pp_jj_5f_HT_10000_27000':['di jet 5f','10000 < HT < 27000','no matching','0.0008586','2.00','1.0'],
 
 
+'mg_pp_tth01j_5f':['higgs associated with top pair + 0/1 jets','inclusive','xqcut = 80, qCut = 120','3.274','1.22','0.612'],
+'mg_pp_jjaa_5f':['dijet diphoton','','','5.941','1.0','1.0'],
 'mg_pp_jjja_5f':['photon +jets','','','1.125e+04','1.0','1.0'],
+'mg_pp_hh_5f_kl_0500':['HH, H->bb, H undec., kl = ','inclusive','','0.1612','1.0','1.0'],
+'mg_pp_hh_5f_kl_0750':['HH, H->bb, H undec., kl = ','inclusive','','0.1349','1.0','1.0'],
+'mg_pp_hh_5f_kl_0800':['HH, H->bb, H undec., kl = ','inclusive','','0.1307','1.0','1.0'],
+'mg_pp_hh_5f_kl_0850':['HH, H->bb, H undec., kl = ','inclusive','','0.1253','1.0','1.0'],
+'mg_pp_hh_5f_kl_0875':['HH, H->bb, H undec., kl = ','inclusive','','0.1231','1.0','1.0'],
+'mg_pp_hh_5f_kl_0900':['HH, H->bb, H undec., kl = ','inclusive','','0.1213','1.0','1.0'],
+'mg_pp_hh_5f_kl_0925':['HH, H->bb, H undec., kl = ','inclusive','','0.1192','1.0','1.0'],
+'mg_pp_hh_5f_kl_0950':['HH, H->bb, H undec., kl = ','inclusive','','0.1169','1.0','1.0'],
+'mg_pp_hh_5f_kl_0975':['HH, H->bb, H undec., kl = ','inclusive','','0.1148','1.0','1.0'],
+'mg_pp_hh_5f_kl_1000':['HH, H->bb, H undec., kl = ','inclusive','','0.1127','1.0','1.0'],
+'mg_pp_hh_5f_kl_1025':['HH, H->bb, H undec., kl = ','inclusive','','0.11','1.0','1.0'],
+'mg_pp_hh_5f_kl_1050':['HH, H->bb, H undec., kl = ','inclusive','','0.1084','1.0','1.0'],
+'mg_pp_hh_5f_kl_1075':['HH, H->bb, H undec., kl = ','inclusive','','0.1059','1.0','1.0'],
+'mg_pp_hh_5f_kl_1100':['HH, H->bb, H undec., kl = ','inclusive','','0.1039','1.0','1.0'],
+'mg_pp_hh_5f_kl_1125':['HH, H->bb, H undec., kl = ','inclusive','','0.1019','1.0','1.0'],
+'mg_pp_hh_5f_kl_1150':['HH, H->bb, H undec., kl = ','inclusive','','0.1005','1.0','1.0'],
+'mg_pp_hh_5f_kl_1200':['HH, H->bb, H undec., kl = ','inclusive','','0.09671','1.0','1.0'],
+'mg_pp_hh_5f_kl_1250':['HH, H->bb, H undec., kl = ','inclusive','','0.09307','1.0','1.0'],
+'mg_pp_hh_5f_kl_1500':['HH, H->bb, H undec., kl = ','inclusive','','0.07687','1.0','1.0'],
+
+
+'mg_pp_bbh_4f':['bbar plus higgs','50 < mbb < 300','','1.0','1.0','1.0'],
 
 'mg_pp_vj_lo':['boson+1jet','pT(v,j)>0.5TeV','','18.54','1.0','1.0'],
 'mg_pp_vv_lo':['di-boson','pT(v)>0.5TeV','','0.1562','1.0','1.0'],
@@ -256,6 +283,9 @@ gridpacklist = {
 'mg_pp_vj_5f_HT_2000_5000':['v+jet 5f','2000 < HT < 5000','no matching','0.7608','2.00','1.0'],
 'mg_pp_vj_5f_HT_5000_10000':['v+jet 5f','5000 < HT < 10000','no matching','0.003244','2.00','1.0'],
 'mg_pp_vj_5f_HT_10000_27000':['v+jet 5f','10000 < HT < 27000','no matching','4.769e-06','2.00','1.0'],
+
+
+
 }
 
 
