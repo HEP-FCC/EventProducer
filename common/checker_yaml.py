@@ -84,7 +84,7 @@ class checker_yaml():
             if tt==None:
                 print 'file ===%s=== must be deleted'%f
             #os.system('rm %s'%f)
-                return False
+                return -1,False
 
         except IOError as e:
             print "I/O error({0}): {1}".format(e.errno, e.strerror)
