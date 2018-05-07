@@ -1,8 +1,8 @@
 import glob, os, sys
 import ROOT as r
 import yaml
+import time
 import EventProducer.common.utils as ut
-
 class checker_yaml():
 
 #__________________________________________________________
@@ -210,10 +210,18 @@ class checker_yaml():
                             'user':userid
                             }
                            }
-                    with open(outfile, 'w') as outyaml:
-                        yaml.dump(dic, outyaml, default_flow_style=False) 
-                    continue
-                
+                    try:
+                        with open(outfile, 'w') as outyaml:
+                            yaml.dump(dic, outyaml, default_flow_style=False) 
+                        continue
+                    except IOError as exc:
+                            print "I/O error({0}): {1}".format(exc.errno, exc.strerror)
+                            print "outfile ",outfile
+                            time.sleep(10)
+                            with open(outfile, 'w') as outyaml:
+                                yaml.dump(dic, outyaml, default_flow_style=False) 
+                            continue
+
                 elif '.lhe.gz' in self.fext:
                     nevts,check=self.checkFile_lhe(f)
                     while nevts==-1 and not check:
