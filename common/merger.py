@@ -1,6 +1,7 @@
 import yaml
 import os
 import glob
+import time
 import EventProducer.common.utils as ut
 
 class merger():
@@ -82,8 +83,16 @@ class merger():
                     'outfilesbad':outfilesbad,
                     }
                    }
-            with open(outfile, 'w') as outyaml:
-                yaml.dump(dic, outyaml, default_flow_style=False) 
+            try:
+                with open(outfile, 'w') as outyaml:
+                    yaml.dump(dic, outyaml, default_flow_style=False) 
+            except IOError as exc:
+                print "I/O error({0}): {1}".format(exc.errno, exc.strerror)
+                print "outfile ",outfile
+                time.sleep(10)
+                with open(outfile, 'w') as outyaml:
+                    yaml.dump(dic, outyaml, default_flow_style=False)
+
 #            if ndone+nbad==len(All_files):
 #                ut.yamlstatus(self.yamlcheck, process, True)
 #            else:
