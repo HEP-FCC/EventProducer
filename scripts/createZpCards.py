@@ -35,7 +35,7 @@ Beams:idB = 2212                   ! second beam, p = 2212, pbar = -2212
 Beams:eCM = DUMMYECM  ! CM energy of collision
 
 NewGaugeBoson:ffbar2gmZZprime = on
-Zprime:gmZmode = 0
+Zprime:gmZmode = 3
 Zprime:universality = on                     // Sets couplings the same/different for generations of quarks
 
 32:onMode = off
@@ -74,8 +74,7 @@ for ecm in [27, 100]:
           os.makedirs(outdir_local[ecm])
 
     for name, values in models.iteritems():
-  
-  
+
         if name != 'LRM':
 	    continue
         for mass in masses[ecm]:
@@ -105,8 +104,10 @@ for ecm in [27, 100]:
             with open(listOfCards, 'a') as ll:
               ll.write(abscardloc+'\n')
 
+	    dest = outdir_eos[ecm]+ '/'+ cardloc
+            cmd = 'python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py {} {}'.format(card, dest)
 
-            dest = outdir_eos[ecm]+ '/'+ cardloc
+            #print cmd
 
 
     
@@ -114,7 +115,7 @@ for ecm in [27, 100]:
     print fullpath
     
     
-    #cmd = 'eos cp -r --streams=1000 {}/ root://eospublic.cern.ch/{}'.format(fullpath, outdir_eos[ecm]+ '/')
+    cmd = 'xrdcp -r --streams=14 {}/ root://eospublic.cern.ch/{}'.format(fullpath, outdir_eos[ecm]+ '/')
     
     print cmd
     #os.system(cmd)
