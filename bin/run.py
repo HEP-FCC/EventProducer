@@ -119,7 +119,6 @@ if __name__=="__main__":
 
     indir=None
     yamldir=None
-    yamlcheck=None
     fext=None
     statfile=None
 
@@ -127,14 +126,12 @@ if __name__=="__main__":
         indir=para.lhe_dir
         fext=para.lhe_ext
         yamldir=para.yamldir+'lhe/'
-        yamlcheck=para.yamlcheck_lhe
         statfile=para.lhe_stat
 
     elif args.reco:
         indir='%s%s'%(para.delphes_dir,version)
         fext=para.delphes_ext
         yamldir=para.yamldir+version+'/'
-        yamlcheck=para.yamlcheck_reco.replace('VERSION',version)
         statfile=para.delphes_stat.replace('VERSION',version)
 
         print 'Running reco production system with version %s'%version
@@ -155,7 +152,7 @@ if __name__=="__main__":
             if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
         import EventProducer.common.checker_yaml as chky
         print args.process
-        checker=chky.checker_yaml(indir, para, fext, args.process,  yamldir, yamlcheck)
+        checker=chky.checker_yaml(indir, para, fext, args.process,  yamldir)
         checker.check(args.force, statfile)
 
 
@@ -180,7 +177,7 @@ if __name__=="__main__":
             if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
         import EventProducer.common.merger as mgr
         isLHE=args.LHE
-        merger = mgr.merger( args.process, yamldir, yamlcheck)
+        merger = mgr.merger( args.process, yamldir)
         merger.merge(args.force)
 
     elif args.send:
@@ -219,21 +216,20 @@ if __name__=="__main__":
                 import EventProducer.bin.send_p8 as sp8
                 sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.queue, para, version)
                 sendp8.send()
-        #ut.yamlstatus(yamlcheck, args.process, False)
 
     elif args.web:
         import EventProducer.common.printer as prt
         if args.LHE: 
             print 'create web page for LHE'         
             printdic=prt.printer(yamldir,para.lhe_web, False, True, para)
-            printdic.run(yamlcheck)
+            printdic.run()
 
 
         elif args.reco:
             print 'create web page for reco version %s'%version
             webpage=para.delphes_web.replace('VERSION',version)
             printdic=prt.printer(yamldir, webpage, True, False, para, version)
-            printdic.run(yamlcheck)
+            printdic.run()
 
     elif args.remove:
         if args.process=='':
@@ -251,14 +247,14 @@ if __name__=="__main__":
     elif args.clean:
         print 'clean the dictionnary and eos'
         import EventProducer.common.cleanfailed as clf
-        clean=clf.cleanfailed(indir, yamldir, yamlcheck, args.process)
+        clean=clf.cleanfailed(indir, yamldir, args.process)
         clean.clean()
 
 
     elif args.cleanold:
         print 'clean the dictionnary from old jobs that have not been checked'
         import EventProducer.common.cleanfailed as clf
-        clean=clf.cleanfailed(indir, yamldir, yamlcheck, args.process)
+        clean=clf.cleanfailed(indir, yamldir, args.process)
         clean.cleanoldjobs()
 
     elif args.sample:

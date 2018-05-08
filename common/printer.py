@@ -36,7 +36,7 @@ class printer():
 
 
 #__________________________________________________________
-    def run(self,yamlcheck):
+    def run(self):
         
         #ldir=[x[0] for x in os.walk(self.indir)]
         ldir=next(os.walk(self.indir))[1]
@@ -146,7 +146,6 @@ class printer():
             marked_e=''
 
             if nfileseos>files_tot+bad_tot:
-                #ut.yamlstatus(yamlcheck, process, False)
                 marked_b='<h2><mark>'
                 marked_e='</mark></h2>'
 

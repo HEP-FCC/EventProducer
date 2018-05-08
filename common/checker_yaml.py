@@ -6,13 +6,12 @@ import EventProducer.common.utils as ut
 class checker_yaml():
 
 #__________________________________________________________
-    def __init__(self, indir, para, fext, process, yamldir, yamlcheck):
+    def __init__(self, indir, para, fext, process, yamldir):
         self.indir  = indir
         self.para   = para
         self.fext   = fext
         self.process = process
         self.yamldir = yamldir
-        self.yamlcheck = yamlcheck
         self.count = 0
 
 
@@ -136,7 +135,6 @@ class checker_yaml():
                 continue
             #continue if process has been checked
             if l=='BADPYTHIA' or l=='lhe' or l=="__restored_files__" or l=="backup": continue
-            #if ut.yamlcheck(self.yamlcheck, l) and not force :continue
             print '%s/%s/check'%(self.yamldir,l)
             if not ut.file_exist('%s/%s/check'%(self.yamldir,l)) and not force: continue
             print '--------------------- ',l
@@ -256,7 +254,6 @@ class checker_yaml():
                     print 'not correct file extension %s'%self.fext
             
             if hasbeenchecked:
-                #ut.yamlstatus(self.yamlcheck, process, False)
                 cmdp='<pre>date=%s \t time=%s njobs=%i \t nevents=%i \t njobbad=%i \t process=%s </pre>\n'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot,njobsbad_tot,process)
                 stat_exist=ut.file_exist(statfile)
                 with open(statfile, "a") as myfile:

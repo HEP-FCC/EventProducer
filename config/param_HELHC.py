@@ -15,8 +15,6 @@ delphes_web="/afs/cern.ch/user/h/helsens/www/data/Delphesevents_VERSION.txt"
 
 #yaml directory
 yamldir='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/HELHC/'
-yamlcheck_lhe='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/HELHC/lhe/check.yaml'
-yamlcheck_reco='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/HELHC/VERSION/check.yaml'
 
 #heppy and proc lists
 heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/HELHC_heppySampleList_VERSION.py'
@@ -96,10 +94,10 @@ pythialist={
 'p8_pp_ZprimeCHI_14TeV_ll':['14TeV Z\'(CHI) -> ll (l=e,mu,tau)','','','1.89368e-06','1.0','1.0'],
 'p8_pp_ZprimeCHI_16TeV_ll':['16TeV Z\'(CHI) -> ll (l=e,mu,tau)','','','1.02383e-06','1.0','1.0'],
 
-'p8_pp_ZprimeLRM_1TeV_ll' :['1TeV Z\'(LRM) -> ll (l=e,mu,tau)','','','2.87617','1.0','1.0'],
-'p8_pp_ZprimeLRM_2TeV_ll' :['2TeV Z\'(LRM) -> ll (l=e,mu,tau)','','','0.193013','1.0','1.0'],
-'p8_pp_ZprimeLRM_4TeV_ll' :['4TeV Z\'(LRM) -> ll (l=e,mu,tau)','','','0.00797759','1.0','1.0'],
-'p8_pp_ZprimeLRM_6TeV_ll' :['6TeV Z\'(LRM) -> ll (l=e,mu,tau)','','','0.000787521','1.0','1.0'],
+'p8_pp_ZprimeLRM_1TeV_ll':['1TeV Z\'(LRM) -> ll (l=e,mu,tau)','','','2.87617','1.0','1.0'],
+'p8_pp_ZprimeLRM_2TeV_ll':['2TeV Z\'(LRM) -> ll (l=e,mu,tau)','','','0.193013','1.0','1.0'],
+'p8_pp_ZprimeLRM_4TeV_ll':['4TeV Z\'(LRM) -> ll (l=e,mu,tau)','','','0.00797759','1.0','1.0'],
+'p8_pp_ZprimeLRM_6TeV_ll':['6TeV Z\'(LRM) -> ll (l=e,mu,tau)','','','0.000787521','1.0','1.0'],
 'p8_pp_ZprimeLRM_8TeV_ll':['8TeV Z\'(LRM) -> ll (l=e,mu,tau)','','','0.000115722','1.0','1.0'],
 'p8_pp_ZprimeLRM_10TeV_ll':['10TeV Z\'(LRM) -> ll (l=e,mu,tau)','','','2.45152e-05','1.0','1.0'],
 'p8_pp_ZprimeLRM_12TeV_ll':['12TeV Z\'(LRM) -> ll (l=e,mu,tau)','','','7.68388e-06','1.0','1.0'],
