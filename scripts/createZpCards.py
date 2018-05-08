@@ -56,21 +56,27 @@ Zprime:anue = DUMMY_ANUE
 models = dict()
 
 models['SSM'] = [-0.6933333333e+00, -0.1000000000e+01, 0.3866666667e+00, 0.1000000000e+01, -0.8000000000e-01, -0.1000000000e+01, 0.1000000000e+01, 0.1000000000e+01] 
-models['LRM'] = [-0.4717535801e+00, 0.3674234614e+00, 0.2630933427e+00, -0.3674234614e+00, -0.5443310540e-01, 0.3674234614e+00, 0.1564951780e+00, 0.1564951780e+00]  
+models['LRM'] = [-0.9435071602,0.7348469228,0.5261866854,-0.7348469228,-0.1088662108,0.7348469228,0.312990356,0.312990356]
 models['PSI'] = [0.0000000000e+00, 0.5055250296e+00, 0.0000000000e+00, 0.5055250296e+00, 0.0000000000e+00, 0.5055250296e+00, 0.2527625148e+00, 0.2527625148e+00]     
 models['CHI'] = [-0.7831560083e+00, 0.3915780041e+00, 0.0000000000e+00, -0.3915780041e+00, 0.7831560083e+00, 0.3915780041e+00, 0.5873670062e+00, 0.5873670062e+00]   
 models['ETA'] = [0.4795831523e+00, 0.1598610508e+00, 0.0000000000e+00, 0.6394442031e+00, -0.4795831523e+00, 0.1598610508e+00, -0.1598610508e+00, -0.1598610508e+00]  
 models['I']   = [-0.6191391874e+00, 0.6191391874e+00, 0.0000000000e+00, 0.0000000000e+00, 0.6191391874e+00, 0.6191391874e+00, 0.6191391874e+00, 0.6191391874e+00]   
 
+
 listOfCards = 'listZp.txt'
 
 for ecm in [27, 100]:
+#for ecm in [27]:
+
+
 
     if not os.path.exists(outdir_local[ecm]):
           os.makedirs(outdir_local[ecm])
 
     for name, values in models.iteritems():
 
+        if name != 'LRM':
+	    continue
         for mass in masses[ecm]:
 
             newcard = dummycard
@@ -98,9 +104,17 @@ for ecm in [27, 100]:
             with open(listOfCards, 'a') as ll:
               ll.write(abscardloc+'\n')
 
+	    dest = outdir_eos[ecm]+ '/'+ cardloc
+            cmd = 'python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py {} {}'.format(card, dest)
 
-            dest = outdir_eos[ecm]+ '/'+ cardloc
+            #print cmd
 
-    cmd = 'eos cp -r --streams=1000 {}/ root://eospublic.cern.ch/{}'.format(outdir_local[ecm], outdir_eos[ecm]+ '/')
+    fullpath = os.path.abspath(outdir_local[ecm])
+    print fullpath
+    
+    
+    cmd = 'xrdcp -r --streams=14 {}/ root://eospublic.cern.ch/{}'.format(fullpath, outdir_eos[ecm]+ '/')
+    
     print cmd
     #os.system(cmd)
+ 
