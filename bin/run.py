@@ -90,8 +90,7 @@ if __name__=="__main__":
     sendjobGroup.add_argument('-d', '--decay', type=str, default='', help='pythia8 decay when needed', choices=decaylist)
 
     processlist=[]
-    print '---------------------------------------------------------------------- ',args.type
-    if (args.reco and args.type=="p8") or args.check or args.checkeos or args.clean or args.cleanold or args.merge:
+    if (args.reco and args.type=="p8") or args.check or args.checkeos or args.clean or args.cleanold or args.merge or args.remove:
         for key, value in para.pythialist.iteritems():
             processlist.append(key)
         for key, value in para.decaylist.iteritems():
@@ -104,7 +103,6 @@ if __name__=="__main__":
         for key, value in para.gridpacklist.iteritems():
             processlist.append(key)
     if args.reco and (args.remove or args.clean or args.cleanold):
-        print '-------------------------------------------------frrfwrf--------------------- ',args.type
         for key, value in para.gridpacklist.iteritems():
             if key[0:3]=='mg_': processlist.append('mgp8_'+key[3:])
             if key[0:3]=='ch_': processlist.append('chp8_'+key[3:])
