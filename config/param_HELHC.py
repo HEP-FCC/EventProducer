@@ -124,6 +124,14 @@ pythialist={
 'p8_pp_ZprimeETA_14TeV_ll':['14TeV Z\'(ETA) -> ll (l=e,mu,tau)','','','6.12268e-07','1.0','1.0'],
 'p8_pp_ZprimeETA_16TeV_ll':['16TeV Z\'(ETA) -> ll (l=e,mu,tau)','','','3.03296e-07','1.0','1.0'],
 
+'p8_pp_ZprimeSSM_Interf_6TeV_ll':['6TeV Z\'(SSM) -> ll (l=e,mu,tau) full interference','','','0.00127705','1.0','1.0'],
+'p8_pp_ZprimeCHI_Interf_6TeV_ll':['6TeV Z\'(CHI) -> ll (l=e,mu,tau) full interference','','','0.000658995','1.0','1.0'],
+'p8_pp_ZprimePSI_Interf_6TeV_ll':['6TeV Z\'(PSI) -> ll (l=e,mu,tau) full interference','','','0.000319221','1.0','1.0'],
+'p8_pp_ZprimeETA_Interf_6TeV_ll':['6TeV Z\'(ETA) -> ll (l=e,mu,tau) full interference','','','0.000373203','1.0','1.0'],
+'p8_pp_ZprimeLRM_Interf_6TeV_ll':['6TeV Z\'(LRM) -> ll (l=e,mu,tau) full interference','','','0.000787521','1.0','1.0'],
+'p8_pp_ZprimeI_Interf_6TeV_ll':['6TeV Z\'(I) -> ll (l=e,mu,tau) full interference','','','0.000515749','1.0','1.0'],
+
+
 'p8_pp_Zprime_2TeV_ttbar':['2TeV Z\' -> ttbar','','','7.6378','1.0','1.0'],
 'p8_pp_Zprime_4TeV_ttbar':['4TeV Z\' -> ttbar','','','-9999','1.0','1.0'],
 'p8_pp_Zprime_5TeV_ttbar':['5TeV Z\' -> ttbar','','','0.305493','1.0','1.0'],
