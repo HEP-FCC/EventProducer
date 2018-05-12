@@ -3,7 +3,7 @@ import os.path
 import re
 import yaml
 import EventProducer.common.utils as ut
-
+import time
 class printer():
 
 #__________________________________________________________
@@ -65,6 +65,11 @@ class printer():
                     tmpf = yaml.load(stream)
                 except yaml.YAMLError as exc:
                     print(exc)
+                except IOError as exc:
+                    print(exc)
+                    print 'file  ',mergefile
+                    time.sleep(10)
+                    tmpf = yaml.load(stream)
 
             events_tot=tmpf['merge']['nevents']
             size_tot=tmpf['merge']['size']/1000000000.
