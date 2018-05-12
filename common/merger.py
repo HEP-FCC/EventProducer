@@ -30,14 +30,17 @@ class merger():
             ndone=0
             nbad=0
             All_files = glob.glob("%s/%s/events_*.yaml"%(self.indir,l))
+            print 'ypuhfwegwegwgwe',len(All_files)
+            print "%s/%s/events_*.yaml"%(self.indir,l)
+
             if len(All_files)==0:
                 if os.path.isfile("%s/%s/merge.yaml"%(self.indir,l)):
                     os.system("rm %s/%s/merge.yaml"%(self.indir,l))
                 continue
-
+            
             #continue if process has been checked
             print '%s/%s/check'%(self.indir,l)
-            if not ut.file_exist('%s/%s/check'%(self.indir,l)): continue
+            if not ut.file_exist('%s/%s/check'%(self.indir,l)) and not force: continue
 
             print 'merging process %s  %i files'%(l,len(All_files))
             for f in All_files:
