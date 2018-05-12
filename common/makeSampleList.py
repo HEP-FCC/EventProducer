@@ -208,7 +208,8 @@ class makeSampleList():
                         if 'gridpacklist' in str(lines[line]): isgp=True
                         if isgp==False: continue
                         if process == lines[line].rsplit(':', 1)[0].replace("'", ""):
-                            ll = ast.literal_eval(lines[line].rsplit(':', 1)[1][:-2])                
+                            ll = ast.literal_eval(lines[line].rsplit(':', 1)[1][:-2])
+                            print 'll   ',ll
                             infile[line] = "'{}':['{}','{}','{}','{}','{}','{}'],\n".format(process, ll[0],ll[1],ll[2],ll[3],ll[4], matchingEff)
 
                 with open("tmp.py", "w") as f1:

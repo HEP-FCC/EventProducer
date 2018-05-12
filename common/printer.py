@@ -3,7 +3,7 @@ import os.path
 import re
 import yaml
 import EventProducer.common.utils as ut
-
+import time
 class printer():
 
 #__________________________________________________________
@@ -36,7 +36,7 @@ class printer():
 
 
 #__________________________________________________________
-    def run(self,yamlcheck):
+    def run(self):
         
         #ldir=[x[0] for x in os.walk(self.indir)]
         ldir=next(os.walk(self.indir))[1]
@@ -65,6 +65,11 @@ class printer():
                     tmpf = yaml.load(stream)
                 except yaml.YAMLError as exc:
                     print(exc)
+                except IOError as exc:
+                    print(exc)
+                    print 'file  ',mergefile
+                    time.sleep(10)
+                    tmpf = yaml.load(stream)
 
             events_tot=tmpf['merge']['nevents']
             size_tot=tmpf['merge']['size']/1000000000.
@@ -146,7 +151,6 @@ class printer():
             marked_e=''
 
             if nfileseos>files_tot+bad_tot:
-                #ut.yamlstatus(yamlcheck, process, False)
                 marked_b='<h2><mark>'
                 marked_e='</mark></h2>'
 

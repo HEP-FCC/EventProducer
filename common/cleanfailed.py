@@ -8,11 +8,11 @@ import EventProducer.common.utils as ut
 class cleanfailed():
 
 #__________________________________________________________
-    def __init__(self, indir, yamldir, yamlcheck, process):
+    def __init__(self, indir, yamldir, process):
         self.indir = indir+'/'+process
         self.yamldir = yamldir+'/'+process
-        self.yamlcheck = yamlcheck
         self.process = process
+
 #__________________________________________________________
     def clean(self):
         nfailed=0
@@ -39,8 +39,6 @@ class cleanfailed():
                         else:
                             cmd="rm %s/%s"%(self.yamldir,r.replace('.lhe.gz','.yaml').replace('.root','.yaml'))
                             os.system(cmd)
-
-                        #ut.yamlstatus(self.yamlcheck,tmpf['merge']['process'] , False)
                     
                 except yaml.YAMLError as exc:
                     print(exc)
