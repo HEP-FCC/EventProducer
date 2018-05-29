@@ -182,14 +182,19 @@ class makeSampleList():
                 decstr = '_{}'.format(decay)
                 proc_param = processhad.replace(decstr,'')
                 print '--------------  ',decstr,'  --  ',proc_param
-                xsec = float(self.para.gridpacklist[proc_param][3])*br
-                kf = float(self.para.gridpacklist[proc_param][4])
-                matchingEff = self.addEntry(process, yamldir_lhe, yaml_reco, xsec, kf, heppyFile, procDict,proc_param)
+                
+		try: 
+		   xsec = float(self.para.gridpacklist[proc_param][3])*br
+                   kf = float(self.para.gridpacklist[proc_param][4])
+                   matchingEff = self.addEntry(process, yamldir_lhe, yaml_reco, xsec, kf, heppyFile, procDict,proc_param)
+		except KeyError:
+		   print 'process {} does not exist in the list'.format(process)
 
             elif process in self.para.pythialist:
                 xsec = float(self.para.pythialist[process][3])
                 kf = float(self.para.pythialist[process][4])
                 matchingEff = self.addEntryPythia(process, xsec, kf, yaml_reco, heppyFile, procDict)
+ 
 
             elif processhad not in self.para.gridpacklist:
                 print 'process :', processhad, 'not found in %s --> skipping process'%self.para.module_name
