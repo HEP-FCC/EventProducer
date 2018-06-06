@@ -856,9 +856,9 @@ gridpacklist = {
 
 'ch_pp_wbj_fcnc_kc':['fcnc_tGc','inclusive','','574.8','1.4','1.0'],
 
-#boosted ttH background samples
-'mg_pp_ttj_4f':['tt + 1j in 4f','pT(j) > 150 GeV','','4789','1.0','1.0'],
-'mg_pp_ttbb_4f':['tt+bb in 4f','pT(bb) > 150 GeV','','86.69','1.0','1.0'],
+#boosted ttH background samples (K-kactor from inclusive ttbar production)
+'mg_pp_ttj_4f':['tt + 1j in 4f','pT(j) > 150 GeV','','4789','1.41','1.0'],
+'mg_pp_ttbb_4f':['tt+bb in 4f','pT(bb) > 150 GeV','','86.69','1.41','1.0'],
 
 # training event based BDT samples
 'mg_pp_jj_lo_filter_pTjet7_5TeV':['','m > 15 TeV','','0.07777','2.0','1.0'],
