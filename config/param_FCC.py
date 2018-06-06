@@ -644,7 +644,7 @@ gridpacklist = {
 'mg_pp_zzzz_5f':['ZZZZ','inclusive','','0.000461','1.7','1.0'],
 'mg_pp_zzzzz_5f':['ZZZZZ','inclusive','','2.267e-06','2.0','1.0'],
 'mg_pp_tttt_5f':['tttt','inclusive','','2.316','2.1','1.0'],
-'mg_pp_ttz_5f':['ttZ','inclusive','','38.05','1.5','.0'],
+'mg_pp_ttz_5f':['ttZ','inclusive','','38.05','1.68','.0'],
 'mg_pp_ttw_5f':['ttW','inclusive','','6.545','2.5','1.0'],
 'mg_pp_ttww_4f':['ttWW (4FS)','inclusive','','0.7827','1.4','1.0'],
 'mg_pp_ttwz_5f':['ttWZ','inclusive','','0.07427','2.3','1.0'],
