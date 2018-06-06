@@ -27,7 +27,7 @@ lhe_dir     = '/eos/experiment/fcc/hh/generation/lhe/'
 lhe_ext     ='.lhe.gz'
 
 ##FCC versions
-fcc_versions=['fcc_v01', 'fcc_v02', 'cms']
+fcc_versions=['fcc_v01', 'fcc_v02','fcc_v02_ATLASgran', 'cms']
 
 ##eos directory for FCCSW pythia delphes files
 delphes_dir = '/eos/experiment/fcc/hh/generation/DelphesEvents/'
@@ -205,7 +205,6 @@ pythialist={
 'p8_pp_ZprimeSSM_45TeV_jj':['','','','9.11239e-06','1.0','1.0'],
 'p8_pp_ZprimeSSM_50TeV_jj':['','','','5.4312e-06','1.0','1.0'],
 
-
 'p8_pp_Zprime_2TeV_ttbar':['2TeV Z\' -> ttbar','','','7.6378','1.0','1.0'],
 'p8_pp_Zprime_5TeV_ttbar':['5TeV Z\' -> ttbar','','','0.305493','1.0','1.0'],
 'p8_pp_Zprime_10TeV_ttbar':['10TeV Z\' -> ttbar','','','0.0175724','1.0','1.0'],
@@ -215,6 +214,7 @@ pythialist={
 'p8_pp_Zprime_30TeV_ttbar':['30TeV Z\' -> ttbar','','','3.16759213029e-05','1.0','1.0'],
 'p8_pp_Zprime_35TeV_ttbar':['35TeV Z\' -> ttbar','','','9.65649631373e-06','1.0','1.0'],
 'p8_pp_Zprime_40TeV_ttbar':['40TeV Z\' -> ttbar','','','3.4131033281e-06','1.0','1.0'],
+
 'p8_pp_RSGraviton_2TeV_ww':['2TeV Z\' -> WW','','','1.811e1','1.0','1.0'],
 'p8_pp_RSGraviton_5TeV_ww':['5TeV Z\' -> WW','','','2.892e-1','1.0','1.0'],
 'p8_pp_RSGraviton_10TeV_ww':['10TeV Z\' -> WW','','','7.686e-3','1.0','1.0'],
