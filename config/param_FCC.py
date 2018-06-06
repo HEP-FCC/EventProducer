@@ -411,7 +411,7 @@ gridpacklist = {
 'mg_pp_bbbbj_QED':['4b + jet (QED)','250 < PT ','','0.07206','1.0','1.0'],
 'mg_pp_z012j_5f':['z + 0,1,2 jets 5 flavor scheme','inclusive','xqcut = 30, qCut = 45','5.1839e05','1.0','0.691'],
 'mg_pp_tth':['ttbar plus higgs','inclusive','','23.37','1.0','1.0'],
-'mg_pp_bbh':['bbar plus higgs','50 < mbb < 300','','0.916','1.0','1.0'],
+'mg_pp_bbh':['bbar plus higgs','50 < mbb < 300','','0.916','3.2','1.0'],
 'mg_pp_zh':['z plus higgs production','inclusive','','7.42','1.0','1.0'],
 'mg_pp_hh':['gluon gluon fusion di-higgs','inclusive','','0.65','1.0','1.0'],
 'mg_pp_vbf_hh':['vector boson fusion di-higgs','inclusive','','0.06612','1.0','1.0'],
