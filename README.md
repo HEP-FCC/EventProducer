@@ -129,8 +129,18 @@ The ```--force``` option is used to force the script to run as to optimze runnin
 
 Updating the database
 ==========================
+1) First one need to check the eos directories that have been populated with new files. 
+Example for LHE:
+```
+python bin/run.py --HELHC --LHE --checkeos [--process process] [--force]
+```
 
-1) First one needs to check the files that have been produced. 
+Example for Delphes events:
+```
+python bin/run.py --HELHC --reco --checkeos --version helhc_v01 [--process process] [--force]
+```
+
+2) Second one need to check the quality of the files that have been produced. 
 Example for LHE:
 ```
 python bin/run.py --HELHC --LHE --check [--process process] [--force]
@@ -141,7 +151,7 @@ Example for Delphes events:
 python bin/run.py --HELHC --reco --check --version helhc_v01 [--process process] [--force]
 ```
 
-2) Then the checked files needs to be merged:
+3) Then the checked files needs to be merged:
 Example for LHE:
 ```
 python bin/run.py --HELHC --LHE --merge [--process process] [--force]

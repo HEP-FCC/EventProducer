@@ -131,6 +131,15 @@ pythialist={
 'p8_pp_ZprimeLRM_Interf_6TeV_ll':['6TeV Z\'(LRM) -> ll (l=e,mu,tau) full interference','','','0.000787521','1.0','1.0'],
 'p8_pp_ZprimeI_Interf_6TeV_ll':['6TeV Z\'(I) -> ll (l=e,mu,tau) full interference','','','0.000515749','1.0','1.0'],
 
+'p8_pp_ZprimeSSM_1TeV_jj':['','','','34.7115','1.0','1.0'],
+'p8_pp_ZprimeSSM_2TeV_jj':['','','','2.40375','1.0','1.0'],
+'p8_pp_ZprimeSSM_4TeV_jj':['','','','0.0996266','1.0','1.0'],
+'p8_pp_ZprimeSSM_6TeV_jj':['','','','0.0102918','1.0','1.0'],
+'p8_pp_ZprimeSSM_8TeV_jj':['','','','0.00162104','1.0','1.0'],
+'p8_pp_ZprimeSSM_10TeV_jj':['','','','0.000369505','1.0','1.0'],
+'p8_pp_ZprimeSSM_12TeV_jj':['','','','0.000126317','1.0','1.0'],
+'p8_pp_ZprimeSSM_14TeV_jj':['','','','5.78862e-05','1.0','1.0'],
+'p8_pp_ZprimeSSM_16TeV_jj':['','','','3.23801e-05','1.0','1.0'],
 
 'p8_pp_Zprime_2TeV_ttbar':['2TeV Z\' -> ttbar','','','7.6378','1.0','1.0'],
 'p8_pp_Zprime_4TeV_ttbar':['4TeV Z\' -> ttbar','','','-9999','1.0','1.0'],
@@ -273,8 +282,8 @@ gridpacklist = {
 'mg_pp_hh_5f_kl_1250':['HH, H->bb, H undec., kl = ','inclusive','','0.09307','1.0','1.0'],
 'mg_pp_hh_5f_kl_1500':['HH, H->bb, H undec., kl = ','inclusive','','0.07687','1.0','1.0'],
 
-
 'mg_pp_bbh_4f':['bbar plus higgs','50 < mbb < 300','','1.0','1.0','1.0'],
+'mg_pp_vh012j_5f':['higgsstrahlung + 0/1/2 jets','inclusive','xqcut = 40, qCut = 60','7.255','1.32','1.0'],
 
 'mg_pp_vj_lo':['boson+1jet','pT(v,j)>0.5TeV','','18.54','1.0','1.0'],
 'mg_pp_vv_lo':['di-boson','pT(v)>0.5TeV','','0.1562','1.0','1.0'],

@@ -186,15 +186,24 @@ pythialist={
 'p8_pp_ZprimeETA_45TeV_ll':['45TeV Z\'(ETA) -> ll (l=e,mu,tau)','','','1.21664e-07','1.0','1.0'],
 'p8_pp_ZprimeETA_50TeV_ll':['50TeV Z\'(ETA) -> ll (l=e,mu,tau)','','','5.77352e-08','1.0','1.0'],
 
-'p8_pp_ZprimeSSM_10TeV_qq':['10TeV Z\'(SSM) -> qq','','','5.914e-3','1.0','1.0'],
-'p8_pp_ZprimeSSM_15TeV_qq':['15TeV Z\'(SSM) -> qq','','','7.989e-4','1.0','1.0'],
-'p8_pp_ZprimeSSM_20TeV_qq':['20TeV Z\'(SSM) -> qq','','','1.639e-4','1.0','1.0'],
-'p8_pp_ZprimeSSM_25TeV_qq':['25TeV Z\'(SSM) -> qq','','','4.437e-5','1.0','1.0'],
-'p8_pp_ZprimeSSM_30TeV_qq':['30TeV Z\'(SSM) -> qq','','','1.375e-5','1.0','1.0'],
-'p8_pp_ZprimeSSM_35TeV_qq':['35TeV Z\'(SSM) -> qq','','','4.821e-6','1.0','1.0'],
-'p8_pp_ZprimeSSM_40TeV_qq':['40TeV Z\'(SSM) -> qq','','','2.171e-6','1.0','1.0'],
-'p8_pp_ZprimeSSM_45TeV_qq':['45TeV Z\'(SSM) -> qq','','','1.165e-6','1.0','1.0'],
-'p8_pp_ZprimeSSM_50TeV_qq':['50TeV Z\'(SSM) -> qq','','','6.863e-7','1.0','1.0'],
+'p8_pp_ZprimeSSM_2TeV_jj':['','','','22.9682','1.0','1.0'],
+'p8_pp_ZprimeSSM_4TeV_jj':['','','','1.89638','1.0','1.0'],
+'p8_pp_ZprimeSSM_5TeV_jj':['','','','0.814564','1.0','1.0'],
+'p8_pp_ZprimeSSM_6TeV_jj':['','','','0.400064','1.0','1.0'],
+'p8_pp_ZprimeSSM_8TeV_jj':['','','','0.121489','1.0','1.0'],
+'p8_pp_ZprimeSSM_10TeV_jj':['','','','0.0448882','1.0','1.0'],
+'p8_pp_ZprimeSSM_12TeV_jj':['','','','0.0195148','1.0','1.0'],
+'p8_pp_ZprimeSSM_14TeV_jj':['','','','0.00921161','1.0','1.0'],
+'p8_pp_ZprimeSSM_15TeV_jj':['','','','0.00648725','1.0','1.0'],
+'p8_pp_ZprimeSSM_16TeV_jj':['','','','0.00456046','1.0','1.0'],
+'p8_pp_ZprimeSSM_18TeV_jj':['','','','0.00240401','1.0','1.0'],
+'p8_pp_ZprimeSSM_20TeV_jj':['','','','0.00132982','1.0','1.0'],
+'p8_pp_ZprimeSSM_25TeV_jj':['','','','0.000348152','1.0','1.0'],
+'p8_pp_ZprimeSSM_30TeV_jj':['','','','0.0001083','1.0','1.0'],
+'p8_pp_ZprimeSSM_35TeV_jj':['','','','4.00137e-05','1.0','1.0'],
+'p8_pp_ZprimeSSM_40TeV_jj':['','','','1.7602e-05','1.0','1.0'],
+'p8_pp_ZprimeSSM_45TeV_jj':['','','','9.11239e-06','1.0','1.0'],
+'p8_pp_ZprimeSSM_50TeV_jj':['','','','5.4312e-06','1.0','1.0'],
 
 'p8_pp_Zprime_2TeV_ttbar':['2TeV Z\' -> ttbar','','','7.6378','1.0','1.0'],
 'p8_pp_Zprime_5TeV_ttbar':['5TeV Z\' -> ttbar','','','0.305493','1.0','1.0'],
@@ -655,7 +664,7 @@ gridpacklist = {
 'mg_pp_zzzz_5f':['ZZZZ','inclusive','','0.000461','1.7','1.0'],
 'mg_pp_zzzzz_5f':['ZZZZZ','inclusive','','2.267e-06','2.0','1.0'],
 'mg_pp_tttt_5f':['tttt','inclusive','','2.316','2.1','1.0'],
-'mg_pp_ttz_5f':['ttZ','inclusive','','38.05','1.5','.0'],
+'mg_pp_ttz_5f':['ttZ','inclusive','','38.05','1.68','.0'],
 'mg_pp_ttw_5f':['ttW','inclusive','','6.545','2.5','1.0'],
 'mg_pp_ttww_4f':['ttWW (4FS)','inclusive','','0.7827','1.4','1.0'],
 'mg_pp_ttwz_5f':['ttWZ','inclusive','','0.07427','2.3','1.0'],
@@ -847,9 +856,9 @@ gridpacklist = {
 
 'ch_pp_wbj_fcnc_kc':['fcnc_tGc','inclusive','','574.8','1.4','1.0'],
 
-#boosted ttH background samples
-'mg_pp_ttj_4f':['tt + 1j in 4f','pT(j) > 150 GeV','','4789','1.0','1.0'],
-'mg_pp_ttbb_4f':['tt+bb in 4f','pT(bb) > 150 GeV','','86.69','1.0','1.0'],
+#boosted ttH background samples (K-kactor from inclusive ttbar production)
+'mg_pp_ttj_4f':['tt + 1j in 4f','pT(j) > 150 GeV','','4789','1.41','1.0'],
+'mg_pp_ttbb_4f':['tt+bb in 4f','pT(bb) > 150 GeV','','86.69','1.41','1.0'],
 
 # training event based BDT samples
 'mg_pp_jj_lo_filter_pTjet7_5TeV':['','m > 15 TeV','','0.07777','2.0','1.0'],
