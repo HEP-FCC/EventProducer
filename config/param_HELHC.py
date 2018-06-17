@@ -260,31 +260,30 @@ gridpacklist = {
 
 
 'mg_pp_tth01j_5f':['higgs associated with top pair + 0/1 jets','inclusive','xqcut = 80, qCut = 120','3.274','1.22','0.612'],
-'mg_pp_jjaa_5f':['dijet diphoton','','','5.941','1.5','1.0'],
-'mg_pp_jjja_5f':['photon +jets','','','1.125e+04','1.5','1.0'],
+'mg_pp_jjaa_5f':['dijet diphoton','','','5.941','1.2','1.0'],
+'mg_pp_jjja_5f':['photon +jets','','','1.125e+04','1.2','1.0'],
 
 
-# xsec is given by 2*xsec*BR(H->bb), xsec = 155 fb (K-factor already included below)
-'mg_pp_hh_5f_kl_0500':['HH, H->bb, H undec., kl = 0.500','inclusive','','0.263948419055','1.0','1.0']
-'mg_pp_hh_5f_kl_0750':['HH, H->bb, H undec., kl = 0.750','inclusive','','0.218716895182','1.0','1.0']
-'mg_pp_hh_5f_kl_0800':['HH, H->bb, H undec., kl = 0.800','inclusive','','0.21042834585','1.0','1.0']
-'mg_pp_hh_5f_kl_0850':['HH, H->bb, H undec., kl = 0.850','inclusive','','0.202392381666','1.0','1.0']
-'mg_pp_hh_5f_kl_0875':['HH, H->bb, H undec., kl = 0.875','inclusive','','0.198469119004','1.0','1.0']
-'mg_pp_hh_5f_kl_0900':['HH, H->bb, H undec., kl = 0.900','inclusive','','0.19460900263','1.0','1.0']
-'mg_pp_hh_5f_kl_0925':['HH, H->bb, H undec., kl = 0.925','inclusive','','0.190812032542','1.0','1.0']
-'mg_pp_hh_5f_kl_0950':['HH, H->bb, H undec., kl = 0.950','inclusive','','0.187078208741','1.0','1.0']
-'mg_pp_hh_5f_kl_0975':['HH, H->bb, H undec., kl = 0.975','inclusive','','0.183407531227','1.0','1.0']
-'mg_pp_hh_5f_kl_1000':['HH, H->bb, H undec., kl = 1.000','inclusive','','0.1798','1.0','1.0']
-'mg_pp_hh_5f_kl_1025':['HH, H->bb, H undec., kl = 1.025','inclusive','','0.17625561506','1.0','1.0']
-'mg_pp_hh_5f_kl_1050':['HH, H->bb, H undec., kl = 1.050','inclusive','','0.172774376407','1.0','1.0']
-'mg_pp_hh_5f_kl_1075':['HH, H->bb, H undec., kl = 1.075','inclusive','','0.169356284041','1.0','1.0']
-'mg_pp_hh_5f_kl_1100':['HH, H->bb, H undec., kl = 1.100','inclusive','','0.166001337961','1.0','1.0']
-'mg_pp_hh_5f_kl_1125':['HH, H->bb, H undec., kl = 1.125','inclusive','','0.162709538169','1.0','1.0']
-'mg_pp_hh_5f_kl_1150':['HH, H->bb, H undec., kl = 1.150','inclusive','','0.159480884663','1.0','1.0']
-'mg_pp_hh_5f_kl_1200':['HH, H->bb, H undec., kl = 1.200','inclusive','','0.153213016513','1.0','1.0']
-'mg_pp_hh_5f_kl_1250':['HH, H->bb, H undec., kl = 1.250','inclusive','','0.147197733511','1.0','1.0']
-'mg_pp_hh_5f_kl_1500':['HH, H->bb, H undec., kl = 1.500','inclusive','','0.120910095713','1.0','1.0']
-
+# xsec is given by 2*xsec*BR(H->bb), xsec = 139.9 fb (K-factor already included below)
+'mg_pp_hh_5f_kl_0500':['HH, H->bb, H undec., kl = 0.500','inclusive','','0.23823473436','1.0','1.0'],
+'mg_pp_hh_5f_kl_0750':['HH, H->bb, H undec., kl = 0.750','inclusive','','0.197409636361','1.0','1.0'],
+'mg_pp_hh_5f_kl_0800':['HH, H->bb, H undec., kl = 0.800','inclusive','','0.189928552157','1.0','1.0'],
+'mg_pp_hh_5f_kl_0850':['HH, H->bb, H undec., kl = 0.850','inclusive','','0.18267544642','1.0','1.0'],
+'mg_pp_hh_5f_kl_0875':['HH, H->bb, H undec., kl = 0.875','inclusive','','0.179134385475','1.0','1.0'],
+'mg_pp_hh_5f_kl_0900':['HH, H->bb, H undec., kl = 0.900','inclusive','','0.175650319148','1.0','1.0'],
+'mg_pp_hh_5f_kl_0925':['HH, H->bb, H undec., kl = 0.925','inclusive','','0.172223247436','1.0','1.0'],
+'mg_pp_hh_5f_kl_0950':['HH, H->bb, H undec., kl = 0.950','inclusive','','0.168853170341','1.0','1.0'],
+'mg_pp_hh_5f_kl_0975':['HH, H->bb, H undec., kl = 0.975','inclusive','','0.165540087862','1.0','1.0'],
+'mg_pp_hh_5f_kl_1000':['HH, H->bb, H undec., kl = 1.000','inclusive','','0.162284','1.0','1.0'],
+'mg_pp_hh_5f_kl_1025':['HH, H->bb, H undec., kl = 1.025','inclusive','','0.159084906754','1.0','1.0'],
+'mg_pp_hh_5f_kl_1050':['HH, H->bb, H undec., kl = 1.050','inclusive','','0.155942808125','1.0','1.0'],
+'mg_pp_hh_5f_kl_1075':['HH, H->bb, H undec., kl = 1.075','inclusive','','0.152857704111','1.0','1.0'],
+'mg_pp_hh_5f_kl_1100':['HH, H->bb, H undec., kl = 1.100','inclusive','','0.149829594715','1.0','1.0'],
+'mg_pp_hh_5f_kl_1125':['HH, H->bb, H undec., kl = 1.125','inclusive','','0.146858479934','1.0','1.0'],
+'mg_pp_hh_5f_kl_1150':['HH, H->bb, H undec., kl = 1.150','inclusive','','0.14394435977','1.0','1.0'],
+'mg_pp_hh_5f_kl_1200':['HH, H->bb, H undec., kl = 1.200','inclusive','','0.138287103291','1.0','1.0'],
+'mg_pp_hh_5f_kl_1250':['HH, H->bb, H undec., kl = 1.250','inclusive','','0.132857825278','1.0','1.0'],
+'mg_pp_hh_5f_kl_1500':['HH, H->bb, H undec., kl = 1.500','inclusive','','0.109131112195','1.0','1.0'],
 
 'mg_pp_bbh_4f':['bbar plus higgs','100 < mbb < 150','','0.29200332','3.2','1.0'],
 'mg_pp_vh012j_5f':['higgsstrahlung + 0/1/2 jets','inclusive','xqcut = 40, qCut = 60','7.255','1.32','1.0'],

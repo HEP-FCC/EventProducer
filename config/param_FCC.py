@@ -398,9 +398,13 @@ gridpacklist = {
 'mg_pp_w012j_5f':['w + 0,1,2 jets 5 flavor scheme','inclusive','xqcut = 30, qCut = 45','1.4995e06','1.0','0.724'],
 'mg_pp_z012j_5f':['z + 0,1,2 jets 5 flavor scheme','inclusive','xqcut = 30, qCut = 45','5.1839e05','1.0','0.691'],
 'mg_pp_jjaa01j_5f':['dijet diphoton + 0,1 jets 5 flavor scheme','','xqcut = 20, qCut = 30','55.72','1.0','0.236'],
-'mg_pp_jjaa_5f':['dijet diphoton','','','17.97','1.5','1.0'],
+
+# k-factor computed with aMC@NLO
+'mg_pp_jjaa_5f':['dijet diphoton','','','17.97','1.2','1.0'],
 'mg_pp_jjja01j_5f':['photon +jets + 0,1 jets 5 flavor scheme','','xqcut = 20, qCut = 25','4.133e+05','1.0','0.143'],
-'mg_pp_jjja_5f':['photon +jets','','','1.023e05','1.5','1.0'],
+
+# k-factor computed with aMC@NLO
+'mg_pp_jjja_5f':['photon +jets','','','1.023e05','1.1','1.0'],
 'mg_pp_jjaa_4f':['dijet diphoton 4 flavor scheme','','','431.2','1.0','1.0'],
 'mg_pp_bbja_4f':['bbja 4 flavor scheme','','','4679','1.0','1.0'],
 'mg_pp_bbaa01j_4f':['bbaa + 0,1 jets 4 flavor scheme','','xqcut = 25, qCut = 35','5.899','1.0','0.312'],
@@ -759,24 +763,24 @@ gridpacklist = {
 
 
 
-# xsec is given by 2*xsec(NLO)*BR(H->bb), then NNLL/NLO kfactor = 1.33/1.15 is app_mglied according to prescription I.7.8 in Higgs XSECWG YR4 (1610.07922) with delta_t=-0.315
-# lambda dep xsec(NLO) from 100TeV version of Fig.12 left plot in 1608.04798 (from private conversation with Gudrun Heinrich)
-# for now keep kfactor 1.46/1.15 obtained directly from NNLL (for sake of comparison with YR)
-'mg_pp_hh_lambda050_5f':['HH, H->bb, H undec., kl = 0.50','','','1.92258','1.26','1.0'],
-'mg_pp_hh_lambda090_5f':['HH, H->bb, H undec., kl = 0.90','','','1.41752','1.26','1.0'],
-'mg_pp_hh_lambda095_5f':['HH, H->bb, H undec., kl = 0.95','','','1.36266','1.26','1.0'],
-'mg_pp_hh_lambda096_5f':['HH, H->bb, H undec., kl = 0.96','','','1.35191','1.26','1.0'],
-'mg_pp_hh_lambda097_5f':['HH, H->bb, H undec., kl = 0.97','','','1.34124','1.26','1.0'],
-'mg_pp_hh_lambda098_5f':['HH, H->bb, H undec., kl = 0.98','','','1.33063','1.26','1.0'],
-'mg_pp_hh_lambda099_5f':['HH, H->bb, H undec., kl = 0.99','','','1.32011','1.26','1.0'],
-'mg_pp_hh_lambda100_5f':['HH, H->bb, H undec., kl = 1.00','','','1.30965','1.26','1.0'],
-'mg_pp_hh_lambda101_5f':['HH, H->bb, H undec., kl = 1.01','','','1.29927','1.26','1.0'],
-'mg_pp_hh_lambda102_5f':['HH, H->bb, H undec., kl = 1.02','','','1.28896','1.26','1.0'],
-'mg_pp_hh_lambda103_5f':['HH, H->bb, H undec., kl = 1.03','','','1.27872','1.26','1.0'],
-'mg_pp_hh_lambda104_5f':['HH, H->bb, H undec., kl = 1.04','','','1.26856','1.26','1.0'],
-'mg_pp_hh_lambda105_5f':['HH, H->bb, H undec., kl = 1.05','','','1.25848','1.26','1.0'],
-'mg_pp_hh_lambda110_5f':['HH, H->bb, H undec., kl = 1.10','','','1.20914','1.26','1.0'],
-'mg_pp_hh_lambda150_5f':['HH, H->bb, H undec., kl = 1.50','','','0.88070','1.26','1.0'],
+# xsec is given by 2*xsec(NLO)*BR(H->bb), where xsec = 1224 fb (from 1803.02463)
+# i.e  1.30965 /(2*5.824E-01) * 1.09 = 1.224
+
+'mg_pp_hh_lambda050_5f':['HH, H->bb, H undec., kl = 0.50','','','1.92258','1.09','1.0'],
+'mg_pp_hh_lambda090_5f':['HH, H->bb, H undec., kl = 0.90','','','1.41752','1.09','1.0'],
+'mg_pp_hh_lambda095_5f':['HH, H->bb, H undec., kl = 0.95','','','1.36266','1.09','1.0'],
+'mg_pp_hh_lambda096_5f':['HH, H->bb, H undec., kl = 0.96','','','1.35191','1.09','1.0'],
+'mg_pp_hh_lambda097_5f':['HH, H->bb, H undec., kl = 0.97','','','1.34124','1.09','1.0'],
+'mg_pp_hh_lambda098_5f':['HH, H->bb, H undec., kl = 0.98','','','1.33063','1.09','1.0'],
+'mg_pp_hh_lambda099_5f':['HH, H->bb, H undec., kl = 0.99','','','1.32011','1.09','1.0'],
+'mg_pp_hh_lambda100_5f':['HH, H->bb, H undec., kl = 1.00','','','1.30965','1.09','1.0'],
+'mg_pp_hh_lambda101_5f':['HH, H->bb, H undec., kl = 1.01','','','1.29927','1.09','1.0'],
+'mg_pp_hh_lambda102_5f':['HH, H->bb, H undec., kl = 1.02','','','1.28896','1.09','1.0'],
+'mg_pp_hh_lambda103_5f':['HH, H->bb, H undec., kl = 1.03','','','1.27872','1.09','1.0'],
+'mg_pp_hh_lambda104_5f':['HH, H->bb, H undec., kl = 1.04','','','1.26856','1.09','1.0'],
+'mg_pp_hh_lambda105_5f':['HH, H->bb, H undec., kl = 1.05','','','1.25848','1.09','1.0'],
+'mg_pp_hh_lambda110_5f':['HH, H->bb, H undec., kl = 1.10','','','1.20914','1.09','1.0'],
+'mg_pp_hh_lambda150_5f':['HH, H->bb, H undec., kl = 1.50','','','0.88070','1.09','1.0'],
 'mg_pp_hhj_lambda050_5f':['HH + 1 jet, pT(HH) > 200, kl = 0.50','inclusive','','0.08285','1.95','1.0'],
 'mg_pp_hhj_lambda090_5f':['HH + 1 jet, pT(HH) > 200, kl = 0.90','inclusive','','0.06107','1.95','1.0'],
 'mg_pp_hhj_lambda095_5f':['HH + 1 jet, pT(HH) > 200, kl = 0.95','inclusive','','0.05870','1.95','1.0'],
