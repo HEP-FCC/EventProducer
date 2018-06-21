@@ -312,9 +312,6 @@ decaylist = {
 'mg_pp_hh_lambda110_5f':['haa'],
 'mg_pp_hh_lambda150_5f':['haa'],
 
-
-
-
 'mg_pp_hhj_lambda090_5f':['hhbbbb'],
 'mg_pp_hhj_lambda095_5f':['hhbbbb'],
 'mg_pp_hhj_lambda100_5f':['hhbbbb'],
@@ -322,6 +319,7 @@ decaylist = {
 'mg_pp_hhj_lambda110_5f':['hhbbbb'],
 'mg_pp_hhj_lambda150_5f':['hhbbbb'],
 'mg_pp_hhj_lambda050_5f':['hhbbbb'],
+'mg_pp_wz012j_4f':['wzlllv'],
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
 'mg_pp_stopstop_5f_mStop_1p0TeV':['mChi0p5TeV'],
@@ -366,6 +364,7 @@ branching_ratios = {
 'hhaabb':2*2.270E-03*5.824E-01,
 'hhbbbb':5.824E-01*5.824E-01,
 'znunu':0.205,
+'wzlllv':0.03333,
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
 'mChi0p5TeV':1.0,
@@ -505,6 +504,7 @@ gridpacklist = {
 'mg_pp_vv012j_4f_HT_25000_35000':['di-vector boson + 0/1/2 jets (4f)','25000 < HT < 35000','xqcut = 40, qCut = 60','0.0003517','1.70','0.69'],
 'mg_pp_vv012j_4f_HT_35000_100000':['di-vector boson + 0/1/2 jets (4f)','35000 < HT < 100000','xqcut = 40, qCut = 60','2.07e-05','1.70','0.758'],
 'mg_pp_vv012j_5f':['di-vector boson + 0/1/2 jets','inclusive','xqcut = 40, qCut = 60','3.39e+04','1.70','0.457'],
+'mg_pp_wz012j_4f':['WZ + 0/1/2 jets','inclusive','xqcut = 40, qCut = 60','786.6','1.70','0.457'],
 'mg_pp_jj012j_5f_HT_0_500':['di-jet + 0/1/2 jets','0 < HT < 500','xqcut = 20, qCut = 30','6.517e+09','1.0','0.141'],
 'mg_pp_jj012j_5f_HT_500_1000':['di-jet + 0/1/2 jets','500 < HT < 1000','xqcut = 20, qCut = 30','1.642e+07','1.0','0.092'],
 'mg_pp_jj012j_5f_HT_1000_2000':['di-jet + 0/1/2 jets','1000 < HT < 2000','xqcut = 20, qCut = 30','1.673e+06','1.0','0.071'],
