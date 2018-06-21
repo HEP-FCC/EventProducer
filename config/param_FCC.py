@@ -364,7 +364,7 @@ branching_ratios = {
 'hhaabb':2*2.270E-03*5.824E-01,
 'hhbbbb':5.824E-01*5.824E-01,
 'znunu':0.205,
-'wzlllv':,
+'wzlllv':0.03333,
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
 'mChi0p5TeV':1.0,
