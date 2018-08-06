@@ -417,7 +417,7 @@ decaylist = {
 'mg_pp_hh_lambda050_5f':['haa'],
 'mg_pp_hh_lambda090_5f':['haa'],
 'mg_pp_hh_lambda095_5f':['haa'],
-'mg_pp_hh_lambda100_5f':['haa'],
+'mg_pp_hh_lambda100_5f':['haa','htautau'],
 'mg_pp_hh_lambda105_5f':['haa'],
 'mg_pp_hh_lambda110_5f':['haa'],
 'mg_pp_hh_lambda150_5f':['haa'],
