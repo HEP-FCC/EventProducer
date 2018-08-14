@@ -63,6 +63,16 @@ fccsw=fccsw_dir+'fccsw/0.8.2/x86_64-slc6-gcc62-opt/'
 #list of processes only with Pythia, meaning no LHE
 pythialist={
 'dummy':['','','','','',''],
+'p8_pp_ExcitedQ_2TeV_qq':['2TeV Excited quark Lambda 2TeV','','','186.46','1.0','1.0'],
+'p8_pp_ExcitedQ_4TeV_qq':['4TeV Excited quark Lambda 4TeV','','','5.30825','1.0','1.0'],
+'p8_pp_ExcitedQ_6TeV_qq':['6TeV Excited quark Lambda 6TeV','','','0.412825','1.0','1.0'],
+'p8_pp_ExcitedQ_8TeV_qq':['8TeV Excited quark Lambda 8TeV','','','0.0447138','1.0','1.0'],
+'p8_pp_ExcitedQ_10TeV_qq':['10TeV Excited quark Lambda 10TeV','','0.00558454','','1.0','1.0'],
+'p8_pp_ExcitedQ_12TeV_qq':['12TeV Excited quark Lambda 12TeV','','','0.000728121','1.0','1.0'],
+'p8_pp_ExcitedQ_14TeV_qq':['14TeV Excited quark Lambda 14TeV','','','9.70582e-05','1.0','1.0'],
+'p8_pp_ExcitedQ_16TeV_qq':['16TeV Excited quark Lambda 16TeV','','','1.44959e-05','1.0','1.0'],
+'p8_pp_ExcitedQ_18TeV_qq':['18TeV Excited quark Lambda 18TeV','','','3.10421e-06','1.0','1.0'],
+
 
 'p8_pp_ZprimePSI_1TeV_ll':['1TeV Z\'(PSI) -> ll (l=e,mu,tau)','','','1.26327','1.0','1.0'],
 'p8_pp_ZprimePSI_2TeV_ll':['2TeV Z\'(PSI) -> ll (l=e,mu,tau)','','','0.085362','1.0','1.0'],
