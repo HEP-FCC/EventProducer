@@ -17,7 +17,6 @@
 #python bin/run.py --FCC --LHE --send --version fcc_v02 -p mg_pp_ee_test --typelhe mg --mg5card pp_hh.mg5 --model loop_sm_hh.tar -N 2 -n 10000 -q 8nh --lsf
 
 import sys
-import EventProducer.common.utils as ut
 
 #__________________________________________________________
 if __name__=="__main__":
@@ -137,6 +136,7 @@ if __name__=="__main__":
         print 'problem, need to specify --reco or --LHE'
         sys.exit(3)
 
+    import EventProducer.common.utils as ut
     if not ut.testeos(para.eostest,para.eostest_size):
         print 'eos seems to have problems, should check, will exit'
         sys.exit(3)
