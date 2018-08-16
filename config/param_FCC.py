@@ -942,6 +942,7 @@ gridpacklist = {
 'mg_pp_wwjj_ss_2l2v_QED2_QCD2_TL':['WW(LL) + jj QCD same sign','inclusive','','0.489','1.0','1.0'],
 'mg_pp_wwjj_ss_2l2v_QED2_QCD2_TT':['WW(LL) + jj QCD same sign','inclusive','','0.489','1.0','1.0'],
 
+'mg_pp_ZjjVbs_4f':['Z+2j  with mjj > 400 GeV','inclusive','','1.0','1.0','1.0'],
 
 #SUSY stop samples
 'mg_pp_stopstop_5f_mStop_0p5TeV':['','inclusive','','49.97','1.4','1.'],
