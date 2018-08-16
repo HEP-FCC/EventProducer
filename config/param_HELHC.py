@@ -415,6 +415,22 @@ gridpacklist = {
 'mg_pp_vj_5f_HT_10000_27000':['v+jet 5f','10000 < HT < 27000','no matching','4.769e-06','2.00','1.0'],
 
 
+'pp_Zprime_mumu_5f_Mzp_1TeV':['','inclusive','','0.0006583','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_2TeV':['','inclusive','','0.0001026','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_3TeV':['','inclusive','','2.514e-05','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_4TeV':['','inclusive','','8.007e-06','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_5TeV':['','inclusive','','3.289e-06','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_6TeV':['','inclusive','','1.692e-06','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_7TeV':['','inclusive','','1.073e-06','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_8TeV':['','inclusive','','8.325e-07','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_9TeV':['','inclusive','','7.295e-07','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_10TeV':['','inclusive','','6.766e-07','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_11TeV':['','inclusive','','6.549e-07','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_12TeV':['','inclusive','','6.393e-07','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_13TeV':['','inclusive','','6.313e-07','1.0','1.0'],
+'pp_Zprime_mumu_5f_Mzp_14TeV':['','inclusive','','6.22e-07','1.0','1.0'],
+
+
 
 }
 
