@@ -430,6 +430,8 @@ decaylist = {
 'mg_pp_hhj_lambda150_5f':['hhbbbb'],
 'mg_pp_hhj_lambda050_5f':['hhbbbb'],
 'mg_pp_wz012j_4f':['wzlllv'],
+'mg_pp_ZjjVbs_4f':['ztautau'],
+
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
 'mg_pp_stopstop_5f_mStop_1p0TeV':['mChi0p5TeV'],
