@@ -198,6 +198,15 @@ pythialist={
 'p8_pp_ZprimeLRM_Interf_6TeV_ll':['6TeV Z\'(LRM) -> ll (l=e,mu,tau) full interference','','','0.000787521','1.0','1.0'],
 'p8_pp_ZprimeI_Interf_6TeV_ll':['6TeV Z\'(I) -> ll (l=e,mu,tau) full interference','','','0.000515749','1.0','1.0'],
 
+
+'p8_pp_ZprimeSSM_Interf_6TeV_ll_PDF19':['6TeV Z\'(SSM) -> ll (l=e,mu,tau) full interference NNPDF3.0','','','0.00155311','1.0','1.0'],
+'p8_pp_ZprimeCHI_Interf_6TeV_ll_PDF19':['6TeV Z\'(CHI) -> ll (l=e,mu,tau) full interference NNPDF3.0','','','0.00134517','1.0','1.0'],
+'p8_pp_ZprimePSI_Interf_6TeV_ll_PDF19':['6TeV Z\'(PSI) -> ll (l=e,mu,tau) full interference NNPDF3.0','','','0.00105053','1.0','1.0'],
+'p8_pp_ZprimeETA_Interf_6TeV_ll_PDF19':['6TeV Z\'(ETA) -> ll (l=e,mu,tau) full interference NNPDF3.0','','','0.00111821','1.0','1.0'],
+'p8_pp_ZprimeLRM_Interf_6TeV_ll_PDF19':['6TeV Z\'(LRM) -> ll (l=e,mu,tau) full interference NNPDF3.0','','','0.00134586','1.0','1.0'],
+'p8_pp_ZprimeI_Interf_6TeV_ll_PDF19':  ['6TeV Z\'(I)   -> ll (l=e,mu,tau) full interference NNPDF3.0','','','0.00119849','1.0','1.0'],
+
+
 'p8_pp_ZprimePSI_1TeV_jj'    :['1TeV Z\'(PSI) -> jj (j=u,d,s,c,b,t)','','','7.59214','1.0','1.0'],
 'p8_pp_ZprimePSI_2TeV_jj'    :['2TeV Z\'(PSI) -> jj (j=u,d,s,c,b,t)','','','0.520618','1.0','1.0'],
 'p8_pp_ZprimePSI_4TeV_jj'    :['4TeV Z\'(PSI) -> jj (j=u,d,s,c,b,t)','','','0.0205405','1.0','1.0'],
@@ -415,21 +424,23 @@ gridpacklist = {
 'mg_pp_vj_5f_HT_10000_27000':['v+jet 5f','10000 < HT < 27000','no matching','4.769e-06','2.00','1.0'],
 
 
-'mg_pp_Zprime_mumu_5f_Mzp_1TeV':['','inclusive','','0.0006583','1.0','1.0'],
-'mg_pp_Zprime_mumu_5f_Mzp_2TeV':['','inclusive','','0.0001026','1.0','1.0'],
-'mg_pp_Zprime_mumu_5f_Mzp_3TeV':['','inclusive','','2.514e-05','1.0','1.0'],
-'mg_pp_Zprime_mumu_5f_Mzp_4TeV':['','inclusive','','8.007e-06','1.0','1.0'],
-'mg_pp_Zprime_mumu_5f_Mzp_5TeV':['','inclusive','','3.289e-06','1.0','1.0'],
-'mg_pp_Zprime_mumu_5f_Mzp_6TeV':['','inclusive','','1.692e-06','1.0','1.0'],
-'mg_pp_Zprime_mumu_5f_Mzp_7TeV':['','inclusive','','1.073e-06','1.0','1.0'],
-'mg_pp_Zprime_mumu_5f_Mzp_8TeV':['','inclusive','','8.325e-07','1.0','1.0'],
-'mg_pp_Zprime_mumu_5f_Mzp_9TeV':['','inclusive','','7.295e-07','1.0','1.0'],
-'mg_pp_Zprime_mumu_5f_Mzp_10TeV':['','inclusive','','6.766e-07','1.0','1.0'],
-'mg_pp_Zprime_mumu_5f_Mzp_11TeV':['','inclusive','','6.549e-07','1.0','1.0'],
-'mg_pp_Zprime_mumu_5f_Mzp_12TeV':['','inclusive','','6.393e-07','1.0','1.0'],
-'mg_pp_Zprime_mumu_5f_Mzp_13TeV':['','inclusive','','6.313e-07','1.0','1.0'],
-'mg_pp_Zprime_mumu_5f_Mzp_14TeV':['','inclusive','','6.22e-07','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_1TeV':['1TeV Z\' mumu Flavour anomaly','inclusive','','0.0006583','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_2TeV':['2TeV Z\' mumu Flavour anomaly','inclusive','','0.0001026','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_3TeV':['3TeV Z\' mumu Flavour anomaly','inclusive','','2.514e-05','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_4TeV':['4TeV Z\' mumu Flavour anomaly','inclusive','','8.007e-06','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_5TeV':['5TeV Z\' mumu Flavour anomaly','inclusive','','3.289e-06','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_6TeV':['6TeV Z\' mumu Flavour anomaly','inclusive','','1.692e-06','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_7TeV':['7TeV Z\' mumu Flavour anomaly','inclusive','','1.073e-06','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_8TeV':['8TeV Z\' mumu Flavour anomaly','inclusive','','8.325e-07','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_9TeV':['9TeV Z\' mumu Flavour anomaly','inclusive','','7.295e-07','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_10TeV':['10TeV Z\' mumu Flavour anomaly','inclusive','','6.766e-07','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_11TeV':['11TeV Z\' mumu Flavour anomaly','inclusive','','6.549e-07','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_12TeV':['12TeV Z\' mumu Flavour anomaly','inclusive','','6.393e-07','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_13TeV':['13TeV Z\' mumu Flavour anomaly','inclusive','','6.313e-07','1.0','1.0'],
+'mg_pp_Zprime_mumu_5f_Mzp_14TeV':['14TeV Z\' mumu Flavour anomaly','inclusive','','6.22e-07','1.0','1.0'],
 
+'mg_pp_tvj_5f':['single top W-t','inclusive','','237.3','1.0','1.0'],
+'mg_pp_tj_5f':['single top s and t channels','inclusive','','788','1.0','1.0'],
 
 
 }
