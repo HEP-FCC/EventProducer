@@ -466,7 +466,8 @@ gridpacklist = {
 'mg_pp_tth01j_5f_HT_0_27000':['higgs associated with top pair + 0/1 jets','0 < HT < 27000','xqcut = 80, qCut = 120','3.274','1.22','0.68'],
 
 
-'mg_pp_lla01j_mhcut_5f':['l+ l- a + 0/1 jet','','','1.999','1.5','1.0'],
+'mg_pp_lla01j_mhcut_5f':['l+ l- a + 0/1 jet','','','5.2983058','1.5','0.848'],
+'mg_pp_llaj_mhcut_5f':['l+ l- a  1 jet','','','5.00','1.5','1.0'],
 'mg_pp_llll01j_mhcut_5f':['llll + 0/1 jet','','','1.999','1.5','1.0'],
 'mg_pp_mumu01j_mhcut_5f':['mumu + 0/1 jet','','','1.999','1.5','1.0'],
 
