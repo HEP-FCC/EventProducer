@@ -442,7 +442,7 @@ gridpacklist = {
 'mg_pp_tvj_5f':['single top W-t','inclusive','','237.3','1.0','1.0'],
 'mg_pp_tj_5f':['single top s and t channels','inclusive','','788','1.0','1.0'],
 
-'mg_pp_llaj_mhcut_5f_HT_20_100':['l+ l- a + 1 jet20 < HT < 100','','1.842','1.5','1.0'],
+'mg_pp_llaj_mhcut_5f_HT_20_100':['l+ l- a + 1 jet' ,'20 < HT < 100','','1.842','1.5','1.0'],
 'mg_pp_llaj_mhcut_5f_HT_100_400':['l+ l- a + 1 jet','100 < HT < 400','','2.0','1.5','1.0'],
 # xsec to be determined
 'mg_pp_llaj_mhcut_5f_HT_400_27000':['l+ l- a + 1 jet','400 < HT < 27000','','0.03989990374','1.5','1.0'],
