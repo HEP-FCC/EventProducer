@@ -972,7 +972,6 @@ gridpacklist = {
 'mg_pp_stopstop_5f_mStop_11p5TeV':['','inclusive','','9.507e-07','1.80','1.'],
 
 
-# VBS WWss with anomalous couplings
 'mg_pp_vbs_wwss_kw_050_TT':['','inclusive','','0.2060','1.0','1.0'],
 'mg_pp_vbs_wwss_kw_050_TL':['','inclusive','','0.1327','1.0','1.0'],
 'mg_pp_vbs_wwss_kw_050_LL':['','inclusive','','0.0605','1.0','1.0'],
@@ -1012,6 +1011,7 @@ gridpacklist = {
 'mg_pp_vbs_wwss_kw_150_TT':['','inclusive','','0.2024','1.0','1.0'],
 'mg_pp_vbs_wwss_kw_150_TL':['','inclusive','','0.1282','1.0','1.0'],
 'mg_pp_vbs_wwss_kw_150_LL':['','inclusive','','0.1052','1.0','1.0'],
+
 
 
 #FCNC top
