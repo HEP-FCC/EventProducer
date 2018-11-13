@@ -42,6 +42,8 @@ class cleanfailed():
                     
                 except yaml.YAMLError as exc:
                     print(exc)
+                except IOError as exc:
+                    print "I/O error({0}): {1}".format(exc.errno, exc.strerror)
 
         print 'removed %i files'%nfailed
 
