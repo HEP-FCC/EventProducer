@@ -8,14 +8,15 @@ import EventProducer.common.makeyaml as my
 class send_lhe():
 
 #__________________________________________________________
-    def __init__(self,njobs,events, process, islsf, queue, para):
-        self.njobs   = njobs
-        self.events  = events
-        self.process = process
-        self.islsf   = islsf
-        self.queue   = queue
-        self.user    = os.environ['USER']
-        self.para    = para
+    def __init__(self,njobs,events, process, islsf, iscondor, queue, para):
+        self.njobs    = njobs
+        self.events   = events
+        self.process  = process
+        self.islsf    = islsf
+        self.iscondor = iscondor
+        self.queue    = queue
+        self.user     = os.environ['USER']
+        self.para     = para
 
 #__________________________________________________________
     def send(self):
@@ -50,6 +51,11 @@ class send_lhe():
             os.system("mkdir -p %s"%yamldir)
 
 
+        if self.islsf==False and self.iscondor==False:
+            print "Submit issue : LSF nor CONDOR flag defined !!!"
+            sys.exit(3)
+
+        condor_file_str=''
         while nbjobsSub<self.njobs:
             #uid = int(ut.getuid(self.user))
             uid = ut.getuid2(self.user)
@@ -91,13 +97,47 @@ class send_lhe():
             frun.write('cd ..\n')
             frun.write('rm -rf job%s_%s\n'%(uid,self.process))
 
-            cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -o %s -cwd %s %s" %(self.queue,logdir+'/job%s/'%(uid),logdir+'/job%s/'%(uid),logdir+'/'+frunname)
-            #print cmdBatch
-                
-            batchid=-1
-            job,batchid=ut.SubmitToLsf(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
-            nbjobsSub+=job
-        print 'succesfully sent %i  jobs'%nbjobsSub
-  
+            if self.islsf==True :
+              cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -o %s -cwd %s %s" %(self.queue,logdir+'/job%s/'%(uid),logdir+'/job%s/'%(uid),logdir+'/'+frunname)
+              #print cmdBatch
+
+              batchid=-1
+              job,batchid=ut.SubmitToLsf(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
+              nbjobsSub+=job
+            else if self.iscondor==True : condor_file_str+=frunfull+" "
+
+        if self.iscondor==True :
+            frunname_condor = 'job_desc.cfg'
+            frunfull_condor = '%s/%s'%(logdir,frunname_condor)
+            frun_condor = None
+            try:
+                frun_condor = open(frunfull_condor, 'w')
+            except IOError as e:
+                print "I/O error({0}): {1}".format(e.errno, e.strerror)
+                time.sleep(10)
+                frun_condor = open(frunfull_condor, 'w')
+            commands.getstatusoutput('chmod 777 %s'%frunfull_condor)
+            #
+            frun_condor.write('executable     = $(filename)\n')
+            frun_condor.write('Log            = condor_job_$(ProcId).log\n')
+            frun_condor.write('Output         = condor_job_$(ProcId).out\n')
+            frun_condor.write('Error          = condor_job_$(ProcId).error\n')
+            frun_condor.write('getenv         = True\n')
+            frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
+            frun_condor.write('request_memory = 2G\n')
+            # tmp
+            frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") && (CERNEnvironment =?= "qa") &&  (Machine =!= LastRemoteHost) )\n')
+            # final to use when nodes have the fix
+            #frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") &&  (Machine =!= LastRemoteHost) )\n')
+            frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')
+            frun_condor.write('max_retries    = 3\n')
+            frun_condor.write('+JobFlavour    = "%s"\n'%self.queue)
+            frun_condor.write('queue filename matching files %s\n'%condor_file_str)
+            #
+            nbjobsSub=0
+            cmdBatch="condor_submit %s"%frunfull_condor
+            job=ut.SubmitToCondor(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
+            nbjobsSub+=job    
     
+        print 'succesfully sent %i  jobs'%nbjobsSub
 
