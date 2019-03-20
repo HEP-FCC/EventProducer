@@ -193,26 +193,26 @@ if __name__=="__main__":
             
                 print 'preparing to send lhe jobs from madgraph gridpacks for process {}'.format(args.process)
                 import EventProducer.bin.send_lhe as slhe
-                sendlhe=slhe.send_lhe(args.numJobs,args.numEvents, args.process, args.lsf, args.queue, para)
+                sendlhe=slhe.send_lhe(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, para)
                 sendlhe.send()
             
             elif args.typelhe == 'mg':
 
                 print 'preparing to send lhe jobs from madgraph standalone for process {}'.format(args.process)
                 import EventProducer.bin.send_mglhe as mglhe
-                sendlhe=mglhe.send_mglhe( args.lsf, args.mg5card, args.cutfile, args.model, para, args.process, args.numJobs, args.numEvents, args.queue, args.memory, args.disk)
+                sendlhe=mglhe.send_mglhe( args.lsf, args.condor, args.mg5card, args.cutfile, args.model, para, args.process, args.numJobs, args.numEvents, args.queue, args.memory, args.disk)
                 sendlhe.send()
             
         elif args.reco:
             if sendOpt=='lhep8':
                 print 'preparing to send FCCSW jobs from lhe'
                 import EventProducer.bin.send_lhep8 as slhep8
-                sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.queue, para, version, args.decay)
+                sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, para, version, args.decay)
                 sendlhep8.send(args.force)
             elif sendOpt=='p8':
                 print 'preparing to send FCCSW jobs from pythia8 directly'
                 import EventProducer.bin.send_p8 as sp8
-                sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.queue, para, version)
+                sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, para, version)
                 sendp8.send()
 
     elif args.web:
