@@ -16,6 +16,8 @@
 
 #python bin/run.py --FCC --LHE --send --version fcc_v02 -p mg_pp_ee_test --typelhe mg --mg5card pp_hh.mg5 --model loop_sm_hh.tar -N 2 -n 10000 -q 8nh --lsf
 
+#python bin/run.py --FCC --LHE --send --condor -p mg_pp_tttt_5f -n 10000 -N 10 -q microcentury --typelhe gp
+
 import sys
 
 #__________________________________________________________
@@ -46,7 +48,17 @@ if __name__=="__main__":
     sendjobGroup = parser.add_argument_group('type of jobs to send')
     sendjobGroup.add_argument('--type', type=str, required = '--send' in sys.argv and '--reco'  in sys.argv , help='type of jobs to send', choices = ['lhep8','p8'])
     sendjobGroup.add_argument('--typelhe', type=str, required = '--send' in sys.argv and '--LHE'  in sys.argv , help='type of jobs to send', choices = ['gp','mg'])
-    sendjobGroup.add_argument('-q', '--queue', type=str, default='8nh', help='lxbatch queue (default: 8nh)', choices=['1nh','8nh','1nd','2nd','1nw'])
+    sendjobGroup.add_argument('-q', '--queue', type=str, default='workday', help='lxbatch queue (default: workday for HTCONDOR)', choices=['1nh','8nh','1nd','2nd','1nw','espresso','microcentury','longlunch','workday','tomorrow','testmatch','nextweek'])
+    ###################
+    # condor queues : #
+    ###################
+    # 20 mins -> espresso
+    # 1h -> microcentury
+    # 2h -> longlunch
+    # 8h -> workday
+    # 1d -> tomorrow
+    # 3d -> testmatch
+    # 1w -> nextweek
     sendjobGroup.add_argument('-n','--numEvents', type=int, help='Number of simulation events per job', default=10000)
     sendjobGroup.add_argument('-N','--numJobs', type=int, default = 10, help='Number of jobs to submit')
 
