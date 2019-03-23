@@ -96,6 +96,7 @@ class send_lhe():
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events_%s.lhe.gz\n'%(lhedir,self.process ,uid))
             frun.write('cd ..\n')
             frun.write('rm -rf job%s_%s\n'%(uid,self.process))
+            frun.close()
 
             if self.islsf==True :
               cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -o %s -cwd %s %s" %(self.queue,logdir+'/job%s/'%(uid),logdir+'/job%s/'%(uid),logdir+'/'+frunname)
@@ -104,7 +105,9 @@ class send_lhe():
               batchid=-1
               job,batchid=ut.SubmitToLsf(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
               nbjobsSub+=job
-            else if self.iscondor==True : condor_file_str+=frunfull+" "
+            elif self.iscondor==True :
+              condor_file_str+=frunfull+" "
+              nbjobsSub+=1
 
         if self.iscondor==True :
             frunname_condor = 'job_desc.cfg'
@@ -133,11 +136,13 @@ class send_lhe():
             frun_condor.write('max_retries    = 3\n')
             frun_condor.write('+JobFlavour    = "%s"\n'%self.queue)
             frun_condor.write('queue filename matching files %s\n'%condor_file_str)
+            frun_condor.close()
             #
             nbjobsSub=0
-            cmdBatch="condor_submit %s"%frunfull_condor
+            cmdBatch="condor_submit %s/%s"%(logdir,frunname_condor)
+            print cmdBatch
             job=ut.SubmitToCondor(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
             nbjobsSub+=job    
     
-        print 'succesfully sent %i  jobs'%nbjobsSub
+        print 'succesfully sent %i  job(s)'%nbjobsSub
 
