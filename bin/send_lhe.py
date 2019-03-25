@@ -132,9 +132,9 @@ class send_lhe():
             frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
             frun_condor.write('request_memory = 2G\n')
             # tmp
-            frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") && (CERNEnvironment =?= "qa") &&  (Machine =!= LastRemoteHost) )\n')
+            frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") && (CERNEnvironment =?= "qa") && (Machine =!= LastRemoteHost) )\n')
             # final to use when nodes have the fix
-            #frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") &&  (Machine =!= LastRemoteHost) )\n')
+            #frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") && (Machine =!= LastRemoteHost) )\n')
             frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')
             frun_condor.write('max_retries    = 3\n')
             frun_condor.write('+JobFlavour    = "%s"\n'%self.queue)
