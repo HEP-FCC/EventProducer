@@ -125,9 +125,9 @@ class send_lhe():
             commands.getstatusoutput('chmod 777 %s'%frunfull_condor)
             #
             frun_condor.write('executable     = $(filename)\n')
-            frun_condor.write('Log            = condor_job_$(ProcId).log\n')
-            frun_condor.write('Output         = condor_job_$(ProcId).out\n')
-            frun_condor.write('Error          = condor_job_$(ProcId).error\n')
+            frun_condor.write('Log            = %s/condor_job_$(ProcId).log\n',%logdir)
+            frun_condor.write('Output         = %s/condor_job_$(ProcId).out\n',%logdir)
+            frun_condor.write('Error          = %s/condor_job_$(ProcId).error\n',%logdir)
             frun_condor.write('getenv         = True\n')
             frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
             frun_condor.write('request_memory = 2G\n')
@@ -142,7 +142,7 @@ class send_lhe():
             frun_condor.close()
             #
             nbjobsSub=0
-            cmdBatch="condor_submit %s/%s"%(logdir,frunname_condor)
+            cmdBatch="condor_submit %s"%frunfull_condor
             print cmdBatch
             job=ut.SubmitToCondor(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
             nbjobsSub+=job    
