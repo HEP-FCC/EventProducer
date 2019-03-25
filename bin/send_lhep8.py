@@ -220,7 +220,10 @@ class send_lhep8():
               nbjobsSub+=1
 
         if self.iscondor==True :
-            frunname_condor = 'job_desc.cfg'
+            # clean string
+            condor_file_str=condor_file_str.replace("//","/")
+            #
+            frunname_condor = 'job_desc_lhep8.cfg'
             frunfull_condor = '%s/%s'%(logdir,frunname_condor)
             frun_condor = None
             try:
