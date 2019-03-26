@@ -1,3 +1,5 @@
+#python bin/run.py --FCC --LHE --send --version fcc_v02 -p dummy --typelhe mg --mg5card pp_hh.mg5 --model loop_sm_hh.tar -N 2 -n 10000 -q workday --condor
+
 #!/usr/bin/env python
 import os, sys
 import commands
@@ -8,8 +10,9 @@ import EventProducer.common.makeyaml as my
 class send_mglhe():
 
 #__________________________________________________________
-    def __init__(self, islsf, mg5card, cutfile, model, para, procname, njobs, nev, queue, memory, disk):
+    def __init__(self, islsf, iscondor, mg5card, cutfile, model, para, procname, njobs, nev, queue, memory, disk):
         self.islsf     = islsf
+        self.iscondor  = iscondor
         self.user      = os.environ['USER']
         self.mg5card   =  mg5card
         self.cutfile   =  cutfile
@@ -50,6 +53,11 @@ class send_mglhe():
            os.makedirs(jobsdir+'/std/')
            os.makedirs(jobsdir+'/cfg/')
 
+        if self.islsf==False and self.iscondor==False:
+            print "Submit issue : LSF nor CONDOR flag defined !!!"
+            sys.exit(3)
+
+        condor_file_params_str=[]
         while nbjobsSub<self.njobs:
             #uid = int(ut.getuid(self.user))
             uid = ut.getuid2(self.user)
@@ -69,18 +77,65 @@ class send_mglhe():
 	    cwd = os.getcwd()
 	    script = cwd + '/bin/submitMG.sh '
 
+            if self.islsf==True :
+              cmdBatch = 'bsub -o '+jobsdir+'/std/'+basename +'.out -e '+jobsdir+'/std/'+basename +'.err -q '+self.queue
+              cmdBatch += ' -R "rusage[mem={}:pool={}]"'.format(self.memory,self.disk)
+              cmdBatch +=' -J '+basename +' "'+script + mg5card+' '+self.procname+' '+outdir+' '+seed+' '+str(self.nev)+' '+cuts+' '+model+'"'
 
-            cmdBatch = 'bsub -o '+jobsdir+'/std/'+basename +'.out -e '+jobsdir+'/std/'+basename +'.err -q '+self.queue
-            cmdBatch += ' -R "rusage[mem={}:pool={}]"'.format(self.memory,self.disk)
-            cmdBatch +=' -J '+basename +' "'+script + mg5card+' '+self.procname+' '+outdir+' '+seed+' '+str(self.nev)+' '+cuts+' '+model+'"'
+              print cmdBatch
 
+              batchid=-1
+              job,batchid=ut.SubmitToLsf(cmdBatch,10,1)
+              nbjobsSub+=job
+            elif self.iscondor==True :
+              condor_file_params_str.append(mg5card+' '+self.procname+' '+outdir+' '+seed+' '+str(self.nev)+' '+cuts+' '+model)
+              nbjobsSub+=1
+
+        if self.iscondor==True :
+            # parameter file
+            fparamname_condor = 'job_params_mglhe.txt'
+            fparamfull_condor = '%s/%s'%(logdir,fparamname_condor)
+            fparam_condor = None
+            try:
+                fparam_condor = open(fparamfull_condor, 'w')
+            except IOError as e:
+                print "I/O error({0}): {1}".format(e.errno, e.strerror)
+                time.sleep(10)
+                fparam_condor = open(fparamfull_condor, 'w')
+            for line in condor_file_params_str:
+                fparam_condor.write('%s\n'%line)
+            fparam_condor.close()
+            # condor config
+            frunname_condor = 'job_desc_mglhe.cfg'
+            frunfull_condor = '%s/%s'%(logdir,frunname_condor)
+            frun_condor = None
+            try:
+                frun_condor = open(frunfull_condor, 'w')
+            except IOError as e:
+                print "I/O error({0}): {1}".format(e.errno, e.strerror)
+                time.sleep(10)
+                frun_condor = open(frunfull_condor, 'w')
+            commands.getstatusoutput('chmod 777 %s'%frunfull_condor)
+            #
+            frun_condor.write('executable     = %s\n'%script)
+            frun_condor.write('Log            = %s/condor_job_$(ProcId).log\n'%logdir)
+            frun_condor.write('Output         = %s/condor_job_$(ProcId).out\n'%logdir)
+            frun_condor.write('Error          = %s/condor_job_$(ProcId).error\n'%logdir)
+            frun_condor.write('getenv         = True\n')
+            frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
+            frun_condor.write('request_memory = %s\n'%self.memory)
+            frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") && (Machine =!= LastRemoteHost) )\n')
+            frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')
+            frun_condor.write('max_retries    = 3\n')
+            frun_condor.write('+JobFlavour    = "%s"\n'%self.queue)
+            frun_condor.write('queue arguments from %s\n'%fparamfull_condor)
+            frun_condor.close()
+            #
+            nbjobsSub=0
+            cmdBatch="condor_submit %s"%frunfull_condor
             print cmdBatch
-                
-            batchid=-1
-            job,batchid=ut.SubmitToLsf(cmdBatch,10,1)
+            job=ut.SubmitToCondor(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
             nbjobsSub+=job
 
-        print 'succesfully sent %i  jobs'%nbjobsSub
-  
-    
+        print 'succesfully sent %i  job(s)'%nbjobsSub
 
