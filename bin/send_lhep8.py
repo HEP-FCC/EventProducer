@@ -235,16 +235,18 @@ class send_lhep8():
             commands.getstatusoutput('chmod 777 %s'%frunfull_condor)
             #
             frun_condor.write('executable     = $(filename)\n')
-            frun_condor.write('Log            = %s/condor_job_$(ProcId).log\n'%logdir)
-            frun_condor.write('Output         = %s/condor_job_$(ProcId).out\n'%logdir)
-            frun_condor.write('Error          = %s/condor_job_$(ProcId).error\n'%logdir)
+            frun_condor.write('Log            = %s/condor_job_$(ClusterId).$(ProcId).log\n'%logdir)
+            frun_condor.write('Output         = %s/condor_job_$(ClusterId).$(ProcId).out\n'%logdir)
+            frun_condor.write('Error          = %s/condor_job_$(ClusterId).$(ProcId).error\n'%logdir)
             frun_condor.write('getenv         = True\n')
             frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
             frun_condor.write('request_memory = 4G\n')
-            frun_condor.write('requirements   = ( (OpSysAndVer =?= "CentOS7") && (Machine =!= LastRemoteHost) )\n')
+#            frun_condor.write('requirements   = ( (OpSysAndVer =?= "CentOS7") && (Machine =!= LastRemoteHost) )\n')
+            frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") && (Machine =!= LastRemoteHost) )\n')
             frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')
             frun_condor.write('max_retries    = 3\n')
             frun_condor.write('+JobFlavour    = "%s"\n'%self.queue)
+            frun_condor.write('+AccountingGroup = "group_u_FCC.local_gen"\n')
             frun_condor.write('queue filename matching files %s\n'%condor_file_str)
             frun_condor.close()
             #
