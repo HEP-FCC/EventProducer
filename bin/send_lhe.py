@@ -125,9 +125,9 @@ class send_lhe():
             commands.getstatusoutput('chmod 777 %s'%frunfull_condor)
             #
             frun_condor.write('executable     = $(filename)\n')
-            frun_condor.write('Log            = %s/condor_job_$(ClusterId).$(ProcId).log\n'%logdir)
-            frun_condor.write('Output         = %s/condor_job_$(ClusterId).$(ProcId).out\n'%logdir)
-            frun_condor.write('Error          = %s/condor_job_$(ClusterId).$(ProcId).error\n'%logdir)
+            frun_condor.write('Log            = %s/condor_job.%s.$(ClusterId).$(ProcId).log\n'%(logdir,str(uid)))
+            frun_condor.write('Output         = %s/condor_job.%s.$(ClusterId).$(ProcId).out\n'%(logdir,str(uid)))
+            frun_condor.write('Error          = %s/condor_job.%s.$(ClusterId).$(ProcId).error\n'%(logdir,str(uid)))
             frun_condor.write('getenv         = True\n')
             frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
             frun_condor.write('request_memory = 2G\n')
