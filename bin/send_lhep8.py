@@ -1,6 +1,7 @@
 #python bin/sendJobs_FCCSW.py -n 10 -p pp_h012j_5f -q 8nh -e -1 -d haa --test
 #python bin/sendJobs_FCCSW.py secret -n 1 -e -1  -p "pp_h012j_5f" -q 1nh --test
 #python bin/sendJobs_FCCSW.py -n 1 -p pp_h012j_5f -q 8nh -e -1 -v fcc_v02
+#python bin/run.py --FCC --reco --send --condor -p mg_pp_tttt_5f --type lhep8 -N 20 -q tomorrow --version fcc_v02
 
 import os, sys
 import commands
@@ -14,16 +15,17 @@ import EventProducer.common.makeyaml as my
 class send_lhep8():
 
 #__________________________________________________________
-    def __init__(self,njobs, events, process, islsf, queue, para, version, decay):
-        self.njobs   = njobs
-        self.events  = -1
-        self.process = process
-        self.islsf   = islsf
-        self.queue   = queue
-        self.para    = para
-        self.version = version
-        self.decay   = decay
-        self.user    = os.environ['USER']
+    def __init__(self,njobs, events, process, islsf, iscondor, queue, para, version, decay):
+        self.njobs    = njobs
+        self.events   = -1
+        self.process  = process
+        self.islsf    = islsf
+        self.iscondor = iscondor
+        self.queue    = queue
+        self.para     = para
+        self.version  = version
+        self.decay    = decay
+        self.user     = os.environ['USER']
 
 
 #__________________________________________________________
@@ -135,6 +137,11 @@ class send_lhep8():
         nbjobsSub=0
         ntmp=0
 
+        if self.islsf==False and self.iscondor==False:
+            print "Submit issue : LSF nor CONDOR flag defined !!!"
+            sys.exit(3)
+
+        condor_file_str=''
         for i in xrange(len(All_files)):
 
             if nbjobsSub == self.njobs: break
@@ -200,13 +207,55 @@ class send_lhep8():
             
             frun.write('cd ..\n')
             frun.write('rm -rf job%s_%s\n'%(jobid,processp8))
+            frun.close()
 
-            cmdBatch="bsub -M 3000000 -R \"pool=40000\" -q %s -o %s -cwd %s %s" %(self.queue, logdir+'/job%s/'%(jobid), logdir+'/job%s/'%(jobid),frunfull)
+            if self.islsf==True :
+              cmdBatch="bsub -M 3000000 -R \"pool=40000\" -q %s -o %s -cwd %s %s" %(self.queue, logdir+'/job%s/'%(jobid), logdir+'/job%s/'%(jobid),frunfull)
 
-            batchid=-1
-            job,batchid=ut.SubmitToLsf(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
-            nbjobsSub+=job    
-            
-        print 'succesfully sent %i  jobs'%nbjobsSub
+              batchid=-1
+              job,batchid=ut.SubmitToLsf(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
+              nbjobsSub+=job
+            elif self.iscondor==True :
+              condor_file_str+=frunfull+" "
+              nbjobsSub+=1
+
+        if self.iscondor==True :
+            # clean string
+            condor_file_str=condor_file_str.replace("//","/")
+            #
+            frunname_condor = 'job_desc_lhep8.cfg'
+            frunfull_condor = '%s/%s'%(logdir,frunname_condor)
+            frun_condor = None
+            try:
+                frun_condor = open(frunfull_condor, 'w')
+            except IOError as e:
+                print "I/O error({0}): {1}".format(e.errno, e.strerror)
+                time.sleep(10)
+                frun_condor = open(frunfull_condor, 'w')
+            commands.getstatusoutput('chmod 777 %s'%frunfull_condor)
+            #
+            frun_condor.write('executable     = $(filename)\n')
+            frun_condor.write('Log            = %s/condor_job.%s.$(ClusterId).$(ProcId).log\n'%(logdir,str(jobid)))
+            frun_condor.write('Output         = %s/condor_job.%s.$(ClusterId).$(ProcId).out\n'%(logdir,str(jobid)))
+            frun_condor.write('Error          = %s/condor_job.%s.$(ClusterId).$(ProcId).error\n'%(logdir,str(jobid)))
+            frun_condor.write('getenv         = True\n')
+            frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
+            frun_condor.write('request_memory = 4G\n')
+#            frun_condor.write('requirements   = ( (OpSysAndVer =?= "CentOS7") && (Machine =!= LastRemoteHost) )\n')
+            frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") && (Machine =!= LastRemoteHost) )\n')
+            frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')
+            frun_condor.write('max_retries    = 3\n')
+            frun_condor.write('+JobFlavour    = "%s"\n'%self.queue)
+            frun_condor.write('+AccountingGroup = "group_u_FCC.local_gen"\n')
+            frun_condor.write('queue filename matching files %s\n'%condor_file_str)
+            frun_condor.close()
+            #
+            nbjobsSub=0
+            cmdBatch="condor_submit %s"%frunfull_condor
+            print cmdBatch
+            job=ut.SubmitToCondor(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
+            nbjobsSub+=job
+
+        print 'succesfully sent %i  job(s)'%nbjobsSub
   
 

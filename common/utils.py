@@ -54,11 +54,11 @@ def find_owner(filename):
 #__________________________________________________________
 def SubmitToCondor(cmd,nbtrials,nsub):
     submissionStatus=0
-    cmd=cmd.replace('//','/')
+    cmd=cmd.replace('//','/') # -> dav : is it needed?
     for i in xrange(nbtrials):            
         outputCMD = getCommandOutput(cmd)
         stderr=outputCMD["stderr"].split('\n')
-        stdout=outputCMD["stdout"].split('\n')
+        stdout=outputCMD["stdout"].split('\n') # -> dav : is it needed?
 
         if len(stderr)==1 and stderr[0]=='' :
             print "------------GOOD SUB ",nsub
@@ -66,18 +66,18 @@ def SubmitToCondor(cmd,nbtrials,nsub):
         else:
             print "++++++++++++ERROR submitting, will retry"
             print "Trial : "+str(i)+" / "+str(nbtrials)
-            print "stderr : ",stderr
             print "stderr : ",len(stderr)
+            print stderr
 
             time.sleep(10)
 
             
         if submissionStatus==1:
-            return 1,0
+            return 1
         
         if i==nbtrials-1:
             print "failed sumbmitting after: "+str(nbtrials)+" trials, will exit"
-            return 0,0
+            return 0
 
 #__________________________________________________________
 def SubmitToLsf(cmd,nbtrials,nsub):

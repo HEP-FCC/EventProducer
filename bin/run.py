@@ -16,6 +16,8 @@
 
 #python bin/run.py --FCC --LHE --send --version fcc_v02 -p mg_pp_ee_test --typelhe mg --mg5card pp_hh.mg5 --model loop_sm_hh.tar -N 2 -n 10000 -q 8nh --lsf
 
+#python bin/run.py --FCC --LHE --send --condor -p mg_pp_tttt_5f -n 10000 -N 10 -q microcentury --typelhe gp
+
 import sys
 
 #__________________________________________________________
@@ -46,7 +48,17 @@ if __name__=="__main__":
     sendjobGroup = parser.add_argument_group('type of jobs to send')
     sendjobGroup.add_argument('--type', type=str, required = '--send' in sys.argv and '--reco'  in sys.argv , help='type of jobs to send', choices = ['lhep8','p8'])
     sendjobGroup.add_argument('--typelhe', type=str, required = '--send' in sys.argv and '--LHE'  in sys.argv , help='type of jobs to send', choices = ['gp','mg'])
-    sendjobGroup.add_argument('-q', '--queue', type=str, default='8nh', help='lxbatch queue (default: 8nh)', choices=['1nh','8nh','1nd','2nd','1nw'])
+    sendjobGroup.add_argument('-q', '--queue', type=str, default='workday', help='lxbatch queue (default: workday for HTCONDOR)', choices=['1nh','8nh','1nd','2nd','1nw','espresso','microcentury','longlunch','workday','tomorrow','testmatch','nextweek'])
+    ###################
+    # condor queues : #
+    ###################
+    # 20 mins -> espresso
+    # 1h -> microcentury
+    # 2h -> longlunch
+    # 8h -> workday
+    # 1d -> tomorrow
+    # 3d -> testmatch
+    # 1w -> nextweek
     sendjobGroup.add_argument('-n','--numEvents', type=int, help='Number of simulation events per job', default=10000)
     sendjobGroup.add_argument('-N','--numJobs', type=int, default = 10, help='Number of jobs to submit')
 
@@ -193,26 +205,26 @@ if __name__=="__main__":
             
                 print 'preparing to send lhe jobs from madgraph gridpacks for process {}'.format(args.process)
                 import EventProducer.bin.send_lhe as slhe
-                sendlhe=slhe.send_lhe(args.numJobs,args.numEvents, args.process, args.lsf, args.queue, para)
+                sendlhe=slhe.send_lhe(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, para)
                 sendlhe.send()
             
             elif args.typelhe == 'mg':
 
                 print 'preparing to send lhe jobs from madgraph standalone for process {}'.format(args.process)
                 import EventProducer.bin.send_mglhe as mglhe
-                sendlhe=mglhe.send_mglhe( args.lsf, args.mg5card, args.cutfile, args.model, para, args.process, args.numJobs, args.numEvents, args.queue, args.memory, args.disk)
+                sendlhe=mglhe.send_mglhe( args.lsf, args.condor, args.mg5card, args.cutfile, args.model, para, args.process, args.numJobs, args.numEvents, args.queue, args.memory, args.disk)
                 sendlhe.send()
             
         elif args.reco:
             if sendOpt=='lhep8':
                 print 'preparing to send FCCSW jobs from lhe'
                 import EventProducer.bin.send_lhep8 as slhep8
-                sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.queue, para, version, args.decay)
+                sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, para, version, args.decay)
                 sendlhep8.send(args.force)
             elif sendOpt=='p8':
                 print 'preparing to send FCCSW jobs from pythia8 directly'
                 import EventProducer.bin.send_p8 as sp8
-                sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.queue, para, version)
+                sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, para, version)
                 sendp8.send()
 
     elif args.web:
