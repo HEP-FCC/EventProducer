@@ -80,6 +80,7 @@ class send_lhe():
                 frun = open(frunfull, 'w')
                 
             commands.getstatusoutput('chmod 777 %s'%frunfull)
+            frun.write('#!/bin/bash\n')
             frun.write('unset LD_LIBRARY_PATH\n')
             frun.write('unset PYTHONHOME\n')
             frun.write('unset PYTHONPATH\n')
