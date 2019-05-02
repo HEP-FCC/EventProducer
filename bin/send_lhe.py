@@ -84,7 +84,6 @@ class send_lhe():
             frun.write('unset LD_LIBRARY_PATH\n')
             frun.write('unset PYTHONHOME\n')
             frun.write('unset PYTHONPATH\n')
-            frun.write('source /cvmfs/fcc.cern.ch/sw/views/releases/externals/94.0.0/x86_64-slc6-gcc62-opt/setup.sh')            
             frun.write('mkdir job%s_%s\n'%(uid,self.process))
             frun.write('cd job%s_%s\n'%(uid,self.process))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
