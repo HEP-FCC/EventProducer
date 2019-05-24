@@ -55,13 +55,13 @@ fccconfig='PythiaDelphes_config_v02.py'
 
 ##base dir of FCCSW
 ##fccsw_dir='/cvmfs/fcc.cern.ch/sw/0.8.2/'
-fccsw_dir='/cvmfs/fcc.cern.ch/sw/views/releases/externals/94.0.0/x86_64-slc6-gcc62-opt/'
+fccsw_dir='/cvmfs/fcc.cern.ch/sw/views/releases/externals/94.2.0/x86_64-centos7-gcc62-opt/'
 ##init script for FCCSW
 #stack=fccsw_dir+'init_fcc_stack.sh'
 stack=fccsw_dir+'setup.sh'
 ##FCCSW dir
 #fccsw=fccsw_dir+'fccsw/0.8.2/x86_64-slc6-gcc62-opt/'
-fccsw=fccsw_dir
+fccsw='/afs/cern.ch/work/v/vavolkl/public/fcc.cern.ch/sw/fccsw/v0.10/x86_64-centos7-gcc62-opt/'
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={
@@ -1017,8 +1017,8 @@ gridpacklist = {
 'mg_pp_vbs_wwss_kw_150_LL':['','inclusive','','0.1052','1.0','1.0'],
 
 # bbtautau
-'mg_pp_bbtata_QCDQED':['','inclusive','75.61','','1.0','1.0'],
-'mg_pp_bbtata_QED':['','inclusive','0.5519','','1.0','1.0'],
+'mg_pp_bbtata_QCDQED':['','inclusive','','75.61','1.0','1.0'],
+'mg_pp_bbtata_QED':['','inclusive','','0.5519','1.0','1.0'],
 
 
 #FCNC top
