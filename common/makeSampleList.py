@@ -68,7 +68,10 @@ class makeSampleList():
            
             if any(f[0].replace('.lhe.gz','') in s[0] for s in yreco['merge']['outfiles']):
                 nlhe+=int(f[1])
-                heppyFile.write("           'root://eospublic.cern.ch/{}/{}',\n".format(yreco['merge']['outdir'],f[0].replace('.lhe.gz','.root')))
+                if yreco['merge']['outdir'][-1]!='/':
+                    heppyFile.write("           'root://eospublic.cern.ch/{}/{}',\n".format(yreco['merge']['outdir'],f[0].replace('.lhe.gz','.root')))
+                else:
+                    heppyFile.write("           'root://eospublic.cern.ch/{}{}',\n".format(yreco['merge']['outdir'],f[0].replace('.lhe.gz','.root')))
 
 
         heppyFile.write(']\n')
@@ -114,7 +117,10 @@ class makeSampleList():
 
        nmatched+= int(yreco['merge']['nevents'])
        for f in yreco['merge']['outfiles']:
-           heppyFile.write("           'root://eospublic.cern.ch/{}/{}',\n".format(yreco['merge']['outdir'],f[0]))
+           if yreco['merge']['outdir'][-1]!='/':
+               heppyFile.write("           'root://eospublic.cern.ch/{}/{}',\n".format(yreco['merge']['outdir'],f[0]))
+           else: 
+               heppyFile.write("           'root://eospublic.cern.ch/{}{}',\n".format(yreco['merge']['outdir'],f[0]))
 
        heppyFile.write(']\n')
        heppyFile.write(')\n')
@@ -149,6 +155,7 @@ class makeSampleList():
         heppyFile.write('\n')
 
         # parse param file
+        infile=None
         with open(self.para.module_name) as f:
             infile = f.readlines()
 
@@ -163,6 +170,7 @@ class makeSampleList():
                 print 'no merged yaml for process %s continue'%l
                 continue
 
+            #if process!='mgp8_pp_z0123j_4f_HT_5000_100000':continue
             print ''
             print '------ ', process, '-------------'
             print ''
@@ -203,7 +211,9 @@ class makeSampleList():
                 print 'self.para.gridpacklist[processhad][3]   ',self.para.gridpacklist[processhad][3]
                 print 'self.para.gridpacklist[processhad][4]   ',self.para.gridpacklist[processhad][4]
                 xsec = float(self.para.gridpacklist[processhad][3])
-                kf = float(self.para.gridpacklist[processhad][4])
+                kf=1
+                if self.para.gridpacklist[processhad][4]!='':
+                    kf = float(self.para.gridpacklist[processhad][4])
                 matchingEff = self.addEntry(process, yamldir_lhe, yaml_reco, xsec, kf, heppyFile, procDict)
                 # parse new param file
                 with open(self.para.module_name) as f:
@@ -212,11 +222,14 @@ class makeSampleList():
                     for line in xrange(len(lines)):
                         if 'gridpacklist' in str(lines[line]): isgp=True
                         if isgp==False: continue
-                        if process == lines[line].rsplit(':', 1)[0].replace("'", ""):
+                        if processhad == lines[line].rsplit(':', 1)[0].replace("'", ""):
                             ll = ast.literal_eval(lines[line].rsplit(':', 1)[1][:-2])
-                            print 'll   ',ll
-                            infile[line] = "'{}':['{}','{}','{}','{}','{}','{}'],\n".format(process, ll[0],ll[1],ll[2],ll[3],ll[4], matchingEff)
-
+                            print 'll   : ',ll
+                            print 'line : ',line
+                            print 'phad : ',processhad
+                            print 'meff : ',matchingEff
+                            infile[line] = "'{}':['{}','{}','{}','{}','{}','{}'],\n".format(processhad, ll[0],ll[1],ll[2],ll[3],ll[4], matchingEff)
+                            print 'new line ',infile[line]
                 with open("tmp.py", "w") as f1:
                    f1.writelines(infile)
 
