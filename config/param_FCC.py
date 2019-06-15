@@ -28,7 +28,7 @@ lhe_dir     = '/eos/experiment/fcc/hh/generation/lhe/'
 lhe_ext     ='.lhe.gz'
 
 ##FCC versions
-fcc_versions=['fcc_v01', 'fcc_v02','fcc_v02_ATLASgran', 'cms']
+fcc_versions=['fcc_v01', 'fcc_v02','fcc_v02_ATLASgran', 'fcc_v03','cms']
 
 ##eos directory for FCCSW pythia delphes files
 delphes_dir = '/eos/experiment/fcc/hh/generation/DelphesEvents/'
@@ -418,13 +418,21 @@ decaylist = {
 'mg_pp_z0123j_4f':['zll','ztautau'],
 'mg_pp_w0123j_4f':['wlv'],
 'mg_pp_ttz_5f':['znunu', 'zbb'],
-'mg_pp_hh_lambda050_5f':['haa'],
+'mg_pp_hh_lambda050_5f':['haa','htautau'],
 'mg_pp_hh_lambda090_5f':['haa','htautau'],
-'mg_pp_hh_lambda095_5f':['haa'],
+'mg_pp_hh_lambda095_5f':['haa','htautau'],
+'mg_pp_hh_lambda096_5f':['haa','htautau'],
+'mg_pp_hh_lambda097_5f':['haa','htautau'],
+'mg_pp_hh_lambda098_5f':['haa','htautau'],
+'mg_pp_hh_lambda099_5f':['haa','htautau'],
 'mg_pp_hh_lambda100_5f':['haa','htautau'],
-'mg_pp_hh_lambda105_5f':['haa'],
+'mg_pp_hh_lambda101_5f':['haa','htautau'],
+'mg_pp_hh_lambda102_5f':['haa','htautau'],
+'mg_pp_hh_lambda103_5f':['haa','htautau'],
+'mg_pp_hh_lambda104_5f':['haa','htautau'],
+'mg_pp_hh_lambda105_5f':['haa','htautau'],
 'mg_pp_hh_lambda110_5f':['haa','htautau'],
-'mg_pp_hh_lambda150_5f':['haa'],
+'mg_pp_hh_lambda150_5f':['haa','htautau'],
 
 'mg_pp_hhj_lambda090_5f':['hhbbbb'],
 'mg_pp_hhj_lambda095_5f':['hhbbbb'],
@@ -433,6 +441,7 @@ decaylist = {
 'mg_pp_hhj_lambda110_5f':['hhbbbb'],
 'mg_pp_hhj_lambda150_5f':['hhbbbb'],
 'mg_pp_hhj_lambda050_5f':['hhbbbb'],
+
 'mg_pp_wz012j_4f':['wzlllv'],
 'mg_pp_ZjjVbs_4f':['ztautau'],
 
@@ -889,29 +898,24 @@ gridpacklist = {
 'mg_pp_hh_lambda-100_5f':['HH, H->bb, H undec., kl = -1.000','','','5.27460898164','1.0','1.0'],
 'mg_pp_hh_lambda-050_5f':['HH, H->bb, H undec., kl = -0.500','','','4.01172555484','1.0','1.0'],
 'mg_pp_hh_lambda000_5f':['HH, H->bb, H undec., kl = 0.000','','','2.94830291564','1.0','1.0'],
-'mg_pp_hh_lambda050_5f':['HH, H->bb, H undec., kl = 0.500','','','2.08434106402','1.0','1.0'],
-'mg_pp_hh_lambda075_5f':['HH, H->bb, H undec., kl = 0.750','','','1.72715793356','1.0','1.0'],
-'mg_pp_hh_lambda080_5f':['HH, H->bb, H undec., kl = 0.800','','','1.6617051311','1.0','1.0'],
-'mg_pp_hh_lambda085_5f':['HH, H->bb, H undec., kl = 0.850','','','1.59824693651','1.0','1.0'],
-'mg_pp_hh_lambda087_5f':['HH, H->bb, H undec., kl = 0.875','','','1.56726581717','1.0','1.0'],
-'mg_pp_hh_lambda090_5f':['HH, H->bb, H undec., kl = 0.900','','','1.5367833498','1.0','1.0'],
-'mg_pp_hh_lambda092_5f':['HH, H->bb, H undec., kl = 0.925','','','1.50679953439','1.0','1.0'],
-'mg_pp_hh_lambda095_5f':['HH, H->bb, H undec., kl = 0.950','','','1.47731437096','1.0','1.0'],
-'mg_pp_hh_lambda097_5f':['HH, H->bb, H undec., kl = 0.975','','','1.4483278595','1.0','1.0'],
-'mg_pp_hh_lambda100_5f':['HH, H->bb, H undec., kl = 1.000','','','1.41984','1.0','1.0'],
-'mg_pp_hh_lambda102_5f':['HH, H->bb, H undec., kl = 1.025','','','1.39185079247','1.0','1.0'],
-'mg_pp_hh_lambda105_5f':['HH, H->bb, H undec., kl = 1.050','','','1.36436023692','1.0','1.0'],
-'mg_pp_hh_lambda107_5f':['HH, H->bb, H undec., kl = 1.075','','','1.33736833333','1.0','1.0'],
-'mg_pp_hh_lambda110_5f':['HH, H->bb, H undec., kl = 1.100','','','1.31087508171','1.0','1.0'],
-'mg_pp_hh_lambda112_5f':['HH, H->bb, H undec., kl = 1.125','','','1.28488048206','1.0','1.0'],
-'mg_pp_hh_lambda115_5f':['HH, H->bb, H undec., kl = 1.150','','','1.25938453437','1.0','1.0'],
-'mg_pp_hh_lambda120_5f':['HH, H->bb, H undec., kl = 1.200','','','1.20988859492','1.0','1.0'],
-'mg_pp_hh_lambda125_5f':['HH, H->bb, H undec., kl = 1.250','','','1.16238726334','1.0','1.0'],
-'mg_pp_hh_lambda150_5f':['HH, H->bb, H undec., kl = 1.500','','','0.954799723568','1.0','1.0'],
+'mg_pp_hh_lambda050_5f':['HH, H->bb, H undec., kl = 0.50','','','2.09561','1.0','1.0'],
+'mg_pp_hh_lambda090_5f':['HH, H->bb, H undec., kl = 0.90','','','1.54509','1.0','1.0'],
+'mg_pp_hh_lambda095_5f':['HH, H->bb, H undec., kl = 0.95','','','1.48530','1.0','1.0'],
+'mg_pp_hh_lambda096_5f':['HH, H->bb, H undec., kl = 0.96','','','1.47359','1.0','1.0'],
+'mg_pp_hh_lambda097_5f':['HH, H->bb, H undec., kl = 0.97','','','1.46195','1.0','1.0'],
+'mg_pp_hh_lambda098_5f':['HH, H->bb, H undec., kl = 0.98','','','1.45039','1.0','1.0'],
+'mg_pp_hh_lambda099_5f':['HH, H->bb, H undec., kl = 0.99','','','1.43891','1.0','1.0'],
+'mg_pp_hh_lambda100_5f':['HH, H->bb, H undec., kl = 1.00','','','1.42752','1.0','1.0'],
+'mg_pp_hh_lambda101_5f':['HH, H->bb, H undec., kl = 1.01','','','1.41620','1.0','1.0'],
+'mg_pp_hh_lambda102_5f':['HH, H->bb, H undec., kl = 1.02','','','1.40497','1.0','1.0'],
+'mg_pp_hh_lambda103_5f':['HH, H->bb, H undec., kl = 1.03','','','1.39381','1.0','1.0'],
+'mg_pp_hh_lambda104_5f':['HH, H->bb, H undec., kl = 1.04','','','1.38273','1.0','1.0'],
+'mg_pp_hh_lambda105_5f':['HH, H->bb, H undec., kl = 1.05','','','1.37174','1.0','1.0'],
+'mg_pp_hh_lambda110_5f':['HH, H->bb, H undec., kl = 1.10','','','1.31796','1.0','1.0'],
+'mg_pp_hh_lambda150_5f':['HH, H->bb, H undec., kl = 1.50','','','0.95996','1.0','1.0'],
 'mg_pp_hh_lambda200_5f':['HH, H->bb, H undec., kl = 2.000','','','0.689220234727','1.0','1.0'],
 'mg_pp_hh_lambda250_5f':['HH, H->bb, H undec., kl = 2.500','','','0.623101533476','1.0','1.0'],
 'mg_pp_hh_lambda300_5f':['HH, H->bb, H undec., kl = 3.000','','','0.756443619817','1.0','1.0'],
-
 
 'mg_pp_hhj_lambda050_5f':['HH + 1 jet, pT(HH) > 200, kl = 0.50','inclusive','','0.08285','1.95','1.0'],
 'mg_pp_hhj_lambda090_5f':['HH + 1 jet, pT(HH) > 200, kl = 0.90','inclusive','','0.06107','1.95','1.0'],
