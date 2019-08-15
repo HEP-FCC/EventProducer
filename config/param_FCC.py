@@ -28,7 +28,7 @@ lhe_dir     = '/eos/experiment/fcc/hh/generation/lhe/'
 lhe_ext     ='.lhe.gz'
 
 ##FCC versions
-fcc_versions=['fcc_v01', 'fcc_v02','fcc_v02_ATLASgran', 'cms']
+fcc_versions=['fcc_v01', 'fcc_v02']
 
 ##eos directory for FCCSW pythia delphes files
 delphes_dir = '/eos/experiment/fcc/hh/generation/DelphesEvents/'
