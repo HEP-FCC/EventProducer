@@ -115,6 +115,7 @@ class send_lhep8():
 
         acctype='FCC'
         if 'HELHC' in self.para.module_name:  acctype='HELHC'
+        elif 'FCCee' in self.para.module_name:  acctype='FCCee'
 
         logdir=Dir+"/BatchOutputs/%s/%s/%s/"%(acctype,self.version,processp8)
         if not ut.dir_exist(logdir):
@@ -193,7 +194,7 @@ class send_lhep8():
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(tmpf['processing']['out']))
             frun.write('gunzip -c %s > events.lhe\n'%tmpf['processing']['out'].split('/')[-1])          
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_base))
-            if 'fcc' in self.version:
+            if 'fcc' in self.version and 'FCCee' not in self.para.module_name:
                 frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mmr))
                 frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mr))
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s config.py \n'%(fccconfig))

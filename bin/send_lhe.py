@@ -40,6 +40,7 @@ class send_lhe():
 
         acctype='FCC'
         if 'HELHC' in self.para.module_name:  acctype='HELHC'
+        elif 'FCCee' in self.para.module_name:  acctype='FCCee'
 
         logdir=Dir+"/BatchOutputs/%s/lhe/%s"%(acctype,self.process)
         if not ut.dir_exist(logdir):

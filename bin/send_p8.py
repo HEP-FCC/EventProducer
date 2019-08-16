@@ -43,6 +43,7 @@ class send_p8():
 
         acctype='FCC'
         if 'HELHC' in self.para.module_name:  acctype='HELHC'
+        elif 'FCCee' in self.para.module_name:  acctype='FCCee'
 
         logdir=Dir+"/BatchOutputs/%s/%s/%s/"%(acctype,self.version,self.process)
         if not ut.dir_exist(logdir):
@@ -53,15 +54,18 @@ class send_p8():
             os.system("mkdir -p %s"%yamldir)
 
 
-        delphescards_mmr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mmr)
-        if ut.file_exist(delphescards_mmr)==False and self.version != 'cms' and 'helhc' not in self.version:
-            print 'delphes card does not exist: ',delphescards_mmr,' , exit'
-            sys.exit(3)
+        delphescards_mmr=''
+        delphescards_mr=''
+        if 'FCCee' not in self.para.module_name:
+            delphescards_mmr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mmr)
+            if ut.file_exist(delphescards_mmr)==False and self.version != 'cms' and 'helhc' not in self.version:
+                print 'delphes card does not exist: ',delphescards_mmr,' , exit'
+                sys.exit(3)
 
-        delphescards_mr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mr)
-        if ut.file_exist(delphescards_mr)==False and self.version != 'cms' and 'helhc' not in self.version:
-            print 'delphes card does not exist: ',delphescards_mr,' , exit'
-            sys.exit(3)
+            delphescards_mr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mr)
+            if ut.file_exist(delphescards_mr)==False and self.version != 'cms' and 'helhc' not in self.version:
+                print 'delphes card does not exist: ',delphescards_mr,' , exit'
+                sys.exit(3)
 
         delphescards_base = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_base)
         if ut.file_exist(delphescards_base)==False:
@@ -120,7 +124,7 @@ class send_p8():
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('mkdir -p %s/%s\n'%(outdir,self.process))
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_base))
-            if 'fcc' in self.version:
+            if 'fcc' in self.version and 'FCCee' not in self.para.module_name:
                 frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mmr))
                 frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mr))
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s config.py \n'%(fccconfig))
