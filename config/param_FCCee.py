@@ -6,12 +6,12 @@ eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size=1312594
 
 #stat
-lhe_stat="/afs/cern.ch/user/h/helsens/www/data/statlhe_FCC.html"
-delphes_stat="/afs/cern.ch/user/h/helsens/www/data/statdelphesVERSION_FCC.html"
+lhe_stat="/afs/cern.ch/user/h/helsens/www/data/FCCee/statlhe.html"
+delphes_stat="/afs/cern.ch/user/h/helsens/www/data/FCCee/statdelphesVERSION.html"
 
 #web
-lhe_web="/afs/cern.ch/user/h/helsens/www/data/LHEevents_FCCee.txt"
-delphes_web="/afs/cern.ch/user/h/helsens/www/data/Delphesevents_VERSION.txt"
+lhe_web="/afs/cern.ch/user/h/helsens/www/data/FCCee/LHEevents.txt"
+delphes_web="/afs/cern.ch/user/h/helsens/www/data/FCCee/Delphesevents_VERSION.txt"
 
 #yaml directory
 yamldir='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCCee/'
@@ -47,7 +47,7 @@ fccconfig_dir    = '/eos/experiment/fcc/ee/utils/config/'
 ##delphes base card
 delphescard_base='card.tcl'
 ##FCC config script name
-fccconfig='PythiaDelphes_config_v02.py'
+fccconfig='PythiaDelphes_config_v01.py'
 
 ##base dir of FCCSW
 ##fccsw_dir='/cvmfs/fcc.cern.ch/sw/0.8.2/'

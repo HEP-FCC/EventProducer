@@ -6,12 +6,12 @@ eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size=1312594
 
 #stat
-lhe_stat="/afs/cern.ch/user/h/helsens/www/data/statlhe_FCC.html"
-delphes_stat="/afs/cern.ch/user/h/helsens/www/data/statdelphesVERSION_FCC.html"
+lhe_stat="/afs/cern.ch/user/h/helsens/www/data/FCChh/statlhe.html"
+delphes_stat="/afs/cern.ch/user/h/helsens/www/data/FCChh/statdelphesVERSION.html"
 
 #web
-lhe_web="/afs/cern.ch/user/h/helsens/www/data/LHEevents.txt"
-delphes_web="/afs/cern.ch/user/h/helsens/www/data/Delphesevents_VERSION.txt"
+lhe_web="/afs/cern.ch/user/h/helsens/www/data/FCChh/LHEevents.txt"
+delphes_web="/afs/cern.ch/user/h/helsens/www/data/FCChh/Delphesevents_VERSION.txt"
 
 #yaml directory
 yamldir='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCC/'
@@ -445,6 +445,7 @@ decaylist = {
 'mg_pp_wz012j_4f':['wzlllv'],
 'mg_pp_ZjjVbs_4f':['ztautau'],
 
+'mg_pp_z0123j_4f_HT_5000_100000':['znunu'],
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
 'mg_pp_stopstop_5f_mStop_1p0TeV':['mChi0p5TeV'],
