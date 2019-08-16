@@ -6,8 +6,8 @@ eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size=1312594
 
 #stat
-lhe_stat="/afs/cern.ch/user/h/helsens/www/data/statlhe_HELHC.html"
-delphes_stat="/afs/cern.ch/user/h/helsens/www/data/statdelphesVERSION_HELHC.html"
+lhe_stat="/afs/cern.ch/user/h/helsens/www/data/HELHC/statlhe.html"
+delphes_stat="/afs/cern.ch/user/h/helsens/www/data/HELHC/statdelphesVERSION_HELHC.html"
 
 #web
 lhe_web="/afs/cern.ch/user/h/helsens/www/data/LHEevents_helhc.txt"

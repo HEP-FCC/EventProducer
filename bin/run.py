@@ -15,8 +15,11 @@
 #python bin/run.py --HELHC --reco --clean --version helhc_v01 -p p8_pp_Zprime_10TeV_ttbar
 
 #python bin/run.py --FCC --LHE --send --version fcc_v02 -p mg_pp_ee_test --typelhe mg --mg5card pp_hh.mg5 --model loop_sm_hh.tar -N 2 -n 10000 -q 8nh --lsf
-
 #python bin/run.py --FCC --LHE --send --condor -p mg_pp_tttt_5f -n 10000 -N 10 -q microcentury --typelhe gp
+
+
+#python bin/run.py --FCCee --reco --send -p p8_ee_ZH_ecm240 -n 10000 --type p8 -N 1 --condor -q longlunch --version fcc_v01
+
 
 import sys
 
@@ -33,6 +36,7 @@ if __name__=="__main__":
     accTypeGroup = parser.add_mutually_exclusive_group(required = True) # Type of events to generate
     accTypeGroup.add_argument("--FCC", action='store_true', help="100TeV FCC machine")
     accTypeGroup.add_argument("--HELHC", action='store_true', help="27TeV HE-LHC")
+    accTypeGroup.add_argument("--FCCee", action='store_true', help="FCC-ee machine")
 
     jobTypeGroup = parser.add_mutually_exclusive_group(required = True) # Type of events to generate
     jobTypeGroup.add_argument("--check", action='store_true', help="run the jobchecker")
@@ -85,6 +89,9 @@ if __name__=="__main__":
     elif args.HELHC:
         import EventProducer.config.param_HELHC as para
         print 'import HE-LHC config'
+    elif args.FCCee:
+        import EventProducer.config.param_FCCee as para
+        print 'import FCC-ee config'
     else:
         print 'problem, need to specify --FCC or --HELHC'
         sys.exit(3)
