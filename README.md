@@ -1,7 +1,7 @@
 EventProducer
 =============
 
-This package is used to centrally produced events for FCC-hh, HE-LHC at a center of mass of 100 and 27TeV respectively. Any other future collider can also be supported by this framework. 
+This package is used to centrally produced events for FCC-hh, HE-LHC at a center of mass of 100 and 27TeV respectively and for FCC-ee. Any other future collider can also be supported by this framework. 
 In order to use it, please get in contact with clement.helsens@cern.ch as running this package requieres specific rights.
 
 
@@ -50,13 +50,13 @@ To send jobs starting from a gridpack that does not exist but that you have prod
 If the gridpack already exists or has been properly added to the ```param```, then simply run:
 
 ```
-python bin/run.py --FCC/HELHC --LHE --send --lsf --typelhe gp -p <process> -n <nevents> -N <njobs> -q <queue>
+python bin/run.py --FCC/HELHC --LHE --send --condor --typelhe gp -p <process> -n <nevents> -N <njobs> -q <queue>
 ```
 
-example to send 10 jobs of 10 000 events of di-electron events with Mll> 2TeV using 1nh queue of lsf for HELHC:
+example to send 10 jobs of 10 000 events of di-electron events with Mll> 2TeV using longlunch queue of HTCondor for HELHC:
 
 ```
-python bin/run.py --HELHC --LHE --send --lsf --typelhe gp -p mg_pp_ee_lo -n 10000 -N 10 -q 1nh
+python bin/run.py --HELHC --LHE --send --condor --typelhe gp -p mg_pp_ee_lo -n 10000 -N 10 -q longlunch
 ```
 
 
@@ -70,7 +70,7 @@ To send jobs directly from MG5, you need a configuration file (see in ```example
 As before, you need to add the process to the ```config/param_FCC.py``` file. Thn you can run with the following command:
 
 ```
-python bin/run.py --FCC --LHE --send --lsf --typelhe mg -p mg_pp_hh_test --mg5card mg5/examples/pp_hh.mg5 --model mg5/models/loop_sm_hh.tar -N 2 -n 10000 -q 8nh --lsf  --memory 16000. --disk 8000.
+python bin/run.py --FCC --LHE --send --condor --typelhe mg -p mg_pp_hh_test --mg5card mg5/examples/pp_hh.mg5 --model mg5/models/loop_sm_hh.tar -N 2 -n 10000 -q workday  --memory 16000. --disk 8000.
 ```
 
 
@@ -89,13 +89,13 @@ Generate FCCSW files from the LHE and decay with Pyhtia8
 1. Run jobs:
 
 ```
-python bin/run.py --FCC/HELHC --reco --send --type lhep8 --lsf -p <process> -N <njobs> -q <queue> --version <version>
+python bin/run.py --FCC/HELHC --reco --send --type lhep8 --condor -p <process> -N <njobs> -q <queue> --version <version>
 ```
 
 Example produce 10 jobs of FCC Delphes events of ttz decaying the Z to neutrinos. :
 
 ```
-python bin/run.py --FCC --reco --send --type lhep8 --lsf -p mg_pp_ttz_5f -N 10 -q 8nh --version fcc_v02
+python bin/run.py --FCC --reco --send --type lhep8 --condor -p mg_pp_ttz_5f -N 10 -q workday --version fcc_v02
 ``` 
 
 Please note that the decay in pythia is optional, and that there is no need to specify the number of events to run on as it will by default run over all the events present in the LHE file
@@ -106,19 +106,25 @@ Generate FCCSW files from Pythia8
 The Pythia8 manual is available here: http://home.thep.lu.se/~torbjorn/pythia81html/Welcome.html
 
 1. Define process in pythialist in the ```param``` corresponding to your job flavour
-1. Write Pythia8 process card and put it in: ```/eos/experiment/fcc/hh/utils/pythiacards/``` or ```/eos/experiment/fcc/helhc/utils/pythiacards/```
+1. Write Pythia8 process card and put it in: ```/eos/experiment/fcc/hh/utils/pythiacards/``` or ```/eos/experiment/fcc/helhc/utils/pythiacards/``` or ```/eos/experiment/fcc/ee/utils/pythiacards/```
 
 exemple ```p8_pp_Zprime_10TeV_ttbar.cmd```
 
 1. send jobs
 
 ```
-python bin/run.py --FCC/HELHC --reco --send --type p8 --lsf -p <process> -n <nevents> -N <njobs> -q <queue> --version <version>
+python bin/run.py --FCC/HELHC/FCCee --reco --send --type p8 --condor -p <process> -n <nevents> -N <njobs> -q <queue> --version <version>
 ```
-Example produce 1 job of 10000 events of Z' to ttbar
+Example produce 1 job of 10000 events of Z' to ttbar at HE-LHC
 
 ```
-python bin/run.py --HELHC --reco --send --type p8 --lsf -p p8_pp_Zprime_10TeV_ttbar -n 10000 -N 1 --lsf -q 1nh --version helhc_v01
+python bin/run.py --HELHC --reco --send --type p8 --condor -p p8_pp_Zprime_10TeV_ttbar -n 10000 -N 1 -q workday --version helhc_v01
+```
+
+Example produce 1 job of 10000 events of ZH at FCC-ee 240GeV
+
+```
+python bin/run.py --FCCee --reco --send -p p8_ee_ZH_ecm240 -n 10000 --type p8 -N 1 --condor -q longlunch --version fcc_v01
 ```
 
 Expert mode
