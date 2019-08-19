@@ -62,7 +62,7 @@ stack=fccsw_dir+'setup.sh'
 ##FCCSW dir
 #fccsw=fccsw_dir+'fccsw/0.8.2/x86_64-slc6-gcc62-opt/'
 fccsw='/afs/cern.ch/work/v/vavolkl/public/fcc.cern.ch/sw/fccsw/v0.10/x86_64-centos7-gcc62-opt/'
-
+fccsw='/cvmfs/fcc.cern.ch/sw/releases/fccsw/0.10/x86_64-centos7-gcc62-opt/'
 #list of processes only with Pythia, meaning no LHE
 pythialist={
 'dummy':['','','','','',''],
@@ -445,7 +445,7 @@ decaylist = {
 'mg_pp_wz012j_4f':['wzlllv'],
 'mg_pp_ZjjVbs_4f':['ztautau'],
 
-'mg_pp_z0123j_4f_HT_5000_100000':['znunu'],
+'mg_pp_z0123j_4f':['znunu'],
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
 'mg_pp_stopstop_5f_mStop_1p0TeV':['mChi0p5TeV'],
