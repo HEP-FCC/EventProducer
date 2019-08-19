@@ -7,11 +7,11 @@ eostest_size=1312594
 
 #stat
 lhe_stat="/afs/cern.ch/user/h/helsens/www/data/HELHC/statlhe.html"
-delphes_stat="/afs/cern.ch/user/h/helsens/www/data/HELHC/statdelphesVERSION_HELHC.html"
+delphes_stat="/afs/cern.ch/user/h/helsens/www/data/HELHC/statdelphesVERSION.html"
 
 #web
-lhe_web="/afs/cern.ch/user/h/helsens/www/data/LHEevents_helhc.txt"
-delphes_web="/afs/cern.ch/user/h/helsens/www/data/Delphesevents_VERSION.txt"
+lhe_web="/afs/cern.ch/user/h/helsens/www/data/HELHC/LHEevents.txt"
+delphes_web="/afs/cern.ch/user/h/helsens/www/data/HELHC/Delphesevents_VERSION.txt"
 
 #yaml directory
 yamldir='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/HELHC/'
