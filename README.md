@@ -95,7 +95,7 @@ python bin/run.py --FCC/HELHC --reco --send --type lhep8 --condor -p <process> -
 Example produce 10 jobs of FCC Delphes events of ttz decaying the Z to neutrinos. :
 
 ```
-python bin/run.py --FCC --reco --send --type lhep8 --condor -p mg_pp_ttz_5f -N 10 -q workday --version fcc_v02
+python bin/run.py --FCC --reco --send --type lhep8 --condor -p mg_pp_ttz_5f -N 10 -q workday --version fcc_v02 --decay znunu
 ``` 
 
 Please note that the decay in pythia is optional, and that there is no need to specify the number of events to run on as it will by default run over all the events present in the LHE file

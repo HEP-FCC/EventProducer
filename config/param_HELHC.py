@@ -7,11 +7,11 @@ eostest_size=1312594
 
 #stat
 lhe_stat="/afs/cern.ch/user/h/helsens/www/data/HELHC/statlhe.html"
-delphes_stat="/afs/cern.ch/user/h/helsens/www/data/HELHC/statdelphesVERSION_HELHC.html"
+delphes_stat="/afs/cern.ch/user/h/helsens/www/data/HELHC/statdelphesVERSION.html"
 
 #web
-lhe_web="/afs/cern.ch/user/h/helsens/www/data/LHEevents_helhc.txt"
-delphes_web="/afs/cern.ch/user/h/helsens/www/data/Delphesevents_VERSION.txt"
+lhe_web="/afs/cern.ch/user/h/helsens/www/data/HELHC/LHEevents.txt"
+delphes_web="/afs/cern.ch/user/h/helsens/www/data/HELHC/Delphesevents_VERSION.txt"
 
 #yaml directory
 yamldir='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/HELHC/'
@@ -62,7 +62,7 @@ fccsw=fccsw_dir+'fccsw/0.8.2/x86_64-slc6-gcc62-opt/'
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={
-'dummy':['','','','','',''],
+'dummy':['1','1','1','1','1','1'],
 'p8_pp_ExcitedQ_2TeV_qq':['2TeV Excited quark Lambda 2TeV','','','186.46','1.0','1.0'],
 'p8_pp_ExcitedQ_4TeV_qq':['4TeV Excited quark Lambda 4TeV','','','5.30825','1.0','1.0'],
 'p8_pp_ExcitedQ_6TeV_qq':['6TeV Excited quark Lambda 6TeV','','','0.412825','1.0','1.0'],
@@ -367,7 +367,7 @@ branching_ratios = {
 ## description/comment/matching parameters/cross section/kfactor/matching efficiency
 
 gridpacklist = {
-'dummy':['','','','','',''],
+'dummy':['1','1','1','1','1','1'],
 'mg_pp_ee_lo':['di-electron','pT(e)>1TeV','','0.000621','1.0','1.0'],
 'mg_pp_ee_5f_HT_500_1000':['ee','500 < HT < 1000','no matching','0.1267','2.00','1.0'],
 'mg_pp_ee_5f_HT_1000_2000':['ee','1000 < HT < 2000','no matching','0.01034','2.00','1.0'],

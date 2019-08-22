@@ -55,9 +55,12 @@ fccsw_dir='/cvmfs/fcc.cern.ch/sw/views/releases/externals/94.2.0/x86_64-centos7-
 ##init script for FCCSW
 #stack=fccsw_dir+'init_fcc_stack.sh'
 stack=fccsw_dir+'setup.sh'
+stack='/cvmfs/fcc.cern.ch/sw/views/releases/externals/94.3.0/x86_64-centos7-gcc62-opt/setup.sh'
+
 ##FCCSW dir
 #fccsw=fccsw_dir+'fccsw/0.8.2/x86_64-slc6-gcc62-opt/'
 fccsw='/afs/cern.ch/work/v/vavolkl/public/fcc.cern.ch/sw/fccsw/v0.10/x86_64-centos7-gcc62-opt/'
+fccsw='/afs/cern.ch/user/h/helsens/FCCsoft/FCCSW/'
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={
