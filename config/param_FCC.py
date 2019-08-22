@@ -65,7 +65,7 @@ fccsw='/afs/cern.ch/work/v/vavolkl/public/fcc.cern.ch/sw/fccsw/v0.10/x86_64-cent
 fccsw='/cvmfs/fcc.cern.ch/sw/releases/fccsw/0.10/x86_64-centos7-gcc62-opt/'
 #list of processes only with Pythia, meaning no LHE
 pythialist={
-'dummy':['','','','','',''],
+'dummy':['1','1','1','1','1','1'],
 'p8_pp_ExcitedQ_10TeV_qq':['10TeV Excited quark Lambda 10TeV','','','2.368','1.0','1.0'],
 'p8_pp_ExcitedQ_15TeV_qq':['15TeV Excited quark Lambda 15TeV','','','2.746e-1','1.0','1.0'],
 'p8_pp_ExcitedQ_20TeV_qq':['20TeV Excited quark Lambda 20TeV','','','4.783e-2','1.0','1.0'],
@@ -524,7 +524,7 @@ branching_ratios = {
 ## description/comment/matching parameters/cross section/kfactor/matching efficiency
 
 gridpacklist = {
-'dummy':['','','','','',''],
+'dummy':['1','1','1','1','1','1'],
 'mg_pp_w012j_5f':['w + 0,1,2 jets 5 flavor scheme','inclusive','xqcut = 30, qCut = 45','1.4995e06','1.0','0.724'],
 'mg_pp_z012j_5f':['z + 0,1,2 jets 5 flavor scheme','inclusive','xqcut = 30, qCut = 45','5.1839e05','1.0','0.691'],
 'mg_pp_jjaa01j_5f':['dijet diphoton + 0,1 jets 5 flavor scheme','','xqcut = 20, qCut = 30','55.72','1.0','0.236'],
