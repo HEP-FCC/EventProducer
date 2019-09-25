@@ -18,7 +18,7 @@
 #python bin/run.py --FCC --LHE --send --condor -p mg_pp_tttt_5f -n 10000 -N 10 -q microcentury --typelhe gp
 
 
-#python bin/run.py --FCCee --reco --send -p p8_ee_ZH_ecm240 -n 10000 --type p8 -N 1 --condor -q longlunch --version fcc_v01
+#python bin/run.py --FCCee --reco --send -p p8_ee_ZH_ecm240 -n 10000 --type p8 -N 1 --condor -q espresso --version fcc_v01
 
 
 import sys
@@ -71,7 +71,8 @@ if __name__=="__main__":
     batchGroup = parser.add_mutually_exclusive_group(required = args.send) # Where to submit jobs
     batchGroup.add_argument("--lsf", action='store_true', help="Submit with LSF")
     batchGroup.add_argument("--condor", action='store_true', help="Submit with condor")
-    
+    batchGroup.add_argument("--local", action='store_true', help="run locally (will not copy files on eos")
+
 
     mgGroup = parser.add_argument_group('mggroup')
     mgGroup.add_argument("--mg5card", type=str, help="MG5 configuration", default='card.mg5')
@@ -205,7 +206,10 @@ if __name__=="__main__":
         elif args.condor:
             print 'send to condor'
             print 'queue  ', args.queue
- 
+        elif args.local:
+            print 'run locally'
+
+
         if args.LHE:
             
             if args.typelhe == 'gp':
@@ -231,7 +235,7 @@ if __name__=="__main__":
             elif sendOpt=='p8':
                 print 'preparing to send FCCSW jobs from pythia8 directly'
                 import EventProducer.bin.send_p8 as sp8
-                sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, para, version)
+                sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, para, version)
                 sendp8.send()
 
     elif args.web:
