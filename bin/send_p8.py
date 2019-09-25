@@ -15,12 +15,13 @@ import EventProducer.common.makeyaml as my
 class send_p8():
 
 #__________________________________________________________
-    def __init__(self,njobs, events, process, islsf, iscondor, queue, para, version):
+    def __init__(self,njobs, events, process, islsf, iscondor, islocal, queue, para, version):
         self.njobs    = njobs
         self.events   = events
         self.process  = process
         self.islsf    = islsf
         self.iscondor = iscondor
+        self.islocal  = islocal
         self.queue    = queue
         self.user     = os.environ['USER']
         self.para     = para
@@ -49,9 +50,10 @@ class send_p8():
         if not ut.dir_exist(logdir):
             os.system("mkdir -p %s"%logdir)
 
-        yamldir = '%s/%s/%s'%(self.para.yamldir,self.version,self.process)
-        if not ut.dir_exist(yamldir):
-            os.system("mkdir -p %s"%yamldir)
+        if not self.islocal:
+            yamldir = '%s/%s/%s'%(self.para.yamldir,self.version,self.process)
+            if not ut.dir_exist(yamldir):
+                os.system("mkdir -p %s"%yamldir)
 
 
         delphescards_mmr=''
@@ -85,26 +87,35 @@ class send_p8():
             sys.exit(3)
 
  
-        if self.islsf==False and self.iscondor==False:
-            print "Submit issue : LSF nor CONDOR flag defined !!!"
+        if self.islsf==False and self.iscondor==False and self.islocal==False:
+            print "Submit issue : LSF nor CONDOR not Local flag defined !!!"
             sys.exit(3)
 
         condor_file_str=''
         while nbjobsSub<self.njobs:
 
             uid = ut.getuid2(self.user)
-            myyaml = my.makeyaml(yamldir, uid)
-            if not myyaml: 
-                print 'job %s already exists'%uid
-                continue
-            outfile='%s/%s/events_%s.root'%(outdir,self.process,uid)
-            if ut.file_exist(outfile):
-                print 'file %s already exist, continue'%outfile
-                continue
+            if not self.islocal:
+                myyaml = my.makeyaml(yamldir, uid)
+                if not myyaml: 
+                    print 'job %s already exists'%uid
+                    continue
+                outfile='%s/%s/events_%s.root'%(outdir,self.process,uid)
+                if ut.file_exist(outfile):
+                    print 'file %s already exist on eos, continue'%outfile
+                    continue
+
+            if  self.islocal:
+                outfile='%s/events_%s.root'%(logdir,uid)
+                if ut.file_exist(outfile):
+                    print 'file %s already locally exist, continue'%outfile
+                    continue
+
 
             frunname = 'job%s.sh'%(uid)
             frunfull = '%s/%s'%(logdir,frunname)
-
+            print 'frunname  ',frunname
+            print 'frunfull  ',frunfull
             frun = None
             try:
                 frun = open(frunfull, 'w')
@@ -122,7 +133,8 @@ class send_p8():
             frun.write('mkdir job%s_%s\n'%(uid,self.process))
             frun.write('cd job%s_%s\n'%(uid,self.process))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
-            frun.write('mkdir -p %s/%s\n'%(outdir,self.process))
+            if self.islocal==False:
+                frun.write('mkdir -p %s/%s\n'%(outdir,self.process))
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_base))
             if 'fcc' in self.version and 'FCCee' not in self.para.module_name:
                 frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mmr))
@@ -133,7 +145,8 @@ class send_p8():
             frun.write('echo "Random:seed = %s" >> card.cmd\n'%uid)
             if 'helhc' in self.version:
                 frun.write('echo " Beams:eCM = 27000." >> card.cmd\n')
-            frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%s.root --nevents=%i\n'%(self.para.fccsw,uid,self.events))
+            #frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%s.root --nevents=%i\n'%(self.para.fccsw,uid,self.events))
+            frun.write('fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%s.root --nevents=%i\n'%(uid,self.events))
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events%s.root %s\n'%(uid,outfile))
             frun.write('cd ..\n')
             frun.write('rm -rf job%s_%s\n'%(uid,self.process))
@@ -149,6 +162,11 @@ class send_p8():
             elif self.iscondor==True :
               condor_file_str+=frunfull+" "
               nbjobsSub+=1
+
+            elif self.islocal==True:
+                print 'will run locally'
+                nbjobsSub+=1
+                os.system('%s'%frunfull)
 
         if self.iscondor==True :
             # clean string
