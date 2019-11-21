@@ -94,7 +94,7 @@ class send_lhe():
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s/%s.tar.gz .\n'%(gpdir,self.process))
             frun.write('tar -zxf %s.tar.gz\n'%self.process)
             frun.write('cd process/\n')
-            frun.write('./run.sh %i %i\n'%(self.events,int(uid)))
+            frun.write('./run.sh %i %i\n'%(self.events,int(uid.lstrip('0'))))
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events_%s.lhe.gz\n'%(lhedir,self.process ,uid))
             frun.write('cd ..\n')
             frun.write('rm -rf job%s_%s\n'%(uid,self.process))

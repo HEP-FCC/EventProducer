@@ -153,10 +153,10 @@ def getuid2(user):
         print 'user not known ',user,'   exit'
         sys.exit(3)
     
-    seed = '%i%i%i%i%i%i%i%i%i'%(random.randint(0,1),
-                                 random.randint(0,9),
-                                 random.randint(0,9),
-                                 random.randint(0,9),
+    seed = '%i%i%i%i%i%i%i%i%i'%(0,
+                                 0,
+                                 0,
+                                 0,
                                  random.randint(0,9),
                                  random.randint(0,9),
                                  random.randint(0,9),
