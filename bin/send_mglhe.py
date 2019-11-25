@@ -10,7 +10,7 @@ import EventProducer.common.makeyaml as my
 class send_mglhe():
 
 #__________________________________________________________
-    def __init__(self, islsf, iscondor, mg5card, cutfile, model, para, procname, njobs, nev, queue, priority, memory, disk):
+    def __init__(self, islsf, iscondor, mg5card, cutfile, model, para, procname, njobs, nev, queue, priority, ):
         self.islsf     = islsf
         self.iscondor  = iscondor
         self.user      = os.environ['USER']
@@ -23,8 +23,6 @@ class send_mglhe():
         self.nev       =  nev
         self.queue     =  queue
         self.priority  = priority
-        self.memory    =  memory
-        self.disk      =  disk
 
 #__________________________________________________________
     def send(self):
@@ -80,12 +78,11 @@ class send_mglhe():
             seed = str(uid)
             basename =  self.procname+ '_'+seed
 
-	    cwd = os.getcwd()
-	    script = cwd + '/bin/submitMG.sh '
+            cwd = os.getcwd()
+            script = cwd + '/bin/submitMG.sh '
 
             if self.islsf==True :
               cmdBatch = 'bsub -o '+jobsdir+'/std/'+basename +'.out -e '+jobsdir+'/std/'+basename +'.err -q '+self.queue
-              cmdBatch += ' -R "rusage[mem={}:pool={}]"'.format(self.memory,self.disk)
               cmdBatch +=' -J '+basename +' "'+script + mg5card+' '+self.procname+' '+outdir+' '+seed+' '+str(self.nev)+' '+cuts+' '+model+'"'
 
               print cmdBatch
@@ -129,7 +126,6 @@ class send_mglhe():
             frun_condor.write('Error          = %s/condor_job.%s.$(ClusterId).$(ProcId).error\n'%(logdir,str(uid)))
             frun_condor.write('getenv         = True\n')
             frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
-            frun_condor.write('request_memory = %s\n'%self.memory)
 #            frun_condor.write('requirements   = ( (OpSysAndVer =?= "CentOS7") && (Machine =!= LastRemoteHost) )\n')
             frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") && (Machine =!= LastRemoteHost) )\n')
             frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')

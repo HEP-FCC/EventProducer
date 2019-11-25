@@ -54,6 +54,7 @@ if __name__=="__main__":
     sendjobGroup.add_argument('--typelhe', type=str, required = '--send' in sys.argv and '--LHE'  in sys.argv , help='type of jobs to send', choices = ['gp_mg','gp_pw','mg'])
     sendjobGroup.add_argument('-q', '--queue', type=str, default='workday', help='lxbatch queue (default: workday for HTCONDOR)', choices=['1nh','8nh','1nd','2nd','1nw','espresso','microcentury','longlunch','workday','tomorrow','testmatch','nextweek'])
     sendjobGroup.add_argument('--priority', type=str, default='group_u_FCC.local_gen', help='condor queue priority (default: group_u_FCC.local_gen)')
+    sendjobGroup.add_argument('--ncpus', type=str, default='1', help='number of CPUs (1CPU=2Gb of RAM)')
 
     ###################
     # condor queues : #
@@ -80,8 +81,6 @@ if __name__=="__main__":
     mgGroup.add_argument("--mg5card", type=str, help="MG5 configuration", default='card.mg5')
     mgGroup.add_argument("--cutfile", type=str, help="additional cuts", default='cuts.f')
     mgGroup.add_argument("--model", type=str, help="extra model", default='model.tgz')
-    mgGroup.add_argument("--memory", type=str, help="Memory", default='4000')
-    mgGroup.add_argument("--disk", type=str, help="Storage on batch", default='2000')
 
     args, _ = parser.parse_known_args()
     sendOpt = args.type
@@ -225,7 +224,7 @@ if __name__=="__main__":
 
                 print 'preparing to send lhe jobs from madgraph standalone for process {}'.format(args.process)
                 import EventProducer.bin.send_mglhe as mglhe
-                sendlhe=mglhe.send_mglhe( args.lsf, args.condor, args.mg5card, args.cutfile, args.model, para, args.process, args.numJobs, args.numEvents, args.queue, args.priority, args.memory, args.disk)
+                sendlhe=mglhe.send_mglhe( args.lsf, args.condor, args.mg5card, args.cutfile, args.model, para, args.process, args.numJobs, args.numEvents, args.queue, args.priority)
                 sendlhe.send()
             
         elif args.reco:
