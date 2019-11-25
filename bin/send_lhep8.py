@@ -15,7 +15,7 @@ import EventProducer.common.makeyaml as my
 class send_lhep8():
 
 #__________________________________________________________
-    def __init__(self,njobs, events, process, islsf, iscondor, queue, priority, para, version, decay):
+    def __init__(self,njobs, events, process, islsf, iscondor, queue, priority, ncpus, para, version, decay):
         self.njobs    = njobs
         self.events   = -1
         self.process  = process
@@ -23,6 +23,7 @@ class send_lhep8():
         self.iscondor = iscondor
         self.queue    = queue
         self.priority = priority
+        self.ncpus    = ncpus
         self.para     = para
         self.version  = version
         self.decay    = decay
@@ -244,13 +245,14 @@ class send_lhep8():
             frun_condor.write('Error          = %s/condor_job.%s.$(ClusterId).$(ProcId).error\n'%(logdir,str(jobid)))
             frun_condor.write('getenv         = True\n')
             frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
-            frun_condor.write('request_memory = 4G\n')
             frun_condor.write('requirements   = ( (OpSysAndVer =?= "CentOS7") && (Machine =!= LastRemoteHost) )\n')
 #            frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") && (Machine =!= LastRemoteHost) )\n')
             frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')
             frun_condor.write('max_retries    = 3\n')
             frun_condor.write('+JobFlavour    = "%s"\n'%self.queue)
             frun_condor.write('+AccountingGroup = "%s"\n'%self.priority)
+            frun_condor.write('RequestCpus = %s\n'%self.ncpus)
+
             frun_condor.write('queue filename matching files %s\n'%condor_file_str)
             frun_condor.close()
             #
