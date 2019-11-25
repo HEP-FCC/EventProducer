@@ -15,7 +15,7 @@ import EventProducer.common.makeyaml as my
 class send_p8():
 
 #__________________________________________________________
-    def __init__(self,njobs, events, process, islsf, iscondor, islocal, queue, para, version):
+    def __init__(self,njobs, events, process, islsf, iscondor, islocal, queue, priority, para, version):
         self.njobs    = njobs
         self.events   = events
         self.process  = process
@@ -23,6 +23,7 @@ class send_p8():
         self.iscondor = iscondor
         self.islocal  = islocal
         self.queue    = queue
+        self.priority = priority
         self.user     = os.environ['USER']
         self.para     = para
         self.version  = version
@@ -195,7 +196,7 @@ class send_p8():
             frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')
             frun_condor.write('max_retries    = 3\n')
             frun_condor.write('+JobFlavour    = "%s"\n'%self.queue)
-            frun_condor.write('+AccountingGroup = "group_u_FCC.local_gen"\n')
+            frun_condor.write('+AccountingGroup = "%s"\n'%self.priority)
             frun_condor.write('queue filename matching files %s\n'%condor_file_str)
             frun_condor.close()
             #

@@ -8,13 +8,14 @@ import EventProducer.common.makeyaml as my
 class send_lhe():
 
 #__________________________________________________________
-    def __init__(self,njobs,events, process, islsf, iscondor, queue, para, typelhe):
+    def __init__(self,njobs,events, process, islsf, iscondor, queue, priority, para, typelhe):
         self.njobs    = njobs
         self.events   = events
         self.process  = process
         self.islsf    = islsf
         self.iscondor = iscondor
         self.queue    = queue
+        self.priority = priority
         self.user     = os.environ['USER']
         self.para     = para
         self.typelhe  = typelhe
@@ -143,7 +144,7 @@ class send_lhe():
             frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')
             frun_condor.write('max_retries    = 3\n')
             frun_condor.write('+JobFlavour    = "%s"\n'%self.queue)
-            frun_condor.write('+AccountingGroup = "group_u_FCC.local_gen"\n')
+            frun_condor.write('+AccountingGroup = "%s"\n'%self.priority)
             frun_condor.write('queue filename matching files %s\n'%condor_file_str)
             frun_condor.close()
             #

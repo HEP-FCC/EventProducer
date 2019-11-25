@@ -10,7 +10,7 @@ import EventProducer.common.makeyaml as my
 class send_mglhe():
 
 #__________________________________________________________
-    def __init__(self, islsf, iscondor, mg5card, cutfile, model, para, procname, njobs, nev, queue, memory, disk):
+    def __init__(self, islsf, iscondor, mg5card, cutfile, model, para, procname, njobs, nev, queue, priority, memory, disk):
         self.islsf     = islsf
         self.iscondor  = iscondor
         self.user      = os.environ['USER']
@@ -22,6 +22,7 @@ class send_mglhe():
         self.njobs     =  njobs
         self.nev       =  nev
         self.queue     =  queue
+        self.priority  = priority
         self.memory    =  memory
         self.disk      =  disk
 
@@ -134,7 +135,7 @@ class send_mglhe():
             frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')
             frun_condor.write('max_retries    = 3\n')
             frun_condor.write('+JobFlavour    = "%s"\n'%self.queue)
-            frun_condor.write('+AccountingGroup = "group_u_FCC.local_gen"\n')
+            frun_condor.write('+AccountingGroup = "%s"\n'%self.priority)
             frun_condor.write('queue arguments from %s\n'%fparamfull_condor)
             frun_condor.close()
             #
