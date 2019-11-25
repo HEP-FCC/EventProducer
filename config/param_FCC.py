@@ -54,15 +54,9 @@ delphescard_base='card.tcl'
 fccconfig='PythiaDelphes_config_v02.py'
 
 ##base dir of FCCSW
-##fccsw_dir='/cvmfs/fcc.cern.ch/sw/0.8.2/'
-fccsw_dir='/cvmfs/fcc.cern.ch/sw/views/releases/externals/94.2.0/x86_64-centos7-gcc62-opt/'
-##init script for FCCSW
-#stack=fccsw_dir+'init_fcc_stack.sh'
-stack=fccsw_dir+'setup.sh'
-##FCCSW dir
-#fccsw=fccsw_dir+'fccsw/0.8.2/x86_64-slc6-gcc62-opt/'
-fccsw='/afs/cern.ch/work/v/vavolkl/public/fcc.cern.ch/sw/fccsw/v0.10/x86_64-centos7-gcc62-opt/'
-fccsw='/cvmfs/fcc.cern.ch/sw/releases/fccsw/0.10/x86_64-centos7-gcc62-opt/'
+stack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
+
+
 #list of processes only with Pythia, meaning no LHE
 pythialist={
 'dummy':['1','1','1','1','1','1'],
@@ -926,6 +920,9 @@ gridpacklist = {
 'mg_pp_hhj_lambda110_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.10','inclusive','','0.05209','1.95','1.0'],
 'mg_pp_hhj_lambda150_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.50','inclusive','','0.03793','1.95','1.0'],
 'mg_pp_hhj_lambda200_5f':['HH + 1 jet, pT(HH) > 200, kl = 2.00','inclusive','','0.03793','1.95','1.0'],
+
+# powheg samples                                                                                                    
+'pwg_pp_hh_lambda100_5f':['HH(NLO), kl = 1.00','','','1.42752','1.0','1.0'],                                        
 
 #VBS samples
 'mg_pp_wwjj_2l2v_LL':['WW(LL) + jj EWK same sign','inclusive','','0.489','1.0','1.0'],

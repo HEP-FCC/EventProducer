@@ -151,7 +151,7 @@ class send_lhep8():
             with open(All_files[i], 'r') as stream:
                 try:
                     #tmpf = yaml.load(stream, Loader=yaml.FullLoader)
-                    tmpf = yaml.load(stream)
+                    tmpf = yaml.load(stream, Loader=yaml.FullLoader)
                     if ut.getsize(All_files[i])==0:continue
                     if tmpf['processing']['status']!='DONE': continue
                     
@@ -205,7 +205,7 @@ class send_lhep8():
             if 'helhc' in self.version:
                 frun.write('echo " Beams:eCM = 27000." >> card.cmd\n')
             #frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,jobid,self.events))
-            frun.write('fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(jobid,self.events))
+            frun.write('fccrun config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(jobid,self.events))
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events_%s.root %s\n'%(jobid,outfile))
             
             frun.write('cd ..\n')
