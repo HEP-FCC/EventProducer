@@ -71,4 +71,4 @@ OUTFILE=${OUTDIR}/events_${SEED}.lhe.gz
 
 echo "Copying LHE file to ${OUTFILE}"
 mkdir -p ${OUTDIR}
-cp -r DUMMYPROCESS/Events/run_01/unweighted_events.lhe.gz ${OUTDIR}/events_${SEED}.lhe.gz
+xrdcp -N -v DUMMYPROCESS/Events/run_01/unweighted_events.lhe.gz root://eospublic.cern.ch/${OUTDIR}/events_${SEED}.lhe.gz
