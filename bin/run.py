@@ -51,7 +51,7 @@ if __name__=="__main__":
 
     sendjobGroup = parser.add_argument_group('type of jobs to send')
     sendjobGroup.add_argument('--type', type=str, required = '--send' in sys.argv and '--reco'  in sys.argv , help='type of jobs to send', choices = ['lhep8','p8'])
-    sendjobGroup.add_argument('--typelhe', type=str, required = '--send' in sys.argv and '--LHE'  in sys.argv , help='type of jobs to send', choices = ['gp','mg'])
+    sendjobGroup.add_argument('--typelhe', type=str, required = '--send' in sys.argv and '--LHE'  in sys.argv , help='type of jobs to send', choices = ['gp_mg','gp_pw','mg'])
     sendjobGroup.add_argument('-q', '--queue', type=str, default='workday', help='lxbatch queue (default: workday for HTCONDOR)', choices=['1nh','8nh','1nd','2nd','1nw','espresso','microcentury','longlunch','workday','tomorrow','testmatch','nextweek'])
     ###################
     # condor queues : #
@@ -212,11 +212,11 @@ if __name__=="__main__":
 
         if args.LHE:
             
-            if args.typelhe == 'gp':
-            
-                print 'preparing to send lhe jobs from madgraph gridpacks for process {}'.format(args.process)
+            if args.typelhe == 'gp_mg' or args.typelhe == 'gp_pw' :
+
+                print 'preparing to send lhe jobs from madgraph/powheg gridpacks for process {}'.format(args.process)
                 import EventProducer.bin.send_lhe as slhe
-                sendlhe=slhe.send_lhe(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, para)
+                sendlhe=slhe.send_lhe(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, para, args.typelhe)
                 sendlhe.send()
             
             elif args.typelhe == 'mg':

@@ -153,6 +153,27 @@ def getuid2(user):
         print 'user not known ',user,'   exit'
         sys.exit(3)
     
+    seed = '%i%i%i%i%i%i%i%i%i'%(random.randint(0,1),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9))
+    return seed
+
+#__________________________________________________________
+def getuid3(user):
+    userext=-999999
+    for key, value in us.users.iteritems():
+        if key==user: 
+            userext=value
+    if userext<0:
+        print 'user not known ',user,'   exit'
+        sys.exit(3)
+    
     seed = '%i%i%i%i%i%i%i%i%i'%(0,
                                  0,
                                  0,
@@ -163,8 +184,6 @@ def getuid2(user):
                                  random.randint(0,9),
                                  random.randint(0,9))
     return seed
-
-
 
 #__________________________________________________________
 def yamlcheck(yamlfile, process):

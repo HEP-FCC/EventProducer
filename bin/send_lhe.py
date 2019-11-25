@@ -8,7 +8,7 @@ import EventProducer.common.makeyaml as my
 class send_lhe():
 
 #__________________________________________________________
-    def __init__(self,njobs,events, process, islsf, iscondor, queue, para):
+    def __init__(self,njobs,events, process, islsf, iscondor, queue, para, typelhe):
         self.njobs    = njobs
         self.events   = events
         self.process  = process
@@ -17,6 +17,7 @@ class send_lhe():
         self.queue    = queue
         self.user     = os.environ['USER']
         self.para     = para
+        self.typelhe  = typelhe
 
 #__________________________________________________________
     def send(self):
@@ -59,7 +60,11 @@ class send_lhe():
         condor_file_str=''
         while nbjobsSub<self.njobs:
             #uid = int(ut.getuid(self.user))
-            uid = ut.getuid2(self.user)
+            if self.typelhe == 'gp_mg':
+                uid = ut.getuid2(self.user)
+            elif self.typelhe == 'gp_pw':
+                uid = ut.getuid3(self.user)
+
             myyaml = my.makeyaml(yamldir, uid)
             if not myyaml: 
                 print 'job %s already exists'%uid
