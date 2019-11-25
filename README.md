@@ -44,7 +44,7 @@ To send jobs starting from a gridpack that does not exist but that you have prod
    - place gridpack on eos 
      - for FCC ```/eos/experiment/fcc/hh/generation/gridpacks/```
      - for HELHC ```/eos/experiment/fcc/helhc/generation/gridpacks/```
-   - if the gridpack is from Madgraph, name it ```mg_process```, if from powheg please name it ```pw_process```,
+   - if the gridpack is from Madgraph, name it ```mg_process``` (and call option ```gp_mg'''), if from powheg please name it ```pw_process``` (and call option ```gp_pw'''),
    - add to ```config/param_FCC.py``` or ```config/param_HELHC.py``` an entry corresponding to the gridpack name in the ```gridpacklist``` list, depending on the study.
 
 If the gridpack already exists or has been properly added to the ```param```, then simply run:
