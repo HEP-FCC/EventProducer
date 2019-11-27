@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 unset LD_LIBRARY_PATH
 unset PYTHONHOME
 unset PYTHONPATH
@@ -19,8 +19,11 @@ MODELFILE=${7}
 mkdir job
 cd job
 
+echo "copying madgraph tarball ..."
 cp -r /eos/experiment/fcc/hh/utils/generators/MG5_aMC_v2.6.1.tar.gz .
-tar -xzvf MG5_aMC_v2.6.1.tar.gz
+
+tar -xzf MG5_aMC_v2.6.1.tar.gz
+echo "finished untaring ..."
 cd MG5_aMC_v2_6_1
 
 # parse script file
@@ -71,4 +74,6 @@ OUTFILE=${OUTDIR}/events_${SEED}.lhe.gz
 
 echo "Copying LHE file to ${OUTFILE}"
 mkdir -p ${OUTDIR}
+
+source /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc8-opt/setup.sh
 xrdcp -N -v DUMMYPROCESS/Events/run_01/unweighted_events.lhe.gz root://eospublic.cern.ch/${OUTDIR}/events_${SEED}.lhe.gz
