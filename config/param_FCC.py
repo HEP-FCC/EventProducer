@@ -921,8 +921,72 @@ gridpacklist = {
 'mg_pp_hhj_lambda150_5f':['HH + 1 jet, pT(HH) > 200, kl = 1.50','inclusive','','0.03793','1.95','1.0'],
 'mg_pp_hhj_lambda200_5f':['HH + 1 jet, pT(HH) > 200, kl = 2.00','inclusive','','0.03793','1.95','1.0'],
 
+
+# vbf samples
+'mg_pp_vbfhh_lambda090_5f':['VBF HH (qq->jjHH)','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vbfhh_lambda092_5f':['VBF HH (qq->jjHH)','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vbfhh_lambda094_5f':['VBF HH (qq->jjHH)','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vbfhh_lambda096_5f':['VBF HH (qq->jjHH)','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vbfhh_lambda097_5f':['VBF HH (qq->jjHH)','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vbfhh_lambda098_5f':['VBF HH (qq->jjHH)','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vbfhh_lambda099_5f':['VBF HH (qq->jjHH)','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vbfhh_lambda101_5f':['VBF HH (qq->jjHH)','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vbfhh_lambda102_5f':['VBF HH (qq->jjHH)','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vbfhh_lambda103_5f':['VBF HH (qq->jjHH)','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vbfhh_lambda104_5f':['VBF HH (qq->jjHH)','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vbfhh_lambda106_5f':['VBF HH (qq->jjHH)','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vbfhh_lambda108_5f':['VBF HH (qq->jjHH)','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vbfhh_lambda110_5f':['VBF HH (qq->jjHH)','inclusive','','1.00','1.0','1.0'],
+
+# ttHH samples
+'mg_pp_tthh_lambda090_5f':['pp->ttHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_tthh_lambda092_5f':['pp->ttHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_tthh_lambda094_5f':['pp->ttHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_tthh_lambda096_5f':['pp->ttHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_tthh_lambda097_5f':['pp->ttHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_tthh_lambda098_5f':['pp->ttHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_tthh_lambda099_5f':['pp->ttHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_tthh_lambda101_5f':['pp->ttHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_tthh_lambda102_5f':['pp->ttHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_tthh_lambda103_5f':['pp->ttHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_tthh_lambda104_5f':['pp->ttHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_tthh_lambda106_5f':['pp->ttHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_tthh_lambda108_5f':['pp->ttHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_tthh_lambda110_5f':['pp->ttHH','inclusive','','1.00','1.0','1.0'],
+
+# vhh samples
+'mg_pp_vhh_lambda090_5f':['VHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vhh_lambda092_5f':['VHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vhh_lambda094_5f':['VHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vhh_lambda096_5f':['VHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vhh_lambda097_5f':['VHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vhh_lambda098_5f':['VHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vhh_lambda099_5f':['VHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vhh_lambda101_5f':['VHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vhh_lambda102_5f':['VHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vhh_lambda103_5f':['VHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vhh_lambda104_5f':['VHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vhh_lambda106_5f':['VHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vhh_lambda108_5f':['VHH','inclusive','','1.00','1.0','1.0'],
+'mg_pp_vhh_lambda110_5f':['VHH','inclusive','','1.00','1.0','1.0'],
+
+
 # powheg samples                                                                                                    
-'pwg_pp_hh_lambda100_5f':['HH(NLO), kl = 1.00','','','1.42752','1.0','1.0'],                                        
+'pw_pp_hh_lambda090_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda092_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda094_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda096_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda097_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda098_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda099_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda101_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda102_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda103_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda104_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda106_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda108_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda110_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+
 
 #VBS samples
 'mg_pp_wwjj_2l2v_LL':['WW(LL) + jj EWK same sign','inclusive','','0.489','1.0','1.0'],
