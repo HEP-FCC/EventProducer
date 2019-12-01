@@ -102,8 +102,10 @@ class send_lhe():
             frun.write('tar -zxf %s.tar.gz\n'%self.process)
             frun.write('cd process/\n')
             frun.write('./run.sh %i %i\n'%(self.events,int(uid.lstrip('0'))))
+            frun.write('finished run')
             #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events_%s.lhe.gz\n'%(lhedir,self.process ,uid))
             frun.write('xrdcp -N -v events.lhe.gz root://eospublic.cern.ch/%s/%s/events_%s.lhe.gz\n'%(lhedir,self.process ,uid))
+            frun.write('lhe file successfully copied on eos')
 
             frun.write('cd ..\n')
             frun.write('rm -rf job%s_%s\n'%(uid,self.process))
