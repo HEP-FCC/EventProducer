@@ -77,7 +77,9 @@ class send_mglhe():
     
             print 'Submitting job '+str(nbjobsSub)+' out of '+str(self.njobs)
             seed = str(uid)
+            
             basename =  self.procname+ '_'+seed
+            seed = seed.lstrip('0')
 
             cwd = os.getcwd()
             script = cwd + '/bin/submitMG.sh '
