@@ -56,6 +56,8 @@ if __name__=="__main__":
     sendjobGroup.add_argument('--priority', type=str, default='group_u_FCC.local_gen', help='condor queue priority (default: group_u_FCC.local_gen)')
     sendjobGroup.add_argument('--ncpus', type=str, default='1', help='number of CPUs (1CPU=2Gb of RAM)')
 
+
+
     ###################
     # condor queues : #
     ###################
@@ -107,6 +109,7 @@ if __name__=="__main__":
             if v  not in decaylist: decaylist.append(v)
     
     sendjobGroup.add_argument('-d', '--decay', type=str, default='', help='pythia8 decay when needed', choices=decaylist)
+    sendjobGroup.add_argument('--pycard', type=str, default='p8_pp_default.cmd', help='pythia8 card')
 
     processlist=[]
     if (args.reco and args.type=="p8") or args.check or args.checkeos or args.clean or args.cleanold or args.merge or args.remove:
@@ -232,7 +235,7 @@ if __name__=="__main__":
             if sendOpt=='lhep8':
                 print 'preparing to send FCCSW jobs from lhe'
                 import EventProducer.bin.send_lhep8 as slhep8
-                sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, args.priority, args.ncpus, para, version, args.decay)
+                sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, args.priority, args.ncpus, para, version, args.decay, args.pycard)
                 sendlhep8.send(args.force)
             elif sendOpt=='p8':
                 print 'preparing to send FCCSW jobs from pythia8 directly'

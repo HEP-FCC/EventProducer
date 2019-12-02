@@ -15,7 +15,7 @@ import EventProducer.common.makeyaml as my
 class send_lhep8():
 
 #__________________________________________________________
-    def __init__(self,njobs, events, process, islsf, iscondor, queue, priority, ncpus, para, version, decay):
+    def __init__(self,njobs, events, process, islsf, iscondor, queue, priority, ncpus, para, version, decay, pycard):
         self.njobs    = njobs
         self.events   = -1
         self.process  = process
@@ -27,6 +27,7 @@ class send_lhep8():
         self.para     = para
         self.version  = version
         self.decay    = decay
+        self.pycard   = pycard
         self.user     = os.environ['USER']
 
 
@@ -65,6 +66,8 @@ class send_lhep8():
 
 
         print '======================================',self.process
+        
+        '''
         pythiacard='%s%s.cmd'%(self.para.pythiacards_dir,self.process.replace('mg_pp','p8_pp').replace('mg_gg','p8_gg'))
         if self.decay!='':
             pythiacard='%s%s_%s.cmd'%(self.para.pythiacards_dir,self.process.replace('mg_pp','p8_pp').replace('mg_gg','p8_gg'),self.decay)
@@ -108,13 +111,30 @@ class send_lhep8():
             if self.decay not in self.para.decaylist[pr_noht]:
                 print 'decay ==%s== does not exist for process ==%s=='%(self.decay,self.process)
                 sys.exit(3)
+        '''
+        ##FIXME have to make py card a mandatory argument
+  
+        pythiacard=self.para.pythiacards_dir+'/'+self.pycard
+
+        print pythiacard
+        if not os.path.isfile(pythiacard):
+            print '{} does not exist'.format(pythiacard)
+            sys.exit(3)
+
         pr_decay=self.process
         if self.decay!='':
             pr_decay=self.process+'_'+self.decay
+
         print '====',pr_decay,'===='
+        pr_decay=self.process+'_'+self.decay
 
-        processp8 = pr_decay.replace('mg_pp','mgp8_pp').replace('mg_gg','mgp8_gg')
+        # first string before underscore is generator
+        mcprg_str = pr_decay.split('_')[0]
+        processp8 = pr_decay.replace(mcprg_str, mcprg_str+'p8')
 
+        # extract string before first _
+        # replace that string XY with p8XY
+ 
         acctype='FCC'
         if 'HELHC' in self.para.module_name:  acctype='HELHC'
         elif 'FCCee' in self.para.module_name:  acctype='FCCee'
@@ -145,10 +165,13 @@ class send_lhep8():
             sys.exit(3)
 
         condor_file_str=''
+	
+	print All_files
         for i in xrange(len(All_files)):
 
             if nbjobsSub == self.njobs: break
-
+            
+	    print nbjobsSub
             tmpf=None
             with open(All_files[i], 'r') as stream:
                 try:
@@ -162,6 +185,7 @@ class send_lhep8():
 
             jobid=tmpf['processing']['jobid']
 
+            print yamldir, jobid
             myyaml = my.makeyaml(yamldir, jobid)
             if not myyaml: 
                 print 'job %s already exists'%jobid
@@ -174,6 +198,10 @@ class send_lhep8():
             frunname = 'job%s.sh'%(jobid)
             frunfull = '%s/%s'%(logdir,frunname)
 
+
+            print frunfull
+
+
             frun = None
             try:
                 frun = open(frunfull, 'w')
@@ -181,8 +209,6 @@ class send_lhep8():
                 print "I/O error({0}): {1}".format(e.errno, e.strerror)
                 time.sleep(10)
                 frun = open(frunfull, 'w')
-
-
 
             commands.getstatusoutput('chmod 777 %s'%(frunfull))
             frun.write('#!/bin/bash\n')
@@ -203,11 +229,11 @@ class send_lhep8():
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s config.py \n'%(fccconfig))
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
             frun.write('echo "Beams:LHEF = events.lhe" >> card.cmd\n')
-            frun.write('echo "Random:seed = %s" >> card.cmd\n'%jobid)
+            frun.write('echo "Random:seed = %s" >> card.cmd\n'%jobid.lstrip('0'))
             if 'helhc' in self.version:
                 frun.write('echo " Beams:eCM = 27000." >> card.cmd\n')
             #frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,jobid,self.events))
-            frun.write('fccrun config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(jobid,self.events))
+            frun.write('fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(jobid,self.events))
             frun.write('xrdcp -N -v events%s.root root://eospublic.cern.ch/%s\n'%(jobid,outfile))
             
             frun.write('cd ..\n')

@@ -54,8 +54,8 @@ delphescard_base='card.tcl'
 fccconfig='PythiaDelphes_config_v02.py'
 
 ##base dir of FCCSW
-stack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
-
+#stack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
+stack='/afs/cern.ch/work/s/selvaggi/private/FCCSW_dev/init.sh'
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={
@@ -441,6 +441,11 @@ decaylist = {
 
 'mg_pp_z0123j_4f':['znunu'],
 
+######
+
+'pw_pp_hh_lambda099_5f':['hhbbaa'],
+'mg_pp_vbfhh_lambda099_5f':['hhbbaa'],
+
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
 'mg_pp_stopstop_5f_mStop_1p0TeV':['mChi0p5TeV'],
 'mg_pp_stopstop_5f_mStop_1p5TeV':['mChi0p5TeV','mChi1p0TeV'],
@@ -482,8 +487,9 @@ branching_ratios = {
 'ztautau':0.03367,
 'zbb':0.152,
 'wlv':3*0.108,
-'hhaabb':2*2.270E-03*5.824E-01,
-'hhbbbb':5.824E-01*5.824E-01,
+'hhbbaa':2*2.28E-03*5.75E-01,
+'hhbbbb':5.75E-01*5.75E-01,
+'hhbbtata':2*6.30E-02*5.75E-01,
 'znunu':0.205,
 'wzlllv':0.03333,
 
@@ -1039,6 +1045,13 @@ gridpacklist = {
 'mg_pp_vhh_lambda300_5f':['VHH','inclusive','','1.00','1.0','1.0'],
 
 # powheg samples                                                                                                    
+'pw_pp_hh_lambda000_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda020_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda040_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda060_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda070_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda080_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda085_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
 'pw_pp_hh_lambda090_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
 'pw_pp_hh_lambda092_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
 'pw_pp_hh_lambda094_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
@@ -1054,7 +1067,22 @@ gridpacklist = {
 'pw_pp_hh_lambda106_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
 'pw_pp_hh_lambda108_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
 'pw_pp_hh_lambda110_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
-
+'pw_pp_hh_lambda120_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda130_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda140_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda145_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda150_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda155_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda160_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda170_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda180_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda190_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda200_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda220_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda240_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda260_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda280_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda300_5f':['gg->HH (NLO)','inclusive','','1.0','1.0','1.0'],
 
 #VBS samples
 'mg_pp_wwjj_2l2v_LL':['WW(LL) + jj EWK same sign','inclusive','','0.489','1.0','1.0'],
