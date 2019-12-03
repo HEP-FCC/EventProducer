@@ -116,7 +116,6 @@ class send_lhep8():
   
         pythiacard=self.para.pythiacards_dir+'/'+self.pycard
 
-        print pythiacard
         if not os.path.isfile(pythiacard):
             print '{} does not exist'.format(pythiacard)
             sys.exit(3)
@@ -166,12 +165,10 @@ class send_lhep8():
 
         condor_file_str=''
 	
-	print All_files
         for i in xrange(len(All_files)):
 
             if nbjobsSub == self.njobs: break
             
-	    print nbjobsSub
             tmpf=None
             with open(All_files[i], 'r') as stream:
                 try:
@@ -185,7 +182,6 @@ class send_lhep8():
 
             jobid=tmpf['processing']['jobid']
 
-            print yamldir, jobid
             myyaml = my.makeyaml(yamldir, jobid)
             if not myyaml: 
                 print 'job %s already exists'%jobid
@@ -197,10 +193,6 @@ class send_lhep8():
 
             frunname = 'job%s.sh'%(jobid)
             frunfull = '%s/%s'%(logdir,frunname)
-
-
-            print frunfull
-
 
             frun = None
             try:
@@ -232,9 +224,9 @@ class send_lhep8():
             frun.write('echo "Random:seed = %s" >> card.cmd\n'%jobid.lstrip('0'))
             if 'helhc' in self.version:
                 frun.write('echo " Beams:eCM = 27000." >> card.cmd\n')
-            #frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,jobid,self.events))
-            frun.write('fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(jobid,self.events))
-            frun.write('xrdcp -N -v events%s.root root://eospublic.cern.ch/%s\n'%(jobid,outfile))
+            frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,jobid,self.events))
+            #frun.write('fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(jobid,self.events))
+            frun.write('xrdcp -N -v events_%s.root root://eospublic.cern.ch/%s\n'%(jobid,outfile))
             
             frun.write('cd ..\n')
             frun.write('rm -rf job%s_%s\n'%(jobid,processp8))
