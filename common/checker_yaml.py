@@ -171,7 +171,7 @@ class checker_yaml():
                     doc = None
                     with open(outfile) as ftmp:
                         try:
-                            doc = yaml.load(ftmp)
+                            doc = yaml.load(ftmp, Loader=yaml.FullLoader)
                         except yaml.YAMLError as exc:
                             print(exc)
                         except IOError as exc:

@@ -24,7 +24,7 @@ class cleanfailed():
             print '=====================    ',f
             with open(f, 'r') as stream:
                 try:
-                    tmpf = yaml.load(stream)
+                    tmpf = yaml.load(stream, Loader=yaml.FullLoader)
                     if tmpf['merge']['nbad']==0:continue
                     nfailed+=tmpf['merge']['nbad']
                     for r in tmpf['merge']['outfilesbad']:

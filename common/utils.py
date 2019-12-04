@@ -196,7 +196,7 @@ def yamlcheck(yamlfile, process):
     doc = None
     with open(yamlfile) as f:
         try:
-            doc = yaml.load(f)
+            doc = yaml.load(f, Loader=yaml.FullLoader)
         except yaml.YAMLError as exc:
             print(exc)
     try: 
@@ -224,7 +224,7 @@ def yamlstatus(yamlfile, process, status):
     doc = None
     with open(yamlfile) as f:
         try:
-            doc = yaml.load(f)
+            doc = yaml.load(f, Loader=yaml.FullLoader)
         except yaml.YAMLError as exc:
             print(exc)
     doc[process] = status

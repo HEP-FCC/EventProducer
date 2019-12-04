@@ -52,7 +52,7 @@ class makeSampleList():
         ylhe=None
         with open(yaml_lhe, 'r') as stream:
             try:
-                ylhe = yaml.load(stream)
+                ylhe = yaml.load(stream, Loader=yaml.FullLoader)
             except yaml.YAMLError as exc:
                 print(exc)
 
