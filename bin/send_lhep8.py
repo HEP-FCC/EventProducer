@@ -112,8 +112,7 @@ class send_lhep8():
                 print 'decay ==%s== does not exist for process ==%s=='%(self.decay,self.process)
                 sys.exit(3)
         '''
-        ##FIXME have to make py card a mandatory argument
-  
+
         pythiacard=self.para.pythiacards_dir+'/'+self.pycard
 
         if not os.path.isfile(pythiacard):
