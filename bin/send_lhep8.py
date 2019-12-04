@@ -223,8 +223,8 @@ class send_lhep8():
             frun.write('echo "Random:seed = %s" >> card.cmd\n'%jobid.lstrip('0'))
             if 'helhc' in self.version:
                 frun.write('echo " Beams:eCM = 27000." >> card.cmd\n')
-            frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,jobid,self.events))
-            #frun.write('fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(jobid,self.events))
+            #frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,jobid,self.events))
+            frun.write('fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(jobid,self.events))
             frun.write('xrdcp -N -v events_%s.root root://eospublic.cern.ch/%s\n'%(jobid,outfile))
             
             frun.write('cd ..\n')

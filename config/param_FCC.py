@@ -54,9 +54,10 @@ delphescard_base='card.tcl'
 fccconfig='PythiaDelphes_config_v02.py'
 
 ##base dir of FCCSW
-#stack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
-fccsw = '/afs/cern.ch/work/s/selvaggi/private/FCCSW_dev/'
-stack='/afs/cern.ch/work/s/selvaggi/private/FCCSW_dev/init.sh'
+stack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
+
+#fccsw = '/afs/cern.ch/work/s/selvaggi/private/FCCSW_dev/'
+#stack='/afs/cern.ch/work/s/selvaggi/private/FCCSW_dev/init.sh'
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={
