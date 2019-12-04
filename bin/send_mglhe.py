@@ -79,7 +79,6 @@ class send_mglhe():
             seed = str(uid)
             
             basename =  self.procname+ '_'+seed
-            seed = seed.lstrip('0')
 
             cwd = os.getcwd()
             script = cwd + '/bin/submitMG.sh '

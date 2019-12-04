@@ -11,7 +11,7 @@ export PYTHIA8=/afs/cern.ch/work/s/selvaggi/private/pythia8226
 SCRIPTFILE=${1}
 PROCESSNAME=${2}
 OUTPUTDIR=${3}
-SEED=${4}
+JOBID=${4}
 NEVENTS=${5}
 CUTFILE=${6}
 MODELFILE=${7}
@@ -32,6 +32,8 @@ cd MG5_aMC_v2_6_7
 # parse script file
 cp ${SCRIPTFILE} .
 SCRIPT=$(basename $SCRIPTFILE)
+
+SEED=$((10#$JOBID))
 
 # replace dummyvalues
 echo "Replacing dummy values"
@@ -73,10 +75,10 @@ echo "Launching process..."
 
 # copy output where specified
 OUTDIR=${OUTPUTDIR}/${PROCESSNAME}
-OUTFILE=${OUTDIR}/events_${SEED}.lhe.gz
+OUTFILE=${OUTDIR}/events_${JOBID}.lhe.gz
 
 echo "Copying LHE file to ${OUTFILE}"
 mkdir -p ${OUTDIR}
 
 source /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc8-opt/setup.sh
-xrdcp -N -v DUMMYPROCESS/Events/run_01/unweighted_events.lhe.gz root://eospublic.cern.ch/${OUTDIR}/events_${SEED}.lhe.gz
+xrdcp -N -v DUMMYPROCESS/Events/run_01/unweighted_events.lhe.gz root://eospublic.cern.ch/${OUTDIR}/events_${JOBID}.lhe.gz
