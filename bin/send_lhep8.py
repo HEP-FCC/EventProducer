@@ -113,26 +113,32 @@ class send_lhep8():
                 sys.exit(3)
         '''
 
+        '''
+        if self.pycard == 'p8_pp_default.cmd':
+            print 'using default pythia card: p8_pp_default.cmd'
+            pythiacard=self.para.pythiacards_dir+'/'+self.pycard
+
+        elif 
+        '''
+
         pythiacard=self.para.pythiacards_dir+'/'+self.pycard
 
         if not os.path.isfile(pythiacard):
             print '{} does not exist'.format(pythiacard)
             sys.exit(3)
 
-        pr_decay=self.process
-        if self.decay!='':
+        pr_decay = self.process       
+        if self.process in self.para.decaylist and self.decay != '':
+            pr_decay=self.process
+            print '====',pr_decay,'===='
             pr_decay=self.process+'_'+self.decay
-
-        print '====',pr_decay,'===='
-        pr_decay=self.process+'_'+self.decay
 
         # first string before underscore is generator
         mcprg_str = pr_decay.split('_')[0]
         processp8 = pr_decay.replace(mcprg_str, mcprg_str+'p8')
 
-        # extract string before first _
-        # replace that string XY with p8XY
- 
+        print processp8
+
         acctype='FCC'
         if 'HELHC' in self.para.module_name:  acctype='HELHC'
         elif 'FCCee' in self.para.module_name:  acctype='FCCee'
@@ -140,7 +146,7 @@ class send_lhep8():
         logdir=Dir+"/BatchOutputs/%s/%s/%s/"%(acctype,self.version,processp8)
         if not ut.dir_exist(logdir):
             os.system("mkdir -p %s"%logdir)
-     
+
         yamldir = '%s/%s/%s'%(self.para.yamldir,self.version,processp8)
         if not ut.dir_exist(yamldir):
             os.system("mkdir -p %s"%yamldir)
@@ -163,7 +169,7 @@ class send_lhep8():
             sys.exit(3)
 
         condor_file_str=''
-	
+        
         for i in xrange(len(All_files)):
 
             if nbjobsSub == self.njobs: break
@@ -223,8 +229,8 @@ class send_lhep8():
             frun.write('echo "Random:seed = %s" >> card.cmd\n'%jobid.lstrip('0'))
             if 'helhc' in self.version:
                 frun.write('echo " Beams:eCM = 27000." >> card.cmd\n')
-            #frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,jobid,self.events))
-            frun.write('fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(jobid,self.events))
+            frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,jobid,self.events))
+            #frun.write('fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(jobid,self.events))
             frun.write('xrdcp -N -v events_%s.root root://eospublic.cern.ch/%s\n'%(jobid,outfile))
             
             frun.write('cd ..\n')
@@ -280,5 +286,5 @@ class send_lhep8():
             nbjobsSub+=job
 
         print 'succesfully sent %i  job(s)'%nbjobsSub
-  
+
 
