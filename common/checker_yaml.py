@@ -15,7 +15,6 @@ class checker_yaml():
         self.count = 0
 
 
-
 #__________________________________________________________
     def checkFile_lhe(self, f):
         size=os.path.getsize(f)
@@ -94,7 +93,6 @@ class checker_yaml():
             print 'file ===%s=== must be deleted'%f
         #os.system('rm %s'%f)
             return -1,False
-    
 
         if not ut.isValidROOTfile(f):
             return -1,False
@@ -102,12 +100,19 @@ class checker_yaml():
         f=r.TFile.Open(f)
         tt=tf.Get(tname)
         nentries=tt.GetEntries()
+        
+	## compute sum of weights
+        r.gROOT.SetBatch(True)
+        tt.Draw('mcEventWeights.value[0]>>histo')
+        histo=r.gDirectory.Get('histo')
+        weight_sum=float(nentries)*histo.GetMean()
+        
         if nentries==0:
             print 'file has 0 entries ===%s=== must be deleted'%f
             return 0,False
-        
-        print  '%i events in the file, job is good'%nentries
-        return int(nentries),True
+
+        print '%i events in the file and sum of weights = %f --> job is good'%(nentries,weight_sum)
+        return int(nentries),weight_sum,True
 
 #__________________________________________________________
     def makeyamldir(self, outdir):
@@ -129,7 +134,7 @@ class checker_yaml():
         if not ut.testeos(self.para.eostest,self.para.eostest_size):
             print 'eos seems to have problems, should check, will exit'
             sys.exit(3)
-    
+
         for l in ldir:
             if self.process!='' and self.process!=l: 
                 continue
@@ -148,6 +153,7 @@ class checker_yaml():
             outdir = self.makeyamldir(self.yamldir+process)
             hasbeenchecked=False
             nevents_tot=0
+            sumweights_tot=0
             njobsdone_tot=0
             njobsbad_tot=0
             for f in All_files:
@@ -188,12 +194,13 @@ class checker_yaml():
                 print '-----------',f
 
                 if '.root' in self.fext:
-                    nevts, check=self.checkFile_root(f, self.para.treename)
+                    nevts, sumw, check=self.checkFile_root(f, self.para.treename)
                     status='DONE'
                     if not check: status='BAD' 
 
                     if status=='DONE':
                         nevents_tot+=nevts
+                        sumweights_tot+=sumw
                         njobsdone_tot+=1
                     else:
                         njobsbad_tot+=1
@@ -202,6 +209,7 @@ class checker_yaml():
                             'process':process, 
                             'jobid':jobid,
                             'nevents':nevts,
+                            'sumofweights':sumw,
                             'status':status,
                             'out':f,
                             'size':os.path.getsize(f),
@@ -254,7 +262,7 @@ class checker_yaml():
                     print 'not correct file extension %s'%self.fext
             
             if hasbeenchecked:
-                cmdp='<pre>date=%s \t time=%s njobs=%i \t nevents=%i \t njobbad=%i \t process=%s </pre>\n'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot,njobsbad_tot,process)
+                cmdp='<pre>date=%s \t time=%s njobs=%i \t nevents=%i  \t sumofweights=%f\t njobbad=%i \t process=%s </pre>\n'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot, sumweights_tot, njobsbad_tot,process)
                 stat_exist=ut.file_exist(statfile)
                 with open(statfile, "a") as myfile:
                     if not stat_exist: 
@@ -263,7 +271,7 @@ class checker_yaml():
 
                     myfile.write(cmdp)
 
-                print 'date=%s  time=%s  njobs=%i  nevents=%i  njobbad=%i  process=%s'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot,njobsbad_tot,process)
+                print 'date=%s  time=%s  njobs=%i  nevents=%i  sumofweights=%f  njobbad=%i  process=%s'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot,sumweights_tot, njobsbad_tot,process)
 
 
 
