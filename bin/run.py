@@ -137,6 +137,9 @@ if __name__=="__main__":
     args, _ = parser.parse_known_args()
     version = args.version
 
+    # clean command  line arguments to avoid issues with pyroot
+    sys.argv = []
+
     indir=None
     yamldir=None
     fext=None
