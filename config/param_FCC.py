@@ -295,7 +295,6 @@ pythialist={
 'p8_pp_ZprimeETA_45TeV_ll_PDF19':['','','','1.05374e-07','1.0','1.0'],
 'p8_pp_ZprimeETA_50TeV_ll_PDF19':['','','','5.5946e-08','1.0','1.0'],
 
-
 'p8_pp_ZprimeSSM_2TeV_jj':['','','','22.9682','1.0','1.0'],
 'p8_pp_ZprimeSSM_4TeV_jj':['','','','1.89638','1.0','1.0'],
 'p8_pp_ZprimeSSM_5TeV_jj':['','','','0.814564','1.0','1.0'],
@@ -1338,6 +1337,12 @@ gridpacklist = {
 'mg_pp_bbjj_QCD_5f':['','inclusive','','0.5519','1.0','1.0'],
 'mg_pp_bbjj_QCDQED_5f':['','inclusive','','75.61','1.0','1.0'],
 'mg_pp_bbjj_QED_5f':['','inclusive','','0.5519','1.0','1.0'],
+
+# bbbb
+'mg_pp_bbbb_QCD_5f':['','inclusive','','0.5519','1.0','1.0'],
+'mg_pp_bbbb_QCDQED_5f':['','inclusive','','75.61','1.0','1.0'],
+'mg_pp_bbbb_QED_5f':['','inclusive','','0.5519','1.0','1.0'],
+
 
 #FCNC top
 'mg_pp_tt_tlep_act':['top pair FCNC tca','','','1.0','1.0','1.0'],
