@@ -17,10 +17,8 @@ delphes_web="/afs/cern.ch/user/h/helsens/www/data/FCChh/Delphesevents_VERSION.tx
 yamldir='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCC/'
 
 #heppy and proc lists
-heppyList = '/afs/cern.ch/work/s/selvaggi/private/EventProducer/FCC_heppySampleList_VERSION.py'
-#heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCC_heppySampleList_VERSION.py'
-#procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCC_procDict_VERSION.json'
-procList = '/afs/cern.ch/work/s/selvaggi/private/EventProducer/FCC_procDict_VERSION.json'
+heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCC_heppySampleList_VERSION.py'
+procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCC_procDict_VERSION.json'
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'
@@ -1366,6 +1364,11 @@ gridpacklist = {
 
 # training event based BDT samples
 'mg_pp_jj_lo_filter_pTjet7_5TeV':['','m > 15 TeV','','0.07777','2.0','1.0'],
+
+# ee processes 
+'mg_ee_tt':['e+e- -> tt~','','','1.0','1.0','1.0'],
+
+
 
 }
 
