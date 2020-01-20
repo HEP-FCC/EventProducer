@@ -1,0 +1,30 @@
+import model heft
+generate p p > h b b~
+
+output DUMMYPROCESS
+
+######## DELIMITER (!!! NEED THIS LINE !!!) ##################
+
+#set run_mode 1
+#set cluster_type lsf
+#set cluster_queue 1nh
+#set cluster_status_update 30 15
+set lhapdf /afs/cern.ch/work/s/selvaggi/public/LHAPDF-6.1.6/build/bin/lhapdf-config
+
+launch DUMMYPROCESS
+set iseed DUMMYSEED
+set nevents DUMMYNEVENTS
+
+set ebeam1 13500
+set ebeam2 13500
+
+set pdlabel lhapdf
+set lhaid 260000
+
+set ptb 20
+set etab 4.0 
+
+set drbb 0.3
+set mbb 40
+
+set use_syst False

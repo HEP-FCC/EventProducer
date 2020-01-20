@@ -1,0 +1,14 @@
+import model sm
+generate e+ e- > t t~
+output DUMMYPROCESS
+
+######## DELIMITER (!!! NEED THIS LINE !!!) ##################
+
+launch DUMMYPROCESS
+set iseed DUMMYSEED
+set nevents DUMMYNEVENTS
+
+set ebeam1 175
+set ebeam2 175
+
+set use_syst False
