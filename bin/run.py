@@ -66,12 +66,6 @@ if __name__=="__main__":
     sendjobGroup.add_argument('-n','--numEvents', type=int, help='Number of simulation events per job', default=10000)
     sendjobGroup.add_argument('-N','--numJobs', type=int, default = 10, help='Number of jobs to submit')
 
-    args, _ = parser.parse_known_args()
-    
-    batchGroup = parser.add_mutually_exclusive_group(required = args.send) # Where to submit jobs
-    batchGroup.add_argument("--lsf", action='store_true', help="Submit with LSF")
-    batchGroup.add_argument("--condor", action='store_true', help="Submit with condor")
-    batchGroup.add_argument("--local", action='store_true', help="run locally (will not copy files on eos")
 
 
     mgGroup = parser.add_argument_group('mggroup')
@@ -80,6 +74,13 @@ if __name__=="__main__":
     mgGroup.add_argument("--model", type=str, help="extra model", default='model.tgz')
     mgGroup.add_argument("--memory", type=str, help="Memory", default='4000')
     mgGroup.add_argument("--disk", type=str, help="Storage on batch", default='2000')
+
+    
+    batchGroup = parser.add_mutually_exclusive_group(required = '--send' in sys.argv) # Where to submit jobs
+    batchGroup.add_argument("--lsf", action='store_true', help="Submit with LSF")
+    batchGroup.add_argument("--condor", action='store_true', help="Submit with condor")
+    batchGroup.add_argument("--local", action='store_true', help="run locally (will not copy files on eos")
+
 
     args, _ = parser.parse_known_args()
     sendOpt = args.type
