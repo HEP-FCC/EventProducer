@@ -81,6 +81,18 @@ class printer():
             news=str(proc)
             proc=str(proc)
  
+            br=1
+            decay=''
+            decstr=''
+            for dec in self.para.branching_ratios:
+                dec_proc = proc.split('_')[-1]
+                if dec in proc and dec_proc == dec:
+                    br = self.para.branching_ratios[dec]
+                    decay = dec
+            if decay != '':
+                print 'decay---------- ',decay,' ------- br ',br
+                decstr = '_{}'.format(decay)
+
             ispythiaonly=False
             try: 
                 teststring=self.para.gridpacklist[proc][0]
@@ -94,11 +106,16 @@ class printer():
                 stest=''
                 ntest=1
                 if '_HT_' in proc: ntest=4
-                for proc in xrange(0,len(ssplit)-ntest):
-                    stest+=ssplit[proc]+'_'
+                for procn in xrange(0,len(ssplit)-ntest):
+                    stest+=ssplit[procn]+'_'
 
                 stest= stest[0:len(stest)-1]
                 proc=stest
+ #CLEMENT TO BE FIXED
+                if decay != '':
+                    proc = proc.replace(decstr,'')
+                    print '--------------  ',decstr,'  --  ',proc
+
                 try: 
                     teststringdecay=self.para.decaylist[stest][0]
                 except IOError as e:
@@ -147,6 +164,9 @@ class printer():
 
             print 'nevents               : %i'%events_tot
             print 'nfiles on eos/checked : %i/%i'%(nfileseos,files_tot)
+            print 'proc in the end       : ',proc
+            print 'news in the end       : ',news
+
             marked_b=''
             marked_e=''
 
@@ -169,7 +189,7 @@ class printer():
                                                                                       marked_b,nfileseos,marked_e, size_tot ,
                                                                                       tmpf['merge']['outdir'],
                                                                                       self.para.gridpacklist[proc][0],self.para.gridpacklist[proc][1]
-                                                                                      ,self.para.gridpacklist[proc][3],self.para.gridpacklist[proc][4],
+                                                                                      ,str(float(self.para.gridpacklist[proc][3])*br),self.para.gridpacklist[proc][4],
                                                                                       self.para.gridpacklist[proc][5])
 
             elif  ispythiaonly:
