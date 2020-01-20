@@ -43,7 +43,7 @@ delphescards_dir = '/eos/experiment/fcc/ee/utils/delphescards/'
 pythiacards_dir  = '/eos/experiment/fcc/ee/utils/pythiacards/'
 ##where the FCC config script is stored
 fccconfig_dir    = '/eos/experiment/fcc/ee/utils/config/'
-
+# /cvmfs/fcc.cern.ch/sw/latest/setup.sh 
 ##delphes base card
 delphescard_base='card.tcl'
 ##FCC config script name
@@ -56,6 +56,8 @@ fccsw_dir='/cvmfs/fcc.cern.ch/sw/views/releases/externals/94.2.0/x86_64-centos7-
 #stack=fccsw_dir+'init_fcc_stack.sh'
 stack=fccsw_dir+'setup.sh'
 stack='/cvmfs/fcc.cern.ch/sw/views/releases/externals/94.3.0/x86_64-centos7-gcc62-opt/setup.sh'
+stack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
+
 
 ##FCCSW dir
 #fccsw=fccsw_dir+'fccsw/0.8.2/x86_64-slc6-gcc62-opt/'
@@ -67,7 +69,9 @@ pythialist={
 'dummy':['','','','','',''],
 'p8_ee_ZH_ecm240':['ZH ecm=240GeV','inclusive decays','','0.201037','1.0','1.0'],
 'p8_ee_ZZ_ecm240':['ZZ ecm=240GeV','inclusive decays','','1.35899','1.0','1.0'],
-'p8_ee_WW_ecm240':['WW ecm=240GeV','inclusive decays','','16.4385','1.0','1.0']
+'p8_ee_WW_ecm240':['WW ecm=240GeV','inclusive decays','','16.4385','1.0','1.0'],
+'p8_ee_Zqq_ecm240':['Z/Gamma* ecm=240GeV','hadronic decays','','53.188','1.0','1.0'],
+
 }
 
 
@@ -106,5 +110,8 @@ branching_ratios = {
 
 gridpacklist = {
 'dummy':['','','','','',''],
+'mg_ee_tt_ecm350':['tt','tt inclusive','','1.0','1.0','1.0'],
+
+
 }
 
