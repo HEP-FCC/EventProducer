@@ -73,7 +73,7 @@ class checker_yaml():
             print "Unexpected error:", sys.exc_info()[0]
             print 'file ===%s=== must be deleted'%f
         #os.system('rm %s'%f)
-            return -1,False
+            return -1,-1,False
 
         tf=r.TFile.Open(f)
         tt=None
@@ -82,7 +82,7 @@ class checker_yaml():
             if tt==None:
                 print 'file ===%s=== must be deleted'%f
             #os.system('rm %s'%f)
-                return -1,False
+                return -1,-1,False
 
         except IOError as e:
             print "I/O error({0}): {1}".format(e.errno, e.strerror)
@@ -92,10 +92,10 @@ class checker_yaml():
             print "Unexpected error:", sys.exc_info()[0]
             print 'file ===%s=== must be deleted'%f
         #os.system('rm %s'%f)
-            return -1,False
+            return -1,-1,False
 
         if not ut.isValidROOTfile(f):
-            return -1,False
+            return -1,-1,False
     
         f=r.TFile.Open(f)
         tt=tf.Get(tname)
@@ -109,7 +109,7 @@ class checker_yaml():
         
         if nentries==0:
             print 'file has 0 entries ===%s=== must be deleted'%f
-            return 0,False
+            return 0,0,False
 
         print '%i events in the file and sum of weights = %f --> job is good'%(nentries,weight_sum)
         return int(nentries),weight_sum,True
