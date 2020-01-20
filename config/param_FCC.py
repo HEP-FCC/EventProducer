@@ -17,8 +17,10 @@ delphes_web="/afs/cern.ch/user/h/helsens/www/data/FCChh/Delphesevents_VERSION.tx
 yamldir='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCC/'
 
 #heppy and proc lists
-heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCC_heppySampleList_VERSION.py'
-procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCC_procDict_VERSION.json'
+heppyList = '/afs/cern.ch/work/s/selvaggi/private/EventProducer/FCC_heppySampleList_VERSION.py'
+#heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCC_heppySampleList_VERSION.py'
+#procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCC_procDict_VERSION.json'
+procList = '/afs/cern.ch/work/s/selvaggi/private/EventProducer/FCC_procDict_VERSION.json'
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'
@@ -55,9 +57,6 @@ fccconfig='PythiaDelphes_config_v02.py'
 
 ##base dir of FCCSW
 stack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
-
-#fccsw = '/afs/cern.ch/work/s/selvaggi/private/FCCSW_dev/'
-#stack='/afs/cern.ch/work/s/selvaggi/private/FCCSW_dev/init.sh'
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={
@@ -441,7 +440,7 @@ decaylist = {
 'mg_pp_ZjjVbs_4f':['ztautau'],
 
 'mg_pp_z0123j_4f':['znunu'],
-
+'mg_pp_tt012j_5f':['ttau'],
 'pw_pp_hh_lambda000_5f':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda020_5f':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda040_5f':['hhbbaa','hhbbtata','hhbbbb'],
@@ -638,6 +637,7 @@ branching_ratios = {
 'ztautau':0.03367,
 'zbb':0.152,
 'wlv':3*0.108,
+'ttau':0.108,
 'hhbbaa':2*2.28E-03*5.75E-01,
 'hhbbbb':5.75E-01*5.75E-01,
 'hhbbtata':2*6.30E-02*5.75E-01,
@@ -857,7 +857,7 @@ gridpacklist = {
 'mg_pp_h012j_5f_HT_1900_4400':['gluon fusion higgs (finite mt) + 0/1/2 jets','1900 < HT < 4400','xqcut = 30, qCut = 45','0.277','3.76','0.296'],
 'mg_pp_h012j_5f_HT_4400_8500':['gluon fusion higgs (finite mt) + 0/1/2 jets','4400 < HT < 8500','xqcut = 30, qCut = 45','0.003902','3.76','0.27'],
 'mg_pp_h012j_5f_HT_8500_100000':['gluon fusion higgs (finite mt) + 0/1/2 jets','8500 < HT < 100000','xqcut = 30, qCut = 45','6.368e-05','3.76','0.28'],
-'mg_pp_h012j_5f':['gluon fusion higgs (finite mt) + 0/1/2 jets','inclusive','xqcut = 30, qCut = 45','587.5','3.76','0.361'],
+'mg_pp_h012j_5f':['gluon fusion higgs (finite mt) + 0/1/2 jets','inclusive','xqcut = 30, qCut = 45','587.5','3.76','0.363'],
 'mg_pp_vvv01j_5f_HT_0_1200':['tri-vector boson + 0/1 jets','0 < HT < 1200','xqcut = 60, qCut = 90','73.04','1.05','0.515'],
 'mg_pp_vvv01j_5f_HT_1200_3000':['tri-vector boson + 0/1 jets','1200 < HT < 3000','xqcut = 60, qCut = 90','2.093','1.05','0.838'],
 'mg_pp_vvv01j_5f_HT_3000_6000':['tri-vector boson + 0/1 jets','3000 < HT < 6000','xqcut = 60, qCut = 90','0.2028','1.05','0.872'],
@@ -1232,8 +1232,6 @@ gridpacklist = {
 'mg_pp_vhh_lambda300_5f':['VHH','inclusive','','0.027795225','1.400158','1.0'],
 
 
-
-
 #VBS samples
 'mg_pp_wwjj_2l2v_LL':['WW(LL) + jj EWK same sign','inclusive','','0.489','1.0','1.0'],
 'mg_pp_wwjj_2l2v_TT':['WW(TT) + jj EWK same sign','inclusive','','4.51','1.0','1.0'],
@@ -1334,14 +1332,14 @@ gridpacklist = {
 'mg_pp_bbtata_QED':['','inclusive','','0.5519','1.0','1.0'],
 
 # bbjj
-'mg_pp_bbjj_QCD_5f':['','inclusive','','0.5519','1.0','1.0'],
-'mg_pp_bbjj_QCDQED_5f':['','inclusive','','75.61','1.0','1.0'],
-'mg_pp_bbjj_QED_5f':['','inclusive','','0.5519','1.0','1.0'],
+'mg_pp_bbjj_QCD_5f':['','inclusive','','7613653.4636','1.0','1.0'],
+'mg_pp_bbjj_QCDQED_5f':['','inclusive','','10730.9893142','1.0','1.0'],
+'mg_pp_bbjj_QED_5f':['','inclusive','','81.3186843223','1.0','1.0'],
 
 # bbbb
-'mg_pp_bbbb_QCD_5f':['','inclusive','','0.5519','1.0','1.0'],
-'mg_pp_bbbb_QCDQED_5f':['','inclusive','','75.61','1.0','1.0'],
-'mg_pp_bbbb_QED_5f':['','inclusive','','0.5519','1.0','1.0'],
+'mg_pp_bbbb_QCD_5f':['','inclusive','','24500.6912','1.0','1.0'],
+'mg_pp_bbbb_QCDQED_5f':['','inclusive','','199.20139205','1.0','1.0'],
+'mg_pp_bbbb_QED_5f':['','inclusive','','1.35872621121','1.0','1.0'],
 
 
 #FCNC top
