@@ -51,8 +51,13 @@ if __name__=="__main__":
 
     sendjobGroup = parser.add_argument_group('type of jobs to send')
     sendjobGroup.add_argument('--type', type=str, required = '--send' in sys.argv and '--reco'  in sys.argv , help='type of jobs to send', choices = ['lhep8','p8'])
-    sendjobGroup.add_argument('--typelhe', type=str, required = '--send' in sys.argv and '--LHE'  in sys.argv , help='type of jobs to send', choices = ['gp','mg'])
+    sendjobGroup.add_argument('--typelhe', type=str, required = '--send' in sys.argv and '--LHE'  in sys.argv , help='type of jobs to send', choices = ['gp_mg','gp_pw','mg'])
     sendjobGroup.add_argument('-q', '--queue', type=str, default='workday', help='lxbatch queue (default: workday for HTCONDOR)', choices=['1nh','8nh','1nd','2nd','1nw','espresso','microcentury','longlunch','workday','tomorrow','testmatch','nextweek'])
+    sendjobGroup.add_argument('--priority', type=str, default='group_u_FCC.local_gen', help='condor queue priority (default: group_u_FCC.local_gen)')
+    sendjobGroup.add_argument('--ncpus', type=str, default='1', help='number of CPUs (1CPU=2Gb of RAM)')
+
+
+
     ###################
     # condor queues : #
     ###################
@@ -72,8 +77,6 @@ if __name__=="__main__":
     mgGroup.add_argument("--mg5card", type=str, help="MG5 configuration", default='card.mg5')
     mgGroup.add_argument("--cutfile", type=str, help="additional cuts", default='cuts.f')
     mgGroup.add_argument("--model", type=str, help="extra model", default='model.tgz')
-    mgGroup.add_argument("--memory", type=str, help="Memory", default='4000')
-    mgGroup.add_argument("--disk", type=str, help="Storage on batch", default='2000')
 
     
     batchGroup = parser.add_mutually_exclusive_group(required = '--send' in sys.argv) # Where to submit jobs
@@ -98,7 +101,6 @@ if __name__=="__main__":
         print 'problem, need to specify --FCC or --HELHC'
         sys.exit(3)
 
-
     versionGroup = parser.add_argument_group('recontruction version')
     versionGroup.add_argument('--version', type=str, required = '--reco' in sys.argv, help='Version to use', choices = para.fcc_versions)
 
@@ -108,6 +110,7 @@ if __name__=="__main__":
             if v  not in decaylist: decaylist.append(v)
     
     sendjobGroup.add_argument('-d', '--decay', type=str, default='', help='pythia8 decay when needed', choices=decaylist)
+    sendjobGroup.add_argument('--pycard', type=str, default='p8_pp_default.cmd', help='pythia8 card')
 
     processlist=[]
     if (args.reco and args.type=="p8") or args.check or args.checkeos or args.clean or args.cleanold or args.merge or args.remove:
@@ -135,8 +138,6 @@ if __name__=="__main__":
     args, _ = parser.parse_known_args()
     version = args.version
 
-    # clean up command line arguments to
-    # avoid issues with pyroot
     sys.argv = []
 
     indir=None
@@ -173,6 +174,7 @@ if __name__=="__main__":
             print 'using a specific process ',args.process
             if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
+            if args.reco and args.process[0:3]=='pw_': args.process='pwp8_'+args.process[3:]
         import EventProducer.common.checker_yaml as chky
         print args.process
         checker=chky.checker_yaml(indir, para, fext, args.process,  yamldir)
@@ -185,6 +187,7 @@ if __name__=="__main__":
             print 'using a specific process ',args.process
             if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
+            if args.reco and args.process[0:3]=='pw_': args.process='pwp8_'+args.process[3:]
         import EventProducer.common.checker_eos as chkeos
         print args.process
         checkereos=chkeos.checker_eos(yamldir, indir, args.process)
@@ -198,6 +201,7 @@ if __name__=="__main__":
             print 'using a specific process ',args.process
             if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
+            if args.reco and args.process[0:3]=='pw_': args.process='pwp8_'+args.process[3:]
         import EventProducer.common.merger as mgr
         isLHE=args.LHE
         merger = mgr.merger( args.process, yamldir)
@@ -211,36 +215,38 @@ if __name__=="__main__":
         elif args.condor:
             print 'send to condor'
             print 'queue  ', args.queue
+            print 'priority  ', args.priority
+            print 'ncpus     ', args.ncpus
         elif args.local:
             print 'run locally'
 
 
         if args.LHE:
             
-            if args.typelhe == 'gp':
-            
-                print 'preparing to send lhe jobs from madgraph gridpacks for process {}'.format(args.process)
+            if args.typelhe == 'gp_mg' or args.typelhe == 'gp_pw' :
+
+                print 'preparing to send lhe jobs from madgraph/powheg gridpacks for process {}'.format(args.process)
                 import EventProducer.bin.send_lhe as slhe
-                sendlhe=slhe.send_lhe(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, para)
+                sendlhe=slhe.send_lhe(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, args.priority, args.ncpus, para, args.typelhe)
                 sendlhe.send()
             
             elif args.typelhe == 'mg':
 
                 print 'preparing to send lhe jobs from madgraph standalone for process {}'.format(args.process)
                 import EventProducer.bin.send_mglhe as mglhe
-                sendlhe=mglhe.send_mglhe( args.lsf, args.condor, args.mg5card, args.cutfile, args.model, para, args.process, args.numJobs, args.numEvents, args.queue, args.memory, args.disk)
+                sendlhe=mglhe.send_mglhe( args.lsf, args.condor, args.mg5card, args.cutfile, args.model, para, args.process, args.numJobs, args.numEvents, args.queue, args.priority, args.ncpus)
                 sendlhe.send()
             
         elif args.reco:
             if sendOpt=='lhep8':
                 print 'preparing to send FCCSW jobs from lhe'
                 import EventProducer.bin.send_lhep8 as slhep8
-                sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, para, version, args.decay)
+                sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, args.priority, args.ncpus, para, version, args.decay, args.pycard)
                 sendlhep8.send(args.force)
             elif sendOpt=='p8':
                 print 'preparing to send FCCSW jobs from pythia8 directly'
                 import EventProducer.bin.send_p8 as sp8
-                sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, para, version)
+                sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version)
                 sendp8.send()
 
     elif args.web:

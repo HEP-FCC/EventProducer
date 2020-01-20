@@ -1,0 +1,24 @@
+generate p p > z j j
+
+output DUMMYPROCESS
+
+######## DELIMITER (!!! NEED THIS LINE !!!) ##################
+
+set lhapdf /afs/cern.ch/work/s/selvaggi/public/LHAPDF-6.1.6/build/bin/lhapdf-config
+
+launch DUMMYPROCESS
+set iseed DUMMYSEED
+set nevents DUMMYNEVENTS
+
+set ebeam1 50000
+set ebeam2 50000
+
+set pdlabel lhapdf
+set lhaid 260000
+
+set ptj 25
+set mmjj 400
+set etaj 6.5 
+set deltaeta 2.5
+
+set use_syst False

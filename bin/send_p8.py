@@ -15,7 +15,7 @@ import EventProducer.common.makeyaml as my
 class send_p8():
 
 #__________________________________________________________
-    def __init__(self,njobs, events, process, islsf, iscondor, islocal, queue, para, version):
+    def __init__(self,njobs, events, process, islsf, iscondor, islocal, queue, priority, ncpus, para, version):
         self.njobs    = njobs
         self.events   = events
         self.process  = process
@@ -23,10 +23,11 @@ class send_p8():
         self.iscondor = iscondor
         self.islocal  = islocal
         self.queue    = queue
+        self.priority = priority
+        self.ncpus    = ncpus
         self.user     = os.environ['USER']
         self.para     = para
         self.version  = version
-
 
 #__________________________________________________________
     def send(self):
@@ -146,8 +147,9 @@ class send_p8():
             if 'helhc' in self.version:
                 frun.write('echo " Beams:eCM = 27000." >> card.cmd\n')
             #frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%s.root --nevents=%i\n'%(self.para.fccsw,uid,self.events))
-            frun.write('fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%s.root --nevents=%i\n'%(uid,self.events))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events%s.root %s\n'%(uid,outfile))
+            frun.write('fccrun config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events%s.root --nevents=%i\n'%(uid,self.events))
+            #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events%s.root %s\n'%(uid,outfile))
+            frun.write('xrdcp -N -v events_%s.root root://eospublic.cern.ch/%s\n'%(uid,outfile))
             frun.write('cd ..\n')
             frun.write('rm -rf job%s_%s\n'%(uid,self.process))
             frun.close()
@@ -189,13 +191,14 @@ class send_p8():
             frun_condor.write('Error          = %s/condor_job.%s.$(ClusterId).$(ProcId).error\n'%(logdir,str(uid)))
             frun_condor.write('getenv         = True\n')
             frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
-            frun_condor.write('request_memory = 2G\n')
             frun_condor.write('requirements   = ( (OpSysAndVer =?= "CentOS7") && (Machine =!= LastRemoteHost) )\n')
 #            frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") && (Machine =!= LastRemoteHost) )\n')
             frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')
             frun_condor.write('max_retries    = 3\n')
             frun_condor.write('+JobFlavour    = "%s"\n'%self.queue)
-            frun_condor.write('+AccountingGroup = "group_u_FCC.local_gen"\n')
+            frun_condor.write('+AccountingGroup = "%s"\n'%self.priority)
+            frun_condor.write('RequestCpus = %s\n'%self.ncpus)
+	    
             frun_condor.write('queue filename matching files %s\n'%condor_file_str)
             frun_condor.close()
             #

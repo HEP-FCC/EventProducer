@@ -1,0 +1,36 @@
+import model sm-no_b_mass
+define lept = l+ l-
+define hfj = b b~ c c~
+
+generate p p > lept lept lept lept hfj hfj
+
+output DUMMYPROCESS
+
+######## DELIMITER (!!! NEED THIS LINE !!!) ##################
+
+#set run_mode 1
+#set cluster_type lsf
+#set cluster_queue 1nh
+#set cluster_status_update 30 15
+set lhapdf /afs/cern.ch/work/s/selvaggi/public/LHAPDF-6.1.6/build/bin/lhapdf-config
+
+launch DUMMYPROCESS
+set iseed DUMMYSEED
+set nevents DUMMYNEVENTS
+
+set ebeam1 50000
+set ebeam2 50000
+
+set pdlabel lhapdf
+set lhaid 260000
+
+set ptj 20
+set ptl 4
+
+set etaj 6.0 
+set etal 6.0 
+
+set drll 0.1
+set drjl 0.3
+
+set use_syst False

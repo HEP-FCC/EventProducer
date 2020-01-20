@@ -15,16 +15,19 @@ import EventProducer.common.makeyaml as my
 class send_lhep8():
 
 #__________________________________________________________
-    def __init__(self,njobs, events, process, islsf, iscondor, queue, para, version, decay):
+    def __init__(self,njobs, events, process, islsf, iscondor, queue, priority, ncpus, para, version, decay, pycard):
         self.njobs    = njobs
         self.events   = -1
         self.process  = process
         self.islsf    = islsf
         self.iscondor = iscondor
         self.queue    = queue
+        self.priority = priority
+        self.ncpus    = ncpus
         self.para     = para
         self.version  = version
         self.decay    = decay
+        self.pycard   = pycard
         self.user     = os.environ['USER']
 
 
@@ -66,6 +69,8 @@ class send_lhep8():
 
 
         print '======================================',self.process
+        
+        '''
         pythiacard='%s%s.cmd'%(self.para.pythiacards_dir,self.process.replace('mg_pp','p8_pp').replace('mg_gg','p8_gg'))
         if self.decay!='':
             pythiacard='%s%s_%s.cmd'%(self.para.pythiacards_dir,self.process.replace('mg_pp','p8_pp').replace('mg_gg','p8_gg'),self.decay)
@@ -110,16 +115,34 @@ class send_lhep8():
             if self.decay not in self.para.decaylist[pr_noht]:
                 print 'decay ==%s== does not exist for process ==%s=='%(self.decay,self.process)
                 sys.exit(3)
-        pr_decay=self.process
-        if self.decay!='':
-            pr_decay=self.process+'_'+self.decay
-        print '====',pr_decay,'===='
+        '''
 
-        processp8 =''
-        if 'FCCee' not in self.para.module_name: 
-            processp8 = pr_decay.replace('mg_pp','mgp8_pp').replace('mg_gg','mgp8_gg')
-        else:
-            processp8 = pr_decay.replace('mg_ee','mgp8_ee')
+        '''
+        if self.pycard == 'p8_pp_default.cmd':
+            print 'using default pythia card: p8_pp_default.cmd'
+            pythiacard=self.para.pythiacards_dir+'/'+self.pycard
+
+        elif 
+        '''
+
+        pythiacard=self.para.pythiacards_dir+'/'+self.pycard
+
+        if not os.path.isfile(pythiacard):
+            print '{} does not exist'.format(pythiacard)
+            sys.exit(3)
+
+        pr_decay = self.process       
+        if self.process in self.para.decaylist and self.decay != '':
+            pr_decay=self.process
+            print '====',pr_decay,'===='
+            pr_decay=self.process+'_'+self.decay
+
+
+        # first string before underscore is generator
+        mcprg_str = pr_decay.split('_')[0]
+        processp8 = pr_decay.replace(mcprg_str, mcprg_str+'p8')
+
+        print processp8
 
         acctype='FCC'
         if 'HELHC' in self.para.module_name:  acctype='HELHC'
@@ -128,7 +151,7 @@ class send_lhep8():
         logdir=Dir+"/BatchOutputs/%s/%s/%s/"%(acctype,self.version,processp8)
         if not ut.dir_exist(logdir):
             os.system("mkdir -p %s"%logdir)
-     
+
         yamldir = '%s/%s/%s'%(self.para.yamldir,self.version,processp8)
         if not ut.dir_exist(yamldir):
             os.system("mkdir -p %s"%yamldir)
@@ -151,15 +174,16 @@ class send_lhep8():
             sys.exit(3)
 
         condor_file_str=''
+        
         for i in xrange(len(All_files)):
 
             if nbjobsSub == self.njobs: break
-
+            
             tmpf=None
             with open(All_files[i], 'r') as stream:
                 try:
                     #tmpf = yaml.load(stream, Loader=yaml.FullLoader)
-                    tmpf = yaml.load(stream)
+                    tmpf = yaml.load(stream, Loader=yaml.FullLoader)
                     if ut.getsize(All_files[i])==0:continue
                     if tmpf['processing']['status']!='DONE': continue
                     
@@ -188,8 +212,6 @@ class send_lhep8():
                 time.sleep(10)
                 frun = open(frunfull, 'w')
 
-
-
             commands.getstatusoutput('chmod 777 %s'%(frunfull))
             frun.write('#!/bin/bash\n')
             frun.write('unset LD_LIBRARY_PATH\n')
@@ -209,12 +231,12 @@ class send_lhep8():
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s config.py \n'%(fccconfig))
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
             frun.write('echo "Beams:LHEF = events.lhe" >> card.cmd\n')
-            frun.write('echo "Random:seed = %s" >> card.cmd\n'%jobid)
+            frun.write('echo "Random:seed = %s" >> card.cmd\n'%jobid.lstrip('0'))
             if 'helhc' in self.version:
                 frun.write('echo " Beams:eCM = 27000." >> card.cmd\n')
-            #frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,jobid,self.events))
-            frun.write('fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(jobid,self.events))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events_%s.root %s\n'%(jobid,outfile))
+            frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,jobid,self.events))
+            #frun.write('fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(jobid,self.events))
+            frun.write('xrdcp -N -v events_%s.root root://eospublic.cern.ch/%s\n'%(jobid,outfile))
             
             frun.write('cd ..\n')
             frun.write('rm -rf job%s_%s\n'%(jobid,processp8))
@@ -251,13 +273,14 @@ class send_lhep8():
             frun_condor.write('Error          = %s/condor_job.%s.$(ClusterId).$(ProcId).error\n'%(logdir,str(jobid)))
             frun_condor.write('getenv         = True\n')
             frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
-            frun_condor.write('request_memory = 4G\n')
             frun_condor.write('requirements   = ( (OpSysAndVer =?= "CentOS7") && (Machine =!= LastRemoteHost) )\n')
 #            frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") && (Machine =!= LastRemoteHost) )\n')
             frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')
             frun_condor.write('max_retries    = 3\n')
             frun_condor.write('+JobFlavour    = "%s"\n'%self.queue)
-            frun_condor.write('+AccountingGroup = "group_u_FCC.local_gen"\n')
+            frun_condor.write('+AccountingGroup = "%s"\n'%self.priority)
+            frun_condor.write('RequestCpus = %s\n'%self.ncpus)
+
             frun_condor.write('queue filename matching files %s\n'%condor_file_str)
             frun_condor.close()
             #
@@ -268,5 +291,5 @@ class send_lhep8():
             nbjobsSub+=job
 
         print 'succesfully sent %i  job(s)'%nbjobsSub
-  
+
 

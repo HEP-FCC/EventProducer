@@ -48,7 +48,7 @@ class printer():
 #        tmpcheck=None
 #        with open(checkfiles, 'r') as stream:
 #            try:
-#                tmpcheck = yaml.load(stream)
+#                tmpcheck = yaml.load(stream, Loader=yaml.FullLoader)
 #            except yaml.YAMLError as exc:
 #                print(exc)
 
