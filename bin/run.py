@@ -174,6 +174,7 @@ if __name__=="__main__":
             print 'using a specific process ',args.process
             if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
+            if args.reco and args.process[0:3]=='pw_': args.process='pwp8_'+args.process[3:]
         import EventProducer.common.checker_yaml as chky
         print args.process
         checker=chky.checker_yaml(indir, para, fext, args.process,  yamldir)
@@ -186,6 +187,7 @@ if __name__=="__main__":
             print 'using a specific process ',args.process
             if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
+            if args.reco and args.process[0:3]=='pw_': args.process='pwp8_'+args.process[3:]
         import EventProducer.common.checker_eos as chkeos
         print args.process
         checkereos=chkeos.checker_eos(yamldir, indir, args.process)
@@ -199,6 +201,7 @@ if __name__=="__main__":
             print 'using a specific process ',args.process
             if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
+            if args.reco and args.process[0:3]=='pw_': args.process='pwp8_'+args.process[3:]
         import EventProducer.common.merger as mgr
         isLHE=args.LHE
         merger = mgr.merger( args.process, yamldir)
