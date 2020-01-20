@@ -41,15 +41,18 @@ class send_lhep8():
             print 'process %s does not exist as gridpack'%self.process
             sys.exit(3)
 
-        delphescards_mmr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mmr)
-        if ut.file_exist(delphescards_mmr)==False and self.version != 'cms' and 'helhc' not in self.version:
-            print 'delphes card does not exist: ',delphescards_mmr
-            sys.exit(3)
+        delphescards_mmr=''
+        delphescards_mr=''
+        if 'FCCee' not in self.para.module_name:
+            delphescards_mmr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mmr)
+            if ut.file_exist(delphescards_mmr)==False and self.version != 'cms' and 'helhc' not in self.version:
+                print 'delphes card does not exist: ',delphescards_mmr,' , exit'
+                sys.exit(3)
 
-        delphescards_mr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mr)
-        if ut.file_exist(delphescards_mr)==False and self.version != 'cms' and 'helhc' not in self.version:
-            print 'delphes card does not exist: ',delphescards_mr
-            sys.exit(3)
+            delphescards_mr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mr)
+            if ut.file_exist(delphescards_mr)==False and self.version != 'cms' and 'helhc' not in self.version:
+                print 'delphes card does not exist: ',delphescards_mr,' , exit'
+                sys.exit(3)
 
         delphescards_base = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_base)
         if ut.file_exist(delphescards_base)==False:
@@ -76,7 +79,8 @@ class send_lhep8():
                 s = sys.stdin.readline()
                 if s=="y\n":
                     print 'use default card'
-                    pythiacard='%sp8_pp_default.cmd'%(self.para.pythiacards_dir)
+                    if 'FCCee' not in self.para.module_name: pythiacard='%sp8_pp_default.cmd'%(self.para.pythiacards_dir)
+                    else: pythiacard='%sp8_ee_default.cmd'%(self.para.pythiacards_dir)
                 else:
                     print 'exit'
                     sys.exit(3)
@@ -111,7 +115,11 @@ class send_lhep8():
             pr_decay=self.process+'_'+self.decay
         print '====',pr_decay,'===='
 
-        processp8 = pr_decay.replace('mg_pp','mgp8_pp').replace('mg_gg','mgp8_gg')
+        processp8 =''
+        if 'FCCee' not in self.para.module_name: 
+            processp8 = pr_decay.replace('mg_pp','mgp8_pp').replace('mg_gg','mgp8_gg')
+        else:
+            processp8 = pr_decay.replace('mg_ee','mgp8_ee')
 
         acctype='FCC'
         if 'HELHC' in self.para.module_name:  acctype='HELHC'
