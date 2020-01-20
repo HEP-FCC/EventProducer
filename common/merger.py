@@ -23,6 +23,7 @@ class merger():
             outfile=self.indir+'/'+l+'/merge.yaml'
             totsize=0
             totevents=0
+            sumofweights=0
             process=None
             outfiles=[]
             outfilesbad=[]
@@ -50,7 +51,7 @@ class merger():
                 
                 with open(f, 'r') as stream:
                     try:
-                        tmpf = yaml.load(stream)
+                        tmpf = yaml.load(stream, Loader=yaml.FullLoader)
                         if ut.getsize(f)==0: continue
                         if tmpf['processing']['status']=='sending': continue
                         if tmpf['processing']['status']=='BAD':
@@ -62,7 +63,11 @@ class merger():
                             continue
                         totsize+=tmpf['processing']['size']
                         totevents+=tmpf['processing']['nevents']
-                        process=tmpf['processing']['process']
+                        
+			## need this not to break LHE merge that does not contain key 'sumofweights'
+			if 'sumofweights' in tmpf['processing']:
+			    sumofweights+=float(tmpf['processing']['sumofweights'])
+			process=tmpf['processing']['process']
                         tmplist=[tmpf['processing']['out'].split('/')[-1], tmpf['processing']['nevents']]
                         outfiles.append(tmplist)
                         outdir=tmpf['processing']['out'].replace(tmpf['processing']['out'].split('/')[-1],'')
@@ -76,6 +81,7 @@ class merger():
             dic = {'merge':{
                     'process':process, 
                     'nevents':totevents,
+                    'sumofweights':sumofweights,
                     'outfiles':outfiles,
                     'outdir':outdir,
                     'size':totsize,

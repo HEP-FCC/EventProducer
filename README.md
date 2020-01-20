@@ -44,7 +44,7 @@ To send jobs starting from a gridpack that does not exist but that you have prod
    - place gridpack on eos 
      - for FCC ```/eos/experiment/fcc/hh/generation/gridpacks/```
      - for HELHC ```/eos/experiment/fcc/helhc/generation/gridpacks/```
-   - if the gridpack is from Madgraph, name it ```mg_process```, if from powheg please name it ```pw_process```,
+   - if the gridpack is from Madgraph, name it ```mg_process``` (and call option ```gp_mg'''), if from powheg please name it ```pw_process``` (and call option ```gp_pw'''),
    - add to ```config/param_FCC.py``` or ```config/param_HELHC.py``` an entry corresponding to the gridpack name in the ```gridpacklist``` list, depending on the study.
 
 If the gridpack already exists or has been properly added to the ```param```, then simply run:
@@ -58,6 +58,8 @@ example to send 10 jobs of 10 000 events of di-electron events with Mll> 2TeV us
 ```
 python bin/run.py --HELHC --LHE --send --condor --typelhe gp -p mg_pp_ee_lo -n 10000 -N 10 -q longlunch
 ```
+
+The options ```--ncpus``` and ```--priority``` can also be specified to increase the numbers of cpus on the cluster and to change the priority queue. 
 
 
 Generate LHE files directly from MG5
@@ -73,6 +75,7 @@ As before, you need to add the process to the ```config/param_FCC.py``` file. Th
 python bin/run.py --FCC --LHE --send --condor --typelhe mg -p mg_pp_hh_test --mg5card mg5/examples/pp_hh.mg5 --model mg5/models/loop_sm_hh.tar -N 2 -n 10000 -q workday  --memory 16000. --disk 8000.
 ```
 
+The options ```--ncpus``` and ```--priority``` can also be specified to increase the numbers of cpus on the cluster and to change the priority queue. 
 
 
 
@@ -100,6 +103,9 @@ python bin/run.py --FCC --reco --send --type lhep8 --condor -p mg_pp_ttz_5f -N 1
 
 Please note that the decay in pythia is optional, and that there is no need to specify the number of events to run on as it will by default run over all the events present in the LHE file
 
+The options ```--ncpus``` and ```--priority``` can also be specified to increase the numbers of cpus on the cluster and to change the priority queue. 
+
+
 Generate FCCSW files from Pythia8
 =================================
 
@@ -113,7 +119,7 @@ exemple ```p8_pp_Zprime_10TeV_ttbar.cmd```
 1. send jobs
 
 ```
-python bin/run.py --FCC/HELHC/FCCee --reco --send --type p8 --condor -p <process> -n <nevents> -N <njobs> -q <queue> --version <version>
+python bin/run.py --FCC/HELHC/FCCee --reco --send --type p8 --condor -p <process>  --pycard <pythia_card> -n <nevents> -N <njobs> -q <queue> --version <version>
 ```
 Example produce 1 job of 10000 events of Z' to ttbar at HE-LHC
 
@@ -126,6 +132,11 @@ Example produce 1 job of 10000 events of ZH at FCC-ee 240GeV
 ```
 python bin/run.py --FCCee --reco --send -p p8_ee_ZH_ecm240 -n 10000 --type p8 -N 1 --condor -q longlunch --version fcc_v01
 ```
+
+The options ```--ncpus``` and ```--priority``` can also be specified to increase the numbers of cpus on the cluster and to change the priority queue. 
+
+**Important**: If ```--pycard``` option not specified, this step wil lrun with the default pythia8 card, that does not include specific decays nor specific matching/merging parameters. 
+
 
 Expert mode
 ===========

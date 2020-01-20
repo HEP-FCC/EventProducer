@@ -1,0 +1,35 @@
+define lept = l+ l-
+generate p p > lept lept a j
+
+output DUMMYPROCESS
+
+######## DELIMITER (!!! NEED THIS LINE !!!) ##################
+
+set lhapdf /afs/cern.ch/work/s/selvaggi/public/LHAPDF-6.1.6/build/bin/lhapdf-config
+
+launch DUMMYPROCESS
+set iseed DUMMYSEED
+set nevents DUMMYNEVENTS
+
+set ebeam1 13500
+set ebeam2 13500
+
+set pdlabel lhapdf
+set lhaid 260000
+
+set ptj 40.
+set ptl 20.
+set pta 20.
+
+set etaj 5.0 
+set etal 4.0 
+set etaa 5.0 
+
+set drll 0.01
+set drjl 0.3
+set draj 0.3
+set dral 0.2
+
+set mmll 60.
+
+set use_syst False

@@ -26,7 +26,6 @@ class makeSampleList():
             processhad=process.replace('mgp8_','mg_')
         if  proc_param!='':
             processhad=proc_param.replace('mgp8_','mg_')
-        
 
         yaml_lhe=yaml_lhe+'/'+processhad+'/merge.yaml'
         print 'lhe yaml    ',yaml_lhe
@@ -37,6 +36,7 @@ class makeSampleList():
             sys.exit(3)
             return 1.0
 
+        
 
         nmatched = 0
         nweights = 0
@@ -47,32 +47,32 @@ class makeSampleList():
         heppyFile.write('    files=[\n')
 
         matchingEff = 1.0
-
         
         ylhe=None
         with open(yaml_lhe, 'r') as stream:
             try:
-                ylhe = yaml.load(stream)
+                ylhe = yaml.load(stream, Loader=yaml.FullLoader)
             except yaml.YAMLError as exc:
                 print(exc)
 
         yreco=None
         with open(yaml_reco, 'r') as stream:
             try:
-                yreco = yaml.load(stream)
+                yreco = yaml.load(stream, Loader=yaml.FullLoader)
             except yaml.YAMLError as exc:
                 print(exc)
 
         nmatched+= int(yreco['merge']['nevents'])
+        nweights+= float(yreco['merge']['sumofweights'])
+
         for f in ylhe['merge']['outfiles']:
            
             if any(f[0].replace('.lhe.gz','') in s[0] for s in yreco['merge']['outfiles']):
                 nlhe+=int(f[1])
                 if yreco['merge']['outdir'][-1]!='/':
-                    heppyFile.write("           'root://eospublic.cern.ch/{}/{}',\n".format(yreco['merge']['outdir'],f[0].replace('.lhe.gz','.root')))
+                    heppyFile.write("           '/{}/{}',\n".format(yreco['merge']['outdir'],f[0].replace('.lhe.gz','.root')))
                 else:
-                    heppyFile.write("           'root://eospublic.cern.ch/{}{}',\n".format(yreco['merge']['outdir'],f[0].replace('.lhe.gz','.root')))
-
+                    heppyFile.write("           '/{}{}',\n".format(yreco['merge']['outdir'],f[0].replace('.lhe.gz','.root')))
 
         heppyFile.write(']\n')
         heppyFile.write(')\n')
@@ -111,16 +111,16 @@ class makeSampleList():
        yreco=None
        with open(yamldir_reco, 'r') as stream:
            try:
-               yreco = yaml.load(stream)
+               yreco = yaml.load(stream, Loader=yaml.FullLoader)
            except yaml.YAMLError as exc:
                print(exc)
 
        nmatched+= int(yreco['merge']['nevents'])
        for f in yreco['merge']['outfiles']:
            if yreco['merge']['outdir'][-1]!='/':
-               heppyFile.write("           'root://eospublic.cern.ch/{}/{}',\n".format(yreco['merge']['outdir'],f[0]))
+               heppyFile.write("           '/{}/{}',\n".format(yreco['merge']['outdir'],f[0]))
            else: 
-               heppyFile.write("           'root://eospublic.cern.ch/{}{}',\n".format(yreco['merge']['outdir'],f[0]))
+               heppyFile.write("           '/{}{}',\n".format(yreco['merge']['outdir'],f[0]))
 
        heppyFile.write(']\n')
        heppyFile.write(')\n')
@@ -172,10 +172,13 @@ class makeSampleList():
 
             #if process!='mgp8_pp_z0123j_4f_HT_5000_100000':continue
             print ''
-            print '------ ', process, '-------------'
+            print '------ process: ', process, '-------------'
             print ''
+            
             if 'mgp8_' in process:
                 processhad=process.replace('mgp8_','mg_')
+            elif 'pwp8_' in process:
+                processhad=process.replace('pwp8_','pw_')
             else: processhad=process
             # maybe this was a decayed process, so it cannot be found as such in in the param file
             br = 1.0
@@ -191,12 +194,12 @@ class makeSampleList():
                 proc_param = processhad.replace(decstr,'')
                 print '--------------  ',decstr,'  --  ',proc_param
                 
-		try: 
-		   xsec = float(self.para.gridpacklist[proc_param][3])*br
+                try: 
+                   xsec = float(self.para.gridpacklist[proc_param][3])*br
                    kf = float(self.para.gridpacklist[proc_param][4])
                    matchingEff = self.addEntry(process, yamldir_lhe, yaml_reco, xsec, kf, heppyFile, procDict,proc_param)
-		except KeyError:
-		   print 'process {} does not exist in the list'.format(process)
+                except KeyError:
+                   print 'process {} does not exist in the list'.format(process)
 
             elif process in self.para.pythialist:
                 xsec = float(self.para.pythialist[process][3])

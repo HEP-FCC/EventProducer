@@ -164,7 +164,26 @@ def getuid2(user):
                                  random.randint(0,9))
     return seed
 
-
+#__________________________________________________________
+def getuid3(user):
+    userext=-999999
+    for key, value in us.users.iteritems():
+        if key==user: 
+            userext=value
+    if userext<0:
+        print 'user not known ',user,'   exit'
+        sys.exit(3)
+    
+    seed = '%i%i%i%i%i%i%i%i%i'%(0,
+                                 0,
+                                 0,
+                                 0,
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9))
+    return seed
 
 #__________________________________________________________
 def yamlcheck(yamlfile, process):
@@ -177,7 +196,7 @@ def yamlcheck(yamlfile, process):
     doc = None
     with open(yamlfile) as f:
         try:
-            doc = yaml.load(f)
+            doc = yaml.load(f, Loader=yaml.FullLoader)
         except yaml.YAMLError as exc:
             print(exc)
     try: 
@@ -205,7 +224,7 @@ def yamlstatus(yamlfile, process, status):
     doc = None
     with open(yamlfile) as f:
         try:
-            doc = yaml.load(f)
+            doc = yaml.load(f, Loader=yaml.FullLoader)
         except yaml.YAMLError as exc:
             print(exc)
     doc[process] = status

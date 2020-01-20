@@ -8,15 +8,18 @@ import EventProducer.common.makeyaml as my
 class send_lhe():
 
 #__________________________________________________________
-    def __init__(self,njobs,events, process, islsf, iscondor, queue, para):
+    def __init__(self,njobs,events, process, islsf, iscondor, queue, priority, ncpus, para, typelhe):
         self.njobs    = njobs
         self.events   = events
         self.process  = process
         self.islsf    = islsf
         self.iscondor = iscondor
         self.queue    = queue
+        self.priority = priority
+        self.ncpus    = ncpus
         self.user     = os.environ['USER']
         self.para     = para
+        self.typelhe  = typelhe
 
 #__________________________________________________________
     def send(self):
@@ -59,7 +62,11 @@ class send_lhe():
         condor_file_str=''
         while nbjobsSub<self.njobs:
             #uid = int(ut.getuid(self.user))
-            uid = ut.getuid2(self.user)
+            if self.typelhe == 'gp_mg':
+                uid = ut.getuid2(self.user)
+            elif self.typelhe == 'gp_pw':
+                uid = ut.getuid3(self.user)
+
             myyaml = my.makeyaml(yamldir, uid)
             if not myyaml: 
                 print 'job %s already exists'%uid
@@ -94,8 +101,12 @@ class send_lhe():
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s/%s.tar.gz .\n'%(gpdir,self.process))
             frun.write('tar -zxf %s.tar.gz\n'%self.process)
             frun.write('cd process/\n')
-            frun.write('./run.sh %i %i\n'%(self.events,int(uid)))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events_%s.lhe.gz\n'%(lhedir,self.process ,uid))
+            frun.write('./run.sh %i %i\n'%(self.events,int(uid.lstrip('0'))))
+            frun.write('echo "finished run"\n')
+            #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events_%s.lhe.gz\n'%(lhedir,self.process ,uid))
+            frun.write('xrdcp -N -v events.lhe.gz root://eospublic.cern.ch/%s/%s/events_%s.lhe.gz\n'%(lhedir,self.process ,uid))
+            frun.write('echo "lhe file successfully copied on eos"\n')
+
             frun.write('cd ..\n')
             frun.write('rm -rf job%s_%s\n'%(uid,self.process))
             frun.close()
@@ -132,13 +143,14 @@ class send_lhe():
             frun_condor.write('Error          = %s/condor_job.%s.$(ClusterId).$(ProcId).error\n'%(logdir,str(uid)))
             frun_condor.write('getenv         = True\n')
             frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
-            frun_condor.write('request_memory = 2G\n')
             frun_condor.write('requirements   = ( (OpSysAndVer =?= "CentOS7") && (Machine =!= LastRemoteHost) )\n')
             #frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") && (Machine =!= LastRemoteHost) )\n')
             frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')
             frun_condor.write('max_retries    = 3\n')
             frun_condor.write('+JobFlavour    = "%s"\n'%self.queue)
-            frun_condor.write('+AccountingGroup = "group_u_FCC.local_gen"\n')
+            frun_condor.write('+AccountingGroup = "%s"\n'%self.priority)
+            frun_condor.write('RequestCpus = %s\n'%self.ncpus)
+
             frun_condor.write('queue filename matching files %s\n'%condor_file_str)
             frun_condor.close()
             #

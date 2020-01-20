@@ -1,0 +1,27 @@
+import model sm-no_b_mass
+generate p p > b b~ j j / h QED=4 QCD=0
+output DUMMYPROCESS
+
+######## DELIMITER (!!! NEED THIS LINE !!!) ##################
+
+set lhapdf /afs/cern.ch/work/s/selvaggi/public/LHAPDF-6.1.6/build/bin/lhapdf-config
+
+launch DUMMYPROCESS
+set iseed DUMMYSEED
+set nevents DUMMYNEVENTS
+
+set ebeam1 50000
+set ebeam2 50000
+
+set pdlabel lhapdf
+set lhaid 260000
+
+set maxjetflavor 5
+
+set ptj 20
+set drjj 0.4
+set drbb 0.4
+set etaj 5.0
+set etab 5.0
+
+set use_syst False
