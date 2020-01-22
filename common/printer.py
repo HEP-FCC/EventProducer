@@ -62,14 +62,14 @@ class printer():
             tmpf=None
             with open(mergefile, 'r') as stream:
                 try:
-                    tmpf = yaml.load(stream)
+                    tmpf = yaml.load(stream, Loader=yaml.FullLoader)
                 except yaml.YAMLError as exc:
                     print(exc)
                 except IOError as exc:
                     print(exc)
                     print 'file  ',mergefile
                     time.sleep(10)
-                    tmpf = yaml.load(stream)
+                    tmpf = yaml.load(stream, Loader=yaml.FullLoader)
 
             events_tot=tmpf['merge']['nevents']
             size_tot=tmpf['merge']['size']/1000000000.

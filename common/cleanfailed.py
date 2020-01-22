@@ -86,8 +86,8 @@ class cleanfailed():
                     continue
                 with open(f, 'r') as stream:
                     try:
-                       tmpf = yaml.load(stream)
-                       if tmpf['processing']['status']=='sending':
+                        tmpf = yaml.load(stream, Loader=yaml.FullLoader)
+                        if tmpf['processing']['status']=='sending':
                            #from datetime import datetime
                            #import time
                            #ts = time.time()
