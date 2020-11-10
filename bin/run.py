@@ -90,22 +90,22 @@ if __name__=="__main__":
 
     if args.FCC:
         import EventProducer.config.param_FCC as para
-        print 'import FCC config'
+        print ('import FCC config')
     elif args.HELHC:
         import EventProducer.config.param_HELHC as para
-        print 'import HE-LHC config'
+        print ('import HE-LHC config')
     elif args.FCCee:
         import EventProducer.config.param_FCCee as para
-        print 'import FCC-ee config'
+        print ('import FCC-ee config')
     else:
-        print 'problem, need to specify --FCC or --HELHC'
+        print ('problem, need to specify --FCC or --HELHC')
         sys.exit(3)
 
     versionGroup = parser.add_argument_group('recontruction version')
     versionGroup.add_argument('--version', type=str, required = '--reco' in sys.argv, help='Version to use', choices = para.fcc_versions)
 
     decaylist=[]
-    for key, value in para.decaylist.iteritems():
+    for key, value in para.decaylist.items():
         for v in value:
             if v  not in decaylist: decaylist.append(v)
     
@@ -114,19 +114,19 @@ if __name__=="__main__":
 
     processlist=[]
     if (args.reco and args.type=="p8") or args.check or args.checkeos or args.clean or args.cleanold or args.merge or args.remove:
-        for key, value in para.pythialist.iteritems():
+        for key, value in para.pythialist.items():
             processlist.append(key)
-        for key, value in para.decaylist.iteritems():
+        for key, value in para.decaylist.items():
             newkey=key
             if key[0:3]=='mg_': newkey='mgp8_'+key[3:]
             if key[0:3]=='ch_': newkey='chp8_'+key[3:]
             for v in value:
                 processlist.append("%s_%s"%(newkey,v))
     if args.LHE or args.check or args.checkeos or args.clean or args.merge or args.reco:
-        for key, value in para.gridpacklist.iteritems():
+        for key, value in para.gridpacklist.items():
             processlist.append(key)
     if args.reco and (args.remove or args.clean or args.cleanold):
-        for key, value in para.gridpacklist.iteritems():
+        for key, value in para.gridpacklist.items():
             if key[0:3]=='mg_': processlist.append('mgp8_'+key[3:])
             if key[0:3]=='ch_': processlist.append('chp8_'+key[3:])
     
@@ -157,48 +157,48 @@ if __name__=="__main__":
         yamldir=para.yamldir+version+'/'
         statfile=para.delphes_stat.replace('VERSION',version)
 
-        print 'Running reco production system with version %s'%version
+        print ('Running reco production system with version %s'%version)
     else:
-        print 'problem, need to specify --reco or --LHE'
+        print ('problem, need to specify --reco or --LHE')
         sys.exit(3)
 
     import EventProducer.common.utils as ut
     if not ut.testeos(para.eostest,para.eostest_size):
-        print 'eos seems to have problems, should check, will exit'
+        print ('eos seems to have problems, should check, will exit')
         sys.exit(3)
     
 
     if args.check:
-        print 'running the check'
+        print ('running the check')
         if args.process!='':
-            print 'using a specific process ',args.process
+            print ('using a specific process ',args.process)
             if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='pw_': args.process='pwp8_'+args.process[3:]
         import EventProducer.common.checker_yaml as chky
-        print args.process
+        print (args.process)
         checker=chky.checker_yaml(indir, para, fext, args.process,  yamldir)
         checker.check(args.force, statfile)
 
 
     elif args.checkeos:
-        print 'running the checkeos'
+        print ('running the checkeos')
         if args.process!='':
-            print 'using a specific process ',args.process
+            print ('using a specific process ',args.process)
             if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='pw_': args.process='pwp8_'+args.process[3:]
         import EventProducer.common.checker_eos as chkeos
-        print args.process
+        print (args.process)
         checkereos=chkeos.checker_eos(yamldir, indir, args.process)
                                     #(indirafs, indireos, process, version):
 
         checkereos.check(para)
 
     elif args.merge:
-        print 'running the merger'
+        print ('running the merger')
         if args.process!='':
-            print 'using a specific process ',args.process
+            print ('using a specific process ',args.process)
             if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='pw_': args.process='pwp8_'+args.process[3:]
@@ -208,43 +208,43 @@ if __name__=="__main__":
         merger.merge(args.force)
 
     elif args.send:
-        print 'sending jobs'        
+        print ('sending jobs')
         if args.lsf:
-            print 'send to lsf'
-            print 'queue  ', args.queue
+            print ('send to lsf')
+            print ('queue  ', args.queue)
         elif args.condor:
-            print 'send to condor'
-            print 'queue  ', args.queue
-            print 'priority  ', args.priority
-            print 'ncpus     ', args.ncpus
+            print ('send to condor')
+            print ('queue  ', args.queue)
+            print ('priority  ', args.priority)
+            print ('ncpus     ', args.ncpus)
         elif args.local:
-            print 'run locally'
+            print ('run locally')
 
 
         if args.LHE:
             
             if args.typelhe == 'gp_mg' or args.typelhe == 'gp_pw' :
 
-                print 'preparing to send lhe jobs from madgraph/powheg gridpacks for process {}'.format(args.process)
+                print ('preparing to send lhe jobs from madgraph/powheg gridpacks for process {}'.format(args.process))
                 import EventProducer.bin.send_lhe as slhe
                 sendlhe=slhe.send_lhe(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, args.priority, args.ncpus, para, args.typelhe)
                 sendlhe.send()
             
             elif args.typelhe == 'mg':
 
-                print 'preparing to send lhe jobs from madgraph standalone for process {}'.format(args.process)
+                print ('preparing to send lhe jobs from madgraph standalone for process {}'.format(args.process))
                 import EventProducer.bin.send_mglhe as mglhe
                 sendlhe=mglhe.send_mglhe( args.lsf, args.condor, args.mg5card, args.cutfile, args.model, para, args.process, args.numJobs, args.numEvents, args.queue, args.priority, args.ncpus)
                 sendlhe.send()
             
         elif args.reco:
             if sendOpt=='lhep8':
-                print 'preparing to send FCCSW jobs from lhe'
+                print ('preparing to send FCCSW jobs from lhe')
                 import EventProducer.bin.send_lhep8 as slhep8
                 sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, args.priority, args.ncpus, para, version, args.decay, args.pycard)
                 sendlhep8.send(args.force)
             elif sendOpt=='p8':
-                print 'preparing to send FCCSW jobs from pythia8 directly'
+                print ('preparing to send FCCSW jobs from pythia8 directly')
                 import EventProducer.bin.send_p8 as sp8
                 sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version)
                 sendp8.send()
@@ -252,49 +252,49 @@ if __name__=="__main__":
     elif args.web:
         import EventProducer.common.printer as prt
         if args.LHE: 
-            print 'create web page for LHE'         
+            print ('create web page for LHE')
             printdic=prt.printer(yamldir,para.lhe_web, False, True, para)
             printdic.run()
 
 
         elif args.reco:
-            print 'create web page for reco version %s'%version
+            print ('create web page for reco version %s'%version)
             webpage=para.delphes_web.replace('VERSION',version)
             printdic=prt.printer(yamldir, webpage, True, False, para, version)
             printdic.run()
 
     elif args.remove:
         if args.process=='':
-            print 'need to specify a process, exit'
+            print ('need to specify a process, exit')
             sys.exit(3)
         if args.LHE: 
-            print 'remove process %s from eos and database for LHE'%args.process
+            print ('remove process %s from eos and database for LHE'%args.process)
         elif args.reco: 
-            print 'remove process %s from eos and database for reco'%args.process
+            print ('remove process %s from eos and database for reco'%args.process)
         import EventProducer.common.removeProcess as rmp
         removeProcess = rmp.removeProcess(args.process, indir, yamldir)
         removeProcess.remove()
         
 
     elif args.clean:
-        print 'clean the dictionnary and eos'
+        print ('clean the dictionnary and eos')
         import EventProducer.common.cleanfailed as clf
         clean=clf.cleanfailed(indir, yamldir, args.process)
         clean.clean()
 
 
     elif args.cleanold:
-        print 'clean the dictionnary from old jobs that have not been checked'
+        print ('clean the dictionnary from old jobs that have not been checked')
         import EventProducer.common.cleanfailed as clf
         clean=clf.cleanfailed(indir, yamldir, args.process)
         clean.cleanoldjobs()
 
     elif args.sample:
-        print 'make the heppy sample list and procDict'
+        print ('make the heppy sample list and procDict')
         import EventProducer.common.makeSampleList as msl
         sample=msl.makeSampleList(para,version)
         sample.makelist()
 
     else:
-        print 'problem, need to specify --check or --send'
+        print ('problem, need to specify --check or --send')
         sys.exit(3)

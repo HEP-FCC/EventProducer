@@ -28,7 +28,7 @@ lhe_dir     = '/eos/experiment/fcc/hh/generation/lhe/'
 lhe_ext     ='.lhe.gz'
 
 ##FCC versions
-fcc_versions=['fcc_v01', 'fcc_v02', 'fcc_v03']
+fcc_versions=['fcc_v01', 'fcc_v02', 'fcc_v03', 'fcc_v04']
 
 ##eos directory for FCCSW pythia delphes files
 delphes_dir = '/eos/experiment/fcc/hh/generation/DelphesEvents/'
@@ -803,7 +803,7 @@ gridpacklist = {
 'mg_pp_tth01j_5f_HT_2700_4900':['higgs associated with top pair + 0/1 jets','2700 < HT < 4900','xqcut = 80, qCut = 120','0.4224','1.22','0.679'],
 'mg_pp_tth01j_5f_HT_4900_8100':['higgs associated with top pair + 0/1 jets','4900 < HT < 8100','xqcut = 80, qCut = 120','0.0336','1.22','0.684'],
 'mg_pp_tth01j_5f_HT_8100_100000':['higgs associated with top pair + 0/1 jets','8100 < HT < 100000','xqcut = 80, qCut = 120','0.002924','1.22','0.689'],
-'mg_pp_tth01j_5f':['higgs associated with top pair + 0/1 jets','inclusive','xqcut = 80, qCut = 120','44.84','1.22','0.612'],
+'mg_pp_tth01j_5f':['higgs associated with top pair + 0/1 jets','inclusive','xqcut = 80, qCut = 120','44.84','1.22','1.0'],
 'mg_pp_ttz01j_5f_HT_0_1100':['z associated with top pair + 0/1 jets','0 < HT < 1100','xqcut = 80, qCut = 120','57.36','1.22','0.604'],
 'mg_pp_ttz01j_5f_HT_1100_2700':['z associated with top pair + 0/1 jets','1100 < HT < 2700','xqcut = 80, qCut = 120','12.08','1.22','0.607'],
 'mg_pp_ttz01j_5f_HT_2700_4900':['z associated with top pair + 0/1 jets','2700 < HT < 4900','xqcut = 80, qCut = 120','0.7717','1.22','0.638'],

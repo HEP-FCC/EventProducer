@@ -118,7 +118,7 @@ def main(parser):
             tmpf=None
             with open(yamldir+proc+'/merge.yaml', 'r') as stream:
                 try:
-                    tmpf = yaml.load(stream)
+                    tmpf = yaml.load(stream, Loader=yaml.FullLoader)
                 except yaml.YAMLError as exc:
                     print(exc)
 

@@ -57,7 +57,7 @@ class printer():
             process=l
             mergefile=self.indir+'/'+l+'/merge.yaml'
             if not ut.file_exist(mergefile): continue
-            print '--------------  process  ',process
+            print ('--------------  process  ',process)
 
             tmpf=None
             with open(mergefile, 'r') as stream:
@@ -67,7 +67,7 @@ class printer():
                     print(exc)
                 except IOError as exc:
                     print(exc)
-                    print 'file  ',mergefile
+                    print ('file  ',mergefile)
                     time.sleep(10)
                     tmpf = yaml.load(stream, Loader=yaml.FullLoader)
 
@@ -90,23 +90,23 @@ class printer():
                     br = self.para.branching_ratios[dec]
                     decay = dec
             if decay != '':
-                print 'decay---------- ',decay,' ------- br ',br
+                print ('decay---------- ',decay,' ------- br ',br)
                 decstr = '_{}'.format(decay)
 
             ispythiaonly=False
             try: 
                 teststring=self.para.gridpacklist[proc][0]
             except IOError as e:
-                print "I/O error({0}): {1}".format(e.errno, e.strerror)
+                print ("I/O error({0}): {1}".format(e.errno, e.strerror))
             except ValueError:
-                print "Could not convert data to an integer."
-            except KeyError, e:
-                print 'I got a KeyError 1 - reason "%s"' % str(e)
+                print ("Could not convert data to an integer.")
+            except KeyError as e:
+                print ('I got a KeyError 1 - reason "%s"' % str(e))
                 ssplit=proc.split('_')
                 stest=''
                 ntest=1
                 if '_HT_' in proc: ntest=4
-                for procn in xrange(0,len(ssplit)-ntest):
+                for procn in range(0,len(ssplit)-ntest):
                     stest+=ssplit[procn]+'_'
 
                 stest= stest[0:len(stest)-1]
@@ -114,42 +114,42 @@ class printer():
  #CLEMENT TO BE FIXED
                 if decay != '':
                     proc = proc.replace(decstr,'')
-                    print '--------------  ',decstr,'  --  ',proc
+                    print ('--------------  ',decstr,'  --  ',proc)
 
                 try: 
                     teststringdecay=self.para.decaylist[stest][0]
                 except IOError as e:
-                    print "I/O error({0}): {1}".format(e.errno, e.strerror)
+                    print ("I/O error({0}): {1}".format(e.errno, e.strerror))
                 except ValueError:
-                    print "Could not convert data to an integer."
-                except KeyError, e:
-                    print 'I got a KeyError 2 - reason "%s"' % str(e)
+                    print ("Could not convert data to an integer.")
+                except KeyError as e:
+                    print ('I got a KeyError 2 - reason "%s"' % str(e))
                     try:
                         teststringpythia=self.para.pythialist[news][0]
                         ispythiaonly=True
                     except IOError as e:
-                        print "I/O error({0}): {1}".format(e.errno, e.strerror)
+                        print ("I/O error({0}): {1}".format(e.errno, e.strerror))
                     except ValueError:
-                        print "Could not convert data to an integer."
-                    except KeyError, e:
-                        print 'I got a KeyError 3 - reason "%s"' % str(e)
+                        print ("Could not convert data to an integer.")
+                    except KeyError as e:
+                        print ('I got a KeyError 3 - reason "%s"' % str(e))
             
             except:
-                print "Unexpected error:", sys.exc_info()[0]
+                print ("Unexpected error:", sys.exc_info()[0])
                 raise
 
             
             if not ispythiaonly:
                 try:
                     stupidtest=self.para.gridpacklist[proc]
-                except KeyError, e:
-                    print 'changing proc :',proc,'  to dummy'
+                except KeyError as e:
+                    print ('changing proc :',proc,'  to dummy')
                     proc='dummy'
             if ispythiaonly:
                 try :
                     stupidtest=self.para.pythialist[news]
-                except KeyError, e:
-                    print 'changing proc pythia :',news,'  to dummy'
+                except KeyError as e:
+                    print ('changing proc pythia :',news,'  to dummy')
                     news='dummy'
 
 
@@ -162,10 +162,10 @@ class printer():
                 if os.path.isdir('%s%s/%s'%(self.para.delphes_dir,self.version,process)): 
                     nfileseos=len(os.listdir('%s%s/%s'%(self.para.delphes_dir,self.version,process)))
 
-            print 'nevents               : %i'%events_tot
-            print 'nfiles on eos/checked : %i/%i'%(nfileseos,files_tot)
-            print 'proc in the end       : ',proc
-            print 'news in the end       : ',news
+            print ('nevents               : %i'%events_tot)
+            print ('nfiles on eos/checked : %i/%i'%(nfileseos,files_tot))
+            print ('proc in the end       : ',proc)
+            print ('news in the end       : ',news)
 
             marked_b=''
             marked_e=''

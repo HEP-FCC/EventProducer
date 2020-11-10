@@ -4,7 +4,7 @@
 #python bin/run.py --FCC --reco --send --condor -p mg_pp_tttt_5f --type lhep8 -N 20 -q tomorrow --version fcc_v02
 
 import os, sys
-import commands
+import subprocess
 import time
 import yaml
 import glob
@@ -17,7 +17,7 @@ class send_lhep8():
 #__________________________________________________________
     def __init__(self,njobs, events, process, islsf, iscondor, queue, priority, ncpus, para, version, decay, pycard):
         self.njobs    = njobs
-        self.events   = -1
+        self.events   = events
         self.process  = process
         self.islsf    = islsf
         self.iscondor = iscondor
@@ -40,8 +40,8 @@ class send_lhep8():
         outdir='%s%s/'%(self.para.delphes_dir,self.version)
         try:
             gplist[self.process]
-        except KeyError, e:
-            print 'process %s does not exist as gridpack'%self.process
+        except KeyError as e:
+            print ('process %s does not exist as gridpack'%self.process)
             sys.exit(3)
 
         delphescards_mmr=''
@@ -49,26 +49,26 @@ class send_lhep8():
         if 'FCCee' not in self.para.module_name:
             delphescards_mmr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mmr)
             if ut.file_exist(delphescards_mmr)==False and self.version != 'cms' and 'helhc' not in self.version:
-                print 'delphes card does not exist: ',delphescards_mmr,' , exit'
+                print ('delphes card does not exist: ',delphescards_mmr,' , exit')
                 sys.exit(3)
 
             delphescards_mr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mr)
             if ut.file_exist(delphescards_mr)==False and self.version != 'cms' and 'helhc' not in self.version:
-                print 'delphes card does not exist: ',delphescards_mr,' , exit'
+                print ('delphes card does not exist: ',delphescards_mr,' , exit')
                 sys.exit(3)
 
         delphescards_base = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_base)
         if ut.file_exist(delphescards_base)==False:
-            print 'delphes card does not exist: ',delphescards_base
+            print ('delphes card does not exist: ',delphescards_base)
             sys.exit(3)
 
         fccconfig = '%s%s'%(self.para.fccconfig_dir,self.para.fccconfig)
         if ut.file_exist(fccconfig)==False:
-            print 'fcc config file does not exist: ',fccconfig
+            print ('fcc config file does not exist: ',fccconfig)
             sys.exit(3)
 
 
-        print '======================================',self.process
+        print ('======================================',self.process)
         
         '''
         pythiacard='%s%s.cmd'%(self.para.pythiacards_dir,self.process.replace('mg_pp','p8_pp').replace('mg_gg','p8_gg'))
@@ -128,13 +128,13 @@ class send_lhep8():
         pythiacard=self.para.pythiacards_dir+'/'+self.pycard
 
         if not os.path.isfile(pythiacard):
-            print '{} does not exist'.format(pythiacard)
+            print ('{} does not exist'.format(pythiacard))
             sys.exit(3)
 
         pr_decay = self.process       
         if self.process in self.para.decaylist and self.decay != '':
             pr_decay=self.process
-            print '====',pr_decay,'===='
+            print ('====',pr_decay,'====')
             pr_decay=self.process+'_'+self.decay
 
 
@@ -142,7 +142,7 @@ class send_lhep8():
         mcprg_str = pr_decay.split('_')[0]
         processp8 = pr_decay.replace(mcprg_str, mcprg_str+'p8')
 
-        print processp8
+        print (processp8)
 
         acctype='FCC'
         if 'HELHC' in self.para.module_name:  acctype='HELHC'
@@ -160,22 +160,22 @@ class send_lhep8():
   
         All_files = glob.glob("%s/events_*.yaml"%yamllhedir)
         if len(All_files)==0:
-            print 'there is no LHE files checked for process %s exit'%self.process
+            print ('there is no LHE files checked for process %s exit'%self.process)
             sys.exit(3)
 
         if len(All_files)<self.njobs:
-            print 'only %i LHE file exists, will not run all the jobs requested'%len(All_files)
+            print ('only %i LHE file exists, will not run all the jobs requested'%len(All_files))
 
         nbjobsSub=0
         ntmp=0
 
         if self.islsf==False and self.iscondor==False:
-            print "Submit issue : LSF nor CONDOR flag defined !!!"
+            print ("Submit issue : LSF nor CONDOR flag defined !!!")
             sys.exit(3)
 
         condor_file_str=''
         
-        for i in xrange(len(All_files)):
+        for i in range(len(All_files)):
 
             if nbjobsSub == self.njobs: break
             
@@ -194,12 +194,12 @@ class send_lhep8():
 
             myyaml = my.makeyaml(yamldir, jobid)
             if not myyaml: 
-                print 'job %s already exists'%jobid
+                print ('job %s already exists'%jobid)
                 continue
 
             outfile='%s/%s/events_%s.root'%(outdir,processp8,jobid)
             if ut.file_exist(outfile):
-                print 'outfile already exist, continue  ',outfile
+                print ('outfile already exist, continue  ',outfile)
 
             frunname = 'job%s.sh'%(jobid)
             frunfull = '%s/%s'%(logdir,frunname)
@@ -208,11 +208,11 @@ class send_lhep8():
             try:
                 frun = open(frunfull, 'w')
             except IOError as e:
-                print "I/O error({0}): {1}".format(e.errno, e.strerror)
+                print ("I/O error({0}): {1}".format(e.errno, e.strerror))
                 time.sleep(10)
                 frun = open(frunfull, 'w')
 
-            commands.getstatusoutput('chmod 777 %s'%(frunfull))
+            subprocess.getstatusoutput('chmod 777 %s'%(frunfull))
             frun.write('#!/bin/bash\n')
             frun.write('unset LD_LIBRARY_PATH\n')
             frun.write('unset PYTHONHOME\n')
@@ -232,12 +232,19 @@ class send_lhep8():
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
             frun.write('echo "Beams:LHEF = events.lhe" >> card.cmd\n')
             frun.write('echo "Random:seed = %s" >> card.cmd\n'%jobid.lstrip('0'))
+            frun.write('echo "Main:numberOfEvents = %i" >> card.cmd\n'%(self.events))
+
             if 'helhc' in self.version:
                 frun.write('echo " Beams:eCM = 27000." >> card.cmd\n')
-            frun.write('%s/run fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,jobid,self.events))
-            #frun.write('fccrun.py config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(jobid,self.events))
-            frun.write('xrdcp -N -v events_%s.root root://eospublic.cern.ch/%s\n'%(jobid,outfile))
-            
+            #frun.write('%s/fccrun config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,jobid,self.events))
+            frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/EDM4hep/plugins/delphes/edm4hep_output_config.tcl .\n')
+            frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/EDM4hep/build/plugins/delphes/DelphesPythia8_EDM4HEP DelphesPythia8_EDM4HEP\n')
+
+            frun.write('./DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root\n'%(jobid)) 
+
+            #frun.write('xrdcp -N -v events_%s.root root://eospublic.cern.ch/%s\n'%(jobid,outfile))
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events_%s.root %s\n'%(jobid,outfile))
+
             frun.write('cd ..\n')
             frun.write('rm -rf job%s_%s\n'%(jobid,processp8))
             frun.close()
@@ -262,10 +269,10 @@ class send_lhep8():
             try:
                 frun_condor = open(frunfull_condor, 'w')
             except IOError as e:
-                print "I/O error({0}): {1}".format(e.errno, e.strerror)
+                print ("I/O error({0}): {1}".format(e.errno, e.strerror))
                 time.sleep(10)
                 frun_condor = open(frunfull_condor, 'w')
-            commands.getstatusoutput('chmod 777 %s'%frunfull_condor)
+            subprocess.getstatusoutput('chmod 777 %s'%frunfull_condor)
             #
             frun_condor.write('executable     = $(filename)\n')
             frun_condor.write('Log            = %s/condor_job.%s.$(ClusterId).$(ProcId).log\n'%(logdir,str(jobid)))
@@ -286,10 +293,10 @@ class send_lhep8():
             #
             nbjobsSub=0
             cmdBatch="condor_submit %s"%frunfull_condor
-            print cmdBatch
+            print (cmdBatch)
             job=ut.SubmitToCondor(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
             nbjobsSub+=job
 
-        print 'succesfully sent %i  job(s)'%nbjobsSub
+        print ('succesfully sent %i  job(s)'%nbjobsSub)
 
 

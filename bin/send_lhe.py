@@ -32,13 +32,13 @@ class send_lhe():
 
         gptotest='%s/%s.tar.gz'%(gpdir,self.process)
         if ut.file_exist(gptotest)==False:
-            print 'Gridpack=======',gptotest,'======= does not exist'
+            print ('Gridpack=======',gptotest,'======= does not exist')
             sys.exit(3)
 
         try:
             gplist[self.process]
-        except KeyError, e:
-            print 'process %s does not exist as gridpack, exit'%self.process
+        except KeyError as e:
+            print ('process %s does not exist as gridpack, exit'%self.process)
             sys.exit(3)
 
         acctype='FCC'
@@ -56,7 +56,7 @@ class send_lhe():
 
 
         if self.islsf==False and self.iscondor==False:
-            print "Submit issue : LSF nor CONDOR flag defined !!!"
+            print ("Submit issue : LSF nor CONDOR flag defined !!!")
             sys.exit(3)
 
         condor_file_str=''
@@ -69,11 +69,11 @@ class send_lhe():
 
             myyaml = my.makeyaml(yamldir, uid)
             if not myyaml: 
-                print 'job %s already exists'%uid
+                print ('job %s already exists'%uid)
                 continue
 
             if ut.file_exist('%s/%s/events_%s.lhe.gz'%(lhedir,self.process,uid)):
-                print 'already exist, continue'
+                print ('already exist, continue')
                 continue
 
             frunname = 'job%s.sh'%(uid) 
@@ -83,7 +83,7 @@ class send_lhe():
             try:
                 frun = open(frunfull, 'w')
             except IOError as e:
-                print "I/O error({0}): {1}".format(e.errno, e.strerror)
+                print ("I/O error({0}): {1}".format(e.errno, e.strerror))
                 time.sleep(10)
                 frun = open(frunfull, 'w')
                 
@@ -132,7 +132,7 @@ class send_lhe():
             try:
                 frun_condor = open(frunfull_condor, 'w')
             except IOError as e:
-                print "I/O error({0}): {1}".format(e.errno, e.strerror)
+                print ("I/O error({0}): {1}".format(e.errno, e.strerror))
                 time.sleep(10)
                 frun_condor = open(frunfull_condor, 'w')
             commands.getstatusoutput('chmod 777 %s'%frunfull_condor)
@@ -156,9 +156,9 @@ class send_lhe():
             #
             nbjobsSub=0
             cmdBatch="condor_submit %s"%frunfull_condor
-            print cmdBatch
+            print (cmdBatch)
             job=ut.SubmitToCondor(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
             nbjobsSub+=job    
     
-        print 'succesfully sent %i  job(s)'%nbjobsSub
+        print ('succesfully sent %i  job(s)'%nbjobsSub)
 
