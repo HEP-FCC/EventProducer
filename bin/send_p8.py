@@ -131,6 +131,10 @@ class send_p8():
             frun.write('unset PYTHONHOME\n')
             frun.write('unset PYTHONPATH\n')
             frun.write('source %s\n'%(self.para.stack))
+            #frun.write('spack load delphes@master\n')
+            frun.write('spack load py-pyyaml\n')
+            frun.write('export LD_LIBRARY_PATH=/afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/install/lib64:$LD_LIBRARY_PATH\n')
+            
             frun.write('mkdir job%s_%s\n'%(uid,self.process))
             frun.write('cd job%s_%s\n'%(uid,self.process))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
@@ -148,20 +152,40 @@ class send_p8():
                 frun.write('echo " Beams:eCM = 27000." >> card.cmd\n')
             #frun.write('fccrun config.py --DelphesCard card.tcl --Filename card.cmd --filename events_%s.root -n %i\n'%(uid,self.events))
             #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events%s.root %s\n'%(uid,outfile))
-            frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/EDM4hep/build/plugins/delphes/DelphesPythia8EvtGen_EDM4HEP DelphesPythia8_EDM4HEP\n')
+            if 'EvtGen' in self.process:
+                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/install/bin/DelphesPythia8EvtGen_EDM4HEP_k4Interface DelphesPythia8_EDM4HEP\n')
+            else:
+                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/install/bin/DelphesPythia8_EDM4HEP DelphesPythia8_EDM4HEP\n')
+
             #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/EDM4hep/build/plugins/delphes/DelphesPythia8_EDM4HEP_EvtGen DelphesPythia8_EDM4HEP\n')
-            frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/EDM4hep/plugins/delphes/edm4hep_output_config.tcl .\n')
+            frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/examples/edm4hep_output_config.tcl .\n')
             frun.write('echo "Main:numberOfEvents = %i" >> card.cmd\n'%(self.events))
             
             if ('EvtGen' not in self.process):
                 frun.write('./DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root\n'%(uid)) 
             else:
-                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EvtGen/DECAY.DEC .\n')
-                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EvtGen/evt.pdl .\n')
-                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EvtGen/DecFiles/%s.dec user.dec\n'%(self.process.split('_')[-1]))
+                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/mycards/DECAY.DEC .\n')
+                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/mycards/evt.pdl .\n')
+                #HACK CLEMENT
+                #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EvtGen/DecFiles/%s.dec user.dec\n'%(self.process.split('_')[-1]))
 
-                frun.write('./DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root DECAY.DEC evt.pdl user.dec\n'%(uid)) 
+                #for Bu
+                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/mycards/Bu2TauNu_TAUHADNU.dec user.dec\n')
 
+                #for Bc
+                #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/mycards/Bc2TauNu_TAUHADNU.dec user.dec\n')
+
+                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/mycards/ee_Z_bbbar_EVTGEN.cmd card.cmd\n')
+                frun.write('echo "Main:numberOfEvents = %i" >> card.cmd\n'%(self.events))
+                frun.write('echo "Random:seed = %s" >> card.cmd\n'%uid)
+
+                #for Bc
+                #frun.write('./DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root DECAY.DEC evt.pdl user.dec 541 Bc_SIGNAL 1\n'%(uid))
+                #for Bu
+                frun.write('./DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root DECAY.DEC evt.pdl user.dec 521 Bu_SIGNAL 0\n'%(uid)) 
+
+
+               
 
             #frun.write('xrdcp -N -v events_%s.root root://eospublic.cern.ch/%s\n'%(uid,outfile))
             #if ut.file_exist(outfile)==False:

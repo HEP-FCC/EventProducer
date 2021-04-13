@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import os, sys
-import commands
+import subprocess
 import time
 import EventProducer.common.utils as ut
 import EventProducer.common.makeyaml as my
@@ -87,7 +87,7 @@ class send_lhe():
                 time.sleep(10)
                 frun = open(frunfull, 'w')
                 
-            commands.getstatusoutput('chmod 777 %s'%frunfull)
+            subprocess.getstatusoutput('chmod 777 %s'%frunfull)
             frun.write('#!/bin/bash\n')
             frun.write('unset LD_LIBRARY_PATH\n')
             frun.write('unset PYTHONHOME\n')
@@ -96,6 +96,7 @@ class send_lhe():
             frun.write('cd job%s_%s\n'%(uid,self.process))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('source %s\n'%(self.para.stack))
+            frun.write('source /cvmfs/sft.cern.ch/lcg/views/LCG_97a_FCC_4/x86_64-centos7-gcc8-opt/setup.sh \n')
             frun.write('mkdir %s\n'%(lhedir))
             frun.write('mkdir %s%s\n'%(lhedir,self.process))
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s/%s.tar.gz .\n'%(gpdir,self.process))
@@ -135,7 +136,7 @@ class send_lhe():
                 print ("I/O error({0}): {1}".format(e.errno, e.strerror))
                 time.sleep(10)
                 frun_condor = open(frunfull_condor, 'w')
-            commands.getstatusoutput('chmod 777 %s'%frunfull_condor)
+            subprocess.getstatusoutput('chmod 777 %s'%frunfull_condor)
             #
             frun_condor.write('executable     = $(filename)\n')
             frun_condor.write('Log            = %s/condor_job.%s.$(ClusterId).$(ProcId).log\n'%(logdir,str(uid)))
@@ -143,8 +144,10 @@ class send_lhe():
             frun_condor.write('Error          = %s/condor_job.%s.$(ClusterId).$(ProcId).error\n'%(logdir,str(uid)))
             frun_condor.write('getenv         = True\n')
             frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
-            frun_condor.write('requirements   = ( (OpSysAndVer =?= "CentOS7") && (Machine =!= LastRemoteHost) )\n')
+            #frun_condor.write('requirements   = ( (OpSysAndVer =?= "CentOS7") && (Machine =!= LastRemoteHost) )\n')
             #frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") && (Machine =!= LastRemoteHost) )\n')
+            frun_condor.write('requirements    = ( (OpSysAndVer =?= "CentOS7") && (Machine =!= LastRemoteHost) && (TARGET.has_avx2 =?= True) )\n')
+
             frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')
             frun_condor.write('max_retries    = 3\n')
             frun_condor.write('+JobFlavour    = "%s"\n'%self.queue)

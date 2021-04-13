@@ -21,13 +21,14 @@ cd job
 
 echo "copying madgraph tarball ..."
 #cp -r /eos/experiment/fcc/hh/utils/generators/MG5_aMC_v2.6.1.tar.gz .
-cp -r /eos/experiment/fcc/hh/utils/generators/MG5_aMC_v2.6.7.tar.gz .
-
+#cp -r /eos/experiment/fcc/hh/utils/generators/MG5_aMC_v2.6.7.tar.gz .
+cp -r /eos/experiment/fcc/hh/utils/generators/MG5_aMC_v2.8.2.tar.gz .
 #tar -xzf MG5_aMC_v2.6.1.tar.gz
-tar -xzf MG5_aMC_v2.6.7.tar.gz
+#tar -xzf MG5_aMC_v2.8.2.tar.gz
+tar -xzf MG5_aMC_v2.8.2.tar.gz
 echo "finished untaring ..."
 #cd MG5_aMC_v2_6_1
-cd MG5_aMC_v2_6_7
+cd MG5_aMC_v2_8_2
 
 # parse script file
 cp ${SCRIPTFILE} .

@@ -111,8 +111,8 @@ class checker_yaml():
         except AttributeError as e:
             print ("error ",e)
             if nentries!=100000 and nentries!=10000:
-                print (type(nentries))
-                nentries=0
+                print ('nentries  ',nentries)
+                #nentries=0
         if nentries==0:
             print ('file has 0 entries ===%s=== must be deleted'%f)
             return 0,0,False
