@@ -16,9 +16,11 @@ delphes_web="/afs/cern.ch/user/h/helsens/www/data/FCCee/Delphesevents_VERSION.tx
 #yaml directory
 yamldir='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCCee/'
 
+
 #heppy and proc lists
 heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCCee_heppySampleList_VERSION.py'
 procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCCee_procDict_VERSION.json'
+
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/ee/generation/gridpacks/'
@@ -99,6 +101,11 @@ pythialist={
     'p8_ee_Z_Ztautau_ecm125':['tautau ecm=125GeV','tautau','','26.','1.0','1.0'],
     'p8_ee_ZZ_ecm125':['ZZ ecm=125GeV','inclusive','','1.','0.','1.0'],
     'p8_ee_WW_ecm125':['WW ecm=125GeV','inclusive','','0.0558','1.0','1.0'],
+
+    'p8_BES_ee_ZH_ecm240':['ZH ecm=240GeV BES','inclusive decays','','0.201037','1.0','1.0'],
+    'p8_BES_ee_WW_mumu_ecm240':['WW ecm=240GeV BES','inclusive decays','','0.18575','1.0','1.0'],
+
+
 
 #ok, so once you have Z -> bb
 #you need a factor of 7.9e-5 for Bc production
