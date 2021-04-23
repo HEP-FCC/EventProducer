@@ -1,6 +1,3 @@
-#python bin/sendJobs_FCCSW_P8.py -n 1 -p pp_Zprime_5TeV_ll -e 10000
-#python bin/sendJobs_FCCSW_P8.py -n 1 -p pp_Zprime_5TeV_ll -e 10000 
-#python bin/sendJobs_FCCSW_P8.py -n 1 -p pp_Zprime_5TeV_ll -e 10000 -v fcc_v02
 #python bin/run.py --FCC --reco --send --type p8 --condor -p p8_pp_jj_lo_tagger -n 10000 -N 10 -q workday --version fcc_v02
 
 
@@ -15,7 +12,7 @@ import EventProducer.common.makeyaml as my
 class send_p8():
 
 #__________________________________________________________
-    def __init__(self,njobs, events, process, islsf, iscondor, islocal, queue, priority, ncpus, para, version):
+    def __init__(self,njobs, events, process, islsf, iscondor, islocal, queue, priority, ncpus, para, version, training):
         self.njobs    = njobs
         self.events   = events
         self.process  = process
@@ -28,6 +25,7 @@ class send_p8():
         self.user     = os.environ['USER']
         self.para     = para
         self.version  = version
+        self.training = training
 
 #__________________________________________________________
     def send(self):
@@ -96,6 +94,7 @@ class send_p8():
         while nbjobsSub<self.njobs:
 
             uid = ut.getuid2(self.user)
+            if self.training: uid = ut.getuidtraining(self.user)
             if not self.islocal:
                 myyaml = my.makeyaml(yamldir, uid)
                 if not myyaml: 

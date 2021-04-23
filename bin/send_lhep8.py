@@ -241,10 +241,10 @@ class send_lhep8():
             if 'helhc' in self.version:
                 frun.write('echo " Beams:eCM = 27000." >> card.cmd\n')
             #frun.write('%s/fccrun config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,jobid,self.events))
-            #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/examples/edm4hep_output_config.tcl .\n')
-            #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/build/standalone/DelphesPythia8_EDM4HEP DelphesPythia8_EDM4HEP\n')
-            frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/examples/edm4hep_output_config.tcl .\n')
-            frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/install/bin/DelphesPythia8_EDM4HEP DelphesPythia8_EDM4HEP\n')
+            frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/examples/edm4hep_output_config.tcl .\n')
+            frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/build/standalone/DelphesPythia8_EDM4HEP DelphesPythia8_EDM4HEP\n')
+            #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/examples/edm4hep_output_config.tcl .\n')
+            #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/install/bin/DelphesPythia8_EDM4HEP DelphesPythia8_EDM4HEP\n')
 
             frun.write('./DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root\n'%(jobid)) 
 

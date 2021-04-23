@@ -85,6 +85,7 @@ if __name__=="__main__":
     batchGroup.add_argument("--local", action='store_true', help="run locally (will not copy files on eos")
 
 
+    
     args, _ = parser.parse_known_args()
     sendOpt = args.type
 
@@ -104,6 +105,7 @@ if __name__=="__main__":
     versionGroup = parser.add_argument_group('recontruction version')
     versionGroup.add_argument('--version', type=str, required = '--reco' in sys.argv, help='Version to use', choices = para.fcc_versions)
 
+    
     decaylist=[]
     for key, value in para.decaylist.items():
         for v in value:
@@ -137,6 +139,8 @@ if __name__=="__main__":
 
     args, _ = parser.parse_known_args()
     version = args.version
+    training=False
+    if 'training' in version: training=True
 
     sys.argv = []
 
@@ -246,7 +250,7 @@ if __name__=="__main__":
             elif sendOpt=='p8':
                 print ('preparing to send FCCSW jobs from pythia8 directly')
                 import EventProducer.bin.send_p8 as sp8
-                sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version)
+                sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, training)
                 sendp8.send()
 
     elif args.web:
