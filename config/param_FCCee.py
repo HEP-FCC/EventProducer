@@ -30,7 +30,7 @@ lhe_dir     = '/eos/experiment/fcc/ee/generation/lhe/'
 lhe_ext     ='.lhe.gz'
 
 ##FCC versions
-fcc_versions=['fcc_v01','fcc_v02','fcc_v03','fcc_tmp','fcc_tmp_v02','fcc_tmp_v03','fcc_tmp_training']
+fcc_versions=['fcc_v01','fcc_v02','fcc_v03','fcc_tmp','fcc_tmp_v02','fcc_tmp_v03','fcc_tmp_training','spring2021']
 
 ##eos directory for FCCSW pythia delphes files
 delphes_dir = '/eos/experiment/fcc/ee/generation/DelphesEvents/'
@@ -39,36 +39,22 @@ delphes_ext='.root'
 ##name of the ttree
 treename='events'
 
+
 ##where the delphes cards are stored
-delphescards_dir = '/eos/experiment/fcc/ee/utils/delphescards/'
+delphescards_dir = '/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Delphes/'
 ##where the pythia cards are stored
-pythiacards_dir  = '/eos/experiment/fcc/ee/utils/pythiacards/'
-##where the FCC config script is stored
-fccconfig_dir    = '/eos/experiment/fcc/ee/utils/config/'
+pythiacards_dir  = '/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Generator/Pythia8/'
+##where the EVTGEN card are stored
+evtgencards_dir    = '/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Generator/EvtGen/'
 # /cvmfs/fcc.cern.ch/sw/latest/setup.sh 
 ##delphes base card
-delphescard_base='card.tcl'
-##FCC config script name
-fccconfig='PythiaDelphes_config_v02.py'
+delphescard_base='delphes_card_IDEAtrkCov.tcl'
 
-##base dir of FCCSW
-##fccsw_dir='/cvmfs/fcc.cern.ch/sw/0.8.2/'
-#fccsw_dir='/cvmfs/fcc.cern.ch/sw/views/releases/externals/94.2.0/x86_64-centos7-gcc62-opt/'
-##init script for FCCSW
-#stack=fccsw_dir+'init_fcc_stack.sh'
-#stack=fccsw_dir+'setup.sh'
-#stack='/cvmfs/fcc.cern.ch/sw/views/releases/externals/94.3.0/x86_64-centos7-gcc62-opt/setup.sh'
-stack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
-stack='/cvmfs/sw.hsf.org/spackages/setup_bash-20200930.sh'
-#hack EDM4Hep donal
-stack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
 
+
+##init script for Key4Hep
+stack='/cvmfs/sw.hsf.org/spackages/linux-centos7-broadwell/gcc-8.3.0/key4hep-stack-2021-03-26-ch6gml3x3wk67ydbiekh7yx7bmr7nmil/setup.sh'
 ##FCCSW dir
-#fccsw=fccsw_dir+'fccsw/0.8.2/x86_64-slc6-gcc62-opt/'
-fccsw='/afs/cern.ch/work/v/vavolkl/public/fcc.cern.ch/sw/fccsw/v0.10/x86_64-centos7-gcc62-opt/'
-fccsw='/afs/cern.ch/user/h/helsens/FCCsoft/FCCSW/'
-fccsw='/cvmfs/sw.hsf.org/spackages/linux-centos7-broadwell/gcc-8.3.0/fccsw-0.13-l3w7dyet52qlriu74jtk5l66kap6ggmn/scripts/'
-fccsw='/cvmfs/sw.hsf.org/spackages/linux-centos7-broadwell/gcc-8.3.0/fccsw-develop-q57ahua7lm65fvxnzekozih4mgvzptlx/scripts/'
 fccsw=''
 
 
@@ -139,8 +125,51 @@ pythialist={
     'p8_ee_Zbb_ecm91_EvtGen_Bs2DsK':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs+ -> D*K','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bu2TauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B+ -> tau+ nu, tau -> 3pi nu TAUHADNU model','','0.05799621863924','1.0','1.0'],#6645.46*2*0.43*0.000109*0.0931
 
+    'p8_ee_Zbb_ecm91_EvtGen_BuCocktail':['Z/Gamma* ecm=91.188GeV to bb','Bc2TaNu Bu cocktail','','877.26717','1.0','1.0'],#6645.46*0.13201
+    'p8_ee_Zbb_ecm91_EvtGen_BdCocktail':['Z/Gamma* ecm=91.188GeV to bb','Bc2TaNu Bd cocktail','','691.52657','1.0','1.0'],#6645.46*0.10406
+    'p8_ee_Zbb_ecm91_EvtGen_BsCocktail':['Z/Gamma* ecm=91.188GeV to bb','Bc2TaNu Bs cocktail','','155.02529','1.0','1.0'],#6645.46*0.023328
+    'p8_ee_Zbb_ecm91_EvtGen_LbCocktail':['Z/Gamma* ecm=91.188GeV to bb','Bc2TaNu Lb cocktail','','75.485780','1.0','1.0'],#6645.46*0.011359
 
-    
+
+
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2D3Pi'  :['Z/Gamma* ecm=91.188GeV to bb','Bd2D3Pi','','17.1452868','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DDs'  :['Z/Gamma* ecm=91.188GeV to bb','Bd2DDs','','20.57434416','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DTauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Bd2DTauNu','','30.861516240000004','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2Dst3Pi'  :['Z/Gamma* ecm=91.188GeV to bb','Bd2Dst3Pi','','20.602919638','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DstDs'  :['Z/Gamma* ecm=91.188GeV to bb','Bd2DstDs','','22.8603824','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DstDsst'  :['Z/Gamma* ecm=91.188GeV to bb','Bd2DstDsst','','50.57859606','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DstTauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Bd2DstTauNu','','44.86350046','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2Ds3Pi'  :['Z/Gamma* ecm=91.188GeV to bb','Bs2Ds3Pi','','3.891581376','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsDs'  :['Z/Gamma* ecm=91.188GeV to bb','Bs2DsDs','','2.8070423040000003','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsTauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Bs2DsTauNu','','15.502529088000001','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2Dsst3Pi'  :['Z/Gamma* ecm=91.188GeV to bb','Bs2Dsst3Pi','','4.5997215936','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstDs'  :['Z/Gamma* ecm=91.188GeV to bb','Bs2DsstD','','8.867701824','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstDsst'  :['Z/Gamma* ecm=91.188GeV to bb','Bs2DsstDsst','','9.186683904','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstTauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Bs2DsstTauNu','','10.335019392','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2D03Pi'  :['Z/Gamma* ecm=91.188GeV to bb','Bu2Ds3Pi','','16.00226768','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2D0Ds'  :['Z/Gamma* ecm=91.188GeV to bb','Bu2DsDs','','25.717930199999998','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2D0TauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Bu2DsTauNu','','22.003118060000002','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst03Pi'  :['Z/Gamma* ecm=91.188GeV to bb','Bu2Dsst3Pi','','29.43274234','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst0Ds'  :['Z/Gamma* ecm=91.188GeV to bb','Bu2DsstD','','21.71736328','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst0Dsst'  :['Z/Gamma* ecm=91.188GeV to bb','Bu2DsstDsst','','48.86406738','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst0TauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Bu2DsstTauNu','','53.721898640000006','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2Lc3Pi'  :['Z/Gamma* ecm=91.188GeV to bb','Lb2Ds3Pi','','1.893291554','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcDs'  :['Z/Gamma* ecm=91.188GeV to bb','Lb2DsDs','','2.7047022199999997','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcTauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Lb2DsTauNu','','8.040342054','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2Lcst3Pi'  :['Z/Gamma* ecm=91.188GeV to bb','Lb2Dsst3Pi','','1.893291554','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstDs'  :['Z/Gamma* ecm=91.188GeV to bb','Lb2DsstD','','2.7047022199999997','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstDsst'  :['Z/Gamma* ecm=91.188GeV to bb','Lb2DsstDsst','','2.7047022199999997','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstTauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Lb2DsstTauNu','','8.040342054','1.0','1.0'],
+
+#Bu = 0.307 * 0.43 = 0.13201
+#Bd = 0.242 * 0.43 = 0.10406
+#Bs = 0.243 * 0.096 = 0.023328
+#Lb = 0.307 * 0.037 = 0.011359
+
     'p8_ee_Ztautau_ecm91_EvtGen_Tau2MuMuMu':['Z/Gamma* ecm=91.188GeV to tautau','EvtGen tau -> 3mu','','1.0','1.0','1.0'],    
     'p8_ee_Ztautau_ecm91_EvtGen_Tau2MuGamma':['Z/Gamma* ecm=91.188GeV to tautau','EvtGen tau -> mu gamma','','1.0','1.0','1.0'],
     'p8_ee_Zcc_ecm91_EvtGen_D2PiPi0':['Z/Gamma* ecm=91.188GeV to cc','EvtGen D+ -> pi+ pi0','','1.0','1.0','1.0'],

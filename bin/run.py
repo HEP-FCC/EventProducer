@@ -56,7 +56,7 @@ if __name__=="__main__":
     sendjobGroup.add_argument('--priority', type=str, default='group_u_FCC.local_gen', help='condor queue priority (default: group_u_FCC.local_gen)')
     sendjobGroup.add_argument('--ncpus', type=str, default='1', help='number of CPUs (1CPU=2Gb of RAM)')
 
-
+#41873
 
     ###################
     # condor queues : #

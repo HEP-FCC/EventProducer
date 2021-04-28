@@ -42,8 +42,7 @@ class send_p8():
             sys.exit(3)
 
         acctype='FCC'
-        if 'HELHC' in self.para.module_name:  acctype='HELHC'
-        elif 'FCCee' in self.para.module_name:  acctype='FCCee'
+        if 'FCCee' in self.para.module_name:  acctype='FCCee'
 
         logdir=Dir+"/BatchOutputs/%s/%s/%s/"%(acctype,self.version,self.process)
         if not ut.dir_exist(logdir):
@@ -68,22 +67,19 @@ class send_p8():
                 print ('delphes card does not exist: ',delphescards_mr,' , exit')
                 sys.exit(3)
 
-        delphescards_base = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_base)
+        delphescards_base = '%s%s'%(self.para.delphescards_dir,self.para.delphescard_base)
+        delphescards_base=delphescards_base.replace('_VERSION_',self.version)
         if ut.file_exist(delphescards_base)==False:
             print ('delphes card does not exist: ',delphescards_base,' , exit')
             sys.exit(3)
 
-        fccconfig = '%s%s'%(self.para.fccconfig_dir,self.para.fccconfig)
-        if ut.file_exist(fccconfig)==False:
-            print ('fcc config file does not exist: ',fccconfig,' , exit')
-            sys.exit(3)
-
-
-        print ('======================================',self.process)
         pythiacard='%s%s.cmd'%(self.para.pythiacards_dir,self.process)
+        pythiacard=pythiacard.replace('_VERSION_',self.version)
         if ut.file_exist(pythiacard)==False:
             print ('pythia card does not exist: ',pythiacard,' , exit')
-            sys.exit(3)
+            if '_EvtGen_' not in self.process:
+                sys.exit(3)
+
 
  
         if self.islsf==False and self.iscondor==False and self.islocal==False:
@@ -130,61 +126,77 @@ class send_p8():
             frun.write('unset PYTHONHOME\n')
             frun.write('unset PYTHONPATH\n')
             frun.write('source %s\n'%(self.para.stack))
-            #frun.write('spack load delphes@master\n')
+            frun.write('source /cvmfs/sw.hsf.org/contrib/spack/share/spack/setup-env.sh\n')
             frun.write('spack load py-pyyaml\n')
-            frun.write('export LD_LIBRARY_PATH=/afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/install/lib64:$LD_LIBRARY_PATH\n')
+            frun.write('export LD_LIBRARY_PATH=/eos/experiment/fcc/ee/generation/k4SimDelphes/%s/install/lib64:$LD_LIBRARY_PATH\n'%(self.version))
             
             frun.write('mkdir job%s_%s\n'%(uid,self.process))
             frun.write('cd job%s_%s\n'%(uid,self.process))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             if self.islocal==False:
                 frun.write('mkdir -p %s/%s\n'%(outdir,self.process))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_base))
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.tcl\n'%(delphescards_base))
             if 'fcc' in self.version and 'FCCee' not in self.para.module_name:
                 frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mmr))
                 frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mr))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s config.py \n'%(fccconfig))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
-            frun.write('echo "" >> card.cmd\n')
-            frun.write('echo "Random:seed = %s" >> card.cmd\n'%uid)
-            if 'helhc' in self.version:
-                frun.write('echo " Beams:eCM = 27000." >> card.cmd\n')
-            #frun.write('fccrun config.py --DelphesCard card.tcl --Filename card.cmd --filename events_%s.root -n %i\n'%(uid,self.events))
-            #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events%s.root %s\n'%(uid,outfile))
-            if 'EvtGen' in self.process:
-                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/install/bin/DelphesPythia8EvtGen_EDM4HEP_k4Interface DelphesPythia8_EDM4HEP\n')
-            else:
-                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/install/bin/DelphesPythia8_EDM4HEP DelphesPythia8_EDM4HEP\n')
+            if '_EvtGen_' not in self.process:
+                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
+                frun.write('echo "" >> card.cmd\n')
+                frun.write('echo "Random:seed = %s" >> card.cmd\n'%uid)
+                frun.write('echo "Main:numberOfEvents = %i" >> card.cmd\n'%(self.events))
 
-            #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/EDM4hep/build/plugins/delphes/DelphesPythia8_EDM4HEP_EvtGen DelphesPythia8_EDM4HEP\n')
-            frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/examples/edm4hep_output_config.tcl .\n')
-            frun.write('echo "Main:numberOfEvents = %i" >> card.cmd\n'%(self.events))
+            if '_EvtGen_' in self.process:
+                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/k4SimDelphes/%s/install/bin/DelphesPythia8EvtGen_EDM4HEP_k4Interface DelphesPythia8_EDM4HEP\n'%(self.version))
+            else:
+                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/k4SimDelphes/%s/install/bin/DelphesPythia8_EDM4HEP DelphesPythia8_EDM4HEP\n'%(self.version))
+
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/k4SimDelphes/%s/examples/edm4hep_output_config.tcl .\n'%(self.version))
             
-            if ('EvtGen' not in self.process):
+            if '_EvtGen_' not in self.process:
                 frun.write('./DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root\n'%(uid)) 
             else:
-                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/mycards/DECAY.DEC .\n')
-                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/mycards/evt.pdl .\n')
-                #HACK CLEMENT
-                #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EvtGen/DecFiles/%s.dec user.dec\n'%(self.process.split('_')[-1]))
+                evtgendir=self.para.evtgencards_dir.replace('_VERSION_',self.version)
+                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %sDECAY.DEC .\n'%(evtgendir))
+                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %sevt.pdl .\n'%(evtgendir))
+                decfile='%s%s.dec'%(evtgendir,self.process.split('_')[-1])
+                if ut.file_exist(decfile)==False:
+                    print ('evtgen user dec file does not exist: ',decfile,' , exit')
+                    sys.exit(3)
 
-                #for Bu
-                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/mycards/Bu2TauNu_TAUHADNU.dec user.dec\n')
+                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s user.dec\n'%(decfile))
+                if 'Zbb' in self.process:
+                    frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/k4SimDelphes/%s/mycards/ee_Z_bbbar_EVTGEN.cmd card.cmd\n'%(self.version))
+                else:
+                    print ('can not run evt gen with other events than Z->bb exit')
+                    sys.exit(3)
 
-                #for Bc
-                #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/mycards/Bc2TauNu_TAUHADNU.dec user.dec\n')
-
-                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/mycards/ee_Z_bbbar_EVTGEN.cmd card.cmd\n')
                 frun.write('echo "Main:numberOfEvents = %i" >> card.cmd\n'%(self.events))
                 frun.write('echo "Random:seed = %s" >> card.cmd\n'%uid)
 
-                #for Bc
-                #frun.write('./DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root DECAY.DEC evt.pdl user.dec 541 Bc_SIGNAL 1\n'%(uid))
-                #for Bu
-                frun.write('./DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root DECAY.DEC evt.pdl user.dec 521 Bu_SIGNAL 0\n'%(uid)) 
+                tmppr=self.process.split('_')[-1]
+                pdgid=-9999
+                bsignal=''
+                if 'Bu2' in tmppr: 
+                    pdgid=521
+                    bsignal='Bu_SIGNAL'
+                elif 'Bd2' in tmppr: 
+                    pdgid=511
+                    bsignal='Bd_SIGNAL'
+                elif 'Bc2' in tmppr: 
+                    pdgid=541
+                    bsignal='Bc_SIGNAL'
+                elif 'Bs2' in tmppr: 
+                    pdgid=531
+                    bsignal='Bs_SIGNAL'
+                elif 'Lb2' in tmppr: 
+                    pdgid=5122
+                    bsignal='Lb_SIGNAL'
 
+                else: 
+                    print('pdg id not found, exit')
+                    sys.exit(3)
 
-               
+                frun.write('./DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root DECAY.DEC evt.pdl user.dec %s %s 1\n'%(uid,pdgid,bsignal))
 
             #frun.write('xrdcp -N -v events_%s.root root://eospublic.cern.ch/%s\n'%(uid,outfile))
             #if ut.file_exist(outfile)==False:

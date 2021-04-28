@@ -88,6 +88,10 @@ class checker_yaml():
             print ("I/O error({0}): {1}".format(e.errno, e.strerror))
         except ValueError:
             print ("Could read the file")
+        except OSError:#for root 6.24
+            print ('file ===%s=== must be deleted'%f)
+        #os.system('rm %s'%f)
+            return -1,-1,False
         except:
             print ("Unexpected error:", sys.exc_info()[0])
             print ('file ===%s=== must be deleted'%f)
