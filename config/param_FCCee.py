@@ -1,62 +1,58 @@
 #module
-
 module_name='config/param_FCCee.py'
 #eos tests
 eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size=1312594
 
 #stat
-lhe_stat="/afs/cern.ch/user/h/helsens/www/data/FCCee/statlhe.html"
-delphes_stat="/afs/cern.ch/user/h/helsens/www/data/FCCee/statdelphesVERSION.html"
+lhe_stat     = "/afs/cern.ch/user/h/helsens/www/data/FCCee/statlhe.html"
+delphes_stat = "/afs/cern.ch/user/h/helsens/www/data/FCCee/statdelphesVERSION_DETECTOR.html"
 
 #web
-lhe_web="/afs/cern.ch/user/h/helsens/www/data/FCCee/LHEevents.txt"
-delphes_web="/afs/cern.ch/user/h/helsens/www/data/FCCee/Delphesevents_VERSION.txt"
+lhe_web      = "/afs/cern.ch/user/h/helsens/www/data/FCCee/LHEevents.txt"
+delphes_web  = "/afs/cern.ch/user/h/helsens/www/data/FCCee/Delphesevents_VERSION_DETECTOR.txt"
 
 #yaml directory
-yamldir='/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCCee/'
+yamldir      = "/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCCee/"
 
 
 #heppy and proc lists
-heppyList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCCee_heppySampleList_VERSION.py'
-procList = '/afs/cern.ch/work/h/helsens/public/FCCDicts/FCCee_procDict_VERSION.json'
+heppyList    = "/afs/cern.ch/work/h/helsens/public/FCCDicts/FCCee_heppySampleList_VERSION_DETECTOR.py"
+procList     = "/afs/cern.ch/work/h/helsens/public/FCCDicts/FCCee_procDict_VERSION_DETECTOR.json"
 
 
 ##eos directory for MG5@MCatNLO gridpacks
-gp_dir      = '/eos/experiment/fcc/ee/generation/gridpacks/'
+gp_dir       = "/eos/experiment/fcc/ee/generation/gridpacks/"
 ##eos directory for lhe files
-lhe_dir     = '/eos/experiment/fcc/ee/generation/lhe/'
+lhe_dir      = "/eos/experiment/fcc/ee/generation/lhe/"
 ##extension
-lhe_ext     ='.lhe.gz'
+lhe_ext      = ".lhe.gz"
 
 ##FCC versions
-fcc_versions=['fcc_v01','fcc_v02','fcc_v03','fcc_tmp','fcc_tmp_v02','fcc_tmp_v03','fcc_tmp_training','spring2021']
+fcc_versions = ['spring2021']
 
 ##eos directory for FCCSW pythia delphes files
-delphes_dir = '/eos/experiment/fcc/ee/generation/DelphesEvents/'
+delphes_dir  = "/eos/experiment/fcc/ee/generation/DelphesEvents/"
 ##extension
-delphes_ext='.root'
+delphes_ext  = ".root"
 ##name of the ttree
-treename='events'
+treename     = "events"
 
 
 ##where the delphes cards are stored
-delphescards_dir = '/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Delphes/'
+delphescards_dir = "/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Delphes/"
 ##where the pythia cards are stored
-pythiacards_dir  = '/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Generator/Pythia8/'
+pythiacards_dir  = "/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Generator/Pythia8/"
 ##where the EVTGEN card are stored
-evtgencards_dir    = '/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Generator/EvtGen/'
+evtgencards_dir  = "/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Generator/EvtGen/"
 # /cvmfs/fcc.cern.ch/sw/latest/setup.sh 
-##delphes base card
-delphescard_base='delphes_card_IDEAtrkCov.tcl'
+##delphes base card detector
+detectors = ['IDEA']
 
 
 
 ##init script for Key4Hep
-stack='/cvmfs/sw.hsf.org/spackages/linux-centos7-broadwell/gcc-8.3.0/key4hep-stack-2021-03-26-ch6gml3x3wk67ydbiekh7yx7bmr7nmil/setup.sh'
-##FCCSW dir
-fccsw=''
-
+stack  = '/cvmfs/sw.hsf.org/spackages/linux-centos7-broadwell/gcc-8.3.0/key4hep-stack-2021-03-26-ch6gml3x3wk67ydbiekh7yx7bmr7nmil/setup.sh'
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={
@@ -79,7 +75,6 @@ pythialist={
     'p8_ee_H_Hgg_ecm125':['H ecm=125GeV','Higgs to gluon','','0.000023','1.0','1.0'],
     'p8_ee_H_Hcc_ecm125':['H ecm=125GeV','Higgs to cc','','0.000008','1.0','1.0'],
     'p8_ee_H_Htautau_ecm125':['H ecm=125GeV','Higgs to tau','','0.0000065','1.0','1.0'],
-
     
     'p8_ee_Z_Zbb_ecm125':['bb ecm=125GeV','bb','','81.','1.0','1.0'],
     'p8_ee_Z_Zcc_ecm125':['cc ecm=125GeV','cc','','73.','1.0','1.0'],
@@ -93,11 +88,10 @@ pythialist={
 
 
 
-#ok, so once you have Z -> bb
-#you need a factor of 7.9e-5 for Bc production
+#once we have Z -> bb
+#we need a factor of 7.9e-5 for Bc production
 #then a factor 0.0236 for Bc -> tau nu BF
 #then 0.098 for tau -> 3π nu
-
 
     
     'p8_ee_Zbb_ecm91':['Z/Gamma* ecm=91.188GeV to bb','inclusive decays','','6645.46','1.0','1.0'],

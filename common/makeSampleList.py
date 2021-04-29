@@ -14,11 +14,12 @@ import EventProducer.common.utils as ut
 class makeSampleList():
 
 #__________________________________________________________
-    def __init__(self, para, version):
+    def __init__(self, para, version, detector):
         self.para = para
-        self.heppyList = self.para.heppyList.replace('VERSION',version)
-        self.procList  = self.para.procList.replace('VERSION',version)
+        self.heppyList = self.para.heppyList.replace('VERSION',version).replace('DETECTOR',detector)
+        self.procList  = self.para.procList.replace('VERSION',version).replace('DETECTOR',detector)
         self.version   = version
+        self.detector  = detector
 #______________________________________________________________________________________________________
     def addEntry(self, process, yaml_lhe, yaml_reco, xsec, kf, heppyFile, procDict,proc_param=''):
         processhad=process
@@ -143,7 +144,7 @@ class makeSampleList():
     def makelist(self):
 
         yamldir_lhe=self.para.yamldir+'lhe/'
-        yamldir_reco=self.para.yamldir+self.version+'/'
+        yamldir_reco=self.para.yamldir+self.version+'/'+self.detector+'/'
 
         nmatched = 0
         nlhe = 0

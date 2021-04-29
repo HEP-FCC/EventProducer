@@ -7,14 +7,14 @@ import time
 class printer():
 
 #__________________________________________________________
-    def __init__(self, indir, outfile, matching, isLHE, para, version=''):
+    def __init__(self, indir, outfile, matching, isLHE, para, detector, version=''):
         self.indir    = indir
         self.outfile  = outfile
         self.matching = matching
         self.isLHE = isLHE
         self.para = para
         self.version = version
-   
+        self.detector=detector
         self.OutFile   = open(self.outfile, 'w')
 
         self.tot_size=0
@@ -159,8 +159,8 @@ class printer():
                 if os.path.isdir('%s%s'%(self.para.lhe_dir,proc)):
                     nfileseos=len(os.listdir('%s%s'%(self.para.lhe_dir,proc)))
             else:                    
-                if os.path.isdir('%s%s/%s'%(self.para.delphes_dir,self.version,process)): 
-                    nfileseos=len(os.listdir('%s%s/%s'%(self.para.delphes_dir,self.version,process)))
+                if os.path.isdir('%s%s/%s/%s'%(self.para.delphes_dir,self.version,self.detector,process)): 
+                    nfileseos=len(os.listdir('%s%s/%s/%s'%(self.para.delphes_dir,self.version,self.detector,process)))
 
             print ('nevents               : %i'%events_tot)
             print ('nfiles on eos/checked : %i/%i'%(nfileseos,files_tot))
