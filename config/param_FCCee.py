@@ -52,7 +52,7 @@ detectors = ['IDEA']
 
 
 ##init script for Key4Hep
-stack  = '/cvmfs/sw.hsf.org/spackages/linux-centos7-broadwell/gcc-8.3.0/key4hep-stack-2021-03-26-ch6gml3x3wk67ydbiekh7yx7bmr7nmil/setup.sh'
+stack  = '/cvmfs/sw.hsf.org/spackages2/key4hep-stack/2021-04-30/x86_64-centos7-gcc8.3.0-opt/t5gcd6ltt2ikybap2ndoztsg5uyorxzg/setup.sh'
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={
