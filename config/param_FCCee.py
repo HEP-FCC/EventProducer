@@ -29,7 +29,7 @@ lhe_dir      = "/eos/experiment/fcc/ee/generation/lhe/"
 lhe_ext      = ".lhe.gz"
 
 ##FCC versions
-fcc_versions = ['spring2021']
+fcc_versions = ['spring2021','spring2021_training' ]
 
 ##eos directory for FCCSW pythia delphes files
 delphes_dir  = "/eos/experiment/fcc/ee/generation/DelphesEvents/"
@@ -47,12 +47,12 @@ pythiacards_dir  = "/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee
 evtgencards_dir  = "/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Generator/EvtGen/"
 # /cvmfs/fcc.cern.ch/sw/latest/setup.sh 
 ##delphes base card detector
-detectors = ['IDEA']
+detectors = ['IDEA', 'IDEA_3T']
 
 
 
 ##init script for Key4Hep
-stack  = '/cvmfs/sw.hsf.org/spackages2/key4hep-stack/2021-04-30/x86_64-centos7-gcc8.3.0-opt/t5gcd6ltt2ikybap2ndoztsg5uyorxzg/setup.sh'
+stack  = '/cvmfs/sw.hsf.org/key4hep/setup.sh'
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={
