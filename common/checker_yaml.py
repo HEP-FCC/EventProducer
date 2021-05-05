@@ -67,6 +67,8 @@ class checker_yaml():
             tf=r.TFile.Open(f)
         except IOError as e:
             print ("I/O error({0}): {1}".format(e.errno, e.strerror))
+            print ('file ===%s=== must be deleted'%f)
+            return -1,-1,False
         except ValueError:
             print ("Could read the file")
         except:
@@ -86,6 +88,8 @@ class checker_yaml():
 
         except IOError as e:
             print ("I/O error({0}): {1}".format(e.errno, e.strerror))
+            print ('file ===%s=== must be deleted'%f)
+            return -1,-1,False
         except ValueError:
             print ("Could read the file")
         except OSError:#for root 6.24
