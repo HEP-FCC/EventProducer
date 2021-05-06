@@ -47,7 +47,7 @@ pythiacards_dir  = "/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee
 evtgencards_dir  = "/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Generator/EvtGen/"
 # /cvmfs/fcc.cern.ch/sw/latest/setup.sh 
 ##delphes base card detector
-detectors = ['IDEA']
+detectors = ['IDEA','IDEA_3T']
 
 
 
