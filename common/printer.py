@@ -160,6 +160,7 @@ class printer():
                     nfileseos=len(os.listdir('%s%s'%(self.para.lhe_dir,proc)))
             else:                    
                 if os.path.isdir('%s%s/%s/%s'%(self.para.delphes_dir,self.version,self.detector,process)): 
+                    print ('%s%s/%s/%s'%(self.para.delphes_dir,self.version,self.detector,process))
                     nfileseos=len(os.listdir('%s%s/%s/%s'%(self.para.delphes_dir,self.version,self.detector,process)))
 
             print ('nevents               : %i'%events_tot)

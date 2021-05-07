@@ -170,6 +170,7 @@ class checker_yaml():
             sumweights_tot=0
             njobsdone_tot=0
             njobsbad_tot=0
+            userjobs=[]
             for f in All_files:
 
                 self.count = 0
@@ -216,6 +217,7 @@ class checker_yaml():
                         nevents_tot+=nevts
                         sumweights_tot+=sumw
                         njobsdone_tot+=1
+                        if userid not in userjobs:userjobs.append(userid)
                     else:
                         njobsbad_tot+=1
 
@@ -276,7 +278,14 @@ class checker_yaml():
                     print ('not correct file extension %s'%self.fext)
             
             if hasbeenchecked:
-                cmdp='<pre>date=%s \t time=%s njobs=%i \t nevents=%i  \t sumofweights=%f\t njobbad=%i \t process=%s </pre>\n'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot, sumweights_tot, njobsbad_tot,process)
+                userstmp=''
+                for u in userjobs:
+                    if userstmp=='':
+                        userstmp=u
+                    else:
+                        userstmp+=',',u
+
+                cmdp='<pre>date=%s \t time=%s njobs=%i \t nevents=%i  \t sumofweights=%f\t njobbad=%i \t process=%s \t users=%s</pre>\n'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot, sumweights_tot, njobsbad_tot,process,userstmp)
                 stat_exist=ut.file_exist(statfile)
                 with open(statfile, "a") as myfile:
                     if not stat_exist: 
@@ -285,7 +294,7 @@ class checker_yaml():
 
                     myfile.write(cmdp)
 
-                print ('date=%s  time=%s  njobs=%i  nevents=%i  sumofweights=%f  njobbad=%i  process=%s'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot,sumweights_tot, njobsbad_tot,process))
+                print ('date=%s  time=%s  njobs=%i  nevents=%i  sumofweights=%f  njobbad=%i  process=%s users=%s'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot,sumweights_tot, njobsbad_tot,process,userstmp))
 
 
 
