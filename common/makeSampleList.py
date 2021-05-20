@@ -148,7 +148,7 @@ class makeSampleList():
 
         nmatched = 0
         nlhe = 0
-
+        tmpexist=False
         # write header for heppy file
         procDict = open('tmp.json', 'w')
         procDict.write('{\n')
@@ -239,7 +239,7 @@ class makeSampleList():
                             print ('new line ',infile[line])
                 with open("tmp.py", "w") as f1:
                    f1.writelines(infile)
-
+                   tmpexist=True
         procDict.close()
         # parse param file
 
@@ -255,5 +255,6 @@ class makeSampleList():
         procDict.write('}\n')
         
         # replace existing param.py file
-        os.system("mv tmp.py %s"%self.para.module_name)
+        if tmpexist:
+            os.system("mv tmp.py %s"%self.para.module_name)
         os.system("rm tmp.json")

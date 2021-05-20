@@ -64,7 +64,9 @@ class send_p8():
         pythiacard=pythiacard.replace('_VERSION_',self.version)
         if ut.file_exist(pythiacard)==False:
             print ('pythia card does not exist: ',pythiacard,' , exit')
-            if '_EvtGen_' not in self.process:
+            if '_EvtGen' not in self.process:
+                print ('process ',self.process)
+
                 sys.exit(3)
 
 
@@ -114,7 +116,7 @@ class send_p8():
             frun.write('unset PYTHONPATH\n')
             frun.write('source %s\n'%(self.para.stack))
             #frun.write('source /cvmfs/sw.hsf.org/contrib/spack/share/spack/setup-env.sh\n')
-            frun.write('spack load --first k4simdelphes build_type=Release ^evtgen+photos\n')
+            #frun.write('spack load --first k4simdelphes build_type=Release ^evtgen+photos\n')
             
             frun.write('mkdir job%s_%s\n'%(uid,self.process))
             frun.write('cd job%s_%s\n'%(uid,self.process))
@@ -123,7 +125,7 @@ class send_p8():
                 frun.write('mkdir -p %s/%s\n'%(outdir,self.process))
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.tcl\n'%(delphescards_base))
 
-            if '_EvtGen_' not in self.process:
+            if '_EvtGen' not in self.process:
                 frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
                 frun.write('echo "" >> card.cmd\n')
                 frun.write('echo "Random:seed = %s" >> card.cmd\n'%uid)
@@ -132,18 +134,19 @@ class send_p8():
 
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Delphes/edm4hep_%s.tcl edm4hep.tcl\n'%(self.version,self.detector))
             
-            if '_EvtGen_' not in self.process:
+            if '_EvtGen' not in self.process:
                 frun.write('DelphesPythia8_EDM4HEP card.tcl edm4hep.tcl card.cmd events_%s.root\n'%(uid)) 
             else:
                 evtgendir=self.para.evtgencards_dir.replace('_VERSION_',self.version)
                 frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %sDECAY.DEC .\n'%(evtgendir))
                 frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %sevt.pdl .\n'%(evtgendir))
                 decfile='%s%s.dec'%(evtgendir,self.process.split('_')[-1])
-                if ut.file_exist(decfile)==False:
+                if ut.file_exist(decfile)==False and self.process.split('_')[-1]!='EvtGen':
                     print ('evtgen user dec file does not exist: ',decfile,' , exit')
                     sys.exit(3)
 
-                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s user.dec\n'%(decfile))
+                if self.process.split('_')[-1]!='EvtGen':
+                    frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s user.dec\n'%(decfile))
                 if 'Zbb' in self.process:
                     frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Generator/Pythia8/p8_ee_Zbb_ecm91_EVTGEN.cmd card.cmd\n'%(self.version))
                 else:
@@ -154,6 +157,7 @@ class send_p8():
                 frun.write('echo "Random:seed = %s" >> card.cmd\n'%uid)
 
                 tmppr=self.process.split('_')[-1]
+                
                 pdgid=-9999
                 bsignal=''
                 if 'Bu2' in tmppr: 
@@ -172,11 +176,14 @@ class send_p8():
                     pdgid=5122
                     bsignal='Lb_SIGNAL'
 
-                else: 
-                    print('pdg id not found, exit')
-                    sys.exit(3)
-
-                frun.write('DelphesPythia8EvtGen_EDM4HEP_k4Interface card.tcl edm4hep.tcl card.cmd events_%s.root DECAY.DEC evt.pdl user.dec %s %s 1\n'%(uid,pdgid,bsignal))
+                else:
+                    if tmppr!="EvtGen":
+                        print('pdg id not found, exit')
+                        sys.exit(3)
+                if tmppr!="EvtGen":
+                    frun.write('DelphesPythia8EvtGen_EDM4HEP_k4Interface card.tcl edm4hep.tcl card.cmd events_%s.root DECAY.DEC evt.pdl user.dec %s %s 1\n'%(uid,pdgid,bsignal))
+                elif tmppr=="EvtGen":
+                    frun.write('DelphesPythia8EvtGen_EDM4HEP_k4Interface card.tcl edm4hep.tcl card.cmd events_%s.root DECAY.DEC evt.pdl\n'%(uid))
 
             #frun.write('xrdcp -N -v events_%s.root root://eospublic.cern.ch/%s\n'%(uid,outfile))
             #if ut.file_exist(outfile)==False:
