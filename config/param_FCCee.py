@@ -52,6 +52,8 @@ delphescards_dir = "/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee
 pythiacards_dir  = "/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Generator/Pythia8/"
 ##where the EVTGEN card are stored
 evtgencards_dir  = "/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Generator/EvtGen/"
+##where the WHIZARD cards are stored
+whizardcards_dir = "/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Generator/Whizard/"
 # /cvmfs/fcc.cern.ch/sw/latest/setup.sh 
 ##delphes base card detector
 detectors = ['IDEA', 'IDEA_3T', 'IDEA_FullSilicon']
@@ -241,6 +243,8 @@ gridpacklist = {
 
     'wz_ee_mumuH_test_ecm240':['mumuH ecm=240 GeV','inclusive Higgs decays','','6.7656e-3','1.0','1.0'],
     'wz_ee_mumuH_ecm240':['mumuH ecm=240 GeV','inclusive Higgs decays','','6.7656e-3','1.0','1.0'],
+    'wzp6_ee_mumuH_ecm240':['mumuH ecm=240 GeV','inclusive Higgs decays','','6.7656e-3','1.0','1.0'],
+
 
 
 }

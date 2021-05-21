@@ -38,11 +38,15 @@ class checker_yaml():
                 os.system('rm %s'%(fcount))
                 return -1,False
 
-            #cmd='grep \"<event>\" %s | wc -l'%(fcount.replace('.gz',''))
-            #outputCMD = ut.getCommandOutput(cmd)
-            #stdoutplit=outputCMD["stdout"].split(' ')
-            #nevts=int(stdoutplit[0])
-            nevts = 100000 # temporary hack !!
+            #nevts = 100000 # temporary hack !!
+            cmd='stdhepjob %s tmp.slcio 1000000000 | grep \"written to LCIO\" ' %(fcount.replace('.gz',''))
+            outputCMD = ut.getCommandOutput(cmd)
+            if len( outputCMD["stdout"].split() ) < 2:
+                print('... problem in checkFile_stdhep with stdhepjob')
+            snevts = outputCMD["stdout"].split()[1]
+            nevts=int(snevts)
+            #print("Nb of events from stdhepjob = ",nevts)
+            os.system('rm tmp.slcio')
             if nevts==0:
                 print ('no events in the file, job is bad')
                 os.system('rm %s'%(fcount.replace('.gz','')))

@@ -1,21 +1,14 @@
-#python bin/sendJobs_FCCSW.py -n 10 -p pp_h012j_5f -q 8nh -e -1 -d haa --test
-#python bin/sendJobs_FCCSW.py secret -n 1 -e -1  -p "pp_h012j_5f" -q 1nh --test
-#python bin/sendJobs_FCCSW.py -n 1 -p pp_h012j_5f -q 8nh -e -1 -v fcc_v02
-#python bin/run.py --FCC --reco --send --condor -p mg_pp_tttt_5f --type lhep8 -N 20 -q tomorrow --version fcc_v02
-
+#!/usr/bin/env python
 import os, sys
 import subprocess
 import time
-import yaml
-import glob
-from select import select
 import EventProducer.common.utils as ut
 import EventProducer.common.makeyaml as my
 
 class send_stdhep():
 
 #__________________________________________________________
-    def __init__(self,njobs, events, process, islsf, iscondor, islocal, queue, priority, ncpus, para, version, detector, decay):  #, pycard):
+    def __init__(self,njobs,events, process, islsf, iscondor, islocal, queue, priority, ncpus, para, version, typestdhep):
         self.njobs    = njobs
         self.events   = events
         self.process  = process
@@ -25,175 +18,75 @@ class send_stdhep():
         self.queue    = queue
         self.priority = priority
         self.ncpus    = ncpus
+        self.user     = os.environ['USER']
         self.para     = para
         self.version  = version
-        self.decay    = decay
-        self.detector = detector
-        #self.pycard   = pycard
-        self.user     = os.environ['USER']
-
+        self.typestdhep  = typestdhep
 
 #__________________________________________________________
-    def send(self, force):
-
+    def send(self):
         Dir = os.getcwd()
-    
-        gplist=self.para.gridpacklist
-        outdir='%s%s/%s/'%(self.para.delphes_dir,self.version,self.detector)
+        nbjobsSub=0
 
-        try:
-            gplist[self.process]
-        except KeyError as e:
-            print ('process %s does not exist as gridpack'%self.process)
-            sys.exit(3)
+        print("njobs=",self.njobs)
+
+        stdhepdir=self.para.stdhep_dir
+        print("stdhepdir =",stdhepdir)
+        gpdir=self.para.gp_dir
 
         acctype='FCC'
-        if 'FCCee' in self.para.module_name:  acctype='FCCee'
+        if 'HELHC' in self.para.module_name:  acctype='HELHC'
+        elif 'FCCee' in self.para.module_name:  acctype='FCCee'
 
-        logdir=Dir+"/BatchOutputs/%s/%s/%s/%s/"%(acctype,self.version,self.detector,self.process)
+        logdir=Dir+"/BatchOutputs/%s/stdhep/%s"%(acctype,self.process)
         if not ut.dir_exist(logdir):
             os.system("mkdir -p %s"%logdir)
 
-        #if not self.islocal:
-            #yamldir = '%s/%s/%s/%s'%(self.para.yamldir,self.version,self.detector,self.process)
-            #if not ut.dir_exist(yamldir):
-                #os.system("mkdir -p %s"%yamldir)
-
-        delphescards_base = '%scard_%s.tcl'%(self.para.delphescards_dir,self.detector)
-        delphescards_base=delphescards_base.replace('_VERSION_',self.version)
-        if ut.file_exist(delphescards_base)==False:
-            print ('delphes card does not exist: ',delphescards_base,' , exit')
-            sys.exit(3)
-
-        if self.islsf==False and self.iscondor==False and self.islocal==False:
-            print ("Submit issue : LSF nor CONDOR not Local flag defined !!!")
-            sys.exit(3)
-
-
-        #fccconfig = '%s%s'%(self.para.fccconfig_dir,self.para.fccconfig)
-        #if ut.file_exist(fccconfig)==False:
-            #print ('fcc config file does not exist: ',fccconfig)
-            #sys.exit(3)
-#
-
-        print ('======================================',self.process)
-        
-        '''
-
-        pr_noht=''
-        if '_HT_' in self.process:
-            ssplit=self.process.split('_')
-            stest=''
-            for s in xrange(0,len(ssplit)-3):
-                stest+=ssplit[s]+'_'
-            pr_noht= stest[0:len(stest)-1]
-
-        #check that the specified decay exists
-        if self.process in self.para.decaylist and self.decay != '' and '_HT_' not in self.process:
-            if self.decay not in self.para.decaylist[self.process]:
-                print 'decay ==%s== does not exist for process ==%s=='%(self.decay,self.process)
-                sys.exit(3)
-
-        #check that the specified decay exists
-        if pr_noht in self.para.decaylist and self.decay != '' and '_HT_' in self.process:
-            if self.decay not in self.para.decaylist[pr_noht]:
-                print 'decay ==%s== does not exist for process ==%s=='%(self.decay,self.process)
-                sys.exit(3)
-        '''
-
-
-        #pythiacard=self.para.pythiacards_dir+'/'+self.pycard
-
-        #if not os.path.isfile(pythiacard):
-            #print ('{} does not exist'.format(pythiacard))
-            #sys.exit(3)
-
-        pr_decay = self.process       
-        if self.process in self.para.decaylist and self.decay != '':
-            pr_decay=self.process
-            print ('====',pr_decay,'====')
-            pr_decay=self.process+'_'+self.decay
-
-
-        # first string before underscore is generator
-        #mcprg_str = pr_decay.split('_')[0]
-        #processp8 = pr_decay.replace(mcprg_str, mcprg_str+'p8')
-
-        #print (processp8)
-
-        #acctype='FCC'
-        #if 'HELHC' in self.para.module_name:  acctype='HELHC'
-        #elif 'FCCee' in self.para.module_name:  acctype='FCCee'
-
-        #logdir=Dir+"/BatchOutputs/%s/%s/%s/"%(acctype,self.version,processp8)
-        #if not ut.dir_exist(logdir):
-            #os.system("mkdir -p %s"%logdir)
 
         if not self.islocal:
-            yamldir = '%s/%s/%s/%s'%(self.para.yamldir,self.version,self.detector,self.process)
-            if not ut.dir_exist(yamldir):
-                os.system("mkdir -p %s"%yamldir)
+             yamldir = '%s/stdhep/%s'%(self.para.yamldir,self.process)
+             if not ut.dir_exist(yamldir):
+                 os.system("mkdir -p %s"%yamldir)
 
-        yamlstdhepdir = '%s/stdhep/%s'%(self.para.yamldir,self.process)
-        print("yamlstdhepdir = ",yamlstdhepdir)
-  
-        All_files = glob.glob("%s/events_*.yaml"%yamlstdhepdir)
-        if len(All_files)==0:
-            print ('there is no STDHEP files checked for process %s exit'%self.process)
-            sys.exit(3)
+        if self.typestdhep == 'wzp6':
+            whizardcard='%s%s.sin'%(self.para.whizardcards_dir, 'v2.8.5/'+self.process)     # Whizard 2.8.5, with Pythia6 interface
 
-        if len(All_files)<self.njobs:
-            print ('only %i STDHEP file exists, will not run all the jobs requested'%len(All_files))
+        whizardcard=whizardcard.replace('_VERSION_',self.version)
+        if ut.file_exist(whizardcard)==False:
+            print ('Whizard card does not exist: ',whizardcard,' , exit')
+            if '_EvtGen_' not in self.process:
+                sys.exit(3)
 
-        nbjobsSub=0
-        ntmp=0
 
         if self.islsf==False and self.iscondor==False and self.islocal==False:
-            print ("Submit issue : LSF nor CONDOR flag defined !!!")
+            print ("Submit issue : LSF nor CONDOR nor Local flag defined !!!")
             sys.exit(3)
 
         condor_file_str=''
-        
-
-        for i in range(len(All_files)):
-
-            if nbjobsSub == self.njobs: break
-            
-            tmpf=None
-            with open(All_files[i], 'r') as stream:
-                try:
-                    #tmpf = yaml.load(stream, Loader=yaml.FullLoader)
-                    tmpf = yaml.load(stream, Loader=yaml.FullLoader)
-                    if ut.getsize(All_files[i])==0:continue
-                    if tmpf['processing']['status']!='DONE': continue
-                    
-                except yaml.YAMLError as exc:
-                    print(exc)
-
-            jobid=tmpf['processing']['jobid']
-            print("jobid =",jobid)
+        while nbjobsSub<self.njobs:
+            #uid = int(ut.getuid(self.user))
+            if self.typestdhep == 'wzp6':
+                uid = ut.getuid2(self.user)
 
             if not self.islocal:
-                print("yamldir =",yamldir)
-               
-                myyaml = my.makeyaml(yamldir, jobid)
-                print ("myyaml =",myyaml)
+                myyaml = my.makeyaml(yamldir, uid)
                 if not myyaml: 
-                    print ('job %s already exists'%jobid)
+                    print ('job %s already exists'%uid)
                     continue
 
-                outfile='%s/%s/events_%s.root'%(outdir,self.process,jobid)
-                if ut.file_exist(outfile):
-                    print ('outfile already exist, continue  ',outfile)
+                outfile='%s/%s/events_%s.stdhep.gz'%(stdhepdir,self.process,uid)
+                if ut.file_exist('%s/%s/events_%s.stdhep.gz'%(stdhepdir,self.process,uid)):
+                    print ('already exist, continue')
+                    continue
 
             if self.islocal:
-                outfile='%s/events_%s.root'%(logdir,jobid)
+                outfile = '%s/events_%s.stdhep.gz'%(logdir,uid)
                 if ut.file_exist(outfile):
                     print ('file %s already locally exist, continue'%outfile)
                     continue
 
 
-            frunname = 'job%s.sh'%(jobid)
+            frunname = 'job%s.sh'%(uid) 
             frunfull = '%s/%s'%(logdir,frunname)
 
             frun = None
@@ -203,60 +96,43 @@ class send_stdhep():
                 print ("I/O error({0}): {1}".format(e.errno, e.strerror))
                 time.sleep(10)
                 frun = open(frunfull, 'w')
-
-            subprocess.getstatusoutput('chmod 777 %s'%(frunfull))
+                
+            subprocess.getstatusoutput('chmod 777 %s'%frunfull)
             frun.write('#!/bin/bash\n')
             frun.write('unset LD_LIBRARY_PATH\n')
             frun.write('unset PYTHONHOME\n')
             frun.write('unset PYTHONPATH\n')
-            frun.write('source %s\n'%(self.para.stack))
-
-            #frun.write('export LD_LIBRARY_PATH=/afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/install/lib64:$LD_LIBRARY_PATH\n')
-
-
-            frun.write('mkdir job%s_%s\n'%(jobid,self.process))
-            frun.write('cd job%s_%s\n'%(jobid,self.process))
+            frun.write('mkdir job%s_%s\n'%(uid,self.process))
+            frun.write('cd job%s_%s\n'%(uid,self.process))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
-            #frun.write('mkdir -p %s%s/%s\n'%(self.para.delphes_dir,self.version,processp8))
+            frun.write('source %s\n'%(self.para.stack))
+            #frun.write('source /cvmfs/sft.cern.ch/lcg/views/LCG_97a_FCC_4/x86_64-centos7-gcc8-opt/setup.sh \n')
+            #frun.write('mkdir %s\n'%(stdhepdir))
             if self.islocal==False:
-                frun.write('mkdir -p %s/%s\n'%(outdir,self.process))
+                frun.write('mkdir %s%s\n'%(stdhepdir,self.process))
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s thecard.sin\n'%(whizardcard))
+            #frun.write('cd process/\n')
+            #frun.write('./run.sh %i %i\n'%(self.events,int(uid.lstrip('0'))))
+            
+            frun.write('echo "n_events = %i" > header.sin \n'%(self.events))
+            frun.write('echo "seed = %s"  >> header.sin \n'%(uid))
+            frun.write('cat header.sin thecard.sin > card.sin \n') 
 
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(tmpf['processing']['out']))
-            frun.write('gunzip -c %s > events.stdhep\n'%tmpf['processing']['out'].split('/')[-1])          
-            #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_base))
-            #if 'fcc' in self.version and 'FCCee' not in self.para.module_name:
-                #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mmr))
-                #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mr))
-            #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s config.py \n'%(fccconfig))
-            #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
-
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.tcl\n'%(delphescards_base))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Delphes/edm4hep_%s.tcl edm4hep.tcl\n'%(self.version,self.detector))
-
-            #frun.write('echo "Beams:LHEF = events.lhe" >> card.cmd\n')
-            #frun.write('echo "Random:seed = %s" >> card.cmd\n'%jobid.lstrip('0'))
-            #frun.write('echo "Main:numberOfEvents = %i" >> card.cmd\n'%(self.events))
-
-            if 'helhc' in self.version:
-                frun.write('echo " Beams:eCM = 27000." >> card.cmd\n')
-            #frun.write('%s/fccrun config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,jobid,self.events))
-            #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/examples/edm4hep_output_config.tcl .\n')
-            #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/build/standalone/DelphesPythia8_EDM4HEP DelphesPythia8_EDM4HEP\n')
-            #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/examples/edm4hep_output_config.tcl .\n')
-            #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/install/bin/DelphesPythia8_EDM4HEP DelphesPythia8_EDM4HEP\n')
-
-            #frun.write('./DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root\n'%(jobid)) 
-            frun.write('DelphesSTDHEP_EDM4HEP card.tcl edm4hep.tcl  events_%s.root  events.stdhep \n'%(jobid))
-
-            #frun.write('xrdcp -N -v events_%s.root root://eospublic.cern.ch/%s\n'%(jobid,outfile))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events_%s.root %s\n'%(jobid,outfile))
+            frun.write('whizard card.sin \n')
+            frun.write('echo "finished run"\n')
+            frun.write('gzip proc.stdhep \n')
+            #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events_%s.lhe.gz\n'%(lhedir,self.process ,uid))
+            #frun.write('xrdcp -N -v proc.stdhep.gz root://eospublic.cern.ch/%s/%s/events_%s.lhe.gz\n'%(stdhepdir,self.process ,uid))
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py proc.stdhep.gz %s\n'%(outfile))
+            frun.write('echo "stdhep.gz file successfully copied on eos"\n')
 
             frun.write('cd ..\n')
-            frun.write('rm -rf job%s_%s\n'%(jobid,self.process))
+            #frun.write('rm -rf job%s_%s\n'%(uid,self.process))
             frun.close()
 
             if self.islsf==True :
-              cmdBatch="bsub -M 3000000 -R \"pool=40000\" -q %s -o %s -cwd %s %s" %(self.queue, logdir+'/job%s/'%(jobid), logdir+'/job%s/'%(jobid),frunfull)
+              cmdBatch="bsub -M 2000000 -R \"rusage[pool=2000]\" -q %s -o %s -cwd %s %s" %(self.queue,logdir+'/job%s/'%(uid),logdir+'/job%s/'%(uid),logdir+'/'+frunname)
+              #print cmdBatch
 
               batchid=-1
               job,batchid=ut.SubmitToLsf(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
@@ -269,7 +145,6 @@ class send_stdhep():
                 print ('will run locally')
                 nbjobsSub+=1
                 os.system('%s'%frunfull)
-
 
         if self.iscondor==True :
             # clean string
@@ -287,9 +162,9 @@ class send_stdhep():
             subprocess.getstatusoutput('chmod 777 %s'%frunfull_condor)
             #
             frun_condor.write('executable     = $(filename)\n')
-            frun_condor.write('Log            = %s/condor_job.%s.$(ClusterId).$(ProcId).log\n'%(logdir,str(jobid)))
-            frun_condor.write('Output         = %s/condor_job.%s.$(ClusterId).$(ProcId).out\n'%(logdir,str(jobid)))
-            frun_condor.write('Error          = %s/condor_job.%s.$(ClusterId).$(ProcId).error\n'%(logdir,str(jobid)))
+            frun_condor.write('Log            = %s/condor_job.%s.$(ClusterId).$(ProcId).log\n'%(logdir,str(uid)))
+            frun_condor.write('Output         = %s/condor_job.%s.$(ClusterId).$(ProcId).out\n'%(logdir,str(uid)))
+            frun_condor.write('Error          = %s/condor_job.%s.$(ClusterId).$(ProcId).error\n'%(logdir,str(uid)))
             frun_condor.write('getenv         = True\n')
             frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
             #frun_condor.write('requirements   = ( (OpSysAndVer =?= "CentOS7") && (Machine =!= LastRemoteHost) )\n')
@@ -309,8 +184,7 @@ class send_stdhep():
             cmdBatch="condor_submit %s"%frunfull_condor
             print (cmdBatch)
             job=ut.SubmitToCondor(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
-            nbjobsSub+=job
-
+            nbjobsSub+=job    
+    
         print ('succesfully sent %i  job(s)'%nbjobsSub)
-
 
