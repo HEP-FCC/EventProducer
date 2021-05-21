@@ -14,6 +14,52 @@ class checker_yaml():
         self.yamldir = yamldir
         self.count = 0
 
+#__________________________________________________________
+    def checkFile_stdhep(self, f):
+        size=os.path.getsize(f)
+        if size==0:
+            self.count+=1
+            print ('file size is 0, job is bad')
+            return -1,False
+
+        filecounting='filecounting'
+        if os.path.isdir(filecounting)==False:
+            os.system('mkdir %s'%filecounting)
+        cmd='cp %s %s'%(f,filecounting)
+        outputCMD = ut.getCommandOutput(cmd)
+        fcount='%s/%s'%(filecounting,f.split('/')[-1])
+        if os.path.isfile(fcount):
+            cmd='gunzip %s'%(fcount)
+            outputCMD = ut.getCommandOutput(cmd)
+            stderr=outputCMD["stderr"]
+            if len(stderr)>0:
+                print ('can not unzip the file, try again (count %i)'%self.count)
+                self.count+=1
+                os.system('rm %s'%(fcount))
+                return -1,False
+
+            #cmd='grep \"<event>\" %s | wc -l'%(fcount.replace('.gz',''))
+            #outputCMD = ut.getCommandOutput(cmd)
+            #stdoutplit=outputCMD["stdout"].split(' ')
+            #nevts=int(stdoutplit[0])
+            nevts = 100000 # temporary hack !!
+            if nevts==0:
+                print ('no events in the file, job is bad')
+                os.system('rm %s'%(fcount.replace('.gz','')))
+                return 0,False
+            else:
+                print ('%i events in file %s, job is good'%(nevts,f))
+                os.system('rm %s'%(fcount.replace('.gz','')))
+                return nevts,True
+        else:
+            print ('file not properly copied... try again (count %i)'%self.count)
+            if not ut.testeos(self.para.eostest,self.para.eostest_size):
+                print ('eos seems to have problems, should check, will exit')
+                sys.exit(3)
+            self.count+=1
+            return -1, False
+
+
 
 #__________________________________________________________
     def checkFile_lhe(self, f):
@@ -272,6 +318,39 @@ class checker_yaml():
                     with open(outfile, 'w') as outyaml:
                         yaml.dump(dic, outyaml, default_flow_style=False) 
                     continue
+
+                elif '.stdhep.gz' in self.fext:
+                    nevts,check=self.checkFile_stdhep(f)
+                    while nevts==-1 and not check:
+                        nevts,check=self.checkFile_lhe(f)
+                        if self.count==10:
+                            print ('can not copy or unzip the file, declare it wrong')
+                            break
+
+                    status='DONE'
+                    if not check: status='BAD'
+
+                    if status=='DONE':
+                        nevents_tot+=nevts
+                        njobsdone_tot+=1
+                    else:
+                        njobsbad_tot+=1
+
+                    dic = {'processing':{
+                            'process':process,
+                            'jobid':jobid,
+                            'nevents':nevts,
+                            'status':status,
+                            'out':f,
+                            'size':os.path.getsize(f),
+                            'user':userid
+                            }
+                           }
+                    with open(outfile, 'w') as outyaml:
+                        yaml.dump(dic, outyaml, default_flow_style=False)
+                    continue
+
+
                 else:
                     print ('not correct file extension %s'%self.fext)
             
