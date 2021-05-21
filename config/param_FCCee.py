@@ -7,10 +7,13 @@ eostest_size=1312594
 #stat
 lhe_stat     = "/afs/cern.ch/user/h/helsens/www/data/FCCee/statlhe.html"
 delphes_stat = "/afs/cern.ch/user/h/helsens/www/data/FCCee/statdelphesVERSION_DETECTOR.html"
+stdhep_stat = "/afs/cern.ch/user/e/eperez/www/data/FCCee/statstdhep.html"
+
 
 #web
 lhe_web      = "/afs/cern.ch/user/h/helsens/www/data/FCCee/LHEevents.txt"
 delphes_web  = "/afs/cern.ch/user/h/helsens/www/data/FCCee/Delphesevents_VERSION_DETECTOR.txt"
+stdhep_web   = "/afs/cern.ch/user/e/eperez/data/FCCee/STDHEP.txt"
 
 #yaml directory
 yamldir      = "/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCCee/"
@@ -27,6 +30,10 @@ gp_dir       = "/eos/experiment/fcc/ee/generation/gridpacks/"
 lhe_dir      = "/eos/experiment/fcc/ee/generation/lhe/"
 ##extension
 lhe_ext      = ".lhe.gz"
+##eos directory for stdhep files
+stdhep_dir   = "/eos/experiment/fcc/ee/generation/stdhep/"
+##extension
+stdhep_ext   = ".stdhep.gz"
 
 ##FCC versions
 fcc_versions = ['spring2021','spring2021_training' ]
@@ -231,6 +238,10 @@ gridpacklist = {
     'mg_ee_tt_FCNC_tua_ecm365':['ttbar FCNC','to be added','','1.0','1.0','1.0'],
     'mg_ee_tt_FCNC_tuz_ecm365':['ttbar FCNC','to be added','','1.0','1.0','1.0'],
     'mg_ee_tt_FCNC_tcz_ecm365':['ttbar FCNC','to be added','','1.0','1.0','1.0'],
+
+    'wz_ee_mumuH_test_ecm240':['mumuH ecm=240 GeV','inclusive Higgs decays','','6.7656e-3','1.0','1.0'],
+    'wz_ee_mumuH_ecm240':['mumuH ecm=240 GeV','inclusive Higgs decays','','6.7656e-3','1.0','1.0'],
+
 
 }
 
