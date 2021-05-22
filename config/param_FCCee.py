@@ -68,14 +68,15 @@ pythialist={
     'p8_ee_ZZ_ecm240':['ZZ ecm=240GeV','inclusive decays','','1.35899','1.0','1.0'],
     'p8_ee_WW_ecm240':['WW ecm=240GeV','inclusive decays','','16.4385','1.0','1.0'],
     'p8_ee_Zqq_ecm240':['Z/Gamma* ecm=240GeV','hadronic decays','','52.6539','1.0','1.0'],  # Pythia 8.303, noBES (was 53.188 before spring2021)
-    'p8_ee_Zll_ecm240':['Z/Gamma* ecm=240GeV','hadronic decays','','13.7787','1.0','1.0'],  # Pythia 8.303, noBES 
+    'p8_ee_Zll_ecm240':['Z/Gamma* ecm=240GeV','leptonic decays (e/mu/tau)','','13.7787','1.0','1.0'],  # Pythia 8.303, noBES 
 
     'p8_ee_ZH_mH-higher-100MeV_ecm240':['ZH ecm=240GeV, vary mH','inclusive decays','','0.201316','1.0','1.0'],  	# Pythia 8.303, noBES
     'p8_ee_ZH_mH-higher-50MeV_ecm240':['ZH ecm=240GeV, vary mH','inclusive decays','','0.201673','1.0','1.0'],		# Pythia 8.303, noBES
     'p8_ee_ZH_mH-lower-50MeV_ecm240':['ZH ecm=240GeV, vary mH','inclusive decays','','0.202169','1.0','1.0'],		# Pythia 8.303, noBES
     'p8_ee_ZH_mH-lower-100MeV_ecm240':['ZH ecm=240GeV, vary mH','inclusive decays','','0.20253','1.0','1.0'],		# Pythia 8.303, noBES
 
-
+    'p8_ee_WW_mumu_ecm240':['WW ecm=240GeV','W->mu and W ->tau->mu','','0.25792','1.0','1.0'],
+    'p8_noBES_ee_WW_mumu_ecm240':['WW ecm=240GeV','W->mu and W ->tau->mu','','0.25792','1.0','1.0'],
 
     'p8_noBES_ee_ZH_ecm240':['ZH ecm=240GeV, no BES','inclusive decays','','0.201037','1.0','1.0'],
     'p8_noBES_ee_ZZ_ecm240':['ZZ ecm=240GeV, no BES','inclusive decays','','1.35899','1.0','1.0'],
@@ -94,6 +95,10 @@ pythialist={
     'p8_ee_H_Hgg_ecm125':['H ecm=125GeV','Higgs to gluon','','0.000023','1.0','1.0'],
     'p8_ee_H_Hcc_ecm125':['H ecm=125GeV','Higgs to cc','','0.000008','1.0','1.0'],
     'p8_ee_H_Htautau_ecm125':['H ecm=125GeV','Higgs to tau','','0.0000065','1.0','1.0'],
+    'p8_noBES_ee_H_Hbb_ecm125':['H ecm=125GeV','Higgs to bb','','0.000164','1.0','1.0'],
+    'p8_noBES_ee_H_Hgg_ecm125':['H ecm=125GeV','Higgs to gluon','','0.000023','1.0','1.0'],
+    'p8_noBES_ee_H_Hcc_ecm125':['H ecm=125GeV','Higgs to cc','','0.000008','1.0','1.0'],
+    'p8_noBES_ee_H_Htautau_ecm125':['H ecm=125GeV','Higgs to tau','','0.0000065','1.0','1.0'],
     
     'p8_ee_Z_Zbb_ecm125':['bb ecm=125GeV','bb','','81.','1.0','1.0'],
     'p8_ee_Z_Zcc_ecm125':['cc ecm=125GeV','cc','','73.','1.0','1.0'],
@@ -101,10 +106,6 @@ pythialist={
     'p8_ee_Z_Ztautau_ecm125':['tautau ecm=125GeV','tautau','','26.','1.0','1.0'],
     'p8_ee_ZZ_ecm125':['ZZ ecm=125GeV','inclusive','','1.','0.','1.0'],
     'p8_ee_WW_ecm125':['WW ecm=125GeV','inclusive','','0.0558','1.0','1.0'],
-
-    'p8_ee_WW_mumu_ecm240':['WW ecm=240GeV','W->mu and W ->tau->mu','','0.25792','1.0','1.0'],
-    'p8_noBES_ee_WW_mumu_ecm240':['WW ecm=240GeV','W->mu and W ->tau->mu','','0.25792','1.0','1.0'],
-
 
 
 
@@ -118,6 +119,9 @@ pythialist={
     'p8_ee_Zcc_ecm91':['Z/Gamma* ecm=91.188GeV to cc','inclusive decays','','5215.46','1.0','1.0'],
     'p8_ee_Zuds_ecm91':['Z/Gamma* ecm=91.188GeV to uds','inclusive decays','','18616.5','1.0','1.0'],
     'p8_ee_Ztautau_ecm91':['Z/Gamma* ecm=91.188GeV to tautau','inclusive decays','','1476.58','1.0','1.0'],    
+    'p8_ee_Zee_ecm91':['Z/Gamma* ecm=91.188GeV','Z decays to ee','','1462.09','1.0','1.0'],
+    'p8_ee_Zmumu_ecm91':['Z/Gamma* ecm=91.188GeV','Z decays to mumu','','1462.08','1.0','1.0'],
+
 
     'p8_ee_Zbb_ecm91_EvtGen':['Z/Gamma* ecm=91.188GeV to bb','inclusive decays using EvtGen','','6645.46','1.0','1.0'],
 
@@ -190,6 +194,9 @@ pythialist={
     'p8_ee_Ztautau_ecm91_EvtGen_Tau2MuMuMu':['Z/Gamma* ecm=91.188GeV to tautau','EvtGen tau -> 3mu','','1.0','1.0','1.0'],    
     'p8_ee_Ztautau_ecm91_EvtGen_Tau2MuGamma':['Z/Gamma* ecm=91.188GeV to tautau','EvtGen tau -> mu gamma','','1.0','1.0','1.0'],
     'p8_ee_Zcc_ecm91_EvtGen_D2PiPi0':['Z/Gamma* ecm=91.188GeV to cc','EvtGen D+ -> pi+ pi0','','1.0','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91':['Z/Gamma* ecm=91.188GeV to bb','inclusive decays','','6645.46','1.0','1.0'],
+
 }
 
 
