@@ -287,6 +287,11 @@ if __name__=="__main__":
             printdic=prt.printer(yamldir,para.lhe_web, False, True, para)
             printdic.run()
 
+        elif args.STDHEP:
+            print ('create web page for STDHEP')
+            printdic=prt.printer(yamldir,para.stdhep_web, False, True, para)
+            printdic.run()
+            
 
         elif args.reco:
             print ('create web page for reco version %s'%version)

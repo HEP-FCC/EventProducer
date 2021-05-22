@@ -13,7 +13,7 @@ stdhep_stat = "/afs/cern.ch/user/e/eperez/www/data/FCCee/statstdhep.html"
 #web
 lhe_web      = "/afs/cern.ch/user/h/helsens/www/data/FCCee/LHEevents.txt"
 delphes_web  = "/afs/cern.ch/user/h/helsens/www/data/FCCee/Delphesevents_VERSION_DETECTOR.txt"
-stdhep_web   = "/afs/cern.ch/user/e/eperez/data/FCCee/STDHEP.txt"
+stdhep_web   = "/afs/cern.ch/user/h/helsens/www/data/FCCee/STDHEPevents.txt"
 
 #yaml directory
 yamldir      = "/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCCee/"
