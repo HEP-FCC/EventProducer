@@ -7,7 +7,7 @@ import time
 class printer():
 
 #__________________________________________________________
-    def __init__(self, indir, outfile, matching, isLHE, para, detector, version=''):
+    def __init__(self, indir, outfile, matching, isLHE, para, detector='', version=''):
         self.indir    = indir
         self.outfile  = outfile
         self.matching = matching
