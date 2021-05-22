@@ -41,6 +41,7 @@ class checker_eos():
             if nfileseos==0: continue
             nfilesmerged=0
             mergefile=self.indirafs+'/'+l+'/merge.yaml'
+            print("mergefile=",mergefile)
             if not ut.file_exist(mergefile): 
                 if not ut.dir_exist('%s/%s'%(self.indirafs,proc)):
                     os.system('mkdir %s/%s'%(self.indirafs,proc))

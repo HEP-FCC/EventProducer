@@ -32,6 +32,7 @@ if __name__=="__main__":
     genTypeGroup = parser.add_mutually_exclusive_group(required = True) # Type of events to generate
     genTypeGroup.add_argument("--reco", action='store_true', help="reco events")
     genTypeGroup.add_argument("--LHE", action='store_true', help="LHE events")
+    genTypeGroup.add_argument("--STDHEP", action='store_true', help="STDHEP events")
 
     accTypeGroup = parser.add_mutually_exclusive_group(required = True) # Type of events to generate
     accTypeGroup.add_argument("--FCC", action='store_true', help="100TeV FCC machine")
@@ -50,8 +51,10 @@ if __name__=="__main__":
     jobTypeGroup.add_argument("--sample", action='store_true', help="make the heppy sample list and proc dict" )
 
     sendjobGroup = parser.add_argument_group('type of jobs to send')
-    sendjobGroup.add_argument('--type', type=str, required = '--send' in sys.argv and '--reco'  in sys.argv , help='type of jobs to send', choices = ['lhep8','p8'])
+    sendjobGroup.add_argument('--type', type=str, required = '--send' in sys.argv and '--reco'  in sys.argv , help='type of jobs to send', choices = ['lhep8','p8','stdhep'])
     sendjobGroup.add_argument('--typelhe', type=str, required = '--send' in sys.argv and '--LHE'  in sys.argv , help='type of jobs to send', choices = ['gp_mg','gp_pw','mg'])
+    sendjobGroup.add_argument('--typestdhep', type=str, required = '--send' in sys.argv and '--STDHEP'  in sys.argv , help='type of jobs to send', choices = ['wzp6'])
+
     sendjobGroup.add_argument('-q', '--queue', type=str, default='workday', help='lxbatch queue (default: workday for HTCONDOR)', choices=['1nh','8nh','1nd','2nd','1nw','espresso','microcentury','longlunch','workday','tomorrow','testmatch','nextweek'])
     sendjobGroup.add_argument('--priority', type=str, default='group_u_FCC.local_gen', help='condor queue priority (default: group_u_FCC.local_gen)')
     sendjobGroup.add_argument('--ncpus', type=str, default='1', help='number of CPUs (1CPU=2Gb of RAM)')
@@ -125,7 +128,7 @@ if __name__=="__main__":
             if key[0:3]=='ch_': newkey='chp8_'+key[3:]
             for v in value:
                 processlist.append("%s_%s"%(newkey,v))
-    if args.LHE or args.check or args.checkeos or args.clean or args.merge or args.reco:
+    if args.LHE or args.STDHEP or args.check or args.checkeos or args.clean or args.merge or args.reco:
         for key, value in para.gridpacklist.items():
             processlist.append(key)
     if args.reco and (args.remove or args.clean or args.cleanold):
@@ -156,6 +159,12 @@ if __name__=="__main__":
         fext=para.lhe_ext
         yamldir=para.yamldir+'lhe/'
         statfile=para.lhe_stat
+
+    elif args.STDHEP:
+        indir=para.stdhep_dir
+        fext=para.stdhep_ext
+        yamldir=para.yamldir+'stdhep/'
+        statfile=para.stdhep_stat
 
     elif args.reco:
         indir='%s%s/%s'%(para.delphes_dir,version,detector)
@@ -243,6 +252,15 @@ if __name__=="__main__":
                 sendlhe=mglhe.send_mglhe( args.lsf, args.condor, args.mg5card, args.cutfile, args.model, para, args.process, args.numJobs, args.numEvents, args.queue, args.priority, args.ncpus)
                 sendlhe.send()
             
+        elif args.STDHEP:
+
+            if args.typestdhep == 'wzp6' :
+                print ('preparing to send Whizard jobs to produce stdhep files for process {}'.format(args.process))
+                import EventProducer.bin.send_stdhep as sstdhep
+                sendstdhep = sstdhep.send_stdhep( args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, args.typestdhep)
+                sendstdhep.send()
+
+
         elif args.reco:
             if sendOpt=='lhep8':
                 print ('preparing to send FCCSW jobs from lhe')
@@ -254,6 +272,13 @@ if __name__=="__main__":
                 import EventProducer.bin.send_p8 as sp8
                 sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, training, detector)
                 sendp8.send()
+            elif sendOpt=='stdhep':
+                print ('preparing to send FCCSW jobs from stdhep')
+                import EventProducer.bin.send_fromstdhep as sstdhep
+                sendstdhep=sstdhep.send_fromstdhep(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, detector, args.decay)
+                sendstdhep.send(args.force)
+
+
 
     elif args.web:
         import EventProducer.common.printer as prt
