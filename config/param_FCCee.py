@@ -7,7 +7,7 @@ eostest_size=1312594
 #stat
 lhe_stat     = "/afs/cern.ch/user/h/helsens/www/data/FCCee/statlhe.html"
 delphes_stat = "/afs/cern.ch/user/h/helsens/www/data/FCCee/statdelphesVERSION_DETECTOR.html"
-stdhep_stat = "/afs/cern.ch/user/e/eperez/www/data/FCCee/statstdhep.html"
+stdhep_stat  = "/afs/cern.ch/user/h/helsens/www/data/FCCee/statstdhep.html"
 
 
 #web
