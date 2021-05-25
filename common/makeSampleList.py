@@ -25,6 +25,14 @@ class makeSampleList():
         processhad=process
         if 'mgp8_' in process:
             processhad=process.replace('mgp8_','mg_')
+        elif 'wzp6_' in process:
+            processhad=process.replace('wzp6_','wz_')
+        elif 'wzp8_' in process:
+            processhad=process.replace('wzp8_','wz_')
+        elif 'pwp8_' in process:
+            processhad=process.replace('pwp8_','pw_')
+
+            
         if  proc_param!='':
             processhad=proc_param.replace('mgp8_','mg_')
 
@@ -34,7 +42,7 @@ class makeSampleList():
 
         if not ut.file_exist(yaml_lhe): 
             print ('no merged file lhe for process %s continue'%process)
-            sys.exit(3)
+            #sys.exit(3)
             return 1.0
 
         
@@ -77,7 +85,15 @@ class makeSampleList():
                     heppyFile.write("           '/{}/{}',\n".format(yreco['merge']['outdir'],f[0].replace('.lhe.gz','.root')))
                 else:
                     heppyFile.write("           '/{}{}',\n".format(yreco['merge']['outdir'],f[0].replace('.lhe.gz','.root')))
+                    
+            if any(f[0].replace('.stdhep.gz','') in s[0] for s in yreco['merge']['outfiles']):
+                nlhe+=int(f[1])
+                if yreco['merge']['outdir'][-1]!='/':
+                    heppyFile.write("           '/{}/{}',\n".format(yreco['merge']['outdir'],f[0].replace('.stdhep.gz','.root')))
+                else:
+                    heppyFile.write("           '/{}{}',\n".format(yreco['merge']['outdir'],f[0].replace('.stdhep.gz','.root')))
 
+                    
         heppyFile.write(']\n')
         heppyFile.write(')\n')
         heppyFile.write('\n')
@@ -137,13 +153,13 @@ class makeSampleList():
        if nweights==0: nweights=nmatched
        entry = '   "{}": {{"numberOfEvents": {}, "sumOfWeights": {}, "crossSection": {}, "kfactor": {}, "matchingEfficiency": {}}},\n'.format(process, nmatched, nweights, xsec, kf, matchingEff)
        print ('N: {}, Nw:{}, xsec: {} , kf: {} pb, eff: {}'.format(nmatched, nweights, xsec, kf, matchingEff))
+       print ('entry : ',entry)
        procDict.write(entry)
        return matchingEff
    
 #_______________________________________________________________________________________________________
     def makelist(self):
 
-        yamldir_lhe=self.para.yamldir+'lhe/'
         yamldir_reco=self.para.yamldir+self.version+'/'+self.detector+'/'
 
         nmatched = 0
@@ -168,7 +184,11 @@ class makeSampleList():
         for l in ldir:
             processhad=None
             process=l
-
+            if 'mgp8_' in process or 'pwp8_' in process:
+                yamldir_lhe=self.para.yamldir+'lhe/'
+            elif 'wzp6_' in process or 'wzp8_' in process or 'wz_' in process :
+                yamldir_lhe=self.para.yamldir+'stdhep/'
+                
             yaml_reco=yamldir_reco+'/'+l+'/merge.yaml'
             if not ut.file_exist(yaml_reco): 
                 print ('no merged yaml for process %s continue'%l)
@@ -183,6 +203,11 @@ class makeSampleList():
                 processhad=process.replace('mgp8_','mg_')
             elif 'pwp8_' in process:
                 processhad=process.replace('pwp8_','pw_')
+            elif 'wzp6_' in process:
+                processhad=process.replace('wzp6_','wz_')
+            elif 'wzp8_' in process:
+                processhad=process.replace('wzp8_','wz_')
+                
             else: processhad=process
             # maybe this was a decayed process, so it cannot be found as such in in the param file
             br = 1.0
