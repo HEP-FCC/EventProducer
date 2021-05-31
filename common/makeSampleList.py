@@ -25,8 +25,8 @@ class makeSampleList():
         processhad=process
         if 'mgp8_' in process:
             processhad=process.replace('mgp8_','mg_')
-        elif 'wzp6_' in process:
-            processhad=process.replace('wzp6_','wz_')
+        #elif 'wzp6_' in process:
+        #    processhad=process.replace('wzp6_','wz_')
         elif 'wzp8_' in process:
             processhad=process.replace('wzp8_','wz_')
         elif 'pwp8_' in process:
@@ -203,8 +203,8 @@ class makeSampleList():
                 processhad=process.replace('mgp8_','mg_')
             elif 'pwp8_' in process:
                 processhad=process.replace('pwp8_','pw_')
-            elif 'wzp6_' in process:
-                processhad=process.replace('wzp6_','wz_')
+            #elif 'wzp6_' in process:
+            #    processhad=process.replace('wzp6_','wz_')
             elif 'wzp8_' in process:
                 processhad=process.replace('wzp8_','wz_')
                 

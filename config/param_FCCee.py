@@ -154,6 +154,23 @@ pythialist={
     'p8_ee_Zbb_ecm91_EvtGen_LbCocktail':['Z/Gamma* ecm=91.188GeV to bb','Bc2TaNu Lb cocktail','','75.485780','1.0','1.0'],#6645.46*0.011359
 
 
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2Kstee':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2Kstee','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsteeBTOSLLBALL':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2KsteeBTOSLLBALL','','1.0','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2Kstmm':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2Kstmm','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2KstmmBTOSLLBALL':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2KstmmBTOSLLBALL','','1.0','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2Rhomm':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2Rhomm','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2Rhoee':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2Rhoee','','1.0','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2Kstee':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs2Kstee','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2KsteeBTOSLLBALL':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs2KsteeBTOSLLBALL','','1.0','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2Kstmm':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs2Kstmm','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2KstmmBTOSLLBALL':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs2KstmmBTOSLLBALL','','1.0','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Piee':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bu2Piee','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Pimm':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bu2Pimm','','1.0','1.0','1.0'],
 
 
     'p8_ee_Zbb_ecm91_EvtGen_Bd2D3Pi'    :['Z/Gamma* ecm=91.188GeV to bb','Bd2D3Pi','','17.1452868','1.0','1.0'],
