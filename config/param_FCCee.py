@@ -173,6 +173,11 @@ pythialist={
     'p8_ee_Zbb_ecm91_EvtGen_Bu2Pimm':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bu2Pimm','','1.0','1.0','1.0'],
 
 
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2KstNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2KstNuNu','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs2PhiNuNu','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2KNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bu2KNuNu','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LbNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Lb2LbNuNu','','1.0','1.0','1.0'],
+    
     'p8_ee_Zbb_ecm91_EvtGen_Bd2D3Pi'    :['Z/Gamma* ecm=91.188GeV to bb','Bd2D3Pi','','17.1452868','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DDs'     :['Z/Gamma* ecm=91.188GeV to bb','Bd2DDs','','20.57434416','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DTauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Bd2DTauNu','','30.861516240000004','1.0','1.0'],
