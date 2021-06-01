@@ -267,6 +267,10 @@ gridpacklist = {
     'wzp6_ee_nunuH_ecm240':['nunuH ecm=240 GeV (all nu flavours)','inclusive Higgs decays','','46.191e-3','1.0','1.0'],
     'wzp6_ee_qqH_ecm240':['qqH ecm=240 GeV, q = u,d,s,c,b','inclusive Higgs decays','','136.35e-3','1.0','1.0'],
 
+    'wzp6_egamma_eZ_Zmumu_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z to mumu','','103.68e-3','1.0','1.0'],
+    'wzp6_gammae_eZ_Zmumu_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z to mumu','','103.68e-3','1.0','1.0'],
+
+
 
 
 
