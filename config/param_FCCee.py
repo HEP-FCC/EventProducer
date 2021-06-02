@@ -277,7 +277,7 @@ gridpacklist = {
     'mg_ee_tt_FCNC_tcz_ecm365':['ttbar FCNC','to be added','','1.0','1.0','1.0'],
 
     'wzp6_ee_mumuH_ecm240':['mumuH ecm=240 GeV','inclusive Higgs decays','','6.7643e-3','1.0','1.0'],
-    'wzp6_ee_mumuH_ecm240_v2':['mumuH ecm=240 GeV','inclusive Higgs decays','','6.7656e-3','1.0','1.0'],
+    'wzp6_ee_mumuH_noISR_ecm240':['mumuH ecm=240 GeV, no ISR','inclusive Higgs decays','','7.9757e-3','1.0','1.0'],
     'wzp6_noBES_ee_mumuH_ecm240':['mumuH ecm=240 GeV','inclusive Higgs decays','','6.7626e-3','1.0','1.0'],
     'wzp6_ee_mumuH_mH-higher-100MeV_ecm240':['mumuH ecm=240 GeV, vary mH','inclusive Higgs decays','','6.7393e-3','1.0','1.0'],
     'wzp6_ee_mumuH_mH-higher-50MeV_ecm240':['mumuH ecm=240 GeV, vary mH','inclusive Higgs decays','','6.7488e-3','1.0','1.0'],
@@ -293,6 +293,10 @@ gridpacklist = {
 
     'wzp6_egamma_eZ_Zmumu_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z to mumu','','103.68e-3','1.0','1.0'],
     'wzp6_gammae_eZ_Zmumu_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z to mumu','','103.68e-3','1.0','1.0'],
+
+    'wzp6_gaga_mumu_60_ecm240':['gammagamma to mumu, M(mumu) > 60 GeV,  ecm=240 GeV','','','1.5523','1.0','1.0'],
+    'wzp6_gaga_tautau_60_ecm240':['gammagamma to tautau, M(tautau) > 60 GeV,  ecm=240 GeV','','','0.836','1.0','1.0'],
+
 
 
 
