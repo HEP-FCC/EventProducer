@@ -255,7 +255,7 @@ gridpacklist = {
     'mg_ee_tt_FCNC_tcz_ecm365':['ttbar FCNC','to be added','','1.0','1.0','1.0'],
 
     'wzp6_ee_mumuH_ecm240':['mumuH ecm=240 GeV','inclusive Higgs decays','','6.7643e-3','1.0','1.0'],
-    'wzp6_ee_mumuH_noISR_ecm240'::['mumuH ecm=240 GeV, no ISR','inclusive Higgs decays','','7.9757e-3','1.0','1.0'],
+    'wzp6_ee_mumuH_noISR_ecm240':['mumuH ecm=240 GeV, no ISR','inclusive Higgs decays','','7.9757e-3','1.0','1.0'],
     'wzp6_noBES_ee_mumuH_ecm240':['mumuH ecm=240 GeV','inclusive Higgs decays','','6.7626e-3','1.0','1.0'],
     'wzp6_ee_mumuH_mH-higher-100MeV_ecm240':['mumuH ecm=240 GeV, vary mH','inclusive Higgs decays','','6.7393e-3','1.0','1.0'],
     'wzp6_ee_mumuH_mH-higher-50MeV_ecm240':['mumuH ecm=240 GeV, vary mH','inclusive Higgs decays','','6.7488e-3','1.0','1.0'],
