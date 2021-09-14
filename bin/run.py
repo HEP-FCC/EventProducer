@@ -265,7 +265,7 @@ if __name__=="__main__":
             if sendOpt=='lhep8':
                 print ('preparing to send FCCSW jobs from lhe')
                 import EventProducer.bin.send_lhep8 as slhep8
-                sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, args.priority, args.ncpus, para, version, args.decay, args.pycard)
+                sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, args.decay, args.pycard, detector)
                 sendlhep8.send(args.force)
             elif sendOpt=='p8':
                 print ('preparing to send FCCSW jobs from pythia8 directly')
