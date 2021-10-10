@@ -77,6 +77,7 @@ class printer():
             files_tot=tmpf['merge']['ndone']
             sumw_tot=0
             proc = process.replace('mgp8_','mg_')
+            proc = process.replace('kkmcp8_', 'kkmc_')
        
             news=str(proc)
             proc=str(proc)
