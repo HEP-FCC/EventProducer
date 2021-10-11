@@ -44,6 +44,9 @@ pythiacards_dir  = '/eos/experiment/fcc/hh/utils/pythiacards/'
 ##where the FCC config script is stored
 fccconfig_dir    = '/eos/experiment/fcc/hh/utils/config/'
 
+##delphes base card detector (needed for compatibility with ee)
+detectors = ['']
+
 ##muom momentum delphes resolution card
 delphescard_mmr='muonMomentumResolutionVsP.tcl'
 ##momentum resolution delphes card

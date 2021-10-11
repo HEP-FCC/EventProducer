@@ -107,7 +107,7 @@ if __name__=="__main__":
 
     versionGroup = parser.add_argument_group('recontruction version')
     versionGroup.add_argument('--version', type=str, required = '--reco' in sys.argv, help='Version to use', choices = para.fcc_versions)
-    versionGroup.add_argument('--detector', type=str, required = '--reco' in sys.argv, help='Detector to use', choices = para.detectors)
+    versionGroup.add_argument('--detector', type=str, default='', required = '--reco' in sys.argv, help='Detector to use', choices = para.detectors)
 
     
     decaylist=[]

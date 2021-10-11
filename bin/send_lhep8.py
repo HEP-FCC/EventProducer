@@ -252,7 +252,8 @@ class send_lhep8():
             frun.write('unset PYTHONPATH\n')
             frun.write('source %s\n'%(self.para.stack))
 
-            #frun.write('export LD_LIBRARY_PATH=/afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/install/lib64:$LD_LIBRARY_PATH\n')
+            if 'FCCee' not in self.para.module_name:
+                 frun.write('export LD_LIBRARY_PATH=/afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/install/lib64:$LD_LIBRARY_PATH\n')
 
 
             frun.write('mkdir job%s_%s\n'%(jobid,processp8))
