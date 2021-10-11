@@ -217,11 +217,6 @@ class send_lhep8():
                     print(exc)
 
             jobid=tmpf['processing']['jobid']
-            pythiaseed = jobid
-            print("jobid = ",jobid)
-            # because of too long seeds when producing KKMC events... :
-            if len(jobid)>11:
-                pythiaseed=jobid[11:]  
 
             if not self.islocal:
                 myyaml = my.makeyaml(yamldir, jobid)
@@ -281,7 +276,7 @@ class send_lhep8():
 
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
             frun.write('echo "Beams:LHEF = events.lhe" >> card.cmd\n')
-            frun.write('echo "Random:seed = %s" >> card.cmd\n'%pythiaseed.lstrip('0'))
+            frun.write('echo "Random:seed = %s" >> card.cmd\n'%jobid.lstrip('0'))
             frun.write('echo "Main:numberOfEvents = %i" >> card.cmd\n'%(self.events))
 
             if 'helhc' in self.version:
