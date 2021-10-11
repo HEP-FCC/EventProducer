@@ -219,7 +219,7 @@ class send_lhep8():
             jobid=tmpf['processing']['jobid']
             pythiaseed = jobid
             print("jobid = ",jobid)
-            # because of too long seeds when producing KKMC events... :
+            # because of too long seeds used in the KKMC production of Oct 10, 2021:
             if len(jobid)>11:
                 pythiaseed=jobid[11:]  
 
