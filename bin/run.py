@@ -107,7 +107,7 @@ if __name__=="__main__":
 
     versionGroup = parser.add_argument_group('recontruction version')
     versionGroup.add_argument('--version', type=str, required = '--reco' in sys.argv, help='Version to use', choices = para.fcc_versions)
-    versionGroup.add_argument('--detector', type=str, required = '--reco' in sys.argv, help='Detector to use', choices = para.detectors)
+    versionGroup.add_argument('--detector', type=str, default='', required = '--reco' in sys.argv, help='Detector to use', choices = para.detectors)
 
     
     decaylist=[]
@@ -265,7 +265,7 @@ if __name__=="__main__":
             if sendOpt=='lhep8':
                 print ('preparing to send FCCSW jobs from lhe')
                 import EventProducer.bin.send_lhep8 as slhep8
-                sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.queue, args.priority, args.ncpus, para, version, args.decay, args.pycard)
+                sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, args.decay, args.pycard, detector)
                 sendlhep8.send(args.force)
             elif sendOpt=='p8':
                 print ('preparing to send FCCSW jobs from pythia8 directly')
