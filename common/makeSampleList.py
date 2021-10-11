@@ -31,10 +31,13 @@ class makeSampleList():
             processhad=process.replace('wzp8_','wz_')
         elif 'pwp8_' in process:
             processhad=process.replace('pwp8_','pw_')
+        elif 'kkmcp8_' in process:
+            processhad=process.replace('kkmcp8_','kkmc_')
 
             
         if  proc_param!='':
             processhad=proc_param.replace('mgp8_','mg_')
+            processhad=proc_param.replace('kkmcp8_','kkmc_')
 
         yaml_lhe=yaml_lhe+'/'+processhad+'/merge.yaml'
         print ('lhe yaml    ',yaml_lhe)
@@ -184,7 +187,7 @@ class makeSampleList():
         for l in ldir:
             processhad=None
             process=l
-            if 'mgp8_' in process or 'pwp8_' in process:
+            if 'mgp8_' in process or 'pwp8_' in process or 'kkmcp8_' in process:
                 yamldir_lhe=self.para.yamldir+'lhe/'
             elif 'wzp6_' in process or 'wzp8_' in process or 'wz_' in process :
                 yamldir_lhe=self.para.yamldir+'stdhep/'
@@ -207,6 +210,8 @@ class makeSampleList():
             #    processhad=process.replace('wzp6_','wz_')
             elif 'wzp8_' in process:
                 processhad=process.replace('wzp8_','wz_')
+            elif 'kkmcp8_' in process:
+                processhad=process.replace('kkmcp8_', 'kkmc_')
                 
             else: processhad=process
             # maybe this was a decayed process, so it cannot be found as such in in the param file
