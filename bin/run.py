@@ -52,7 +52,7 @@ if __name__=="__main__":
 
     sendjobGroup = parser.add_argument_group('type of jobs to send')
     sendjobGroup.add_argument('--type', type=str, required = '--send' in sys.argv and '--reco'  in sys.argv , help='type of jobs to send', choices = ['lhep8','p8','stdhep'])
-    sendjobGroup.add_argument('--typelhe', type=str, required = '--send' in sys.argv and '--LHE'  in sys.argv , help='type of jobs to send', choices = ['gp_mg','gp_pw','mg'])
+    sendjobGroup.add_argument('--typelhe', type=str, required = '--send' in sys.argv and '--LHE'  in sys.argv , help='type of jobs to send', choices = ['gp_mg','gp_pw','mg','kkmc'])
     sendjobGroup.add_argument('--typestdhep', type=str, required = '--send' in sys.argv and '--STDHEP'  in sys.argv , help='type of jobs to send', choices = ['wzp6'])
 
     sendjobGroup.add_argument('-q', '--queue', type=str, default='workday', help='lxbatch queue (default: workday for HTCONDOR)', choices=['1nh','8nh','1nd','2nd','1nw','espresso','microcentury','longlunch','workday','tomorrow','testmatch','nextweek'])
@@ -80,6 +80,9 @@ if __name__=="__main__":
     mgGroup.add_argument("--mg5card", type=str, help="MG5 configuration", default='card.mg5')
     mgGroup.add_argument("--cutfile", type=str, help="additional cuts", default='cuts.f')
     mgGroup.add_argument("--model", type=str, help="extra model", default='model.tgz')
+
+    kkmcGroup = parser.add_argument_group('kkmcgroup')
+    kkmcGroup.add_argument("--kkmccard", type=str, help="KKMC input card", default='card')
 
     
     batchGroup = parser.add_mutually_exclusive_group(required = '--send' in sys.argv) # Where to submit jobs
@@ -126,6 +129,7 @@ if __name__=="__main__":
             newkey=key
             if key[0:3]=='mg_': newkey='mgp8_'+key[3:]
             if key[0:3]=='ch_': newkey='chp8_'+key[3:]
+            if key[0:5]=='kkmc_': newkey='kkmcp8_'+key[5:]
             for v in value:
                 processlist.append("%s_%s"%(newkey,v))
     if args.LHE or args.STDHEP or args.check or args.checkeos or args.clean or args.merge or args.reco:
@@ -135,6 +139,7 @@ if __name__=="__main__":
         for key, value in para.gridpacklist.items():
             if key[0:3]=='mg_': processlist.append('mgp8_'+key[3:])
             if key[0:3]=='ch_': processlist.append('chp8_'+key[3:])
+            if key[0:5]=='kkmc_': processlist.append('kkmcp8_'+key[5:])
     
 
 
@@ -190,6 +195,7 @@ if __name__=="__main__":
             if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='pw_': args.process='pwp8_'+args.process[3:]
+            if args.reco and args.process[0:5]=='kkmc_' : args.process='kkmcp8_'+args.process[5:]
         import EventProducer.common.checker_yaml as chky
         print (args.process)
         checker=chky.checker_yaml(indir, para, fext, args.process,  yamldir)
@@ -203,6 +209,7 @@ if __name__=="__main__":
             if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='pw_': args.process='pwp8_'+args.process[3:]
+            if args.reco and args.process[0:5]=='kkmc_' : args.process='kkmcp8_'+args.process[5:]
         import EventProducer.common.checker_eos as chkeos
         print (args.process)
         checkereos=chkeos.checker_eos(yamldir, indir, args.process)
@@ -217,6 +224,7 @@ if __name__=="__main__":
             if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
             if args.reco and args.process[0:3]=='pw_': args.process='pwp8_'+args.process[3:]
+            if args.reco and args.process[0:5]=='kkmc_' : args.process='kkmcp8_'+args.process[5:]
         import EventProducer.common.merger as mgr
         isLHE=args.LHE
         merger = mgr.merger( args.process, yamldir)
@@ -251,6 +259,13 @@ if __name__=="__main__":
                 import EventProducer.bin.send_mglhe as mglhe
                 sendlhe=mglhe.send_mglhe( args.lsf, args.condor, args.mg5card, args.cutfile, args.model, para, args.process, args.numJobs, args.numEvents, args.queue, args.priority, args.ncpus)
                 sendlhe.send()
+
+            elif args.typelhe == 'kkmc' :
+                print ('preparing to send lhe jobs from KKMC for process {}'.format(args.process))
+                import EventProducer.bin.send_kkmclhe as kkmclhe
+                sendlhe=kkmclhe.send_kkmc( args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version )
+                sendlhe.send()
+
             
         elif args.STDHEP:
 
