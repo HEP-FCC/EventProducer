@@ -94,7 +94,8 @@ class send_kkmc():
                 frun = open(frunfull, 'w')
                 
             numberOfEvents = '%10.i'%(self.events)
-            seed_truncated = uid % 10000000000
+            #seed_truncated = uid % 10000000000
+            seed_truncated = uid & 0x7FFFFFFF   #  seed should be < 2^31
             theSeed  = '%10.i'%seed_truncated
 
             subprocess.getstatusoutput('chmod 777 %s'%frunfull)
