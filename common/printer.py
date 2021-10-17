@@ -82,7 +82,6 @@ class printer():
             proc = process.replace('mgp8_','mg_')
             proc = proc.replace('kkmcp8_', 'kkmc_')
             print ('proc after ============ ',proc)
-
             news=str(proc)
             proc=str(proc)
  
