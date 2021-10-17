@@ -76,9 +76,12 @@ class printer():
             bad_tot=tmpf['merge']['nbad']
             files_tot=tmpf['merge']['ndone']
             sumw_tot=0
+
+
+            print ('proc before ============ ',process)
             proc = process.replace('mgp8_','mg_')
             proc = proc.replace('kkmcp8_', 'kkmc_')
-       
+            print ('proc after ============ ',proc)
             news=str(proc)
             proc=str(proc)
  
@@ -95,6 +98,9 @@ class printer():
                 decstr = '_{}'.format(decay)
 
             ispythiaonly=False
+
+            print ('proc ================================= ',proc)
+            
             try: 
                 teststring=self.para.gridpacklist[proc][0]
             except IOError as e:
@@ -186,6 +192,7 @@ class printer():
                                                                               self.para.gridpacklist[proc][0],self.para.gridpacklist[proc][1],
                                                                               self.para.gridpacklist[proc][2],self.para.gridpacklist[proc][3])
             elif  self.matching and not ispythiaonly:
+                print ('proc ',proc)
                 cmd='%s,,%s,,%s,,%s%i%s,,%i,,%s%i%s,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n'%(process,self.comma_me(str(events_tot)),self.comma_me(str(sumw_tot)),
                                                                                       marked_b,files_tot,marked_e,bad_tot,
                                                                                       marked_b,nfileseos,marked_e, size_tot ,
@@ -193,7 +200,6 @@ class printer():
                                                                                       self.para.gridpacklist[proc][0],self.para.gridpacklist[proc][1]
                                                                                       ,str(float(self.para.gridpacklist[proc][3])*br),self.para.gridpacklist[proc][4],
                                                                                       self.para.gridpacklist[proc][5])
-
             elif  ispythiaonly:
                 cmd='%s,,%s,,%s,,%s%i%s,,%i,,%s%i%s,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n'%(process,self.comma_me(str(events_tot)),self.comma_me(str(sumw_tot)),
                                                                                       marked_b,files_tot,marked_e,bad_tot,
