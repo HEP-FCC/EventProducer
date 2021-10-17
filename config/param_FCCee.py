@@ -311,6 +311,8 @@ gridpacklist = {
     'wzp6_ee_tautau_ecm240':['Z/gamma* to tautau, ecm=240 GeV','full phase space','','4.668','1.0','1.0'],
     'wzp6_ee_ee_Mee_30_150_ecm240':['ee (s and t), ecm=240 GeV','30 < Mee < 150 GeV, 15 < theta < 165 deg','','8.305','1.0','1.0'],
 
+    'wzp6_ee_gammagamma_ecm91':['diphoton production','|cos(theta)| < 0.95 for the two leading photons','','45.454','1.0','1.0']
+
 
 
 
