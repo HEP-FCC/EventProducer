@@ -36,7 +36,7 @@ stdhep_dir   = "/eos/experiment/fcc/ee/generation/stdhep/"
 stdhep_ext   = ".stdhep.gz"
 
 ##FCC versions
-fcc_versions = ['spring2021','spring2021_training' ]
+fcc_versions = ['spring2021','spring2021_training','dev' ]
 
 ##eos directory for FCCSW pythia delphes files
 delphes_dir  = "/eos/experiment/fcc/ee/generation/DelphesEvents/"
