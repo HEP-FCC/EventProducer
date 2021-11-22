@@ -93,6 +93,8 @@ pythialist={
     'p8_ee_WW_ecm365':['WW ecm=365GeV','inclusive decays','','10.7165','1.0','1.0'],
     'p8_ee_tt_ecm365':['tt ecm=365GeV','inclusive decays','','0.800','1.0','1.0'],
 
+    'p8_ee_WW_mumu_ecm365':['WW ecm=365GeV','W->mu and W ->tau->mu','','0.1785','1.0','1.0'],
+
     'p8_ee_tt_fullhad_ecm365':['tt ecm=365GeV','hadronic decays','','0.363528','1.0','1.0'],
     'p8_ee_ZZ_fullhad_ecm365':['ZZ ecm=365GeV','hadronic decays','','0.31417','1.0','1.0'],
     'p8_ee_WW_fullhad_ecm365':['WW ecm=365GeV','hadronic decays','','4.86969','1.0','1.0'],
@@ -224,16 +226,16 @@ pythialist={
 #Bd = 0.242 * 0.43 = 0.10406
 #Bs = 0.243 * 0.096 = 0.023328
 #Lb = 0.307 * 0.037 = 0.011359
-    'p8_ee_Zbb_ecm91_EvtGen_B02DsK':['Z/Gamma* ecm=91.188GeV to bb','B0 to Ds K, Ds to Phi pi or Phi rho','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_B02Dsstarpi':['Z/Gamma* ecm=91.188GeV to bb','B0 to Ds* pi, Ds* to gamma Phi pi or gamma Phi rho','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DsK':['Z/Gamma* ecm=91.188GeV to bb','B0 to Ds K, Ds to Phi pi or Phi rho','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2Dsstarpi':['Z/Gamma* ecm=91.188GeV to bb','B0 to Ds* pi, Ds* to gamma Phi pi or gamma Phi rho','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2DsK':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds K, Ds to Phi pi or Phi rho','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2DsKstar':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds K*, Ds to Phi pi or Phi rho, K* to K pi0','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2Dspi':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds pi, Ds to Phi pi or Phi rho','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2Dsrho':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds rho, Ds to Phi pi','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstarK':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds* K, Ds* to gamma Phi pi or gamma Phi rho','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2Dsstarpi':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds* pi, Ds* to gamma Phi pi or gamma Phi rho','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lambda0b2Dsp':['Z/Gamma* ecm=91.188GeV to bb','Lambda0 to Ds p, Ds to Phi pi or Phi rho','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lambda0b2Dsstarp':['Z/Gamma* ecm=91.188GeV to bb','Lambda0 to Ds* p, Ds* to gamma Phi pi or gamma Phi rho','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2Dsp':['Z/Gamma* ecm=91.188GeV to bb','Lambda0 to Ds p, Ds to Phi pi or Phi rho','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2Dsstarp':['Z/Gamma* ecm=91.188GeV to bb','Lambda0 to Ds* p, Ds* to gamma Phi pi or gamma Phi rho','','1','1.0','1.0'],
 
     'p8_ee_Ztautau_ecm91_EvtGen_Tau2MuMuMu':['Z/Gamma* ecm=91.188GeV to tautau','EvtGen tau -> 3mu','','1.0','1.0','1.0'],    
     'p8_ee_Ztautau_ecm91_EvtGen_Tau2MuGamma':['Z/Gamma* ecm=91.188GeV to tautau','EvtGen tau -> mu gamma','','1.0','1.0','1.0'],
@@ -325,6 +327,28 @@ gridpacklist = {
 
     'kkmc_ee_mumu_ecm240':['Z/gamma* to mumu, ecm=240 GeV','full phase space','','5.24619','1.0','1.0'],
     'wzp6_ee_gammagamma_ecm91':['diphoton production','|cos(theta)| < 0.95 for the two leading photons','','45.454','1.0','1.0'],
+
+# for Higgs, sqrts = 365 GeV:
+    'wzp6_ee_mumuH_ecm365':['mumuH ecm=365 GeV','inclusive Higgs decays','','4.185e-3','1.0','1.0'],
+    'wzp6_ee_tautauH_ecm365':['tautauH ecm=365 GeV','inclusive Higgs decays','','4.172e-3','1.0','1.0'],
+    'wzp6_ee_eeH_ecm365':['eeH ecm=365 GeV','inclusive Higgs decays','','7.390e-3','1.0','1.0'],
+    'wzp6_ee_nunuH_ecm365':['nunuH ecm=365 GeV (all nu flavours)','inclusive Higgs decays','','53.94e-3','1.0','1.0'],
+    'wzp6_ee_qqH_ecm365':['qqH ecm=365 GeV, q = u,d,s,c,b','inclusive Higgs decays','','84.307e-3','1.0','1.0'],
+
+    'wzp6_egamma_eZ_Zmumu_ecm365':['e(e)Z EPA, e- gamma, ecm=365 GeV','Z to mumu','','140.0e-3','1.0','1.0'],
+    'wzp6_gammae_eZ_Zmumu_ecm365':['e(e)Z EPA, e+ gamma, ecm=365 GeV','Z to mumu','','140.0e-3','1.0','1.0'],
+
+    'wzp6_gaga_mumu_60_ecm365':['gammagamma to mumu, M(mumu) > 60 GeV,  ecm=365 GeV','','','2.843','1.0','1.0'],
+    'wzp6_gaga_tautau_60_ecm365':['gammagamma to tautau, M(tautau) > 60 GeV,  ecm=365 GeV','','','1.537','1.0','1.0'],
+
+    'wzp6_ee_mumu_ecm365':['Z/gamma* to mumu, ecm=365 GeV','full phase space','','2.287','1.0','1.0'],
+    'wzp6_ee_tautau_ecm365':['Z/gamma* to tautau, ecm=365 GeV','full phase space','','2.017','1.0','1.0'],
+
+
+
+
+
+
 
 
 
