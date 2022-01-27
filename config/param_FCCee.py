@@ -309,6 +309,7 @@ gridpacklist = {
     'wzp6_ee_mumuH_BES-lower-6pc_ecm240':['mumuH ecm=240 GeV, vary BES','inclusive Higgs decays','','6.76602e-3','1.0','1.0'],
     'wzp6_ee_mumuH_BES-higher-1pc_ecm240':['mumuH ecm=240 GeV, vary BES','inclusive Higgs decays','','6.76140e-3','1.0','1.0'],
     'wzp6_ee_mumuH_BES-lower-1pc_ecm240':['mumuH ecm=240 GeV, vary BES','inclusive Higgs decays','','6.76093e-3','1.0','1.0'],
+    'wzp6_ee_mumuH_noFSR_ecm240':['mumuH ecm=240 GeV, no FSR','inclusive Higgs decays','','6.7602e-3','1.0','1.0'],
 
 
     'wzp6_ee_tautauH_ecm240':['tautauH ecm=240 GeV','inclusive Higgs decays','','6.7518e-3','1.0','1.0'],
@@ -334,6 +335,8 @@ gridpacklist = {
     'wzp6_ee_gammagamma_ecm91':['diphoton production','|cos(theta)| < 0.95 for the two leading photons','','45.454','1.0','1.0'],
 
     'wzp6_ee_ZZ_test_ecm240':['ZZ ecm=240 GeV','inclusive Z decays by Pythia','','1.11','1.0','1.0'],
+
+    'wzp6_ee_nuenueZ_ecm240':['Z nue nuebar, W-exchange only','inclusive Z decays by Pythia','','3.3274e-2','1.0','1.0'],
 
 # for Higgs, sqrts = 365 GeV:
     'wzp6_ee_mumuH_ecm365':['mumuH ecm=365 GeV','inclusive Higgs decays','','4.185e-3','1.0','1.0'],
