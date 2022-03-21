@@ -319,6 +319,13 @@ gridpacklist = {
 
     'wzp6_egamma_eZ_Zmumu_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z to mumu','','103.68e-3','1.0','1.0'],
     'wzp6_gammae_eZ_Zmumu_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z to mumu','','103.68e-3','1.0','1.0'],
+    'wzp6_egamma_eZ_Zbb_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z to bb','','455.7e-3','1.0','1.0'],
+    'wzp6_gammae_eZ_Zbb_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z to bb','','455.7e-3','1.0','1.0'],
+    'wzp6_egamma_eZ_Zqq_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z to qq, q=udsc','','1.6369','1.0','1.0'],
+    'wzp6_gammae_eZ_Zqq_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z to qq, q=udsc','','1.6369','1.0','1.0'],
+    'wzp6_egamma_tbnu_ecm240':['nu_e t b (e) EPA, e- gamma, ecm=240 GeV','inc. top decays','','1.0753e-5','1.0','1.0'],
+    'wzp6_gammae_tbnu_ecm240':['nu_e t b (e) EPA, e+ gamma, ecm=240 GeV','inc. top decays','','1.0753e-5','1.0','1.0'],
+
 
     'wzp6_gaga_mumu_60_ecm240':['gammagamma to mumu, M(mumu) > 60 GeV,  ecm=240 GeV','','','1.5523','1.0','1.0'],
     'wzp6_gaga_tautau_60_ecm240':['gammagamma to tautau, M(tautau) > 60 GeV,  ecm=240 GeV','','','0.836','1.0','1.0'],
