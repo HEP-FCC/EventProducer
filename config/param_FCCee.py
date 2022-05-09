@@ -360,6 +360,8 @@ gridpacklist = {
 
     'wzp6_ee_mumu_ecm365':['Z/gamma* to mumu, ecm=365 GeV','full phase space','','2.287','1.0','1.0'],
     'wzp6_ee_tautau_ecm365':['Z/gamma* to tautau, ecm=365 GeV','full phase space','','2.017','1.0','1.0'],
+    'wzp6_ee_ee_Mee_30_150_ecm365':['ee (s and t), ecm=365 GeV','30 < Mee < 150 GeV, 15 < theta < 165 deg','','1.53','1.0','1.0'],
+
 
 
 
