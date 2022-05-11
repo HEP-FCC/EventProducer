@@ -301,6 +301,7 @@ gridpacklist = {
     'mg_ee_tt_FCNC_tua_ecm365':['ttbar FCNC','to be added','','1.0','1.0','1.0'],
     'mg_ee_tt_FCNC_tuz_ecm365':['ttbar FCNC','to be added','','1.0','1.0','1.0'],
     'mg_ee_tt_FCNC_tcz_ecm365':['ttbar FCNC','to be added','','1.0','1.0','1.0'],
+    'mg_ee_zhh_ecm365':['e+e- -> ZHH', 'LO', '', '2.0e-5', '1.0', '1.0'],
 
     'wzp6_ee_mumuH_ecm240':['mumuH ecm=240 GeV','inclusive Higgs decays','','6.7643e-3','1.0','1.0'],
     'wzp6_ee_mumuH_noISR_ecm240':['mumuH ecm=240 GeV, no ISR','inclusive Higgs decays','','7.9757e-3','1.0','1.0'],

@@ -148,9 +148,11 @@ if __name__=="__main__":
 
     args, _ = parser.parse_known_args()
     version = args.version
+    print("version ",version)
     detector = args.detector
     training=False
-    if 'training' in version: training=True
+    if version!=None:
+        if 'training' in version: training=True
 
     sys.argv = []
 
