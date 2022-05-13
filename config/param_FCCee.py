@@ -223,6 +223,11 @@ pythialist={
     'p8_ee_Zbb_ecm91_EvtGen_Bd2KstarTauTau':['Z/Gamma* ecm=91.188GeV to bb','B to K* tautau decay, with  taus decaying into 3 pions','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2pipipipi0':['Z/Gamma* ecm=91.188GeV to bb','B0 -> (Ds+ ->  pi+  pi+  pi-  pi0) (Ds- -> pi-  pi-  pi+  pi0) (K*0 -> K+ pi-)','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2Taunu':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds+ Ds- K*0, K*0 forced to K+ pi-, Ds forced to tau nu','','1','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2TaunuDs2pipipipi0':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds+ Ds- K*0, K*0 forced to K+ pi-, Ds forced to tau nu or 3pi1pi0','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2pipipipi0pi0':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds+ Ds- K*0, K*0 forced to K+ pi-, Ds forced to pipipipipi0','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DsKstarTauNuDs2TauNu':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds K*0 tau nu, K*0 forced to K+ pi-, Ds forced to tau nu','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DsstarDsKstarDs2TaunuDsstar2Dsgamma':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds*+ Ds- K*0, K*0 forced to K+ pi-, Ds forced to tau nu, D*s+ forced in Ds gamma','','1','1.0','1.0'],
 #Bu = 0.307 * 0.43 = 0.13201
 #Bd = 0.242 * 0.43 = 0.10406
 #Bs = 0.243 * 0.096 = 0.023328
