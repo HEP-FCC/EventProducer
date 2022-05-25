@@ -119,7 +119,7 @@ if __name__=="__main__":
             if v  not in decaylist: decaylist.append(v)
     
     sendjobGroup.add_argument('-d', '--decay', type=str, default='', help='pythia8 decay when needed', choices=decaylist)
-    sendjobGroup.add_argument('--pycard', type=str, default='p8_pp_default.cmd', help='pythia8 card')
+    sendjobGroup.add_argument('--pycard', type=str, default='p8_ee_default.cmd', help='pythia8 card')
 
     processlist=[]
     if (args.reco and args.type=="p8") or args.check or args.checkeos or args.clean or args.cleanold or args.merge or args.remove:
