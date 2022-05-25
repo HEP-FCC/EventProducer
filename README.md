@@ -55,7 +55,7 @@ To send jobs starting from a gridpack that does not exist but that you have prod
 If the gridpack already exists or has been properly added to the ```param```, then simply run:
 
 ```
-python bin/run.py --FCCee --LHE --send --condor --typelhe <gp> -p <process> -n <nevents> -N <njobs> -q <queue> --version <version> --detector <detectir>
+python bin/run.py --FCCee --LHE --send --condor --typelhe <gp> -p <process> -n <nevents> -N <njobs> -q <queue> --version <version> --detector <detector>
 ```
 
 example to send 10 jobs of 10 000 events of di-electron events with Mll> 2TeV using longlunch queue of HTCondor for HELHC:
