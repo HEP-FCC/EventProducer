@@ -4,6 +4,7 @@ EventProducer
 This package is used to centrally produced events for FCC-hh, HE-LHC at a center of mass of 100 and 27TeV respectively and for FCC-ee. Any other future collider can also be supported by this framework. 
 In order to use it, please get in contact with clement.helsens@cern.ch as running this package requieres specific rights.
 
+This branch ```spring2021``` is intended for FCC-ee event generation. Therefore all following examples will be specified for FCC-ee.
 
 Table of contents
 =================
@@ -37,26 +38,30 @@ Then initialise:
 ```
 source ./init.sh
 ```
+
+In order to run batch generation, please add your CERN user name to the userlist in ```config/users.py```
+
 Generate LHE files from gripacks
 ================================
 
 To send jobs starting from a gridpack that does not exist but that you have produced, do the following:
    - place gridpack on eos 
-     - for FCC ```/eos/experiment/fcc/hh/generation/gridpacks/```
+     - for FCC-hh ```/eos/experiment/fcc/hh/generation/gridpacks/```
      - for HELHC ```/eos/experiment/fcc/helhc/generation/gridpacks/```
-   - if the gridpack is from Madgraph, name it ```mg_process``` (and call option ```gp_mg'''), if from powheg please name it ```pw_process``` (and call option ```gp_pw'''),
-   - add to ```config/param_FCC.py``` or ```config/param_HELHC.py``` an entry corresponding to the gridpack name in the ```gridpacklist``` list, depending on the study.
+     - for FCC-ee ```/eos/experiment/fcc/ee/generation/gridpacks/```
+   - if the gridpack is from Madgraph, name it ```mg_process``` (and call option ```gp_mg``` when running generation commands), if from powheg please name it ```pw_process``` (and call option ```gp_pw```),
+   - add to ```config/param_FCCee.py``` an entry corresponding to the gridpack name in the ```gridpacklist``` list, depending on the study.
 
 If the gridpack already exists or has been properly added to the ```param```, then simply run:
 
 ```
-python bin/run.py --FCC/HELHC --LHE --send --condor --typelhe gp -p <process> -n <nevents> -N <njobs> -q <queue>
+python bin/run.py --FCCee --LHE --send --condor --typelhe <gp> -p <process> -n <nevents> -N <njobs> -q <queue> --version <version> --detector <detector>
 ```
 
 example to send 10 jobs of 10 000 events of di-electron events with Mll> 2TeV using longlunch queue of HTCondor for HELHC:
 
 ```
-python bin/run.py --HELHC --LHE --send --condor --typelhe gp -p mg_pp_ee_lo -n 10000 -N 10 -q longlunch
+python bin/run.py --FCCee --LHE --send --condor --typelhe gp_mg -p mg_ee_zhh_ecm365 -n 10000 -N 10 -q longlunch --version spring2021 --detector IDEA
 ```
 
 The options ```--ncpus``` and ```--priority``` can also be specified to increase the numbers of cpus on the cluster and to change the priority queue. 
@@ -65,9 +70,11 @@ The options ```--ncpus``` and ```--priority``` can also be specified to increase
 Generate LHE files directly from MG5
 =====================================
 
-To send jobs directly from MG5, you need a configuration file (see in ```examples``` directory ```*.mg5```) and, optionally:
+To send jobs directly from MG5, you need a configuration file (see in ```mg5/examples``` directory ```*.mg5```) and, optionally:
    - a ```cuts.f``` file (containing additional cuts)
    - a model (see in ```models``` directory for instance)
+
+**N.B.** At the moment no example is generated for FCC-ee this way. Below is an example for FCC-hh.
 
 As before, you need to add the process to the ```config/param_FCC.py``` file. Thn you can run with the following command:
 
@@ -84,21 +91,23 @@ Generate FCCSW files from the LHE and decay with Pyhtia8
 
 1. if you want to let pythia decay without specifiying anything, you can use the default card, but if you have requested extra partons at matrix element, you might need to specify matching parameters to your pythia card
 1. if you want to use a specific decay, make sure that the decay you want is in ```decaylist``` and ```branching_ratios``` of the ```param```
-1. then create appropriate pythia8 card, by appending standard card with decay syntax if needed and add it to the proper directory, example:
+1. then create appropriate pythia8 card, by appending standard card with decay syntax if needed and add it to the proper directory.
+For FCC-ee this directory is
 ```
-/eos/experiment/fcc/hh/utils/pythiacards/p8_pp_ttz_5f_znunu.cmd
+/eos/experiment/fcc/ee/generation/FCC-config/spring2021/FCCee/Generator/Pythia8/
 ```
+**N.B.**: please do not write there directly. Cards should be added by making a PR to https://github.com/HEP-FCC/FCC-config/tree/spring2021.
 
 1. Run jobs:
 
 ```
-python bin/run.py --FCC/HELHC --reco --send --type lhep8 --condor -p <process> -N <njobs> -q <queue> --version <version>
+python bin/run.py --FCC/HELHC --reco --send --type lhep8 --condor -p <process> -N <njobs> -q <queue> --version <version> --detector <detector>
 ```
 
 Example produce 10 jobs of FCC Delphes events of ttz decaying the Z to neutrinos. :
 
 ```
-python bin/run.py --FCC --reco --send --type lhep8 --condor -p mg_pp_ttz_5f -N 10 -q workday --version fcc_v02 --decay znunu
+python bin/run.py --FCCee --reco --send --type lhep8 --condor -p mg_ee_zhh_ecm365 -N 10 -q workday --version spring2021 --detector IDEA
 ``` 
 
 Please note that the decay in pythia is optional, and that there is no need to specify the number of events to run on as it will by default run over all the events present in the LHE file
@@ -112,30 +121,24 @@ Generate FCCSW files from Pythia8
 The Pythia8 manual is available here: http://home.thep.lu.se/~torbjorn/pythia81html/Welcome.html
 
 1. Define process in pythialist in the ```param``` corresponding to your job flavour
-1. Write Pythia8 process card and put it in: ```/eos/experiment/fcc/hh/utils/pythiacards/``` or ```/eos/experiment/fcc/helhc/utils/pythiacards/``` or ```/eos/experiment/fcc/ee/utils/pythiacards/```
-
-exemple ```p8_pp_Zprime_10TeV_ttbar.cmd```
+1. Write Pythia8 process card and put it in: ```/eos/experiment/fcc/ee/generation/FCC-config/spring2021/FCCee/Generator/Pythia8``` by making a PR to https://github.com/HEP-FCC/FCC-config/tree/spring2021, 
+for example ```p8_ee_Zbb_ecm91.cmd```
 
 1. send jobs
 
 ```
-python bin/run.py --FCC/HELHC/FCCee --reco --send --type p8 --condor -p <process>  --pycard <pythia_card> -n <nevents> -N <njobs> -q <queue> --version <version>
-```
-Example produce 1 job of 10000 events of Z' to ttbar at HE-LHC
-
-```
-python bin/run.py --HELHC --reco --send --type p8 --condor -p p8_pp_Zprime_10TeV_ttbar -n 10000 -N 1 -q workday --version helhc_v01
+python bin/run.py --FCC/HELHC/FCCee --reco --send --type p8 --condor -p <process>  --pycard <pythia_card> -n <nevents> -N <njobs> -q <queue> --version <version> --detector <detector>
 ```
 
 Example produce 1 job of 10000 events of ZH at FCC-ee 240GeV
 
 ```
-python bin/run.py --FCCee --reco --send -p p8_ee_ZH_ecm240 -n 10000 --type p8 -N 1 --condor -q longlunch --version fcc_v01
+python bin/run.py --FCCee --reco --send --type p8 -p p8_ee_ZH_ecm240 -n 10000 -N 1 --condor -q longlunch --version spring2021 --detector IDEA
 ```
 
 The options ```--ncpus``` and ```--priority``` can also be specified to increase the numbers of cpus on the cluster and to change the priority queue. 
 
-**Important**: If ```--pycard``` option not specified, this step wil lrun with the default pythia8 card, that does not include specific decays nor specific matching/merging parameters. 
+**Important**: If ```--pycard``` option not specified, this step wil lrun with the default pythia8 card (in this case ```p8_ee_default.cmd```), that does not include specific decays nor specific matching/merging parameters. 
 
 
 Expert mode
@@ -149,68 +152,68 @@ Updating the database
 1) First one need to check the eos directories that have been populated with new files. 
 Example for LHE:
 ```
-python bin/run.py --HELHC --LHE --checkeos [--process process] [--force]
+python bin/run.py --FCCee --LHE --checkeos [--process process] [--force]
 ```
 
 Example for Delphes events:
 ```
-python bin/run.py --HELHC --reco --checkeos --version helhc_v01 [--process process] [--force]
+python bin/run.py --FCCee --reco --checkeos --version helhc_v01 [--process process] [--force]
 ```
 
 2) Second one need to check the quality of the files that have been produced. 
 Example for LHE:
 ```
-python bin/run.py --HELHC --LHE --check [--process process] [--force]
+python bin/run.py --FCCee --LHE --check [--process process] [--force]
 ```
 
 Example for Delphes events:
 ```
-python bin/run.py --HELHC --reco --check --version helhc_v01 [--process process] [--force]
+python bin/run.py --FCCee --reco --check --version helhc_v01 [--process process] [--force]
 ```
 
 3) Then the checked files needs to be merged:
 Example for LHE:
 ```
-python bin/run.py --HELHC --LHE --merge [--process process] [--force]
+python bin/run.py --FCCee --LHE --merge [--process process] [--force]
 ```
 
 Example for Delphes events:
 ```
-python bin/run.py --HELHC --reco --merge --version helhc_v01 [--process process] [--force]
+python bin/run.py --FCCee --reco --merge --version helhc_v01 [--process process] [--force]
 ```
 
 Cleaning bad jobs
 =================
 To clean jobs that are flagged as bad, the following command can be used for LHE:
 ```
-python bin/run.py --HELHC --LHE --clean [--process process]
+python bin/run.py --FCCee --LHE --clean [--process process]
 ```
 
 and for Delphes
 ```
-python bin/run.py --HELHC --reco --clean --version helhc_v01 [--process process]
+python bin/run.py --FCCee --reco --clean --version spring2021 [--process process]
 ```
 
 As the code checks the files that are in the end written on eos, we need to clean also old jobs that don't produced outputs 3 days after they started.
 To do so run the following command for LHE
 ```
-python bin/run.py --HELHC --LHE --cleanold [--process process]
+python bin/run.py --FCCee --LHE --cleanold [--process process]
 ```
 
 and for Delphes
 ```
-python bin/run.py --HELHC --reco --cleanold --version helhc_v01 [--process process]
+python bin/run.py --FCCee --reco --cleanold --version spring2021 [--process process]
 ```
 
 If you want to completly remove a process, the following command can be used with care for LHE:
 
 ```
-python bin/run.py --HELHC --LHE --remove --process process 
+python bin/run.py --FCCee --LHE --remove --process process 
 ```
 
 and for Delphes
 ```
-python bin/run.py --HELHC --reco --remove --process process --version helhc_v01
+python bin/run.py --FCCee --reco --remove --process process --version spring2021
 ```
 
 
@@ -219,12 +222,12 @@ Update the webpage
 
 The webpage can be updated after the files have been checked and merged by running for LHE
 ```
-python bin/run.py --HELHC --LHE --web
+python bin/run.py --FCCee --LHE --web
 ```
 
 and for Delphes
 ```
-python bin/run.py --HELHC --reco --web --version helhc_v01
+python bin/run.py --FCCee --reco --web --version spring2021
 ```
 
 
@@ -233,6 +236,6 @@ Create the sample list for analyses
 
 To create the list of samples to be used in physics analyses
 ```
-python bin/run.py --FCC --reco --sample --version fcc_v02
+python bin/run.py --FCCee --reco --sample --version spring2021
 ```
 
