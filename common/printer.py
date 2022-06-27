@@ -140,7 +140,7 @@ class printer():
                         print ("Could not convert data to an integer.")
                     except KeyError as e:
                         print ('I got a KeyError 3 - reason "%s"' % str(e))
-            
+                        if news.split('_')[0]=="p8":ispythiaonly=True
             except:
                 print ("Unexpected error:", sys.exc_info()[0])
                 raise
