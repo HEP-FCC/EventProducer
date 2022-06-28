@@ -272,7 +272,7 @@ if __name__=="__main__":
             if args.typestdhep == 'wzp6' :
                 print ('preparing to send Whizard jobs to produce stdhep files for process {}'.format(args.process))
                 import EventProducer.bin.send_stdhep as sstdhep
-                sendstdhep = sstdhep.send_stdhep( args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, args.typestdhep)
+                sendstdhep = sstdhep.send_stdhep( args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, args.typestdhep, training)
                 sendstdhep.send()
 
 
