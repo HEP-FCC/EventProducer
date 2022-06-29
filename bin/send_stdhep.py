@@ -8,7 +8,7 @@ import EventProducer.common.makeyaml as my
 class send_stdhep():
 
 #__________________________________________________________
-    def __init__(self,njobs,events, process, islsf, iscondor, islocal, queue, priority, ncpus, para, version, typestdhep):
+    def __init__(self,njobs,events, process, islsf, iscondor, islocal, queue, priority, ncpus, para, version, typestdhep, training):
         self.njobs    = njobs
         self.events   = events
         self.process  = process
@@ -22,6 +22,7 @@ class send_stdhep():
         self.para     = para
         self.version  = version
         self.typestdhep  = typestdhep
+        self.training = training
 
 #__________________________________________________________
     def send(self):
@@ -67,6 +68,9 @@ class send_stdhep():
             #uid = int(ut.getuid(self.user))
             if self.typestdhep == 'wzp6':
                 uid = ut.getuid2(self.user)
+                if self.training: 
+                      #print("---- INFO: using getuidtraining")
+                      uid = ut.getuidtraining(self.user)
 
             if not self.islocal:
                 myyaml = my.makeyaml(yamldir, uid)
