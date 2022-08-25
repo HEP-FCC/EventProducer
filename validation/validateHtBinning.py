@@ -19,12 +19,8 @@ import ROOT
 import math
 from LHEevent import *
 from LHEfile import *
-FCC=False
 
-if FCC:
-    import EventProducer.config.param_FCC as para
-else:
-    import EventProducer.config.param_HELHC as para
+import EventProducer.config.param_FCChh as para
 import json
 import yaml
 
