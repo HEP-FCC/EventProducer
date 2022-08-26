@@ -4,7 +4,6 @@ EventProducer
 This package is used to centrally produced events for FCC-hh at a center of mass of 100 TeV and for FCC-ee. Any other future collider can also be supported by this framework. 
 In order to use it, please get in contact with the FCC software and computing coordinators as running this package requieres specific rights.
 
-The ```master``` branch is intended for FCC-ee/hh event generation.
 
 Table of contents
 =================
