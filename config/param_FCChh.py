@@ -1,6 +1,6 @@
 #module
 
-module_name='config/param_FCC.py'
+module_name='config/param_FCChh.py'
 #eos tests
 eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size=1312594
@@ -27,8 +27,12 @@ lhe_dir     = '/eos/experiment/fcc/hh/generation/lhe/'
 ##extension
 lhe_ext     ='.lhe.gz'
 
-##FCC versions
-fcc_versions=['fcc_v01', 'fcc_v02', 'fcc_v03']
+##FCC-hh production version and corresponding SW tag
+prodTag = {
+    'fcc_v02':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
+    'fcc_v03':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
+    'fcc_v04':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
+}
 
 ##eos directory for FCCSW pythia delphes files
 delphes_dir = '/eos/experiment/fcc/hh/generation/DelphesEvents/'
@@ -44,6 +48,9 @@ pythiacards_dir  = '/eos/experiment/fcc/hh/utils/pythiacards/'
 ##where the FCC config script is stored
 fccconfig_dir    = '/eos/experiment/fcc/hh/utils/config/'
 
+##delphes base card detector (needed for compatibility with ee)
+detectors = ['']
+
 ##muom momentum delphes resolution card
 delphescard_mmr='muonMomentumResolutionVsP.tcl'
 ##momentum resolution delphes card
@@ -53,12 +60,15 @@ delphescard_base='card.tcl'
 ##FCC config script name
 fccconfig='PythiaDelphes_config_v02.py'
 
-##base dir of FCCSW
-stack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
-
 #list of processes only with Pythia, meaning no LHE
 pythialist={
 'dummy':['1','1','1','1','1','1'],
+
+#'mg_pp_za012j_zmumu':['Z gamma + 012jets Z->mumu','','','1.0','1.0','1.0'],
+#'mg_pp_za012j_znunu':['Z gamma + 012jets Z->nunu','','','1.0','1.0','1.0'],
+#'mg_pp_za012j_zee':['Z gamma + 012jets Z->ee','','','1.0','1.0','1.0'],
+
+
 'p8_pp_ExcitedQ_10TeV_qq':['10TeV Excited quark Lambda 10TeV','','','2.368','1.0','1.0'],
 'p8_pp_ExcitedQ_15TeV_qq':['15TeV Excited quark Lambda 15TeV','','','2.746e-1','1.0','1.0'],
 'p8_pp_ExcitedQ_20TeV_qq':['20TeV Excited quark Lambda 20TeV','','','4.783e-2','1.0','1.0'],
@@ -453,7 +463,7 @@ decaylist = {
 'pw_pp_hh_lambda097_5f':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda098_5f':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda099_5f':['hhbbaa','hhbbtata','hhbbbb'],
-'pw_pp_hh_lambda100_5f':['hhbbaa','hhbbtata','hhbbbb'],
+'pw_pp_hh_lambda100_5f':['hhbbaa','hhbbtata','hhbbbb','hhbbzz','hhbbzz_zleptonic'],
 'pw_pp_hh_lambda101_5f':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda102_5f':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda103_5f':['hhbbaa','hhbbtata','hhbbbb'],
@@ -674,6 +684,10 @@ branching_ratios = {
 
 gridpacklist = {
 'dummy':['1','1','1','1','1','1'],
+    'mg_pp_za012j_zmumu':['Z gamma + 012jets Z->mumu','','','1.0','1.0','1.0'],
+'mg_pp_za012j_znunu':['Z gamma + 012jets Z->nunu','','','1.0','1.0','1.0'],
+'mg_pp_za012j_zee':['Z gamma + 012jets Z->ee','','','1.0','1.0','1.0'],
+
 'mg_pp_w012j_5f':['w + 0,1,2 jets 5 flavor scheme','inclusive','xqcut = 30, qCut = 45','1.4995e06','1.0','0.724'],
 'mg_pp_z012j_5f':['z + 0,1,2 jets 5 flavor scheme','inclusive','xqcut = 30, qCut = 45','5.1839e05','1.0','0.691'],
 'mg_pp_jjaa01j_5f':['dijet diphoton + 0,1 jets 5 flavor scheme','','xqcut = 20, qCut = 30','55.72','1.0','0.236'],
@@ -722,7 +736,7 @@ gridpacklist = {
 'mg_pp_t123j_5f_HT_1900_3500':['single top (s,t channels)+ 1/2/3 jets','1900 < HT < 3500','xqcut = 40, qCut = 60','13.65','2.16','0.194'],
 'mg_pp_t123j_5f_HT_3500_5900':['single top (s,t channels)+ 1/2/3 jets','3500 < HT < 5900','xqcut = 40, qCut = 60','1.371','2.16','0.171'],
 'mg_pp_t123j_5f_HT_5900_100000':['single top (s,t channels)+ 1/2/3 jets','5900 < HT < 100000','xqcut = 40, qCut = 60','0.175','2.16','0.158'],
-'mg_pp_t123j_5f':['single top (s,t channels)+ 1/2/3 jets','inclusive','xqcut = 40, qCut = 60','7524','2.16','0.35'],
+'mg_pp_t123j_5f':['single top (s,t channels)+ 1/2/3 jets','inclusive','xqcut = 40, qCut = 60','7524','2.16','1.0'],
 'mg_pp_llv01j_5f_HT_0_800':[' di-vector with V -> ll (l=e,mu,ve,vm,vt) + 0/1 jets','0 < HT < 800','xqcut = 40, qCut = 60','108.7','1.70','0.78'],
 'mg_pp_llv01j_5f_HT_800_2000':[' di-vector with V -> ll (l=e,mu,ve,vm,vt) + 0/1 jets','800 < HT < 2000','xqcut = 40, qCut = 60','0.9956','1.70','0.743'],
 'mg_pp_llv01j_5f_HT_2000_4000':[' di-vector with V -> ll (l=e,mu,ve,vm,vt) + 0/1 jets','2000 < HT < 4000','xqcut = 40, qCut = 60','0.07411','1.70','0.805'],
@@ -734,7 +748,7 @@ gridpacklist = {
 'mg_pp_vh012j_5f_HT_2900_5300':['higgsstrahlung + 0/1/2 jets','2900 < HT < 5300','xqcut = 40, qCut = 60','0.03349','1.32','0.371'],
 'mg_pp_vh012j_5f_HT_5300_8800':['higgsstrahlung + 0/1/2 jets','5300 < HT < 8800','xqcut = 40, qCut = 60','0.003608','1.32','0.364'],
 'mg_pp_vh012j_5f_HT_8800_100000':['higgsstrahlung + 0/1/2 jets','8800 < HT < 100000','xqcut = 40, qCut = 60','0.0004647','1.32','0.357'],
-'mg_pp_vh012j_5f':['higgsstrahlung + 0/1/2 jets','inclusive','xqcut = 40, qCut = 60','37.43','1.32','0.544'],
+'mg_pp_vh012j_5f':['higgsstrahlung + 0/1/2 jets','inclusive','xqcut = 40, qCut = 60','37.43','1.32','1.0'],
 'mg_pp_tt012j_5f_HT_0_600':['top pair + 0/1/2 jets','0 < HT < 600','xqcut = 60, qCut = 90','3.207e+04','1.74','1.0'],
 'mg_pp_tt012j_5f_HT_600_1200':['top pair + 0/1/2 jets','600 < HT < 1200','xqcut = 60, qCut = 90','8883','1.74','0.417'],
 'mg_pp_tt012j_5f_HT_1200_2100':['top pair + 0/1/2 jets','1200 < HT < 2100','xqcut = 60, qCut = 90','1737','1.74','0.463'],
@@ -745,12 +759,12 @@ gridpacklist = {
 'mg_pp_tt012j_5f_HT_15000_25000':['top pair + 0/1/2 jets','15000 < HT < 25000','xqcut = 60, qCut = 90','0.0219','1.74','0.305'],
 'mg_pp_tt012j_5f_HT_25000_35000':['top pair + 0/1/2 jets','25000 < HT < 35000','xqcut = 60, qCut = 90','0.0004247','1.74','0.307'],
 'mg_pp_tt012j_5f_HT_35000_100000':['top pair + 0/1/2 jets','35000 < HT < 100000','xqcut = 60, qCut = 90','1.459e-05','1.74','0.447'],
-'mg_pp_tt012j_5f':['top pair + 0/1/2 jets','inclusive','xqcut = 60, qCut = 90','4.311e+04','1.74','0.467'],
+'mg_pp_tt012j_5f':['top pair + 0/1/2 jets','inclusive','xqcut = 60, qCut = 90','4.311e+04','1.74','1.0'],
 'mg_pp_vbf_h01j_5f_HT_0_2000':['vbf higgs + 0/1 jets','0 < HT < 2000','xqcut = 40, qCut = 60','83.91','4.3','0.187'],
 'mg_pp_vbf_h01j_5f_HT_2000_4000':['vbf higgs + 0/1 jets','2000 < HT < 4000','xqcut = 40, qCut = 60','0.07215','4.3','0.168'],
 'mg_pp_vbf_h01j_5f_HT_4000_7200':['vbf higgs + 0/1 jets','4000 < HT < 7200','xqcut = 40, qCut = 60','0.003946','4.3','0.128'],
 'mg_pp_vbf_h01j_5f_HT_7200_100000':['vbf higgs + 0/1 jets','7200 < HT < 100000','xqcut = 40, qCut = 60','0.000268','4.3','0.102'],
-'mg_pp_vbf_h01j_5f':['vbf higgs + 0/1 jets','inclusive','xqcut = 40, qCut = 60','84.17','4.3','0.187'],
+'mg_pp_vbf_h01j_5f':['vbf higgs + 0/1 jets','inclusive','xqcut = 40, qCut = 60','84.17','4.3','1.0'],
 'mg_pp_vbf_hh01j_5f_HT_0_2000':['vbf di-higgs + 0/1 jets','0 < HT < 2000','xqcut = 60, qCut = 90','0.08974','1.0','1.0'],
 'mg_pp_vbf_hh01j_5f_HT_2000_4000':['vbf di-higgs + 0/1 jets','2000 < HT < 4000','xqcut = 60, qCut = 90','0.0007247','1.0','1.0'],
 'mg_pp_vbf_hh01j_5f_HT_4000_7200':['vbf di-higgs + 0/1 jets','4000 < HT < 7200','xqcut = 60, qCut = 90','7.489e-05','1.0','1.0'],
@@ -803,7 +817,7 @@ gridpacklist = {
 'mg_pp_tth01j_5f_HT_2700_4900':['higgs associated with top pair + 0/1 jets','2700 < HT < 4900','xqcut = 80, qCut = 120','0.4224','1.22','0.679'],
 'mg_pp_tth01j_5f_HT_4900_8100':['higgs associated with top pair + 0/1 jets','4900 < HT < 8100','xqcut = 80, qCut = 120','0.0336','1.22','0.684'],
 'mg_pp_tth01j_5f_HT_8100_100000':['higgs associated with top pair + 0/1 jets','8100 < HT < 100000','xqcut = 80, qCut = 120','0.002924','1.22','0.689'],
-'mg_pp_tth01j_5f':['higgs associated with top pair + 0/1 jets','inclusive','xqcut = 80, qCut = 120','44.84','1.22','0.612'],
+'mg_pp_tth01j_5f':['higgs associated with top pair + 0/1 jets','inclusive','xqcut = 80, qCut = 120','44.84','1.22','1.0'],
 'mg_pp_ttz01j_5f_HT_0_1100':['z associated with top pair + 0/1 jets','0 < HT < 1100','xqcut = 80, qCut = 120','57.36','1.22','0.604'],
 'mg_pp_ttz01j_5f_HT_1100_2700':['z associated with top pair + 0/1 jets','1100 < HT < 2700','xqcut = 80, qCut = 120','12.08','1.22','0.607'],
 'mg_pp_ttz01j_5f_HT_2700_4900':['z associated with top pair + 0/1 jets','2700 < HT < 4900','xqcut = 80, qCut = 120','0.7717','1.22','0.638'],
@@ -855,7 +869,7 @@ gridpacklist = {
 'mg_pp_h012j_5f_HT_1900_4400':['gluon fusion higgs (finite mt) + 0/1/2 jets','1900 < HT < 4400','xqcut = 30, qCut = 45','0.277','3.76','0.296'],
 'mg_pp_h012j_5f_HT_4400_8500':['gluon fusion higgs (finite mt) + 0/1/2 jets','4400 < HT < 8500','xqcut = 30, qCut = 45','0.003902','3.76','0.27'],
 'mg_pp_h012j_5f_HT_8500_100000':['gluon fusion higgs (finite mt) + 0/1/2 jets','8500 < HT < 100000','xqcut = 30, qCut = 45','6.368e-05','3.76','0.28'],
-'mg_pp_h012j_5f':['gluon fusion higgs (finite mt) + 0/1/2 jets','inclusive','xqcut = 30, qCut = 45','587.5','3.76','0.363'],
+'mg_pp_h012j_5f':['gluon fusion higgs (finite mt) + 0/1/2 jets','inclusive','xqcut = 30, qCut = 45','587.5','3.76','1.0'],
 'mg_pp_vvv01j_5f_HT_0_1200':['tri-vector boson + 0/1 jets','0 < HT < 1200','xqcut = 60, qCut = 90','73.04','1.05','0.515'],
 'mg_pp_vvv01j_5f_HT_1200_3000':['tri-vector boson + 0/1 jets','1200 < HT < 3000','xqcut = 60, qCut = 90','2.093','1.05','0.838'],
 'mg_pp_vvv01j_5f_HT_3000_6000':['tri-vector boson + 0/1 jets','3000 < HT < 6000','xqcut = 60, qCut = 90','0.2028','1.05','0.872'],

@@ -35,8 +35,8 @@ def getsize(f):
 
 #__________________________________________________________
 def getCommandOutput(command):
-    p = subprocess.Popen(command, shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
-    stdout,stderr = p.communicate()
+    p = subprocess.Popen(command, shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE,universal_newlines=True)
+    (stdout,stderr) = p.communicate()
     return {"stdout":stdout, "stderr":stderr, "returncode":p.returncode}
 
 #__________________________________________________________
@@ -49,25 +49,31 @@ def testeos(f,fs):
     return False
 #__________________________________________________________
 def find_owner(filename):
-    return getpwuid(os.stat(filename).st_uid).pw_name
+    username=''
+    try:
+        username=getpwuid(os.stat(filename).st_uid).pw_name
+    except KeyError as exc:
+        print ('error: ',exc,'file name ',filename)
+        username='unknown'
+    return username
 
 #__________________________________________________________
 def SubmitToCondor(cmd,nbtrials,nsub):
     submissionStatus=0
     cmd=cmd.replace('//','/') # -> dav : is it needed?
-    for i in xrange(nbtrials):            
+    for i in range(nbtrials):            
         outputCMD = getCommandOutput(cmd)
         stderr=outputCMD["stderr"].split('\n')
         stdout=outputCMD["stdout"].split('\n') # -> dav : is it needed?
 
         if len(stderr)==1 and stderr[0]=='' :
-            print "------------GOOD SUB ",nsub
+            print ("------------GOOD SUB ",nsub)
             submissionStatus=1
         else:
-            print "++++++++++++ERROR submitting, will retry"
-            print "Trial : "+str(i)+" / "+str(nbtrials)
-            print "stderr : ",len(stderr)
-            print stderr
+            print ("++++++++++++ERROR submitting, will retry")
+            print ("Trial : "+str(i)+" / "+str(nbtrials))
+            print ("stderr : ",len(stderr))
+            print (stderr)
 
             time.sleep(10)
 
@@ -76,7 +82,7 @@ def SubmitToCondor(cmd,nbtrials,nsub):
             return 1
         
         if i==nbtrials-1:
-            print "failed sumbmitting after: "+str(nbtrials)+" trials, will exit"
+            print ("failed sumbmitting after: "+str(nbtrials)+" trials, will exit")
             return 0
 
 #__________________________________________________________
@@ -88,13 +94,13 @@ def SubmitToLsf(cmd,nbtrials,nsub):
 
         for line in stderr :
             if line=="":
-                print "------------GOOD SUB ",nsub
+                print ("------------GOOD SUB ",nsub)
                 submissionStatus=1
                 break
             else:
-                print "++++++++++++ERROR submitting, will retry"
-                print "error: ",stderr
-                print "Trial : "+str(i)+" / "+str(nbtrials)
+                print ("++++++++++++ERROR submitting, will retry")
+                print ("error: ",stderr)
+                print ("Trial : "+str(i)+" / "+str(nbtrials))
                 time.sleep(10)
                 break
             
@@ -103,7 +109,7 @@ def SubmitToLsf(cmd,nbtrials,nsub):
             return 1,jobid
         
         if i==nbtrials-1:
-            print "failed sumbmitting after: "+str(nbtrials)+" trials, will exit"
+            print ("failed sumbmitting after: "+str(nbtrials)+" trials, will exit")
             return 0,0
 
 #__________________________________________________________
@@ -121,11 +127,11 @@ def dir_exist(mydir):
 #__________________________________________________________
 def getuid(user):
     userext=-999999
-    for key, value in us.users.iteritems():
+    for key, value in us.users.items():
         if key==user: 
             userext=value
     if userext<0:
-        print 'user not known ',user,'   exit'
+        print ('user not known ',user,'   exit')
         sys.exit(3)
     seed = int(datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:-3])
     uniqueID='%i%i'%(seed,userext)
@@ -134,11 +140,11 @@ def getuid(user):
 #__________________________________________________________
 def getuserid(user):
     userext=-999999
-    for key, value in us.users.iteritems():
+    for key, value in us.users.items():
         if key==user: 
             userext=value
     if userext<0:
-        print 'user not known ',user,'   exit'
+        print ('user not known ',user,'   exit')
         sys.exit(3)
     return userext
 
@@ -146,11 +152,11 @@ def getuserid(user):
 #__________________________________________________________
 def getuid2(user):
     userext=-999999
-    for key, value in us.users.iteritems():
+    for key, value in us.users.items():
         if key==user: 
             userext=value
     if userext<0:
-        print 'user not known ',user,'   exit'
+        print ('user not known ',user,'   exit')
         sys.exit(3)
     
     seed = '%i%i%i%i%i%i%i%i%i'%(random.randint(0,1),
@@ -165,13 +171,35 @@ def getuid2(user):
     return seed
 
 #__________________________________________________________
-def getuid3(user):
+def getuidtraining(user):
     userext=-999999
-    for key, value in us.users.iteritems():
+    for key, value in us.users.items():
         if key==user: 
             userext=value
     if userext<0:
-        print 'user not known ',user,'   exit'
+        print ('user not known ',user,'   exit')
+        sys.exit(3)
+    
+    seed = '%i%i%i%i%i%i%i%i%i'%(random.randint(5,8),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9),
+                                 random.randint(0,9))
+    return seed
+
+
+#__________________________________________________________
+def getuid3(user):
+    userext=-999999
+    for key, value in us.users.items():
+        if key==user: 
+            userext=value
+    if userext<0:
+        print ('user not known ',user,'   exit')
         sys.exit(3)
     
     seed = '%i%i%i%i%i%i%i%i%i'%(0,
@@ -188,8 +216,8 @@ def getuid3(user):
 #__________________________________________________________
 def yamlcheck(yamlfile, process):
 #if no input file
-    print 'yamlfile ',yamlfile
-    print 'process  ',process
+    print ('yamlfile ',yamlfile)
+    print ('process  ',process)
     if not file_exist(yamlfile):
         return False
     
@@ -203,8 +231,8 @@ def yamlcheck(yamlfile, process):
         value = doc[process]
         if value: return True
         return False
-    except KeyError, e:
-        print 'Process %s does not exist' % str(e)
+    except KeyError as e:
+        print ('Process %s does not exist' % str(e))
         return False
 
   

@@ -5,41 +5,33 @@ import time
 import EventProducer.common.utils as ut
 import EventProducer.common.makeyaml as my
 
-class send_lhe():
+class send_kkmc():
 
 #__________________________________________________________
-    def __init__(self,njobs,events, process, islsf, iscondor, queue, priority, ncpus, para, typelhe):
+    def __init__(self,njobs,events, process, islsf, iscondor, islocal, queue, priority, ncpus, para, version):
         self.njobs    = njobs
         self.events   = events
         self.process  = process
         self.islsf    = islsf
         self.iscondor = iscondor
+        self.islocal  = islocal
         self.queue    = queue
         self.priority = priority
         self.ncpus    = ncpus
         self.user     = os.environ['USER']
         self.para     = para
-        self.typelhe  = typelhe
+        self.version  = version
 
 #__________________________________________________________
     def send(self):
         Dir = os.getcwd()
         nbjobsSub=0
 
-        gplist=self.para.gridpacklist
+        print("njobs=",self.njobs)
+
         lhedir=self.para.lhe_dir
+        print("lhedir =",lhedir)
         gpdir=self.para.gp_dir
-
-        gptotest='%s/%s.tar.gz'%(gpdir,self.process)
-        if ut.file_exist(gptotest)==False:
-            print ('Gridpack=======',gptotest,'======= does not exist')
-            sys.exit(3)
-
-        try:
-            gplist[self.process]
-        except KeyError as e:
-            print ('process %s does not exist as gridpack, exit'%self.process)
-            sys.exit(3)
 
         acctype='FCC'
         if 'HELHC' in self.para.module_name:  acctype='HELHC'
@@ -50,31 +42,46 @@ class send_lhe():
             os.system("mkdir -p %s"%logdir)
 
 
-        yamldir = '%s/lhe/%s'%(self.para.yamldir,self.process)
-        if not ut.dir_exist(yamldir):
-            os.system("mkdir -p %s"%yamldir)
+        if not self.islocal:
+             yamldir = '%s/lhe/%s'%(self.para.yamldir,self.process)
+             if not ut.dir_exist(yamldir):
+                 os.system("mkdir -p %s"%yamldir)
+
+        kkmccard = '%s%s.input'%(self.para.kkmccards_dir, self.process)
+        kkmccard = kkmccard.replace('_VERSION_',self.version)
+
+        if ut.file_exist(kkmccard)==False:
+            print ('KKMC card does not exist: ',kkmccard,' , exit')
+            if '_EvtGen_' not in self.process:
+                sys.exit(3)
 
 
-        if self.islsf==False and self.iscondor==False:
-            print ("Submit issue : LSF nor CONDOR flag defined !!!")
+        if self.islsf==False and self.iscondor==False and self.islocal==False:
+            print ("Submit issue : LSF nor CONDOR nor Local flag defined !!!")
             sys.exit(3)
 
         condor_file_str=''
         while nbjobsSub<self.njobs:
             #uid = int(ut.getuid(self.user))
-            if self.typelhe == 'gp_mg':
-                uid = ut.getuid2(self.user)
-            elif self.typelhe == 'gp_pw':
-                uid = ut.getuid3(self.user)
+            uid = int(ut.getuid2(self.user))
 
-            myyaml = my.makeyaml(yamldir, uid)
-            if not myyaml: 
-                print ('job %s already exists'%uid)
-                continue
+            if not self.islocal:
+                myyaml = my.makeyaml(yamldir, uid)
+                if not myyaml: 
+                    print ('job %s already exists'%uid)
+                    continue
 
-            if ut.file_exist('%s/%s/events_%s.lhe.gz'%(lhedir,self.process,uid)):
-                print ('already exist, continue')
-                continue
+                outfile='%s/%s/events_%s.lhe.gz'%(lhedir,self.process,uid)
+                if ut.file_exist('%s/%s/events_%s.lhe.gz'%(lhedir,self.process,uid)):
+                    print ('already exist, continue')
+                    continue
+
+            if self.islocal:
+                outfile = '%s/events_%s.lhe.gz'%(logdir,uid)
+                if ut.file_exist(outfile):
+                    print ('file %s already locally exist, continue'%outfile)
+                    continue
+
 
             frunname = 'job%s.sh'%(uid) 
             frunfull = '%s/%s'%(logdir,frunname)
@@ -87,6 +94,14 @@ class send_lhe():
                 time.sleep(10)
                 frun = open(frunfull, 'w')
                 
+            numberOfEvents = '%10.i'%(self.events)
+            #seed_truncated = uid % 10000000000
+
+            #seed_truncated = uid & 0x7FFFFFFF   #  seed should be < 2^31
+            #theSeed  = '%10.i'%seed_truncated
+            # not needed anymore with getuid2 instead of getuid
+            theSeed  = '%10.i'%uid
+
             subprocess.getstatusoutput('chmod 777 %s'%frunfull)
             frun.write('#!/bin/bash\n')
             frun.write('unset LD_LIBRARY_PATH\n')
@@ -96,20 +111,45 @@ class send_lhe():
             frun.write('cd job%s_%s\n'%(uid,self.process))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('source %s\n'%(self.para.defaultstack))
-            frun.write('source /cvmfs/sft.cern.ch/lcg/views/LCG_97a_FCC_4/x86_64-centos7-gcc8-opt/setup.sh \n')
-            frun.write('mkdir %s\n'%(lhedir))
-            frun.write('mkdir %s%s\n'%(lhedir,self.process))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s/%s.tar.gz .\n'%(gpdir,self.process))
-            frun.write('tar -zxf %s.tar.gz\n'%self.process)
-            frun.write('cd process/\n')
-            frun.write('./run.sh %i %i\n'%(self.events,int(uid.lstrip('0'))))
-            frun.write('echo "finished run"\n')
-            #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events_%s.lhe.gz\n'%(lhedir,self.process ,uid))
-            frun.write('xrdcp -N -v events.lhe.gz root://eospublic.cern.ch/%s/%s/events_%s.lhe.gz\n'%(lhedir,self.process ,uid))
-            frun.write('echo "lhe file successfully copied on eos"\n')
+            #frun.write('source /cvmfs/sft.cern.ch/lcg/views/LCG_97a_FCC_4/x86_64-centos7-gcc8-opt/setup.sh \n')
+            if self.islocal==False:
+                frun.write('mkdir %s%s\n'%(lhedir,self.process))
 
-            frun.write('cd ..\n')
-            frun.write('rm -rf job%s_%s\n'%(uid,self.process))
+            frun.write('cp -r /afs/cern.ch/user/e/eperez/FCC/FCCSW/KKMC/KKMCee-4.32.01/dizet-6.45 dizet \n')
+            frun.write('cp /afs/cern.ch/user/e/eperez/FCC/FCCSW/KKMC/KKMCee-4.32.01/.KK2f_defaults ./. \n')
+            frun.write('mkdir ffbench \n')
+            frun.write('cd ffbench \n')
+            frun.write('cp /afs/cern.ch/user/e/eperez/FCC/FCCSW/KKMC/KKMCee-4.32.01/ffbench/ProdMC.exe ./. \n')
+            frun.write('mkdir run \n')
+            frun.write('cd run \n')
+            
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s pro.input\n'%(kkmccard))
+            frun.write('cp /afs/cern.ch/user/e/eperez/FCC/FCCSW/KKMC/KKMCee-4.32.01/my_iniseed  ./iniseed \n')
+            frun.write('cp /afs/cern.ch/user/e/eperez/FCC/FCCSW/KKMC/KKMCee-4.32.01/ffbench/semaphore.start ./semaphore \n')
+
+            #frun.write('cd process/\n')
+            #frun.write('./run.sh %i %i\n'%(self.events,int(uid.lstrip('0'))))
+            
+            #frun.write('sed -i -e "s/DUMMYSEED/${SEED}/g" pro.input \n')
+            frun.write('sed -i -e "s/N_EVENTS/%s/g" pro.input \n'%numberOfEvents)
+            frun.write('sed -i -e "s/1111111111/%s/g" iniseed \n'%theSeed)
+            #frun.write('echo "seed = %s"  >> header.sin \n'%(uid))
+
+            #frun.write('echo "n_events = %i" > header.sin \n'%(self.events))
+            #frun.write('echo "seed = %s"  >> header.sin \n'%(uid))
+
+            frun.write('../ProdMC.exe \n')
+            frun.write('echo "finished run"\n') 
+            frun.write('gzip LHE_OUT.LHE \n')
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py LHE_OUT.LHE.gz %s\n'%(outfile))
+            frun.write('echo "lhe.gz file successfully copied on eos"\n')
+            frun.write('cp pro.output %s/pro.output_%s \n'%(logdir,str(uid)))
+            frun.write('cd ../../..\n')
+            frun.write('rm -rf ffbench \n')
+            frun.write('rm -rf dizet \n')
+
+
+            #frun.write('rm -rf job%s_%s\n'%(uid,self.process))
             frun.close()
 
             if self.islsf==True :
@@ -122,6 +162,11 @@ class send_lhe():
             elif self.iscondor==True :
               condor_file_str+=frunfull+" "
               nbjobsSub+=1
+
+            elif self.islocal==True:
+                print ('will run locally')
+                nbjobsSub+=1
+                os.system('%s'%frunfull)
 
         if self.iscondor==True :
             # clean string

@@ -10,4 +10,7 @@ users={'helsens':1,
        'jtanaka':10,
        'perfilov':11,
        'amoreira':12,
-       'ganis':13}
+       'ganis':13,
+       'eperez':14,
+       'xzuo': 15,
+}

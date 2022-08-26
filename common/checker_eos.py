@@ -21,10 +21,11 @@ class checker_eos():
     def check(self, para):
 
         #ldir=[x[0] for x in os.walk(self.indir)]
+        print(self.indireos)
         ldir=next(os.walk(self.indireos))[1]
         
         if not ut.testeos(para.eostest,para.eostest_size):
-            print 'eos seems to have problems, should check, will exit'
+            print ('eos seems to have problems, should check, will exit')
             sys.exit(3)
         dic={}
         for l in ldir:
@@ -32,7 +33,7 @@ class checker_eos():
                 continue
             #continue if process has been checked
             if l=='BADPYTHIA' or l=='lhe' or l=="__restored_files__" or l=="backup": continue
-            print '--------------------- ',l
+            print ('--------------------- ',l)
             proc=l
             nfileseos=0
             if os.path.isdir('%s/%s'%(self.indireos,proc)):
@@ -41,6 +42,7 @@ class checker_eos():
             if nfileseos==0: continue
             nfilesmerged=0
             mergefile=self.indirafs+'/'+l+'/merge.yaml'
+            print("mergefile=",mergefile)
             if not ut.file_exist(mergefile): 
                 if not ut.dir_exist('%s/%s'%(self.indirafs,proc)):
                     os.system('mkdir %s/%s'%(self.indirafs,proc))
@@ -61,9 +63,9 @@ class checker_eos():
             files_tot=tmpf['merge']['ndone']
 
             ntot_files=bad_tot+files_tot
-            print "tot files  ",ntot_files,"  files eos  ",nfileseos
+            print ("tot files  ",ntot_files,"  files eos  ",nfileseos)
             dic[proc]={'neos':nfileseos,'nmerged':ntot_files}
-            print '%s/%s/check'%(self.indirafs,proc)
+            print ('%s/%s/check'%(self.indirafs,proc))
             if ntot_files<nfileseos:
                 self.touch('%s/%s/check'%(self.indirafs,proc))
             elif  ntot_files>nfileseos:

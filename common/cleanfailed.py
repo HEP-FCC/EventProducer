@@ -19,9 +19,9 @@ class cleanfailed():
         All_files = []
         if self.process=='':All_files = glob.glob("%s/*/merge.yaml"%self.yamldir)
         else:All_files = glob.glob("%s/merge.yaml"%self.yamldir)
-        print "========================= %s/merge.yaml"%self.yamldir
+        print ("========================= %s/merge.yaml"%self.yamldir)
         for f in All_files:
-            print '=====================    ',f
+            print ('=====================    ',f)
             with open(f, 'r') as stream:
                 try:
                     tmpf = yaml.load(stream, Loader=yaml.FullLoader)
@@ -29,7 +29,7 @@ class cleanfailed():
                     nfailed+=tmpf['merge']['nbad']
                     for r in tmpf['merge']['outfilesbad']:
                         cmd="rm %s/%s"%(tmpf['merge']['outdir'],r)
-                        print 'remove  file  %s   from process  %s'%(r, tmpf['merge']['process'])
+                        print ('remove  file  %s   from process  %s'%(r, tmpf['merge']['process']))
                         os.system(cmd)
 
                         if self.process=='':
@@ -43,9 +43,9 @@ class cleanfailed():
                 except yaml.YAMLError as exc:
                     print(exc)
                 except IOError as exc:
-                    print "I/O error({0}): {1}".format(exc.errno, exc.strerror)
+                    print ("I/O error({0}): {1}".format(exc.errno, exc.strerror))
 
-        print 'removed %i files'%nfailed
+        print ('removed %i files'%nfailed)
 
 #__________________________________________________________
     def cleanoldjobs(self):
@@ -55,7 +55,7 @@ class cleanfailed():
         else: ldir=[self.process]
 
         #ldir=[x[0] for x in os.walk(self.yamldir)]
-        print ldir
+        print (ldir)
        
         for l in ldir:
             All_files = []
@@ -63,31 +63,31 @@ class cleanfailed():
                 All_files = glob.glob("%s/%s/events_*.yaml"%(self.yamldir,l))
             else:
                 All_files = glob.glob("%s/events_*.yaml"%(self.yamldir))
-                print "%s/events_*.yaml"%(self.yamldir)
+                print ("%s/events_*.yaml"%(self.yamldir))
             if len(All_files)==0:continue
             process=l            
             if self.process!='' and self.process!=process:
-                print process
+                print (process)
                 continue
 
-            print 'process from the input directory ',process
+            print ('process from the input directory ',process)
 
             for f in All_files:
                 if not os.path.isfile(f): 
-                    print 'file does not exists... %s'%f
+                    print ('file does not exists... %s'%f)
                     continue
                 
 
                 if ut.getsize(f)==0: 
-                    print 'file size 0 %s  will delete the yaml'%(f)
+                    print ('file size 0 %s  will delete the yaml'%(f))
                     cmd="rm %s"%(f)
-                    print cmd
+                    print (cmd)
                     os.system(cmd)
                     continue
                 with open(f, 'r') as stream:
                     try:
-                       tmpf = yaml.load(stream)
-                       if tmpf['processing']['status']=='sending':
+                        tmpf = yaml.load(stream, Loader=yaml.FullLoader)
+                        if tmpf['processing']['status']=='sending':
                            #from datetime import datetime
                            #import time
                            #ts = time.time()
@@ -99,9 +99,9 @@ class cleanfailed():
                            #print dt
 
                            if ut.gettimestamp() - tmpf['processing']['timestamp']>18000:
-                               print 'job %s is running since too long  %i  , will delete the yaml'%(f,ut.gettimestamp() - tmpf['processing']['timestamp'])
+                               print ('job %s is running since too long  %i  , will delete the yaml'%(f,ut.gettimestamp() - tmpf['processing']['timestamp']))
                                cmd="rm %s"%(f)
-                               print cmd
+                               print (cmd)
                                os.system(cmd)
 
                     except yaml.YAMLError as exc:

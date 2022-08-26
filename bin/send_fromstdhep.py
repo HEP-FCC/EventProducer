@@ -8,10 +8,10 @@ from select import select
 import EventProducer.common.utils as ut
 import EventProducer.common.makeyaml as my
 
-class send_lhep8():
+class send_fromstdhep():
 
 #__________________________________________________________
-    def __init__(self,njobs, events, process, islsf, iscondor, islocal, queue, priority, ncpus, para, version, decay, pycard, detector):
+    def __init__(self,njobs, events, process, islsf, iscondor, islocal, queue, priority, ncpus, para, version, detector, decay):  #, pycard):
         self.njobs    = njobs
         self.events   = events
         self.process  = process
@@ -24,8 +24,8 @@ class send_lhep8():
         self.para     = para
         self.version  = version
         self.decay    = decay
-        self.pycard   = pycard
         self.detector = detector
+        #self.pycard   = pycard
         self.user     = os.environ['USER']
 
 
@@ -36,72 +36,45 @@ class send_lhep8():
     
         gplist=self.para.gridpacklist
         outdir='%s%s/%s/'%(self.para.delphes_dir,self.version,self.detector)
+
         try:
             gplist[self.process]
         except KeyError as e:
             print ('process %s does not exist as gridpack'%self.process)
             sys.exit(3)
 
-        delphescards_mmr=''
-        delphescards_mr=''
-        if 'FCCee' not in self.para.module_name:
-            delphescards_mmr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mmr)
-            if ut.file_exist(delphescards_mmr)==False and self.version != 'cms' and 'helhc' not in self.version:
-                print ('delphes card does not exist: ',delphescards_mmr,' , exit')
-                sys.exit(3)
+        acctype='FCC'
+        if 'FCCee' in self.para.module_name:  acctype='FCCee'
 
-            delphescards_mr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mr)
-            if ut.file_exist(delphescards_mr)==False and self.version != 'cms' and 'helhc' not in self.version:
-                print ('delphes card does not exist: ',delphescards_mr,' , exit')
-                sys.exit(3)
+        logdir=Dir+"/BatchOutputs/%s/%s/%s/%s/"%(acctype,self.version,self.detector,self.process)
+        if not ut.dir_exist(logdir):
+            os.system("mkdir -p %s"%logdir)
 
-        if 'FCCee' not in self.para.module_name:
-              delphescards_base = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_base)
-        # 2021/09/08 :
-        else:
-            delphescards_base = '%scard_%s.tcl'%(self.para.delphescards_dir,self.detector)
-            delphescards_base=delphescards_base.replace('_VERSION_',self.version)
-            fccee_pythiacards_dir = self.para.pythiacards_dir.replace('_VERSION_',self.version)
-            print( 'fccee_pythiacards_dir =', fccee_pythiacards_dir)
+        #if not self.islocal:
+            #yamldir = '%s/%s/%s/%s'%(self.para.yamldir,self.version,self.detector,self.process)
+            #if not ut.dir_exist(yamldir):
+                #os.system("mkdir -p %s"%yamldir)
 
+        delphescards_base = '%scard_%s.tcl'%(self.para.delphescards_dir,self.detector)
+        delphescards_base=delphescards_base.replace('_VERSION_',self.version)
         if ut.file_exist(delphescards_base)==False:
-            print ('delphes card does not exist: ',delphescards_base)
+            print ('delphes card does not exist: ',delphescards_base,' , exit')
             sys.exit(3)
 
-        if 'FCCee' not in self.para.module_name:
-             fccconfig = '%s%s'%(self.para.fccconfig_dir,self.para.fccconfig)
-             if ut.file_exist(fccconfig)==False:
-                 print ('fcc config file does not exist: ',fccconfig)
-                 sys.exit(3)
+        if self.islsf==False and self.iscondor==False and self.islocal==False:
+            print ("Submit issue : LSF nor CONDOR not Local flag defined !!!")
+            sys.exit(3)
 
+
+        #fccconfig = '%s%s'%(self.para.fccconfig_dir,self.para.fccconfig)
+        #if ut.file_exist(fccconfig)==False:
+            #print ('fcc config file does not exist: ',fccconfig)
+            #sys.exit(3)
+#
 
         print ('======================================',self.process)
         
         '''
-        pythiacard='%s%s.cmd'%(self.para.pythiacards_dir,self.process.replace('mg_pp','p8_pp').replace('mg_gg','p8_gg'))
-        if self.decay!='':
-            pythiacard='%s%s_%s.cmd'%(self.para.pythiacards_dir,self.process.replace('mg_pp','p8_pp').replace('mg_gg','p8_gg'),self.decay)
-            
-        if ut.file_exist(pythiacard)==False and not force:
-            print 'pythia card does not exist: ',pythiacard
-            timeout = 60
-            print "do you want to use the default pythia card [y/n] (60sec to reply)"
-            rlist, _, _ = select([sys.stdin], [], [], timeout)
-            if rlist:
-                s = sys.stdin.readline()
-                if s=="y\n":
-                    print 'use default card'
-                    if 'FCCee' not in self.para.module_name: pythiacard='%sp8_pp_default.cmd'%(self.para.pythiacards_dir)
-                    else: pythiacard='%sp8_ee_default.cmd'%(self.para.pythiacards_dir)
-                else:
-                    print 'exit'
-                    sys.exit(3)
-            else:
-                print "timeout, use default card"
-                pythiacard='%sp8_pp_default.cmd'%(self.para.pythiacards_dir)
-        elif ut.file_exist(pythiacard)==False and force:
-            print "force argument, use default card"
-            pythiacard='%sp8_pp_default.cmd'%(self.para.pythiacards_dir)
 
         pr_noht=''
         if '_HT_' in self.process:
@@ -124,25 +97,12 @@ class send_lhep8():
                 sys.exit(3)
         '''
 
-        '''
-        if self.pycard == 'p8_pp_default.cmd':
-            print 'using default pythia card: p8_pp_default.cmd'
-            pythiacard=self.para.pythiacards_dir+'/'+self.pycard
 
-        #if 'FCCee' in self.process:
-            #pythiacard = fccee_pythiacards_dir+'/'+self.pycard
-            #print 'using pythia card: ',pythiacard
-        elif 
-        '''
+        #pythiacard=self.para.pythiacards_dir+'/'+self.pycard
 
-        pythiacard=self.para.pythiacards_dir+'/'+self.pycard
-        if 'FCCee' in self.para.module_name:
-            pythiacard = fccee_pythiacards_dir+'/'+self.pycard
-            print('Using Pythia card: ',pythiacard)
-
-        if not os.path.isfile(pythiacard):
-            print ('{} does not exist'.format(pythiacard))
-            sys.exit(3)
+        #if not os.path.isfile(pythiacard):
+            #print ('{} does not exist'.format(pythiacard))
+            #sys.exit(3)
 
         pr_decay = self.process       
         if self.process in self.para.decaylist and self.decay != '':
@@ -152,41 +112,34 @@ class send_lhep8():
 
 
         # first string before underscore is generator
-        mcprg_str = pr_decay.split('_')[0]
-        processp8 = pr_decay.replace(mcprg_str, mcprg_str+'p8')
+        #mcprg_str = pr_decay.split('_')[0]
+        #processp8 = pr_decay.replace(mcprg_str, mcprg_str+'p8')
 
-        print (processp8)
+        #print (processp8)
 
-        acctype='FCC'
-        if 'HELHC' in self.para.module_name:  acctype='HELHC'
-        elif 'FCCee' in self.para.module_name:  acctype='FCCee'
+        #acctype='FCC'
+        #if 'HELHC' in self.para.module_name:  acctype='HELHC'
+        #elif 'FCCee' in self.para.module_name:  acctype='FCCee'
 
-        if 'FCCee' not in self.para.module_name:
-            logdir=Dir+"/BatchOutputs/%s/%s/%s/"%(acctype,self.version,processp8)
-        else:
-            logdir=Dir+"/BatchOutputs/%s/%s/%s/%s/"%(acctype,self.version,self.detector,processp8)
-        if not ut.dir_exist(logdir):
-            os.system("mkdir -p %s"%logdir)
+        #logdir=Dir+"/BatchOutputs/%s/%s/%s/"%(acctype,self.version,processp8)
+        #if not ut.dir_exist(logdir):
+            #os.system("mkdir -p %s"%logdir)
 
-        #yamldir = '%s/%s/%s'%(self.para.yamldir,self.version,processp8)
-        #if not ut.dir_exist(yamldir):
-            #os.system("mkdir -p %s"%yamldir)
         if not self.islocal:
-            yamldir = '%s/%s/%s/%s'%(self.para.yamldir,self.version,self.detector,processp8)
-            print( "yamldir = ",yamldir )
+            yamldir = '%s/%s/%s/%s'%(self.para.yamldir,self.version,self.detector,self.process)
             if not ut.dir_exist(yamldir):
                 os.system("mkdir -p %s"%yamldir)
 
-        yamllhedir = '%s/lhe/%s'%(self.para.yamldir,self.process)
+        yamlstdhepdir = '%s/stdhep/%s'%(self.para.yamldir,self.process)
+        print("yamlstdhepdir = ",yamlstdhepdir)
   
-        All_files = glob.glob("%s/events_*.yaml"%yamllhedir)
+        All_files = glob.glob("%s/events_*.yaml"%yamlstdhepdir)
         if len(All_files)==0:
-            print ('there is no LHE files checked for process %s exit'%self.process)
-            print(' yamllhedir =',yamllhedir)
+            print ('there is no STDHEP files checked for process %s exit'%self.process)
             sys.exit(3)
 
         if len(All_files)<self.njobs:
-            print ('only %i LHE file exists, will not run all the jobs requested'%len(All_files))
+            print ('only %i STDHEP file exists, will not run all the jobs requested'%len(All_files))
 
         nbjobsSub=0
         ntmp=0
@@ -197,6 +150,7 @@ class send_lhep8():
 
         condor_file_str=''
         
+
         for i in range(len(All_files)):
 
             if nbjobsSub == self.njobs: break
@@ -213,19 +167,18 @@ class send_lhep8():
                     print(exc)
 
             jobid=tmpf['processing']['jobid']
-            pythiaseed = jobid
-            print("jobid = ",jobid)
-            # because of too long seeds used in the KKMC production of Oct 10, 2021:
-            if len(jobid)>11:
-                pythiaseed=jobid[11:]  
+            print("jobid =",jobid)
 
             if not self.islocal:
+                print("yamldir =",yamldir)
+               
                 myyaml = my.makeyaml(yamldir, jobid)
+                print ("myyaml =",myyaml)
                 if not myyaml: 
                     print ('job %s already exists'%jobid)
                     continue
 
-                outfile='%s/%s/events_%s.root'%(outdir,processp8,jobid)
+                outfile='%s/%s/events_%s.root'%(outdir,self.process,jobid)
                 if ut.file_exist(outfile):
                     print ('outfile already exist, continue  ',outfile)
 
@@ -234,6 +187,7 @@ class send_lhep8():
                 if ut.file_exist(outfile):
                     print ('file %s already locally exist, continue'%outfile)
                     continue
+
 
             frunname = 'job%s.sh'%(jobid)
             frunfull = '%s/%s'%(logdir,frunname)
@@ -253,51 +207,48 @@ class send_lhep8():
             frun.write('unset PYTHONPATH\n')
             frun.write('source %s\n'%(self.para.prodTag[self.version]))
 
-            if 'FCCee' not in self.para.module_name:
-                 frun.write('export LD_LIBRARY_PATH=/afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/install/lib64:$LD_LIBRARY_PATH\n')
+            #frun.write('export LD_LIBRARY_PATH=/afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/install/lib64:$LD_LIBRARY_PATH\n')
 
 
-            frun.write('mkdir job%s_%s\n'%(jobid,processp8))
-            frun.write('cd job%s_%s\n'%(jobid,processp8))
+            frun.write('mkdir job%s_%s\n'%(jobid,self.process))
+            frun.write('cd job%s_%s\n'%(jobid,self.process))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             #frun.write('mkdir -p %s%s/%s\n'%(self.para.delphes_dir,self.version,processp8))
             if self.islocal==False:
-                 #frun.write('mkdir -p %s%s/%s\n'%(self.para.delphes_dir,self.version,processp8))
-                 frun.write('mkdir -p %s/%s\n'%(outdir,processp8))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(tmpf['processing']['out']))
-            frun.write('gunzip -c %s > events.lhe\n'%tmpf['processing']['out'].split('/')[-1])          
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_base))
-            if 'fcc' in self.version and 'FCCee' not in self.para.module_name:
-                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mmr))
-                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mr))
-            if 'FCCee' not in self.para.module_name:
-                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s config.py \n'%(fccconfig))
-            else:
-                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Delphes/edm4hep_%s.tcl edm4hep_output_config.tcl\n'%(self.version,self.detector))
-                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.tcl\n'%(delphescards_base))
+                frun.write('mkdir -p %s/%s\n'%(outdir,self.process))
 
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
-            frun.write('echo "Beams:LHEF = events.lhe" >> card.cmd\n')
-            frun.write('echo "Random:seed = %s" >> card.cmd\n'%pythiaseed.lstrip('0'))
-            frun.write('echo "Main:numberOfEvents = %i" >> card.cmd\n'%(self.events))
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(tmpf['processing']['out']))
+            frun.write('gunzip -c %s > events.stdhep\n'%tmpf['processing']['out'].split('/')[-1])          
+            #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_base))
+            #if 'fcc' in self.version and 'FCCee' not in self.para.module_name:
+                #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mmr))
+                #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mr))
+            #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s config.py \n'%(fccconfig))
+            #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
+
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.tcl\n'%(delphescards_base))
+            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Delphes/edm4hep_%s.tcl edm4hep.tcl\n'%(self.version,self.detector))
+
+            #frun.write('echo "Beams:LHEF = events.lhe" >> card.cmd\n')
+            #frun.write('echo "Random:seed = %s" >> card.cmd\n'%jobid.lstrip('0'))
+            #frun.write('echo "Main:numberOfEvents = %i" >> card.cmd\n'%(self.events))
 
             if 'helhc' in self.version:
                 frun.write('echo " Beams:eCM = 27000." >> card.cmd\n')
             #frun.write('%s/fccrun config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,jobid,self.events))
-            if 'FCCee' not in self.para.module_name:
-                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/examples/edm4hep_output_config.tcl .\n')
-                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/build/standalone/DelphesPythia8_EDM4HEP DelphesPythia8_EDM4HEP\n')
+            #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/examples/edm4hep_output_config.tcl .\n')
+            #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/build/standalone/DelphesPythia8_EDM4HEP DelphesPythia8_EDM4HEP\n')
             #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/examples/edm4hep_output_config.tcl .\n')
             #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/install/bin/DelphesPythia8_EDM4HEP DelphesPythia8_EDM4HEP\n')
 
             #frun.write('./DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root\n'%(jobid)) 
-            frun.write('DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root\n'%(jobid))
+            frun.write('DelphesSTDHEP_EDM4HEP card.tcl edm4hep.tcl  events_%s.root  events.stdhep \n'%(jobid))
 
             #frun.write('xrdcp -N -v events_%s.root root://eospublic.cern.ch/%s\n'%(jobid,outfile))
             frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events_%s.root %s\n'%(jobid,outfile))
 
             frun.write('cd ..\n')
-            frun.write('rm -rf job%s_%s\n'%(jobid,processp8))
+            frun.write('rm -rf job%s_%s\n'%(jobid,self.process))
             frun.close()
 
             if self.islsf==True :
@@ -320,7 +271,7 @@ class send_lhep8():
             # clean string
             condor_file_str=condor_file_str.replace("//","/")
             #
-            frunname_condor = 'job_desc_lhep8.cfg'
+            frunname_condor = 'job_desc_stdhep.cfg'
             frunfull_condor = '%s/%s'%(logdir,frunname_condor)
             frun_condor = None
             try:

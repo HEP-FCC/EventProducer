@@ -17,26 +17,29 @@ Print:quiet = off
 
 param = 'param.txt'
 
-
 with open(inputList) as f:
    lines = [line.rstrip('\n') for line in f]
 
 for line in lines:
-
+   print '====================  ',line
    # copy cmd file locally
-   cmd = 'cp {} .'.format(line)
+
+   cmd = 'cp %s .'%line
+   print 'cmd ',cmd
    os.system(cmd)
    loc_fname = os.path.basename(line)
-   print loc_fname
+   print 'loc_fname  ',loc_fname
    
    # append new params
    with open(loc_fname, 'a') as f:
         f.write(parpy8)
 
    # now run py8 code
-   cmd ='./py8crossSection.exe {} {}'.format(loc_fname,  param)
+   print 'loc_fname  ',loc_fname
+   print 'param      ',param
+   cmd ='./py8crossSection.exe %s %s'%(loc_fname,  param)
    os.system(cmd)
 
    # now erase py8 cmd file
-   cmd ='rm {}'.format(loc_fname)
+   cmd ='rm %s'%loc_fname
    os.system(cmd)

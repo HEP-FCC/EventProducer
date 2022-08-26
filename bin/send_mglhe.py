@@ -2,7 +2,7 @@
 
 #!/usr/bin/env python
 import os, sys
-import commands
+import subprocess
 import time
 import EventProducer.common.utils as ut
 import EventProducer.common.makeyaml as my
@@ -59,7 +59,7 @@ class send_mglhe():
            os.makedirs(jobsdir+'/cfg/')
 
         if self.islsf==False and self.iscondor==False:
-            print "Submit issue : LSF nor CONDOR flag defined !!!"
+            print ("Submit issue : LSF nor CONDOR flag defined !!!")
             sys.exit(3)
 
         condor_file_params_str=[]
@@ -68,14 +68,14 @@ class send_mglhe():
             uid = ut.getuid2(self.user)
             myyaml = my.makeyaml(yamldir, uid)
             if not myyaml: 
-                print 'job %s already exists'%uid
+                print ('job %s already exists'%uid)
                 continue
 
             if ut.file_exist('%s/%s/events_%s.lhe.gz'%(outdir,self.procname,uid)):
-                print 'already exist, continue'
+                print ('already exist, continue')
                 continue
     
-            print 'Submitting job '+str(nbjobsSub)+' out of '+str(self.njobs)
+            print ('Submitting job '+str(nbjobsSub)+' out of '+str(self.njobs))
             seed = str(uid)
             
             basename =  self.procname+ '_'+seed
@@ -87,7 +87,7 @@ class send_mglhe():
               cmdBatch = 'bsub -o '+jobsdir+'/std/'+basename +'.out -e '+jobsdir+'/std/'+basename +'.err -q '+self.queue
               cmdBatch +=' -J '+basename +' "'+script + mg5card+' '+self.procname+' '+outdir+' '+seed+' '+str(self.nev)+' '+cuts+' '+model+'"'
 
-              print cmdBatch
+              print (cmdBatch)
 
               batchid=-1
               job,batchid=ut.SubmitToLsf(cmdBatch,10,1)
@@ -104,7 +104,7 @@ class send_mglhe():
             try:
                 fparam_condor = open(fparamfull_condor, 'w')
             except IOError as e:
-                print "I/O error({0}): {1}".format(e.errno, e.strerror)
+                print ("I/O error({0}): {1}".format(e.errno, e.strerror))
                 time.sleep(10)
                 fparam_condor = open(fparamfull_condor, 'w')
             for line in condor_file_params_str:
@@ -117,10 +117,10 @@ class send_mglhe():
             try:
                 frun_condor = open(frunfull_condor, 'w')
             except IOError as e:
-                print "I/O error({0}): {1}".format(e.errno, e.strerror)
+                print ("I/O error({0}): {1}".format(e.errno, e.strerror))
                 time.sleep(10)
                 frun_condor = open(frunfull_condor, 'w')
-            commands.getstatusoutput('chmod 777 %s'%frunfull_condor)
+            subprocess.getstatusoutput('chmod 777 %s'%frunfull_condor)
             #
             frun_condor.write('executable     = %s\n'%script)
             frun_condor.write('Log            = %s/condor_job.%s.$(ClusterId).$(ProcId).log\n'%(logdir,str(uid)))
@@ -140,9 +140,9 @@ class send_mglhe():
             #
             nbjobsSub=0
             cmdBatch="condor_submit %s"%frunfull_condor
-            print cmdBatch
+            print (cmdBatch)
             job=ut.SubmitToCondor(cmdBatch,10,"%i/%i"%(nbjobsSub,self.njobs))
             nbjobsSub+=job
 
-        print 'succesfully sent %i  job(s)'%nbjobsSub
+        print ('succesfully sent %i  job(s)'%nbjobsSub)
 

@@ -14,13 +14,12 @@ class checker_yaml():
         self.yamldir = yamldir
         self.count = 0
 
-
 #__________________________________________________________
-    def checkFile_lhe(self, f):
+    def checkFile_stdhep(self, f):
         size=os.path.getsize(f)
         if size==0:
             self.count+=1
-            print 'file size is 0, job is bad'
+            print ('file size is 0, job is bad')
             return -1,False
 
         filecounting='filecounting'
@@ -34,7 +33,58 @@ class checker_yaml():
             outputCMD = ut.getCommandOutput(cmd)
             stderr=outputCMD["stderr"]
             if len(stderr)>0:
-                print 'can not unzip the file, try again (count %i)'%self.count
+                print ('can not unzip the file, try again (count %i)'%self.count)
+                self.count+=1
+                os.system('rm %s'%(fcount))
+                return -1,False
+
+            #nevts = 100000 # temporary hack !!
+            cmd='stdhepjob %s tmp.slcio 1000000000 | grep \"written to LCIO\" ' %(fcount.replace('.gz',''))
+            outputCMD = ut.getCommandOutput(cmd)
+            if len( outputCMD["stdout"].split() ) < 2:
+                print('... problem in checkFile_stdhep with stdhepjob')
+            snevts = outputCMD["stdout"].split()[1]
+            nevts=int(snevts)
+            #print("Nb of events from stdhepjob = ",nevts)
+            os.system('rm tmp.slcio')
+            if nevts==0:
+                print ('no events in the file, job is bad')
+                os.system('rm %s'%(fcount.replace('.gz','')))
+                return 0,False
+            else:
+                print ('%i events in file %s, job is good'%(nevts,f))
+                os.system('rm %s'%(fcount.replace('.gz','')))
+                return nevts,True
+        else:
+            print ('file not properly copied... try again (count %i)'%self.count)
+            if not ut.testeos(self.para.eostest,self.para.eostest_size):
+                print ('eos seems to have problems, should check, will exit')
+                sys.exit(3)
+            self.count+=1
+            return -1, False
+
+
+
+#__________________________________________________________
+    def checkFile_lhe(self, f):
+        size=os.path.getsize(f)
+        if size==0:
+            self.count+=1
+            print ('file size is 0, job is bad')
+            return -1,False
+
+        filecounting='filecounting'
+        if os.path.isdir(filecounting)==False:
+            os.system('mkdir %s'%filecounting)
+        cmd='cp %s %s'%(f,filecounting)
+        outputCMD = ut.getCommandOutput(cmd)
+        fcount='%s/%s'%(filecounting,f.split('/')[-1])
+        if os.path.isfile(fcount):
+            cmd='gunzip %s'%(fcount)
+            outputCMD = ut.getCommandOutput(cmd)
+            stderr=outputCMD["stderr"]
+            if len(stderr)>0:
+                print ('can not unzip the file, try again (count %i)'%self.count)
                 self.count+=1
                 os.system('rm %s'%(fcount))
                 return -1,False
@@ -44,17 +94,17 @@ class checker_yaml():
             stdoutplit=outputCMD["stdout"].split(' ')
             nevts=int(stdoutplit[0])
             if nevts==0:
-                print 'no events in the file, job is bad'
+                print ('no events in the file, job is bad')
                 os.system('rm %s'%(fcount.replace('.gz','')))
                 return 0,False
             else: 
-                print '%i events in file %s, job is good'%(nevts,f)
+                print ('%i events in file %s, job is good'%(nevts,f))
                 os.system('rm %s'%(fcount.replace('.gz','')))
                 return nevts,True
         else:
-            print 'file not properly copied... try again (count %i)'%self.count
+            print ('file not properly copied... try again (count %i)'%self.count)
             if not ut.testeos(self.para.eostest,self.para.eostest_size):
-                print 'eos seems to have problems, should check, will exit'
+                print ('eos seems to have problems, should check, will exit')
                 sys.exit(3)
             self.count+=1
             return -1, False
@@ -66,12 +116,14 @@ class checker_yaml():
         try:
             tf=r.TFile.Open(f)
         except IOError as e:
-            print "I/O error({0}): {1}".format(e.errno, e.strerror)
+            print ("I/O error({0}): {1}".format(e.errno, e.strerror))
+            print ('file ===%s=== must be deleted'%f)
+            return -1,-1,False
         except ValueError:
-            print "Could read the file"
+            print ("Could read the file")
         except:
-            print "Unexpected error:", sys.exc_info()[0]
-            print 'file ===%s=== must be deleted'%f
+            print ("Unexpected error:", sys.exc_info()[0])
+            print ('file ===%s=== must be deleted'%f)
         #os.system('rm %s'%f)
             return -1,-1,False
 
@@ -80,17 +132,23 @@ class checker_yaml():
         try :
             tt=tf.Get(tname)
             if tt==None:
-                print 'file ===%s=== must be deleted'%f
+                print ('file ===%s=== must be deleted'%f)
             #os.system('rm %s'%f)
                 return -1,-1,False
 
         except IOError as e:
-            print "I/O error({0}): {1}".format(e.errno, e.strerror)
+            print ("I/O error({0}): {1}".format(e.errno, e.strerror))
+            print ('file ===%s=== must be deleted'%f)
+            return -1,-1,False
         except ValueError:
-            print "Could read the file"
+            print ("Could read the file")
+        except OSError:#for root 6.24
+            print ('file ===%s=== must be deleted'%f)
+        #os.system('rm %s'%f)
+            return -1,-1,False
         except:
-            print "Unexpected error:", sys.exc_info()[0]
-            print 'file ===%s=== must be deleted'%f
+            print ("Unexpected error:", sys.exc_info()[0])
+            print ('file ===%s=== must be deleted'%f)
         #os.system('rm %s'%f)
             return -1,-1,False
 
@@ -105,13 +163,19 @@ class checker_yaml():
         r.gROOT.SetBatch(True)
         tt.Draw('mcEventWeights.value[0]>>histo')
         histo=r.gDirectory.Get('histo')
-        weight_sum=float(nentries)*histo.GetMean()
-        
+        weight_sum=float(nentries)
+        try:
+            weight_sum=float(nentries)*histo.GetMean()
+        except AttributeError as e:
+            print ("error ",e)
+            if nentries!=100000 and nentries!=10000:
+                print ('nentries  ',nentries)
+                #nentries=0
         if nentries==0:
-            print 'file has 0 entries ===%s=== must be deleted'%f
+            print ('file has 0 entries ===%s=== must be deleted'%f)
             return 0,0,False
 
-        print '%i events in the file and sum of weights = %f --> job is good'%(nentries,weight_sum)
+        print ('%i events in the file and sum of weights = %f --> job is good'%(nentries,weight_sum))
         return int(nentries),weight_sum,True
 
 #__________________________________________________________
@@ -132,7 +196,7 @@ class checker_yaml():
         ldir=next(os.walk(self.indir))[1]
         
         if not ut.testeos(self.para.eostest,self.para.eostest_size):
-            print 'eos seems to have problems, should check, will exit'
+            print ('eos seems to have problems, should check, will exit')
             sys.exit(3)
 
         for l in ldir:
@@ -140,15 +204,15 @@ class checker_yaml():
                 continue
             #continue if process has been checked
             if l=='BADPYTHIA' or l=='lhe' or l=="__restored_files__" or l=="backup": continue
-            print '%s/%s/check'%(self.yamldir,l)
+            print ('%s/%s/check'%(self.yamldir,l))
             if not ut.file_exist('%s/%s/check'%(self.yamldir,l)) and not force: continue
-            print '--------------------- ',l
+            print ('--------------------- ',l)
             process=l
             All_files = glob.glob("%s/%s/events_*%s"%(self.indir,l,self.fext))
-            print 'number of files  ',len(All_files)
+            print ('number of files  ',len(All_files))
             if len(All_files)==0:continue
             
-            print 'process from the input directory ',process
+            print ('process from the input directory ',process)
 
             outdir = self.makeyamldir(self.yamldir+process)
             hasbeenchecked=False
@@ -156,11 +220,12 @@ class checker_yaml():
             sumweights_tot=0
             njobsdone_tot=0
             njobsbad_tot=0
+            userjobs=[]
             for f in All_files:
 
                 self.count = 0
                 if not os.path.isfile(f): 
-                    print 'file does not exists... %s'%f
+                    print ('file does not exists... %s'%f)
                     continue
             
                 jobid=f.split('_')[-1]
@@ -170,7 +235,7 @@ class checker_yaml():
                 outfile='%sevents_%s.yaml'%(outdir,jobid)
                 if  ut.getsize(outfile)==0:
                     cmd="rm %s"%(outfile)
-                    print 'file size 0, remove and continue   ',cmd
+                    print ('file size 0, remove and continue   ',cmd)
                     os.system(cmd)
                     continue
                 if ut.file_exist(outfile) and ut.getsize(outfile)> 100 and not force:
@@ -181,17 +246,17 @@ class checker_yaml():
                         except yaml.YAMLError as exc:
                             print(exc)
                         except IOError as exc:
-                            print "I/O error({0}): {1}".format(exc.errno, exc.strerror)
-                            print "outfile ",outfile
+                            print ("I/O error({0}): {1}".format(exc.errno, exc.strerror))
+                            print ("outfile ",outfile)
                         try: 
                             if doc!=None:value = doc['processing']['status']
                             if value=='DONE': continue
         
-                        except KeyError, e:
-                            print 'status %s does not exist' % str(e)
+                        except KeyError as e:
+                            print ('status %s does not exist' % str(e))
 
                 hasbeenchecked=True
-                print '-----------',f
+                print ('-----------',f)
 
                 if '.root' in self.fext:
                     nevts, sumw, check=self.checkFile_root(f, self.para.treename)
@@ -202,6 +267,7 @@ class checker_yaml():
                         nevents_tot+=nevts
                         sumweights_tot+=sumw
                         njobsdone_tot+=1
+                        if userid not in userjobs:userjobs.append(userid)
                     else:
                         njobsbad_tot+=1
 
@@ -221,8 +287,8 @@ class checker_yaml():
                             yaml.dump(dic, outyaml, default_flow_style=False) 
                         continue
                     except IOError as exc:
-                            print "I/O error({0}): {1}".format(exc.errno, exc.strerror)
-                            print "outfile ",outfile
+                            print ("I/O error({0}): {1}".format(exc.errno, exc.strerror))
+                            print ("outfile ",outfile)
                             time.sleep(10)
                             with open(outfile, 'w') as outyaml:
                                 yaml.dump(dic, outyaml, default_flow_style=False) 
@@ -233,7 +299,7 @@ class checker_yaml():
                     while nevts==-1 and not check:
                         nevts,check=self.checkFile_lhe(f)
                         if self.count==10:
-                            print 'can not copy or unzip the file, declare it wrong'
+                            print ('can not copy or unzip the file, declare it wrong')
                             break
 
                     status='DONE'
@@ -258,11 +324,51 @@ class checker_yaml():
                     with open(outfile, 'w') as outyaml:
                         yaml.dump(dic, outyaml, default_flow_style=False) 
                     continue
+
+                elif '.stdhep.gz' in self.fext:
+                    nevts,check=self.checkFile_stdhep(f)
+                    while nevts==-1 and not check:
+                        nevts,check=self.checkFile_lhe(f)
+                        if self.count==10:
+                            print ('can not copy or unzip the file, declare it wrong')
+                            break
+
+                    status='DONE'
+                    if not check: status='BAD'
+
+                    if status=='DONE':
+                        nevents_tot+=nevts
+                        njobsdone_tot+=1
+                    else:
+                        njobsbad_tot+=1
+
+                    dic = {'processing':{
+                            'process':process,
+                            'jobid':jobid,
+                            'nevents':nevts,
+                            'status':status,
+                            'out':f,
+                            'size':os.path.getsize(f),
+                            'user':userid
+                            }
+                           }
+                    with open(outfile, 'w') as outyaml:
+                        yaml.dump(dic, outyaml, default_flow_style=False)
+                    continue
+
+
                 else:
-                    print 'not correct file extension %s'%self.fext
+                    print ('not correct file extension %s'%self.fext)
             
             if hasbeenchecked:
-                cmdp='<pre>date=%s \t time=%s njobs=%i \t nevents=%i  \t sumofweights=%f\t njobbad=%i \t process=%s </pre>\n'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot, sumweights_tot, njobsbad_tot,process)
+                userstmp=''
+                for u in userjobs:
+                    if userstmp=='':
+                        userstmp=u
+                    else:
+                        userstmp+=',',u
+
+                cmdp='<pre>date=%s \t time=%s njobs=%i \t nevents=%i  \t sumofweights=%f\t njobbad=%i \t process=%s \t users=%s</pre>\n'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot, sumweights_tot, njobsbad_tot,process,userstmp)
                 stat_exist=ut.file_exist(statfile)
                 with open(statfile, "a") as myfile:
                     if not stat_exist: 
@@ -271,7 +377,7 @@ class checker_yaml():
 
                     myfile.write(cmdp)
 
-                print 'date=%s  time=%s  njobs=%i  nevents=%i  sumofweights=%f  njobbad=%i  process=%s'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot,sumweights_tot, njobsbad_tot,process)
+                print ('date=%s  time=%s  njobs=%i  nevents=%i  sumofweights=%f  njobbad=%i  process=%s users=%s'%(ut.getdate_str(),ut.gettime_str() ,njobsdone_tot,nevents_tot,sumweights_tot, njobsbad_tot,process,userstmp))
 
 
 
