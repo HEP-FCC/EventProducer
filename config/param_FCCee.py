@@ -35,8 +35,16 @@ stdhep_dir   = "/eos/experiment/fcc/ee/generation/stdhep/"
 ##extension
 stdhep_ext   = ".stdhep.gz"
 
-##FCC versions
-fcc_versions = ['spring2021','spring2021_training','dev' ]
+##FCC-ee production version and corresponding SW tag
+prodTag = {
+    'spring2021':'/cvmfs/sw.hsf.org/spackages2/key4hep-stack/2021-05-12/x86_64-centos7-gcc8.3.0-opt/iyafnfo5muwvpbxcoa4ygwoxi2smkkwa/setup.sh',
+    'spring2021_training':'/cvmfs/sw.hsf.org/spackages2/key4hep-stack/2021-05-12/x86_64-centos7-gcc8.3.0-opt/iyafnfo5muwvpbxcoa4ygwoxi2smkkwa/setup.sh',
+    'dev':'/cvmfs/sw.hsf.org/key4hep/setup.sh' ,
+    'pre_fall2022':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
+    'pre_fall2022_training':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
+}
+
+defaultstack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
 
 ##eos directory for FCCSW pythia delphes files
 delphes_dir  = "/eos/experiment/fcc/ee/generation/DelphesEvents/"
@@ -60,15 +68,18 @@ kkmccards_dir = "/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Ge
 ##delphes base card detector
 detectors = ['IDEA', 'IDEA_3T', 'IDEA_FullSilicon']
 
-
-
-##init script for Key4Hep
-stack  = '/cvmfs/sw.hsf.org/key4hep/setup.sh'
-stack  = '/cvmfs/sw.hsf.org/spackages2/key4hep-stack/2021-05-12/x86_64-centos7-gcc8.3.0-opt/iyafnfo5muwvpbxcoa4ygwoxi2smkkwa/setup.sh'
 #list of processes only with Pythia, meaning no LHE
 pythialist={
     #'dummy':['','','','','',''],
     'dummy':['<p style=\"background-color:Tomato;\">NOT REGISTERED IN param_FCCee</p>','<p style=\"background-color:Tomato;\">NOT REGISTERED IN param_FCCee</p>','','-9999','-9999','-9999'],
+
+    'p8_ee_ZH_Znunu_Hgg_ecm240':['ZH ecm=240GeV','Z->nunu, H->gg','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
+    'p8_ee_ZH_Znunu_Hbb_ecm240':['ZH ecm=240GeV','Z->nunu, H->bb','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
+    'p8_ee_ZH_Znunu_Hcc_ecm240':['ZH ecm=240GeV','Z->nunu, H->cc','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
+    'p8_ee_ZH_Znunu_Hss_ecm240':['ZH ecm=240GeV','Z->nunu, H->ss','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
+    'p8_ee_ZH_Znunu_Hdd_ecm240':['ZH ecm=240GeV','Z->nunu, H->dd','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
+    'p8_ee_ZH_Znunu_Huu_ecm240':['ZH ecm=240GeV','Z->nunu, H->uu','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
+    'p8_ee_ZH_Znunu_Htautau_ecm240':['ZH ecm=240GeV','Z->nunu, H->tautau','','0.201868','1.0','1.0'],     #    Pythia 8.303, noBES (Used 0.201037 before)
 
     'p8_ee_ZH_ecm240':['ZH ecm=240GeV','inclusive decays','','0.201868','1.0','1.0'],       #    Pythia 8.303, noBES (Used 0.201037 before)
     'p8_ee_ZZ_ecm240':['ZZ ecm=240GeV','inclusive decays','','1.35899','1.0','1.0'],

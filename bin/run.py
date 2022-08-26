@@ -82,9 +82,10 @@ if __name__=="__main__":
         print ('problem, need to specify --FCChh or --FCCee')
         sys.exit(3)
 
-    versionGroup = parser.add_argument_group('recontruction version')
-    versionGroup.add_argument('--version', type=str, required = '--reco' in sys.argv, help='Version to use', choices = para.fcc_versions)
-    versionGroup.add_argument('--detector', type=str, default='', required = '--reco' in sys.argv, help='Detector to use', choices = para.detectors)
+    prodTag=[i for i in para.prodTag]
+    prodTagGroup = parser.add_argument_group('production tag')
+    prodTagGroup.add_argument('--prodtag', type=str, required = '--reco' in sys.argv, help='Version to use', choices = prodTag)
+    prodTagGroup.add_argument('--detector', type=str, default='', required = '--reco' in sys.argv, help='Detector to use', choices = para.detectors)
 
     
     decaylist=[]
@@ -121,7 +122,7 @@ if __name__=="__main__":
     parser.add_argument('--force', action='store_true', help='Force the type of process', default=False)
 
     args, _ = parser.parse_known_args()
-    version = args.version
+    version = args.prodtag
     print("version ",version)
     detector = args.detector
     training=False

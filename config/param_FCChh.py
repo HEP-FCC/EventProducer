@@ -27,8 +27,12 @@ lhe_dir     = '/eos/experiment/fcc/hh/generation/lhe/'
 ##extension
 lhe_ext     ='.lhe.gz'
 
-##FCC versions
-fcc_versions=['fcc_v01', 'fcc_v02', 'fcc_v03', 'fcc_v04']
+##FCC-hh production version and corresponding SW tag
+prodTag = {
+    'fcc_v02':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
+    'fcc_v03':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
+    'fcc_v04':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
+}
 
 ##eos directory for FCCSW pythia delphes files
 delphes_dir = '/eos/experiment/fcc/hh/generation/DelphesEvents/'
@@ -55,9 +59,6 @@ delphescard_mr='momentumResolutionVsP.tcl'
 delphescard_base='card.tcl'
 ##FCC config script name
 fccconfig='PythiaDelphes_config_v02.py'
-
-##base dir of FCCSW
-stack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={

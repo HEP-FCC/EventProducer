@@ -1,6 +1,4 @@
-#python bin/run.py --FCC --reco --send --type p8 --condor -p p8_pp_jj_lo_tagger -n 10000 -N 10 -q workday --version fcc_v02
-
-
+#!/usr/bin/env python3
 import os, sys
 import subprocess
 import time
@@ -114,7 +112,7 @@ class send_p8():
             frun.write('unset LD_LIBRARY_PATH\n')
             frun.write('unset PYTHONHOME\n')
             frun.write('unset PYTHONPATH\n')
-            frun.write('source %s\n'%(self.para.stack))
+            frun.write('source %s\n'%(self.para.prodTag[self.version]))
             #frun.write('source /cvmfs/sw.hsf.org/contrib/spack/share/spack/setup-env.sh\n')
             #frun.write('spack load --first k4simdelphes build_type=Release ^evtgen+photos\n')
             

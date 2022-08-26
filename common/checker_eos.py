@@ -21,6 +21,7 @@ class checker_eos():
     def check(self, para):
 
         #ldir=[x[0] for x in os.walk(self.indir)]
+        print(self.indireos)
         ldir=next(os.walk(self.indireos))[1]
         
         if not ut.testeos(para.eostest,para.eostest_size):

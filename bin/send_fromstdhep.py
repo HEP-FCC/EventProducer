@@ -1,8 +1,4 @@
-#python bin/sendJobs_FCCSW.py -n 10 -p pp_h012j_5f -q 8nh -e -1 -d haa --test
-#python bin/sendJobs_FCCSW.py secret -n 1 -e -1  -p "pp_h012j_5f" -q 1nh --test
-#python bin/sendJobs_FCCSW.py -n 1 -p pp_h012j_5f -q 8nh -e -1 -v fcc_v02
-#python bin/run.py --FCC --reco --send --condor -p mg_pp_tttt_5f --type lhep8 -N 20 -q tomorrow --version fcc_v02
-
+#!/usr/bin/env python3
 import os, sys
 import subprocess
 import time
@@ -209,7 +205,7 @@ class send_fromstdhep():
             frun.write('unset LD_LIBRARY_PATH\n')
             frun.write('unset PYTHONHOME\n')
             frun.write('unset PYTHONPATH\n')
-            frun.write('source %s\n'%(self.para.stack))
+            frun.write('source %s\n'%(self.para.prodTag[self.version]))
 
             #frun.write('export LD_LIBRARY_PATH=/afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/install/lib64:$LD_LIBRARY_PATH\n')
 

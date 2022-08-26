@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import os, sys
 import subprocess
 import time
@@ -110,7 +110,7 @@ class send_kkmc():
             frun.write('mkdir job%s_%s\n'%(uid,self.process))
             frun.write('cd job%s_%s\n'%(uid,self.process))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
-            frun.write('source %s\n'%(self.para.stack))
+            frun.write('source %s\n'%(self.para.defaultstack))
             #frun.write('source /cvmfs/sft.cern.ch/lcg/views/LCG_97a_FCC_4/x86_64-centos7-gcc8-opt/setup.sh \n')
             if self.islocal==False:
                 frun.write('mkdir %s%s\n'%(lhedir,self.process))
