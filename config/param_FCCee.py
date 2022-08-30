@@ -5,23 +5,23 @@ eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size=1312594
 
 #stat
-lhe_stat     = "/afs/cern.ch/user/h/helsens/www/data/FCCee/statlhe.html"
-delphes_stat = "/afs/cern.ch/user/h/helsens/www/data/FCCee/statdelphesVERSION_DETECTOR.html"
-stdhep_stat  = "/afs/cern.ch/user/h/helsens/www/data/FCCee/statstdhep.html"
+lhe_stat     = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/statlhe.html"
+delphes_stat = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/statdelphesVERSION_DETECTOR.html"
+stdhep_stat  = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/statstdhep.html"
 
 
 #web
-lhe_web      = "/afs/cern.ch/user/h/helsens/www/data/FCCee/LHEevents.txt"
-delphes_web  = "/afs/cern.ch/user/h/helsens/www/data/FCCee/Delphesevents_VERSION_DETECTOR.txt"
-stdhep_web   = "/afs/cern.ch/user/h/helsens/www/data/FCCee/STDHEPevents.txt"
+lhe_web      = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/LHEevents.txt"
+delphes_web  = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/Delphesevents_VERSION_DETECTOR.txt"
+stdhep_web   = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/STDHEPevents.txt"
 
 #yaml directory
-yamldir      = "/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCCee/"
+yamldir      = "/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCCee/"
 
 
 #heppy and proc lists
-heppyList    = "/afs/cern.ch/work/h/helsens/public/FCCDicts/FCCee_heppySampleList_VERSION_DETECTOR.py"
-procList     = "/afs/cern.ch/work/h/helsens/public/FCCDicts/FCCee_procDict_VERSION_DETECTOR.json"
+heppyList    = "/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCCee_heppySampleList_VERSION_DETECTOR.py"
+procList     = "/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCCee_procDict_VERSION_DETECTOR.json"
 
 
 ##eos directory for MG5@MCatNLO gridpacks

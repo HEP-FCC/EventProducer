@@ -45,7 +45,7 @@ class checker_eos():
             print("mergefile=",mergefile)
             if not ut.file_exist(mergefile): 
                 if not ut.dir_exist('%s/%s'%(self.indirafs,proc)):
-                    os.system('mkdir %s/%s'%(self.indirafs,proc))
+                    os.system('mkdir -p %s/%s'%(self.indirafs,proc))
                 self.touch('%s/%s/check'%(self.indirafs,proc))
                 continue
 
