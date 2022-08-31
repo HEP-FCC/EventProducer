@@ -374,7 +374,7 @@ class checker_yaml():
                 stat_exist=ut.file_exist(statfile)
                 with open(statfile, "a") as myfile:
                     if not stat_exist: 
-                        myfile.write('<link href="/afs/cern.ch/user/h/helsens/www/style/txtstyle.css" rel="stylesheet" type="text/css" />\n')
+                        myfile.write('<link href="/afs/cern.ch/user/f/fccsw/www/style/txtstyle.css" rel="stylesheet" type="text/css" />\n')
                         myfile.write('<style type="text/css"> /*<![CDATA[*/ .espace{ margin-left:3em } .espace2{ margin-top:9em } /*]]>*/ </style>\n')
 
                     myfile.write(cmdp)

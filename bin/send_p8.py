@@ -121,32 +121,32 @@ class send_p8():
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             if self.islocal==False:
                 frun.write('mkdir -p %s/%s\n'%(outdir,self.process))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.tcl\n'%(delphescards_base))
+            frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s card.tcl\n'%(delphescards_base))
 
             if '_EvtGen' not in self.process:
-                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
+                frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
                 frun.write('echo "" >> card.cmd\n')
                 frun.write('echo "Random:seed = %s" >> card.cmd\n'%uid)
                 frun.write('echo "Main:numberOfEvents = %i" >> card.cmd\n'%(self.events))
 
 
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Delphes/edm4hep_%s.tcl edm4hep.tcl\n'%(self.version,self.detector))
+            frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Delphes/edm4hep_%s.tcl edm4hep.tcl\n'%(self.version,self.detector))
             
             if '_EvtGen' not in self.process:
                 frun.write('DelphesPythia8_EDM4HEP card.tcl edm4hep.tcl card.cmd events_%s.root\n'%(uid)) 
             else:
                 evtgendir=self.para.evtgencards_dir.replace('_VERSION_',self.version)
-                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %sDECAY.DEC .\n'%(evtgendir))
-                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %sevt.pdl .\n'%(evtgendir))
+                frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %sDECAY.DEC .\n'%(evtgendir))
+                frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %sevt.pdl .\n'%(evtgendir))
                 decfile='%s%s.dec'%(evtgendir,self.process.split('_')[-1])
                 if ut.file_exist(decfile)==False and self.process.split('_')[-1]!='EvtGen':
                     print ('evtgen user dec file does not exist: ',decfile,' , exit')
                     sys.exit(3)
 
                 if self.process.split('_')[-1]!='EvtGen':
-                    frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s user.dec\n'%(decfile))
+                    frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s user.dec\n'%(decfile))
                 if 'Zbb' in self.process:
-                    frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Generator/Pythia8/p8_ee_Zbb_ecm91_EVTGEN.cmd card.cmd\n'%(self.version))
+                    frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Generator/Pythia8/p8_ee_Zbb_ecm91_EVTGEN.cmd card.cmd\n'%(self.version))
                 else:
                     print ('can not run evt gen with other events than Z->bb exit')
                     sys.exit(3)
@@ -187,7 +187,7 @@ class send_p8():
             #if ut.file_exist(outfile)==False:
             #    frun.write('cp events_%s.root %s\n'%(uid,outfile))
             #if ut.file_exist(outfile)==False:
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events_%s.root %s\n'%(uid,outfile))
+            frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py events_%s.root %s\n'%(uid,outfile))
             frun.write('cd ..\n')
             frun.write('rm -rf job%s_%s\n'%(uid,self.process))
             frun.close()

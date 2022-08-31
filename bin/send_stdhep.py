@@ -113,7 +113,7 @@ class send_stdhep():
             #frun.write('mkdir %s\n'%(stdhepdir))
             if self.islocal==False:
                 frun.write('mkdir %s%s\n'%(stdhepdir,self.process))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s thecard.sin\n'%(whizardcard))
+            frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s thecard.sin\n'%(whizardcard))
             #frun.write('cd process/\n')
             #frun.write('./run.sh %i %i\n'%(self.events,int(uid.lstrip('0'))))
             
@@ -124,9 +124,9 @@ class send_stdhep():
             frun.write('whizard card.sin \n')
             frun.write('echo "finished run"\n')
             frun.write('gzip proc.stdhep \n')
-            #frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events_%s.lhe.gz\n'%(lhedir,self.process ,uid))
+            #frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events_%s.lhe.gz\n'%(lhedir,self.process ,uid))
             #frun.write('xrdcp -N -v proc.stdhep.gz root://eospublic.cern.ch/%s/%s/events_%s.lhe.gz\n'%(stdhepdir,self.process ,uid))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py proc.stdhep.gz %s\n'%(outfile))
+            frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py proc.stdhep.gz %s\n'%(outfile))
             frun.write('echo "stdhep.gz file successfully copied on eos"\n')
 
             frun.write('cd ..\n')

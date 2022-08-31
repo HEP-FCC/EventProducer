@@ -253,10 +253,6 @@ class send_lhep8():
             frun.write('unset PYTHONPATH\n')
             frun.write('source %s\n'%(self.para.prodTag[self.version]))
 
-            if 'FCCee' not in self.para.module_name:
-                 frun.write('export LD_LIBRARY_PATH=/afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/install/lib64:$LD_LIBRARY_PATH\n')
-
-
             frun.write('mkdir job%s_%s\n'%(jobid,processp8))
             frun.write('cd job%s_%s\n'%(jobid,processp8))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
@@ -264,37 +260,26 @@ class send_lhep8():
             if self.islocal==False:
                  #frun.write('mkdir -p %s%s/%s\n'%(self.para.delphes_dir,self.version,processp8))
                  frun.write('mkdir -p %s/%s\n'%(outdir,processp8))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(tmpf['processing']['out']))
+            frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(tmpf['processing']['out']))
             frun.write('gunzip -c %s > events.lhe\n'%tmpf['processing']['out'].split('/')[-1])          
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_base))
+            frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(delphescards_base))
             if 'fcc' in self.version and 'FCCee' not in self.para.module_name:
-                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mmr))
-                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mr))
+                frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mmr))
+                frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mr))
             if 'FCCee' not in self.para.module_name:
-                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s config.py \n'%(fccconfig))
+                frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s config.py \n'%(fccconfig))
             else:
-                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Delphes/edm4hep_%s.tcl edm4hep_output_config.tcl\n'%(self.version,self.detector))
-                frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.tcl\n'%(delphescards_base))
+                frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Delphes/edm4hep_%s.tcl edm4hep_output_config.tcl\n'%(self.version,self.detector))
+                frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s card.tcl\n'%(delphescards_base))
 
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
+            frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
             frun.write('echo "Beams:LHEF = events.lhe" >> card.cmd\n')
             frun.write('echo "Random:seed = %s" >> card.cmd\n'%pythiaseed.lstrip('0'))
             frun.write('echo "Main:numberOfEvents = %i" >> card.cmd\n'%(self.events))
 
-            if 'helhc' in self.version:
-                frun.write('echo " Beams:eCM = 27000." >> card.cmd\n')
-            #frun.write('%s/fccrun config.py --delphescard=card.tcl --inputfile=card.cmd --outputfile=events_%s.root --nevents=%i\n'%(self.para.fccsw,jobid,self.events))
-            if 'FCCee' not in self.para.module_name:
-                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/examples/edm4hep_output_config.tcl .\n')
-                frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes_PythiaStuff/build/standalone/DelphesPythia8_EDM4HEP DelphesPythia8_EDM4HEP\n')
-            #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/examples/edm4hep_output_config.tcl .\n')
-            #frun.write('cp /afs/cern.ch/user/h/helsens/FCCsoft/Key4HEP/k4SimDelphes/install/bin/DelphesPythia8_EDM4HEP DelphesPythia8_EDM4HEP\n')
-
-            #frun.write('./DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root\n'%(jobid)) 
             frun.write('DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root\n'%(jobid))
 
-            #frun.write('xrdcp -N -v events_%s.root root://eospublic.cern.ch/%s\n'%(jobid,outfile))
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py events_%s.root %s\n'%(jobid,outfile))
+            frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py events_%s.root %s\n'%(jobid,outfile))
 
             frun.write('cd ..\n')
             frun.write('rm -rf job%s_%s\n'%(jobid,processp8))
