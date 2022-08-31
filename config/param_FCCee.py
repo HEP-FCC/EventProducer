@@ -9,7 +9,6 @@ lhe_stat     = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/statlhe.html"
 delphes_stat = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/statdelphesVERSION_DETECTOR.html"
 stdhep_stat  = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/statstdhep.html"
 
-
 #web
 lhe_web      = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/LHEevents.txt"
 delphes_web  = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/Delphesevents_VERSION_DETECTOR.txt"
@@ -18,20 +17,21 @@ stdhep_web   = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/STDHEPevents.txt"
 #yaml directory
 yamldir      = "/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCCee/"
 
-
-#heppy and proc lists
-heppyList    = "/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCCee_heppySampleList_VERSION_DETECTOR.py"
+#proc lists
 procList     = "/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCCee_procDict_VERSION_DETECTOR.json"
-
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir       = "/eos/experiment/fcc/ee/generation/gridpacks/"
+
 ##eos directory for lhe files
 lhe_dir      = "/eos/experiment/fcc/ee/generation/lhe/"
+
 ##extension
 lhe_ext      = ".lhe.gz"
+
 ##eos directory for stdhep files
 stdhep_dir   = "/eos/experiment/fcc/ee/generation/stdhep/"
+
 ##extension
 stdhep_ext   = ".stdhep.gz"
 

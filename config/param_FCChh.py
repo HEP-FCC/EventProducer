@@ -14,10 +14,9 @@ lhe_web="/afs/cern.ch/user/f/fccsw/www/data/FCChh/LHEevents.txt"
 delphes_web="/afs/cern.ch/user/f/fccsw/www/data/FCChh/Delphesevents_VERSION.txt"
 
 #yaml directory
-yamldir='/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCC/'
+yamldir='/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCChh/'
 
-#heppy and proc lists
-heppyList = '/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCC_heppySampleList_VERSION.py'
+#proc lists
 procList = '/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCC_procDict_VERSION.json'
 
 ##eos directory for MG5@MCatNLO gridpacks
