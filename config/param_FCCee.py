@@ -148,7 +148,23 @@ pythialist={
 
 
     'p8_ee_Zbb_ecm91_EvtGen':['Z/Gamma* ecm=91.188GeV to bb','inclusive decays using EvtGen','','6645.46','1.0','1.0'],
-
+    
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DstENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DstMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2D0ENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2D0MuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst0ENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst0MuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
 
     'p8_ee_Zbb_ecm91_EvtGen_Bu2D0Pi':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B+/- -> D0(KPi)Pi','','1.3290920','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2KstTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (K*0 -> K- pi+) tau+ tau-, tau -> 3pi nu','','1.0','1.0','1.0'],
