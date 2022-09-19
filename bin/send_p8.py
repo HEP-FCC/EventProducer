@@ -61,10 +61,9 @@ class send_p8():
         pythiacard='%s%s.cmd'%(self.para.pythiacards_dir,self.process)
         pythiacard=pythiacard.replace('_VERSION_',self.version)
         if ut.file_exist(pythiacard)==False:
-            print ('pythia card does not exist: ',pythiacard,' , exit')
             if '_EvtGen' not in self.process:
-                print ('process ',self.process)
-
+                print ('pythia card does not exist: ',pythiacard,' exit')
+                
                 sys.exit(3)
 
 
