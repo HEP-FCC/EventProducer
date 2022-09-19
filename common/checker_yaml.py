@@ -25,6 +25,8 @@ class checker_yaml():
         filecounting='filecounting'
         if os.path.isdir(filecounting)==False:
             os.system('mkdir %s'%filecounting)
+        else:
+            os.system('rm %s/*stdhep*'%filecounting)
         cmd='cp %s %s'%(f,filecounting)
         outputCMD = ut.getCommandOutput(cmd)
         fcount='%s/%s'%(filecounting,f.split('/')[-1])
@@ -38,6 +40,8 @@ class checker_yaml():
                 os.system('rm %s'%(fcount))
                 return -1,False
 
+            if os.path.isfile('tmp.slcio'):
+                os.system('rm tmp.slcio')
             #nevts = 100000 # temporary hack !!
             cmd='stdhepjob %s tmp.slcio 1000000000 | grep \"written to LCIO\" ' %(fcount.replace('.gz',''))
             outputCMD = ut.getCommandOutput(cmd)
@@ -76,6 +80,8 @@ class checker_yaml():
         filecounting='filecounting'
         if os.path.isdir(filecounting)==False:
             os.system('mkdir %s'%filecounting)
+        else:
+            os.system('rm %s/*lhe*'%filecounting)
         cmd='cp %s %s'%(f,filecounting)
         outputCMD = ut.getCommandOutput(cmd)
         fcount='%s/%s'%(filecounting,f.split('/')[-1])
