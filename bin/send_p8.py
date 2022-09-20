@@ -185,7 +185,7 @@ class send_p8():
                 elif 'Ds2' == tmppr:
                     pdgid=431
                     bsignal='Ds_SIGNAL'                   
-                 elif 'Lc2' == tmppr:
+                elif 'Lc2' == tmppr:
                     pdgid=4122
                     bsignal='Lc_SIGNAL'
                     
