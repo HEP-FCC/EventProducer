@@ -26,7 +26,7 @@ class checker_yaml():
         if os.path.isdir(filecounting)==False:
             os.system('mkdir %s'%filecounting)
         else:
-            os.system('rm %s/*stdhep*'%filecounting)
+            if len(glob.glob('%s/*stdhep*'%filecounting))>0: os.system('rm %s/*stdhep*'%filecounting)
         cmd='cp %s %s'%(f,filecounting)
         outputCMD = ut.getCommandOutput(cmd)
         fcount='%s/%s'%(filecounting,f.split('/')[-1])
@@ -81,7 +81,7 @@ class checker_yaml():
         if os.path.isdir(filecounting)==False:
             os.system('mkdir %s'%filecounting)
         else:
-            os.system('rm %s/*lhe*'%filecounting)
+            if len(glob.glob('%s/*lhe*'%filecounting))>0:os.system('rm %s/*lhe*'%filecounting)
         cmd='cp %s %s'%(f,filecounting)
         outputCMD = ut.getCommandOutput(cmd)
         fcount='%s/%s'%(filecounting,f.split('/')[-1])
