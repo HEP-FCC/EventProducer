@@ -149,13 +149,13 @@ pythialist={
 
     'p8_ee_Zbb_ecm91_EvtGen':['Z/Gamma* ecm=91.188GeV to bb','inclusive decays using EvtGen','','6645.46','1.0','1.0'],
     
-    'p8_ee_Zcc_ecm91_EvtGen_D2K3Pi':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zcc_ecm91_EvtGen_D2TauNu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zcc_ecm91_EvtGen_D2TauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Dd2K3Pi':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Dd2TauNu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Dd2TauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
     'p8_ee_Zcc_ecm91_EvtGen_Ds2EtapRho':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
     'p8_ee_Zcc_ecm91_EvtGen_Ds2TauNu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
     'p8_ee_Zcc_ecm91_EvtGen_Ds2TauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zcc_ecm91_EvtGen_Lc2LEMu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Lc2LENu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
     'p8_ee_Zcc_ecm91_EvtGen_Lc2LMuNu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
     'p8_ee_Zcc_ecm91_EvtGen_Lc2LRhoPi':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
     'p8_ee_Zcc_ecm91_EvtGen_Lc2Sigma2Pi':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
