@@ -144,35 +144,51 @@ class send_p8():
 
                 if self.process.split('_')[-1]!='EvtGen':
                     frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s user.dec\n'%(decfile))
+                    
                 if 'Zbb' in self.process:
                     frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Generator/Pythia8/p8_ee_Zbb_ecm91_EVTGEN.cmd card.cmd\n'%(self.version))
+                    
+                elif 'Zcc' in self.process:
+                    frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Generator/Pythia8/p8_ee_Zcc_ecm91_EVTGEN.cmd card.cmd\n'%(self.version))
+                    
                 else:
-                    print ('can not run evt gen with other events than Z->bb exit')
+                    print ('can not run evt gen with other events than Z->bb or Z->cc exit')
                     sys.exit(3)
 
                 frun.write('echo "Main:numberOfEvents = %i" >> card.cmd\n'%(self.events))
                 frun.write('echo "Random:seed = %s" >> card.cmd\n'%uid)
 
                 tmppr=self.process.split('_')[-1]
+                tmppr=tmppr[0:3]
                 
                 pdgid=-9999
                 bsignal=''
-                if 'Bu2' in tmppr: 
+                if 'Bu2' == tmppr: 
                     pdgid=521
                     bsignal='Bu_SIGNAL'
-                elif 'Bd2' in tmppr: 
+                elif 'Bd2' == tmppr: 
                     pdgid=511
                     bsignal='Bd_SIGNAL'
-                elif 'Bc2' in tmppr: 
+                elif 'Bc2' == tmppr: 
                     pdgid=541
                     bsignal='Bc_SIGNAL'
-                elif 'Bs2' in tmppr: 
+                elif 'Bs2' == tmppr: 
                     pdgid=531
                     bsignal='Bs_SIGNAL'
-                elif 'Lb2' in tmppr: 
+                elif 'Lb2' == tmppr: 
                     pdgid=5122
                     bsignal='Lb_SIGNAL'
 
+                elif 'Dd2' == tmppr:
+                    pdgid=411
+                    bsignal='Dd_SIGNAL'
+                elif 'Ds2' == tmppr:
+                    pdgid=431
+                    bsignal='Ds_SIGNAL'                   
+                 elif 'Lc2' == tmppr:
+                    pdgid=4122
+                    bsignal='Lc_SIGNAL'
+                    
                 else:
                     if tmppr!="EvtGen":
                         print('pdg id not found, exit')
