@@ -150,6 +150,16 @@ class send_p8():
                     
                 elif 'Zcc' in self.process:
                     frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Generator/Pythia8/p8_ee_Zcc_ecm91_EVTGEN.cmd card.cmd\n'%(self.version))
+                    frun.write('export PATH=/afs/cern.ch/work/f/fccsw/public/FCCutils/k4SimDelphes-00-01-06/install/bin:${PATH}\n')
+                    frun.write('export LD_LIBRARY_PATH=/afs/cern.ch/work/f/fccsw/public/FCCutils/k4SimDelphes-00-01-06/install//lib64:${LD_LIBRARY_PATH}\n')
+                    frun.write('Run a hacked version of k4SimDelphes-00-01-06 adding c-mesons to the list\n')
+                    frun.write('echo \"==================================================================\"\n')
+                    frun.write('echo \"==================================================================\"\n')
+                    frun.write('echo \"==================================================================\"\n')
+                    frun.write('which DelphesPythia8EvtGen_EDM4HEP_k4Interface\n')
+                    frun.write('echo \"==================================================================\"\n')
+                    frun.write('echo \"==================================================================\"\n')
+                    frun.write('echo \"==================================================================\"\n')                    
                     
                 else:
                     print ('can not run evt gen with other events than Z->bb or Z->cc exit')
