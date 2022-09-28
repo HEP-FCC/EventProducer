@@ -5,33 +5,33 @@ eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size=1312594
 
 #stat
-lhe_stat     = "/afs/cern.ch/user/h/helsens/www/data/FCCee/statlhe.html"
-delphes_stat = "/afs/cern.ch/user/h/helsens/www/data/FCCee/statdelphesVERSION_DETECTOR.html"
-stdhep_stat  = "/afs/cern.ch/user/h/helsens/www/data/FCCee/statstdhep.html"
-
+lhe_stat     = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/statlhe.html"
+delphes_stat = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/statdelphesVERSION_DETECTOR.html"
+stdhep_stat  = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/statstdhep.html"
 
 #web
-lhe_web      = "/afs/cern.ch/user/h/helsens/www/data/FCCee/LHEevents.txt"
-delphes_web  = "/afs/cern.ch/user/h/helsens/www/data/FCCee/Delphesevents_VERSION_DETECTOR.txt"
-stdhep_web   = "/afs/cern.ch/user/h/helsens/www/data/FCCee/STDHEPevents.txt"
+lhe_web      = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/LHEevents.txt"
+delphes_web  = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/Delphesevents_VERSION_DETECTOR.txt"
+stdhep_web   = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/STDHEPevents.txt"
 
 #yaml directory
-yamldir      = "/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCCee/"
+yamldir      = "/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCCee/"
 
-
-#heppy and proc lists
-heppyList    = "/afs/cern.ch/work/h/helsens/public/FCCDicts/FCCee_heppySampleList_VERSION_DETECTOR.py"
-procList     = "/afs/cern.ch/work/h/helsens/public/FCCDicts/FCCee_procDict_VERSION_DETECTOR.json"
-
+#proc lists
+procList     = "/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCCee_procDict_VERSION_DETECTOR.json"
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir       = "/eos/experiment/fcc/ee/generation/gridpacks/"
+
 ##eos directory for lhe files
 lhe_dir      = "/eos/experiment/fcc/ee/generation/lhe/"
+
 ##extension
 lhe_ext      = ".lhe.gz"
+
 ##eos directory for stdhep files
 stdhep_dir   = "/eos/experiment/fcc/ee/generation/stdhep/"
+
 ##extension
 stdhep_ext   = ".stdhep.gz"
 
@@ -148,8 +148,37 @@ pythialist={
 
 
     'p8_ee_Zbb_ecm91_EvtGen':['Z/Gamma* ecm=91.188GeV to bb','inclusive decays using EvtGen','','6645.46','1.0','1.0'],
+    
+    'p8_ee_Zcc_ecm91_EvtGen_Dd2K3Pi':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Dd2TauNu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Dd2TauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Ds2EtapRho':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Ds2TauNu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Ds2TauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Lc2LENu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Lc2LMuNu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Lc2LRhoPi':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Lc2Sigma2Pi':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DstENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DstMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2D0ENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2D0MuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst0ENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst0MuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
 
 
+    
     'p8_ee_Zbb_ecm91_EvtGen_Bu2D0Pi':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B+/- -> D0(KPi)Pi','','1.3290920','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2KstTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (K*0 -> K- pi+) tau+ tau-, tau -> 3pi nu','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2KstTauTauTAUHADNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (K*0 -> K- pi+) tau+ tau-, tau -> 3pi nu TAUHADNU model','','1.0','1.0','1.0'],
@@ -322,6 +351,11 @@ gridpacklist = {
     'mg_ee_tt_FCNC_tuz_ecm365':['ttbar FCNC','to be added','','1.0','1.0','1.0'],
     'mg_ee_tt_FCNC_tcz_ecm365':['ttbar FCNC','to be added','','1.0','1.0','1.0'],
     'mg_ee_zhh_ecm365':['e+e- -> ZHH', 'LO', '', '2.0e-5', '1.0', '1.0'],
+    'mg_ee_zh_ecm240':['e+e- -> ZH', '', '', '1.0', '1.0', '1.0'],
+    'mg_ee_bb_ecm90':['e+e- -> bb', '', '', '1.0', '1.0', '1.0'],
+    'mg_ee_cc_ecm90':['e+e- -> cc', '', '', '1.0', '1.0', '1.0'],
+    'mg_ee_qq_ecm90':['e+e- -> qq', '', '', '1.0', '1.0', '1.0'],
+    'mg_ee_ss_ecm90':['e+e- -> ss', '', '', '1.0', '1.0', '1.0'],
 
     'wzp6_ee_mumuH_ecm240':['mumuH ecm=240 GeV','inclusive Higgs decays','','6.7643e-3','1.0','1.0'],
     'wzp6_ee_mumuH_noISR_ecm240':['mumuH ecm=240 GeV, no ISR','inclusive Higgs decays','','7.9757e-3','1.0','1.0'],

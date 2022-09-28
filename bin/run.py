@@ -25,7 +25,7 @@ if __name__=="__main__":
     jobTypeGroup.add_argument("--cleanold", action='store_true', help="clean the yaml from old jobs (more than 72 hours)")
     jobTypeGroup.add_argument("--web", action='store_true', help="print the dictionnary for webpage")
     jobTypeGroup.add_argument("--remove", action='store_true', help="remove a specific process from the dictionary and from eos" )
-    jobTypeGroup.add_argument("--sample", action='store_true', help="make the heppy sample list and proc dict" )
+    jobTypeGroup.add_argument("--sample", action='store_true', help="make the proc dict" )
 
     sendjobGroup = parser.add_argument_group('type of jobs to send')
     sendjobGroup.add_argument('--type', type=str, required = '--send' in sys.argv and '--reco'  in sys.argv , help='type of jobs to send', choices = ['lhep8','p8','stdhep'])
@@ -318,7 +318,7 @@ if __name__=="__main__":
         clean.cleanoldjobs()
 
     elif args.sample:
-        print ('make the heppy sample list and procDict')
+        print ('make the procDict')
         import EventProducer.common.makeSampleList as msl
         sample=msl.makeSampleList(para, version, detector)
         sample.makelist()

@@ -11,7 +11,6 @@ from pwd import getpwuid
 
 import EventProducer.config.users as us
 
-# adding this because heppy does not handle root recovered trees'
 #_____________________________________________________________
 def isValidROOTfile(infile):
     valid = True

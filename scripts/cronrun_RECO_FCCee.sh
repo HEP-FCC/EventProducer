@@ -1,4 +1,5 @@
-cd /afs/cern.ch/user/h/helsens/FCCsoft/Generators/EventProducer/
+cd /afs/cern.ch/user/f/fccsw/private/EventProducer/
+
 source ./init.sh
 
 python bin/run.py --FCCee --reco --prodtag $1 --detector $2 --checkeos

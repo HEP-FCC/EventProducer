@@ -25,6 +25,8 @@ class checker_yaml():
         filecounting='filecounting'
         if os.path.isdir(filecounting)==False:
             os.system('mkdir %s'%filecounting)
+        else:
+            if len(glob.glob('%s/*stdhep*'%filecounting))>0: os.system('rm %s/*stdhep*'%filecounting)
         cmd='cp %s %s'%(f,filecounting)
         outputCMD = ut.getCommandOutput(cmd)
         fcount='%s/%s'%(filecounting,f.split('/')[-1])
@@ -38,6 +40,8 @@ class checker_yaml():
                 os.system('rm %s'%(fcount))
                 return -1,False
 
+            if os.path.isfile('tmp.slcio'):
+                os.system('rm tmp.slcio')
             #nevts = 100000 # temporary hack !!
             cmd='stdhepjob %s tmp.slcio 1000000000 | grep \"written to LCIO\" ' %(fcount.replace('.gz',''))
             outputCMD = ut.getCommandOutput(cmd)
@@ -76,6 +80,8 @@ class checker_yaml():
         filecounting='filecounting'
         if os.path.isdir(filecounting)==False:
             os.system('mkdir %s'%filecounting)
+        else:
+            if len(glob.glob('%s/*lhe*'%filecounting))>0:os.system('rm %s/*lhe*'%filecounting)
         cmd='cp %s %s'%(f,filecounting)
         outputCMD = ut.getCommandOutput(cmd)
         fcount='%s/%s'%(filecounting,f.split('/')[-1])
@@ -158,19 +164,21 @@ class checker_yaml():
         f=r.TFile.Open(f)
         tt=tf.Get(tname)
         nentries=tt.GetEntries()
-        
-	## compute sum of weights
-        r.gROOT.SetBatch(True)
-        tt.Draw('mcEventWeights.value[0]>>histo')
-        histo=r.gDirectory.Get('histo')
         weight_sum=float(nentries)
-        try:
-            weight_sum=float(nentries)*histo.GetMean()
-        except AttributeError as e:
-            print ("error ",e)
-            if nentries!=100000 and nentries!=10000:
-                print ('nentries  ',nentries)
-                #nentries=0
+
+        ##TODO: here we miss the metadata to get the sum of weights properly done
+	## compute sum of weights
+        #r.gROOT.SetBatch(True)
+        #tt.Draw('mcEventWeights.value[0]>>histo')
+        #histo=r.gDirectory.Get('histo')
+        #
+        #try:
+        #    weight_sum=float(nentries)*histo.GetMean()
+        #except AttributeError as e:
+        #    print ("error ",e)
+        #    if nentries!=100000 and nentries!=10000:
+        #        print ('nentries  ',nentries)
+        #        #nentries=0
         if nentries==0:
             print ('file has 0 entries ===%s=== must be deleted'%f)
             return 0,0,False
@@ -372,7 +380,7 @@ class checker_yaml():
                 stat_exist=ut.file_exist(statfile)
                 with open(statfile, "a") as myfile:
                     if not stat_exist: 
-                        myfile.write('<link href="/afs/cern.ch/user/h/helsens/www/style/txtstyle.css" rel="stylesheet" type="text/css" />\n')
+                        myfile.write('<link href="/afs/cern.ch/user/f/fccsw/www/style/txtstyle.css" rel="stylesheet" type="text/css" />\n')
                         myfile.write('<style type="text/css"> /*<![CDATA[*/ .espace{ margin-left:3em } .espace2{ margin-top:9em } /*]]>*/ </style>\n')
 
                     myfile.write(cmdp)

@@ -123,7 +123,7 @@ class send_kkmc():
             frun.write('mkdir run \n')
             frun.write('cd run \n')
             
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py %s pro.input\n'%(kkmccard))
+            frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s pro.input\n'%(kkmccard))
             frun.write('cp /afs/cern.ch/user/e/eperez/FCC/FCCSW/KKMC/KKMCee-4.32.01/my_iniseed  ./iniseed \n')
             frun.write('cp /afs/cern.ch/user/e/eperez/FCC/FCCSW/KKMC/KKMCee-4.32.01/ffbench/semaphore.start ./semaphore \n')
 
@@ -141,7 +141,7 @@ class send_kkmc():
             frun.write('../ProdMC.exe \n')
             frun.write('echo "finished run"\n') 
             frun.write('gzip LHE_OUT.LHE \n')
-            frun.write('python /afs/cern.ch/work/h/helsens/public/FCCutils/eoscopy.py LHE_OUT.LHE.gz %s\n'%(outfile))
+            frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py LHE_OUT.LHE.gz %s\n'%(outfile))
             frun.write('echo "lhe.gz file successfully copied on eos"\n')
             frun.write('cp pro.output %s/pro.output_%s \n'%(logdir,str(uid)))
             frun.write('cd ../../..\n')
