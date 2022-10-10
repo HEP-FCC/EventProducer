@@ -95,7 +95,7 @@ class send_lhe():
             frun.write('cd job%s_%s\n'%(uid,self.process))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('source %s\n'%(self.para.defaultstack))
-            frun.write('source /cvmfs/sft.cern.ch/lcg/views/LCG_97a_FCC_4/x86_64-centos7-gcc8-opt/setup.sh \n')
+            # frun.write('source /cvmfs/sft.cern.ch/lcg/views/LCG_97a_FCC_4/x86_64-centos7-gcc8-opt/setup.sh \n') #setting this release up clashes with defaultstack setup w.r.t python version, causing runtime errors -> removed. what is it needed for?
             frun.write('mkdir %s\n'%(lhedir))
             frun.write('mkdir %s%s\n'%(lhedir,self.process))
             frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s/%s.tar.gz .\n'%(gpdir,self.process))
