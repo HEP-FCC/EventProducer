@@ -1385,6 +1385,9 @@ gridpacklist = {
 # ee processes 
 'mg_ee_tt':['e+e- -> tt~','','','1.0','1.0','1.0'],
 
+#NEW: testing angelas FCC-hh generation 
+'mg_pp_vbf_hh_angela':['pp VBF HH angelas gridpack','','','1.0','1.0','1.0'], #TESTER 
+
 
 
 }
