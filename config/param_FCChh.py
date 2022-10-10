@@ -35,6 +35,8 @@ prodTag = {
     'fcc_v04':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
 }
 
+defaultstack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
+
 ##eos directory for FCCSW pythia delphes files
 delphes_dir = '/eos/experiment/fcc/hh/generation/DelphesEvents/'
 ##extension
