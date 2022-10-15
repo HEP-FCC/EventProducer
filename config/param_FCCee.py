@@ -296,6 +296,10 @@ pythialist={
     'p8_ee_Ztautau_ecm91_EvtGen_Tau2MuGamma':['Z/Gamma* ecm=91.188GeV to tautau','EvtGen tau -> mu gamma','','1.0','1.0','1.0'],
     'p8_ee_Zcc_ecm91_EvtGen_D2PiPi0':['Z/Gamma* ecm=91.188GeV to cc','EvtGen D+ -> pi+ pi0','','1.0','1.0','1.0'],
 
+    'p8_noBES_ee_Ztautau_ecm91_EvtGen_TauMinus2MuMuMu':['Z/Gamma* ecm=91.188GeV to tautau', 'tau- -> 3mu','','1.0','1.0','1.0'],
+    'p8_noBES_ee_Ztautau_ecm91_EvtGen_TauMinus2PiPiPinu':['Z/Gamma* ecm=91.188GeV to tautau', 'tau- -> 3pi nu','','1.0','1.0','1.0'],
+
+
 
 }
 
