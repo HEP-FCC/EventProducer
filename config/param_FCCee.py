@@ -17,6 +17,7 @@ stdhep_web   = "/afs/cern.ch/user/h/helsens/www/data/FCCee/STDHEPevents.txt"
 
 #yaml directory
 yamldir      = "/afs/cern.ch/work/h/helsens/public/FCCDicts/yaml/FCCee/"
+#yamldir      = "/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCCee/"
 
 
 #heppy and proc lists
@@ -254,6 +255,8 @@ pythialist={
     'p8_ee_Ztautau_ecm91_EvtGen_Tau2MuGamma':['Z/Gamma* ecm=91.188GeV to tautau','EvtGen tau -> mu gamma','','1.0','1.0','1.0'],
     'p8_ee_Zcc_ecm91_EvtGen_D2PiPi0':['Z/Gamma* ecm=91.188GeV to cc','EvtGen D+ -> pi+ pi0','','1.0','1.0','1.0'],
 
+    'p8_noBES_ee_Ztautau_ecm91_EvtGen_TauMinus2MuMuMu':['Z/Gamma* ecm=91.188GeV to tautau', 'tau- -> 3mu, sig for BR=2e-8','','29.5e-6','1.0','1.0'],
+    'p8_noBES_ee_Ztautau_ecm91_EvtGen_TauMinus2PiPiPinu':['Z/Gamma* ecm=91.188GeV to tautau', 'tau- -> 3pi nu','','137.3','1.0','1.0'],
 
 }
 
