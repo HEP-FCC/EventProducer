@@ -146,6 +146,9 @@ class makeSampleList():
             infile = f.readlines()
 
         ldir=next(os.walk(yamldir_reco))[1]
+ 
+        training=False
+        if 'training' in self.version: training=True
 
         for l in ldir:
             processhad=None
@@ -154,6 +157,8 @@ class makeSampleList():
                 yamldir_lhe=self.para.yamldir+'lhe/'
             elif 'wzp6_' in process or 'wzp8_' in process or 'wz_' in process :
                 yamldir_lhe=self.para.yamldir+'stdhep/'
+                if training:
+                    yamldir_lhe=self.para.yamldir+'stdhep/training/'
                 
             yaml_reco=yamldir_reco+'/'+l+'/merge.yaml'
             if not ut.file_exist(yaml_reco): 
