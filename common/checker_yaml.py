@@ -16,6 +16,10 @@ class checker_yaml():
 
 #__________________________________________________________
     def checkFile_stdhep(self, f):
+
+        hack = True
+        #hack = False
+
         size=os.path.getsize(f)
         if size==0:
             self.count+=1
@@ -27,38 +31,45 @@ class checker_yaml():
             os.system('mkdir %s'%filecounting)
         else:
             if len(glob.glob('%s/*stdhep*'%filecounting))>0: os.system('rm %s/*stdhep*'%filecounting)
-        cmd='cp %s %s'%(f,filecounting)
+
+        if hack: 
+           cmd='cp /dev/null %s/%s'%(filecounting, f.split('/')[-1] )
+        else :
+           cmd='cp %s %s'%(f,filecounting)
+
         outputCMD = ut.getCommandOutput(cmd)
         fcount='%s/%s'%(filecounting,f.split('/')[-1])
         if os.path.isfile(fcount):
             cmd='gunzip %s'%(fcount)
-            outputCMD = ut.getCommandOutput(cmd)
-            stderr=outputCMD["stderr"]
+            stderr=''
+            if not hack:
+                outputCMD = ut.getCommandOutput(cmd)
+                stderr=outputCMD["stderr"]
             if len(stderr)>0:
                 print ('can not unzip the file, try again (count %i)'%self.count)
                 self.count+=1
                 os.system('rm %s'%(fcount))
                 return -1,False
 
-            if os.path.isfile('tmp.slcio'):
+            nevts = 100000 # temporary hack !!
+            if not hack:
+                if os.path.isfile('tmp.slcio'):
+                    os.system('rm tmp.slcio')
+                cmd='stdhepjob %s tmp.slcio 1000000000 | grep \"written to LCIO\" ' %(fcount.replace('.gz',''))
+                outputCMD = ut.getCommandOutput(cmd)
+                if len( outputCMD["stdout"].split() ) < 2:
+                    print('... problem in checkFile_stdhep with stdhepjob')
+                snevts = outputCMD["stdout"].split()[1]
+                nevts=int(snevts)
                 os.system('rm tmp.slcio')
-            #nevts = 100000 # temporary hack !!
-            cmd='stdhepjob %s tmp.slcio 1000000000 | grep \"written to LCIO\" ' %(fcount.replace('.gz',''))
-            outputCMD = ut.getCommandOutput(cmd)
-            if len( outputCMD["stdout"].split() ) < 2:
-                print('... problem in checkFile_stdhep with stdhepjob')
-            snevts = outputCMD["stdout"].split()[1]
-            nevts=int(snevts)
-            #print("Nb of events from stdhepjob = ",nevts)
-            os.system('rm tmp.slcio')
-            if nevts==0:
-                print ('no events in the file, job is bad')
-                os.system('rm %s'%(fcount.replace('.gz','')))
-                return 0,False
-            else:
-                print ('%i events in file %s, job is good'%(nevts,f))
-                os.system('rm %s'%(fcount.replace('.gz','')))
-                return nevts,True
+                if nevts==0:
+                    print ('no events in the file, job is bad')
+                    os.system('rm %s'%(fcount.replace('.gz','')))
+                    return 0,False
+                else:
+                    print ('%i events in file %s, job is good'%(nevts,f))
+                    os.system('rm %s'%(fcount.replace('.gz','')))
+            return nevts,True
         else:
             print ('file not properly copied... try again (count %i)'%self.count)
             if not ut.testeos(self.para.eostest,self.para.eostest_size):
