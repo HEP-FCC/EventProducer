@@ -4,33 +4,39 @@ module_name='config/param_FCCee.py'
 eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size=1312594
 
+#directories
+webbasedir="/afs/cern.ch/user/f/fccsw/www/data/FCCee/"
+pubbasedir="/afs/cern.ch/work/f/fccsw/public/FCCDicts/"
+eosbaseinputdir="/eos/experiment/fcc/ee/generation/"
+eosbaseoutputdir="/eos/experiment/fcc/ee/generation/"
+
 #stat
-lhe_stat     = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/statlhe.html"
-delphes_stat = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/statdelphesVERSION_DETECTOR.html"
-stdhep_stat  = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/statstdhep.html"
+lhe_stat     = webdir+"statlhe.html"
+delphes_stat = webdir+"statdelphesVERSION_DETECTOR.html"
+stdhep_stat  = webdir+"statstdhep.html"
 
 #web
-lhe_web      = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/LHEevents.txt"
-delphes_web  = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/Delphesevents_VERSION_DETECTOR.txt"
-stdhep_web   = "/afs/cern.ch/user/f/fccsw/www/data/FCCee/STDHEPevents.txt"
+lhe_web      = webdir+"LHEevents.txt"
+delphes_web  = webdir+"Delphesevents_VERSION_DETECTOR.txt"
+stdhep_web   = webdir+"STDHEPevents.txt"
 
 #yaml directory
-yamldir      = "/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCCee/"
+yamldir      = pubbasedir+"yaml/FCCee/"
 
 #proc lists
-procList     = "/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCCee_procDict_VERSION_DETECTOR.json"
+procList     = pubbasedir+"FCCee_procDict_VERSION_DETECTOR.json"
 
 ##eos directory for MG5@MCatNLO gridpacks
-gp_dir       = "/eos/experiment/fcc/ee/generation/gridpacks/"
+gp_dir       = eosbaseinputdir+"gridpacks/"
 
 ##eos directory for lhe files
-lhe_dir      = "/eos/experiment/fcc/ee/generation/lhe/"
+lhe_dir      = eosbaseoutputdir+"lhe/"
 
 ##extension
 lhe_ext      = ".lhe.gz"
 
 ##eos directory for stdhep files
-stdhep_dir   = "/eos/experiment/fcc/ee/generation/stdhep/"
+stdhep_dir   = eosbaseoutputdir+"/stdhep/"
 
 ##extension
 stdhep_ext   = ".stdhep.gz"
@@ -47,7 +53,7 @@ prodTag = {
 defaultstack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
 
 ##eos directory for FCCSW pythia delphes files
-delphes_dir  = "/eos/experiment/fcc/ee/generation/DelphesEvents/"
+delphes_dir  = eosbaseoutputdir+"DelphesEvents/"
 ##extension
 delphes_ext  = ".root"
 ##name of the ttree
@@ -55,15 +61,15 @@ treename     = "events"
 
 
 ##where the delphes cards are stored
-delphescards_dir = "/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Delphes/"
+delphescards_dir = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Delphes/"
 ##where the pythia cards are stored
-pythiacards_dir  = "/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Generator/Pythia8/"
+pythiacards_dir  = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/Pythia8/"
 ##where the EVTGEN card are stored
-evtgencards_dir  = "/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Generator/EvtGen/"
+evtgencards_dir  = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/EvtGen/"
 ##where the WHIZARD cards are stored
-whizardcards_dir = "/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Generator/Whizard/"
+whizardcards_dir = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/Whizard/"
 ##where the KKMC cards are stored
-kkmccards_dir = "/eos/experiment/fcc/ee/generation/FCC-config/_VERSION_/FCCee/Generator/KKMC/"
+kkmccards_dir = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/KKMC/"
 # /cvmfs/fcc.cern.ch/sw/latest/setup.sh 
 ##delphes base card detector
 detectors = ['IDEA', 'IDEA_3T', 'IDEA_FullSilicon']
