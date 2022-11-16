@@ -269,6 +269,8 @@ pythialist={
     'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstDsst' :['Z/Gamma* ecm=91.188GeV to bb','Lb2DsstDsst','','2.7047022199999997','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstTauNu':['Z/Gamma* ecm=91.188GeV to bb','Lb2DsstTauNu','','8.040342054','1.0','1.0'],
 
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2JpsiPhi':['Z/Gamma* ecm=91.188GeV to bb','Bs to JPsi(mumu) Phi(KK)','','1','1.0','1.0'],
+
     'p8_ee_Zbb_ecm91_EvtGen_Bd2KstarTauTau':['Z/Gamma* ecm=91.188GeV to bb','B to K* tautau decay, with  taus decaying into 3 pions','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2pipipipi0':['Z/Gamma* ecm=91.188GeV to bb','B0 -> (Ds+ ->  pi+  pi+  pi-  pi0) (Ds- -> pi-  pi-  pi+  pi0) (K*0 -> K+ pi-)','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2Taunu':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds+ Ds- K*0, K*0 forced to K+ pi-, Ds forced to tau nu','','1','1.0','1.0'],
