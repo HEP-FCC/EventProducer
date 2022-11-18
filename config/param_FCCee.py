@@ -438,13 +438,15 @@ gridpacklist = {
     'wzp6_ee_ee_Mee_30_150_ecm365':['ee (s and t), ecm=365 GeV','30 < Mee < 150 GeV, 15 < theta < 165 deg','','1.53','1.0','1.0'],
 
 
+   # samples for developing flavour tagging algorithms - xsection is not filled
 
-
-
-
-
-
-
+    'wzp6_ee_nunuH_Hbb_ecm240':['ee -> Z(numu numu) H,  ecm=240 GeV','H to bb','','1','1.0','1.0'],
+    'wzp6_ee_nunuH_Hcc_ecm240':['ee -> Z(numu numu) H,  ecm=240 GeV','H to cc','','1','1.0','1.0'],
+    'wzp6_ee_nunuH_Hss_ecm240':['ee -> Z(numu numu) H,  ecm=240 GeV','H to ss','','1','1.0','1.0'],
+    'wzp6_ee_nunuH_Hgg_ecm240':['ee -> Z(numu numu) H,  ecm=240 GeV','H to gg','','1','1.0','1.0'],
+    'wzp6_ee_nunuH_Huu_ecm240':['ee -> Z(numu numu) H,  ecm=240 GeV','H to uu','','1','1.0','1.0'],
+    'wzp6_ee_nunuH_Hdd_ecm240':['ee -> Z(numu numu) H,  ecm=240 GeV','H to dd','','1','1.0','1.0'],
+    'wzp6_ee_nunuH_Htautau_ecm240':['ee -> Z(numu numu) H,  ecm=240 GeV','H to tautau','','1','1.0','1.0'],
 
 
 }
