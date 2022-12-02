@@ -1387,6 +1387,14 @@ gridpacklist = {
 
 #NEW: testing angelas FCC-hh generation 
 'mg_pp_vbf_hh_angela':['pp VBF HH angelas gridpack','','','1.0','1.0','1.0'], #TESTER 
+'mg_vbf_hh_lambda100_C2V100_CV100':['pp VBF HH angelas gridpack','','','1.0','1.0','1.0'], #TESTER 
+'mg_pp_vbf_hh_C2V000_CV100_lambda100':['pp VBF HH angelas gridpack','','','1.0','1.0','1.0'], #TESTER 
+'mg_pp_vbf_hh_C2V100_CV150_lambda100':['pp VBF HH angelas gridpack','','','1.0','1.0','1.0'], #TESTER 
+'mg_pp_vbf_hh_C2V100_CV100_lambda000':['pp VBF HH angelas gridpack','','','1.0','1.0','1.0'], #TESTER 
+'mg_pp_vbf_hh_C2V100_CV100_lambda100':['pp VBF HH angelas gridpack','','','1.0','1.0','1.0'], #TESTER 
+'mg_pp_vbf_hh_C2V100_CV100_lambda200':['pp VBF HH angelas gridpack','','','1.0','1.0','1.0'], #TESTER 
+'mg_pp_vbf_hh_C2V200_CV100_lambda100':['pp VBF HH angelas gridpack','','','1.0','1.0','1.0'], #TESTER 
+
 
 
 
