@@ -454,6 +454,13 @@ gridpacklist = {
     'wzp6_ee_nunuH_Hdd_ecm240':['ee -> Z(numu numu) H,  ecm=240 GeV','H to dd','','1','1.0','1.0'],
     'wzp6_ee_nunuH_Htautau_ecm240':['ee -> Z(numu numu) H,  ecm=240 GeV','H to tautau','','1','1.0','1.0'],
 
+# for top FCNC, ecm = 365 GeV:
+    'wzp6_egamma_tbnu_ecm365':['nu_e t b (e) EPA, e- gamma, ecm=365 GeV','inc. top decays','','2.276e-4','1.0','1.0'],
+    'wzp6_gammae_tbnu_ecm365':['nu_e t b (e) EPA, e+ gamma, ecm=365 GeV','inc. top decays','','2.276e-4','1.0','1.0'],
+    'wzp6_ee_tbjj_singleTop_ecm365':['t B jj (+cc), j=udcs, tB pair from a W, ecm=365 GeV','inc. top decays','','5.989e-3','1.0','1.0'],
+    'wzp6_egamma_eZ_Zbb_ecm365':['e(e)Z EPA, e- gamma, ecm=365 GeV','Z to bb','','615.2e-3','1.0','1.0'],
+    'wzp6_gammae_eZ_Zbb_ecm365':['e(e)Z EPA, e+ gamma, ecm=365 GeV','Z to bb','','615.2e-3','1.0','1.0'],
+
 
 }
 
