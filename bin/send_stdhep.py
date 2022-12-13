@@ -32,6 +32,12 @@ class send_stdhep():
         print("njobs=",self.njobs)
 
         stdhepdir=self.para.stdhep_dir
+        # From winter2023 onwards, the stdhep files are store in stdehp/prodTag or stdhep/prodTag/training
+        if not( 'spring2021' in self.version or 'pre_fall2022' in self.version or 'dev' in self.version ):
+            prodtag = self.version.replace("_training","")
+            stdhepdir=stdhepdir+"/%s/"%(prodtag)
+        if self.typestdhep == 'wzp6' and self.training:
+            stdhepdir = stdhepdir + "training/"
         print("stdhepdir =",stdhepdir)
         gpdir=self.para.gp_dir
 
@@ -45,12 +51,23 @@ class send_stdhep():
 
 
         if not self.islocal:
-             yamldir = '%s/stdhep/%s'%(self.para.yamldir,self.process)
+             yamldir = '%s/stdhep/%s'%(self.para.yamldir,self.process)    # for pre-winter2023 tags
+             if self.training:
+                  yamldir = '%s/stdhep/training/%s'%(self.para.yamldir,self.process)
+             if not( 'spring2021' in self.version or 'pre_fall2022' in self.version or 'dev' in self.version ):   # winter2023 and later:
+                  prodtag = self.version.replace("_training","")
+                  yamldir = '%s/stdhep/%s/%s'%(self.para.yamldir,prodtag,self.process)
+                  if self.training:
+                      yamldir = '%s/stdhep/%s/training/%s'%(self.para.yamldir,prodtag,self.process)
+             print("yamldir = ",yamldir)
              if not ut.dir_exist(yamldir):
                  os.system("mkdir -p %s"%yamldir)
 
         if self.typestdhep == 'wzp6':
-            whizardcard='%s%s.sin'%(self.para.whizardcards_dir, 'v2.8.5/'+self.process)     # Whizard 2.8.5, with Pythia6 interface
+            whizardcard='%s%s.sin'%(self.para.whizardcards_dir, 'v3.0.3/'+self.process)     # Whizard 2.8.5, with Pythia6 interface
+            if 'spring2021' in self.version or 'pre_fall2022' in self.version or 'dev' in self.version:
+                whizardcard='%s%s.sin'%(self.para.whizardcards_dir, 'v2.8.5/'+self.process)     # Whizard 2.8.5, with Pythia6 interface
+	  
 
         whizardcard=whizardcard.replace('_VERSION_',self.version)
         if ut.file_exist(whizardcard)==False:

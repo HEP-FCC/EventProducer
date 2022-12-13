@@ -47,7 +47,9 @@ prodTag = {
     'spring2021_training':'/cvmfs/sw.hsf.org/spackages2/key4hep-stack/2021-05-12/x86_64-centos7-gcc8.3.0-opt/iyafnfo5muwvpbxcoa4ygwoxi2smkkwa/setup.sh',
     'dev':'/cvmfs/sw.hsf.org/key4hep/setup.sh' ,
     'pre_fall2022':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
-    'pre_fall2022_training':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
+    'pre_fall2022_training':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
+    'winter2023':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
+    'winter2023_training':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
 }
 
 defaultstack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
