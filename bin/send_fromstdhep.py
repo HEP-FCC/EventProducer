@@ -130,7 +130,18 @@ class send_fromstdhep():
             if not ut.dir_exist(yamldir):
                 os.system("mkdir -p %s"%yamldir)
 
+
+        training=False
+        if 'training' in self.version: training=True
+
         yamlstdhepdir = '%s/stdhep/%s'%(self.para.yamldir,self.process)
+        if training:
+            yamlstdhepdir = '%s/stdhep/training/%s'%(self.para.yamldir,self.process)
+        if not( 'spring2021' in self.version or 'pre_fall2022' in self.version or 'dev' in self.version ):   # winter2023 and later:
+            prodtag = self.version.replace("_training","")
+            yamlstdhepdir = '%s/stdhep/%s/%s'%(self.para.yamldir,prodtag,self.process)
+            if training:
+                 yamlstdhepdir = '%s/stdhep/%s/training/%s'%(self.para.yamldir,prodtag,self.process)
         print("yamlstdhepdir = ",yamlstdhepdir)
   
         All_files = glob.glob("%s/events_*.yaml"%yamlstdhepdir)

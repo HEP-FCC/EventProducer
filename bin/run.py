@@ -143,10 +143,23 @@ if __name__=="__main__":
         statfile=para.lhe_stat
 
     elif args.STDHEP:
-        indir=para.stdhep_dir
         fext=para.stdhep_ext
-        yamldir=para.yamldir+'stdhep/'
+        aprodtag = version.replace("_training","")
+        yamldir=para.yamldir+'stdhep/'+aprodtag+'/'
+        indir=para.stdhep_dir+'/'+aprodtag+'/'
+        if training:
+            yamldir=para.yamldir+'stdhep/'+aprodtag+'/training/'
+            indir=para.stdhep_dir+aprodtag+'/training/'
+        if 'spring2021' in version or 'pre_fall2022' in version or 'dev' in version : # for proTags older than winter2023
+            indir=para.stdhep_dir
+            yamldir=para.yamldir+'stdhep/'
+            if training:
+                yamldir=para.yamldir+'stdhep/training/'
+                indir=para.stdhep_dir+'/training/'
         statfile=para.stdhep_stat
+        print("yamldir = ",yamldir)
+        print("indir =",indir)
+
 
     elif args.reco:
         indir='%s%s/%s'%(para.delphes_dir,version,detector)
