@@ -112,7 +112,7 @@ class send_stdhep():
             frun.write('source %s\n'%(self.para.defaultstack))
             #frun.write('mkdir %s\n'%(stdhepdir))
             if self.islocal==False:
-                frun.write('mkdir %s%s\n'%(stdhepdir,self.process))
+                frun.write('mkdir -p %s%s\n'%(stdhepdir,self.process))
             frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s thecard.sin\n'%(whizardcard))
             #frun.write('cd process/\n')
             #frun.write('./run.sh %i %i\n'%(self.events,int(uid.lstrip('0'))))
