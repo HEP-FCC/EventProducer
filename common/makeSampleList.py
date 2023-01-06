@@ -150,15 +150,20 @@ class makeSampleList():
         training=False
         if 'training' in self.version: training=True
 
+        extension=""
+        if not ( 'spring2021' in self.version or 'pre_fall2022' in self.version or 'dev' in self.version):  # winter2023 and later 
+            prodtag = self.version.replace("_training","")
+            extension='/'+prodtag+'/'
+
         for l in ldir:
             processhad=None
             process=l
             if 'mgp8_' in process or 'pwp8_' in process or 'kkmcp8_' in process:
-                yamldir_lhe=self.para.yamldir+'lhe/'
+                yamldir_lhe=self.para.yamldir+'lhe/'+extension
             elif 'wzp6_' in process or 'wzp8_' in process or 'wz_' in process :
-                yamldir_lhe=self.para.yamldir+'stdhep/'
+                yamldir_lhe=self.para.yamldir+'stdhep/'+extension
                 if training:
-                    yamldir_lhe=self.para.yamldir+'stdhep/training/'
+                    yamldir_lhe=self.para.yamldir+'stdhep/'+extension+'training/'
                 
             yaml_reco=yamldir_reco+'/'+l+'/merge.yaml'
             if not ut.file_exist(yaml_reco): 
