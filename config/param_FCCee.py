@@ -396,14 +396,14 @@ gridpacklist = {
     'wzp6_ee_eeH_mH-higher-50MeV_ecm240':['eeH ecm=240 GeV, vary mH','inclusive Higgs decays','','7.152e-3','1.0','1.0'],
     'wzp6_ee_eeH_mH-lower-50MeV_ecm240':['eeH ecm=240 GeV, vary mH','inclusive Higgs decays','','7.169e-3','1.0','1.0'],
     'wzp6_ee_eeH_mH-lower-100MeV_ecm240':['eeH ecm=240 GeV, vary mH','inclusive Higgs decays','','7.188e-3','1.0','1.0'],
-    'wzp6_ee_eeH_BES-higher-1pc_ecm240':['eeH ecm=240 GeV, vary BES','inclusive Higgs decays','','','1.0','1.0'],
-    'wzp6_ee_eeH_BES-lower-1pc_ecm240':['eeH ecm=240 GeV, vary BES','inclusive Higgs decays','','','1.0','1.0'],
+    'wzp6_ee_eeH_BES-higher-1pc_ecm240':['eeH ecm=240 GeV, vary BES','inclusive Higgs decays','','7.159e-3','1.0','1.0'],
+    'wzp6_ee_eeH_BES-lower-1pc_ecm240':['eeH ecm=240 GeV, vary BES','inclusive Higgs decays','','7.169e-3','1.0','1.0'],
 
     'wzp6_ee_nunuH_ecm240':['nunuH ecm=240 GeV (all nu flavours)','inclusive Higgs decays','','46.191e-3','1.0','1.0'],
     'wzp6_ee_qqH_ecm240':['qqH ecm=240 GeV, q = u,d,s,c,b','inclusive Higgs decays','','136.35e-3','1.0','1.0'],
 
-    'wzp6_egamma_eZ_Zee_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z to ee','','','1.0','1.0'],
-    'wzp6_gammae_eZ_Zee_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z to ee','','','1.0','1.0'],
+    'wzp6_egamma_eZ_Zee_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z to ee','','5.198e-2','1.0','1.0'],
+    'wzp6_gammae_eZ_Zee_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z to ee','','5.198e-2','1.0','1.0'],
     'wzp6_egamma_eZ_Zmumu_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z to mumu','','103.68e-3','1.0','1.0'],
     'wzp6_gammae_eZ_Zmumu_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z to mumu','','103.68e-3','1.0','1.0'],
     'wzp6_egamma_eZ_Zbb_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z to bb','','455.7e-3','1.0','1.0'],
@@ -414,7 +414,7 @@ gridpacklist = {
     'wzp6_gammae_tbnu_ecm240':['nu_e t b (e) EPA, e+ gamma, ecm=240 GeV','inc. top decays','','1.0753e-5','1.0','1.0'],
 
 
-    'wzp6_gaga_ee_60_ecm240':['gammagamma to ee, M(ee) > 60 GeV,  ecm=240 GeV','','','','1.0','1.0'],
+    'wzp6_gaga_ee_60_ecm240':['gammagamma to ee, M(ee) > 60 GeV,  ecm=240 GeV','','','8.730e-1','1.0','1.0'],
     'wzp6_gaga_mumu_60_ecm240':['gammagamma to mumu, M(mumu) > 60 GeV,  ecm=240 GeV','','','1.5523','1.0','1.0'],
     'wzp6_gaga_tautau_60_ecm240':['gammagamma to tautau, M(tautau) > 60 GeV,  ecm=240 GeV','','','0.836','1.0','1.0'],
    
