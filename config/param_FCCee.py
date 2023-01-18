@@ -476,7 +476,7 @@ gridpacklist = {
     #     'qqH'     : 53.343e-3
     'wzp6_ee_nunuH_Hbb_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to bb','','2.690e-02','1.0','1.0'],
     'wzp6_ee_nunuH_Hcc_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to cc','','1.335e-03','1.0','1.0'],
-    'wzp6_ee_nunuH_Hss_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to ss','','1.109-05','1.0','1.0'],
+    'wzp6_ee_nunuH_Hss_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to ss','','1.109e-05','1.0','1.0'],
     'wzp6_ee_nunuH_Hgg_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to gg','','3.782e-03','1.0','1.0'],
     'wzp6_ee_nunuH_Hqq_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to uu,dd','','1.386e-08','1.0','1.0'],
     'wzp6_ee_nunuH_Htautau_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to tautau','','2.897e-03','1.0','1.0'],
