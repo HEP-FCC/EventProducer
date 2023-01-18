@@ -90,8 +90,9 @@ class makeSampleList():
             print ('did not find any FCCSW event for process', process)
             return matchingEff
 
-        # compute matching efficiency
-        matchingEff = round(float(nmatched)/nlhe, 3)
+        # compute matching efficiency ( for FCC-pp only )
+        if not 'FCCee' in self.para.module_name:
+            matchingEff = round(float(nmatched)/nlhe, 3)
         if nweights==0: nweights=nmatched
         entry = '   "{}": {{"numberOfEvents": {}, "sumOfWeights": {}, "crossSection": {}, "kfactor": {}, "matchingEfficiency": {}}},\n'.format(process, nmatched, nweights, xsec, kf, matchingEff)
         print ('N: {}, Nw:{}, xsec: {} , kf: {} pb, eff: {}'.format(nmatched, nweights, xsec, kf, matchingEff))
