@@ -17,7 +17,9 @@ delphes_web="/afs/cern.ch/user/f/fccsw/www/data/FCChh/Delphesevents_VERSION.txt"
 yamldir='/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCChh/'
 
 #proc lists
-procList = '/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCChh_procDict_VERSION.json'
+procList = [
+     '/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCChh_procDict_VERSION.json',
+     '/afs/cern.ch/user/f/fccsw/www/data/FCCDicts/FCChh_procDict_VERSION.json']
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'

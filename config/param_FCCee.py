@@ -24,7 +24,8 @@ stdhep_web   = webbasedir+"STDHEPevents.txt"
 yamldir      = pubbasedir+"yaml/FCCee/"
 
 #proc lists
-procList     = pubbasedir+"FCCee_procDict_VERSION_DETECTOR.json"
+procList     = [pubbasedir+"FCCee_procDict_VERSION_DETECTOR.json",
+                webbasedir+"FCCee_procDict_VERSION_DETECTOR.json"]
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir       = eosbaseinputdir+"gridpacks/"

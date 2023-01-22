@@ -15,7 +15,11 @@ class makeSampleList():
 #__________________________________________________________
     def __init__(self, para, version, detector):
         self.para = para
-        self.procList  = self.para.procList.replace('VERSION',version).replace('DETECTOR',detector)
+        self.procList = []
+        for fpath in self.para.procList:
+            filepath = fpath.replace('VERSION', version)
+            filepath = filepath.replace('DETECTOR', detector)
+            self.procList.append(filepath)
         self.version   = version
         self.detector  = detector
 #______________________________________________________________________________________________________
@@ -252,12 +256,13 @@ class makeSampleList():
             data=myfile.read()
             newdata = data[:-2]
 
-        # close header for procDict file
-        procDict = open(self.procList, 'w')
-        procDict.write(newdata)
-        procDict.write('\n')
-        procDict.write('}\n')
-        
+        # close header for procDict file(s)
+        for filepath in self.procList:
+            with open(filepath, 'w', encoding='utf-8') as outfile:
+                outfile.write(newdata)
+                outfile.write('\n')
+                outfile.write('}\n')
+
         # replace existing param.py file
         if tmpexist:
             os.system("mv tmp_{}.py {}".format(uid, self.para.module_name))
