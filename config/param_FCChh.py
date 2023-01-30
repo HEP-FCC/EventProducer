@@ -975,7 +975,7 @@ gridpacklist = {
 'mg_pp_mumu012j_mhcut_5f':['mu+ mu- + 0/1/2 jets','50 < m(mumu) < 200','','1.4e+04','1.0','0.753'],
 'mg_pp_lla01j_mhcut_5f':['l+ l- gamma + 0/1 jets','50 < m(lla) < 200','','639.1','1.0','0.78'],
 'mg_gg_aa01j_mhcut_5f':['gluon fusion di-photon + 0/1 jets','50 < m(aa) < 200','','484.2','1.0','0.592'],
-'mg_pp_aa012j_mhcut_5f':['di-photon + 0/1/2 jets','50 < m(aa) < 200','','1530','1.0','0.403'],
+'mg_pp_aa012j_mhcut_5f':['di-photon + 0/1/2 jets','50 < m(aa) < 200','','1530','1.0','1.0'],
 'mg_pp_llll01j_mhcut_5f':['4l + 0/1 jets','50 < m(4l) < 200','','0.1517','1.0','0.813'],
 'mg_pp_aa012j_mhcut_5f_HT_0_100':['di-photon + 0/1/2 jets','0 < HT < 100','xqcut = 30, qCut = 40','116.8','2.0','0.656'],
 'mg_pp_aa012j_mhcut_5f_HT_100_300':['di-photon + 0/1/2 jets','100 < HT < 300','xqcut = 30, qCut = 40','61.58','2.0','0.591'],
