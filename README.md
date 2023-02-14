@@ -19,6 +19,7 @@ Table of contents
      * [Cleaning bad jobs](#cleaning-bad-jobs)
      * [Update the webpage](#update-the-webpage)
      * [Create the sample list for analyses](#create-the-sample-list-for-analyses)
+     * [AFS Folders](#afs-folders)
 
 Clone and initialisation
 ========================
@@ -237,3 +238,30 @@ To create the list of samples to be used in physics analyses
 python bin/run.py --FCCee --reco --sample --prodtag spring2021
 ```
 
+
+AFS Folders
+===========
+
+The EventProducer depends on two hardcoded AFS locations to deploy the FCCDicts
+to. The groups `fccsw:fccdicts-read` and `ccsw:fccdicts-write` should have the
+following access rights:
+
+```
+[fccsw@lxplus767 ~]$ fs listacl /afs/cern.ch/work/f/fccsw/public/FCCDicts
+Access list for /afs/cern.ch/work/f/fccsw/public/FCCDicts is
+Normal rights:
+  fccsw:fccdicts-write rlidwk
+  fccsw:fccdicts-read rl
+  system:administrators rlidwka
+  system:anyuser rl
+  fccsw rlidwka
+[fccsw@lxplus767 ~]$ fs listacl /afs/cern.ch/user/f/fccsw/www/data/FCCDicts
+Access list for /afs/cern.ch/user/f/fccsw/www/data/FCCDicts is
+Normal rights:
+  fccsw:fccdicts-write rlidwk
+  fccsw:fccdicts-read rl
+  webserver:afs rl
+  system:administrators rlidwka
+  system:anyuser l
+  fccsw rlidwka
+  ```
