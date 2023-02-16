@@ -106,6 +106,8 @@ pythialist={
     'p8_ee_WW_mumu_ecm240':['WW ecm=240GeV','W->mu and W ->tau->mu','','0.25792','1.0','1.0'],
     'p8_noBES_ee_WW_mumu_ecm240':['WW ecm=240GeV','W->mu and W ->tau->mu','','0.25792','1.0','1.0'],
 
+    'p8_ee_WW_ee_ecm240':['WW ecm=240GeV','W->e and W ->tau->e','','0.25792','1.0','1.0'],
+
     'p8_noBES_ee_ZH_ecm240':['ZH ecm=240GeV, no BES','inclusive decays','','0.201037','1.0','1.0'],
     'p8_noBES_ee_ZZ_ecm240':['ZZ ecm=240GeV, no BES','inclusive decays','','1.35899','1.0','1.0'],
     'p8_noBES_ee_WW_ecm240':['WW ecm=240GeV, no BES','inclusive decays','','16.4385','1.0','1.0'],
