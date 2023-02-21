@@ -156,6 +156,8 @@ pythialist={
     'p8_ee_Zss_ecm91':['Z/Gamma* ecm=91.188GeV to ss','','','5215.46','1.0','1.0'],
     'p8_ee_Zud_ecm91':['Z/Gamma* ecm=91.188GeV to uu and dd','','','11870.5','1.0','1.0'],
 
+    'p8_ee_Zbb_noFSR_ecm91':['Z/Gamma* ecm=91.188GeV to bb','for test, no gluon radiation','','6645.46','1.0','1.0'],     # win2023: 6600.53
+
     'p8_ee_Ztautau_ecm91':['Z/Gamma* ecm=91.188GeV to tautau','inclusive decays','','1476.58','1.0','1.0'],    
     'p8_ee_Zee_ecm91':['Z/Gamma* ecm=91.188GeV','Z decays to ee','','1462.09','1.0','1.0'],
     'p8_ee_Zmumu_ecm91':['Z/Gamma* ecm=91.188GeV','Z decays to mumu','','1462.08','1.0','1.0'],
