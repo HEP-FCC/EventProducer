@@ -375,6 +375,12 @@ gridpacklist = {
     'mg_ee_tt_FCNC_tua_ecm365':['ttbar FCNC','to be added','','1.0','1.0','1.0'],
     'mg_ee_tt_FCNC_tuz_ecm365':['ttbar FCNC','to be added','','1.0','1.0','1.0'],
     'mg_ee_tt_FCNC_tcz_ecm365':['ttbar FCNC','to be added','','1.0','1.0','1.0'],
+    # added on March 16, 2023 :
+    'mg_ee_tq_fullhad_FCNC_tuz_ecm240':['single top FCNC','full hadronic','','1.0','1.0','1.0'],
+    'mg_ee_tq_fullhad_FCNC_tua_ecm240':['single top FCNC','full hadronic','','1.0','1.0','1.0'],
+    'mg_ee_tq_fullhad_FCNC_tua_ecm365':['single top FCNC','full hadronic','','1.0','1.0','1.0'],
+    'mg_ee_tq_fullhad_FCNC_tuz_ecm365':['single top FCNC','full hadronic','','1.0','1.0','1.0'],
+
     'mg_ee_zhh_ecm365':['e+e- -> ZHH', 'LO', '', '2.0e-5', '1.0', '1.0'],
     'mg_ee_zh_ecm240':['e+e- -> ZH', '', '', '1.0', '1.0', '1.0'],
     'mg_ee_bb_ecm90':['e+e- -> bb', '', '', '1.0', '1.0', '1.0'],
