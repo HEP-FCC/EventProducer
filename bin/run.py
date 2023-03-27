@@ -37,6 +37,8 @@ if __name__=="__main__":
     sendjobGroup.add_argument('--priority', type=str, default='group_u_FCC.local_gen', help='condor queue priority (default: group_u_FCC.local_gen)')
     sendjobGroup.add_argument('--ncpus', type=str, default='1', help='number of CPUs (1CPU=2Gb of RAM)')
 
+    
+
 #41873
 
     ###################
@@ -52,7 +54,8 @@ if __name__=="__main__":
     sendjobGroup.add_argument('-n','--numEvents', type=int, help='Number of simulation events per job', default=10000)
     sendjobGroup.add_argument('-N','--numJobs', type=int, default = 10, help='Number of jobs to submit')
 
-
+    #option for running FCC-hh Delphes card validation, using an adapted edm4hep_output config, should only work with option reco. 
+    sendjobGroup.add_argument('--customEDM4HEPOutput', type=str, default="", help="Use a custom edm4hep output config card, by providing the path.")
 
     mgGroup = parser.add_argument_group('mggroup')
     mgGroup.add_argument("--mg5card", type=str, help="MG5 configuration", default='card.mg5')
@@ -72,6 +75,9 @@ if __name__=="__main__":
     
     args, _ = parser.parse_known_args()
     sendOpt = args.type
+
+    if args.customEDM4HEPOutput and not args.reco and not args.type=="lhep8":
+        parser.error("Option --customEDM4HEPOutput only works for producing edm4hep output, so if -reco and --type lhep8 options are set.")
 
     if args.FCChh:
         import EventProducer.config.param_FCChh as para
@@ -270,7 +276,7 @@ if __name__=="__main__":
             if sendOpt=='lhep8':
                 print ('preparing to send FCCSW jobs from lhe')
                 import EventProducer.bin.send_lhep8 as slhep8
-                sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, args.decay, args.pycard, detector)
+                sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, args.decay, args.pycard, detector, args.customEDM4HEPOutput)
                 sendlhep8.send(args.force)
             elif sendOpt=='p8':
                 print ('preparing to send FCCSW jobs from pythia8 directly')
