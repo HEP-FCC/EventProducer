@@ -40,3 +40,7 @@ This will submit 1 job to generate 10 events from the testergridpack to condor. 
 - Add the gridpacks to the param_FCChh properly (i.e. with description, cross-section, etc?)
 - The arguments `prodtag` and `detector` are currently placeholders as they are required from the FCC-ee production. Should be adapted for FCC-hh production. 
 - Fix/update the FCChh LHE database
+
+
+#testing setup for delphesizing:
+DelphesPythia8_EDM4HEP /eos/user/b/bistapf/new_FCChh_cards/FCChh_I.tcl /afs/cern.ch/work/h/helsens/public/k4SimDelphes_PythiaStuff/examples/edm4hep_output_config.tcl ./pythia_config/tester_pwp8_pp_hh_5f_hhbbww.cmd /eos/user/b/bistapf/FCChh_EvtGen/pwp8_pp_hh_5f_hhbbWW_tester_new_card.root
