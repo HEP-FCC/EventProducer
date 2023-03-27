@@ -32,7 +32,8 @@ lhe_ext     ='.lhe.gz'
 prodTag = {
     'fcc_v02':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
     'fcc_v03':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
-    'fcc_v04':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
+    'fcc_v04':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
+    'fcc_v05_scenarioI':'/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh'
 }
 
 defaultstack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
@@ -45,6 +46,7 @@ delphes_ext='.root'
 treename='events'
 
 ##where the delphes cards are stored
+# delphescards_dir = '/afs/cern.ch/user/b/bistapf/Dev_EvtProducer/EventProducer/DelphesCardLocal/' #TEMP LOCAL TESTER
 delphescards_dir = '/eos/experiment/fcc/hh/utils/delphescards/'
 ##where the pythia cards are stored
 pythiacards_dir  = '/eos/experiment/fcc/hh/utils/pythiacards/'
@@ -55,11 +57,16 @@ fccconfig_dir    = '/eos/experiment/fcc/hh/utils/config/'
 detectors = ['']
 
 ##muom momentum delphes resolution card
-delphescard_mmr='muonMomentumResolutionVsP.tcl'
+delphescard_mmr='muonMomentumResolution_I.tcl' #from fcc_v05 onwards
+# delphescard_mmr='muonMomentumResolutionVsP.tcl' #old card
+##electron momentum delphes resolution card
+delphescard_emr='electronMomentumResolution_I.tcl' #from fcc_v05 onwards
 ##momentum resolution delphes card
-delphescard_mr='momentumResolutionVsP.tcl'
+delphescard_mr='trackMomentumResolution_I.tcl' #from fcc_v05 onwards
+# delphescard_mr='trackMomentumResolution.tcl' #old card
 ##delphes base card
-delphescard_base='card.tcl'
+delphescard_base='FCChh_I.tcl' #from fcc_v05 onwards
+# delphescard_base='card.tcl' #old card
 ##FCC config script name
 fccconfig='PythiaDelphes_config_v02.py'
 
@@ -70,6 +77,11 @@ pythialist={
 #'mg_pp_za012j_zmumu':['Z gamma + 012jets Z->mumu','','','1.0','1.0','1.0'],
 #'mg_pp_za012j_znunu':['Z gamma + 012jets Z->nunu','','','1.0','1.0','1.0'],
 #'mg_pp_za012j_zee':['Z gamma + 012jets Z->ee','','','1.0','1.0','1.0'],
+
+#testing
+'pwp8_pp_hh_lambda100_5f_hhbbww':['1','1','1','1','1','1'],
+'pwp8_pp_hh_lambda100_5f_hhbbaa':['1','1','1','1','1','1'],
+'pwp8_pp_hh_lambda100_5f_hhbbzz_4l':['1','1','1','1','1','1'],
 
 
 'p8_pp_ExcitedQ_10TeV_qq':['10TeV Excited quark Lambda 10TeV','','','2.368','1.0','1.0'],
@@ -466,7 +478,7 @@ decaylist = {
 'pw_pp_hh_lambda097_5f':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda098_5f':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda099_5f':['hhbbaa','hhbbtata','hhbbbb'],
-'pw_pp_hh_lambda100_5f':['hhbbaa','hhbbtata','hhbbbb','hhbbzz','hhbbzz_zleptonic'],
+'pw_pp_hh_lambda100_5f':['hhbbaa','hhbbtata','hhbbbb','hhbbzz','hhbbzz_zleptonic', 'hhbbww', 'hhbbzz_4l'],
 'pw_pp_hh_lambda101_5f':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda102_5f':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda103_5f':['hhbbaa','hhbbtata','hhbbbb'],

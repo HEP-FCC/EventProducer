@@ -11,7 +11,8 @@ import EventProducer.common.makeyaml as my
 class send_lhep8():
 
 #__________________________________________________________
-    def __init__(self,njobs, events, process, islsf, iscondor, islocal, queue, priority, ncpus, para, version, decay, pycard, detector):
+    def __init__(self,njobs, events, process, islsf, iscondor, islocal, queue, priority, ncpus, para, version, decay, pycard, detector, custom_edm4hep_config):
+
         self.njobs    = njobs
         self.events   = events
         self.process  = process
@@ -27,7 +28,7 @@ class send_lhep8():
         self.pycard   = pycard
         self.detector = detector
         self.user     = os.environ['USER']
-
+        self.custom_edm4hep_config = custom_edm4hep_config
 
 #__________________________________________________________
     def send(self, force):
@@ -42,7 +43,8 @@ class send_lhep8():
             print ('process %s does not exist as gridpack'%self.process)
             sys.exit(3)
 
-        delphescards_mmr=''
+        delphescards_mmr='' #not sure this is really necessary, could clean up the code to not need it
+        delphescards_emr=''
         delphescards_mr=''
         if 'FCCee' not in self.para.module_name:
             delphescards_mmr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mmr)
@@ -54,6 +56,13 @@ class send_lhep8():
             if ut.file_exist(delphescards_mr)==False and self.version != 'cms' and 'helhc' not in self.version:
                 print ('delphes card does not exist: ',delphescards_mr,' , exit')
                 sys.exit(3)
+
+            #from fcchh_v05 have also a separate electron momentum resolution file: 
+            if "fcc_v05" in self.version:
+                delphescards_emr = '%s%s/%s'%(self.para.delphescards_dir, self.version, self.para.delphescard_emr)
+                if not os.path.isfile(delphescards_emr):
+                    raise Exception("ERROR in param_FCChh - the card for electron momentum resolution doesn't exist, at: "+delphescards_emr)
+
 
         if 'FCCee' not in self.para.module_name:
               delphescards_base = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_base)
@@ -260,24 +269,37 @@ class send_lhep8():
             if self.islocal==False:
                  #frun.write('mkdir -p %s%s/%s\n'%(self.para.delphes_dir,self.version,processp8))
                  frun.write('mkdir -p %s/%s\n'%(outdir,processp8))
+
             frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(tmpf['processing']['out']))
             frun.write('gunzip -c %s > events.lhe\n'%tmpf['processing']['out'].split('/')[-1])          
             frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(delphescards_base))
             if 'fcc' in self.version and 'FCCee' not in self.para.module_name:
+                frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s card.tcl\n'%(delphescards_base))
                 frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mmr))
                 frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mr))
+                if "fcc_v05" in self.version:
+                    frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(delphescards_emr))
             if 'FCCee' not in self.para.module_name:
                 frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s config.py \n'%(fccconfig))
+                #use the standard k4simdelphes edm4hep output config for FCC-hh production:
+                if self.custom_edm4hep_config:
+                    frun.write('cp {} .\n'.format(self.custom_edm4hep_config))
+                else:
+                    frun.write('cp $K4SIMDELPHES/edm4hep_output_config.tcl .\n')
             else:
                 frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Delphes/edm4hep_%s.tcl edm4hep_output_config.tcl\n'%(self.version,self.detector))
                 frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s card.tcl\n'%(delphescards_base))
+
+
 
             frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
             frun.write('echo "Beams:LHEF = events.lhe" >> card.cmd\n')
             frun.write('echo "Random:seed = %s" >> card.cmd\n'%pythiaseed.lstrip('0'))
             frun.write('echo "Main:numberOfEvents = %i" >> card.cmd\n'%(self.events))
 
-            frun.write('DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root\n'%(jobid))
+            #TEMP OVERWRITE TO USE LOCAL VERSION OF k4SimDelphes
+            frun.write('/afs/cern.ch/user/b/bistapf/Dev_k4SimDelphes/k4SimDelphes/build/standalone/DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root\n'%(jobid))
+            # frun.write('DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root\n'%(jobid))
 
             frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py events_%s.root %s\n'%(jobid,outfile))
 
