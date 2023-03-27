@@ -7,4 +7,3 @@ source /cvmfs/sw.hsf.org/key4hep/setup.sh
 export EOS_MGM_URL="root://eospublic.cern.ch"
 export EVENTPRODUCER=$PWD
 export PYTHONPATH=$PWD/..:$PYTHONPATH
-
