@@ -298,8 +298,8 @@ class send_lhep8():
             frun.write('echo "Main:numberOfEvents = %i" >> card.cmd\n'%(self.events))
 
             #TEMP OVERWRITE TO USE LOCAL VERSION OF k4SimDelphes
-            frun.write('/afs/cern.ch/user/b/bistapf/Dev_k4SimDelphes/k4SimDelphes/build/standalone/DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root\n'%(jobid))
-            # frun.write('DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root\n'%(jobid))
+            # frun.write('/afs/cern.ch/user/b/bistapf/Dev_k4SimDelphes/k4SimDelphes/build/standalone/DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root\n'%(jobid))
+            frun.write('DelphesPythia8_EDM4HEP card.tcl edm4hep_output_config.tcl card.cmd events_%s.root\n'%(jobid))
 
             frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py events_%s.root %s\n'%(jobid,outfile))
 
