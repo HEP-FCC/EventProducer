@@ -30,19 +30,16 @@ Last `pythialist` or `decaylist` must contain the name of your process/LHE file 
 
 2. Finally, jobs to produce events using `DelphesPythia8_EDM4HEP` are submitted by calling: 
 ```python bin/run.py --FCChh --reco --send  -p <LHE_process_name> --type lhep8 --decay <decay_name> --pycard <pythia_card> -N <number_of_jobs> --condor -q <queue_name> --detector "" --prodtag <version>```. 
-
 Here, `number_of_jobs` determines how many events we produce - 1 job processes one LHE file, which commonly has 1k events. So 100 jobs will produce 1 million events. 
-
 For example, to produce 500k pp->HH->4b events from the existing HH LHE, we run: 
 ```python bin/run.py --FCChh --reco --send  -p pw_pp_hh_lambda100_5f --type lhep8 --decay hhbbbb --pycard pwp8_pp_hh_5f_hhbbbb.cmd -N 50 --condor  -q workday --detector "" --prodtag fcc_v05_scenarioI```
-
 Optionally we can add: --customEDM4HEPOutput <path_to_config_file>` to this command, in case we want to store more collections in the edm4hep output than in the common setup. For example, the electrons/muons/photons before/after isolation and overlap removal. A file to use for this setup comes with this repo, it's called `edm4hep_output_config.tcl` (in the top level). 
 
 3. Monitor the jobs on condor. Their logs will be written into `EventProducer/BatchOutputs`. 
 
 4. If all works well (and you didn't change it in the config file), the output files will be written to `/eos/experiment/fcc/hh/generation/DelphesEvents/<version>/<process_name>`. 
 
-*To-Do: Instructions for merging files, managing and cleaning up, fixing the database`. 
+*To-Do: Instructions for merging files, managing and cleaning up, fixing the database* 
 
 ### How to run LHE production with the new HH signal gridpacks 
 
