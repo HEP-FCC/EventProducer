@@ -11,7 +11,6 @@ import commands
 import time
 import random
 from datetime import datetime
-import EventProducer.config.users as us
 import EventProducer.common.utils as ut
 #mg_pp_tt012j_5f_HT_2100_3400
 #mg_pp_tt012j_5f_HT_25000_35000

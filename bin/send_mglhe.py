@@ -64,8 +64,7 @@ class send_mglhe():
 
         condor_file_params_str=[]
         while nbjobsSub<self.njobs:
-            #uid = int(ut.getuid(self.user))
-            uid = ut.getuid2(self.user)
+            uid = ut.getuid2()
             myyaml = my.makeyaml(yamldir, uid)
             if not myyaml: 
                 print ('job %s already exists'%uid)

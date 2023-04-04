@@ -82,9 +82,8 @@ class send_stdhep():
 
         condor_file_str=''
         while nbjobsSub<self.njobs:
-            #uid = int(ut.getuid(self.user))
             if self.typestdhep == 'wzp6':
-                uid = ut.getuid2(self.user)
+                uid = ut.getuid2()
                 if self.training: 
                       #print("---- INFO: using getuidtraining")
                       uid = ut.getuidtraining(self.user)

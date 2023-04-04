@@ -39,7 +39,6 @@ Then initialise:
 source ./init.sh
 ```
 
-In order to run batch generation, please add your CERN user name to the userlist in ```config/users.py```
 
 Generate LHE files from gripacks
 ================================
