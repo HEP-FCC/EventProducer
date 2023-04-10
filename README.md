@@ -243,7 +243,7 @@ AFS Folders
 ===========
 
 The EventProducer depends on two hardcoded AFS locations to deploy the FCCDicts
-to. The groups `fccsw:fccdicts-read` and `ccsw:fccdicts-write` should have the
+to. The groups `fccsw:fccdicts-read` and `fccsw:fccdicts-write` should have the
 following access rights:
 
 ```
