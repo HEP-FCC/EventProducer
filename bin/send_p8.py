@@ -75,8 +75,8 @@ class send_p8():
         condor_file_str=''
         while nbjobsSub<self.njobs:
 
-            uid = ut.getuid2(self.user)
-            if self.training: uid = ut.getuidtraining(self.user)
+            uid = ut.getuid2()
+            if self.training: uid = ut.getuidtraining()
             if not self.islocal:
                 myyaml = my.makeyaml(yamldir, uid)
                 if not myyaml: 

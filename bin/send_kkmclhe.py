@@ -62,8 +62,7 @@ class send_kkmc():
 
         condor_file_str=''
         while nbjobsSub<self.njobs:
-            #uid = int(ut.getuid(self.user))
-            uid = int(ut.getuid2(self.user))
+            uid = int(ut.getuid2())
 
             if not self.islocal:
                 myyaml = my.makeyaml(yamldir, uid)
@@ -99,7 +98,6 @@ class send_kkmc():
 
             #seed_truncated = uid & 0x7FFFFFFF   #  seed should be < 2^31
             #theSeed  = '%10.i'%seed_truncated
-            # not needed anymore with getuid2 instead of getuid
             theSeed  = '%10.i'%uid
 
             subprocess.getstatusoutput('chmod 777 %s'%frunfull)

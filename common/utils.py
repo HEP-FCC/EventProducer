@@ -9,8 +9,6 @@ import random
 from datetime import datetime
 from pwd import getpwuid
 
-import EventProducer.config.users as us
-
 #_____________________________________________________________
 def isValidROOTfile(infile):
     valid = True
@@ -122,94 +120,47 @@ def dir_exist(mydir):
     import os.path
     if os.path.exists(mydir): return True
     else: return False
-  
-#__________________________________________________________
-def getuid(user):
-    userext=-999999
-    for key, value in us.users.items():
-        if key==user: 
-            userext=value
-    if userext<0:
-        print ('user not known ',user,'   exit')
-        sys.exit(3)
-    seed = int(datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:-3])
-    uniqueID='%i%i'%(seed,userext)
-    return uniqueID
-
-#__________________________________________________________
-def getuserid(user):
-    userext=-999999
-    for key, value in us.users.items():
-        if key==user: 
-            userext=value
-    if userext<0:
-        print ('user not known ',user,'   exit')
-        sys.exit(3)
-    return userext
 
 
 #__________________________________________________________
-def getuid2(user):
-    userext=-999999
-    for key, value in us.users.items():
-        if key==user: 
-            userext=value
-    if userext<0:
-        print ('user not known ',user,'   exit')
-        sys.exit(3)
-    
-    seed = '%i%i%i%i%i%i%i%i%i'%(random.randint(0,1),
-                                 random.randint(0,9),
-                                 random.randint(0,9),
-                                 random.randint(0,9),
-                                 random.randint(0,9),
-                                 random.randint(0,9),
-                                 random.randint(0,9),
-                                 random.randint(0,9),
-                                 random.randint(0,9))
-    return seed
-
-#__________________________________________________________
-def getuidtraining(user):
-    userext=-999999
-    for key, value in us.users.items():
-        if key==user: 
-            userext=value
-    if userext<0:
-        print ('user not known ',user,'   exit')
-        sys.exit(3)
-    
-    seed = '%i%i%i%i%i%i%i%i%i'%(random.randint(5,8),
-                                 random.randint(0,9),
-                                 random.randint(0,9),
-                                 random.randint(0,9),
-                                 random.randint(0,9),
-                                 random.randint(0,9),
-                                 random.randint(0,9),
-                                 random.randint(0,9),
-                                 random.randint(0,9))
+def getuid2():
+    seed = '%i%i%i%i%i%i%i%i%i' % (random.randint(0, 1),
+                                   random.randint(0, 9),
+                                   random.randint(0, 9),
+                                   random.randint(0, 9),
+                                   random.randint(0, 9),
+                                   random.randint(0, 9),
+                                   random.randint(0, 9),
+                                   random.randint(0, 9),
+                                   random.randint(0, 9))
     return seed
 
 
 #__________________________________________________________
-def getuid3(user):
-    userext=-999999
-    for key, value in us.users.items():
-        if key==user: 
-            userext=value
-    if userext<0:
-        print ('user not known ',user,'   exit')
-        sys.exit(3)
-    
-    seed = '%i%i%i%i%i%i%i%i%i'%(0,
-                                 0,
-                                 0,
-                                 0,
-                                 random.randint(0,9),
-                                 random.randint(0,9),
-                                 random.randint(0,9),
-                                 random.randint(0,9),
-                                 random.randint(0,9))
+def getuidtraining():
+    seed = '%i%i%i%i%i%i%i%i%i' % (random.randint(5, 8),
+                                   random.randint(0, 9),
+                                   random.randint(0, 9),
+                                   random.randint(0, 9),
+                                   random.randint(0, 9),
+                                   random.randint(0, 9),
+                                   random.randint(0, 9),
+                                   random.randint(0, 9),
+                                   random.randint(0, 9))
+    return seed
+
+
+#__________________________________________________________
+def getuid3():
+    seed = '%i%i%i%i%i%i%i%i%i' % (0,
+                                   0,
+                                   0,
+                                   0,
+                                   random.randint(0, 9),
+                                   random.randint(0, 9),
+                                   random.randint(0, 9),
+                                   random.randint(0, 9),
+                                   random.randint(0, 9))
     return seed
 
 #__________________________________________________________

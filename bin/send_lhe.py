@@ -61,11 +61,10 @@ class send_lhe():
 
         condor_file_str=''
         while nbjobsSub<self.njobs:
-            #uid = int(ut.getuid(self.user))
             if self.typelhe == 'gp_mg':
-                uid = ut.getuid2(self.user)
+                uid = ut.getuid2()
             elif self.typelhe == 'gp_pw':
-                uid = ut.getuid3(self.user)
+                uid = ut.getuid3()
 
             myyaml = my.makeyaml(yamldir, uid)
             if not myyaml: 
