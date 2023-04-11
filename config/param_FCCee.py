@@ -477,6 +477,8 @@ gridpacklist = {
     #     'cc'     : 2.891e-2
     #     'ss'     : 2.400e-4
     #     'uudd'   : 3.000e-7 -> BR(H->ss)*(M_ud/M_s)^2
+    #     'dd'     : 70% of 'uudd'
+    #     'uu'     : 30% of 'uudd'
     #     'gg'     : 8.187e-2
     #     'tautau' : 6.272e-2
     #
@@ -494,6 +496,8 @@ gridpacklist = {
     'wzp6_ee_nunuH_Hss_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to ss','','1.109e-05','1.0','1.0'],
     'wzp6_ee_nunuH_Hgg_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to gg','','3.782e-03','1.0','1.0'],
     'wzp6_ee_nunuH_Hqq_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to uu,dd','','1.386e-08','1.0','1.0'],
+    'wzp6_ee_nunuH_Hdd_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to dd','','9.702e-09','1.0','1.0'],
+    'wzp6_ee_nunuH_Huu_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to uu','','4.158e-09','1.0','1.0'],
     'wzp6_ee_nunuH_Htautau_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to tautau','','2.897e-03','1.0','1.0'],
     'wzp6_ee_nunuH_Hmumu_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to mumu','','1.005e-05','1.0','1.0'],
     'wzp6_ee_nunuH_HWW_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to WW','','9.940e-03','1.0','1.0'],
