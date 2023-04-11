@@ -86,7 +86,7 @@ class send_stdhep():
                 uid = ut.getuid2()
                 if self.training: 
                       #print("---- INFO: using getuidtraining")
-                      uid = ut.getuidtraining(self.user)
+                      uid = ut.getuidtraining()
 
             if not self.islocal:
                 myyaml = my.makeyaml(yamldir, uid)
