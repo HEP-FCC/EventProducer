@@ -305,10 +305,10 @@ pythialist={
     'p8_ee_Zbb_ecm91_EvtGen_Bd2Dsstarpi':['Z/Gamma* ecm=91.188GeV to bb','B0 to Ds* pi, Ds* to gamma Phi pi or gamma Phi rho','','4.52e-3','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2DsK':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds K, Ds to Phi pi or Phi rho','','13.23e-3','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2DsKtest':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds K, Ds to Phi pi or Phi rho','','13.23e-3','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsKstar':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds K*, Ds to Phi pi or Phi rho, K* to K pi0','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsKstar':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds K*, Ds to Phi pi or Phi rho, K* to K pi0','','6.52e-3','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2Dspi':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds pi, Ds to Phi pi or Phi rho','','176e-3','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2Dsrho':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds rho, Ds to Phi pi','','200e-3','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstarK':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds* K, Ds* to gamma Phi pi or gamma Phi rho','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstarK':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds* K, Ds* to gamma Phi pi or gamma Phi rho','','8.248e-3','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2Dsstarpi':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds* pi, Ds* to gamma Phi pi or gamma Phi rho','','105e-3','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Lb2Dsp':['Z/Gamma* ecm=91.188GeV to bb','Lambda0 to Ds p, Ds to Phi pi or Phi rho','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Lb2Dsstarp':['Z/Gamma* ecm=91.188GeV to bb','Lambda0 to Ds* p, Ds* to gamma Phi pi or gamma Phi rho','','1','1.0','1.0'],
@@ -477,6 +477,8 @@ gridpacklist = {
     #     'cc'     : 2.891e-2
     #     'ss'     : 2.400e-4
     #     'uudd'   : 3.000e-7 -> BR(H->ss)*(M_ud/M_s)^2
+    #     'dd'     : 70% of 'uudd'
+    #     'uu'     : 30% of 'uudd'
     #     'gg'     : 8.187e-2
     #     'tautau' : 6.272e-2
     #
@@ -494,6 +496,8 @@ gridpacklist = {
     'wzp6_ee_nunuH_Hss_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to ss','','1.109e-05','1.0','1.0'],
     'wzp6_ee_nunuH_Hgg_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to gg','','3.782e-03','1.0','1.0'],
     'wzp6_ee_nunuH_Hqq_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to uu,dd','','1.386e-08','1.0','1.0'],
+    'wzp6_ee_nunuH_Hdd_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to dd','','9.702e-09','1.0','1.0'],
+    'wzp6_ee_nunuH_Huu_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to uu','','4.158e-09','1.0','1.0'],
     'wzp6_ee_nunuH_Htautau_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to tautau','','2.897e-03','1.0','1.0'],
     'wzp6_ee_nunuH_Hmumu_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to mumu','','1.005e-05','1.0','1.0'],
     'wzp6_ee_nunuH_HWW_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to WW','','9.940e-03','1.0','1.0'],
