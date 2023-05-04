@@ -505,6 +505,14 @@ gridpacklist = {
     'wzp6_ee_nunuH_HZa_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to Za','','7.081e-05','1.0','1.0'],
     'wzp6_ee_nunuH_Haa_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to aa','','1.049e-04','1.0','1.0'],
 
+    # nunuH with QFV Higgs decays
+    'wzp6_ee_nunuH_Hbd_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to bd','','1.0','1.0','1.0'],
+    'wzp6_ee_nunuH_Hbs_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to bs','','1.0','1.0','1.0'],
+    'wzp6_ee_nunuH_Hcu_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to cu','','1.0','1.0','1.0'],
+    'wzp6_ee_nunuH_Hsd_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to sd','','1.0','1.0','1.0'],
+
+
+
     'wzp6_ee_eeH_Hbb_ecm240':['ee -> Z(e e) H,  ecm=240 GeV','H to bb','','4.171e-03','1.0','1.0'],
     'wzp6_ee_eeH_Hcc_ecm240':['ee -> Z(e e) H,  ecm=240 GeV','H to cc','','2.070e-04','1.0','1.0'],
     'wzp6_ee_eeH_Hss_ecm240':['ee -> Z(e e) H,  ecm=240 GeV','H to ss','','1.718e-06','1.0','1.0'],
