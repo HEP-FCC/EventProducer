@@ -50,19 +50,21 @@ fi
 # Create sync lock
 touch "${SYNCLOCK}"
 
+cd "${EVTPRODUCER_DIR}"
+
 if [ -n "$(git status --untracked-files=no --porcelain)" ]; then
   echo "`date`  ERROR: Git tree contains uncommited changes. Aborting..." >> "${LOGFILE}"
   send_email "Git tree contains uncommited changes, please clear or commit them!"$'\n\n'"$(git status)"
 
   rm -rf "${SYNCLOCK}"
   exit 3
-fi  
+fi
 
 git pull 2>&1 >> "${LOGFILE}"
 
 if [ "$(git rev-parse master)" != "$(git rev-parse origin/master)" ]; then
-  echo "`date`  ERROR: Git pull did not succeded. Aborting..." >> "${LOGFILE}"
-  send_email "Git pull did not succeded. Status of the repository:"$'\n\n'"$(git status)"
+  echo "`date`  ERROR: Git pull did not succeeded. Aborting..." >> "${LOGFILE}"
+  send_email "Git pull did not succeeded. Status of the repository:"$'\n\n'"$(git status)"
 
   rm -rf "${SYNCLOCK}"
   exit 3
