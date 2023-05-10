@@ -1,6 +1,6 @@
 cd /afs/cern.ch/user/f/fccsw/private/EventProducer/
 source ./init.sh
-LOGFILE="${EVENTPRODUCER}/log/cronrun_STDHEP_FCChh.log"
+LOGFILE="${EVENTPRODUCER}/log/cronrun_RECO_FCChh.log"
 echo "" > "${LOGFILE}"
 
 SYNCLOCK="${EVENTPRODUCER}/.sync.lock"
