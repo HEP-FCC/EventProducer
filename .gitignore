@@ -1,3 +1,5 @@
 *~
 *.pyc
 *.root
+log/
+.sync.lock

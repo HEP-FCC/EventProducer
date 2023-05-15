@@ -309,10 +309,10 @@ pythialist={
     'p8_ee_Zbb_ecm91_EvtGen_Bd2Dsstarpi':['Z/Gamma* ecm=91.188GeV to bb','B0 to Ds* pi, Ds* to gamma Phi pi or gamma Phi rho','','4.52e-3','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2DsK':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds K, Ds to Phi pi or Phi rho','','13.23e-3','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2DsKtest':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds K, Ds to Phi pi or Phi rho','','13.23e-3','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsKstar':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds K*, Ds to Phi pi or Phi rho, K* to K pi0','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsKstar':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds K*, Ds to Phi pi or Phi rho, K* to K pi0','','6.52e-3','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2Dspi':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds pi, Ds to Phi pi or Phi rho','','176e-3','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2Dsrho':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds rho, Ds to Phi pi','','200e-3','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstarK':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds* K, Ds* to gamma Phi pi or gamma Phi rho','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstarK':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds* K, Ds* to gamma Phi pi or gamma Phi rho','','8.248e-3','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2Dsstarpi':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds* pi, Ds* to gamma Phi pi or gamma Phi rho','','105e-3','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Lb2Dsp':['Z/Gamma* ecm=91.188GeV to bb','Lambda0 to Ds p, Ds to Phi pi or Phi rho','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Lb2Dsstarp':['Z/Gamma* ecm=91.188GeV to bb','Lambda0 to Ds* p, Ds* to gamma Phi pi or gamma Phi rho','','1','1.0','1.0'],
@@ -508,6 +508,14 @@ gridpacklist = {
     'wzp6_ee_nunuH_HZZ_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to ZZ','','1.220e-03','1.0','1.0'],
     'wzp6_ee_nunuH_HZa_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to Za','','7.081e-05','1.0','1.0'],
     'wzp6_ee_nunuH_Haa_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to aa','','1.049e-04','1.0','1.0'],
+
+    # nunuH with QFV Higgs decays
+    'wzp6_ee_nunuH_Hbd_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to bd','','1.0','1.0','1.0'],
+    'wzp6_ee_nunuH_Hbs_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to bs','','1.0','1.0','1.0'],
+    'wzp6_ee_nunuH_Hcu_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to cu','','1.0','1.0','1.0'],
+    'wzp6_ee_nunuH_Hsd_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to sd','','1.0','1.0','1.0'],
+
+
 
     'wzp6_ee_eeH_Hbb_ecm240':['ee -> Z(e e) H,  ecm=240 GeV','H to bb','','4.171e-03','1.0','1.0'],
     'wzp6_ee_eeH_Hcc_ecm240':['ee -> Z(e e) H,  ecm=240 GeV','H to cc','','2.070e-04','1.0','1.0'],

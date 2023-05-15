@@ -160,6 +160,9 @@ class makeSampleList():
             prodtag = self.version.replace("_training","")
             extension='/'+prodtag+'/'
 
+        if 'FCChh' in self.para.module_name:
+            extension = ''
+
         for l in ldir:
             processhad=None
             process=l
@@ -249,19 +252,23 @@ class makeSampleList():
                    f1.writelines(infile)
                    tmpexist=True
         procDict.close()
-        # parse param file
 
-        # strip last comma
-        with open('tmp_{}.json'.format(uid), 'r') as myfile:
-            data=myfile.read()
-            newdata = data[:-2]
+        # strip last comma and check the validity of JSON
+        print('Loading data from: ', 'tmp_{}.json'.format(uid))
+        with open('tmp_{}.json'.format(uid), 'r') as infile:
+            data = infile.read()
+            proc_dict_string = data[:-2] + '}'
 
-        # close header for procDict file(s)
+            try:
+                proc_dict_json = json.loads(proc_dict_string)
+            except json.decoder.JSONDecodeError:
+                print('----> Error: Resulting procDict is not valid JSON!')
+                sys.exit(3)
+
+        # save procDict to file(s)
         for filepath in self.procList:
             with open(filepath, 'w', encoding='utf-8') as outfile:
-                outfile.write(newdata)
-                outfile.write('\n')
-                outfile.write('}\n')
+                json.dump(proc_dict_json, outfile, indent=4)
 
         # replace existing param.py file
         if tmpexist:

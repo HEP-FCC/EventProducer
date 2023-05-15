@@ -1,0 +1,76 @@
+#!/bin/bash
+
+SCRIPT_PATH=`realpath ${0}`
+SCRIPT_DIR=`dirname ${SCRIPT_PATH}`
+EVTPRODUCER_DIR=`realpath ${SCRIPT_DIR}/..`
+LOG_DIR="${EVTPRODUCER_DIR}/log"
+LOGFILE="${LOG_DIR}/git_sync.log"
+
+# Send emails
+function send_email {
+for RECIPIENT in $(pts membership fccsw:access | tail -n +2); do
+  RECIPIENTS="${RECIPIENTS},${RECIPIENT}"
+  ADDRESSES="${ADDRESSES},${RECIPIENT}@cern.ch"
+done
+RECIPIENTS="${RECIPIENTS:1}"
+ADDRESSES="${ADDRESSES:1}"
+
+read -r -d '' MESSAGE << EOM
+Hello ${RECIPIENTS},
+
+The FCC Event Producer encountered an issue:
+
+${1}
+EOM
+
+mail -s "FCC Event Producer" "${ADDRESSES}" <<< "${MESSAGE}"
+}
+
+
+# Preparing logging
+mkdir -p "${LOG_DIR}"
+rm -rf "${LOGFILE}"
+
+echo "`date`  INFO: Syncing with git server in progress..." >> "${LOGFILE}"
+
+SYNCLOCK="${EVTPRODUCER_DIR}/.sync.lock"
+# Making sure the last sync went OK and there is no .sync.lock file left
+if [ -f "${SYNCLOCK}" ]; then
+  echo "`date`  WARNING: Encountered git sync lock. Aborting..." >> "${LOGFILE}"
+
+  if [ `find "${SYNCLOCK}" -mmin +720` ]; then
+    send_email "Git sync lock too old, please check the logs and possibly remove the lock from ${SYNCLOCK}"
+
+    exit 3
+  fi
+
+  exit 0
+fi
+
+# Create sync lock
+touch "${SYNCLOCK}"
+
+cd "${EVTPRODUCER_DIR}"
+
+if [ -n "$(git status --untracked-files=no --porcelain)" ]; then
+  echo "`date`  ERROR: Git tree contains uncommited changes. Aborting..." >> "${LOGFILE}"
+  send_email "Git tree contains uncommited changes, please clear or commit them!"$'\n\n'"$(git status)"
+
+  rm -rf "${SYNCLOCK}"
+  exit 3
+fi
+
+git pull 2>&1 >> "${LOGFILE}"
+
+if [ "$(git rev-parse master)" != "$(git rev-parse origin/master)" ]; then
+  echo "`date`  ERROR: Git pull did not succeeded. Aborting..." >> "${LOGFILE}"
+  send_email "Git pull did not succeeded. Status of the repository:"$'\n\n'"$(git status)"
+
+  rm -rf "${SYNCLOCK}"
+  exit 3
+fi
+
+# Clear sync lock
+rm -rf "${SYNCLOCK}"
+
+echo "`date`  INFO: Syncing with git server finished." >> "${LOGFILE}"
