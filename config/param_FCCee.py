@@ -296,7 +296,13 @@ pythialist={
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2pipipipi0pi0':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds+ Ds- K*0, K*0 forced to K+ pi-, Ds forced to pipipipipi0','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2pipipipi0pi0v2':['Z/Gamma* ecm=91.188GeV to bb','B0 -> (Ds+ ->  (eta0 / omega0 -> pi+ pi- pi0) pi+ pi0) (Ds- -> (eta0 / omega0 -> pi+ pi- pi0)  pi- pi0) (K*0 -> K+ pi-)','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DsKstarTauNuDs2TauNu':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds K*0 tau nu, K*0 forced to K+ pi-, Ds forced to tau nu','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2TaunuDs2pipipipi0v2':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds Ds K*0, K*0 forced to K+ pi-, Ds+ forced to tau nu, Ds- forced to omega/eta pi-','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2TaunuDs2pipipipi0v2ChargeConjugation':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds Ds K*0, K*0 forced to K+ pi-, Ds- forced to tau nu, Ds+ forced to omega/eta pi+','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DsstarDsKstarDs2TaunuDsstar2Dsgamma':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds*+ Ds- K*0, K*0 forced to K+ pi-, Ds forced to tau nu, D*s+ forced in Ds gamma','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2TaunuDs2pipipipi0pi0':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds+ Ds- K*0, K*0 forced to K+ pi-, Ds+ forced to tau nu, Ds- forced to multi pions','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2TaunuDs2pipipipi0pi0ChargeConjugation':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds+ Ds- K*0, K*0 forced to K+ pi-, Ds- forced to tau nu, Ds+ forced to multi pions','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DsstarDsKstarDs2PiPiPiPi0Pi0Dsstar2Dsgamma':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds*+ Ds- K*0, K*0 forced to K+ pi-, Ds*+ forced to Ds+ and gamma, and both Ds+ and Ds- forced to multi pions','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DsstarKstarTauNuDs2pipipipi0pi0':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds*+ tau- K*0, K*0 forced to K+ pi-, Ds* forced to Ds gamma, and Ds forced to multi pions','','1','1.0','1.0'],
 #Bu = 0.307 * 0.43 = 0.13201
 #Bd = 0.242 * 0.43 = 0.10406
 #Bs = 0.243 * 0.096 = 0.023328

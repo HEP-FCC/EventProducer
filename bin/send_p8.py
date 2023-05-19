@@ -114,9 +114,10 @@ class send_p8():
             frun.write('source %s\n'%(self.para.prodTag[self.version]))
             #frun.write('source /cvmfs/sw.hsf.org/contrib/spack/share/spack/setup-env.sh\n')
             #frun.write('spack load --first k4simdelphes build_type=Release ^evtgen+photos\n')
-            
-            frun.write('mkdir job%s_%s\n'%(uid,self.process))
-            frun.write('cd job%s_%s\n'%(uid,self.process))
+
+            proc_trunc = self.process[:37] + ( self.process[37:] and 'More')            
+            frun.write('mkdir job%s_%s\n'%(uid,proc_trunc))
+            frun.write('cd job%s_%s\n'%(uid,proc_trunc))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             if self.islocal==False:
                 frun.write('mkdir -p %s/%s\n'%(outdir,self.process))
@@ -214,7 +215,7 @@ class send_p8():
             #if ut.file_exist(outfile)==False:
             frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py events_%s.root %s\n'%(uid,outfile))
             frun.write('cd ..\n')
-            frun.write('rm -rf job%s_%s\n'%(uid,self.process))
+            frun.write('rm -rf job%s_%s\n'%(uid,proc_trunc))
             frun.close()
 
             if self.islsf==True :
