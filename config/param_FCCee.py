@@ -151,6 +151,7 @@ pythialist={
 
     
     'p8_ee_Zbb_ecm91':['Z/Gamma* ecm=91.188GeV to bb','inclusive decays','','6645.46','1.0','1.0'],     # win2023: 6600.53
+    'p8_ee_Zbb_DIRAC_ecm91':['Z/Gamma* ecm=91.188GeV to bb','inclusive decays','','6645.46','1.0','1.0'],     # win2023: 6600.53
     'p8_ee_Zcc_ecm91':['Z/Gamma* ecm=91.188GeV to cc','inclusive decays','','5215.46','1.0','1.0'],     # win2023: 5184.19
     'p8_ee_Zuds_ecm91':['Z/Gamma* ecm=91.188GeV to uds','inclusive decays','','18616.5','1.0','1.0'],
     'p8_ee_Zss_ecm91':['Z/Gamma* ecm=91.188GeV to ss','','','5215.46','1.0','1.0'],
