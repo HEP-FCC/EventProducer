@@ -33,7 +33,7 @@ prodTag = {
     'fcc_v02':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
     'fcc_v03':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
     'fcc_v04':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
-    'fcc_v05_scenarioI':'/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh'
+    'fcc_v05_scenarioI':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
 }
 
 defaultstack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
@@ -46,6 +46,7 @@ delphes_ext='.root'
 treename='events'
 
 ##where the delphes cards are stored
+# delphescards_dir = '/afs/cern.ch/user/b/bistapf/StandAlone_Delphes/delphes/cards/FCC/' #TEMP FOR ISOVAR VALIDATION
 # delphescards_dir = '/afs/cern.ch/user/b/bistapf/Dev_EvtProducer/EventProducer/DelphesCardLocal/' #TEMP LOCAL TESTER
 delphescards_dir = '/eos/experiment/fcc/hh/utils/delphescards/'
 ##where the pythia cards are stored
@@ -1406,9 +1407,6 @@ gridpacklist = {
 'mg_pp_vbf_hh_C2V100_CV100_lambda100':['pp VBF HH angelas gridpack','','','1.0','1.0','1.0'], #TESTER 
 'mg_pp_vbf_hh_C2V100_CV100_lambda200':['pp VBF HH angelas gridpack','','','1.0','1.0','1.0'], #TESTER 
 'mg_pp_vbf_hh_C2V200_CV100_lambda100':['pp VBF HH angelas gridpack','','','1.0','1.0','1.0'], #TESTER 
-
-
-
 
 }
 
