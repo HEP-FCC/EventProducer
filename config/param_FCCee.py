@@ -605,6 +605,18 @@ gridpacklist = {
     'wzp6_egamma_eZ_Zbb_ecm365':['e(e)Z EPA, e- gamma, ecm=365 GeV','Z to bb','','615.2e-3','1.0','1.0'],
     'wzp6_gammae_eZ_Zbb_ecm365':['e(e)Z EPA, e+ gamma, ecm=365 GeV','Z to bb','','615.2e-3','1.0','1.0'],
 
+# for polarized t tbar, ecm = 365 GeV:
+    'wzp6_ee_tt_pol_ecm365':['ee -> tt, ecm=365GeV','inc. top decays','','0.8','1.0','1.0'],
+    'wzp6_ee_Z_tt_leplep_pol_ecm365':  ['ee -> Z* -> tt, ecm=365GeV','top fully leptonic decays','','0.106','1.0','1.0'],
+    'wzp6_ee_Z_tt_hadhad_pol_ecm365':  ['ee -> Z* -> tt, ecm=365GeV','top fully hadronic decays','','0.454','1.0','1.0'],
+    'wzp6_ee_Z_tt_tlepThad_pol_ecm365':['ee -> Z* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+    'wzp6_ee_Z_tt_thadTlep_pol_ecm365':['ee -> Z* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+    'wzp6_ee_gamma_tt_leplep_pol_ecm365':  ['ee -> A* -> tt, ecm=365GeV','top fully leptonic decays','','0.106','1.0','1.0'],
+    'wzp6_ee_gamma_tt_hadhad_pol_ecm365':  ['ee -> A* -> tt, ecm=365GeV','top fully hadronic decays','','0.454','1.0','1.0'],
+    'wzp6_ee_gamma_tt_tlepThad_pol_ecm365':['ee -> A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+    'wzp6_ee_gamma_tt_thadTlep_pol_ecm365':['ee -> A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+
+
 # ee->H + background, ecm = 125 GeV:
     'wzp6_ee_l1l2nunu_ecm125':['ee -> l1l2nunu (l1!=l2, no H) ecm=125GeV','','','5.799e-03','1.0','1.0'],
     'wzp6_ee_eenunu_ecm125':['ee -> eenunu (no H) ecm=125GeV','','','3.364e-01','1.0','1.0'],
