@@ -330,6 +330,7 @@ pythialist={
 
     'p8_ee_Zbb_ecm91_EvtGen_Bd2KsNuNu':['Z/Gamma* ecm=91.188GeV to bb', 'Bd to Ks nunu','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiKs':['Z/Gamma* ecm=91.188GeV to bb','Bs to Phi(KK) Ks(pi+pi-)','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2PhiKs':['Z/Gamma* ecm=91.188GeV to bb','Bd to Phi(KK) Ks(pi+pi-)','','1.0','1.0','1.0'],
 
 }
 
