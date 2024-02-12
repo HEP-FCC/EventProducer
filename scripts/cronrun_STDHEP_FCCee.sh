@@ -1,4 +1,6 @@
-cd /afs/cern.ch/user/f/fccsw/private/EventProducer/
+PROD_TAG="${1}"
+
+cd /afs/cern.ch/user/f/fccsw/private/EventProducer/ || exit
 source ./init.sh
 LOGFILE="${EVENTPRODUCER}/log/cronrun_STDHEP_FCCee.log"
 echo "" > "${LOGFILE}"
@@ -11,13 +13,13 @@ if [ -f "${SYNCLOCK}" ]; then
   exit 3
 fi
 
-python bin/run.py --FCCee --STDHEP --checkeos --prodtag "${1}" > /dev/null
-python bin/run.py --FCCee --STDHEP --check --prodtag "${1}" > /dev/null
-python bin/run.py --FCCee --STDHEP --merge --prodtag "${1}" > /dev/null
-python bin/run.py --FCCee --STDHEP --clean --prodtag "${1}" > /dev/null
-python bin/run.py --FCCee --STDHEP --cleanold --prodtag "${1}" > /dev/null
-python bin/run.py --FCCee --STDHEP --merge --prodtag "${1}" > /dev/null
-python bin/run.py --FCCee --STDHEP --web --prodtag "${1}" > /dev/null
+python bin/run.py --FCCee --STDHEP --checkeos --prodtag "${PROD_TAG}" > /dev/null
+python bin/run.py --FCCee --STDHEP --check --prodtag "${PROD_TAG}" > /dev/null
+python bin/run.py --FCCee --STDHEP --merge --prodtag "${PROD_TAG}" > /dev/null
+python bin/run.py --FCCee --STDHEP --clean --prodtag "${PROD_TAG}" > /dev/null
+python bin/run.py --FCCee --STDHEP --cleanold --prodtag "${PROD_TAG}" > /dev/null
+python bin/run.py --FCCee --STDHEP --merge --prodtag "${PROD_TAG}" > /dev/null
+python bin/run.py --FCCee --STDHEP --web --prodtag "${PROD_TAG}" > /dev/null
 
-mkdir -p ${EVENTPRODUCER}/log
+mkdir -p "${EVENTPRODUCER}/log"
 echo "`date`  INFO: Cron run finished." >> "${LOGFILE}"
