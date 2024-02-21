@@ -13,12 +13,12 @@ eosbaseoutputdir="/eos/experiment/fcc/ee/generation/"
 #stat
 lhe_stat = webbasedir + "statlhe.html"
 delphes_stat = webbasedir + "statdelphesVERSION_DETECTOR.html"
-stdhep_stat = webbasedir + "stat_stdhep_VERSION_DETECTOR.html"
+stdhep_stat = webbasedir + "stat_stdhep_VERSION.html"
 
 #web
 lhe_web = webbasedir + "LHEevents.txt"
 delphes_web = webbasedir + "Delphesevents_VERSION_DETECTOR.txt"
-stdhep_web = webbasedir + "STDHEPevents_VERSION_DETECTOR.txt"
+stdhep_web = webbasedir + "STDHEP_events_VERSION.txt"
 
 #yaml directory
 yamldir      = pubbasedir+"yaml/FCCee/"

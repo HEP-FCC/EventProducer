@@ -157,7 +157,7 @@ if __name__=="__main__":
             if training:
                 yamldir=para.yamldir+'stdhep/training/'
                 indir=para.stdhep_dir+'/training/'
-        statfile = para.stdhep_stat.replace('VERSION', version).replace('DETECTOR', detector)
+        statfile = para.stdhep_stat.replace('VERSION', version)
         print("yamldir = ", yamldir)
         print("indir = ", indir)
 
@@ -293,7 +293,6 @@ if __name__=="__main__":
         elif args.STDHEP:
             print('create web page for STDHEP')
             stdhep_outfile = para.stdhep_web.replace('VERSION', version)
-            stdhep_outfile = stdhep_outfile.replace('DETECTOR', detector)
             printdic = prt.printer(yamldir, stdhep_outfile, False, True, para)
             printdic.run()
 
