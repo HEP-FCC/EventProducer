@@ -8,21 +8,21 @@ class printer():
 
 #__________________________________________________________
     def __init__(self, indir, outfile, matching, isLHE, para, detector='', version=''):
-        self.indir    = indir
-        self.outfile  = outfile
+        self.indir = indir
+        self.outfile = outfile
         self.matching = matching
         self.isLHE = isLHE
         self.para = para
         self.version = version
-        self.detector=detector
-        self.OutFile   = open(self.outfile, 'w')
+        self.detector = detector
+        self.OutFile  = open(self.outfile, 'w')
 
-        self.tot_size=0
-        self.ntot_events=0
-        self.ntot_files=0
-        self.ntot_bad=0
-        self.ntot_eos=0
-        self.ntot_sumw=0
+        self.tot_size = 0
+        self.ntot_events = 0
+        self.ntot_files = 0
+        self.ntot_bad = 0
+        self.ntot_eos = 0
+        self.ntot_sumw = 0
 
 
 #__________________________________________________________
@@ -37,7 +37,7 @@ class printer():
 
 #__________________________________________________________
     def run(self):
-        
+
         #ldir=[x[0] for x in os.walk(self.indir)]
         ldir=next(os.walk(self.indir))[1]
 

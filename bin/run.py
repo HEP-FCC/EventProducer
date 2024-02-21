@@ -23,7 +23,8 @@ if __name__=="__main__":
     jobTypeGroup.add_argument("--send", action='store_true', help="send the jobs")
     jobTypeGroup.add_argument("--clean", action='store_true', help="clean the dictionnary and eos from bad jobs")
     jobTypeGroup.add_argument("--cleanold", action='store_true', help="clean the yaml from old jobs (more than 72 hours)")
-    jobTypeGroup.add_argument("--web", action='store_true', help="print the dictionnary for webpage")
+    jobTypeGroup.add_argument("--web", action='store_true',
+                              help="print a dictionary for the webpage")
     jobTypeGroup.add_argument("--remove", action='store_true', help="remove a specific process from the dictionary and from eos" )
     jobTypeGroup.add_argument("--sample", action='store_true', help="make the proc dict" )
 
@@ -156,9 +157,9 @@ if __name__=="__main__":
             if training:
                 yamldir=para.yamldir+'stdhep/training/'
                 indir=para.stdhep_dir+'/training/'
-        statfile=para.stdhep_stat
-        print("yamldir = ",yamldir)
-        print("indir =",indir)
+        statfile = para.stdhep_stat.replace('VERSION', version).replace('DETECTOR', detector)
+        print("yamldir = ", yamldir)
+        print("indir = ", indir)
 
 
     elif args.reco:
@@ -176,19 +177,18 @@ if __name__=="__main__":
     if not ut.testeos(para.eostest,para.eostest_size):
         print ('eos seems to have problems, should check, will exit')
         sys.exit(3)
-    
 
     if args.check:
-        print ('running the check')
-        if args.process!='':
-            print ('using a specific process ',args.process)
-            if args.reco and args.process[0:3]=='mg_': args.process='mgp8_'+args.process[3:]
-            if args.reco and args.process[0:3]=='ch_': args.process='chp8_'+args.process[3:]
-            if args.reco and args.process[0:3]=='pw_': args.process='pwp8_'+args.process[3:]
-            if args.reco and args.process[0:5]=='kkmc_' : args.process='kkmcp8_'+args.process[5:]
+        print('running the check')
+        if args.process != '':
+            print('using a specific process ', args.process)
+            if args.reco and args.process[0:3] == 'mg_': args.process='mgp8_'+args.process[3:]
+            if args.reco and args.process[0:3] == 'ch_': args.process='chp8_'+args.process[3:]
+            if args.reco and args.process[0:3] == 'pw_': args.process='pwp8_'+args.process[3:]
+            if args.reco and args.process[0:5] == 'kkmc_' : args.process='kkmcp8_'+args.process[5:]
         import EventProducer.common.checker_yaml as chky
-        print (args.process)
-        checker=chky.checker_yaml(indir, para, fext, args.process,  yamldir)
+        print(args.process)
+        checker = chky.checker_yaml(indir, para, fext, args.process,  yamldir)
         checker.check(args.force, statfile)
 
 
@@ -283,23 +283,22 @@ if __name__=="__main__":
                 sendstdhep=sstdhep.send_fromstdhep(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, detector, args.decay)
                 sendstdhep.send(args.force)
 
-
-
     elif args.web:
         import EventProducer.common.printer as prt
-        if args.LHE: 
-            print ('create web page for LHE')
-            printdic=prt.printer(yamldir,para.lhe_web, False, True, para)
+        if args.LHE:
+            print('Create web page for LHE')
+            printdic = prt.printer(yamldir, para.lhe_web, False, True, para)
             printdic.run()
 
         elif args.STDHEP:
-            print ('create web page for STDHEP')
-            printdic=prt.printer(yamldir,para.stdhep_web, False, True, para)
+            print('Create web page for STDHEP')
+            stdhep_outfile = para.stdhep_web.replace('VERSION', version)
+            stdhep_outfile = stdhep_outfile.replace('DETECTOR', detector)
+            printdic = prt.printer(yamldir, stdhep_outfile, False, True, para)
             printdic.run()
-            
 
         elif args.reco:
-            print ('create web page for reco version %s'%version)
+            print('create web page for reco version %s' % version)
             webpage=para.delphes_web.replace('VERSION',version).replace('DETECTOR',detector)
             printdic=prt.printer(yamldir, webpage, True, False, para, detector, version)
             printdic.run()
