@@ -286,12 +286,12 @@ if __name__=="__main__":
     elif args.web:
         import EventProducer.common.printer as prt
         if args.LHE:
-            print('Create web page for LHE')
+            print('create web page for LHE')
             printdic = prt.printer(yamldir, para.lhe_web, False, True, para)
             printdic.run()
 
         elif args.STDHEP:
-            print('Create web page for STDHEP')
+            print('create web page for STDHEP')
             stdhep_outfile = para.stdhep_web.replace('VERSION', version)
             stdhep_outfile = stdhep_outfile.replace('DETECTOR', detector)
             printdic = prt.printer(yamldir, stdhep_outfile, False, True, para)
