@@ -778,6 +778,16 @@ gridpacklist = {
     'wzp6_ee_qqH_Hcu_ecm365':['ee->X, ecm=365 GeV','H->YY', '','1.0','1.0','1.0'],    
     'wzp6_ee_qqH_HZZ_qqqq_ecm365':['ee->X, ecm=365 GeV','H->YY', '','1.0','1.0','1.0'],
     'wzp6_ee_qqH_HZZ_nunuqq_ecm365':['ee->X, ecm=365 GeV','H->YY', '','1.0','1.0','1.0'],
-
+    'wzp6_ee_tautau_ecm365':['ee->X, ecm=365 GeV','H->YY', '','1.0','1.0','1.0'],
+    'wzp6_ee_mumu_ecm365':['ee->X, ecm=365 GeV','H->YY', '','1.0','1.0','1.0'],
+    'wzp6_ee_ee_Mee_30_150_ecm365':['ee->X, ecm=365 GeV','H->YY', '','1.0','1.0','1.0'],
+    'wzp6_egamma_eZ_Zmumu_ecm365':['ee->X, ecm=365 GeV','H->YY', '','1.0','1.0','1.0'],
+    'wzp6_gammae_eZ_Zmumu_ecm365':['ee->X, ecm=365 GeV','H->YY', '','1.0','1.0','1.0'],
+    'wzp6_egamma_eZ_Zee_ecm365':['ee->X, ecm=365 GeV','H->YY', '','1.0','1.0','1.0'],
+    'wzp6_gammae_eZ_Zee_ecm365':['ee->X, ecm=365 GeV','H->YY', '','1.0','1.0','1.0'],
+    'wzp6_gaga_mumu_60_ecm365':['ee->X, ecm=365 GeV','H->YY', '','1.0','1.0','1.0'],
+    'wzp6_gaga_ee_60_ecm365':['ee->X, ecm=365 GeV','H->YY', '','1.0','1.0','1.0'],
+    'wzp6_gaga_tautau_60_ecm365':['ee->X, ecm=365 GeV','H->YY', '','1.0','1.0','1.0'],
+    'wzp6_ee_nuenueZ_ecm365':['ee->X, ecm=365 GeV','H->YY', '','1.0','1.0','1.0'],
 }
 
