@@ -79,7 +79,6 @@ detectors = ['IDEA', 'IDEA_3T', 'IDEA_FullSilicon']
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={
-    #'dummy':['','','','','',''],
     'dummy':['<p style=\"background-color:Tomato;\">NOT REGISTERED IN param_FCCee</p>','<p style=\"background-color:Tomato;\">NOT REGISTERED IN param_FCCee</p>','','-9999','-9999','-9999'],
 
     'p8_ee_ZH_Znunu_Hgg_ecm240':['ZH ecm=240GeV','Z->nunu, H->gg','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
@@ -370,7 +369,9 @@ branching_ratios = {
 ## description/comment/matching parameters/cross section/kfactor/matching efficiency
 
 gridpacklist = {
-    'dummy':['','','','','',''],
+    'dummy': ['<span style="background-color:tomato;">NOT REGISTERED IN param_FCCee</span>',
+              '<span style="background-color:tomato;">NOT REGISTERED IN param_FCCee</span>', '',
+              '-9999', '-9999', '-9999'],
     'mg_ee_tt_ecm350':['tt','tt inclusive','','1.0','1.0','1.0'],
     'mg_ee_tt_FCNC_tH_ecm365':['tt','tt inclusive','','1.0','1.0','1.0'],
     'mg_ee_tbw_FCNC_tcz_ecm365':['single top FCNC','to be added','','1.0','1.0','1.0'],
