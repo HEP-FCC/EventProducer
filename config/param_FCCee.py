@@ -652,6 +652,46 @@ gridpacklist = {
     'wzp6_egamma_eZ_Zbb_ecm365':['e(e)Z EPA, e- gamma, ecm=365 GeV','Z to bb','','615.2e-3','1.0','1.0'],
     'wzp6_gammae_eZ_Zbb_ecm365':['e(e)Z EPA, e+ gamma, ecm=365 GeV','Z to bb','','615.2e-3','1.0','1.0'],
 
+# for polarized t tbar, ecm = 365 GeV:
+    'wzp6_ee_SM_tt_tWsTWb_tlepTall_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W s -> lep, anti-top -> W b',     '','0.01','1.0','1.0'],
+    'wzp6_ee_SM_tt_tWsTWb_tlightTall_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W s -> light q, anti-top -> W b', '','0.01','1.0','1.0'],
+    'wzp6_ee_SM_tt_tWsTWb_theavyTall_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W s -> heavy q, anti-top -> W b', '','0.01','1.0','1.0'],
+    'wzp6_ee_SM_tt_tWbTWs_tallTlep_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W b, anti-top -> W s -> lep',     '','0.01','1.0','1.0'],
+    'wzp6_ee_SM_tt_tWbTWs_tallTlight_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W b, anti-top -> W s -> light q', '','0.01','1.0','1.0'],
+    'wzp6_ee_SM_tt_tWbTWs_tallTheavy_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W b, anti-top -> W s -> heavy q', '','0.01','1.0','1.0'],
+
+    'wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top fully leptonic decays','','0.106','1.0','1.0'],
+    'wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top fully hadronic decays','','0.454','1.0','1.0'],
+    'wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+    'wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+
+    'wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ta_ttAup_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top fully leptonic decays','','0.106','1.0','1.0'],
+    'wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ta_ttAdown_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top fully leptonic decays','','0.106','1.0','1.0'],
+    'wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ta_ttAup_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top fully hadronic decays','','0.454','1.0','1.0'],
+    'wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ta_ttAdown_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top fully hadronic decays','','0.454','1.0','1.0'],
+    'wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ta_ttAup_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+    'wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ta_ttAdown_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+    'wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ta_ttAup_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+    'wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ta_ttAdown_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+
+    'wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_tv_ttAup_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top fully leptonic decays','','0.106','1.0','1.0'],
+    'wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_tv_ttAdown_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top fully leptonic decays','','0.106','1.0','1.0'],
+    'wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_tv_ttAup_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top fully hadronic decays','','0.454','1.0','1.0'],
+    'wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_tv_ttAdown_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top fully hadronic decays','','0.454','1.0','1.0'],
+    'wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_tv_ttAup_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+    'wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_tv_ttAdown_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+    'wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_tv_ttAup_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+    'wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_tv_ttAdown_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+ 
+    'wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_vr_ttZup_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top fully leptonic decays','','0.106','1.0','1.0'],
+    'wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_vr_ttZdown_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top fully leptonic decays','','0.106','1.0','1.0'],
+    'wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_vr_ttZup_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top fully hadronic decays','','0.454','1.0','1.0'],
+    'wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_vr_ttZdown_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top fully hadronic decays','','0.454','1.0','1.0'],
+    'wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_vr_ttZup_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+    'wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_vr_ttZdown_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+    'wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_vr_ttZup_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+    'wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_vr_ttZdown_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
+
 # ee->H + background, ecm = 125 GeV:
     'wzp6_ee_l1l2nunu_ecm125':['ee -> l1l2nunu (l1!=l2, no H) ecm=125GeV','','','5.799e-03','1.0','1.0'],
     'wzp6_ee_eenunu_ecm125':['ee -> eenunu (no H) ecm=125GeV','','','3.364e-01','1.0','1.0'],
