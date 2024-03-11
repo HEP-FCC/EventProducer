@@ -606,22 +606,6 @@ gridpacklist = {
     'wzp6_gammae_eZ_Zbb_ecm365':['e(e)Z EPA, e+ gamma, ecm=365 GeV','Z to bb','','615.2e-3','1.0','1.0'],
 
 # for polarized t tbar, ecm = 365 GeV:
-    'wzp6_ee_tt_pol_ecm365':['ee -> tt, ecm=365GeV','inc. top decays','','0.8','1.0','1.0'],
-    'wzp6_ee_Z_tt_leplep_pol_ecm365':  ['ee -> Z* -> tt, ecm=365GeV','top fully leptonic decays','','0.106','1.0','1.0'],
-    'wzp6_ee_Z_tt_hadhad_pol_ecm365':  ['ee -> Z* -> tt, ecm=365GeV','top fully hadronic decays','','0.454','1.0','1.0'],
-    'wzp6_ee_Z_tt_tlepThad_pol_ecm365':['ee -> Z* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
-    'wzp6_ee_Z_tt_thadTlep_pol_ecm365':['ee -> Z* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
-    'wzp6_ee_gamma_tt_leplep_pol_ecm365':  ['ee -> A* -> tt, ecm=365GeV','top fully leptonic decays','','0.106','1.0','1.0'],
-    'wzp6_ee_gamma_tt_hadhad_pol_ecm365':  ['ee -> A* -> tt, ecm=365GeV','top fully hadronic decays','','0.454','1.0','1.0'],
-    'wzp6_ee_gamma_tt_tlepThad_pol_ecm365':['ee -> A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
-    'wzp6_ee_gamma_tt_thadTlep_pol_ecm365':['ee -> A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
-    'wzp6_ee_SM_tt_leplep_pol_ecm365':  ['ee -> Z*/A* -> tt, ecm=365GeV','top fully leptonic decays','','0.106','1.0','1.0'],
-    'wzp6_ee_SM_tt_hadhad_pol_ecm365':  ['ee -> Z*/A* -> tt, ecm=365GeV','top fully hadronic decays','','0.454','1.0','1.0'],
-    'wzp6_ee_SM_tt_tlepThad_pol_ecm365':['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
-    'wzp6_ee_SM_tt_thadTlep_pol_ecm365':['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
-    'wzp6_ee_SM_tt_tWbTWs_pol_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W b, anti-top -> W s', '','0.032','1.0','1.0'],
-    'wzp6_ee_SM_tt_tWsTWb_pol_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W s, anti-top -> W b', '','0.032','1.0','1.0'],
-
     'wzp6_ee_SM_tt_tWsTWb_tlepTall_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W s -> lep, anti-top -> W b',     '','0.01','1.0','1.0'],
     'wzp6_ee_SM_tt_tWsTWb_tlightTall_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W s -> light q, anti-top -> W b', '','0.01','1.0','1.0'],
     'wzp6_ee_SM_tt_tWsTWb_theavyTall_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W s -> heavy q, anti-top -> W b', '','0.01','1.0','1.0'],
