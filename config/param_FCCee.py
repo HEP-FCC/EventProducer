@@ -5,7 +5,7 @@ eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size=1312594
 
 #directories
-webbasedir="/afs/cern.ch/user/f/fccsw/www/data/FCCee/"
+webbasedir="/eos/experiment/fcc/www/data/FCCee/"
 pubbasedir="/afs/cern.ch/work/f/fccsw/public/FCCDicts/"
 eosbaseinputdir="/eos/experiment/fcc/ee/generation/"
 eosbaseoutputdir="/eos/experiment/fcc/ee/generation/"
