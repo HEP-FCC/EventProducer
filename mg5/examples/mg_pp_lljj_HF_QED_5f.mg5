@@ -1,0 +1,26 @@
+import model sm-no_b_mass
+define lep = e+ e- mu+ mu- ta+ ta-
+generate p p > lep lep  b b~ / h QED=4 QCD=0
+add process p p > lep lep  c c~ / h QED=4 QCD=0
+
+output DUMMYPROCESS
+
+######## DELIMITER (!!! NEED THIS LINE !!!) ##################
+
+launch DUMMYPROCESS
+set iseed DUMMYSEED
+set nevents DUMMYNEVENTS
+
+set ebeam1 50000
+set ebeam2 50000
+
+set maxjetflavor 5
+
+set mmll 10
+set ptj 20
+set drjj 0.4
+set drbb 0.4
+set etaj 5.0
+set etab 5.0
+
+set use_syst False

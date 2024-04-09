@@ -3,10 +3,12 @@ unset LD_LIBRARY_PATH
 unset PYTHONHOME
 unset PYTHONPATH
 
-source /cvmfs/sft.cern.ch/lcg/releases/LCG_88/gcc/4.9.3/x86_64-slc6/setup.sh
-source /cvmfs/sft.cern.ch/lcg/releases/LCG_88/Python/2.7.13/x86_64-slc6-gcc49-opt/Python-env.sh
-source /cvmfs/sft.cern.ch/lcg/releases/LCG_88/ROOT/6.08.06/x86_64-slc6-gcc49-opt/bin/thisroot.sh
-export PYTHIA8=/afs/cern.ch/work/s/selvaggi/private/pythia8226
+source /cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh
+
+# source /cvmfs/sft.cern.ch/lcg/releases/LCG_88/gcc/4.9.3/x86_64-slc6/setup.sh
+# source /cvmfs/sft.cern.ch/lcg/releases/LCG_88/Python/2.7.13/x86_64-slc6-gcc49-opt/Python-env.sh
+# source /cvmfs/sft.cern.ch/lcg/releases/LCG_88/ROOT/6.08.06/x86_64-slc6-gcc49-opt/bin/thisroot.sh
+# export PYTHIA8=/afs/cern.ch/work/s/selvaggi/private/pythia8226
 
 SCRIPTFILE=${1}
 PROCESSNAME=${2}

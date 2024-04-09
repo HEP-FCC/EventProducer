@@ -34,8 +34,10 @@ prodTag = {
     'fcc_v03':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
     'fcc_v04':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
     'fcc_v05_scenarioI':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
+    'fcc_v05_scenarioII':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
 }
 
+# defaultstack='/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh'
 defaultstack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
 
 ##eos directory for FCCSW pythia delphes files
@@ -74,6 +76,9 @@ fccconfig='PythiaDelphes_config_v02.py'
 #list of processes only with Pythia, meaning no LHE
 pythialist={
 'dummy':['1','1','1','1','1','1'],
+#for testing
+'p8_ee_Z_bb_ecm91':['1','1','1','1','1','1'],
+'p8_pp_Z_bb':['1','1','1','1','1','1'],
 
 #'mg_pp_za012j_zmumu':['Z gamma + 012jets Z->mumu','','','1.0','1.0','1.0'],
 #'mg_pp_za012j_znunu':['Z gamma + 012jets Z->nunu','','','1.0','1.0','1.0'],
@@ -83,6 +88,10 @@ pythialist={
 'pwp8_pp_hh_lambda100_5f_hhbbww':['1','1','1','1','1','1'],
 'pwp8_pp_hh_lambda100_5f_hhbbaa':['1','1','1','1','1','1'],
 'pwp8_pp_hh_lambda100_5f_hhbbzz_4l':['1','1','1','1','1','1'],
+
+#new Z+jets bkg
+'mgp8_pp_ll012j_5f':['1','1','1','1','1','1'],
+'mg_pp_bbjj_QCDQED_5f_test':['1','1','1','1','1','1'],
 
 
 'p8_pp_ExcitedQ_10TeV_qq':['10TeV Excited quark Lambda 10TeV','','','2.368','1.0','1.0'],
@@ -464,7 +473,8 @@ decaylist = {
 'mg_pp_ZjjVbs_4f':['ztautau'],
 
 'mg_pp_z0123j_4f':['znunu'],
-'mg_pp_tt012j_5f':['ttau'],
+'mg_pp_tt012j_5f':['ttau', 'blvblv'],
+'pw_pp_hh_lambda100_5f_100TeV_testSA_fixed':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda000_5f':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda020_5f':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda040_5f':['hhbbaa','hhbbtata','hhbbbb'],
@@ -699,6 +709,24 @@ branching_ratios = {
 ## description/comment/matching parameters/cross section/kfactor/matching efficiency
 
 gridpacklist = {
+#new bbyy signals at different E_CMS
+'pw_pp_hh_lambda100_5f_80TeV':['pp gg HH 80TeV, kl =1','','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda240_5f_80TeV':['pp gg HH 80TeV, kl =2.4','','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda300_5f_80TeV':['pp gg HH 80TeV, kl =3','','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda100_5f_120TeV':['pp gg HH 120TeV, kl =1','','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda240_5f_120TeV':['pp gg HH 120TeV, kl =2.4','','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda300_5f_120TeV':['pp gg HH 120TeV, kl =3','','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda100_5f_100TeV_testSA':['pp gg HH 120TeV, kl =1','','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda100_5f_100TeV_testSA_fixed':['pp gg HH 120TeV, kl =1','','','1.0','1.0','1.0'],
+
+#TEST
+'mg_pp_bbjj_QCDQED_5f_test':['1','1','1','1','1','1'],
+'mg_pp_lljj_QED_5f':['1','1','1','1','1','1'],
+
+#new lljj for bb2lMET
+'mg_pp_lljj_HF_QED_5f':['1','1','1','1','1','1'],
+'mg_pp_lljj_HF_QCDQED_5f':['1','1','1','1','1','1'],
+
 'dummy':['1','1','1','1','1','1'],
     'mg_pp_za012j_zmumu':['Z gamma + 012jets Z->mumu','','','1.0','1.0','1.0'],
 'mg_pp_za012j_znunu':['Z gamma + 012jets Z->nunu','','','1.0','1.0','1.0'],
