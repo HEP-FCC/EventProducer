@@ -195,8 +195,23 @@ pythialist={
     'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
 
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsEE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsMuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2EE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2MuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2NuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiEE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiMuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2KEE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2KMuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2KTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LEE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LMuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
 
-    
     'p8_ee_Zbb_ecm91_EvtGen_Bu2D0Pi':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B+/- -> D0(KPi)Pi','','1.3290920','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2KstTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (K*0 -> K- pi+) tau+ tau-, tau -> 3pi nu','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2KstTauTauTAUHADNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (K*0 -> K- pi+) tau+ tau-, tau -> 3pi nu TAUHADNU model','','1.0','1.0','1.0'],
@@ -253,7 +268,7 @@ pythialist={
     'p8_ee_Zbb_ecm91_EvtGen_Bd2KstNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2KstNuNu','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs2PhiNuNu','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bu2KNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bu2KNuNu','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2LbNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Lb2LbNuNu','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Lb2LNuNu','','1.0','1.0','1.0'],
     
     'p8_ee_Zbb_ecm91_EvtGen_Bd2D3Pi'    :['Z/Gamma* ecm=91.188GeV to bb','Bd2D3Pi','','17.1452868','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DDs'     :['Z/Gamma* ecm=91.188GeV to bb','Bd2DDs','','20.57434416','1.0','1.0'],
