@@ -10,7 +10,7 @@ LOGFILE="${LOG_DIR}/git_sync.log"
 function send_email {
 for RECIPIENT in $(pts membership fccsw:access | tail -n +2); do
   RECIPIENTS="${RECIPIENTS},${RECIPIENT}"
-  ADDRESSES="${ADDRESSES},${RECIPIENT}@cern.ch"
+  ADDRESSES="${ADDRESSES} ${RECIPIENT}@cern.ch"
 done
 RECIPIENTS="${RECIPIENTS:1}"
 ADDRESSES="${ADDRESSES:1}"
@@ -23,7 +23,7 @@ The FCC Event Producer encountered an issue:
 ${1}
 EOM
 
-mail -s "FCC Event Producer" "${ADDRESSES}" <<< "${MESSAGE}"
+mail -s "FCC Event Producer" ${ADDRESSES} <<< "${MESSAGE}"
 }
 
 
@@ -56,7 +56,6 @@ if [ -n "$(git status --untracked-files=no --porcelain)" ]; then
   echo "`date`  ERROR: Git tree contains uncommited changes. Aborting..." >> "${LOGFILE}"
   send_email "Git tree contains uncommited changes, please clear or commit them!"$'\n\n'"$(git status)"
 
-  rm -rf "${SYNCLOCK}"
   exit 3
 fi
 
@@ -66,7 +65,6 @@ if [ "$(git rev-parse master)" != "$(git rev-parse origin/master)" ]; then
   echo "`date`  ERROR: Git pull did not succeeded. Aborting..." >> "${LOGFILE}"
   send_email "Git pull did not succeeded. Status of the repository:"$'\n\n'"$(git status)"
 
-  rm -rf "${SYNCLOCK}"
   exit 3
 fi
 
