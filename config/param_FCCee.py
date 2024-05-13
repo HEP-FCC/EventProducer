@@ -717,18 +717,30 @@ gridpacklist = {
     'wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_vr_ttZup_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
     'wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_vr_ttZdown_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
 
+# ttbar threshold scan
+    'wzp6_ee_WbWb_ecm340': ['ee -> WbWb, ecm=340GeV','W inclusive', '','1.0','1.0','1.0'],
     'wzp6_ee_WbWb_ecm345': ['ee -> WbWb, ecm=345GeV','W inclusive', '','1.0','1.0','1.0'],
     'wzp6_ee_WbWb_ecm350': ['ee -> WbWb, ecm=350GeV','W inclusive', '','1.0','1.0','1.0'],
     'wzp6_ee_WbWb_ecm355': ['ee -> WbWb, ecm=355GeV','W inclusive', '','1.0','1.0','1.0'],
+    'wzp6_ee_WbWb_ecm365': ['ee -> WbWb, ecm=365GeV','W inclusive', '','1.0','1.0','1.0'],
+
+    'wzp6_ee_WbWb_had_ecm340': ['ee -> WbWb, ecm=340GeV','Whad Whad', '','1.0','1.0','1.0'],
     'wzp6_ee_WbWb_had_ecm345': ['ee -> WbWb, ecm=345GeV','Whad Whad', '','1.0','1.0','1.0'],
     'wzp6_ee_WbWb_had_ecm350': ['ee -> WbWb, ecm=350GeV','Whad Whad', '','1.0','1.0','1.0'],
     'wzp6_ee_WbWb_had_ecm355': ['ee -> WbWb, ecm=355GeV','Whad Whad', '','1.0','1.0','1.0'],
+    'wzp6_ee_WbWb_had_ecm365': ['ee -> WbWb, ecm=365GeV','Whad Whad', '','1.0','1.0','1.0'],
+
+    'wzp6_ee_WbWb_lep_ecm340': ['ee -> WbWb, ecm=340GeV','Wlep Wlep', '','1.0','1.0','1.0'],
     'wzp6_ee_WbWb_lep_ecm345': ['ee -> WbWb, ecm=345GeV','Wlep Wlep', '','1.0','1.0','1.0'],
     'wzp6_ee_WbWb_lep_ecm350': ['ee -> WbWb, ecm=350GeV','Wlep Wlep', '','1.0','1.0','1.0'],
     'wzp6_ee_WbWb_lep_ecm355': ['ee -> WbWb, ecm=355GeV','Wlep Wlep', '','1.0','1.0','1.0'],
+    'wzp6_ee_WbWb_lep_ecm365': ['ee -> WbWb, ecm=365GeV','Wlep Wlep', '','1.0','1.0','1.0'],
+
+    'wzp6_ee_WbWb_semihad_ecm340': ['ee -> WbWb, ecm=340GeV','Wlep Whad', '','1.0','1.0','1.0'],
     'wzp6_ee_WbWb_semihad_ecm345': ['ee -> WbWb, ecm=345GeV','Wlep Whad', '','1.0','1.0','1.0'],
     'wzp6_ee_WbWb_semihad_ecm350': ['ee -> WbWb, ecm=350GeV','Wlep Whad', '','1.0','1.0','1.0'],
     'wzp6_ee_WbWb_semihad_ecm355': ['ee -> WbWb, ecm=355GeV','Wlep Whad', '','1.0','1.0','1.0'],
+    'wzp6_ee_WbWb_semihad_ecm365': ['ee -> WbWb, ecm=365GeV','Wlep Whad', '','1.0','1.0','1.0'],
 
 
 # ee->H + background, ecm = 125 GeV:
