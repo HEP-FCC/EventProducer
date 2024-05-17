@@ -141,7 +141,7 @@ pythialist={
     'p8_ee_ZZ_ecm125':['ZZ ecm=125GeV','inclusive','','1.','0.','1.0'],
     'p8_ee_WW_ecm125':['WW ecm=125GeV','inclusive','','0.0558','1.0','1.0'],
 
-    # ttbar threshold scan --- XSEC TO UPDATE
+    # ttbar threshold scan
     'p8_ee_WW_ecm340':['WW ecm=340GeV','inclusive decays','','12.056','1.0','1.0'],
     'p8_ee_WW_ecm345':['WW ecm=345GeV','inclusive decays','','11.899','1.0','1.0'],
     'p8_ee_WW_ecm350':['WW ecm=350GeV','inclusive decays','','11.715','1.0','1.0'],
