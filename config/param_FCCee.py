@@ -485,8 +485,16 @@ gridpacklist = {
 
 # for Higgs, sqrts = 365 GeV:
     'wzp6_ee_mumuH_ecm365':['mumuH ecm=365 GeV','inclusive Higgs decays','','4.185e-3','1.0','1.0'],
+    'wzp6_ee_mumuH_BES-higher-10pc_ecm365':['mumuH ecm=365 GeV','inclusive Higgs decays','','4.185e-3','1.0','1.0'],
+    'wzp6_ee_mumuH_BES-lower-10pc_ecm365':['mumuH ecm=365 GeV','inclusive Higgs decays','','4.185e-3','1.0','1.0'],
+    'wzp6_ee_mumuH_BES-higher-1pc_ecm365':['mumuH ecm=365 GeV','inclusive Higgs decays','','4.185e-3','1.0','1.0'],
+    'wzp6_ee_mumuH_BES-lower-1pc_ecm365':['mumuH ecm=365 GeV','inclusive Higgs decays','','4.185e-3','1.0','1.0'],
     'wzp6_ee_tautauH_ecm365':['tautauH ecm=365 GeV','inclusive Higgs decays','','4.172e-3','1.0','1.0'],
     'wzp6_ee_eeH_ecm365':['eeH ecm=365 GeV','inclusive Higgs decays','','7.390e-3','1.0','1.0'],
+    'wzp6_ee_eeH_BES-higher-10pc_ecm365':['eeH ecm=365 GeV','inclusive Higgs decays','','7.390e-3','1.0','1.0'],
+    'wzp6_ee_eeH_BES-lower-10pc_ecm365':['eeH ecm=365 GeV','inclusive Higgs decays','','7.390e-3','1.0','1.0'],
+    'wzp6_ee_eeH_BES-higher-1pc_ecm365':['eeH ecm=365 GeV','inclusive Higgs decays','','7.390e-3','1.0','1.0'],
+    'wzp6_ee_eeH_BES-lower-1pc_ecm365':['eeH ecm=365 GeV','inclusive Higgs decays','','7.390e-3','1.0','1.0'],
     'wzp6_ee_nunuH_ecm365':['nunuH ecm=365 GeV (all nu flavours)','inclusive Higgs decays','','53.94e-3','1.0','1.0'],
     'wzp6_ee_qqH_ecm365':['qqH ecm=365 GeV, q = u,d,s,c,b','inclusive Higgs decays','','84.307e-3','1.0','1.0'],
 
