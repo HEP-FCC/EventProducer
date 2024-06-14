@@ -55,6 +55,7 @@ prodTag = {
 
 defaultstack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
 
+
 ##eos directory for FCCSW pythia delphes files
 delphes_dir  = eosbaseoutputdir+"DelphesEvents/"
 ##extension
@@ -75,7 +76,9 @@ whizardcards_dir = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/Whizard
 kkmccards_dir = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/KKMC/"
 # /cvmfs/fcc.cern.ch/sw/latest/setup.sh 
 ##delphes base card detector
-detectors = ['IDEA', 'IDEA_3T', 'IDEA_FullSilicon']
+#detectors = ['IDEA', 'IDEA_3T', 'IDEA_FullSilicon']
+detectors = ['IDEA', 'IDEA_3T', 'IDEA_SiTracking']
+
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={
@@ -869,5 +872,15 @@ gridpacklist = {
     'wzp6_gaga_tautau_60_ecm365':['gammagamma to tautau, M(tautau) > 60 GeV, ecm=365 GeV','', '','1.5395','1.0','1.0'],
 
     'wzp6_ee_nuenueZ_ecm365':['Z nue nuebar, W- exchange only','Z inclusive', '','1.2624e-01','1.0','1.0'],
+
+    'wzp6_ee_mumu_ecm91p188':['Z/Gamma* ecm=91.188GeV','Z decays to mumu','','1462.08','1.0','1.0'],
+    'wzp6_ee_mumu_ecm91p1879':['Z/Gamma* ecm=91.188GeV','Z decays to mumu','','1462.08','1.0','1.0'],
+    'wzp6_ee_mumu_ecm91p1881':['Z/Gamma* ecm=91.188GeV','Z decays to mumu','','1462.08','1.0','1.0'],
+    'wzp6_ee_mumu_ecm91p18795':['Z/Gamma* ecm=91.188GeV','Z decays to mumu','','1462.08','1.0','1.0'],
+    'wzp6_ee_mumu_ecm91p18805':['Z/Gamma* ecm=91.188GeV','Z decays to mumu','','1462.08','1.0','1.0'],
+
+
+
+
 }
 
