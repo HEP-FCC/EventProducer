@@ -120,7 +120,10 @@ pythialist={
     'p8_ee_tt_ecm365':['tt ecm=365GeV','inclusive decays','','0.800','1.0','1.0'],
 
     'p8_ee_WW_mumu_ecm365':['WW ecm=365GeV','W->mu and W ->tau->mu','','0.1785','1.0','1.0'],
-    'p8_ee_Zqq_ecm365':['Z/Gamma* ecm=365GeV','hadronic decays','','21.4149','1.0','1.0'],  
+    'p8_ee_Zqq_ecm365':['Z/Gamma* ecm=365GeV','Z->qq (q = u,d)','','21.4149','1.0','1.0'],
+    'p8_ee_Zbb_ecm365':['Z/Gamma* ecm=365GeV','Z->bb','','21.4149','1.0','1.0'],
+    'p8_ee_Zcc_ecm365':['Z/Gamma* ecm=365GeV','Z->cc','','21.4149','1.0','1.0'],
+    'p8_ee_Zss_ecm365':['Z/Gamma* ecm=365GeV','Z->ss','','21.4149','1.0','1.0'],
 
     'p8_ee_tt_fullhad_ecm365':['tt ecm=365GeV','hadronic decays','','0.363528','1.0','1.0'],
     'p8_ee_ZZ_fullhad_ecm365':['ZZ ecm=365GeV','hadronic decays','','0.31417','1.0','1.0'],
