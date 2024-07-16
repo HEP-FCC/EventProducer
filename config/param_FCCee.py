@@ -120,7 +120,10 @@ pythialist={
     'p8_ee_tt_ecm365':['tt ecm=365GeV','inclusive decays','','0.800','1.0','1.0'],
 
     'p8_ee_WW_mumu_ecm365':['WW ecm=365GeV','W->mu and W ->tau->mu','','0.1785','1.0','1.0'],
-    'p8_ee_Zqq_ecm365':['Z/Gamma* ecm=365GeV','hadronic decays','','21.4149','1.0','1.0'],  
+    'p8_ee_Zqq_ecm365':['Z/Gamma* ecm=365GeV','Z->qq (q = u,d)','','21.4149','1.0','1.0'],
+    'p8_ee_Zbb_ecm365':['Z/Gamma* ecm=365GeV','Z->bb','','21.4149','1.0','1.0'],
+    'p8_ee_Zcc_ecm365':['Z/Gamma* ecm=365GeV','Z->cc','','21.4149','1.0','1.0'],
+    'p8_ee_Zss_ecm365':['Z/Gamma* ecm=365GeV','Z->ss','','21.4149','1.0','1.0'],
 
     'p8_ee_tt_fullhad_ecm365':['tt ecm=365GeV','hadronic decays','','0.363528','1.0','1.0'],
     'p8_ee_ZZ_fullhad_ecm365':['ZZ ecm=365GeV','hadronic decays','','0.31417','1.0','1.0'],
@@ -676,6 +679,9 @@ gridpacklist = {
     'wzp6_ee_qqH_HZZ_ecm240':['ee -> Z(u u / d d) H,  ecm=240 GeV','H to ZZ','','1.409e-03','1.0','1.0'],
     'wzp6_ee_qqH_HZZ_qqqq_ecm240':['ee -> Z(u u / d d) H,  ecm=240 GeV','H to ZZ* to 4q (q=udscb)','','1.0','1.0','1.0'],
     'wzp6_ee_qqH_HZZ_qqnunu_ecm240':['ee -> Z(u u/ d d ) H,  ecm=240 GeV','H to ZZ* to 2nu2q (q=udscb)','','1.0','1.0','1.0'],
+    'wzp6_ee_llH_HZZ_qqll_ecm240':['ee -> Z(ll) H,  ecm=240 GeV','H to ZZ* to qqll (q=udscb)','','1.409e-03','1.0','1.0'],
+    'wzp6_ee_qqH_HZZ_llll_ecm240':['ee -> Z(u u / d d) H,  ecm=240 GeV','H to ZZ* to llll','','1.409e-03','1.0','1.0'],
+
     'wzp6_ee_qqH_HZa_ecm240':['ee -> Z(u u / d d) H,  ecm=240 GeV','H to Za','','8.177e-05','1.0','1.0'],
     'wzp6_ee_qqH_Haa_ecm240':['ee -> Z(u u / d d) H,  ecm=240 GeV','H to aa','','1.211e-04','1.0','1.0'],
     
@@ -899,6 +905,8 @@ gridpacklist = {
 
     'wzp6_ee_qqH_HZZ_qqqq_ecm365':['ee -> Z(u u / d d) H, ecm=365 GeV','H to ZZ* to 4q (q=udscb)', '','3.6231e-03','1.0','1.0'],
     'wzp6_ee_qqH_HZZ_qqnunu_ecm365':['ee->Z(u u / d d) H, ecm=365 GeV','H to ZZ* to 2nu2q (q=udscb)', '','2.43815e-04','1.0','1.0'],
+    'wzp6_ee_llH_HZZ_qqll_ecm365':['ee -> Z(ll) H,  ecm=240 GeV','H to ZZ* to qqll (q=udscb)','','1.409e-03','1.0','1.0'],
+    'wzp6_ee_qqH_HZZ_llll_ecm365':['ee -> Z(u u / d d) H,  ecm=240 GeV','H to ZZ* to ll','','1.409e-03','1.0','1.0'],
 
     'wzp6_ee_tautau_ecm365': ['Z/gamma* to tautau, ecm=365 GeV','full phase space', '','2.01656','1.0','1.0'],
     'wzp6_ee_mumu_ecm365':['Z/gamma* to mumu, ecm=365 GeV','full phase space', '','2.28580','1.0','1.0'],
