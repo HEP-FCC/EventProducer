@@ -77,8 +77,18 @@ kkmccards_dir = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/KKMC/"
 # /cvmfs/fcc.cern.ch/sw/latest/setup.sh 
 ##delphes base card detector
 #detectors = ['IDEA', 'IDEA_3T', 'IDEA_FullSilicon']
-detectors = ['IDEA', 'IDEA_3T', 'IDEA_SiTracking']
-
+detectors = [
+    'IDEA',
+    'IDEA_3T',
+    'IDEA_SiTracking',
+    'IDEA_better_TOFReso_3ps',
+    'IDEA_heavierBP_100pc',
+    'IDEA_lighterBP_50pc',
+    'IDEA_shiftVXDr_plus500um',
+    'IDEA_worse_HCalEReso_ATLAS',
+    'IDEA_worse_HCalEReso_CMS',
+    'IDEA_worse_singlehitReso_100pc_heavierVTXLOW_100pc',
+]
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={
