@@ -40,6 +40,7 @@ class printer():
 
         #ldir=[x[0] for x in os.walk(self.indir)]
         ldir=next(os.walk(self.indir))[1]
+        print(ldir)
 
 #        checkfiles=''
 #        if self.isLHE: checkfiles='%s/files.yaml'%(self.para.lhe_dir)
@@ -94,15 +95,15 @@ class printer():
                     br = self.para.branching_ratios[dec]
                     decay = dec
             if decay != '':
-                print ('decay---------- ',decay,' ------- br ',br)
+                print ('decay---------- ', decay, ' ------- br ', br)
                 decstr = '_{}'.format(decay)
 
             ispythiaonly=False
 
-            print ('proc ================================= ',proc)
+            print ('proc ================================= ', proc)
             
             try: 
-                teststring=self.para.gridpacklist[proc][0]
+                teststring = self.para.gridpacklist[proc][0]
             except IOError as e:
                 print ("I/O error({0}): {1}".format(e.errno, e.strerror))
             except ValueError:
@@ -163,8 +164,11 @@ class printer():
             nfileseos=0
 #            nfileseos=tmpcheck[proc]['neos']
             if self.isLHE:
-                if os.path.isdir('%s%s'%(self.para.lhe_dir,proc)):
-                    nfileseos=len(os.listdir('%s%s'%(self.para.lhe_dir,proc)))
+                if os.path.isdir('%s%s' % (self.para.lhe_dir, proc)):
+                    file_list_eos = os.listdir('%s%s' % (self.para.lhe_dir, proc))
+                    file_list_eos = [fname for fname in file_list_eos
+                                           if fname.endswith('.lhe.gz')]
+                    nfileseos = len(file_list_eos)
             else:                    
                 if os.path.isdir('%s%s/%s/%s'%(self.para.delphes_dir,self.version,self.detector,process)): 
                     print ('%s%s/%s/%s'%(self.para.delphes_dir,self.version,self.detector,process))

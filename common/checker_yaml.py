@@ -2,6 +2,7 @@ import glob, os, sys
 import ROOT as r
 import yaml
 import time
+import uuid
 import EventProducer.common.utils as ut
 class checker_yaml():
 
@@ -12,7 +13,12 @@ class checker_yaml():
         self.fext   = fext
         self.process = process
         self.yamldir = yamldir
+        self.filecounting_dir = f'/tmp/fcc_filecounting_{uuid.uuid4().hex[:14]}'
         self.count = 0
+
+        if not os.path.isdir(self.filecounting_dir):
+            os.system('mkdir %s' % self.filecounting_dir)
+            print(f'Created temporary file counting direcotory: {self.filecounting_dir}')
 
 #__________________________________________________________
     def checkFile_stdhep(self, f):
@@ -26,19 +32,16 @@ class checker_yaml():
             print ('file size is 0, job is bad')
             return -1,False
 
-        filecounting='filecounting'
-        if os.path.isdir(filecounting)==False:
-            os.system('mkdir %s'%filecounting)
-        else:
-            if len(glob.glob('%s/*stdhep*'%filecounting))>0: os.system('rm %s/*stdhep*'%filecounting)
+        # Clear all STDHEP file from the temporary directory
+        os.system(f'rm -f {self.filecounting_dir}/*stdhep*')
 
         if hack: 
-           cmd='cp /dev/null %s/%s'%(filecounting, f.split('/')[-1] )
+           cmd = 'cp /dev/null %s/%s' % (self.filecounting_dir, f.split('/')[-1])
         else :
-           cmd='cp %s %s'%(f,filecounting)
+           cmd = 'cp %s %s'%(f, self.filecounting_dir)
 
         outputCMD = ut.getCommandOutput(cmd)
-        fcount='%s/%s'%(filecounting,f.split('/')[-1])
+        fcount = '%s/%s' % (self.filecounting_dir, f.split('/')[-1])
         if os.path.isfile(fcount):
             cmd='gunzip %s'%(fcount)
             stderr=''
@@ -81,43 +84,44 @@ class checker_yaml():
 
 
 #__________________________________________________________
-    def checkFile_lhe(self, f):
-        size=os.path.getsize(f)
-        if size==0:
-            self.count+=1
-            print ('file size is 0, job is bad')
-            return -1,False
+    def checkFile_lhe(self, filepath):
+        # Check file size
+        size = os.path.getsize(filepath)
+        if size == 0:
+            self.count += 1
+            print(f'File "{filepath}" is empty, job is bad!')
+            return -1, False
 
-        filecounting='filecounting'
-        if os.path.isdir(filecounting)==False:
-            os.system('mkdir %s'%filecounting)
-        else:
-            if len(glob.glob('%s/*lhe*'%filecounting))>0:os.system('rm %s/*lhe*'%filecounting)
-        cmd='cp %s %s'%(f,filecounting)
+        # Clear temporary directory from LHE files
+        os.system(f'rm -f {self.filecounting_dir}/*lhe*')
+
+        # Copy zipped LHE file to temporary directory
+        cmd = 'cp %s %s' % (filepath, self.filecounting_dir)
         outputCMD = ut.getCommandOutput(cmd)
-        fcount='%s/%s'%(filecounting,f.split('/')[-1])
-        if os.path.isfile(fcount):
-            cmd='gunzip %s'%(fcount)
-            outputCMD = ut.getCommandOutput(cmd)
-            stderr=outputCMD["stderr"]
-            if len(stderr)>0:
-                print ('can not unzip the file, try again (count %i)'%self.count)
-                self.count+=1
-                os.system('rm %s'%(fcount))
-                return -1,False
 
-            cmd='grep \"<event>\" %s | wc -l'%(fcount.replace('.gz',''))
+        filepath_local = '%s/%s' % (self.filecounting_dir, filepath.split('/')[-1])
+        if os.path.isfile(filepath_local):
+            cmd = f'gunzip {filepath_local}'
             outputCMD = ut.getCommandOutput(cmd)
-            stdoutplit=outputCMD["stdout"].split(' ')
-            nevts=int(stdoutplit[0])
-            if nevts==0:
+            stderr = outputCMD["stderr"]
+            if len(stderr) > 0:
+                print('Can not unzip the file, try again (count %i)' %self.count)
+                self.count += 1
+                os.system('rm %s' % (filepath_local))
+                return -1, False
+
+            cmd = 'grep \"<event>\" %s | wc -l' % (filepath_local.replace('.gz', ''))
+            outputCMD = ut.getCommandOutput(cmd)
+            stdoutplit = outputCMD["stdout"].split(' ')
+            nevts = int(stdoutplit[0])
+            if nevts == 0:
                 print ('no events in the file, job is bad')
-                os.system('rm %s'%(fcount.replace('.gz','')))
-                return 0,False
+                os.system('rm %s'%(filepath_local.replace('.gz','')))
+                return 0, False
             else: 
-                print ('%i events in file %s, job is good'%(nevts,f))
-                os.system('rm %s'%(fcount.replace('.gz','')))
-                return nevts,True
+                print(f'{nevts} events in file "{filepath}", job is good')
+                os.system('rm %s'%(filepath_local.replace('.gz','')))
+                return nevts, True
         else:
             print ('file not properly copied... try again (count %i)'%self.count)
             if not ut.testeos(self.para.eostest,self.para.eostest_size):
@@ -314,14 +318,14 @@ class checker_yaml():
                             continue
 
                 elif '.lhe.gz' in self.fext:
-                    nevts,check=self.checkFile_lhe(f)
-                    while nevts==-1 and not check:
-                        nevts,check=self.checkFile_lhe(f)
+                    nevts, check = self.checkFile_lhe(f)
+                    while nevts == -1 and not check:
+                        nevts,check = self.checkFile_lhe(f)
                         if self.count==10:
                             print ('can not copy or unzip the file, declare it wrong')
                             break
 
-                    status='DONE'
+                    status = 'DONE'
                     if not check: status='BAD' 
 
                     if status=='DONE':
