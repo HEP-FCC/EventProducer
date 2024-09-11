@@ -298,8 +298,8 @@ if __name__=="__main__":
 
         elif args.reco:
             print('create web page for reco version %s' % version)
-            webpage=para.delphes_web.replace('VERSION',version).replace('DETECTOR',detector)
-            printdic=prt.printer(yamldir, webpage, True, False, para, detector, version)
+            webpage = para.delphes_web.replace('VERSION', version).replace('DETECTOR', detector)
+            printdic = prt.printer(yamldir, webpage, True, False, para, detector, version)
             printdic.run()
 
     elif args.remove:
