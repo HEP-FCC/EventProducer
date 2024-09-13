@@ -10,7 +10,7 @@ import EventProducer.common.makeyaml as my
 class send_p8():
 
 #__________________________________________________________
-    def __init__(self,njobs, events, process, islsf, iscondor, islocal, queue, priority, ncpus, para, version, training, detector):
+    def __init__(self,njobs, events, process, islsf, iscondor, islocal, queue, priority, ncpus, para, version, training, detector, custom_edm4hep_config):
         self.njobs    = njobs
         self.events   = events
         self.process  = process
@@ -25,6 +25,7 @@ class send_p8():
         self.version  = version
         self.training = training
         self.detector = detector
+        self.custom_edm4hep_config = custom_edm4hep_config
 
 #__________________________________________________________
     def send(self):
@@ -52,8 +53,31 @@ class send_p8():
             if not ut.dir_exist(yamldir):
                 os.system("mkdir -p %s"%yamldir)
 
-        delphescards_base = '%scard_%s.tcl'%(self.para.delphescards_dir,self.detector)
-        delphescards_base=delphescards_base.replace('_VERSION_',self.version)
+        if "FCChh" in self.para.module_name:
+            delphescards_base = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_base)
+            delphescards_mmr='' #not sure this is really necessary, could clean up the code to not need it
+            delphescards_emr=''
+            delphescards_mr=''
+            if 'FCCee' not in self.para.module_name:
+                delphescards_mmr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mmr)
+                if ut.file_exist(delphescards_mmr)==False and self.version != 'cms' and 'helhc' not in self.version:
+                    print ('delphes card does not exist: ',delphescards_mmr,' , exit')
+                    sys.exit(3)
+
+                delphescards_mr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mr)
+                if ut.file_exist(delphescards_mr)==False and self.version != 'cms' and 'helhc' not in self.version:
+                    print ('delphes card does not exist: ',delphescards_mr,' , exit')
+                    sys.exit(3)
+
+                #from fcchh_v05 have also a separate electron momentum resolution file: 
+                if "fcc_v05" in self.version:
+                    delphescards_emr = '%s%s/%s'%(self.para.delphescards_dir, self.version, self.para.delphescard_emr)
+                    if not os.path.isfile(delphescards_emr):
+                        raise Exception("ERROR in param_FCChh - the card for electron momentum resolution doesn't exist, at: "+delphescards_emr)
+
+        else:   
+            delphescards_base = '%scard_%s.tcl'%(self.para.delphescards_dir,self.detector)
+            delphescards_base=delphescards_base.replace('_VERSION_',self.version)
         if ut.file_exist(delphescards_base)==False:
             print ('delphes card does not exist: ',delphescards_base,' , exit')
             sys.exit(3)
@@ -123,14 +147,22 @@ class send_p8():
                 frun.write('mkdir -p %s/%s\n'%(outdir,self.process))
             frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s card.tcl\n'%(delphescards_base))
 
+            if "FCChh" in self.para.module_name:
+                frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mmr))
+                frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mr))
+                if "fcc_v05" in self.version:
+                    frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(delphescards_emr))
+
             if '_EvtGen' not in self.process:
                 frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
                 frun.write('echo "" >> card.cmd\n')
                 frun.write('echo "Random:seed = %s" >> card.cmd\n'%uid)
                 frun.write('echo "Main:numberOfEvents = %i" >> card.cmd\n'%(self.events))
 
-
-            frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Delphes/edm4hep_%s.tcl edm4hep.tcl\n'%(self.version,self.detector))
+            if self.custom_edm4hep_config:
+                frun.write('cp {} edm4hep.tcl\n'.format(self.custom_edm4hep_config))
+            else:
+                frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Delphes/edm4hep_%s.tcl edm4hep.tcl\n'%(self.version,self.detector))
             
             if '_EvtGen' not in self.process:
                 frun.write('DelphesPythia8_EDM4HEP card.tcl edm4hep.tcl card.cmd events_%s.root\n'%(uid)) 
