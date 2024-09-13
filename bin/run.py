@@ -81,7 +81,7 @@ if __name__=="__main__":
 
     if args.FCChh:
         import EventProducer.config.param_FCChh as para
-        print ('import FCC-hh config')
+        print ('import base FCC-hh config')
     elif args.FCCee:
         import EventProducer.config.param_FCCee as para
         print ('import FCC-ee config')
@@ -94,6 +94,11 @@ if __name__=="__main__":
     prodTagGroup.add_argument('--prodtag', type=str, required = '--reco' in sys.argv, help='Version to use', choices = prodTag)
     prodTagGroup.add_argument('--detector', type=str, default='', required = '--reco' in sys.argv, help='Detector to use', choices = para.detectors)
 
+    args, _ = parser.parse_known_args()
+    
+    if args.FCChh and args.prodtag and "scenarioII" in args.prodtag:
+        import EventProducer.config.param_FCChh_scenarioII as para
+        print ('overwrite base FCC-hh config with specific FCC-hh scenario II config')
     
     decaylist=[]
     for key, value in para.decaylist.items():
@@ -281,7 +286,7 @@ if __name__=="__main__":
             elif sendOpt=='p8':
                 print ('preparing to send FCCSW jobs from pythia8 directly')
                 import EventProducer.bin.send_p8 as sp8
-                sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, training, detector)
+                sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, training, detector, args.customEDM4HEPOutput)
                 sendp8.send()
             elif sendOpt=='stdhep':
                 print ('preparing to send FCCSW jobs from stdhep')
