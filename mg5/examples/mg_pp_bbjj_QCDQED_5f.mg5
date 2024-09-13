@@ -4,7 +4,7 @@ output DUMMYPROCESS
 
 ######## DELIMITER (!!! NEED THIS LINE !!!) ##################
 
-set lhapdf /afs/cern.ch/work/s/selvaggi/public/LHAPDF-6.1.6/build/bin/lhapdf-config
+set lhapdf /cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/lhapdf/6.5.4-f6jh5s/bin/lhapdf-config
 
 launch DUMMYPROCESS
 set iseed DUMMYSEED
