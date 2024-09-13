@@ -6,20 +6,18 @@ eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size=1312594
 
 #stat
-lhe_stat="/eos/experiment/fcc/www/data/FCChh/statlhe.html"
-delphes_stat="/eos/experiment/fcc/www/data/FCChh/statdelphesVERSION.html"
+lhe_stat="/afs/cern.ch/user/f/fccsw/www/data/FCChh/statlhe.html"
+delphes_stat="/afs/cern.ch/user/f/fccsw/www/data/FCChh/statdelphesVERSION.html"
 
 #web
-lhe_web="/eos/experiment/fcc/www/data/FCChh/LHEevents.txt"
-delphes_web="/eos/experiment/fcc/www/data/FCChh/Delphesevents_VERSION.txt"
+lhe_web="/afs/cern.ch/user/f/fccsw/www/data/FCChh/LHEevents.txt"
+delphes_web="/afs/cern.ch/user/f/fccsw/www/data/FCChh/Delphesevents_VERSION.txt"
 
 #yaml directory
 yamldir='/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCChh/'
 
 #proc lists
-procList = [
-     '/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCChh_procDict_VERSION.json',
-     '/eos/experiment/fcc/www/data/FCCDicts/FCChh_procDict_VERSION.json']
+procList = '/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCChh_procDict_VERSION.json'
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'
@@ -35,12 +33,9 @@ prodTag = {
     'fcc_v04':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
     'fcc_v05_scenarioI':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
     'fcc_v05_scenarioII':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
-    'fcc_v05_scenarioI_mu1000':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
-    'fcc_v05_scenarioI_mu200':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
     'fcc_v05_scenarioII_mu200':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
 }
 
-# defaultstack='/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh'
 defaultstack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
 
 ##eos directory for FCCSW pythia delphes files
@@ -63,15 +58,15 @@ fccconfig_dir    = '/eos/experiment/fcc/hh/utils/config/'
 detectors = ['']
 
 ##muom momentum delphes resolution card
-delphescard_mmr='muonMomentumResolution_I.tcl' #from fcc_v05 onwards
+delphescard_mmr='muonMomentumResolution_II.tcl' #from fcc_v05 onwards
 # delphescard_mmr='muonMomentumResolutionVsP.tcl' #old card
 ##electron momentum delphes resolution card
-delphescard_emr='electronMomentumResolution_I.tcl' #from fcc_v05 onwards
+delphescard_emr='electronMomentumResolution_II.tcl' #from fcc_v05 onwards
 ##momentum resolution delphes card
-delphescard_mr='trackMomentumResolution_I.tcl' #from fcc_v05 onwards
+delphescard_mr='trackMomentumResolution_II.tcl' #from fcc_v05 onwards
 # delphescard_mr='trackMomentumResolution.tcl' #old card
 ##delphes base card
-delphescard_base='FCChh_I.tcl' #from fcc_v05 onwards
+delphescard_base='FCChh_II.tcl' #from fcc_v05 onwards
 # delphescard_base='card.tcl' #old card
 ##FCC config script name
 fccconfig='PythiaDelphes_config_v02.py'
@@ -79,9 +74,6 @@ fccconfig='PythiaDelphes_config_v02.py'
 #list of processes only with Pythia, meaning no LHE
 pythialist={
 'dummy':['1','1','1','1','1','1'],
-#for testing
-'p8_ee_Z_bb_ecm91':['1','1','1','1','1','1'],
-'p8_pp_Z_bb':['1','1','1','1','1','1'],
 
 #'mg_pp_za012j_zmumu':['Z gamma + 012jets Z->mumu','','','1.0','1.0','1.0'],
 #'mg_pp_za012j_znunu':['Z gamma + 012jets Z->nunu','','','1.0','1.0','1.0'],
@@ -91,10 +83,6 @@ pythialist={
 'pwp8_pp_hh_lambda100_5f_hhbbww':['1','1','1','1','1','1'],
 'pwp8_pp_hh_lambda100_5f_hhbbaa':['1','1','1','1','1','1'],
 'pwp8_pp_hh_lambda100_5f_hhbbzz_4l':['1','1','1','1','1','1'],
-
-#new Z+jets bkg
-'mgp8_pp_ll012j_5f':['1','1','1','1','1','1'],
-'mg_pp_bbjj_QCDQED_5f_test':['1','1','1','1','1','1'],
 
 
 'p8_pp_ExcitedQ_10TeV_qq':['10TeV Excited quark Lambda 10TeV','','','2.368','1.0','1.0'],
@@ -438,23 +426,6 @@ pythialist={
 ##list of possible decays of LHE files
 
 decaylist = {
-#bbyy samples at alternate energies
-'mg_pp_h012j_5f_60TeV':['haa'],
-'mg_pp_h012j_5f_80TeV':['haa'],
-'mg_pp_h012j_5f_100TeV':['haa'],
-'mg_pp_h012j_5f_120TeV':['haa'],
-'mg_pp_vbf_h01j_5f_60TeV':['haa'],
-'mg_pp_vbf_h01j_5f_80TeV':['haa'],
-'mg_pp_vbf_h01j_5f_100TeV':['haa'],
-'mg_pp_vbf_h01j_5f_120TeV':['haa'],
-'mg_pp_tth01j_5f_60TeV':['haa'],
-'mg_pp_tth01j_5f_80TeV':['haa'],
-'mg_pp_tth01j_5f_100TeV':['haa'],
-'mg_pp_tth01j_5f_120TeV':['haa'],
-'mg_pp_vh012j_5f_60TeV':['haa'],
-'mg_pp_vh012j_5f_80TeV':['haa'],
-'mg_pp_vh012j_5f_100TeV':['haa'],
-'mg_pp_vh012j_5f_120TeV':['haa'],
 'mg_pp_h012j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_hh01j_5f':['hhaabb'],
 'mg_pp_vbf_h01j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hnunununu'],
@@ -494,7 +465,6 @@ decaylist = {
 
 'mg_pp_z0123j_4f':['znunu'],
 'mg_pp_tt012j_5f':['ttau', 'blvblv'],
-'pw_pp_hh_lambda100_5f_100TeV_testSA_fixed':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda000_5f':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda020_5f':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda040_5f':['hhbbaa','hhbbtata','hhbbbb'],
@@ -729,59 +699,12 @@ branching_ratios = {
 ## description/comment/matching parameters/cross section/kfactor/matching efficiency
 
 gridpacklist = {
-#new bbyy signals at different E_CMS - cross-sections are dummy placeholders
-'pw_pp_hh_lambda100_5f_100TeV_SA':['pp gg HH 100TeV, kl =1','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda240_5f_100TeV_SA':['pp gg HH 100TeV, kl =2.4','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda300_5f_100TeV_SA':['pp gg HH 100TeV, kl =3','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda100_5f_80TeV_SA':['pp gg HH 80TeV, kl =1','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda240_5f_80TeV_SA':['pp gg HH 80TeV, kl =2.4','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda300_5f_80TeV_SA':['pp gg HH 80TeV, kl =3','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda100_5f_120TeV_SA':['pp gg HH 120TeV, kl =1','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda240_5f_120TeV_SA':['pp gg HH 120TeV, kl =2.4','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda300_5f_120TeV_SA':['pp gg HH 120TeV, kl =3','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda100_5f_100TeV_testSA':['pp gg HH 120TeV, kl =1','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda100_5f_100TeV_testSA_fixed':['pp gg HH 120TeV, kl =1','','','1.0','1.0','1.0'],
-'mg_pp_jjaa_5f_60TeV':['dijet diphoton','','','1.0','1.0','1.0'],
-'mg_pp_jjaa_5f_80TeV':['dijet diphoton','','','1.0','1.0','1.0'],
-'mg_pp_jjaa_5f_100TeV':['dijet diphoton','','','1.0','1.0','1.0'],
-'mg_pp_jjaa_5f_120TeV':['dijet diphoton','','','1.0','1.0','1.0'],
-
-#TEST
-'mg_pp_bbjj_QCDQED_5f_test':['1','1','1','1','1','1'],
-'mg_pp_lljj_QED_5f':['1','1','1','1','1','1'],
-
 #new lljj for bb2lMET
 'mg_pp_lljj_HF_QED_5f':['1','1','1','1','1','1'],
-
-#bbyy samples at alternate energy points
-'mg_pp_h012j_5f_60TeV':['1','1','1','1','1','1'],
-'mg_pp_h012j_5f_80TeV':['1','1','1','1','1','1'],
-'mg_pp_h012j_5f_100TeV':['1','1','1','1','1','1'],
-'mg_pp_h012j_5f_120TeV':['1','1','1','1','1','1'],
-
-'mg_pp_vbf_h01j_5f_60TeV':['1','1','1','1','1','1'],
-'mg_pp_vbf_h01j_5f_80TeV':['1','1','1','1','1','1'],
-'mg_pp_vbf_h01j_5f_100TeV':['1','1','1','1','1','1'],
-'mg_pp_vbf_h01j_5f_120TeV':['1','1','1','1','1','1'],
-
-'mg_pp_tth01j_5f_60TeV':['1','1','1','1','1','1'],
-'mg_pp_tth01j_5f_80TeV':['1','1','1','1','1','1'],
-'mg_pp_tth01j_5f_100TeV':['1','1','1','1','1','1'],
-'mg_pp_tth01j_5f_120TeV':['1','1','1','1','1','1'],
-
-'mg_pp_vh012j_5f_60TeV':['1','1','1','1','1','1'],
-'mg_pp_vh012j_5f_80TeV':['1','1','1','1','1','1'],
-'mg_pp_vh012j_5f_100TeV':['1','1','1','1','1','1'],
-'mg_pp_vh012j_5f_120TeV':['1','1','1','1','1','1'],
-
-#testing with gen cuts:
-'mg_pp_h012j_5f_100TeV_gencuts':['1','1','1','1','1','1'],
-
-#tester:
-'mg_pp_h0j_test_5f_80TeV':['1','1','1','1','1','1'],
+'mg_pp_lljj_HF_QCDQED_5f':['1','1','1','1','1','1'],
 
 'dummy':['1','1','1','1','1','1'],
-    'mg_pp_za012j_zmumu':['Z gamma + 012jets Z->mumu','','','1.0','1.0','1.0'],
+'mg_pp_za012j_zmumu':['Z gamma + 012jets Z->mumu','','','1.0','1.0','1.0'],
 'mg_pp_za012j_znunu':['Z gamma + 012jets Z->nunu','','','1.0','1.0','1.0'],
 'mg_pp_za012j_zee':['Z gamma + 012jets Z->ee','','','1.0','1.0','1.0'],
 
@@ -1071,7 +994,7 @@ gridpacklist = {
 'mg_pp_mumu012j_mhcut_5f':['mu+ mu- + 0/1/2 jets','50 < m(mumu) < 200','','1.4e+04','1.0','0.753'],
 'mg_pp_lla01j_mhcut_5f':['l+ l- gamma + 0/1 jets','50 < m(lla) < 200','','639.1','1.0','0.78'],
 'mg_gg_aa01j_mhcut_5f':['gluon fusion di-photon + 0/1 jets','50 < m(aa) < 200','','484.2','1.0','0.592'],
-'mg_pp_aa012j_mhcut_5f':['di-photon + 0/1/2 jets','50 < m(aa) < 200','','1530','1.0','0.399'],
+'mg_pp_aa012j_mhcut_5f':['di-photon + 0/1/2 jets','50 < m(aa) < 200','','1530','1.0','0.403'],
 'mg_pp_llll01j_mhcut_5f':['4l + 0/1 jets','50 < m(4l) < 200','','0.1517','1.0','0.813'],
 'mg_pp_aa012j_mhcut_5f_HT_0_100':['di-photon + 0/1/2 jets','0 < HT < 100','xqcut = 30, qCut = 40','116.8','2.0','0.656'],
 'mg_pp_aa012j_mhcut_5f_HT_100_300':['di-photon + 0/1/2 jets','100 < HT < 300','xqcut = 30, qCut = 40','61.58','2.0','0.591'],
@@ -1437,7 +1360,7 @@ gridpacklist = {
 'mg_pp_vbs_wwss_kw_150_LL':['','inclusive','','0.1052','1.0','1.0'],
 
 # bbtautau
-'mg_pp_bbtata_QCDQED':['','inclusive','','75.61','1.0','1.006'],
+'mg_pp_bbtata_QCDQED':['','inclusive','','75.61','1.0','1.0'],
 'mg_pp_bbtata_QED':['','inclusive','','0.5519','1.0','1.0'],
 
 # bbjj
