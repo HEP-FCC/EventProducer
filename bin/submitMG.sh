@@ -3,7 +3,16 @@ unset LD_LIBRARY_PATH
 unset PYTHONHOME
 unset PYTHONPATH
 
-source /cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh
+# source /cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh
+
+source /cvmfs/sft.cern.ch/lcg/views/LCG_89/x86_64-centos7-gcc7-opt/setup.sh 
+export LHAPDF_DATA_PATH=/afs/cern.ch/work/b/bistapf/lhapdf/LHAPDF-6.1.6/install/share/LHAPDF/
+
+# source /cvmfs/sft.cern.ch/lcg/releases/gcc/7.3.0-cb1ee/x86_64-centos7/setup.sh
+# source /cvmfs/sft.cern.ch/lcg/releases/LCG_89/Python/2.7.13/x86_64-centos7-gcc62-opt/Python-env.sh
+# source /cvmfs/sft.cern.ch/lcg/releases/LCG_89/ROOT/6.10.02/x86_64-centos7-gcc62-opt/bin/thisroot.sh
+
+# ls -lrt /cvmfs/sft.cern.ch/lcg/releases/gcc/7.3.0-cb1ee/x86_64-centos7/
 
 # source /cvmfs/sft.cern.ch/lcg/releases/LCG_88/gcc/4.9.3/x86_64-slc6/setup.sh
 # source /cvmfs/sft.cern.ch/lcg/releases/LCG_88/Python/2.7.13/x86_64-slc6-gcc49-opt/Python-env.sh
@@ -24,13 +33,17 @@ cd job
 echo "copying madgraph tarball ..."
 #cp -r /eos/experiment/fcc/hh/utils/generators/MG5_aMC_v2.6.1.tar.gz .
 #cp -r /eos/experiment/fcc/hh/utils/generators/MG5_aMC_v2.6.7.tar.gz .
-cp -r /eos/experiment/fcc/hh/utils/generators/MG5_aMC_v2.8.2.tar.gz .
+# cp -r /eos/experiment/fcc/hh/utils/generators/MG5_aMC_v2.8.2.tar.gz .
+cp -r /afs/cern.ch/work/b/bistapf/MG5_aMC_v2.5.5.tar.gz .
+
 #tar -xzf MG5_aMC_v2.6.1.tar.gz
 #tar -xzf MG5_aMC_v2.8.2.tar.gz
-tar -xzf MG5_aMC_v2.8.2.tar.gz
+tar -xzf MG5_aMC_v2.5.5.tar.gz
+
 echo "finished untaring ..."
 #cd MG5_aMC_v2_6_1
-cd MG5_aMC_v2_8_2
+# cd MG5_aMC_v2_8_2
+cd MG5_aMC_v2_5_5
 
 # parse script file
 cp ${SCRIPTFILE} .
