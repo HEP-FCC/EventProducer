@@ -181,10 +181,25 @@ class checker_yaml():
         nentries=tt.GetEntries()
         weight_sum=float(nentries)
 
+        #update: weights are recent addition to DelphesEdm4hep converted files 
         ##TODO: here we miss the metadata to get the sum of weights properly done
 	# compute sum of weights
+        if not tt.GetBranch("EventHeader.weight"):
+            print("EventHeader.weight is missing or corrupt in file: %s"%f)
+            print ('file ===%s=== must be deleted'%f)
+            return -1,-1,False
+
         r.gROOT.SetBatch(True)
-        tt.Draw('EventHeader.weight[0]>>histo')
+        # print("Trying to get sum of weights")
+        try:
+            # hasattr(tt, 'EventHeader.weight')
+            # tt.GetEntry(0).EventHeader.weight
+            tt.Draw('EventHeader.weight[0]>>histo')
+            # tt.Draw('EventHeader.weight[0]>>histo')
+        except:
+            print("EventHeader.weight is missing or corrupt in file: %s"%f)
+            print ('file ===%s=== must be deleted'%f)
+            return -1,-1,False
         # tt.Draw('mcEventWeights.value[0]>>histo')
         histo=r.gDirectory.Get('histo')
         
