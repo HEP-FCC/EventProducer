@@ -906,6 +906,7 @@ gridpacklist = {
     'wzp6_ee_numunumuH_Hss_ecm365':['ee->numunumuH, ecm=365 GeV','H->ss', '','1.079e-05','1.0','1.0'],
     'wzp6_ee_numunumuH_Huu_ecm365':['ee->numunumuH, ecm=365 GeV','H->uu', '','9.439e-09','1.0','1.0'],
     'wzp6_ee_numunumuH_Hdd_ecm365':['ee->numunumuH, ecm=365 GeV','H->dd', '','4.046e-09','1.0','1.0'],
+    'wzp6_ee_numunumuH_Hqq_ecm365':['ee->numunumuH, ecm=365 GeV','H->(uu/dd)', '','4.046e-09','1.0','1.0'],
     'wzp6_ee_numunumuH_Htautau_ecm365':['ee->numunumuH, ecm=365 GeV','H->tautau', '','3.385e-03','1.0','1.0'],
     'wzp6_ee_numunumuH_Hmumu_ecm365':['ee->numunumuH, ecm=365 GeV','H->mumu', '','1.0','1.0','1.0'],
 
