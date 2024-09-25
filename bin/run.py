@@ -37,8 +37,6 @@ if __name__=="__main__":
     sendjobGroup.add_argument('--priority', type=str, default='group_u_FCC.local_gen', help='condor queue priority (default: group_u_FCC.local_gen)')
     sendjobGroup.add_argument('--ncpus', type=str, default='1', help='number of CPUs (1CPU=2Gb of RAM)')
 
-    
-
 #41873
 
     ###################
@@ -76,8 +74,8 @@ if __name__=="__main__":
     args, _ = parser.parse_known_args()
     sendOpt = args.type
 
-    if args.customEDM4HEPOutput and not args.reco and not args.type=="lhep8":
-        parser.error("Option --customEDM4HEPOutput only works for producing edm4hep output, so if -reco and --type lhep8 options are set.")
+    if args.customEDM4HEPOutput and not args.reco and not (args.type=="lhep8" or args.type=="p8"):
+        parser.error("Option --customEDM4HEPOutput only works for producing edm4hep output, so if -reco and --type lhep8 or p8 options are set.")
 
     if args.FCChh:
         import EventProducer.config.param_FCChh as para
