@@ -58,8 +58,9 @@ class send_lhep8():
                 sys.exit(3)
 
             #from fcchh_v05 have also a separate electron momentum resolution file: 
-            if "fcc_v05" in self.version:
+            if "fcc_v05" in self.version or "fcc_v06" in self.version:
                 delphescards_emr = '%s%s/%s'%(self.para.delphescards_dir, self.version, self.para.delphescard_emr)
+                print("getting electron momentum resolutuon file from", delphescards_emr)
                 if not os.path.isfile(delphescards_emr):
                     raise Exception("ERROR in param_FCChh - the card for electron momentum resolution doesn't exist, at: "+delphescards_emr)
 
@@ -277,7 +278,7 @@ class send_lhep8():
                 frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s card.tcl\n'%(delphescards_base))
                 frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mmr))
                 frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mr))
-                if "fcc_v05" in self.version:
+                if delphescards_emr:
                     frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(delphescards_emr))
             if 'FCCee' not in self.para.module_name:
                 frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s config.py \n'%(fccconfig))
@@ -342,11 +343,21 @@ class send_lhep8():
             frun_condor.write('Log            = %s/condor_job.%s.$(ClusterId).$(ProcId).log\n'%(logdir,str(jobid)))
             frun_condor.write('Output         = %s/condor_job.%s.$(ClusterId).$(ProcId).out\n'%(logdir,str(jobid)))
             frun_condor.write('Error          = %s/condor_job.%s.$(ClusterId).$(ProcId).error\n'%(logdir,str(jobid)))
-            frun_condor.write('getenv         = True\n')
-            frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
-            #frun_condor.write('requirements   = ( (OpSysAndVer =?= "CentOS7") && (Machine =!= LastRemoteHost) )\n')
-            #frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") && (Machine =!= LastRemoteHost) )\n')
-            frun_condor.write('requirements    = ( (OpSysAndVer =?= "AlmaLinux9") && (Machine =!= LastRemoteHost) && (TARGET.has_avx2 =?= True) )\n')
+
+            # FCC-hh legacy production v05 with special release can only run on centos7 container, 
+            # and for v06 we set up from newer releases and dont want to port env
+            if 'FCChh' in self.para.module_name:
+                if "fcc_v05" in self.version:
+                    frun_condor.write('MY.WantOS = "el7"\n')
+                else:
+                    frun_condor.write('requirements    = ( (OpSysAndVer =?= "AlmaLinux9") && (Machine =!= LastRemoteHost) && (TARGET.has_avx2 =?= True) )\n')
+                
+                frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
+
+            else:
+                frun_condor.write('getenv         = True\n')
+                frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
+                frun_condor.write('requirements    = ( (OpSysAndVer =?= "AlmaLinux9") && (Machine =!= LastRemoteHost) && (TARGET.has_avx2 =?= True) )\n')
 
             frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')
             frun_condor.write('max_retries    = 3\n')

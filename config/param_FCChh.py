@@ -38,6 +38,7 @@ prodTag = {
     'fcc_v05_scenarioI_mu1000':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
     'fcc_v05_scenarioI_mu200':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
     'fcc_v05_scenarioII_mu200':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
+    'fcc_v06_scenarioI':'/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh',
 }
 
 # defaultstack='/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh'
