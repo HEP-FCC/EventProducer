@@ -52,7 +52,7 @@ class send_lhep8():
             delphescards_mr=''
 
             #ensure backwards compatibility for old productions (directory structure changes from v06)
-            prod_version_num = int(re.search(r'v\s*([\d.]+)', self.version).group(1))
+            prod_version_num = int(re.search(r'v([\d]+)', self.version).group(1))
 
             if prod_version_num >= 6:
                 # Base card
@@ -201,7 +201,7 @@ class send_lhep8():
         elif 'FCCee' in self.para.module_name:  acctype='FCCee'
 
         logdir=Dir+"/BatchOutputs/%s/%s/%s/%s/"%(acctype,self.version,self.detector,self.process)
-        
+
         if not ut.dir_exist(logdir):
             os.system("mkdir -p %s"%logdir)
 
