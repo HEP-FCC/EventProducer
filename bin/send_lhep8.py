@@ -4,6 +4,7 @@ import subprocess
 import time
 import yaml
 import glob
+import re
 from select import select
 import EventProducer.common.utils as ut
 import EventProducer.common.makeyaml as my
@@ -43,31 +44,58 @@ class send_lhep8():
             print ('process %s does not exist as gridpack'%self.process)
             sys.exit(3)
 
-        delphescards_mmr='' #not sure this is really necessary, could clean up the code to not need it
-        delphescards_emr=''
-        delphescards_mr=''
-        
-        if 'FCCee' not in self.para.module_name:
-            delphescards_mmr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mmr)
-            if ut.file_exist(delphescards_mmr)==False and self.version != 'cms' and 'helhc' not in self.version:
-                print ('delphes card does not exist: ',delphescards_mmr,' , exit')
-                sys.exit(3)
+        # retrieve delphes card paths for FCC-hh case
+        if "FCChh" in self.para.module_name:
 
-            delphescards_mr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mr)
-            if ut.file_exist(delphescards_mr)==False and self.version != 'cms' and 'helhc' not in self.version:
-                print ('delphes card does not exist: ',delphescards_mr,' , exit')
-                sys.exit(3)
+            delphescards_mmr='' #not sure this is really necessary, could clean up the code to not need it
+            delphescards_emr=''
+            delphescards_mr=''
 
-            #from fcchh_v05 have also a separate electron momentum resolution file: 
-            if "fcc_v05" in self.version or "fcc_v06" in self.version:
-                delphescards_emr = '%s%s/%s'%(self.para.delphescards_dir, self.version, self.para.delphescard_emr)
-                print("getting electron momentum resolutuon file from", delphescards_emr)
-                if not os.path.isfile(delphescards_emr):
-                    raise Exception("ERROR in param_FCChh - the card for electron momentum resolution doesn't exist, at: "+delphescards_emr)
+            #ensure backwards compatibility for old productions (directory structure changes from v06)
+            prod_version_num = int(re.search(r'v\s*([\d.]+)', self.version).group(1))
+
+            if prod_version_num >= 6:
+                # Base card
+                delphescards_base = os.path.join(self.para.delphescards_dir, self.version, self.detector, self.para.delphescard_base )
+                
+                # Separate momentum resolution parametrization for muons
+                delphescards_mmr = os.path.join(self.para.delphescards_dir, self.version, self.detector, self.para.delphescard_mmr)
+            
+                # Separate momentum resolution parametrization for tracks
+                delphescards_mr = os.path.join(self.para.delphescards_dir, self.version, self.detector, self.para.delphescard_mr)
+
+                # Separate momentum resolution parametrization for electrons - exists only from production v05 onwards!
+                delphescards_emr = os.path.join(self.para.delphescards_dir, self.version, self.detector, self.para.delphescard_emr)
+
+            else:
+                delphescards_base = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_base)
+                delphescards_mmr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mmr)
+                delphescards_mr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mr)
+
+                if prod_version_num >= 5:
+                    delphescards_emr = '%s%s/%s'%(self.para.delphescards_dir, self.version, self.para.delphescard_emr)
 
 
-        if 'FCCee' not in self.para.module_name:
-              delphescards_base = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_base)
+            # replace detector version tag
+            delphescards_base = delphescards_base.replace('DETECTOR',self.detector)
+            delphescards_mmr = delphescards_mmr.replace('DETECTOR',self.detector)
+            delphescards_mr = delphescards_mr.replace('DETECTOR',self.detector)
+            delphescards_emr = delphescards_emr.replace('DETECTOR',self.detector)
+
+            #check if all requested cards exist:
+            if not os.path.isfile(delphescards_base):
+                raise Exception("ERROR in param_FCChh - the base Delphes card doesn't exist, at: "+delphescards_base)
+
+            if not os.path.isfile(delphescards_mmr):
+                raise Exception("ERROR in param_FCChh - the card for muon momentum resolution doesn't exist, at: "+delphescards_mmr)
+
+            if not os.path.isfile(delphescards_mr):
+                raise Exception("ERROR in param_FCChh - the card for track momentum resolution doesn't exist, at: "+delphescards_mr)
+
+            if not os.path.isfile(delphescards_emr) and prod_version_num >= 5:
+                raise Exception("ERROR in param_FCChh - the card for track momentum resolution doesn't exist, at: "+delphescards_emr)
+
+        # retrieve delphes card paths for FCC-ee case
         # 2021/09/08 :
         else:
             delphescards_base = '%scard_%s.tcl'%(self.para.delphescards_dir,self.detector)
@@ -75,9 +103,9 @@ class send_lhep8():
             fccee_pythiacards_dir = self.para.pythiacards_dir.replace('_VERSION_',self.version)
             print( 'fccee_pythiacards_dir =', fccee_pythiacards_dir)
 
-        if ut.file_exist(delphescards_base)==False:
-            print ('delphes card does not exist: ',delphescards_base)
-            sys.exit(3)
+            if ut.file_exist(delphescards_base)==False:
+                print ('delphes card does not exist: ',delphescards_base)
+                sys.exit(3)
 
         if 'FCCee' not in self.para.module_name:
              fccconfig = '%s%s'%(self.para.fccconfig_dir,self.para.fccconfig)
@@ -172,10 +200,8 @@ class send_lhep8():
         if 'HELHC' in self.para.module_name:  acctype='HELHC'
         elif 'FCCee' in self.para.module_name:  acctype='FCCee'
 
-        if 'FCCee' not in self.para.module_name:
-            logdir=Dir+"/BatchOutputs/%s/%s/%s/"%(acctype,self.version,processp8)
-        else:
-            logdir=Dir+"/BatchOutputs/%s/%s/%s/%s/"%(acctype,self.version,self.detector,processp8)
+        logdir=Dir+"/BatchOutputs/%s/%s/%s/%s/"%(acctype,self.version,self.detector,self.process)
+        
         if not ut.dir_exist(logdir):
             os.system("mkdir -p %s"%logdir)
 

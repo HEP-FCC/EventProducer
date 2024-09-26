@@ -35,10 +35,7 @@ prodTag = {
     'fcc_v04':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
     'fcc_v05_scenarioI':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
     'fcc_v05_scenarioII':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
-    'fcc_v05_scenarioI_mu1000':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
-    'fcc_v05_scenarioI_mu200':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
-    'fcc_v05_scenarioII_mu200':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
-    'fcc_v06_scenarioI':'/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh',
+    'fcc_v06':'/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh',
 }
 
 # defaultstack='/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh'
@@ -61,18 +58,18 @@ pythiacards_dir  = '/eos/experiment/fcc/hh/utils/pythiacards/'
 fccconfig_dir    = '/eos/experiment/fcc/hh/utils/config/'
 
 ##delphes base card detector (needed for compatibility with ee)
-detectors = ['']
+detectors = ['I', 'II']
 
 ##muom momentum delphes resolution card
-delphescard_mmr='muonMomentumResolution_I.tcl' #from fcc_v05 onwards
+delphescard_mmr='muonMomentumResolution_DETECTOR.tcl' #from fcc_v05 onwards
 # delphescard_mmr='muonMomentumResolutionVsP.tcl' #old card
 ##electron momentum delphes resolution card
-delphescard_emr='electronMomentumResolution_I.tcl' #from fcc_v05 onwards
+delphescard_emr='electronMomentumResolution_DETECTOR.tcl' #from fcc_v05 onwards
 ##momentum resolution delphes card
-delphescard_mr='trackMomentumResolution_I.tcl' #from fcc_v05 onwards
+delphescard_mr='trackMomentumResolution_DETECTOR.tcl' #from fcc_v05 onwards
 # delphescard_mr='trackMomentumResolution.tcl' #old card
 ##delphes base card
-delphescard_base='FCChh_I.tcl' #from fcc_v05 onwards
+delphescard_base='FCChh_DETECTOR.tcl' #from fcc_v05 onwards
 # delphescard_base='card.tcl' #old card
 ##FCC config script name
 fccconfig='PythiaDelphes_config_v02.py'
