@@ -46,6 +46,7 @@ class send_lhep8():
         delphescards_mmr='' #not sure this is really necessary, could clean up the code to not need it
         delphescards_emr=''
         delphescards_mr=''
+        
         if 'FCCee' not in self.para.module_name:
             delphescards_mmr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mmr)
             if ut.file_exist(delphescards_mmr)==False and self.version != 'cms' and 'helhc' not in self.version:
@@ -352,7 +353,7 @@ class send_lhep8():
                 else:
                     frun_condor.write('requirements    = ( (OpSysAndVer =?= "AlmaLinux9") && (Machine =!= LastRemoteHost) && (TARGET.has_avx2 =?= True) )\n')
                 
-                frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
+                frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) 
 
             else:
                 frun_condor.write('getenv         = True\n')
