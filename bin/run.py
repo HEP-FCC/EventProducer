@@ -79,6 +79,9 @@ if __name__=="__main__":
     if args.customEDM4HEPOutput and not args.reco and not (args.type=="lhep8" or args.type=="p8"):
         parser.error("Option --customEDM4HEPOutput only works for producing edm4hep output, so if -reco and --type lhep8 or p8 options are set.")
 
+    if args.centos7 and not args.typelhe == 'mg':
+        parser.error("Option --centos7 is currently only supported for legacy running of LHE generation with MG.")
+
     if args.FCChh:
         import EventProducer.config.param_FCChh as para
         print ('import base FCC-hh config')
