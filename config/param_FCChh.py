@@ -1,5 +1,4 @@
 #module
-
 module_name='config/param_FCChh.py'
 #eos tests
 eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
@@ -38,7 +37,6 @@ prodTag = {
     'fcc_v06':'/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh',
 }
 
-# defaultstack='/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh'
 defaultstack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
 
 ##eos directory for FCCSW pythia delphes files
@@ -49,8 +47,6 @@ delphes_ext='.root'
 treename='events'
 
 ##where the delphes cards are stored
-# delphescards_dir = '/afs/cern.ch/user/b/bistapf/StandAlone_Delphes/delphes/cards/FCC/' #TEMP FOR ISOVAR VALIDATION
-# delphescards_dir = '/afs/cern.ch/user/b/bistapf/Dev_EvtProducer/EventProducer/DelphesCardLocal/' #TEMP LOCAL TESTER
 delphescards_dir = '/eos/experiment/fcc/hh/utils/delphescards/'
 ##where the pythia cards are stored
 pythiacards_dir  = '/eos/experiment/fcc/hh/utils/pythiacards/'
