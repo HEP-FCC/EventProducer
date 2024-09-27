@@ -45,6 +45,8 @@ delphes_dir = '/eos/experiment/fcc/hh/generation/DelphesEvents/'
 delphes_ext='.root'
 ##name of the ttree
 treename='events'
+##use weighted events for file checks
+do_weighted = True
 
 ##where the delphes cards are stored
 delphescards_dir = '/eos/experiment/fcc/hh/utils/delphescards/'
@@ -53,8 +55,8 @@ pythiacards_dir  = '/eos/experiment/fcc/hh/utils/pythiacards/'
 ##where the FCC config script is stored
 fccconfig_dir    = '/eos/experiment/fcc/hh/utils/config/'
 
-##delphes base card detector (needed for compatibility with ee)
-detectors = ['I', 'II']
+##delphes base card detector: Scenario I or II from v06 onwards, empty is legacy option for earlier productions
+detectors = ['I', 'II', '']
 
 ##muom momentum delphes resolution card
 delphescard_mmr='muonMomentumResolution_DETECTOR.tcl' #from fcc_v05 onwards

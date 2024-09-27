@@ -99,10 +99,6 @@ if __name__=="__main__":
 
     args, _ = parser.parse_known_args()
     
-    if args.FCChh and args.prodtag and "scenarioII" in args.prodtag:
-        import EventProducer.config.param_FCChh_scenarioII as para
-        print ('overwrite base FCC-hh config with specific FCC-hh scenario II config')
-    
     decaylist=[]
     for key, value in para.decaylist.items():
         for v in value:
