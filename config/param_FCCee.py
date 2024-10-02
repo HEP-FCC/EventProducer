@@ -804,6 +804,8 @@ gridpacklist = {
     'wzp6_ee_WbWb_semihad_ecm355': ['ee -> WbWb, ecm=355GeV','Wlep Whad', '','1.0','1.0','1.0'],
     'wzp6_ee_WbWb_semihad_ecm365': ['ee -> WbWb, ecm=365GeV','Wlep Whad', '','1.0','1.0','1.0'],
 
+    'wzp6_ee_WbWb_semihad_mtop171p5_ecm365': ['ee -> WbWb, ecm=365GeV (mtop = 171.5 GeV)','Wlep Whad', '','1.0','1.0','1.0'],
+    'wzp6_ee_WbWb_semihad_mtop173p5_ecm365': ['ee -> WbWb, ecm=365GeV (mtop = 173.5 GeV)','Wlep Whad', '','1.0','1.0','1.0'],
 
 # ee->H + background, ecm = 125 GeV:
     'wzp6_ee_l1l2nunu_ecm125':['ee -> l1l2nunu (l1!=l2, no H) ecm=125GeV','','','5.799e-03','1.0','1.0'],
