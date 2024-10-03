@@ -18,12 +18,12 @@ class checker_yaml():
 
         if not os.path.isdir(self.filecounting_dir):
             os.system('mkdir %s' % self.filecounting_dir)
-            print(f'Created temporary file counting direcotory: {self.filecounting_dir}')
+            print(f'Created temporary file counting directory: {self.filecounting_dir}')
 
 #__________________________________________________________
     def checkFile_stdhep(self, f):
 
-        hack = True
+        hack = True 
         #hack = False
 
         size=os.path.getsize(f)
@@ -181,23 +181,41 @@ class checker_yaml():
         nentries=tt.GetEntries()
         weight_sum=float(nentries)
 
-        ##TODO: here we miss the metadata to get the sum of weights properly done
-	## compute sum of weights
-        #r.gROOT.SetBatch(True)
-        #tt.Draw('mcEventWeights.value[0]>>histo')
-        #histo=r.gDirectory.Get('histo')
-        #
-        #try:
-        #    weight_sum=float(nentries)*histo.GetMean()
-        #except AttributeError as e:
-        #    print ("error ",e)
-        #    if nentries!=100000 and nentries!=10000:
-        #        print ('nentries  ',nentries)
-        #        #nentries=0
         if nentries==0:
             print ('file has 0 entries ===%s=== must be deleted'%f)
             return 0,0,False
 
+        # Weights are recent addition to DelphesEdm4hep converted files -> use a flag to ensure backwards compatibility
+        if hasattr(self.para,"do_weighted") and self.para.do_weighted:
+            print ("Using weighted events to check file validity.")
+
+    	    # compute sum of weights
+            if not tt.GetBranch("EventHeader.weight"):
+                print("EventHeader.weight is missing or corrupt in file: %s"%f)
+                print ('file ===%s=== must be deleted'%f)
+                return -1,-1,False
+
+            r.gROOT.SetBatch(True)
+            try:
+                tt.Draw('EventHeader.weight[0]>>histo')
+            except:
+                print("EventHeader.weight is missing or corrupt in file: %s"%f)
+                print ('file ===%s=== must be deleted'%f)
+                return -1,-1,False
+
+            histo=r.gDirectory.Get('histo')
+            
+            try:
+               weight_sum=float(nentries)*histo.GetMean()
+            except AttributeError as e:
+               print ("error ",e)
+               if nentries!=100000 and nentries!=10000: #what is the point of this? 
+                   print ('nentries  ',nentries)
+            if nentries==0:
+                print ('file has 0 entries ===%s=== must be deleted'%f)
+                return 0,0,False
+
+        print("Not using weights")
         print ('%i events in the file and sum of weights = %f --> job is good'%(nentries,weight_sum))
         return int(nentries),weight_sum,True
 

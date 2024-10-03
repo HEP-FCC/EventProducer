@@ -1,10 +1,11 @@
 import model sm-no_b_mass
-generate p p > b b~ j j / h QED=2 QCD=2
+define lep = e+ e- mu+ mu- ta+ ta-
+generate p p > lep lep  b b~ / h QED=2 QCD=2
+add process p p > lep lep  c c~ / h QED=2 QCD=2
+
 output DUMMYPROCESS
 
 ######## DELIMITER (!!! NEED THIS LINE !!!) ##################
-
-set lhapdf /cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/lhapdf/6.5.4-f6jh5s/bin/lhapdf-config
 
 launch DUMMYPROCESS
 set iseed DUMMYSEED
@@ -13,11 +14,9 @@ set nevents DUMMYNEVENTS
 set ebeam1 50000
 set ebeam2 50000
 
-set pdlabel lhapdf
-set lhaid 260000
-
 set maxjetflavor 5
 
+set mmll 10
 set ptj 20
 set drjj 0.4
 set drbb 0.4
