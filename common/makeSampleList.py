@@ -272,5 +272,13 @@ class makeSampleList():
 
         # replace existing param.py file
         if tmpexist:
-            os.system("mv tmp_{}.py {}".format(uid, self.para.module_name))
-        os.system("rm tmp_{}.json".format(uid))
+            retval = os.system(f'diff tmp_{uid}.py {self.para.module_name}')
+            if retval > 0:
+                retval = os.system(f'cp tmp_{uid}.py {self.para.module_name}')
+
+                if retval > 0:
+                    print('ERROR: Update of parameter file unsuccessfull!\n'
+                          'Aborting...')
+                    return
+        os.system('rm tmp_{uid}.json')
+        os.system('rm tmp_{uid}.py')
