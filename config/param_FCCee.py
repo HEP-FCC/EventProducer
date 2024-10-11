@@ -167,7 +167,7 @@ pythialist={
 #once we have Z -> bb
 #we need a factor of 7.9e-5 for Bc production
 #then a factor 0.0236 for Bc -> tau nu BF
-#then 0.098 for tau -> 3π nu
+#then 0.098 for tau -> 3pi nu
 
 
     'p8_ee_Zbb_ecm91':['Z/Gamma* ecm=91.188GeV to bb','inclusive decays','','6645.46','1.0','1.0'],     # win2023: 6600.53
