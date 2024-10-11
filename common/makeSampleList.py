@@ -279,5 +279,5 @@ class makeSampleList():
                 if retval > 0:
                     print('ERROR: Update of parameter file unsuccessfull!')
                     return
-        os.system('rm tmp_{uid}.json')
-        os.system('rm tmp_{uid}.py')
+        os.system('rm -f tmp_{uid}.json')
+        os.system('rm -f tmp_{uid}.py')
