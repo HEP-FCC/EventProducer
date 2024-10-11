@@ -277,8 +277,7 @@ class makeSampleList():
                 retval = os.system(f'cp tmp_{uid}.py {self.para.module_name}')
 
                 if retval > 0:
-                    print('ERROR: Update of parameter file unsuccessfull!\n'
-                          'Aborting...')
+                    print('ERROR: Update of parameter file unsuccessfull!')
                     return
         os.system('rm tmp_{uid}.json')
         os.system('rm tmp_{uid}.py')
