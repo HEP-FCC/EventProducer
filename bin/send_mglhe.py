@@ -10,7 +10,7 @@ import EventProducer.common.makeyaml as my
 class send_mglhe():
 
 #__________________________________________________________
-    def __init__(self, islsf, iscondor, mg5card, cutfile, model, para, procname, njobs, nev, queue, priority, ncpus ):
+    def __init__(self, islsf, iscondor, mg5card, cutfile, model, para, procname, njobs, nev, queue, priority, ncpus, do_EL7 = False ):
         self.islsf     = islsf
         self.iscondor  = iscondor
         self.user      = os.environ['USER']
@@ -24,6 +24,7 @@ class send_mglhe():
         self.queue     = queue
         self.priority  = priority
         self.ncpus     = ncpus
+        self.do_EL7    = do_EL7
 
 #__________________________________________________________
     def send(self):
@@ -125,10 +126,16 @@ class send_mglhe():
             frun_condor.write('Log            = %s/condor_job.%s.$(ClusterId).$(ProcId).log\n'%(logdir,str(uid)))
             frun_condor.write('Output         = %s/condor_job.%s.$(ClusterId).$(ProcId).out\n'%(logdir,str(uid)))
             frun_condor.write('Error          = %s/condor_job.%s.$(ClusterId).$(ProcId).error\n'%(logdir,str(uid)))
-            frun_condor.write('getenv         = True\n')
-            frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
-            frun_condor.write('requirements   = ( (OpSysAndVer =?= "AlmaLinux9") && (Machine =!= LastRemoteHost) )\n')
-#            frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") && (Machine =!= LastRemoteHost) )\n')
+
+            if self.do_EL7:
+                print("Info: requested to run in centos7 container.")
+                frun_condor.write('MY.WantOS = "el7"\n')
+                frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) 
+            else:
+                frun_condor.write('getenv         = True\n')
+                frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
+                frun_condor.write('requirements   = ( (OpSysAndVer =?= "AlmaLinux9") && (Machine =!= LastRemoteHost) )\n')
+
             frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')
             frun_condor.write('max_retries    = 3\n')
             frun_condor.write('+JobFlavour    = "%s"\n'%self.queue)
