@@ -466,7 +466,7 @@ gridpacklist = {
     'wzp6_ee_eeH_BES-lower-1pc_ecm240':['eeH ecm=240 GeV, vary BES','inclusive Higgs decays','','7.169e-3','1.0','1.0'],
 
     'wzp6_ee_nunuH_ecm240':['nunuH ecm=240 GeV (all nu flavours)','inclusive Higgs decays','','46.191e-3','1.0','1.0'],
-    'wzp6_ee_qqH_ecm240':['qqH ecm=240 GeV, q = u,d,s,c,b','inclusive Higgs decays','','136.35e-3','1.0','1.0'],
+    'wzp6_ee_qqH_ecm240':['qqH ecm=240 GeV, q = u,d,s,c,b','inclusive Higgs decays','','5.3337e-2','1.0','1.0'],
 
     'wzp6_egamma_eZ_Zee_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z to ee','','5.198e-2','1.0','1.0'],
     'wzp6_gammae_eZ_Zee_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z to ee','','5.198e-2','1.0','1.0'],
@@ -512,7 +512,7 @@ gridpacklist = {
     'wzp6_ee_eeH_BES-higher-1pc_ecm365':['eeH ecm=365 GeV','inclusive Higgs decays','','7.390e-3','1.0','1.0'],
     'wzp6_ee_eeH_BES-lower-1pc_ecm365':['eeH ecm=365 GeV','inclusive Higgs decays','','7.390e-3','1.0','1.0'],
     'wzp6_ee_nunuH_ecm365':['nunuH ecm=365 GeV (all nu flavours)','inclusive Higgs decays','','53.94e-3','1.0','1.0'],
-    'wzp6_ee_qqH_ecm365':['qqH ecm=365 GeV, q = u,d,s,c,b','inclusive Higgs decays','','84.307e-3','1.0','1.0'],
+    'wzp6_ee_qqH_ecm365':['qqH ecm=365 GeV, q = u,d,s,c,b','inclusive Higgs decays','','3.2985e-2','1.0','1.0'],
 
     'wzp6_egamma_eZ_Zmumu_ecm365':['e(e)Z EPA, e- gamma, ecm=365 GeV','Z to mumu','','140.0e-3','1.0','1.0'],
     'wzp6_gammae_eZ_Zmumu_ecm365':['e(e)Z EPA, e+ gamma, ecm=365 GeV','Z to mumu','','140.0e-3','1.0','1.0'],
@@ -806,6 +806,10 @@ gridpacklist = {
 
     'wzp6_ee_WbWb_semihad_mtop171p5_ecm365': ['ee -> WbWb, ecm=365GeV (mtop = 171.5 GeV)','Wlep Whad', '','0.2067','1.0','1.0'],
     'wzp6_ee_WbWb_semihad_mtop173p5_ecm365': ['ee -> WbWb, ecm=365GeV (mtop = 173.5 GeV)','Wlep Whad', '','0.1980','1.0','1.0'],
+    
+    'wzp6_ee_WWZ_Zbb_ecm340': ['ee -> WWZ, ecm=340GeV','W inclusive, Z->bb', '','1.318e-03','1.0','1.0'],
+    'wzp6_ee_WWZ_Zbb_ecm345': ['ee -> WWZ, ecm=345GeV','W inclusive, Z->bb', '','1.455e-03','1.0','1.0'],
+    'wzp6_ee_WWZ_Zbb_ecm365': ['ee -> WWZ, ecm=365GeV','W inclusive, Z->bb', '','2.018e-03','1.0','1.0'],
 
 # ee->H + background, ecm = 125 GeV:
     'wzp6_ee_l1l2nunu_ecm125':['ee -> l1l2nunu (l1!=l2, no H) ecm=125GeV','','','5.799e-03','1.0','1.0'],
