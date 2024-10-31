@@ -807,6 +807,21 @@ gridpacklist = {
     'wzp6_ee_WbWb_semihad_mtop171p5_ecm365': ['ee -> WbWb, ecm=365GeV (mtop = 171.5 GeV)','Wlep Whad', '','0.2067','1.0','1.0'],
     'wzp6_ee_WbWb_semihad_mtop173p5_ecm365': ['ee -> WbWb, ecm=365GeV (mtop = 173.5 GeV)','Wlep Whad', '','0.1980','1.0','1.0'],
     
+    'wzp6_ee_WbWb_mtop171p5_ecm340': ['ee -> WbWb, ecm=340GeV (mtop = 171.5 GeV)','W inclusive', '','0.0261','1.0','1.0'],
+    'wzp6_ee_WbWb_mtop171p5_ecm345': ['ee -> WbWb, ecm=345GeV (mtop = 171.5 GeV)','W inclusive', '','0.1288','1.0','1.0'],
+    'wzp6_ee_WbWb_mtop171p5_ecm365': ['ee -> WbWb, ecm=365GeV (mtop = 171.5 GeV)','W inclusive', '','0.4710','1.0','1.0'],
+    
+    'wzp6_ee_WbWb_mtop173p5_ecm340': ['ee -> WbWb, ecm=340GeV (mtop = 173.5 GeV)','W inclusive', '','0.0160','1.0','1.0'],
+    'wzp6_ee_WbWb_mtop173p5_ecm345': ['ee -> WbWb, ecm=345GeV (mtop = 173.5 GeV)','W inclusive', '','0.0348','1.0','1.0'],
+    'wzp6_ee_WbWb_mtop173p5_ecm365': ['ee -> WbWb, ecm=365GeV (mtop = 173.5 GeV)','W inclusive', '','0.4515','1.0','1.0'],
+
+    'wzp6_ee_WbWb_PSup_ecm340': ['ee -> WbWb, ecm=340GeV (PS variation up)','W inclusive', '','0.0195','1.0','1.0'],
+    'wzp6_ee_WbWb_PSup_ecm345': ['ee -> WbWb, ecm=345GeV (PS variation up)','W inclusive', '','0.0675','1.0','1.0'],
+    'wzp6_ee_WbWb_PSup_ecm365': ['ee -> WbWb, ecm=365GeV (PS variation up)','W inclusive', '','0.4605','1.0','1.0'],
+    'wzp6_ee_WbWb_PSdown_ecm340': ['ee -> WbWb, ecm=340GeV (PS variation down)','W inclusive', '','0.0195','1.0','1.0'],
+    'wzp6_ee_WbWb_PSdown_ecm345': ['ee -> WbWb, ecm=345GeV (PS variation down)','W inclusive', '','0.0675','1.0','1.0'],
+    'wzp6_ee_WbWb_PSdown_ecm365': ['ee -> WbWb, ecm=365GeV (PS variation down)','W inclusive', '','0.4605','1.0','1.0'],
+    
     'wzp6_ee_WWZ_Zbb_ecm340': ['ee -> WWZ, ecm=340GeV','W inclusive, Z->bb', '','1.318e-03','1.0','1.0'],
     'wzp6_ee_WWZ_Zbb_ecm345': ['ee -> WWZ, ecm=345GeV','W inclusive, Z->bb', '','1.455e-03','1.0','1.0'],
     'wzp6_ee_WWZ_Zbb_ecm365': ['ee -> WWZ, ecm=365GeV','W inclusive, Z->bb', '','2.018e-03','1.0','1.0'],
