@@ -14,14 +14,14 @@ if [ -f "${SYNCLOCK}" ]; then
   exit 3
 fi
 
-python bin/run.py --FCCee --reco --prodtag "${PROD_TAG}" --detector "${DETECTOR}" --checkeos > /dev/null
-python bin/run.py --FCCee --reco --prodtag "${PROD_TAG}" --detector "${DETECTOR}" --check > /dev/null
-python bin/run.py --FCCee --reco --prodtag "${PROD_TAG}" --detector "${DETECTOR}" --merge > /dev/null
-python bin/run.py --FCCee --reco --prodtag "${PROD_TAG}" --detector "${DETECTOR}" --clean > /dev/null
-python bin/run.py --FCCee --reco --prodtag "${PROD_TAG}" --detector "${DETECTOR}" --cleanold > /dev/null
-python bin/run.py --FCCee --reco --prodtag "${PROD_TAG}" --detector "${DETECTOR}" --merge > /dev/null
-python bin/run.py --FCCee --reco --prodtag "${PROD_TAG}" --detector "${DETECTOR}" --web > /dev/null
-python bin/run.py --FCCee --reco --prodtag "${PROD_TAG}" --detector "${DETECTOR}" --sample > /dev/null
+python bin/run.py --FCCee --reco --prodtag "${PROD_TAG}" --detector "${DETECTOR}" --checkeos
+python bin/run.py --FCCee --reco --prodtag "${PROD_TAG}" --detector "${DETECTOR}" --check
+python bin/run.py --FCCee --reco --prodtag "${PROD_TAG}" --detector "${DETECTOR}" --merge
+python bin/run.py --FCCee --reco --prodtag "${PROD_TAG}" --detector "${DETECTOR}" --clean
+python bin/run.py --FCCee --reco --prodtag "${PROD_TAG}" --detector "${DETECTOR}" --cleanold
+python bin/run.py --FCCee --reco --prodtag "${PROD_TAG}" --detector "${DETECTOR}" --merge
+python bin/run.py --FCCee --reco --prodtag "${PROD_TAG}" --detector "${DETECTOR}" --web
+python bin/run.py --FCCee --reco --prodtag "${PROD_TAG}" --detector "${DETECTOR}" --sample
 
 mkdir -p "${EVENTPRODUCER}/log"
 echo "`date`  INFO: Cron run finished." >> "${LOGFILE}"
