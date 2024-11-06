@@ -131,17 +131,20 @@ class makeSampleList():
        print ('entry : ',entry)
        procDict.write(entry)
        return matchingEff
-   
+
+
 #_______________________________________________________________________________________________________
     def makelist(self):
-
-        yamldir_reco=self.para.yamldir+self.version+'/'+self.detector+'/'
+        '''
+        Generate procDict JSON.
+        '''
+        yamldir_reco = self.para.yamldir + self.version + '/' + self.detector + '/'
 
         nmatched = 0
         nlhe = 0
         tmpexist=False
 
-        uid=self.para.module_name.replace('.py','').split('/')[1]
+        uid = self.para.module_name.replace('.py','').split('/')[1]
         procDict = open('tmp_{}.json'.format(uid), 'w')
         procDict.write('{\n')
 
@@ -254,21 +257,23 @@ class makeSampleList():
         procDict.close()
 
         # strip last comma and check the validity of JSON
-        print('Loading data from: ', 'tmp_{}.json'.format(uid))
-        with open('tmp_{}.json'.format(uid), 'r') as infile:
+        with open(f'tmp_{uid}.json', 'r', encoding='utf-8') as infile:
             data = infile.read()
-            proc_dict_string = data[:-2] + '}'
+            proc_dict_string = data[:-2] + '\n}'
 
             try:
                 proc_dict_json = json.loads(proc_dict_string)
             except json.decoder.JSONDecodeError:
-                print('----> Error: Resulting procDict is not valid JSON!')
+                print('ERROR: Resulting procDict is not valid JSON!')
                 sys.exit(3)
 
         # save procDict to file(s)
+        print('INFO: Saving procDict JSON into:')
         for filepath in self.procList:
+            print(f'  - {filepath}')
             with open(filepath, 'w', encoding='utf-8') as outfile:
                 json.dump(proc_dict_json, outfile, indent=4)
+        os.system(f'rm -f tmp_{uid}.json')
 
         # replace existing param.py file
         if tmpexist:
@@ -279,5 +284,4 @@ class makeSampleList():
                 if retval > 0:
                     print('ERROR: Update of parameter file unsuccessfull!')
                     return
-        os.system('rm -f tmp_{uid}.json')
-        os.system('rm -f tmp_{uid}.py')
+        os.system(f'rm -f tmp_{uid}.py')
