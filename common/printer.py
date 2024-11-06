@@ -185,10 +185,13 @@ class Printer:
                 print(f'        - {sample_eos_dir}')
                 sample_files = os.listdir(sample_eos_dir)
                 # Remove files not ending with .stdhep.gz or .root
-                sample_files = [f for f in sample_files
-                                if (f.endswith('.stdhep.gz') or f.endswith('.root'))]
+                sample_files = \
+                    [f for f in sample_files
+                     if (f.endswith('.stdhep.gz') or f.endswith('.root'))]
                 # Remove not files
-                sample_files = [f for f in sample_files if os.path.isfile(f)]
+                sample_files = \
+                    [f for f in sample_files
+                     if os.path.isfile(os.path.join(sample_eos_dir, f))]
                 # Count number of files
                 nfiles_eos = len(sample_files)
 
