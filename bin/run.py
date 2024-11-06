@@ -318,13 +318,13 @@ if __name__ == "__main__":
         removeProcess.remove()
 
     elif args.clean:
-        print('clean the dictionnary and eos')
+        print('INFO: Clean the dictionary and EOS')
         import EventProducer.common.cleanfailed as clf
         clean = clf.cleanfailed(indir, yamldir, args.process)
         clean.clean()
 
     elif args.cleanold:
-        print('clean the dictionnary from old jobs that have not been checked')
+        print('INFO: Cleaning old jobs that have not been checked...')
         import EventProducer.common.cleanfailed as clf
         clean = clf.cleanfailed(indir, yamldir, args.process)
         clean.cleanoldjobs()
