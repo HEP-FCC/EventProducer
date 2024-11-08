@@ -30,7 +30,7 @@ procList     = [pubbasedir+"FCCee_procDict_VERSION_DETECTOR.json",
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir       = eosbaseinputdir+"gridpacks/"
 
-##eos directory for lhe filescondor_job.007517997.4272243.0.out
+##eos directory for lhe files
 lhe_dir      = eosbaseoutputdir+"lhe/"
 
 ##extension
