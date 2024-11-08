@@ -30,7 +30,7 @@ procList     = [pubbasedir+"FCCee_procDict_VERSION_DETECTOR.json",
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir       = eosbaseinputdir+"gridpacks/"
 
-##eos directory for lhe files
+##eos directory for lhe filescondor_job.007517997.4272243.0.out
 lhe_dir      = eosbaseoutputdir+"lhe/"
 
 ##extension
@@ -552,7 +552,7 @@ gridpacklist = {
     #     'ssH'     : 29.958e-3
     #     'qqH'     : 53.343e-3
 
-    'wzp6_ee_ZH_Hinv_ecm240':['ee->ZH, ecm=240 GeV','H->invisible', '','1.','1.0','1.0'],
+    'wzp6_ee_ZH_Hinv_ecm240':['ee->ZH, ecm=240 GeV','H->invisible', '','2.032e-04','1.0','1.0'],
     
     'wzp6_ee_nunuH_Hbb_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to bb','','2.690e-02','1.0','1.0'],
     'wzp6_ee_nunuH_Hcc_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to cc','','1.335e-03','1.0','1.0'],
@@ -846,7 +846,7 @@ gridpacklist = {
     'wzp6_ee_Hgg_ecm125':['ee -> H-> gg, ecm=125GeV','','','7.384e-05','1.0','1.0'],
 
     # xxH, ecm = 365 GeV (sample info & cross sections to be updated!)
-    'wzp6_ee_ZH_Hinv_ecm365':['ee->ZH, ecm=365 GeV','H->invisible', '','1.','1.0','1.0'],
+    'wzp6_ee_ZH_Hinv_ecm365':['ee->ZH, ecm=365 GeV','H->invisible', '','1.541e-04','1.0','1.0'],
     
     'wzp6_ee_bbH_ecm365':['ee->bbH, ecm=365 GeV','H->incl.', '','1.8389e-02','1.0','1.0'],
     'wzp6_ee_ccH_ecm365':['ee->ccH, ecm=365 GeV','H->incl.', '','1.4436e-02','1.0','1.0'],
