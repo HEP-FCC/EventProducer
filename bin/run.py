@@ -320,13 +320,13 @@ if __name__ == "__main__":
     elif args.clean:
         print('INFO: Clean the dictionary and EOS')
         import EventProducer.common.cleanfailed as clf
-        clean = clf.cleanfailed(indir, yamldir, args.process)
+        clean = clf.CleanFailed(indir, yamldir, args.process)
         clean.clean()
 
     elif args.cleanold:
         print('INFO: Cleaning old jobs that have not been checked...')
         import EventProducer.common.cleanfailed as clf
-        clean = clf.cleanfailed(indir, yamldir, args.process)
+        clean = clf.CleanFailed(indir, yamldir, args.process)
         clean.cleanoldjobs()
 
     elif args.sample:
