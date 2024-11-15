@@ -1,7 +1,6 @@
-import json
-import ast
 import os
 import sys
+import json
 import yaml
 import EventProducer.common.utils as ut
 
@@ -18,16 +17,17 @@ class MakeSampleList:
 # _____________________________________________________________________________
     def __init__(self, para, version, detector):
         self.para = para
-        self.procList = []
+        self.outpaths = []
         for fpath in self.para.procList:
             filepath = fpath.replace('VERSION', version)
             filepath = filepath.replace('DETECTOR', detector)
-            self.procList.append(filepath)
+            self.outpaths.append(filepath)
         self.version = version
         self.detector = detector
 
 # _____________________________________________________________________________
-    def addEntry(self, process, yaml_lhe, yaml_reco, xsec, kf, procDict, proc_param=''):
+    def addEntry(self, process, yaml_lhe, yaml_reco, xsec, kf, proc_dict,
+                 proc_param=''):
         processhad = process
         if 'mgp8_' in process:
             processhad = process.replace('mgp8_', 'mg_')
@@ -58,7 +58,7 @@ class MakeSampleList:
         nweights = 0
         nlhe = 0
 
-        matchingEff = 1.0
+        matching_eff = 1.0
 
         ylhe = None
         with open(yaml_lhe, 'r', encoding='utf-8') as stream:
@@ -81,39 +81,41 @@ class MakeSampleList:
             print('there is a KeyError:  ', e)
         for f in ylhe['merge']['outfiles']:
 
-            if any(f[0].replace('.lhe.gz','') in s[0] for s in yreco['merge']['outfiles']):
+            if any(f[0].replace('.lhe.gz', '') in
+                   s[0] for s in yreco['merge']['outfiles']):
                 nlhe += int(f[1])
 
-            if any(f[0].replace('.stdhep.gz','') in s[0] for s in yreco['merge']['outfiles']):
+            if any(f[0].replace('.stdhep.gz', '') in
+                   s[0] for s in yreco['merge']['outfiles']):
                 nlhe += int(f[1])
 
         # skip process if do not find corresponding lhes
         if nlhe == 0:
             print('did not find any LHE event for process', process)
-            return matchingEff
+            return matching_eff
 
         if nmatched == 0:
             print('did not find any FCCSW event for process', process)
-            return matchingEff
+            return matching_eff
 
         # compute matching efficiency ( for FCC-pp only )
         if 'FCCee' not in self.para.module_name:
-            matchingEff = round(float(nmatched)/nlhe, 3)
+            matching_eff = round(float(nmatched)/nlhe, 3)
         if nweights == 0:
             nweights = nmatched
-        entry = '   "{}": {{"numberOfEvents": {}, "sumOfWeights": {}, "crossSection": {}, "kfactor": {}, "matchingEfficiency": {}}},\n'.format(process, nmatched, nweights, xsec, kf, matchingEff)
-        print ('N: {}, Nw:{}, xsec: {} , kf: {} pb, eff: {}'.format(nmatched, nweights, xsec, kf, matchingEff))
+        entry = '   "{}": {{"numberOfEvents": {}, "sumOfWeights": {}, "crossSection": {}, "kfactor": {}, "matchingEfficiency": {}}},\n'.format(process, nmatched, nweights, xsec, kf, matching_eff)
+        print('N: {}, Nw:{}, xsec: {} , kf: {} pb, eff: {}'.format(nmatched, nweights, xsec, kf, matching_eff))
 
-        procDict.write(entry)
+        proc_dict.write(entry)
 
-        return matchingEff
+        return matching_eff
 
     # _________________________________________________________________________
-    def addEntryPythia(self,process, xsec, kf, yamldir_reco, procDict):
+    def addEntryPythia(self, process, xsec, kf, yamldir_reco, proc_dict):
 
         nmatched = 0
         nweights = 0
-        matchingEff = 1.0
+        matching_eff = 1.0
 
         yreco = None
         with open(yamldir_reco, 'r', encoding='utf-8') as stream:
@@ -126,16 +128,16 @@ class MakeSampleList:
 
         if nmatched == 0:
             print('did not find any FCCSW event for process', process)
-            return matchingEff
+            return matching_eff
 
         if nweights == 0:
             nweights = nmatched
-        entry = '   "{}": {{"numberOfEvents": {}, "sumOfWeights": {}, "crossSection": {}, "kfactor": {}, "matchingEfficiency": {}}},\n'.format(process, nmatched, nweights, xsec, kf, matchingEff)
-        print('N: {}, Nw:{}, xsec: {} , kf: {} pb, eff: {}'.format(nmatched, nweights, xsec, kf, matchingEff))
+        entry = '   "{}": {{"numberOfEvents": {}, "sumOfWeights": {}, "crossSection": {}, "kfactor": {}, "matchingEfficiency": {}}},\n'.format(process, nmatched, nweights, xsec, kf, matching_eff)
+        print('N: {}, Nw:{}, xsec: {} , kf: {} pb, eff: {}'.format(nmatched, nweights, xsec, kf, matching_eff))
         print('entry : ', entry)
-        procDict.write(entry)
+        proc_dict.write(entry)
 
-        return matchingEff
+        return matching_eff
 
     # _________________________________________________________________________
     def makelist(self):
@@ -146,8 +148,8 @@ class MakeSampleList:
                                     self.version, self.detector)
 
         uid = self.para.module_name.replace('.py', '').split('/')[1]
-        procDict = open(f'tmp_{uid}.json', 'w', encoding='utf-8')
-        procDict.write('{\n')
+        proc_dict = open(f'tmp_{uid}.json', 'w', encoding='utf-8')
+        proc_dict.write('{\n')
 
         # Load parameters file as text
         with open(self.para.module_name, 'r', encoding='utf-8') as infile:
@@ -202,10 +204,11 @@ class MakeSampleList:
                 processhad = process.replace('wzp8_', 'wz_')
             elif 'kkmcp8_' in process:
                 processhad = process.replace('kkmcp8_', 'kkmc_')
-
             else:
                 processhad = process
-            # maybe this was a decayed process, so it cannot be found as such in in the param file
+
+            # Maybe this was a decayed process, so it cannot be found as such
+            # in in the param file
             br = 1.0
             decay = ''
             for dec in self.para.branching_ratios:
@@ -222,18 +225,18 @@ class MakeSampleList:
                 try:
                     xsec = float(self.para.gridpacklist[proc_param][3]) * br
                     kf = float(self.para.gridpacklist[proc_param][4])
-                    matchingEff = self.addEntry(process,
-                                                yamldir_lhe, yaml_reco,
-                                                xsec, kf, procDict, proc_param)
+                    matching_eff = self.addEntry(process,
+                                                 yamldir_lhe, yaml_reco,
+                                                 xsec, kf, proc_dict,
+                                                 proc_param)
                 except KeyError:
                     print(f'process "{process}" does not exist in the list')
 
             elif process in self.para.pythialist:
                 xsec = float(self.para.pythialist[process][3])
                 kf = float(self.para.pythialist[process][4])
-                matchingEff = self.addEntryPythia(process, xsec, kf,
-                                                  yaml_reco, procDict)
-
+                matching_eff = self.addEntryPythia(process, xsec, kf,
+                                                   yaml_reco, proc_dict)
 
             elif processhad not in self.para.gridpacklist:
                 print('process:', processhad,
@@ -249,8 +252,8 @@ class MakeSampleList:
                 kf = 1
                 if self.para.gridpacklist[processhad][4] != '':
                     kf = float(self.para.gridpacklist[processhad][4])
-                matchingEff = self.addEntry(process, yamldir_lhe, yaml_reco,
-                                            xsec, kf, procDict)
+                matching_eff = self.addEntry(process, yamldir_lhe, yaml_reco,
+                                             xsec, kf, proc_dict)
                 # Replace process line with updated matching efficiency
                 pass_gp = False
                 for line_idx, line in enumerate(param_text):
@@ -258,18 +261,20 @@ class MakeSampleList:
                         pass_gp = True
                     if pass_gp is False:
                         continue
+                    if not line:
+                        continue
+                    if line.strip().startswith('#'):
+                        continue
+
                     process_line_head = \
                         line.rsplit(':', 1)[0].replace("'", "")
-                    process_line_tail = line.rsplit(':', 1)[1][:-2]
                     if processhad == process_line_head.strip():
-                        ll = ast.literal_eval(process_line_tail)
-                        print('ll   : ', ll)
-                        print('line : ', line)
-                        print('phad : ', processhad)
-                        print('meff : ', matchingEff)
-                        param_text[line_idx] = "'{}':['{}','{}','{}','{}','{}','{}'],\n".format(processhad, ll[0],ll[1],ll[2],ll[3],ll[4], matchingEff)
-                        print('new line ', param_text[line_idx])
-        procDict.close()
+                        print(line[:-2])
+                        line_elems = line.rsplit(',')
+                        line_elems[-2] = f"'{matching_eff}']"
+                        param_text[line_idx] = ','.join(line_elems)
+                        print(param_text[line_idx][:-2])
+        proc_dict.close()
 
         # strip last comma and check the validity of JSON
         with open(f'tmp_{uid}.json', 'r', encoding='utf-8') as infile:
@@ -284,7 +289,7 @@ class MakeSampleList:
 
         # save procDict to file(s)
         print('INFO: Saving procDict JSON into:')
-        for filepath in self.procList:
+        for filepath in self.outpaths:
             print(f'  - {filepath}')
             with open(filepath, 'w', encoding='utf-8') as outfile:
                 json.dump(proc_dict_json, outfile, indent=4)
