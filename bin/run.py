@@ -332,7 +332,7 @@ if __name__ == "__main__":
     elif args.sample:
         print('INFO: Generating procDict JSON...')
         import EventProducer.common.makeSampleList as msl
-        sample = msl.makeSampleList(para, version, detector)
+        sample = msl.MakeSampleList(para, version, detector)
         sample.makelist()
 
     else:
