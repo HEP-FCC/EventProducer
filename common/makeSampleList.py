@@ -253,7 +253,7 @@ class MakeSampleList:
                                             xsec, kf, procDict)
                 # Replace process line with updated matching efficiency
                 pass_gp = False
-                for line_idx, line in param_text:
+                for line_idx, line in enumerate(param_text):
                     if 'gridpacklist' in line:
                         pass_gp = True
                     if pass_gp is False:
