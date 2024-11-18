@@ -200,7 +200,7 @@ if __name__ == "__main__":
             if args.reco and args.process[0:5] == 'kkmc_' : args.process='kkmcp8_'+args.process[5:]
         import EventProducer.common.checker_yaml as chky
         print(args.process)
-        checker = chky.checker_yaml(indir, para, fext, args.process,  yamldir)
+        checker = chky.CheckerYAML(indir, para, fext, args.process, yamldir)
         checker.check(args.force, statfile)
 
     elif args.checkeos:
