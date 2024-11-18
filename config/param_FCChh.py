@@ -1,24 +1,25 @@
-#module
-module_name='config/param_FCChh.py'
-#eos tests
-eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
-eostest_size=1312594
+# module
+module_name = 'config/param_FCChh.py'
+# eos tests
+eostest = '/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
+eostest_size = 1312594
 
-#stat
-lhe_stat="/eos/experiment/fcc/www/data/FCChh/statlhe.html"
-delphes_stat="/eos/experiment/fcc/www/data/FCChh/statdelphesVERSION.html"
+# stat
+lhe_stat = "/eos/experiment/fcc/www/data/FCChh/statlhe.html"
+delphes_stat = "/eos/experiment/fcc/www/data/FCChh/statdelphesVERSION.html"
 
-#web
-lhe_web="/eos/experiment/fcc/www/data/FCChh/LHEevents.txt"
-delphes_web="/eos/experiment/fcc/www/data/FCChh/Delphesevents_VERSION.txt"
+# web
+lhe_web = "/eos/experiment/fcc/www/data/FCChh/LHEevents.txt"
+delphes_web = "/eos/experiment/fcc/www/data/FCChh/Delphesevents_VERSION.txt"
 
-#yaml directory
-yamldir='/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCChh/'
+# yaml directory
+yamldir = '/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCChh/'
 
-#proc lists
+# proc lists
 procList = [
      '/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCChh_procDict_VERSION.json',
-     '/eos/experiment/fcc/www/data/FCCDicts/FCChh_procDict_VERSION.json']
+     '/eos/experiment/fcc/www/data/FCCDicts/FCChh_procDict_VERSION.json'
+]
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'

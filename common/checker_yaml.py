@@ -175,7 +175,12 @@ class CheckerYAML:
         if not ut.isValidROOTfile(infile_path):
             return -1, -1, False
 
-        nentries = tt.GetEntries()
+        try:
+            nentries = tt.GetEntries()
+        except AttributeError:
+            print('WARNING: Can\'t read number of entries from the ROOT file!')
+            print('Continuing...')
+            return -1, -1, False
         weight_sum = float(nentries)
 
         if nentries == 0:

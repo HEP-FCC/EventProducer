@@ -7,16 +7,15 @@ import os.path
 import re
 import time
 import yaml
-import EventProducer.common.utils as ut
 
 
 class Printer:
     '''
     Prints sample metadata to a text file.
     '''
-    def __init__(self, indir, outpath, matching, is_lhe, para,
+    def __init__(self, yamldir, outpath, matching, is_lhe, para,
                  detector='', version=''):
-        self.indir = indir
+        self.yamldir = yamldir
         self.outpath = outpath
         self.matching = matching
         self.is_lhe = is_lhe
@@ -44,7 +43,7 @@ class Printer:
         '''
         Generate the sample text file.
         '''
-        sample_names = next(os.walk(self.indir))[1]
+        sample_names = next(os.walk(self.yamldir))[1]
 
 #        checkfiles=''
 #        if self.isLHE: checkfiles='%s/files.yaml'%(self.para.lhe_dir)
@@ -59,9 +58,10 @@ class Printer:
 
         out_text = ''
         for sample_name in sample_names:
-            mergefile = os.path.join(self.indir, sample_name, 'merge.yaml')
+            mergefile_path = os.path.join(self.yamldir, sample_name,
+                                          'merge.yaml')
 
-            if not os.path.isfile(mergefile):
+            if not os.path.isfile(mergefile_path):
                 print(f'DEBUG: Ignoring sample "{sample_name}" --- '
                       'not merged yet.')
                 continue
@@ -69,14 +69,14 @@ class Printer:
             print(f'INFO: Processing sample "{sample_name}"...')
 
             tmpf = None
-            with open(mergefile, 'r', encoding='utf-8') as stream:
+            with open(mergefile_path, 'r', encoding='utf-8') as stream:
                 try:
                     tmpf = yaml.load(stream, Loader=yaml.FullLoader)
                 except yaml.YAMLError as exc:
                     print(exc)
                 except IOError as exc:
                     print(exc)
-                    print('file  ', mergefile)
+                    print('file  ', mergefile_path)
                     time.sleep(10)
                     tmpf = yaml.load(stream, Loader=yaml.FullLoader)
 
@@ -84,7 +84,9 @@ class Printer:
             size_tot = tmpf['merge']['size'] / 1000000000.
             bad_tot = tmpf['merge']['nbad']
             files_tot = tmpf['merge']['ndone']
-            sumw_tot = 0
+            # Sum of weights is identical to number of events
+            # TODO: introduce loading of sum of weights
+            sumw_tot = float(tmpf['merge']['nevents'])
 
             # Adjust sample name
             sample_name_short = sample_name.replace('mgp8_', 'mg_')
@@ -133,20 +135,20 @@ class Printer:
                 try:
                     teststringdecay = self.para.decaylist[stest][0]
                 except IOError as err2:
-                    print("I/O error({0}): {1}".format(err2.errno, err2.strerror))
+                    print(f'I/O error({err2.errno}): {err2.strerror}')
                 except ValueError:
                     print("Could not convert data to an integer.")
                 except KeyError as err2:
-                    print('I got a KeyError 2 - reason "%s"' % str(err2))
+                    print(f'I got a KeyError 2 - reason "{err2}"')
                     try:
                         teststringpythia = self.para.pythialist[news][0]
                         ispythiaonly = True
                     except IOError as e:
-                        print("I/O error({0}): {1}".format(e.errno, e.strerror))
+                        print(f'I/O error({e.errno}): {e.strerror}')
                     except ValueError:
                         print("Could not convert data to an integer.")
                     except KeyError as e:
-                        print('I got a KeyError 3 - reason "%s"' % str(e))
+                        print(f'I got a KeyError 3 - reason "{e}"')
                         if news.split('_', maxsplit=1)[0] == "p8":
                             ispythiaonly = True
             except:
@@ -156,13 +158,13 @@ class Printer:
             if not ispythiaonly:
                 try:
                     stupidtest = self.para.gridpacklist[proc]
-                except KeyError as e:
-                    print('changing proc :', proc, '  to dummy')
+                except KeyError:
+                    print(f'changing process name "{proc}" to dummy')
                     proc = 'dummy'
             if ispythiaonly:
                 try:
                     stupidtest = self.para.pythialist[news]
-                except KeyError as e:
+                except KeyError:
                     print('changing proc pythia:', news, '  to dummy')
                     news = 'dummy'
 

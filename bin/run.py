@@ -232,7 +232,7 @@ if __name__ == "__main__":
             if args.reco and args.process[0:5] == 'kkmc_' : args.process='kkmcp8_'+args.process[5:]
         import EventProducer.common.merger as mgr
         isLHE = args.LHE
-        merger = mgr.merger(args.process, yamldir)
+        merger = mgr.Merger(args.process, yamldir)
         merger.merge(args.force)
 
     elif args.send:
