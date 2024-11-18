@@ -53,12 +53,15 @@ if __name__ == "__main__":
     sendjobGroup.add_argument('-n','--numEvents', type=int, help='Number of simulation events per job', default=10000)
     sendjobGroup.add_argument('-N','--numJobs', type=int, default = 10, help='Number of jobs to submit')
 
-
+    #option for running FCC-hh Delphes card validation, using an adapted edm4hep_output config, should only work with option reco. 
+    sendjobGroup.add_argument('--customEDM4HEPOutput', type=str, default="", help="Use a custom edm4hep output config card, by providing the path.")
 
     mgGroup = parser.add_argument_group('mggroup')
     mgGroup.add_argument("--mg5card", type=str, help="MG5 configuration", default='card.mg5')
     mgGroup.add_argument("--cutfile", type=str, help="additional cuts", default='cuts.f')
     mgGroup.add_argument("--model", type=str, help="extra model", default='model.tgz')
+    #option to run LHE production with MG in centos7 container 
+    mgGroup.add_argument("--centos7", action='store_true', help="Legacy option to run MG5 LHE production in centos7 container.")
 
     kkmcGroup = parser.add_argument_group('kkmcgroup')
     kkmcGroup.add_argument("--kkmccard", type=str, help="KKMC input card", default='card')
@@ -74,9 +77,15 @@ if __name__ == "__main__":
     args, _ = parser.parse_known_args()
     sendOpt = args.type
 
+    if args.customEDM4HEPOutput and not args.reco and not (args.type=="lhep8" or args.type=="p8"):
+        parser.error("Option --customEDM4HEPOutput only works for producing edm4hep output, so if --reco and --type lhep8 or p8 options are set.")
+
+    if args.centos7 and not args.typelhe == 'mg':
+        parser.error("Option --centos7 is currently only supported for legacy running of LHE generation with MG.")
+
     if args.FCChh:
         import EventProducer.config.param_FCChh as para
-        print ('INFO: Importing FCC-hh config...')
+        print ('INFO: Importing base FCC-hh config...')
     elif args.FCCee:
         import EventProducer.config.param_FCCee as para
         print ('INFO: Importing FCC-ee config...')
@@ -89,7 +98,8 @@ if __name__ == "__main__":
     prodTagGroup.add_argument('--prodtag', type=str, required = '--reco' in sys.argv, help='Version to use', choices = prodTag)
     prodTagGroup.add_argument('--detector', type=str, default='', required = '--reco' in sys.argv, help='Detector to use', choices = para.detectors)
 
-
+    args, _ = parser.parse_known_args()
+    
     decaylist=[]
     for key, value in para.decaylist.items():
         for v in value:
@@ -251,7 +261,7 @@ if __name__ == "__main__":
 
                 print ('preparing to send lhe jobs from madgraph standalone for process {}'.format(args.process))
                 import EventProducer.bin.send_mglhe as mglhe
-                sendlhe=mglhe.send_mglhe( args.lsf, args.condor, args.mg5card, args.cutfile, args.model, para, args.process, args.numJobs, args.numEvents, args.queue, args.priority, args.ncpus)
+                sendlhe=mglhe.send_mglhe( args.lsf, args.condor, args.mg5card, args.cutfile, args.model, para, args.process, args.numJobs, args.numEvents, args.queue, args.priority, args.ncpus, do_EL7 = args.centos7)
                 sendlhe.send()
 
             elif args.typelhe == 'kkmc' :
@@ -273,12 +283,12 @@ if __name__ == "__main__":
             if sendOpt == 'lhep8':
                 print ('preparing to send FCCSW jobs from lhe')
                 import EventProducer.bin.send_lhep8 as slhep8
-                sendlhep8 = slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, args.decay, args.pycard, detector)
+                sendlhep8=slhep8.send_lhep8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, args.decay, args.pycard, detector, args.customEDM4HEPOutput)
                 sendlhep8.send(args.force)
             elif sendOpt == 'p8':
                 print ('preparing to send FCCSW jobs from pythia8 directly')
                 import EventProducer.bin.send_p8 as sp8
-                sendp8 = sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, training, detector)
+                sendp8=sp8.send_p8(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, training, detector, args.customEDM4HEPOutput)
                 sendp8.send()
             elif sendOpt == 'stdhep':
                 print('preparing to send FCCSW jobs from stdhep')
