@@ -4,8 +4,6 @@ Clean failed jobs
 
 import os
 import glob
-import os.path
-import sys
 import yaml
 import EventProducer.common.utils as ut
 
@@ -16,30 +14,43 @@ class CleanFailed:
     '''
 
     # _________________________________________________________________________
-    def __init__(self, indir: str, yamldir: str, sample_name: str = ''):
-        self.indir = os.path.join(indir, sample_name)
-        self.yamldir = os.path.join(yamldir, sample_name)
-        self.process = sample_name
+    def __init__(self,
+                 indir: str,
+                 yamldir: str,
+                 sample_name: str | None = None):
+        if sample_name == '':
+            self.process = None
+        else:
+            self.process = sample_name
 
-    #__________________________________________________________________________
+        if self.process is not None:
+            self.indir = os.path.join(indir, self.process)
+            self.yamldir = os.path.join(yamldir, self.process)
+        else:
+            self.indir = indir
+            self.yamldir = yamldir
+
+    # _________________________________________________________________________
     def clean(self):
         '''
         Do the cleaning.
         '''
         nfailed = 0
-        all_files = []
-        if self.process == '':
-            all_files = glob.glob("%s/*/merge.yaml" % self.yamldir)
+        if self.process is not None:
+            merge_files = [os.path.join(self.yamldir, 'merge.yaml')]
         else:
-            all_files = glob.glob("%s/merge.yaml" % self.yamldir)
+            merge_files = glob.glob(f'{self.yamldir}/*/merge.yaml')
 
-        print("========================= %s/merge.yaml" % self.yamldir)
-        for f in all_files:
-            print('=====================    ', f)
-            with open(f, 'r', encoding='utf-8') as stream:
+        for merge_file in merge_files:
+            print('---------------------------------')
+            print('INFO: Reading merge file:')
+            print(f'        - {merge_file}')
+            with open(merge_file, 'r', encoding='utf-8') as stream:
                 try:
                     tmpf = yaml.load(stream, Loader=yaml.FullLoader)
                     if tmpf['merge']['nbad'] == 0:
+                        print('INFO: No bad sample files found.')
+                        print('      Continuing...')
                         continue
                     nfailed += tmpf['merge']['nbad']
                     for r in tmpf['merge']['outfilesbad']:
@@ -48,7 +59,7 @@ class CleanFailed:
                               (r, tmpf['merge']['process']))
                         os.system(cmd)
 
-                        if self.process == '':
+                        if self.process is None:
                             cmd = "rm %s/%s/%s" % (self.yamldir,
                                                    tmpf['merge']['process'],
                                                    r.replace('.lhe.gz', '.yaml').replace('.root', '.yaml'))
@@ -62,21 +73,20 @@ class CleanFailed:
                 except yaml.YAMLError as exc:
                     print(exc)
                 except IOError as exc:
-                    print("I/O error({0}): {1}".format(exc.errno, exc.strerror))
+                    print(f'I/O error({exc.errno}): {exc.strerror}')
 
         print(f'INFO: Removed {nfailed} files.')
 
     # _________________________________________________________________________
     def cleanoldjobs(self):
-        ldir = []
-        if self.process == '':
+        if self.process is None:
             ldir = next(os.walk(self.yamldir))[1]
         else:
             ldir = [self.process]
 
         for l in ldir:
             all_files = []
-            if self.process == '':
+            if self.process is None:
                 all_files = glob.glob("%s/%s/events_*.yaml" % (self.yamldir, l))
             else:
                 all_files = glob.glob("%s/events_*.yaml" % (self.yamldir))
@@ -84,9 +94,6 @@ class CleanFailed:
             if len(all_files) == 0:
                 continue
             process = l
-            if self.process != '' and self.process != process:
-                print(process)
-                continue
 
             print('process from the input directory ', process)
 

@@ -439,7 +439,8 @@ class CheckerYAML:
                 stat_exist = ut.file_exist(statfile)
                 with open(statfile, 'a', encoding='utf-8') as myfile:
                     if not stat_exist:
-                        table_header = '<tr><th>Date</th>'
+                        table_header = '<table>\n'
+                        table_header += '<tr><th>Date</th>'
                         table_header += '<th>Time</th>'
                         table_header += '<th>Njobs</th>'
                         table_header += '<th>Nevents</th>'
