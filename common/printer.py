@@ -43,7 +43,7 @@ class Printer:
         '''
         Generate the sample text file.
         '''
-        sample_names = next(os.walk(self.yamldir))[1]
+        process_names = next(os.walk(self.yamldir))[1]
 
 #        checkfiles=''
 #        if self.isLHE: checkfiles='%s/files.yaml'%(self.para.lhe_dir)
@@ -57,16 +57,16 @@ class Printer:
 #                print(exc)
 
         out_text = ''
-        for sample_name in sample_names:
-            mergefile_path = os.path.join(self.yamldir, sample_name,
+        for process_name in process_names:
+            print(f'--------------------------  {process_name}')
+
+            mergefile_path = os.path.join(self.yamldir, process_name,
                                           'merge.yaml')
 
             if not os.path.isfile(mergefile_path):
-                print(f'DEBUG: Ignoring sample "{sample_name}" --- '
+                print(f'WARNING: Ignoring process "{process_name}" --- '
                       'not merged yet.')
                 continue
-
-            print(f'INFO: Processing sample "{sample_name}"...')
 
             tmpf = None
             with open(mergefile_path, 'r', encoding='utf-8') as stream:
@@ -88,12 +88,12 @@ class Printer:
             # TODO: introduce loading of sum of weights
             sumw_tot = float(tmpf['merge']['nevents'])
 
-            # Adjust sample name
-            sample_name_short = sample_name.replace('mgp8_', 'mg_')
-            sample_name_short = sample_name_short.replace('kkmcp8_', 'kkmc_')
-            print(f'INFO: Shortening sample name to "{sample_name_short}"')
-            news = str(sample_name_short)
-            proc = str(sample_name_short)
+            # Adjust process name
+            process_name_short = process_name.replace('mgp8_', 'mg_')
+            process_name_short = process_name_short.replace('kkmcp8_', 'kkmc_')
+            print(f'INFO: Shortening sample name to "{process_name_short}"')
+            news = str(process_name_short)
+            proc = str(process_name_short)
 
             br = 1
             decay = ''
@@ -175,7 +175,7 @@ class Printer:
                 sample_eos_dir = os.path.join(self.para.delphes_dir,
                                               self.version,
                                               self.detector,
-                                              sample_name)
+                                              process_name)
 
                 if not os.path.isdir(sample_eos_dir):
                     print('WARNING: Sample EOS directory not found!')
@@ -212,7 +212,7 @@ class Printer:
             cmd = ''
             if not self.matching and not ispythiaonly:
                 cmd = '%s,,%s,,%s%i%s,,%i,,%s%i%s,,%.2f,,%s,,%s,,%s,,%s,,%s\n' % \
-                      (sample_name,
+                      (process_name,
                        self.comma_me(str(events_tot)),
                        marked_b,
                        files_tot,
@@ -229,7 +229,7 @@ class Printer:
                        self.para.gridpacklist[proc][3])
             elif self.matching and not ispythiaonly:
                 cmd = '%s,,%s,,%s,,%s%i%s,,%i,,%s%i%s,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n' % \
-                      (sample_name,
+                      (process_name,
                        self.comma_me(str(events_tot)),
                        self.comma_me(str(sumw_tot)),
                        marked_b,
@@ -248,7 +248,7 @@ class Printer:
                        self.para.gridpacklist[proc][5])
             elif ispythiaonly:
                 cmd = '%s ,,%s,,%s,,%s%i%s,,%i,,%s%i%s,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n' % \
-                      (sample_name,
+                      (process_name,
                        self.comma_me(str(events_tot)),
                        self.comma_me(str(sumw_tot)),
                        marked_b,
