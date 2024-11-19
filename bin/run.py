@@ -186,18 +186,22 @@ if __name__ == "__main__":
         sys.exit(3)
 
     import EventProducer.common.utils as ut
-    if not ut.testeos(para.eostest,para.eostest_size):
-        print ('eos seems to have problems, should check, will exit')
+    if not ut.testeos(para.eostest, para.eostest_size):
+        print('eos seems to have problems, should check, will exit')
         sys.exit(3)
 
     if args.check:
         print('running the check')
         if args.process != '':
             print('using a specific process ', args.process)
-            if args.reco and args.process[0:3] == 'mg_': args.process='mgp8_'+args.process[3:]
-            if args.reco and args.process[0:3] == 'ch_': args.process='chp8_'+args.process[3:]
-            if args.reco and args.process[0:3] == 'pw_': args.process='pwp8_'+args.process[3:]
-            if args.reco and args.process[0:5] == 'kkmc_' : args.process='kkmcp8_'+args.process[5:]
+            if args.reco and args.process[0:3] == 'mg_':
+                args.process = 'mgp8_' + args.process[3:]
+            if args.reco and args.process[0:3] == 'ch_':
+                args.process = 'chp8_' + args.process[3:]
+            if args.reco and args.process[0:3] == 'pw_':
+                args.process = 'pwp8_' + args.process[3:]
+            if args.reco and args.process[0:5] == 'kkmc_':
+                args.process = 'kkmcp8_' + args.process[5:]
         import EventProducer.common.checker_yaml as chky
         print(args.process)
         checker = chky.CheckerYAML(indir, para, fext, args.process, yamldir)
@@ -217,7 +221,7 @@ if __name__ == "__main__":
                 args.process = 'kkmcp8_' + args.process[5:]
         import EventProducer.common.checker_eos as chkeos
         print(args.process)
-        checkereos = chkeos.checker_eos(yamldir, indir, args.process)
+        checkereos = chkeos.CheckerEOS(yamldir, indir, args.process)
         # (indirafs, indireos, process, version):
 
         checkereos.check(para)
@@ -225,11 +229,15 @@ if __name__ == "__main__":
     elif args.merge:
         print('running the merger')
         if args.process != '':
-            print('using a specific process ',args.process)
-            if args.reco and args.process[0:3] == 'mg_': args.process='mgp8_'+args.process[3:]
-            if args.reco and args.process[0:3] == 'ch_': args.process='chp8_'+args.process[3:]
-            if args.reco and args.process[0:3] == 'pw_': args.process='pwp8_'+args.process[3:]
-            if args.reco and args.process[0:5] == 'kkmc_' : args.process='kkmcp8_'+args.process[5:]
+            print('using a specific process ', args.process)
+            if args.reco and args.process[0:3] == 'mg_':
+                args.process = 'mgp8_' + args.process[3:]
+            if args.reco and args.process[0:3] == 'ch_':
+                args.process = 'chp8_' + args.process[3:]
+            if args.reco and args.process[0:3] == 'pw_':
+                args.process = 'pwp8_' + args.process[3:]
+            if args.reco and args.process[0:5] == 'kkmc_':
+                args.process = 'kkmcp8_' + args.process[5:]
         import EventProducer.common.merger as mgr
         isLHE = args.LHE
         merger = mgr.Merger(args.process, yamldir)
