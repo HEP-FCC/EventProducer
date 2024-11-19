@@ -3,21 +3,28 @@ Prints sample metadata to a text file.
 '''
 
 import sys
-import os.path
+import os
 import re
 import time
+import json
 import yaml
-import EventProducer.common.utils as ut
 
 
 class Printer:
     '''
     Prints sample metadata to a text file.
     '''
-    def __init__(self, indir, outpath, matching, is_lhe, para,
-                 detector='', version=''):
-        self.indir = indir
-        self.outpath = outpath
+    def __init__(self,
+                 yamldir: str,
+                 outpath: str,
+                 matching: bool,
+                 is_lhe: bool,
+                 para: object,
+                 detector: str = '',
+                 version: str = ''):
+        self.yamldir = yamldir
+        self.outpath_txt = outpath
+        self.outpath_json = os.path.splitext(self.outpath_txt)[0] + '.json'
         self.matching = matching
         self.is_lhe = is_lhe
         self.para = para
@@ -31,7 +38,7 @@ class Printer:
         self.ntot_eos = 0
         self.ntot_sumw = 0
 
-# _____________________________________________________________________________
+    # _____________________________________________________________________________
     def comma_me(self, amount):
         orig = amount
         new = re.sub("^(-?\d+)(\d{3})", '\g<1>,\g<2>', amount)
@@ -39,12 +46,12 @@ class Printer:
             return new
         return self.comma_me(new)
 
-# _____________________________________________________________________________
+    # _____________________________________________________________________________
     def run(self):
         '''
         Generate the sample text file.
         '''
-        sample_names = next(os.walk(self.indir))[1]
+        process_names = next(os.walk(self.yamldir))[1]
 
 #        checkfiles=''
 #        if self.isLHE: checkfiles='%s/files.yaml'%(self.para.lhe_dir)
@@ -58,25 +65,28 @@ class Printer:
 #                print(exc)
 
         out_text = ''
-        for sample_name in sample_names:
-            mergefile = os.path.join(self.indir, sample_name, 'merge.yaml')
+        out_dict = {}
+        out_dict['processes'] = []
+        for process_name in process_names:
+            print(f'--------------------------  {process_name}')
 
-            if not os.path.isfile(mergefile):
-                print(f'DEBUG: Ignoring sample "{sample_name}" --- '
-                      'not merged yet.')
+            mergefile_path = os.path.join(self.yamldir, process_name,
+                                          'merge.yaml')
+
+            if not os.path.isfile(mergefile_path):
+                print('WARNING: Ignoring the process --- not merged yet!')
+                print('         Continuing...')
                 continue
 
-            print(f'INFO: Processing sample "{sample_name}"...')
-
             tmpf = None
-            with open(mergefile, 'r', encoding='utf-8') as stream:
+            with open(mergefile_path, 'r', encoding='utf-8') as stream:
                 try:
                     tmpf = yaml.load(stream, Loader=yaml.FullLoader)
                 except yaml.YAMLError as exc:
                     print(exc)
                 except IOError as exc:
                     print(exc)
-                    print('file  ', mergefile)
+                    print('file  ', mergefile_path)
                     time.sleep(10)
                     tmpf = yaml.load(stream, Loader=yaml.FullLoader)
 
@@ -84,16 +94,21 @@ class Printer:
             size_tot = tmpf['merge']['size'] / 1000000000.
             bad_tot = tmpf['merge']['nbad']
             files_tot = tmpf['merge']['ndone']
-            sumw_tot = 0
+            # Sum of weights is made identical to number of events
+            # if not found in the merge file.
+            try:
+                sumw_tot = float(tmpf['merge']['sumofweights'])
+            except KeyError:
+                sumw_tot = float(events_tot)
 
-            # Adjust sample name
-            sample_name_short = sample_name.replace('mgp8_', 'mg_')
-            sample_name_short = sample_name_short.replace('kkmcp8_', 'kkmc_')
-            print(f'INFO: Shortening sample name to "{sample_name_short}"')
-            news = str(sample_name_short)
-            proc = str(sample_name_short)
+            # Adjust process name
+            process_name_short = process_name.replace('mgp8_', 'mg_')
+            process_name_short = process_name_short.replace('kkmcp8_', 'kkmc_')
+            print(f'INFO: Shortening sample name to "{process_name_short}"')
+            news = str(process_name_short)
+            proc = str(process_name_short)
 
-            br = 1
+            br = 1.0
             decay = ''
             decstr = ''
             for dec in self.para.branching_ratios:
@@ -133,20 +148,20 @@ class Printer:
                 try:
                     teststringdecay = self.para.decaylist[stest][0]
                 except IOError as err2:
-                    print("I/O error({0}): {1}".format(err2.errno, err2.strerror))
+                    print(f'I/O error({err2.errno}): {err2.strerror}')
                 except ValueError:
                     print("Could not convert data to an integer.")
                 except KeyError as err2:
-                    print('I got a KeyError 2 - reason "%s"' % str(err2))
+                    print(f'I got a KeyError 2 - reason "{err2}"')
                     try:
                         teststringpythia = self.para.pythialist[news][0]
                         ispythiaonly = True
                     except IOError as e:
-                        print("I/O error({0}): {1}".format(e.errno, e.strerror))
+                        print(f'I/O error({e.errno}): {e.strerror}')
                     except ValueError:
                         print("Could not convert data to an integer.")
                     except KeyError as e:
-                        print('I got a KeyError 3 - reason "%s"' % str(e))
+                        print(f'I got a KeyError 3 - reason "{e}"')
                         if news.split('_', maxsplit=1)[0] == "p8":
                             ispythiaonly = True
             except:
@@ -156,33 +171,33 @@ class Printer:
             if not ispythiaonly:
                 try:
                     stupidtest = self.para.gridpacklist[proc]
-                except KeyError as e:
-                    print('changing proc :', proc, '  to dummy')
+                except KeyError:
+                    print(f'changing process name "{proc}" to dummy')
                     proc = 'dummy'
             if ispythiaonly:
                 try:
                     stupidtest = self.para.pythialist[news]
-                except KeyError as e:
+                except KeyError:
                     print('changing proc pythia:', news, '  to dummy')
                     news = 'dummy'
 
             nfiles_eos = 0
             if self.is_lhe:
-                sample_eos_dir = os.path.join(self.para.lhe_dir, proc)
+                process_eos_dir = os.path.join(self.para.lhe_dir, proc)
             else:
-                sample_eos_dir = os.path.join(self.para.delphes_dir,
+                process_eos_dir = os.path.join(self.para.delphes_dir,
                                               self.version,
                                               self.detector,
-                                              sample_name)
+                                              process_name)
 
-                if not os.path.isdir(sample_eos_dir):
-                    print('WARNING: Sample EOS directory not found!')
-                    print(f'           - {sample_eos_dir}')
+                if not os.path.isdir(process_eos_dir):
+                    print('WARNING: Process EOS directory not found!')
+                    print(f'           - {process_eos_dir}')
                     continue
 
-                print('INFO: Sample EOS directory:')
-                print(f'        - {sample_eos_dir}')
-                sample_files = os.listdir(sample_eos_dir)
+                print('INFO: Process EOS directory:')
+                print(f'        - {process_eos_dir}')
+                sample_files = os.listdir(process_eos_dir)
                 # Remove files not ending with .stdhep.gz or .root
                 sample_files = \
                     [f for f in sample_files
@@ -192,11 +207,12 @@ class Printer:
                 # Remove not files
                 sample_files = \
                     [f for f in sample_files
-                     if os.path.isfile(os.path.join(sample_eos_dir, f))]
+                     if os.path.isfile(os.path.join(process_eos_dir, f))]
                 # Count number of files
                 nfiles_eos = len(sample_files)
 
             print('nevents              : %i' % events_tot)
+            print('sum of weights       : %i' % sumw_tot)
             print('nfiles on eos/checked: %i/%i' % (nfiles_eos, files_tot))
             print('proc in the end      : ', proc)
             print('news in the end      : ', news)
@@ -208,9 +224,10 @@ class Printer:
                 marked_e = '</mark></h2>'
 
             cmd = ''
+            process_info = {}
             if not self.matching and not ispythiaonly:
                 cmd = '%s,,%s,,%s%i%s,,%i,,%s%i%s,,%.2f,,%s,,%s,,%s,,%s,,%s\n' % \
-                      (sample_name,
+                      (process_name,
                        self.comma_me(str(events_tot)),
                        marked_b,
                        files_tot,
@@ -225,9 +242,22 @@ class Printer:
                        self.para.gridpacklist[proc][1],
                        self.para.gridpacklist[proc][2],
                        self.para.gridpacklist[proc][3])
+                process_info = {
+                    'process-name': process_name,
+                    'n-events': events_tot,
+                    'n-files': files_tot,
+                    'n-files-bad': bad_tot,
+                    'n-files-eos': nfiles_eos,
+                    'size': size_tot,
+                    'path': tmpf['merge']['outdir'],
+                    'description': self.para.gridpacklist[proc][0],
+                    'comment': self.para.gridpacklist[proc][1],
+                    'matching-params': self.para.gridpacklist[proc][2],
+                    'cross-section': self.para.gridpacklist[proc][3]
+                }
             elif self.matching and not ispythiaonly:
                 cmd = '%s,,%s,,%s,,%s%i%s,,%i,,%s%i%s,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n' % \
-                      (sample_name,
+                      (process_name,
                        self.comma_me(str(events_tot)),
                        self.comma_me(str(sumw_tot)),
                        marked_b,
@@ -244,9 +274,24 @@ class Printer:
                        str(float(self.para.gridpacklist[proc][3]) * br),
                        self.para.gridpacklist[proc][4],
                        self.para.gridpacklist[proc][5])
+                process_info = {
+                    'process-name': process_name,
+                    'n-events': events_tot,
+                    'sum-of-weights': sumw_tot,
+                    'n-files': files_tot,
+                    'n-files-bad': bad_tot,
+                    'n-files-eos': nfiles_eos,
+                    'size': size_tot,
+                    'path': tmpf['merge']['outdir'],
+                    'description': self.para.gridpacklist[proc][0],
+                    'comment': self.para.gridpacklist[proc][1],
+                    'cross-section': float(self.para.gridpacklist[proc][3]) * br,
+                    'k-factor': self.para.gridpacklist[proc][4],
+                    'matching-eff': self.para.gridpacklist[proc][5]
+                }
             elif ispythiaonly:
                 cmd = '%s ,,%s,,%s,,%s%i%s,,%i,,%s%i%s,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n' % \
-                      (sample_name,
+                      (process_name,
                        self.comma_me(str(events_tot)),
                        self.comma_me(str(sumw_tot)),
                        marked_b,
@@ -263,8 +308,24 @@ class Printer:
                        self.para.pythialist[news][3],
                        self.para.pythialist[news][4],
                        self.para.pythialist[news][5])
+                process_info = {
+                    'process-name': process_name,
+                    'n-events': events_tot,
+                    'sum-of-weights': sumw_tot,
+                    'n-files': files_tot,
+                    'n-files-bad': bad_tot,
+                    'n-files-eos': nfiles_eos,
+                    'size': size_tot,
+                    'path': tmpf['merge']['outdir'],
+                    'description': self.para.pythialist[news][0],
+                    'comment': self.para.pythialist[news][1],
+                    'cross-section': self.para.pythialist[news][3],
+                    'k-factor': self.para.pythialist[news][4],
+                    'matching-eff': self.para.pythialist[news][5]
+                }
                 ispythiaonly = False
             out_text += cmd
+            out_dict['processes'].append(process_info)
 
 #     0          1            2                 3           4           5
 # description/comment/matching parameters/cross section/kfactor/matching efficiency
@@ -285,6 +346,13 @@ class Printer:
                    self.tot_size,
                    '',
                    '')
+            out_dict['total'] = {
+                'n-events': self.ntot_events,
+                'n-files': self.ntot_files,
+                'n-files-bad': self.ntot_bad,
+                'n-files-eos': self.ntot_eos,
+                'size': self.tot_size
+            }
         else:
             cmd = '%s,,%s,,%s,,%s,,%s,,%s,,%.2f,,%s,,%s\n' % \
                   ('total',
@@ -296,10 +364,21 @@ class Printer:
                    self.tot_size,
                    '',
                    '')
+            out_dict['total'] = {
+                'n-events': self.ntot_events,
+                'sum-of-weights': self.ntot_sumw,
+                'n-files': self.ntot_files,
+                'n-files-bad': self.ntot_bad,
+                'n-files-eos': self.ntot_eos,
+                'size': self.tot_size
+            }
 
         out_text += cmd
 
-        print('INFO: Saving web file to:')
-        print(f'        - {self.outpath}')
-        with open(self.outpath, 'w', encoding='utf-8') as outfile:
+        print('INFO: Saving web files to:')
+        print(f'        - {self.outpath_txt}')
+        with open(self.outpath_txt, 'w', encoding='utf-8') as outfile:
             outfile.write(out_text)
+        print(f'        - {self.outpath_json}')
+        with open(self.outpath_json, 'w', encoding='utf-8') as outfile:
+            json.dump(out_dict, outfile, indent=4)

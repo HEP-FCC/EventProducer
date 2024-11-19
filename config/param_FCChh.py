@@ -1,24 +1,25 @@
-#module
-module_name='config/param_FCChh.py'
-#eos tests
-eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
-eostest_size=1312594
+# module
+module_name = 'config/param_FCChh.py'
+# eos tests
+eostest = '/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
+eostest_size = 1312594
 
-#stat
-lhe_stat="/eos/experiment/fcc/www/data/FCChh/statlhe.html"
-delphes_stat="/eos/experiment/fcc/www/data/FCChh/statdelphesVERSION.html"
+# stat
+lhe_stat = "/eos/experiment/fcc/www/data/FCChh/statlhe.html"
+delphes_stat = "/eos/experiment/fcc/www/data/FCChh/statdelphesVERSION.html"
 
-#web
-lhe_web="/eos/experiment/fcc/www/data/FCChh/LHEevents.txt"
-delphes_web="/eos/experiment/fcc/www/data/FCChh/Delphesevents_VERSION.txt"
+# web
+lhe_web = "/eos/experiment/fcc/www/data/FCChh/LHEevents.txt"
+delphes_web = "/eos/experiment/fcc/www/data/FCChh/Delphesevents_VERSION.txt"
 
-#yaml directory
-yamldir='/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCChh/'
+# yaml directory
+yamldir = '/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCChh/'
 
-#proc lists
+# proc lists
 procList = [
      '/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCChh_procDict_VERSION.json',
-     '/eos/experiment/fcc/www/data/FCCDicts/FCChh_procDict_VERSION.json']
+     '/eos/experiment/fcc/www/data/FCCDicts/FCChh_procDict_VERSION.json'
+]
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'
@@ -74,7 +75,7 @@ fccconfig='PythiaDelphes_config_v02.py'
 
 #list of processes only with Pythia, meaning no LHE
 pythialist={
-'dummy':['1','1','1','1','1','1'],
+'dummy':['dummy','1','1','1','1','1'],
 #for testing
 'p8_ee_Z_bb_ecm91':['1','1','1','1','1','1'],
 'p8_pp_Z_bb':['1','1','1','1','1','1'],
@@ -747,7 +748,7 @@ gridpacklist = {
 'mg_pp_lljj_QED_5f':['1','1','1','1','1','1'],
 
 #new lljj for bb2lMET
-'mg_pp_lljj_HF_QED_5f':['1','1','1','1','1','1'],
+'mg_pp_lljj_HF_QED_5f':['1','1','1','1','1','1.0'],
 
 #bbyy samples at alternate energy points
 'mg_pp_h012j_5f_60TeV':['1','1','1','1','1','1'],
@@ -776,7 +777,7 @@ gridpacklist = {
 #tester:
 'mg_pp_h0j_test_5f_80TeV':['1','1','1','1','1','1'],
 
-'dummy':['1','1','1','1','1','1'],
+'dummy':['dummy','1','1','1','1','1'],
     'mg_pp_za012j_zmumu':['Z gamma + 012jets Z->mumu','','','1.0','1.0','1.0'],
 'mg_pp_za012j_znunu':['Z gamma + 012jets Z->nunu','','','1.0','1.0','1.0'],
 'mg_pp_za012j_zee':['Z gamma + 012jets Z->ee','','','1.0','1.0','1.0'],
@@ -869,7 +870,7 @@ gridpacklist = {
 'mg_pp_v0123j_5f_HT_2900_5100':['vector boson + 0/1/2/3 jets','2900 < HT < 5100','xqcut = 30, qCut = 45','300.8','1.20','0.244'],
 'mg_pp_v0123j_5f_HT_5100_8500':['vector boson + 0/1/2/3 jets','5100 < HT < 8500','xqcut = 30, qCut = 45','30.94','1.20','0.227'],
 'mg_pp_v0123j_5f_HT_8500_100000':['vector boson + 0/1/2/3 jets','8500 < HT < 100000','xqcut = 30, qCut = 45','2.95','1.20','0.204'],
-'mg_pp_v0123j_5f':['vector boson + 0/1/2/3 jets','inclusive','xqcut = 30, qCut = 45','8.886e+06','1.20','0.232'],
+'mg_pp_v0123j_5f':['vector boson + 0/1/2/3 jets','inclusive','xqcut = 30, qCut = 45','8.886e+06','1.20','0.598'],
 'mg_gg_aa01j_5f_HT_0_500':['gluon fusion di-photon + 0/1 jets','0 < HT < 500','xqcut = 20, qCut = 30','850.4','2.0','0.578'],
 'mg_gg_aa01j_5f_HT_500_1000':['gluon fusion di-photon + 0/1 jets','500 < HT < 1000','xqcut = 20, qCut = 30','0.5129','2.0','0.383'],
 'mg_gg_aa01j_5f_HT_1000_2000':['gluon fusion di-photon + 0/1 jets','1000 < HT < 2000','xqcut = 20, qCut = 30','0.04712','2.0','0.344'],

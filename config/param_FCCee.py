@@ -1,31 +1,31 @@
-#module
-module_name='config/param_FCCee.py'
-#eos tests
-eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
-eostest_size=1312594
+# module
+module_name = 'config/param_FCCee.py'
+# eos tests
+eostest = '/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
+eostest_size = 1312594
 
-#directories
-webbasedir="/eos/experiment/fcc/www/data/FCCee/"
-pubbasedir="/afs/cern.ch/work/f/fccsw/public/FCCDicts/"
-eosbaseinputdir="/eos/experiment/fcc/ee/generation/"
-eosbaseoutputdir="/eos/experiment/fcc/ee/generation/"
+# directories
+webbasedir = "/eos/experiment/fcc/www/data/FCCee/"
+pubbasedir = "/afs/cern.ch/work/f/fccsw/public/FCCDicts/"
+eosbaseinputdir = "/eos/experiment/fcc/ee/generation/"
+eosbaseoutputdir = "/eos/experiment/fcc/ee/generation/"
 
-#stat
+# stat
 lhe_stat = webbasedir + "statlhe.html"
 delphes_stat = webbasedir + "statdelphesVERSION_DETECTOR.html"
 stdhep_stat = webbasedir + "stat_stdhep_VERSION.html"
 
-#web
+# web
 lhe_web = webbasedir + "LHEevents.txt"
 delphes_web = webbasedir + "Delphesevents_VERSION_DETECTOR.txt"
 stdhep_web = webbasedir + "STDHEP_events_VERSION.txt"
 
-#yaml directory
-yamldir      = pubbasedir+"yaml/FCCee/"
+# yaml directory
+yamldir = pubbasedir + "yaml/FCCee/"
 
-#proc lists
-procList     = [pubbasedir+"FCCee_procDict_VERSION_DETECTOR.json",
-                webbasedir+"FCCee_procDict_VERSION_DETECTOR.json"]
+# proc lists
+procList = [pubbasedir+"FCCee_procDict_VERSION_DETECTOR.json",
+            webbasedir+"FCCee_procDict_VERSION_DETECTOR.json"]
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir       = eosbaseinputdir+"gridpacks/"

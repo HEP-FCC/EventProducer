@@ -1,82 +1,98 @@
-import glob, os, sys
-import ROOT as r
+import os
+import sys
 import yaml
 import EventProducer.common.utils as ut
 
-class checker_eos():
 
-#__________________________________________________________
-    def __init__(self, indirafs, indireos, process):
+class CheckerEOS:
+    '''
+    Check files on EOS.
+    '''
+    # _________________________________________________________________________
+    def __init__(self, yamldir, eosdir, process):
         self.process = process
-        self.indirafs  = indirafs
-        self.indireos  = indireos
+        self.yamldir = yamldir
+        self.eosdir = eosdir
 
-
-#__________________________________________________________
+    # _________________________________________________________________________
     def touch(self, path):
-        with open(path, 'a'):
+        with open(path, 'a', encoding='utf-8'):
             os.utime(path, None)
 
-#__________________________________________________________
+    # _________________________________________________________________________
     def check(self, para):
+        if self.process:
+            process_names = [self.process]
+        else:
+            process_names = next(os.walk(self.eosdir))[1]
 
-        #ldir=[x[0] for x in os.walk(self.indir)]
-        print(self.indireos)
-        ldir=next(os.walk(self.indireos))[1]
-        
-        if not ut.testeos(para.eostest,para.eostest_size):
-            print ('eos seems to have problems, should check, will exit')
+        if not ut.testeos(para.eostest, para.eostest_size):
+            print('ERROR: EOS seems to have problems!')
+            print('       Aborting...')
             sys.exit(3)
-        dic={}
-        for l in ldir:
-            if self.process!='' and self.process!=l: 
-                continue
-            #continue if process has been checked
-            if l=='BADPYTHIA' or l=='lhe' or l=="__restored_files__" or l=="backup": continue
-            print ('--------------------- ',l)
-            proc=l
-            nfileseos=0
-            if os.path.isdir('%s/%s'%(self.indireos,proc)):
-                listeos = [x for x in os.listdir('%s/%s'%(self.indireos,proc)) if 'events' in x]
-                nfileseos=len(listeos)
-            if nfileseos==0: continue
-            nfilesmerged=0
-            mergefile=self.indirafs+'/'+l+'/merge.yaml'
-            print("mergefile=",mergefile)
-            if not ut.file_exist(mergefile): 
-                if not ut.dir_exist('%s/%s'%(self.indirafs,proc)):
-                    os.system('mkdir -p %s/%s'%(self.indirafs,proc))
-                self.touch('%s/%s/check'%(self.indirafs,proc))
+
+        dic = {}
+        for process_name in process_names:
+            # Exclude directories with "wrong" names
+            if process_name in ('BADPYTHIA',
+                                'lhe',
+                                '__restored_files__',
+                                'backup'):
                 continue
 
-            if not os.path.isdir(self.indirafs):
-                os.system('mkdir %s'%self.indirafs)
+            print('--------------------- ', process_name)
 
-            tmpf=None
-            with open(mergefile, 'r') as stream:
+            nfileseos = 0
+            process_eos_dir = os.path.join(self.eosdir, process_name)
+            process_yaml_dir = os.path.join(self.yamldir, process_name)
+
+            if os.path.isdir(process_eos_dir):
+                listeos = [x for x in os.listdir(process_eos_dir)
+                           if 'events' in x]
+                nfileseos = len(listeos)
+
+            if nfileseos == 0:
+                continue
+
+            mergefile_path = os.path.join(self.yamldir, process_name,
+                                          'merge.yaml')
+            print('INFO: Merge file:')
+            print(f'        - {mergefile_path}')
+            checkfile_path = os.path.join(self.yamldir, process_name, 'check')
+            print('INFO: Check file:')
+            print(f'        - {checkfile_path}')
+            if not ut.file_exist(mergefile_path):
+                if not ut.dir_exist(process_yaml_dir):
+                    os.system(f'mkdir -p {process_yaml_dir}')
+                self.touch(checkfile_path)
+                continue
+
+            if not os.path.isdir(self.yamldir):
+                os.system(f'mkdir {self.yamldir}')
+
+            tmpf = None
+            with open(mergefile_path, 'r', encoding='utf-8') as stream:
                 try:
                     tmpf = yaml.load(stream, Loader=yaml.FullLoader)
                 except yaml.YAMLError as exc:
                     print(exc)
 
-            bad_tot=tmpf['merge']['nbad']
-            files_tot=tmpf['merge']['ndone']
+            bad_tot = tmpf['merge']['nbad']
+            files_tot = tmpf['merge']['ndone']
 
-            ntot_files=bad_tot+files_tot
-            print ("tot files  ",ntot_files,"  files eos  ",nfileseos)
-            dic[proc]={'neos':nfileseos,'nmerged':ntot_files}
-            print ('%s/%s/check'%(self.indirafs,proc))
-            if ntot_files<nfileseos:
-                self.touch('%s/%s/check'%(self.indirafs,proc))
-            elif  ntot_files>nfileseos:
-                os.system('rm %s/%s/events*.yaml'%(self.indirafs,proc))
-                os.system('rm %s/%s/merge.yaml'%(self.indirafs,proc))
+            ntot_files = bad_tot + files_tot
+            print("tot files  ", ntot_files, "  files eos  ", nfileseos)
+            dic[process_name] = {'neos': nfileseos, 'nmerged': ntot_files}
+            print(checkfile_path)
+            if ntot_files < nfileseos:
+                self.touch(checkfile_path)
+            elif ntot_files > nfileseos:
+                os.system(f'rm -f {process_yaml_dir}/events*.yaml')
+                os.system(f'rm -f {mergefile_path}')
             else:
-                if ut.file_exist('%s/%s/check'%(self.indirafs,proc)):
-                    os.system('rm %s/%s/check'%(self.indirafs,proc))
-   
-        outfile=self.indirafs+'/files.yaml'
-        with open(outfile, 'w') as outyaml:
-            yaml.dump(dic, outyaml, default_flow_style=False) 
-            
-        
+                if ut.file_exist(checkfile_path):
+                    os.system(f'rm -f {checkfile_path}')
+
+        outfile = os.path.join(self.yamldir, 'files.yaml')
+        with open(outfile, 'w', encoding='utf-8') as outyaml:
+            yaml.dump(dic, outyaml, default_flow_style=False)
