@@ -73,12 +73,14 @@ delphescard_base='FCChh_DETECTOR.tcl' #from fcc_v05 onwards
 ##FCC config script name
 fccconfig='PythiaDelphes_config_v02.py'
 
-#list of processes only with Pythia, meaning no LHE
-pythialist={
-'dummy':['dummy','1','1','1','1','1'],
-#for testing
-'p8_ee_Z_bb_ecm91':['1','1','1','1','1','1'],
-'p8_pp_Z_bb':['1','1','1','1','1','1'],
+# list of processes only with Pythia, meaning no LHE
+pythialist = {
+    'dummy': ['NOT REGISTERED IN param_FCChh',
+              'NOT REGISTERED IN param_FCChh',
+              '1', '1', '1', '1'],
+    # for testing
+    'p8_ee_Z_bb_ecm91': ['1', '1', '1', '1', '1', '1'],
+    'p8_pp_Z_bb': ['1', '1', '1', '1', '1', '1'],
 
 #'mg_pp_za012j_zmumu':['Z gamma + 012jets Z->mumu','','','1.0','1.0','1.0'],
 #'mg_pp_za012j_znunu':['Z gamma + 012jets Z->nunu','','','1.0','1.0','1.0'],
@@ -726,6 +728,9 @@ branching_ratios = {
 ## description/comment/matching parameters/cross section/kfactor/matching efficiency
 
 gridpacklist = {
+    'dummy': ['NOT REGISTERED IN param_FCChh',
+              'NOT REGISTERED IN param_FCChh',
+              '1', '1', '1', '1'],
 #new bbyy signals at different E_CMS - cross-sections are dummy placeholders
 'pw_pp_hh_lambda100_5f_100TeV_SA':['pp gg HH 100TeV, kl =1','','','1.0','1.0','1.0'],
 'pw_pp_hh_lambda240_5f_100TeV_SA':['pp gg HH 100TeV, kl =2.4','','','1.0','1.0','1.0'],
@@ -777,7 +782,6 @@ gridpacklist = {
 #tester:
 'mg_pp_h0j_test_5f_80TeV':['1','1','1','1','1','1'],
 
-'dummy':['dummy','1','1','1','1','1'],
     'mg_pp_za012j_zmumu':['Z gamma + 012jets Z->mumu','','','1.0','1.0','1.0'],
 'mg_pp_za012j_znunu':['Z gamma + 012jets Z->nunu','','','1.0','1.0','1.0'],
 'mg_pp_za012j_zee':['Z gamma + 012jets Z->ee','','','1.0','1.0','1.0'],
