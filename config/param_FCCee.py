@@ -90,9 +90,9 @@ detectors = [
     'IDEA_worse_singlehitReso_100pc_heavierVTXLOW_100pc',
 ]
 
-#list of processes only with Pythia, meaning no LHE
-pythialist={
-    'dummy':['<p style=\"background-color:Tomato;\">NOT REGISTERED IN param_FCCee</p>','<p style=\"background-color:Tomato;\">NOT REGISTERED IN param_FCCee</p>','','-9999','-9999','-9999'],
+# list of processes only with Pythia, meaning no LHE
+pythialist = {
+    'dummy':['NOT REGISTERED IN param_FCCee', 'NOT REGISTERED IN param_FCCee', '', '-9999', '-9999', '-9999'],
 
     'p8_ee_ZH_Znunu_Hgg_ecm240':['ZH ecm=240GeV','Z->nunu, H->gg','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
     'p8_ee_ZH_Znunu_Hbb_ecm240':['ZH ecm=240GeV','Z->nunu, H->bb','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
@@ -411,8 +411,8 @@ branching_ratios = {
 ## description/comment/matching parameters/cross section/kfactor/matching efficiency
 
 gridpacklist = {
-    'dummy': ['<span style="background-color:tomato;">NOT REGISTERED IN param_FCCee</span>',
-              '<span style="background-color:tomato;">NOT REGISTERED IN param_FCCee</span>', '',
+    'dummy': ['NOT REGISTERED IN param_FCCee',
+              'NOT REGISTERED IN param_FCCee', '',
               '-9999', '-9999', '-9999'],
     'mg_ee_tt_ecm350':['tt','tt inclusive','','1.0','1.0','1.0'],
     'mg_ee_tt_FCNC_tH_ecm365':['tt','tt inclusive','','1.0','1.0','1.0'],
