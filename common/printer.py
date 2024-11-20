@@ -255,6 +255,10 @@ class Printer:
                     'matching-params': self.para.gridpacklist[proc][2],
                     'cross-section': self.para.gridpacklist[proc][3]
                 }
+                if proc == 'dummy':
+                    process_info['status'] = 'not-registered'
+                else:
+                    process_info['status'] = 'done'
             elif self.matching and not ispythiaonly:
                 cmd = '%s,,%s,,%s,,%s%i%s,,%i,,%s%i%s,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n' % \
                       (process_name,
@@ -289,6 +293,10 @@ class Printer:
                     'k-factor': self.para.gridpacklist[proc][4],
                     'matching-eff': self.para.gridpacklist[proc][5]
                 }
+                if proc == 'dummy':
+                    process_info['status'] = 'not-registered'
+                else:
+                    process_info['status'] = 'done'
             elif ispythiaonly:
                 cmd = '%s ,,%s,,%s,,%s%i%s,,%i,,%s%i%s,,%.2f,,%s,,%s,,%s,,%s,,%s,,%s\n' % \
                       (process_name,
@@ -323,6 +331,10 @@ class Printer:
                     'k-factor': self.para.pythialist[news][4],
                     'matching-eff': self.para.pythialist[news][5]
                 }
+                if news == 'dummy':
+                    process_info['status'] = 'not-registered'
+                else:
+                    process_info['status'] = 'done'
                 ispythiaonly = False
             out_text += cmd
             out_dict['processes'].append(process_info)
