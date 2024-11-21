@@ -1,6 +1,5 @@
 import os
 import sys
-import re
 import json
 import yaml
 import EventProducer.common.utils as ut
@@ -272,12 +271,14 @@ class MakeSampleList:
                     if processhad == process_line_head.strip():
                         print(line[:-2])
                         line_elems = line.rsplit(',')
-                        line_elems[-2] = re.sub("'?(.*?)'",
-                                                f"'{matching_eff}'",
-                                                line_elems[-2])
-                        line_elems[-2] = re.sub('"?(.*?)"',
-                                                f'"{matching_eff}"',
-                                                line_elems[-2])
+                        if '\'' in line_elems[-2]:
+                            matching_eff_elems = line_elems[-2].rsplit('\'')
+                            matching_eff_elems[-2] = str(matching_eff)
+                            line_elems[-2] = '\''.join(matching_eff_elems)
+                        if '"' in line_elems[-2]:
+                            matching_eff_elems = line_elems[-2].rsplit('"')
+                            matching_eff_elems[-2] = str(matching_eff)
+                            line_elems[-2] = '"'.join(matching_eff_elems)
                         param_text[line_idx] = ','.join(line_elems)
                         print(param_text[line_idx][:-2])
         proc_dict.close()
