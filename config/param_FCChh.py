@@ -35,6 +35,8 @@ prodTag = {
     'fcc_v05_scenarioI':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
     'fcc_v05_scenarioII':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
     'fcc_v06':'/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh',
+    # 'fcc_v06':'/cvmfs/sw.hsf.org/key4hep/setup.sh -r 2024-10-28',
+    'fcc_v06_rltester':'/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh -r 2024-11-12',
 }
 
 defaultstack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
@@ -435,22 +437,24 @@ pythialist={
 
 decaylist = {
 #bbyy samples at alternate energies
-'mg_pp_h012j_5f_60TeV':['haa'],
-'mg_pp_h012j_5f_80TeV':['haa'],
-'mg_pp_h012j_5f_100TeV':['haa'],
-'mg_pp_h012j_5f_120TeV':['haa'],
-'mg_pp_vbf_h01j_5f_60TeV':['haa'],
-'mg_pp_vbf_h01j_5f_80TeV':['haa'],
-'mg_pp_vbf_h01j_5f_100TeV':['haa'],
-'mg_pp_vbf_h01j_5f_120TeV':['haa'],
-'mg_pp_tth01j_5f_60TeV':['haa'],
-'mg_pp_tth01j_5f_80TeV':['haa'],
-'mg_pp_tth01j_5f_100TeV':['haa'],
-'mg_pp_tth01j_5f_120TeV':['haa'],
-'mg_pp_vh012j_5f_60TeV':['haa'],
-'mg_pp_vh012j_5f_80TeV':['haa'],
-'mg_pp_vh012j_5f_100TeV':['haa'],
-'mg_pp_vh012j_5f_120TeV':['haa'],
+'mg_pp_h012j_5f_50TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_h012j_5f_60TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_h012j_5f_72TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_h012j_5f_80TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_h012j_5f_100TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_h012j_5f_120TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_vbf_h01j_5f_60TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_vbf_h01j_5f_80TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_vbf_h01j_5f_100TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_vbf_h01j_5f_120TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_tth01j_5f_60TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_tth01j_5f_80TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_tth01j_5f_100TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_tth01j_5f_120TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_vh012j_5f_60TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_vh012j_5f_80TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_vh012j_5f_100TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_vh012j_5f_120TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_h012j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_hh01j_5f':['hhaabb'],
 'mg_pp_vbf_h01j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hnunununu'],
@@ -749,8 +753,12 @@ gridpacklist = {
 #new lljj for bb2lMET
 'mg_pp_lljj_HF_QED_5f':['1','1','1','1','1','1'],
 
+#single Higgs production at various energy points
+'mg_pp_h012j_5f_50TeV':['1','1','1','1','1','1'],
+
 #bbyy samples at alternate energy points
 'mg_pp_h012j_5f_60TeV':['1','1','1','1','1','1'],
+'mg_pp_h012j_5f_72TeV':['1','1','1','1','1','1'],
 'mg_pp_h012j_5f_80TeV':['1','1','1','1','1','1'],
 'mg_pp_h012j_5f_100TeV':['1','1','1','1','1','1'],
 'mg_pp_h012j_5f_120TeV':['1','1','1','1','1','1'],
