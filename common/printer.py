@@ -92,8 +92,8 @@ class Printer:
 
             events_tot = tmpf['merge']['nevents']
             size_tot = tmpf['merge']['size'] / 1000000000.
-            bad_tot = tmpf['merge']['nbad']
-            files_tot = tmpf['merge']['ndone']
+            nfiles_bad = tmpf['merge']['nbad']
+            nfiles_good = tmpf['merge']['ndone']
             # Sum of weights is made identical to number of events
             # if not found in the merge file.
             try:
@@ -186,9 +186,9 @@ class Printer:
                 process_eos_dir = os.path.join(self.para.lhe_dir, proc)
             else:
                 process_eos_dir = os.path.join(self.para.delphes_dir,
-                                              self.version,
-                                              self.detector,
-                                              process_name)
+                                               self.version,
+                                               self.detector,
+                                               process_name)
 
                 if not os.path.isdir(process_eos_dir):
                     print('WARNING: Process EOS directory not found!')
@@ -211,15 +211,15 @@ class Printer:
                 # Count number of files
                 nfiles_eos = len(sample_files)
 
-            print('nevents              : %i' % events_tot)
-            print('sum of weights       : %i' % sumw_tot)
-            print('nfiles on eos/checked: %i/%i' % (nfiles_eos, files_tot))
-            print('proc in the end      : ', proc)
-            print('news in the end      : ', news)
+            print(f'INFO: n-events             {events_tot}')
+            print(f'      sum of weights       {sumw_tot}')
+            print(f'      nfiles on eos/good   {nfiles_eos}/{nfiles_good}')
+            print(f'      proc in the end      {proc}')
+            print(f'      news in the end      {news}')
 
             marked_b = ''
             marked_e = ''
-            if nfiles_eos > files_tot + bad_tot:
+            if nfiles_eos > nfiles_good + nfiles_bad:
                 marked_b = '<h2><mark>'
                 marked_e = '</mark></h2>'
 
@@ -230,9 +230,9 @@ class Printer:
                       (process_name,
                        self.comma_me(str(events_tot)),
                        marked_b,
-                       files_tot,
+                       nfiles_good,
                        marked_e,
-                       bad_tot,
+                       nfiles_bad,
                        marked_b,
                        nfiles_eos,
                        marked_e,
@@ -245,11 +245,12 @@ class Printer:
                 process_info = {
                     'process-name': process_name,
                     'n-events': events_tot,
-                    'n-files': files_tot,
-                    'n-files-bad': bad_tot,
+                    'n-files-good': nfiles_good,
+                    'n-files-bad': nfiles_bad,
                     'n-files-eos': nfiles_eos,
                     'size': size_tot,
                     'path': tmpf['merge']['outdir'],
+                    'files': tmpf['merge']['outfiles'],
                     'description': self.para.gridpacklist[proc][0],
                     'comment': self.para.gridpacklist[proc][1],
                     'matching-params': self.para.gridpacklist[proc][2],
@@ -265,9 +266,9 @@ class Printer:
                        self.comma_me(str(events_tot)),
                        self.comma_me(str(sumw_tot)),
                        marked_b,
-                       files_tot,
+                       nfiles_good,
                        marked_e,
-                       bad_tot,
+                       nfiles_bad,
                        marked_b,
                        nfiles_eos,
                        marked_e,
@@ -282,11 +283,12 @@ class Printer:
                     'process-name': process_name,
                     'n-events': events_tot,
                     'sum-of-weights': sumw_tot,
-                    'n-files': files_tot,
-                    'n-files-bad': bad_tot,
+                    'n-files-good': nfiles_good,
+                    'n-files-bad': nfiles_bad,
                     'n-files-eos': nfiles_eos,
                     'size': size_tot,
                     'path': tmpf['merge']['outdir'],
+                    'files': tmpf['merge']['outfiles'],
                     'description': self.para.gridpacklist[proc][0],
                     'comment': self.para.gridpacklist[proc][1],
                     'cross-section': float(self.para.gridpacklist[proc][3]) * br,
@@ -303,9 +305,9 @@ class Printer:
                        self.comma_me(str(events_tot)),
                        self.comma_me(str(sumw_tot)),
                        marked_b,
-                       files_tot,
+                       nfiles_good,
                        marked_e,
-                       bad_tot,
+                       nfiles_bad,
                        marked_b,
                        nfiles_eos,
                        marked_e,
@@ -320,11 +322,12 @@ class Printer:
                     'process-name': process_name,
                     'n-events': events_tot,
                     'sum-of-weights': sumw_tot,
-                    'n-files': files_tot,
-                    'n-files-bad': bad_tot,
+                    'n-files-good': nfiles_good,
+                    'n-files-bad': nfiles_bad,
                     'n-files-eos': nfiles_eos,
                     'size': size_tot,
                     'path': tmpf['merge']['outdir'],
+                    'files': tmpf['merge']['outfiles'],
                     'description': self.para.pythialist[news][0],
                     'comment': self.para.pythialist[news][1],
                     'cross-section': self.para.pythialist[news][3],
@@ -343,9 +346,9 @@ class Printer:
 # description/comment/matching parameters/cross section/kfactor/matching efficiency
 
             self.ntot_events += int(events_tot)
-            self.ntot_files += int(files_tot)
+            self.ntot_files += int(nfiles_good)
             self.tot_size += float(size_tot)
-            self.ntot_bad += float(bad_tot)
+            self.ntot_bad += float(nfiles_bad)
             self.ntot_eos += float(nfiles_eos)
             self.ntot_sumw += float(sumw_tot)
         if not self.matching:
@@ -360,7 +363,7 @@ class Printer:
                    '')
             out_dict['total'] = {
                 'n-events': self.ntot_events,
-                'n-files': self.ntot_files,
+                'n-files-good': self.ntot_files,
                 'n-files-bad': self.ntot_bad,
                 'n-files-eos': self.ntot_eos,
                 'size': self.tot_size
@@ -379,7 +382,7 @@ class Printer:
             out_dict['total'] = {
                 'n-events': self.ntot_events,
                 'sum-of-weights': self.ntot_sumw,
-                'n-files': self.ntot_files,
+                'n-files-good': self.ntot_files,
                 'n-files-bad': self.ntot_bad,
                 'n-files-eos': self.ntot_eos,
                 'size': self.tot_size
