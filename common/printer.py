@@ -91,7 +91,7 @@ class Printer:
                     tmpf = yaml.load(stream, Loader=yaml.FullLoader)
 
             events_tot = tmpf['merge']['nevents']
-            size_tot = tmpf['merge']['size'] / 1000000000.
+            size_tot = tmpf['merge']['size']
             nfiles_bad = tmpf['merge']['nbad']
             nfiles_good = tmpf['merge']['ndone']
             # Sum of weights is made identical to number of events
@@ -236,7 +236,7 @@ class Printer:
                        marked_b,
                        nfiles_eos,
                        marked_e,
-                       size_tot,
+                       size_tot / 1e9,
                        tmpf['merge']['outdir'],
                        self.para.gridpacklist[proc][0],
                        self.para.gridpacklist[proc][1],
@@ -272,7 +272,7 @@ class Printer:
                        marked_b,
                        nfiles_eos,
                        marked_e,
-                       size_tot,
+                       size_tot / 1e9,
                        tmpf['merge']['outdir'],
                        self.para.gridpacklist[proc][0],
                        self.para.gridpacklist[proc][1],
@@ -311,7 +311,7 @@ class Printer:
                        marked_b,
                        nfiles_eos,
                        marked_e,
-                       size_tot,
+                       size_tot / 1e9,
                        tmpf['merge']['outdir'],
                        self.para.pythialist[news][0],
                        self.para.pythialist[news][1],
@@ -358,7 +358,7 @@ class Printer:
                    self.comma_me(str(self.ntot_files)),
                    self.comma_me(str(self.ntot_bad)),
                    self.comma_me(str(self.ntot_eos)),
-                   self.tot_size,
+                   self.tot_size / 1e9,
                    '',
                    '')
             out_dict['total'] = {
@@ -376,7 +376,7 @@ class Printer:
                    self.comma_me(str(self.ntot_files)),
                    self.comma_me(str(self.ntot_bad)),
                    self.comma_me(str(self.ntot_eos)),
-                   self.tot_size,
+                   self.tot_size / 1e9,
                    '',
                    '')
             out_dict['total'] = {
