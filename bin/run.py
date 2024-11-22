@@ -4,7 +4,7 @@ import sys
 import argparse
 
 # _____________________________________________________________________________
-if __name__ == "__main__":
+def main():
 
     parser = argparse.ArgumentParser()
 
@@ -171,7 +171,6 @@ if __name__ == "__main__":
         print("yamldir = ", yamldir)
         print("indir = ", indir)
 
-
     elif args.reco:
         indir = '%s%s/%s' % (para.delphes_dir, version, detector)
         fext = para.delphes_ext
@@ -182,7 +181,8 @@ if __name__ == "__main__":
         print(f'        - detector: {detector}')
 
     else:
-        print ('problem, need to specify --reco or --LHE')
+        print('ERROR: Please specify --reco, --STDHEP or --LHE!')
+        print('Aborting...')
         sys.exit(3)
 
     import EventProducer.common.utils as ut
@@ -307,20 +307,21 @@ if __name__ == "__main__":
     elif args.web:
         import EventProducer.common.printer as prt
         if args.LHE:
-            print('create web page for LHE')
-            printdic = prt.Printer(yamldir, para.lhe_web, False, True, para)
+            print('INFO: Creating LHE output files for the web page...')
+            printdic = prt.Printer(yamldir, indir, para.lhe_web, para, False)
             printdic.run()
 
         elif args.STDHEP:
-            print('create web page for STDHEP')
-            stdhep_outfile = para.stdhep_web.replace('VERSION', version)
-            printdic = prt.Printer(yamldir, stdhep_outfile, False, True, para)
+            print('INFO: Creating STDHEP output files for the web page...')
+            stdhep_webfile = para.stdhep_web.replace('VERSION', version)
+            printdic = prt.Printer(yamldir, indir, stdhep_webfile, para, False)
             printdic.run()
 
         elif args.reco:
-            print('INFO: Creating Reco web page file...')
-            webpage_file = para.delphes_web.replace('VERSION', version).replace('DETECTOR', detector)
-            printdic = prt.Printer(yamldir, webpage_file, True, False, para, detector, version)
+            print('INFO: Creating Reco output files for the web page...')
+            webpage_file = para.delphes_web.replace('VERSION', version)
+            webpage_file += webpage_file.replace('DETECTOR', detector)
+            printdic = prt.Printer(yamldir, indir, webpage_file, para, True)
             printdic.run()
 
     elif args.remove:
@@ -356,3 +357,8 @@ if __name__ == "__main__":
     else:
         print('problem, need to specify --check or --send')
         sys.exit(3)
+
+
+# _____________________________________________________________________________
+if __name__ == "__main__":
+    main()

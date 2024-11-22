@@ -1,5 +1,5 @@
 '''
-Prints sample metadata to a text file.
+Prints sample metadata to a text and JSON file.
 '''
 
 import sys
@@ -7,29 +7,25 @@ import os
 import re
 import time
 import json
+from types import ModuleType
 import yaml
 
 
 class Printer:
     '''
-    Prints sample metadata to a text file.
+    Prints sample metadata to a text and JSON file.
     '''
     def __init__(self,
-                 yamldir: str,
-                 outpath: str,
-                 matching: bool,
-                 is_lhe: bool,
-                 para: object,
-                 detector: str = '',
-                 version: str = ''):
-        self.yamldir = yamldir
-        self.outpath_txt = outpath
-        self.outpath_json = os.path.splitext(self.outpath_txt)[0] + '.json'
-        self.matching = matching
-        self.is_lhe = is_lhe
+                 yaml_dir: str,
+                 eos_dir: str,
+                 webfile_path: str,
+                 para: ModuleType,
+                 matching: bool):
+        self.yaml_dir = yaml_dir
+        self.eos_dir = eos_dir
+        self.webfile_path = webfile_path
         self.para = para
-        self.version = version
-        self.detector = detector
+        self.matching = matching
 
         self.tot_size = 0
         self.ntot_events = 0
@@ -38,7 +34,7 @@ class Printer:
         self.ntot_eos = 0
         self.ntot_sumw = 0
 
-    # _____________________________________________________________________________
+    # _________________________________________________________________________
     def comma_me(self, amount):
         orig = amount
         new = re.sub("^(-?\d+)(\d{3})", '\g<1>,\g<2>', amount)
@@ -46,23 +42,13 @@ class Printer:
             return new
         return self.comma_me(new)
 
-    # _____________________________________________________________________________
+    # _________________________________________________________________________
     def run(self):
         '''
         Generate the sample text file.
         '''
-        process_names = next(os.walk(self.yamldir))[1]
 
-#        checkfiles=''
-#        if self.isLHE: checkfiles='%s/files.yaml'%(self.para.lhe_dir)
-#        else:          checkfiles='%s/%s/files.yaml'%(self.para.delphes_dir,self.version)
-#
-#        tmpcheck=None
-#        with open(checkfiles, 'r') as stream:
-#            try:
-#                tmpcheck = yaml.load(stream, Loader=yaml.FullLoader)
-#            except yaml.YAMLError as exc:
-#                print(exc)
+        process_names = next(os.walk(self.yaml_dir))[1]
 
         out_text = ''
         out_dict = {}
@@ -70,7 +56,7 @@ class Printer:
         for process_name in process_names:
             print(f'--------------------------  {process_name}')
 
-            mergefile_path = os.path.join(self.yamldir, process_name,
+            mergefile_path = os.path.join(self.yaml_dir, process_name,
                                           'merge.yaml')
 
             if not os.path.isfile(mergefile_path):
@@ -182,34 +168,27 @@ class Printer:
                     news = 'dummy'
 
             nfiles_eos = 0
-            if self.is_lhe:
-                process_eos_dir = os.path.join(self.para.lhe_dir, proc)
-            else:
-                process_eos_dir = os.path.join(self.para.delphes_dir,
-                                               self.version,
-                                               self.detector,
-                                               process_name)
 
-                if not os.path.isdir(process_eos_dir):
-                    print('WARNING: Process EOS directory not found!')
-                    print(f'           - {process_eos_dir}')
-                    continue
+            if not os.path.isdir(self.eos_dir):
+                print('WARNING: Process EOS directory not found!')
+                print(f'           - {self.eos_dir}')
+                continue
 
-                print('INFO: Process EOS directory:')
-                print(f'        - {process_eos_dir}')
-                sample_files = os.listdir(process_eos_dir)
-                # Remove files not ending with .stdhep.gz or .root
-                sample_files = \
-                    [f for f in sample_files
-                     if (f.endswith('.stdhep.gz') or
-                         f.endswith('.root') or
-                         f.endswith('.lhe.gz'))]
-                # Remove not files
-                sample_files = \
-                    [f for f in sample_files
-                     if os.path.isfile(os.path.join(process_eos_dir, f))]
-                # Count number of files
-                nfiles_eos = len(sample_files)
+            print('INFO: Process EOS directory:')
+            print(f'        - {self.eos_dir}')
+            sample_files = os.listdir(self.eos_dir)
+            # Remove files not ending with .stdhep.gz or .root
+            sample_files = \
+                [f for f in sample_files
+                 if (f.endswith('.stdhep.gz') or
+                     f.endswith('.root') or
+                     f.endswith('.lhe.gz'))]
+            # Remove not files
+            sample_files = \
+                [f for f in sample_files
+                 if os.path.isfile(os.path.join(self.eos_dir, f))]
+            # Count number of files
+            nfiles_eos = len(sample_files)
 
             print(f'INFO: n-events             {events_tot}')
             print(f'      sum of weights       {sumw_tot}')
@@ -391,9 +370,10 @@ class Printer:
         out_text += cmd
 
         print('INFO: Saving web files to:')
-        print(f'        - {self.outpath_txt}')
-        with open(self.outpath_txt, 'w', encoding='utf-8') as outfile:
+        print(f'        - {self.webfile_path}')
+        with open(self.webfile_path, 'w', encoding='utf-8') as outfile:
             outfile.write(out_text)
-        print(f'        - {self.outpath_json}')
-        with open(self.outpath_json, 'w', encoding='utf-8') as outfile:
+        webpath_json = os.path.splitext(self.webfile_path)[0] + '.json'
+        print(f'        - {webpath_json}')
+        with open(webpath_json, 'w', encoding='utf-8') as outfile:
             json.dump(out_dict, outfile, indent=4)
