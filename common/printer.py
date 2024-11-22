@@ -17,12 +17,10 @@ class Printer:
     '''
     def __init__(self,
                  yaml_dir: str,
-                 eos_dir: str,
                  webfile_path: str,
                  para: ModuleType,
                  matching: bool):
         self.yaml_dir = yaml_dir
-        self.eos_dir = eos_dir
         self.webfile_path = webfile_path
         self.para = para
         self.matching = matching
@@ -76,6 +74,7 @@ class Printer:
                     time.sleep(10)
                     tmpf = yaml.load(stream, Loader=yaml.FullLoader)
 
+            process_eos_dir = tmpf['merge']['outdir']
             events_tot = tmpf['merge']['nevents']
             size_tot = tmpf['merge']['size']
             nfiles_bad = tmpf['merge']['nbad']
@@ -169,14 +168,14 @@ class Printer:
 
             nfiles_eos = 0
 
-            if not os.path.isdir(self.eos_dir):
+            if not os.path.isdir(process_eos_dir):
                 print('WARNING: Process EOS directory not found!')
-                print(f'           - {self.eos_dir}')
+                print(f'           - {process_eos_dir}')
                 continue
 
             print('INFO: Process EOS directory:')
-            print(f'        - {self.eos_dir}')
-            sample_files = os.listdir(self.eos_dir)
+            print(f'        - {process_eos_dir}')
+            sample_files = os.listdir(process_eos_dir)
             # Remove files not ending with .stdhep.gz or .root
             sample_files = \
                 [f for f in sample_files
@@ -186,7 +185,7 @@ class Printer:
             # Remove not files
             sample_files = \
                 [f for f in sample_files
-                 if os.path.isfile(os.path.join(self.eos_dir, f))]
+                 if os.path.isfile(os.path.join(process_eos_dir, f))]
             # Count number of files
             nfiles_eos = len(sample_files)
 
