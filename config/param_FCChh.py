@@ -443,7 +443,9 @@ decaylist = {
 'mg_pp_h012j_5f_80TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_h012j_5f_100TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_h012j_5f_120TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_vbf_h01j_5f_50TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_vbf_h01j_5f_60TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_vbf_h01j_5f_72TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_vbf_h01j_5f_80TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_vbf_h01j_5f_100TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_vbf_h01j_5f_120TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
@@ -755,15 +757,15 @@ gridpacklist = {
 
 #single Higgs production at various energy points
 'mg_pp_h012j_5f_50TeV':['1','1','1','1','1','1'],
-
-#bbyy samples at alternate energy points
 'mg_pp_h012j_5f_60TeV':['1','1','1','1','1','1'],
 'mg_pp_h012j_5f_72TeV':['1','1','1','1','1','1'],
 'mg_pp_h012j_5f_80TeV':['1','1','1','1','1','1'],
 'mg_pp_h012j_5f_100TeV':['1','1','1','1','1','1'],
 'mg_pp_h012j_5f_120TeV':['1','1','1','1','1','1'],
 
+'mg_pp_vbf_h01j_5f_50TeV':['1','1','1','1','1','1'],
 'mg_pp_vbf_h01j_5f_60TeV':['1','1','1','1','1','1'],
+'mg_pp_vbf_h01j_5f_72TeV':['1','1','1','1','1','1'],
 'mg_pp_vbf_h01j_5f_80TeV':['1','1','1','1','1','1'],
 'mg_pp_vbf_h01j_5f_100TeV':['1','1','1','1','1','1'],
 'mg_pp_vbf_h01j_5f_120TeV':['1','1','1','1','1','1'],
