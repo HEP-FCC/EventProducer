@@ -320,7 +320,8 @@ def main():
         elif args.reco:
             print('INFO: Creating Reco output files for the web page...')
             webpage_file = para.delphes_web.replace('VERSION', version)
-            webpage_file += webpage_file.replace('DETECTOR', detector)
+            webpage_file = webpage_file.replace('DETECTOR', detector)
+            webpage_file = webpage_file.replace('_.', '.')
             printdic = prt.Printer(yamldir, webpage_file, para, True)
             printdic.run()
 
