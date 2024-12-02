@@ -21,6 +21,7 @@ class MakeSampleList:
         for fpath in self.para.procList:
             filepath = fpath.replace('VERSION', version)
             filepath = filepath.replace('DETECTOR', detector)
+            filepath = filepath.replace('-.', '.')
             self.outpaths.append(filepath)
         self.version = version
         self.detector = detector
@@ -286,12 +287,17 @@ class MakeSampleList:
         # strip last comma and check the validity of JSON
         with open(f'tmp_{uid}.json', 'r', encoding='utf-8') as infile:
             data = infile.read()
-            proc_dict_string = data[:-2] + '\n}'
+            if len(data) > 2:
+                proc_dict_string = data[:-2]
+            else:
+                proc_dict_string = data
+            proc_dict_string += '\n}'
 
             try:
                 proc_dict_json = json.loads(proc_dict_string)
             except json.decoder.JSONDecodeError:
                 print('ERROR: Resulting procDict is not valid JSON!')
+                print('       Aborting...')
                 sys.exit(3)
 
         # save procDict to file(s)
