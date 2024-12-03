@@ -21,7 +21,7 @@ class MakeSampleList:
         for fpath in self.para.procList:
             filepath = fpath.replace('VERSION', version)
             filepath = filepath.replace('DETECTOR', detector)
-            filepath = filepath.replace('-.', '.')
+            filepath = filepath.replace('_.', '.')
             self.outpaths.append(filepath)
         self.version = version
         self.detector = detector
