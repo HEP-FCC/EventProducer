@@ -95,16 +95,31 @@ class send_lhe():
             frun.write('cd job%s_%s\n'%(uid,self.process))
             frun.write('export EOS_MGM_URL=\"root://eospublic.cern.ch\"\n')
             frun.write('source %s\n'%(self.para.defaultstack))
-            frun.write('source /cvmfs/sft.cern.ch/lcg/views/LCG_97a_FCC_4/x86_64-centos7-gcc8-opt/setup.sh \n')
             frun.write('mkdir %s\n'%(lhedir))
             frun.write('mkdir %s%s\n'%(lhedir,self.process))
             frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s/%s.tar.gz .\n'%(gpdir,self.process))
             frun.write('tar -zxf %s.tar.gz\n'%self.process)
+            #different dir structure in powheg gridpacks, compared to mg -> ONLY IN THE NEW ONES!
+            # if self.typelhe == 'gp_pw':
+            #     frun.write('./runcmsgrid.sh %i %i 8\n'%(self.events,int(uid.lstrip('0'))))
+            #     frun.write('echo "finished run"\n')
+            #     frun.write('gzip cmsgrid_final.lhe\n')
+            #     frun.write('xrdcp -N -v cmsgrid_final.lhe.gz root://eospublic.cern.ch/%s/%s/events_%s.lhe.gz\n'%(lhedir,self.process ,uid))
+
+            # else:
+            #     frun.write('cd process/\n')
+            #     frun.write('./run.sh %i %i\n'%(self.events,int(uid.lstrip('0'))))
+            #     frun.write('echo "finished run"\n')
+            #     #frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events_%s.lhe.gz\n'%(lhedir,self.process ,uid))
+            #     frun.write('xrdcp -N -v events.lhe.gz root://eospublic.cern.ch/%s/%s/events_%s.lhe.gz\n'%(lhedir,self.process ,uid))
+            
+            #TEMP
             frun.write('cd process/\n')
             frun.write('./run.sh %i %i\n'%(self.events,int(uid.lstrip('0'))))
             frun.write('echo "finished run"\n')
             #frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py events.lhe.gz %s/%s/events_%s.lhe.gz\n'%(lhedir,self.process ,uid))
             frun.write('xrdcp -N -v events.lhe.gz root://eospublic.cern.ch/%s/%s/events_%s.lhe.gz\n'%(lhedir,self.process ,uid))
+            
             frun.write('echo "lhe file successfully copied on eos"\n')
 
             frun.write('cd ..\n')
