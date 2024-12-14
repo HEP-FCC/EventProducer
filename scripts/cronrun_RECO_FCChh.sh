@@ -1,9 +1,9 @@
 PROD_TAG="${1}"
 
-cd /afs/cern.ch/user/f/fccsw/private/EventProducer/ || exit
+cd /afs/cern.ch/user/f/fccsw/private/EventProducer/ || exit 1
 source ./init.sh
 LOGFILE="${EVENTPRODUCER}/log/cronrun_RECO_FCChh.log"
-echo "" > "${LOGFILE}"
+echo "`date`  INFO: Cron run started." > "${LOGFILE}"
 
 SYNCLOCK="${EVENTPRODUCER}/.sync.lock"
 # Making sure the last sync went OK and there is no .sync.lock file left

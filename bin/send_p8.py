@@ -3,6 +3,7 @@ import os, sys
 import subprocess
 import time
 import json
+import re
 import EventProducer.common.utils as ut
 import EventProducer.common.makeyaml as my
 
@@ -10,7 +11,7 @@ import EventProducer.common.makeyaml as my
 class send_p8():
 
 #__________________________________________________________
-    def __init__(self,njobs, events, process, islsf, iscondor, islocal, queue, priority, ncpus, para, version, training, detector):
+    def __init__(self,njobs, events, process, islsf, iscondor, islocal, queue, priority, ncpus, para, version, training, detector, custom_edm4hep_config):
         self.njobs    = njobs
         self.events   = events
         self.process  = process
@@ -25,6 +26,7 @@ class send_p8():
         self.version  = version
         self.training = training
         self.detector = detector
+        self.custom_edm4hep_config = custom_edm4hep_config
 
 #__________________________________________________________
     def send(self):
@@ -44,6 +46,7 @@ class send_p8():
         if 'FCCee' in self.para.module_name:  acctype='FCCee'
 
         logdir=Dir+"/BatchOutputs/%s/%s/%s/%s/"%(acctype,self.version,self.detector,self.process)
+        
         if not ut.dir_exist(logdir):
             os.system("mkdir -p %s"%logdir)
 
@@ -52,11 +55,65 @@ class send_p8():
             if not ut.dir_exist(yamldir):
                 os.system("mkdir -p %s"%yamldir)
 
-        delphescards_base = '%scard_%s.tcl'%(self.para.delphescards_dir,self.detector)
-        delphescards_base=delphescards_base.replace('_VERSION_',self.version)
-        if ut.file_exist(delphescards_base)==False:
-            print ('delphes card does not exist: ',delphescards_base,' , exit')
-            sys.exit(3)
+        # retrieve delphes card paths for FCC-hh case
+        if "FCChh" in self.para.module_name:
+
+            delphescards_mmr='' #not sure this is really necessary, could clean up the code to not need it
+            delphescards_emr=''
+            delphescards_mr=''
+
+            #ensure backwards compatibility for old productions (directory structure changes from v06)
+            prod_version_num = int(re.search(r'v([\d]+)', self.version).group(1))
+
+            if prod_version_num >= 6:
+                # Base card
+                delphescards_base = os.path.join(self.para.delphescards_dir, self.version, self.detector, self.para.delphescard_base )
+                
+                # Separate momentum resolution parametrization for muons
+                delphescards_mmr = os.path.join(self.para.delphescards_dir, self.version, self.detector, self.para.delphescard_mmr)
+            
+                # Separate momentum resolution parametrization for tracks
+                delphescards_mr = os.path.join(self.para.delphescards_dir, self.version, self.detector, self.para.delphescard_mr)
+
+                # Separate momentum resolution parametrization for electrons - exists only from production v05 onwards!
+                delphescards_emr = os.path.join(self.para.delphescards_dir, self.version, self.detector, self.para.delphescard_emr)
+
+            else:
+                delphescards_base = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_base)
+                delphescards_mmr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mmr)
+                delphescards_mr = '%s%s/%s'%(self.para.delphescards_dir,self.version,self.para.delphescard_mr)
+
+                if prod_version_num >= 5:
+                    delphescards_emr = '%s%s/%s'%(self.para.delphescards_dir, self.version, self.para.delphescard_emr)
+
+
+            # replace detector version tag
+            delphescards_base = delphescards_base.replace('DETECTOR',self.detector)
+            delphescards_mmr = delphescards_mmr.replace('DETECTOR',self.detector)
+            delphescards_mr = delphescards_mr.replace('DETECTOR',self.detector)
+            delphescards_emr = delphescards_emr.replace('DETECTOR',self.detector)
+
+            #check if all requested cards exist:
+            if not os.path.isfile(delphescards_base):
+                raise Exception("ERROR in param_FCChh - the base Delphes card doesn't exist, at: "+delphescards_base)
+
+            if not os.path.isfile(delphescards_mmr):
+                raise Exception("ERROR in param_FCChh - the card for muon momentum resolution doesn't exist, at: "+delphescards_mmr)
+
+            if not os.path.isfile(delphescards_mr):
+                raise Exception("ERROR in param_FCChh - the card for track momentum resolution doesn't exist, at: "+delphescards_mr)
+
+            if not os.path.isfile(delphescards_emr) and prod_version_num >= 5:
+                raise Exception("ERROR in param_FCChh - the card for track momentum resolution doesn't exist, at: "+delphescards_emr)
+
+        # retrieve delphes card paths for FCC-ee case
+        else:   
+            delphescards_base = '%scard_%s.tcl'%(self.para.delphescards_dir,self.detector)
+            delphescards_base=delphescards_base.replace('_VERSION_',self.version)
+
+            if ut.file_exist(delphescards_base)==False:
+                print ('delphes card does not exist: ',delphescards_base,' , exit')
+                sys.exit(3)
 
         pythiacard='%s%s.cmd'%(self.para.pythiacards_dir,self.process)
         pythiacard=pythiacard.replace('_VERSION_',self.version)
@@ -123,14 +180,22 @@ class send_p8():
                 frun.write('mkdir -p %s/%s\n'%(outdir,self.process))
             frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s card.tcl\n'%(delphescards_base))
 
+            if "FCChh" in self.para.module_name:
+                frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mmr))
+                frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(delphescards_mr))
+                if delphescards_emr:
+                    frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s .\n'%(delphescards_emr))
+
             if '_EvtGen' not in self.process:
                 frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py %s card.cmd\n'%(pythiacard))
                 frun.write('echo "" >> card.cmd\n')
                 frun.write('echo "Random:seed = %s" >> card.cmd\n'%uid)
                 frun.write('echo "Main:numberOfEvents = %i" >> card.cmd\n'%(self.events))
 
-
-            frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Delphes/edm4hep_%s.tcl edm4hep.tcl\n'%(self.version,self.detector))
+            if self.custom_edm4hep_config:
+                frun.write('cp {} edm4hep.tcl\n'.format(self.custom_edm4hep_config))
+            else:
+                frun.write('python /afs/cern.ch/work/f/fccsw/public/FCCutils/eoscopy.py /eos/experiment/fcc/ee/generation/FCC-config/%s/FCCee/Delphes/edm4hep_%s.tcl edm4hep.tcl\n'%(self.version,self.detector))
             
             if '_EvtGen' not in self.process:
                 frun.write('DelphesPythia8_EDM4HEP card.tcl edm4hep.tcl card.cmd events_%s.root\n'%(uid)) 
@@ -253,11 +318,21 @@ class send_p8():
             frun_condor.write('Log            = %s/condor_job.%s.$(ClusterId).$(ProcId).log\n'%(logdir,str(uid)))
             frun_condor.write('Output         = %s/condor_job.%s.$(ClusterId).$(ProcId).out\n'%(logdir,str(uid)))
             frun_condor.write('Error          = %s/condor_job.%s.$(ClusterId).$(ProcId).error\n'%(logdir,str(uid)))
-            frun_condor.write('getenv         = True\n')
-            frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
-            #frun_condor.write('requirements   = ( (OpSysAndVer =?= "CentOS7") && (Machine =!= LastRemoteHost) )\n')
-            #frun_condor.write('requirements   = ( (OpSysAndVer =?= "SLCern6") && (Machine =!= LastRemoteHost) )\n')
-            frun_condor.write('requirements    = ( (OpSysAndVer =?= "CentOS7") && (Machine =!= LastRemoteHost) && (TARGET.has_avx2 =?= True) )\n')
+
+            # FCC-hh legacy production v05 with special release can only run on centos7 container, 
+            # and for v06 we set up from newer releases and dont want to port env
+            if 'FCChh' in self.para.module_name:
+                if "fcc_v05" in self.version:
+                    frun_condor.write('MY.WantOS = "el7"\n')
+                else:
+                    frun_condor.write('requirements    = ( (OpSysAndVer =?= "AlmaLinux9") && (Machine =!= LastRemoteHost) && (TARGET.has_avx2 =?= True) )\n')
+                
+                frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) 
+
+            else:
+                frun_condor.write('getenv         = True\n')
+                frun_condor.write('environment    = "LS_SUBCWD=%s"\n'%logdir) # not sure
+                frun_condor.write('requirements    = ( (OpSysAndVer =?= "AlmaLinux9") && (Machine =!= LastRemoteHost) && (TARGET.has_avx2 =?= True) )\n')
 
             frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')
             frun_condor.write('max_retries    = 3\n')
