@@ -17,8 +17,10 @@ yamldir='/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCChh/'
 
 #proc lists
 procList = [
-     '/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCChh_procDict_VERSION.json',
-     '/eos/experiment/fcc/www/data/FCCDicts/FCChh_procDict_VERSION.json']
+     '/eos/experiment/fcc/hh/utils/FCCDicts/FCChh_procDict_VERSION_DETECTOR.json'
+     # '/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCChh_procDict_VERSION.json',
+     # '/eos/experiment/fcc/www/data/FCCDicts/FCChh_procDict_VERSION.json'
+     ]
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'
@@ -34,9 +36,10 @@ prodTag = {
     'fcc_v04':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
     'fcc_v05_scenarioI':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
     'fcc_v05_scenarioII':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
+    # 'fcc_v06':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh', #still mallocs errors as of 16.12
     'fcc_v06':'/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh',
     # 'fcc_v06':'/cvmfs/sw.hsf.org/key4hep/setup.sh -r 2024-10-28',
-    'fcc_v06_rltester':'/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh -r 2024-11-12',
+    # 'fcc_v06_rltester':'/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh -r 2024-11-12',
 }
 
 defaultstack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
@@ -443,12 +446,12 @@ decaylist = {
 'mg_pp_h012j_5f_80TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_h012j_5f_100TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_h012j_5f_120TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
-'mg_pp_vbf_h01j_5f_50TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
-'mg_pp_vbf_h01j_5f_60TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
-'mg_pp_vbf_h01j_5f_72TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
-'mg_pp_vbf_h01j_5f_80TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
-'mg_pp_vbf_h01j_5f_100TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
-'mg_pp_vbf_h01j_5f_120TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_vbf_h01j_5f_50TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww'],
+'mg_pp_vbf_h01j_5f_60TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww'],
+'mg_pp_vbf_h01j_5f_72TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww'],
+'mg_pp_vbf_h01j_5f_80TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww'],
+'mg_pp_vbf_h01j_5f_100TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww'],
+'mg_pp_vbf_h01j_5f_120TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww'],
 'mg_pp_tth01j_5f_60TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_tth01j_5f_80TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_tth01j_5f_100TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
@@ -459,7 +462,7 @@ decaylist = {
 'mg_pp_vh012j_5f_120TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_h012j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_hh01j_5f':['hhaabb'],
-'mg_pp_vbf_h01j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hnunununu'],
+'mg_pp_vbf_h01j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hnunununu','hww'],
 'mg_pp_tth01j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_bbh_5f':['haa'],
 'mg_pp_vh012j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
@@ -780,6 +783,47 @@ gridpacklist = {
 'mg_pp_vh012j_5f_100TeV':['1','1','1','1','1','1'],
 'mg_pp_vh012j_5f_120TeV':['1','1','1','1','1','1'],
 
+#backgrounds to single higgs analyses at various energy points:
+'mg_pp_mumu012j_mhcut_5f_HT_0_100_100TeV':['mu+ mu- + 0/1/2 jets','0 < HT < 100','xqcut = 30, qCut = 40','382.9','1.20','0.695'],
+'mg_pp_mumu012j_mhcut_5f_HT_0_100_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','0 < HT < 100','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_0_100_80TeV':['mu+ mu- + 0/1/2 jets @ 80 TeV','0 < HT < 100','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_0_100_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','0 < HT < 100','xqcut = 30, qCut = 40','1','1','1'],
+
+
+'mg_pp_mumu012j_mhcut_5f_HT_100_300_100TeV':['mu+ mu- + 0/1/2 jets','100 < HT < 300','xqcut = 30, qCut = 40','44.08','1.20','0.338'],
+'mg_pp_mumu012j_mhcut_5f_HT_100_300_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','100 < HT < 300','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_100_300_80TeV':['mu+ mu- + 0/1/2 jets @ 80 TeV','100 < HT < 300','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_100_300_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','100 < HT < 300','xqcut = 30, qCut = 40','1','1','1'],
+
+'mg_pp_mumu012j_mhcut_5f_HT_300_500_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','300 < HT < 500','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_300_500_80TeV':['mu+ mu- + 0/1/2 jets @ 80 TeV','300 < HT < 500','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_300_500_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','300 < HT < 500','xqcut = 30, qCut = 40','1','1','1'],
+
+'mg_pp_mumu012j_mhcut_5f_HT_500_700_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','500 < HT < 700','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_500_700_80TeV':['mu+ mu- + 0/1/2 jets @ 80 TeV','500 < HT < 700','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_500_700_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','500 < HT < 700','xqcut = 30, qCut = 40','1','1','1'],
+
+'mg_pp_mumu012j_mhcut_5f_HT_700_900_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','700 < HT < 900','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_700_900_80TeV':['mu+ mu- + 0/1/2 jets @ 80 TeV','700 < HT < 900','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_700_900_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','700 < HT < 900','xqcut = 30, qCut = 40','1','1','1'],
+
+'mg_pp_mumu012j_mhcut_5f_HT_900_1100_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','900 < HT < 1100','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_900_1100_80TeV':['mu+ mu- + 0/1/2 jets @ 80 TeV','900 < HT < 1100','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_900_1100_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','900 < HT < 1100','xqcut = 30, qCut = 40','1','1','1'],
+
+'mg_pp_mumu012j_mhcut_5f_HT_1100_100000_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','1100 < HT < 100000','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_1100_100000_80TeV':['mu+ mu- + 0/1/2 jets @ 80 TeV','1100 < HT < 100000','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_1100_100000_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','1100 < HT < 100000','xqcut = 30, qCut = 40','1','1','1'],
+
+
+#new samples for 2024 analyses:
+'mg_pp_ttaa_5f_100TeV':['1','1','1','1','1','1'],
+'mg_pp_ttaa_semilep_5f_100TeV':['1','1','1','1','1','1'],
+'mg_pp_vbf_ww_lvlv_5f_100TeV':['1','1','1','1','1','1.0'],
+'mg_pp_vbf_h_jjlvlv_5f_100TeV':['1','1','1','1','1','1.0'],
+'mg_pp_vbf_ww_lvlv_SBI_offshell_5f_100TeV':['1','1','1','1','1','1.0'],
+'mg_pp_vbf_hww_lvlv_offshell_5f_100TeV':['1','1','1','1','1','1'],
+
 #testing with gen cuts:
 'mg_pp_h012j_5f_100TeV_gencuts':['1','1','1','1','1','1'],
 
@@ -852,16 +896,16 @@ gridpacklist = {
 'mg_pp_vh012j_5f_HT_5300_8800':['higgsstrahlung + 0/1/2 jets','5300 < HT < 8800','xqcut = 40, qCut = 60','0.003608','1.32','0.364'],
 'mg_pp_vh012j_5f_HT_8800_100000':['higgsstrahlung + 0/1/2 jets','8800 < HT < 100000','xqcut = 40, qCut = 60','0.0004647','1.32','0.357'],
 'mg_pp_vh012j_5f':['higgsstrahlung + 0/1/2 jets','inclusive','xqcut = 40, qCut = 60','37.43','1.32','1.0'],
-'mg_pp_tt012j_5f_HT_0_600':['top pair + 0/1/2 jets','0 < HT < 600','xqcut = 60, qCut = 90','3.207e+04','1.74','1.0'],
-'mg_pp_tt012j_5f_HT_600_1200':['top pair + 0/1/2 jets','600 < HT < 1200','xqcut = 60, qCut = 90','8883','1.74','0.417'],
-'mg_pp_tt012j_5f_HT_1200_2100':['top pair + 0/1/2 jets','1200 < HT < 2100','xqcut = 60, qCut = 90','1737','1.74','0.463'],
-'mg_pp_tt012j_5f_HT_2100_3400':['top pair + 0/1/2 jets','2100 < HT < 3400','xqcut = 60, qCut = 90','284.3','1.74','0.378'],
-'mg_pp_tt012j_5f_HT_3400_5300':['top pair + 0/1/2 jets','3400 < HT < 5300','xqcut = 60, qCut = 90','44.91','1.74','0.368'],
-'mg_pp_tt012j_5f_HT_5300_8100':['top pair + 0/1/2 jets','5300 < HT < 8100','xqcut = 60, qCut = 90','6.484','1.74','0.368'],
-'mg_pp_tt012j_5f_HT_8100_15000':['top pair + 0/1/2 jets','8100 < HT < 15000','xqcut = 60, qCut = 90','0.8583','1.74','0.362'],
-'mg_pp_tt012j_5f_HT_15000_25000':['top pair + 0/1/2 jets','15000 < HT < 25000','xqcut = 60, qCut = 90','0.0219','1.74','0.305'],
-'mg_pp_tt012j_5f_HT_25000_35000':['top pair + 0/1/2 jets','25000 < HT < 35000','xqcut = 60, qCut = 90','0.0004247','1.74','0.307'],
-'mg_pp_tt012j_5f_HT_35000_100000':['top pair + 0/1/2 jets','35000 < HT < 100000','xqcut = 60, qCut = 90','1.459e-05','1.74','0.447'],
+'mg_pp_tt012j_5f_HT_0_600':['top pair + 0/1/2 jets','0 < HT < 600','xqcut = 60, qCut = 90','3.207e+04','1.74','0.215'],
+'mg_pp_tt012j_5f_HT_600_1200':['top pair + 0/1/2 jets','600 < HT < 1200','xqcut = 60, qCut = 90','8883','1.74','0.354'],
+'mg_pp_tt012j_5f_HT_1200_2100':['top pair + 0/1/2 jets','1200 < HT < 2100','xqcut = 60, qCut = 90','1737','1.74','0.329'],
+'mg_pp_tt012j_5f_HT_2100_3400':['top pair + 0/1/2 jets','2100 < HT < 3400','xqcut = 60, qCut = 90','284.3','1.74','0.316'],
+'mg_pp_tt012j_5f_HT_3400_5300':['top pair + 0/1/2 jets','3400 < HT < 5300','xqcut = 60, qCut = 90','44.91','1.74','0.306'],
+'mg_pp_tt012j_5f_HT_5300_8100':['top pair + 0/1/2 jets','5300 < HT < 8100','xqcut = 60, qCut = 90','6.484','1.74','0.299'],
+'mg_pp_tt012j_5f_HT_8100_15000':['top pair + 0/1/2 jets','8100 < HT < 15000','xqcut = 60, qCut = 90','0.8583','1.74','0.295'],
+'mg_pp_tt012j_5f_HT_15000_25000':['top pair + 0/1/2 jets','15000 < HT < 25000','xqcut = 60, qCut = 90','0.0219','1.74','0.297'],
+'mg_pp_tt012j_5f_HT_25000_35000':['top pair + 0/1/2 jets','25000 < HT < 35000','xqcut = 60, qCut = 90','0.0004247','1.74','0.306'],
+'mg_pp_tt012j_5f_HT_35000_100000':['top pair + 0/1/2 jets','35000 < HT < 100000','xqcut = 60, qCut = 90','1.459e-05','1.74','0.325'],
 'mg_pp_tt012j_5f':['top pair + 0/1/2 jets','inclusive','xqcut = 60, qCut = 90','4.311e+04','1.74','1.0'],
 'mg_pp_vbf_h01j_5f_HT_0_2000':['vbf higgs + 0/1 jets','0 < HT < 2000','xqcut = 40, qCut = 60','83.91','4.3','0.187'],
 'mg_pp_vbf_h01j_5f_HT_2000_4000':['vbf higgs + 0/1 jets','2000 < HT < 4000','xqcut = 40, qCut = 60','0.07215','4.3','0.168'],
@@ -1086,22 +1130,22 @@ gridpacklist = {
 'mg_pp_aa012j_mhcut_5f_HT_700_900':['di-photon + 0/1/2 jets','700 < HT < 900','xqcut = 30, qCut = 40','0.4198','2.0','0.872'],
 'mg_pp_aa012j_mhcut_5f_HT_900_1100':['di-photon + 0/1/2 jets','900 < HT < 1100','xqcut = 30, qCut = 40','0.1834','2.0','0.896'],
 'mg_pp_aa012j_mhcut_5f_HT_1100_100000':['di-photon + 0/1/2 jets','1100 < HT < 100000','xqcut = 30, qCut = 40','0.3637','2.0','0.931'],
-'mg_pp_mumu012j_mhcut_5f_HT_0_100':['mu+ mu- + 0/1/2 jets','0 < HT < 100','xqcut = 30, qCut = 40','382.9','1.20','0.694'],
-'mg_pp_mumu012j_mhcut_5f_HT_100_300':['mu+ mu- + 0/1/2 jets','100 < HT < 300','xqcut = 30, qCut = 40','44.08','1.20','0.339'],
-'mg_pp_mumu012j_mhcut_5f_HT_300_500':['mu+ mu- + 0/1/2 jets','300 < HT < 500','xqcut = 30, qCut = 40','4.723','1.20','0.221'],
-'mg_pp_mumu012j_mhcut_5f_HT_500_700':['mu+ mu- + 0/1/2 jets','500 < HT < 700','xqcut = 30, qCut = 40','1.14','1.20','0.148'],
-'mg_pp_mumu012j_mhcut_5f_HT_700_900':['mu+ mu- + 0/1/2 jets','700 < HT < 900','xqcut = 30, qCut = 40','0.3945','1.20','0.115'],
-'mg_pp_mumu012j_mhcut_5f_HT_900_1100':['mu+ mu- + 0/1/2 jets','900 < HT < 1100','xqcut = 30, qCut = 40','0.1691','1.20','0.09'],
-'mg_pp_mumu012j_mhcut_5f_HT_1100_100000':['mu+ mu- + 0/1/2 jets','1100 < HT < 100000','xqcut = 30, qCut = 40','0.2093','1.20','0.058'],
+'mg_pp_mumu012j_mhcut_5f_HT_0_100':['mu+ mu- + 0/1/2 jets','0 < HT < 100','xqcut = 30, qCut = 40','382.9','1.20','0.695'],
+'mg_pp_mumu012j_mhcut_5f_HT_100_300':['mu+ mu- + 0/1/2 jets','100 < HT < 300','xqcut = 30, qCut = 40','44.08','1.20','0.338'],
+'mg_pp_mumu012j_mhcut_5f_HT_300_500':['mu+ mu- + 0/1/2 jets','300 < HT < 500','xqcut = 30, qCut = 40','4.723','1.20','0.222'],
+'mg_pp_mumu012j_mhcut_5f_HT_500_700':['mu+ mu- + 0/1/2 jets','500 < HT < 700','xqcut = 30, qCut = 40','1.14','1.20','0.15'],
+'mg_pp_mumu012j_mhcut_5f_HT_700_900':['mu+ mu- + 0/1/2 jets','700 < HT < 900','xqcut = 30, qCut = 40','0.3945','1.20','0.119'],
+'mg_pp_mumu012j_mhcut_5f_HT_900_1100':['mu+ mu- + 0/1/2 jets','900 < HT < 1100','xqcut = 30, qCut = 40','0.1691','1.20','0.092'],
+'mg_pp_mumu012j_mhcut_5f_HT_1100_100000':['mu+ mu- + 0/1/2 jets','1100 < HT < 100000','xqcut = 30, qCut = 40','0.2093','1.20','0.062'],
 'mg_pp_lla01j_mhcut_5f_HT_0_100':['l+ l- gamma + 0/1 jets','0 < HT < 100','xqcut = 30, qCut = 40','39.52','1.50','0.75'],
 'mg_pp_lla01j_mhcut_5f_HT_100_300':['l+ l- gamma + 0/1 jets','100 < HT < 300','xqcut = 30, qCut = 40','1.326','1.50','0.486'],
 'mg_pp_lla01j_mhcut_5f_HT_300_500':['l+ l- gamma + 0/1 jets','300 < HT < 500','xqcut = 30, qCut = 40','0.004548','1.50','0.245'],
 'mg_pp_lla01j_mhcut_5f_HT_300_100000':['l+ l- gamma + 0/1 jets','300 < HT < 100000','xqcut = 30, qCut = 40','0.08149','1.50','0.234'],
 'mg_pp_lla01j_mhcut_5f_HT_500_100000':['l+ l- gamma + 0/1 jets','500 < HT < 100000','xqcut = 30, qCut = 40','0.002727','1.50','0.162'],
-'mg_pp_llll01j_mhcut_5f_HT_0_200':['Z/gamma* Z/gamma* to 4l + 0/1 jets','0 < HT < 200','xqcut = 40, qCut = 60','0.04957','1.60','0.808'],
-'mg_pp_llll01j_mhcut_5f_HT_200_500':['Z/gamma* Z/gamma* to 4l + 0/1 jets','200 < HT < 500','xqcut = 40, qCut = 60','0.0002159','1.60','0.937'],
-'mg_pp_llll01j_mhcut_5f_HT_500_1100':['Z/gamma* Z/gamma* to 4l + 0/1 jets','500 < HT < 1100','xqcut = 40, qCut = 60','5.573e-06','1.60','0.949'],
-'mg_pp_llll01j_mhcut_5f_HT_1100_100000':['Z/gamma* Z/gamma* to 4l + 0/1 jets','1100 < HT < 100000','xqcut = 40, qCut = 60','1.361e-07','1.60','0.972'],
+'mg_pp_llll01j_mhcut_5f_HT_0_200':['Z/gamma* Z/gamma* to 4l + 0/1 jets','0 < HT < 200','xqcut = 40, qCut = 60','0.04957','1.60','1.0'],
+'mg_pp_llll01j_mhcut_5f_HT_200_500':['Z/gamma* Z/gamma* to 4l + 0/1 jets','200 < HT < 500','xqcut = 40, qCut = 60','0.0002159','1.60','1.0'],
+'mg_pp_llll01j_mhcut_5f_HT_500_1100':['Z/gamma* Z/gamma* to 4l + 0/1 jets','500 < HT < 1100','xqcut = 40, qCut = 60','5.573e-06','1.60','1.0'],
+'mg_pp_llll01j_mhcut_5f_HT_1100_100000':['Z/gamma* Z/gamma* to 4l + 0/1 jets','1100 < HT < 100000','xqcut = 40, qCut = 60','1.361e-07','1.60','1.0'],
 'mg_gg_aa01j_mhcut_5f_HT_0_200':['gluon fusion di-photon + 0/1 jets','0 < HT < 200','xqcut = 20, qCut = 30','60.21','2.0','0.408'],
 'mg_gg_aa01j_mhcut_5f_HT_200_500':['gluon fusion di-photon + 0/1 jets','200 < HT < 500','xqcut = 20, qCut = 30','0.026','2.0','0.915'],
 'mg_gg_aa01j_mhcut_5f_HT_200_100000':['gluon fusion di-photon + 0/1 jets','200 < HT < 100000','xqcut = 20, qCut = 30','0.02618','2.0','0.917'],

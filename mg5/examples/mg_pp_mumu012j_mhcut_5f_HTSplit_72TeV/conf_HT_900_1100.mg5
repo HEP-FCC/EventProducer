@@ -1,0 +1,63 @@
+define p = g u c d s u~ c~ d~ s~
+define j = g u c d s u~ c~ d~ s~
+define l+ = e+ mu+
+define l- = e- mu-
+define vl = ve vm vt
+define vl~ = ve~ vm~ vt
+
+generate p p > mu+ mu-
+add process p p > mu+ mu- j
+add process p p > mu+ mu- j j
+
+output DUMMYPROCESS
+
+######## DELIMITER (!!! NEED THIS LINE !!!) ##################
+
+set lhapdf /afs/cern.ch/work/b/bistapf/lhapdf/LHAPDF-6.1.6/install/bin/lhapdf-config
+
+launch DUMMYPROCESS
+set iseed DUMMYSEED
+set nevents DUMMYNEVENTS
+
+set ebeam1 36000
+set ebeam2 36000
+
+set pdlabel lhapdf
+set lhaid 260000
+
+set ickkw 1
+set alpsfact 1.0
+set chcluster False
+set asrwgtflavor 4
+set auto_ptj_mjj True
+set xqcut 30.0
+
+set bwcutoff 30.0
+
+set ptj 5.0
+set ptb 5.0
+set pta 10.0
+set ptl 4.0
+
+set etaj 5.0
+set etab 8.0
+set etal 4.0 
+set etaa 4.0
+
+set drbb 0.001
+set drll 0.001
+set draa 0.001
+set drbj 0.001
+set drab 0.001
+set drbl 0.001
+set draj 0.3
+set dral 0.3
+
+set mmll 10.0
+set mmaa 100.0
+set mmaamax 150.0
+
+set htjmin 900.0
+set htjmax 1100.0
+
+set use_syst False
