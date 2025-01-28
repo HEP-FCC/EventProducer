@@ -80,6 +80,7 @@ kkmccards_dir = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/KKMC/"
 detectors = [
     'IDEA',
     'IDEA_3T',
+    'IDEA_FullSilicon',
     'IDEA_SiTracking',
     'IDEA_better_TOFReso_3ps',
     'IDEA_heavierBP_100pc',
