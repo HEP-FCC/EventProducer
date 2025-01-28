@@ -96,10 +96,14 @@ def main():
     prodTag=[i for i in para.prodTag]
     prodTagGroup = parser.add_argument_group('production tag')
     prodTagGroup.add_argument('--prodtag', type=str, required = '--reco' in sys.argv, help='Version to use', choices = prodTag)
-    prodTagGroup.add_argument('--detector', type=str, default='', required = '--reco' in sys.argv, help='Detector to use', choices = para.detectors)
+    prodTagGroup.add_argument('--detector',
+                              type=str, default='',
+                              required='--reco' in sys.argv,
+                              choices=para.detectors,
+                              help='Detector to use')
 
     args, _ = parser.parse_known_args()
-    
+
     decaylist=[]
     for key, value in para.decaylist.items():
         for v in value:
