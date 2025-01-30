@@ -1,4 +1,4 @@
-# module
+I# module
 module_name = 'config/param_FCCee.py'
 # eos tests
 eostest = '/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
@@ -131,10 +131,10 @@ pythialist = {
     'p8_ee_tt_ecm365':['tt ecm=365GeV','inclusive decays','','0.800','1.0','1.0'],
 
     'p8_ee_WW_mumu_ecm365':['WW ecm=365GeV','W->mu and W ->tau->mu','','0.1785','1.0','1.0'],
-    'p8_ee_Zqq_ecm365':['Z/Gamma* ecm=365GeV','Z->qq (q = u,d)','','21.4149','1.0','1.0'],
-    'p8_ee_Zbb_ecm365':['Z/Gamma* ecm=365GeV','Z->bb','','21.4149','1.0','1.0'],
-    'p8_ee_Zcc_ecm365':['Z/Gamma* ecm=365GeV','Z->cc','','21.4149','1.0','1.0'],
-    'p8_ee_Zss_ecm365':['Z/Gamma* ecm=365GeV','Z->ss','','21.4149','1.0','1.0'],
+    'p8_ee_Zqq_ecm365':['Z/Gamma* ecm=365GeV','Z->qq (q = u,d)','','8.679','1.0','1.0'],
+    'p8_ee_Zbb_ecm365':['Z/Gamma* ecm=365GeV','Z->bb','','4.056','1.0','1.0'],
+    'p8_ee_Zcc_ecm365':['Z/Gamma* ecm=365GeV','Z->cc','','4.5060','1.0','1.0'],
+    'p8_ee_Zss_ecm365':['Z/Gamma* ecm=365GeV','Z->ss','','4.084','1.0','1.0'],
 
     'p8_ee_tt_fullhad_ecm365':['tt ecm=365GeV','hadronic decays','','0.363528','1.0','1.0'],
     'p8_ee_ZZ_fullhad_ecm365':['ZZ ecm=365GeV','hadronic decays','','0.31417','1.0','1.0'],
@@ -1027,11 +1027,11 @@ gridpacklist = {
     'wzp6_ee_qqH_HZZ_llll_ecm365':['ee -> Z(qq) H,  ecm=365 GeV','H to ZZ* to llll','','1.409e-03','1.0','1.0'],
     'wzp6_ee_nunuH_HZZ_llll_ecm365':['ee -> Z(nunu) H,  ecm=365 GeV','H to ZZ* to llll','','1.409e-03','1.0','1.0'],
 
-    'wzp6_ee_qq_ecm340':['ee -> qq, ecm=340GeV','','','9.4775','1.0','1.0'],
-    'wzp6_ee_qq_ecm345':['ee -> qq, ecm=345GeV','','','9.4775','1.0','1.0'],
-    'wzp6_ee_qq_ecm350':['ee -> qq, ecm=350GeV','','','9.4775','1.0','1.0'],
-    'wzp6_ee_qq_ecm355':['ee -> qq, ecm=355GeV','','','9.4775','1.0','1.0'],
-    'wzp6_ee_qq_ecm365':['ee -> qq, ecm=365GeV','','','9.4775','1.0','1.0'],
+    'wzp6_ee_qq_ecm340':['ee -> qq, ecm=340GeV','','','22.7986','1.0','1.0'],
+    'wzp6_ee_qq_ecm345':['ee -> qq, ecm=345GeV','','','22.7986','1.0','1.0'],
+    'wzp6_ee_qq_ecm350':['ee -> qq, ecm=350GeV','','','22.7986','1.0','1.0'],
+    'wzp6_ee_qq_ecm355':['ee -> qq, ecm=355GeV','','','22.7986','1.0','1.0'],
+    'wzp6_ee_qq_ecm365':['ee -> qq, ecm=365GeV','','','22.7986','1.0','1.0'],
 
     'wzp6_egamma_eZ_Zee_ecm365':['e(e)Z EPA, e- gamma, ecm=365 GeV','Z->ee', '','6.9932e-02','1.0','1.0'],
     'wzp6_gammae_eZ_Zee_ecm365':['e(e)Z EPA, e+ gamma, ecm=365 GeV','Z->ee', '','7.00717e-02','1.0','1.0'],
