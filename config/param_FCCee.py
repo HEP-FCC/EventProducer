@@ -1,4 +1,4 @@
-I# module
+# module
 module_name = 'config/param_FCCee.py'
 # eos tests
 eostest = '/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
