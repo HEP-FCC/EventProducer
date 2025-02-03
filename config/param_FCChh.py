@@ -36,10 +36,9 @@ prodTag = {
     'fcc_v04':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
     'fcc_v05_scenarioI':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
     'fcc_v05_scenarioII':'/cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/2023-08-28-hsn6vj/setup.sh',
-    # 'fcc_v06':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh', #still mallocs errors as of 16.12
-    'fcc_v06':'/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh',
-    # 'fcc_v06':'/cvmfs/sw.hsf.org/key4hep/setup.sh -r 2024-10-28',
-    # 'fcc_v06_rltester':'/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh -r 2024-11-12',
+    'fcc_v06':'/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh', #pre-production using nightlies due to unsolve technical issues
+    # 'fcc_v06_rltester':'/cvmfs/sw.hsf.org/key4hep/setup.sh -r 2024-11-28',
+    'fcc_v07':'/cvmfs/sw.hsf.org/key4hep/setup.sh -r 2025-01-28', 
 }
 
 defaultstack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
@@ -440,16 +439,18 @@ pythialist={
 
 decaylist = {
 #bbyy samples at alternate energies
-'mg_pp_h012j_5f_50TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
-'mg_pp_h012j_5f_60TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
-'mg_pp_h012j_5f_72TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
-'mg_pp_h012j_5f_80TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
-'mg_pp_h012j_5f_100TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
-'mg_pp_h012j_5f_120TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
+'mg_pp_h012j_5f_50TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
+'mg_pp_h012j_5f_60TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
+'mg_pp_h012j_5f_72TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
+'mg_pp_h012j_5f_80TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
+'mg_pp_h012j_5f_84TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
+'mg_pp_h012j_5f_100TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
+'mg_pp_h012j_5f_120TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
 'mg_pp_vbf_h01j_5f_50TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
 'mg_pp_vbf_h01j_5f_60TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
 'mg_pp_vbf_h01j_5f_72TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
 'mg_pp_vbf_h01j_5f_80TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
+'mg_pp_vbf_h01j_5f_84TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
 'mg_pp_vbf_h01j_5f_100TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
 'mg_pp_vbf_h01j_5f_120TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
 'mg_pp_tth01j_5f_60TeV':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
