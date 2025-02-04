@@ -711,6 +711,7 @@ branching_ratios = {
 'wzlllv':0.03333,
 'hww':0.218,
 'hwwlvlv':0.218*0.3259*0.3259,
+'blvblv':0.110224,
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
 'mChi0p5TeV':1.0,
@@ -805,32 +806,39 @@ gridpacklist = {
 'mg_pp_mumu012j_mhcut_5f_HT_0_100_100TeV':['mu+ mu- + 0/1/2 jets','0 < HT < 100','xqcut = 30, qCut = 40','382.9','1.20','0.697'],
 'mg_pp_mumu012j_mhcut_5f_HT_0_100_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','0 < HT < 100','xqcut = 30, qCut = 40','286.1','1.20','0.71'],
 'mg_pp_mumu012j_mhcut_5f_HT_0_100_80TeV':['mu+ mu- + 0/1/2 jets @ 80 TeV','0 < HT < 100','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_0_100_84TeV':['mu+ mu- + 0/1/2 jets @ 84 TeV','0 < HT < 100','xqcut = 30, qCut = 40','1','1','1'],
 'mg_pp_mumu012j_mhcut_5f_HT_0_100_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','0 < HT < 100','xqcut = 30, qCut = 40','1','1','1'],
 
 
 'mg_pp_mumu012j_mhcut_5f_HT_100_300_100TeV':['mu+ mu- + 0/1/2 jets','100 < HT < 300','xqcut = 30, qCut = 40','44.08','1.20','0.34'],
 'mg_pp_mumu012j_mhcut_5f_HT_100_300_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','100 < HT < 300','xqcut = 30, qCut = 40','30.19','1.20','0.353'],
 'mg_pp_mumu012j_mhcut_5f_HT_100_300_80TeV':['mu+ mu- + 0/1/2 jets @ 80 TeV','100 < HT < 300','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_100_300_84TeV':['mu+ mu- + 0/1/2 jets @ 84 TeV','100 < HT < 300','xqcut = 30, qCut = 40','1','1','1'],
 'mg_pp_mumu012j_mhcut_5f_HT_100_300_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','100 < HT < 300','xqcut = 30, qCut = 40','1','1','1'],
 
 'mg_pp_mumu012j_mhcut_5f_HT_300_500_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','300 < HT < 500','xqcut = 30, qCut = 40','3.101','1.20','0.237'],
 'mg_pp_mumu012j_mhcut_5f_HT_300_500_80TeV':['mu+ mu- + 0/1/2 jets @ 80 TeV','300 < HT < 500','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_300_500_84TeV':['mu+ mu- + 0/1/2 jets @ 84 TeV','300 < HT < 500','xqcut = 30, qCut = 40','1','1','1'],
 'mg_pp_mumu012j_mhcut_5f_HT_300_500_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','300 < HT < 500','xqcut = 30, qCut = 40','1','1','1'],
 
 'mg_pp_mumu012j_mhcut_5f_HT_500_700_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','500 < HT < 700','xqcut = 30, qCut = 40','0.705','1.20','0.163'],
 'mg_pp_mumu012j_mhcut_5f_HT_500_700_80TeV':['mu+ mu- + 0/1/2 jets @ 80 TeV','500 < HT < 700','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_500_700_84TeV':['mu+ mu- + 0/1/2 jets @ 84 TeV','500 < HT < 700','xqcut = 30, qCut = 40','1','1','1'],
 'mg_pp_mumu012j_mhcut_5f_HT_500_700_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','500 < HT < 700','xqcut = 30, qCut = 40','1','1','1'],
 
 'mg_pp_mumu012j_mhcut_5f_HT_700_900_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','700 < HT < 900','xqcut = 30, qCut = 40','0.2378','1.20','0.124'],
 'mg_pp_mumu012j_mhcut_5f_HT_700_900_80TeV':['mu+ mu- + 0/1/2 jets @ 80 TeV','700 < HT < 900','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_700_900_84TeV':['mu+ mu- + 0/1/2 jets @ 84 TeV','700 < HT < 900','xqcut = 30, qCut = 40','1','1','1'],
 'mg_pp_mumu012j_mhcut_5f_HT_700_900_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','700 < HT < 900','xqcut = 30, qCut = 40','1','1','1'],
 
 'mg_pp_mumu012j_mhcut_5f_HT_900_1100_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','900 < HT < 1100','xqcut = 30, qCut = 40','0.09987','1.20','0.099'],
 'mg_pp_mumu012j_mhcut_5f_HT_900_1100_80TeV':['mu+ mu- + 0/1/2 jets @ 80 TeV','900 < HT < 1100','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_900_1100_84TeV':['mu+ mu- + 0/1/2 jets @ 84 TeV','900 < HT < 1100','xqcut = 30, qCut = 40','1','1','1'],
 'mg_pp_mumu012j_mhcut_5f_HT_900_1100_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','900 < HT < 1100','xqcut = 30, qCut = 40','1','1','1'],
 
 'mg_pp_mumu012j_mhcut_5f_HT_1100_100000_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','1100 < HT < 100000','xqcut = 30, qCut = 40','0.1148','1.20','0.067'],
 'mg_pp_mumu012j_mhcut_5f_HT_1100_100000_80TeV':['mu+ mu- + 0/1/2 jets @ 80 TeV','1100 < HT < 100000','xqcut = 30, qCut = 40','1','1','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_1100_100000_84TeV':['mu+ mu- + 0/1/2 jets @ 84 TeV','1100 < HT < 100000','xqcut = 30, qCut = 40','1','1','1'],
 'mg_pp_mumu012j_mhcut_5f_HT_1100_100000_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','1100 < HT < 100000','xqcut = 30, qCut = 40','1','1','1'],
 
 
