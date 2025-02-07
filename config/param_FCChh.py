@@ -845,7 +845,8 @@ gridpacklist = {
 #new samples for 2024 analyses:
 'mg_pp_ttaa_5f_100TeV':['1','1','1','1','1','1'],
 'mg_pp_ttaa_semilep_5f_100TeV':['top pair with photon par leading order @ 100 TeV','Semileptonic ttbar','No Jet Matching','0.2852','1','1.0'],
-'mg_pp_vbf_ww_lvlv_5f_100TeV':['1','1','1','1','1','1.0'],
+'mg_pp_vbf_ww_lvlv_5f_84TeV':['VBF WW full process - including H, continuum and interference @ 84 TeV','WW->lvlv, incl taus','No Jet matching','15.45','1','1.0'],
+'mg_pp_vbf_ww_lvlv_5f_100TeV':['VBF WW full process - including H, continuum and interference @ 100 TeV','WW->lvlv, incl taus','No Jet matching','15.45','1','1.0'],
 'mg_pp_vbf_h_jjlvlv_5f_100TeV':['1','1','1','1','1','1.0'],
 'mg_pp_vbf_ww_lvlv_SBI_offshell_5f_100TeV':['1','1','1','1','1','1.0'],
 'mg_pp_vbf_hwwlvlv_offshell_5f_100TeV':['1','1','1','1','1','1'],
