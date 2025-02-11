@@ -850,6 +850,8 @@ gridpacklist = {
 'mg_pp_vbf_h_jjlvlv_5f_100TeV':['1','1','1','1','1','1.0'],
 'mg_pp_vbf_ww_lvlv_SBI_offshell_5f_100TeV':['1','1','1','1','1','1.0'],
 'mg_pp_vbf_hwwlvlv_offshell_5f_100TeV':['1','1','1','1','1','1'],
+'mg_pp_vbf_ww_lvlv_5f_noHiggs_84TeV':['VBF WW continuum production, no Higgs @ 84 TeV','WW->lvlv, incl taus','No Jet matching','1','1','1'],
+'mg_pp_vbf_ww_lvlv_5f_noHiggs_100TeV':['VBF WW continuum production, no Higgs @ 100 TeV','WW->lvlv, incl taus','No Jet matching','1','1','1'],
 
 #testing with gen cuts:
 'mg_pp_h012j_5f_100TeV_gencuts':['1','1','1','1','1','1'],
