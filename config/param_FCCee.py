@@ -515,6 +515,11 @@ gridpacklist = {
 
     'wzp6_ee_nuenueZ_ecm240':['Z nue nuebar, W-exchange only','inclusive Z decays by Pythia','','3.3274e-2','1.0','1.0'],
 
+    #update xsec
+    'wzp6_ee_llllll_ecm240':['ee -> llllll , ecm=240 GeV','Mll > 5 GeV, |cos(Theta_ll)| < 0.998750','','1.0','1.0','1.0'],
+    'wzp6_ee_jjllll_ecm240':['ee -> jjllll , ecm=240 GeV','Mll,jj > 5 GeV, |cos(Theta_ll,jj)| < 0.998750','','1.0','1.0','1.0'],
+    'wzp6_ee_llH_HZZ_llll_ecm240':['llH, ecm=240 GeV','H->4lep, Mll > 5 GeV, |cos(Theta_ll)| < 0.998750','','2.0589e-02','1.0','1.0'],
+
 # for Higgs, sqrts = 365 GeV:
     'wzp6_ee_mumuH_ecm365':['mumuH ecm=365 GeV','inclusive Higgs decays','','4.185e-3','1.0','1.0'],
     'wzp6_ee_mumuH_BES-higher-10pc_ecm365':['mumuH ecm=365 GeV','inclusive Higgs decays','','4.185e-3','1.0','1.0'],
@@ -1027,11 +1032,21 @@ gridpacklist = {
     'wzp6_ee_qqH_HZZ_llll_ecm365':['ee -> Z(qq) H,  ecm=365 GeV','H to ZZ* to llll','','1.409e-03','1.0','1.0'],
     'wzp6_ee_nunuH_HZZ_llll_ecm365':['ee -> Z(nunu) H,  ecm=365 GeV','H to ZZ* to llll','','1.409e-03','1.0','1.0'],
 
-    'wzp6_ee_qq_ecm340':['ee -> qq, ecm=340GeV','','','22.7986','1.0','1.0'],
-    'wzp6_ee_qq_ecm345':['ee -> qq, ecm=345GeV','','','22.7986','1.0','1.0'],
-    'wzp6_ee_qq_ecm350':['ee -> qq, ecm=350GeV','','','22.7986','1.0','1.0'],
-    'wzp6_ee_qq_ecm355':['ee -> qq, ecm=355GeV','','','22.7986','1.0','1.0'],
+    'wzp6_ee_qq_ecm340':['ee -> qq, ecm=340GeV','','','26.317','1.0','1.0'],
+    'wzp6_ee_qq_ecm345':['ee -> qq, ecm=345GeV','','','25.567','1.0','1.0'],
+    'wzp6_ee_qq_ecm350':['ee -> qq, ecm=350GeV','','','24.800','1.0','1.0'],
+    'wzp6_ee_qq_ecm355':['ee -> qq, ecm=355GeV','','','24.109','1.0','1.0'],
     'wzp6_ee_qq_ecm365':['ee -> qq, ecm=365GeV','','','22.7986','1.0','1.0'],
+
+    'wzp6_ee_qq_PSup_ecm340':['ee -> qq, ecm=340GeV (PS variation up)','','','26.317','1.0','1.0'],
+    'wzp6_ee_qq_PSup_ecm345':['ee -> qq, ecm=345GeV (PS variation up)','','','25.567','1.0','1.0'],
+    'wzp6_ee_qq_PSup_ecm365':['ee -> qq, ecm=365GeV (PS variation up)','','','22.7986','1.0','1.0'],
+
+    'wzp6_ee_qq_PSdown_ecm340':['ee -> qq, ecm=340GeV (PS variation down)','','','26.317','1.0','1.0'],
+    'wzp6_ee_qq_PSdown_ecm345':['ee -> qq, ecm=345GeV (PS variation down)','','','25.567','1.0','1.0'],
+    'wzp6_ee_qq_PSdown_ecm365':['ee -> qq, ecm=365GeV (PS variation down)','','','22.7986','1.0','1.0'],
+
+
 
     'wzp6_egamma_eZ_Zee_ecm365':['e(e)Z EPA, e- gamma, ecm=365 GeV','Z->ee', '','6.9932e-02','1.0','1.0'],
     'wzp6_gammae_eZ_Zee_ecm365':['e(e)Z EPA, e+ gamma, ecm=365 GeV','Z->ee', '','7.00717e-02','1.0','1.0'],
