@@ -845,14 +845,18 @@ gridpacklist = {
 
 #new samples for 2024 analyses:
 'mg_pp_ttaa_5f_100TeV':['1','1','1','1','1','1'],
+
+#VBF HWW analyses samples
 'mg_pp_ttaa_semilep_5f_100TeV':['top pair with photon par leading order @ 100 TeV','Semileptonic ttbar','No Jet Matching','0.2852','1','1.0'],
 'mg_pp_vbf_ww_lvlv_5f_84TeV':['VBF WW full process - including H, continuum and interference @ 84 TeV','WW->lvlv, incl taus','No Jet matching','15.45','1','1.0'],
 'mg_pp_vbf_ww_lvlv_5f_100TeV':['VBF WW full process - including H, continuum and interference @ 100 TeV','WW->lvlv, incl taus','No Jet matching','15.45','1','1.0'],
-'mg_pp_vbf_h_jjlvlv_5f_100TeV':['1','1','1','1','1','1.0'],
-'mg_pp_vbf_ww_lvlv_SBI_offshell_5f_100TeV':['1','1','1','1','1','1.0'],
-'mg_pp_vbf_hwwlvlv_offshell_5f_100TeV':['1','1','1','1','1','1'],
-'mg_pp_vbf_ww_lvlv_5f_noHiggs_84TeV':['VBF WW continuum production, no Higgs @ 84 TeV','WW->lvlv, incl taus','No Jet matching','1','1','1'],
-'mg_pp_vbf_ww_lvlv_5f_noHiggs_100TeV':['VBF WW continuum production, no Higgs @ 100 TeV','WW->lvlv, incl taus','No Jet matching','1','1','1'],
+'mg_pp_vbf_h_jjlvlv_5f_100TeV':['VBF H WW signal @ 100 TeV','WW->lvlv, incl taus','No Jet matching','1.168','1','1.0'],
+'mg_pp_vbf_ww_lvlv_5f_noHiggs_84TeV':['VBF WW continuum production, no Higgs @ 84 TeV','WW->lvlv, incl taus','No Jet matching','11.85','1','1'],
+'mg_pp_vbf_ww_lvlv_5f_noHiggs_100TeV':['VBF WW continuum production, no Higgs @ 100 TeV','WW->lvlv, incl taus','No Jet matching','15.57','1','1'],
+
+#tester samples for VBF HWW off-shell analysis, currently not used
+'mg_pp_vbf_ww_lvlv_SBI_offshell_5f_100TeV':['VBF WW full process tester','WW->lvlv, incl taus','No Jet matching','1','1','1.0'],
+'mg_pp_vbf_hwwlvlv_offshell_5f_100TeV':['VBF HWW lvlv tester','WW->lvlv, incl taus','No Jet matching','1','1','1'],
 
 #testing with gen cuts:
 'mg_pp_h012j_5f_100TeV_gencuts':['1','1','1','1','1','1'],
