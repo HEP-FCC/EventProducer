@@ -1572,7 +1572,19 @@ gridpacklist = {
 'mg_pp_vbf_hh_C2V100_CV100_lambda200':['pp VBF HH angelas gridpack','','','1.0','1.0','1.0'], #TESTER 
 'mg_pp_vbf_hh_C2V200_CV100_lambda100':['pp VBF HH angelas gridpack','','','1.0','1.0','1.0'], #TESTER 
 
+# new 84 TeV samp
+'mg_pp_jj_PT_1000_50000_5f_84TeV': ['di-jet pT > 1000', '', '', '1.0', '1.0', '1.0'],
+'mg_pp_tt_PT_1000_50000_5f_84TeV': ['ttbar pT > 1000', '', '', '1.0', '1.0', '1.0'],
+'mg_pp_ttz_5f_84TeV': ['ttz', '', '', '1.0', '1.0', '1.0'],
+'mg_pp_zz_PT_1000_50000_5f_84TeV': ['zz pT > 1000', '', '', '1.0', '1.0', '1.0'],
+'mg_pp_ww_PT_1000_50000_5f_84TeV': ['ww pT > 1000', '', '', '1.0', '1.0', '1.0'],
+'mg_pp_zzzz_5f_84TeV': ['zzzz', '', '', '1.0', '1.0', '1.0'],
+'mg_pp_ttzz_5f_84TeV': ['ttzz', '', '', '1.0', '1.0', '1.0'],
+'mg_pp_ttww_5f_84TeV': ['ttww', '', '', '1.0', '1.0', '1.0'],
+
+
 }
+
 
 
 ##Gridpack list for MG5@MC@NLO
