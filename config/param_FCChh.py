@@ -472,7 +472,7 @@ decaylist = {
 'mg_pp_bbh_5f':['haa'],
 'mg_pp_vh012j_5f':['hmumu', 'haa', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_v0123j_5f':['znunu'],
-'mg_pp_z0123j_4f':['zll','ztautau'],
+'mg_pp_z0123j_4f':['zll','ztautau', 'znunu'],
 'mg_pp_w0123j_4f':['wlv'],
 'mg_pp_ttz_5f':['znunu', 'zbb'],
 'mg_pp_hh_lambda050_5f':['haa','htautau'],
@@ -502,7 +502,7 @@ decaylist = {
 'mg_pp_wz012j_4f':['wzlllv'],
 'mg_pp_ZjjVbs_4f':['ztautau'],
 
-'mg_pp_z0123j_4f':['znunu'],
+# 'mg_pp_z0123j_4f':['znunu'],
 'mg_pp_tt012j_5f':['ttau', 'blvblv'],
 'pw_pp_hh_lambda100_5f_100TeV_testSA_fixed':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda000_5f':['hhbbaa','hhbbtata','hhbbbb'],
@@ -847,7 +847,7 @@ gridpacklist = {
 'mg_pp_vbf_ww_lvlv_5f_100TeV':['VBF WW full process - including H, continuum and interference @ 100 TeV','WW->lvlv, incl taus','No Jet matching','15.45','1','1.0'],
 'mg_pp_vbf_h_jjlvlv_5f_100TeV':['VBF H WW signal @ 100 TeV','WW->lvlv, incl taus','No Jet matching','1.168','1','1.0'],
 'mg_pp_vbf_ww_lvlv_5f_noHiggs_84TeV':['VBF WW continuum production, no Higgs @ 84 TeV','WW->lvlv, incl taus','No Jet matching','11.85','1','1'],
-'mg_pp_vbf_ww_lvlv_5f_noHiggs_100TeV':['VBF WW continuum production, no Higgs @ 100 TeV','WW->lvlv, incl taus','No Jet matching','15.57','1','1'],
+'mg_pp_vbf_ww_lvlv_5f_noHiggs_100TeV':['VBF WW continuum production, no Higgs @ 100 TeV','WW->lvlv, incl taus','No Jet matching','15.57','1','1.0'],
 
 #tester samples for VBF HWW off-shell analysis, currently not used
 'mg_pp_vbf_ww_lvlv_SBI_offshell_5f_100TeV':['VBF WW full process tester','WW->lvlv, incl taus','No Jet matching','1','1','1.0'],
