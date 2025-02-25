@@ -1588,7 +1588,8 @@ gridpacklist = {
 'mg_pp_tautau_HT_2000_100000_5f_84TeV': ['', '', '', '0.00042966', '1.0','1.0'],
 'mg_pp_lvlv_HT_200_2000_5f_84TeV': ['WW leptonic (including tau)', '', '', '7.656941584', '1.0','1.0'],
 'mg_pp_lvlv_HT_2000_100000_5f_84TeV': ['WW leptonic (including tau)', '', '', '0.0067953154478', '1.0','1.0'],
-
+'mg_pp_ttaa01j_5f_84TeV': ['ttaa +0/1j', '105 < maa < 145', '', '1.0', '1.0', '1.0'],
+'mg_pp_tth_5f_84TeV': ['ttz', '', '', '1.0', '1.0', '1.0'],
 }
 
 
