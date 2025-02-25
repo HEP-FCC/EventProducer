@@ -747,7 +747,7 @@ gridpacklist = {
     'dummy': ['NOT REGISTERED IN param_FCChh',
               'NOT REGISTERED IN param_FCChh',
               '1', '1', '1', '1'],
-              
+
 #new bbyy signals at different E_CMS - cross-sections are dummy placeholders
 'pw_pp_hh_lambda100_5f_100TeV_SA':['pp gg HH 100TeV, kl =1','','','1.0','1.0','1.0'],
 'pw_pp_hh_lambda240_5f_100TeV_SA':['pp gg HH 100TeV, kl =2.4','','','1.0','1.0','1.0'],
@@ -837,7 +837,7 @@ gridpacklist = {
 # new samples for analyes for 2025 ESPPU
 
 #ttH(yy) analysis
-'mg_pp_ttaa_semilep_5f_100TeV':['top pair with photon pair, leading order, @ 100 TeV','Semileptonic ttbar, 90 < maa < 175 GeV','No Jet Matching','0.2852','1','1.0'],,
+'mg_pp_ttaa_semilep_5f_100TeV':['top pair with photon pair, leading order, @ 100 TeV','Semileptonic ttbar, 90 < maa < 175 GeV','No Jet Matching','0.2852','1','1.0'],
 
 #VBF HWW analyses samples
 'mg_pp_vbf_ww_lvlv_5f_84TeV':['VBF WW full process - including H, continuum and interference @ 84 TeV','WW->lvlv, incl taus','No Jet matching','11.87','1','1.0'],
