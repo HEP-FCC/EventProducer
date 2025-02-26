@@ -1,0 +1,21 @@
+import model sm-no_b_mass
+generate p p > j j 
+output DUMMYPROCESS
+
+######## DELIMITER (!!! NEED THIS LINE !!!) ##################
+
+set lhapdf /afs/cern.ch/work/b/bistapf/lhapdf/LHAPDF-6.1.6/install/bin/lhapdf-config
+
+launch DUMMYPROCESS
+set iseed DUMMYSEED
+set nevents DUMMYNEVENTS
+
+set pdlabel lhapdf
+set lhaid 260000
+
+set ebeam1 42000
+set ebeam2 42000
+set maxjetflavor 5
+set ptj 100
+set ptjmax 1000
+set use_syst False
