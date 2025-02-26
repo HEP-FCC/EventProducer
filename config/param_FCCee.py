@@ -1,31 +1,31 @@
-#module
-module_name='config/param_FCCee.py'
-#eos tests
-eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
-eostest_size=1312594
+# module
+module_name = 'config/param_FCCee.py'
+# eos tests
+eostest = '/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
+eostest_size = 1312594
 
-#directories
-webbasedir="/eos/experiment/fcc/www/data/FCCee/"
-pubbasedir="/afs/cern.ch/work/f/fccsw/public/FCCDicts/"
-eosbaseinputdir="/eos/experiment/fcc/ee/generation/"
-eosbaseoutputdir="/eos/experiment/fcc/ee/generation/"
+# directories
+webbasedir = "/eos/experiment/fcc/www/data/FCCee/"
+pubbasedir = "/afs/cern.ch/work/f/fccsw/public/FCCDicts/"
+eosbaseinputdir = "/eos/experiment/fcc/ee/generation/"
+eosbaseoutputdir = "/eos/experiment/fcc/ee/generation/"
 
-#stat
+# stat
 lhe_stat = webbasedir + "statlhe.html"
 delphes_stat = webbasedir + "statdelphesVERSION_DETECTOR.html"
 stdhep_stat = webbasedir + "stat_stdhep_VERSION.html"
 
-#web
+# web
 lhe_web = webbasedir + "LHEevents.txt"
 delphes_web = webbasedir + "Delphesevents_VERSION_DETECTOR.txt"
 stdhep_web = webbasedir + "STDHEP_events_VERSION.txt"
 
-#yaml directory
-yamldir      = pubbasedir+"yaml/FCCee/"
+# yaml directory
+yamldir = pubbasedir + "yaml/FCCee/"
 
-#proc lists
-procList     = [pubbasedir+"FCCee_procDict_VERSION_DETECTOR.json",
-                webbasedir+"FCCee_procDict_VERSION_DETECTOR.json"]
+# proc lists
+procList = [pubbasedir+"FCCee_procDict_VERSION_DETECTOR.json",
+            webbasedir+"FCCee_procDict_VERSION_DETECTOR.json"]
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir       = eosbaseinputdir+"gridpacks/"
@@ -80,6 +80,7 @@ kkmccards_dir = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/KKMC/"
 detectors = [
     'IDEA',
     'IDEA_3T',
+    'IDEA_FullSilicon',
     'IDEA_SiTracking',
     'IDEA_better_TOFReso_3ps',
     'IDEA_heavierBP_100pc',
@@ -90,9 +91,9 @@ detectors = [
     'IDEA_worse_singlehitReso_100pc_heavierVTXLOW_100pc',
 ]
 
-#list of processes only with Pythia, meaning no LHE
-pythialist={
-    'dummy':['<p style=\"background-color:Tomato;\">NOT REGISTERED IN param_FCCee</p>','<p style=\"background-color:Tomato;\">NOT REGISTERED IN param_FCCee</p>','','-9999','-9999','-9999'],
+# list of processes only with Pythia, meaning no LHE
+pythialist = {
+    'dummy':['NOT REGISTERED IN param_FCCee', 'NOT REGISTERED IN param_FCCee', '', '-9999', '-9999', '-9999'],
 
     'p8_ee_ZH_Znunu_Hgg_ecm240':['ZH ecm=240GeV','Z->nunu, H->gg','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
     'p8_ee_ZH_Znunu_Hbb_ecm240':['ZH ecm=240GeV','Z->nunu, H->bb','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
@@ -130,10 +131,10 @@ pythialist={
     'p8_ee_tt_ecm365':['tt ecm=365GeV','inclusive decays','','0.800','1.0','1.0'],
 
     'p8_ee_WW_mumu_ecm365':['WW ecm=365GeV','W->mu and W ->tau->mu','','0.1785','1.0','1.0'],
-    'p8_ee_Zqq_ecm365':['Z/Gamma* ecm=365GeV','Z->qq (q = u,d)','','21.4149','1.0','1.0'],
-    'p8_ee_Zbb_ecm365':['Z/Gamma* ecm=365GeV','Z->bb','','21.4149','1.0','1.0'],
-    'p8_ee_Zcc_ecm365':['Z/Gamma* ecm=365GeV','Z->cc','','21.4149','1.0','1.0'],
-    'p8_ee_Zss_ecm365':['Z/Gamma* ecm=365GeV','Z->ss','','21.4149','1.0','1.0'],
+    'p8_ee_Zqq_ecm365':['Z/Gamma* ecm=365GeV','Z->qq (q = u,d)','','8.679','1.0','1.0'],
+    'p8_ee_Zbb_ecm365':['Z/Gamma* ecm=365GeV','Z->bb','','4.056','1.0','1.0'],
+    'p8_ee_Zcc_ecm365':['Z/Gamma* ecm=365GeV','Z->cc','','4.5060','1.0','1.0'],
+    'p8_ee_Zss_ecm365':['Z/Gamma* ecm=365GeV','Z->ss','','4.084','1.0','1.0'],
 
     'p8_ee_tt_fullhad_ecm365':['tt ecm=365GeV','hadronic decays','','0.363528','1.0','1.0'],
     'p8_ee_ZZ_fullhad_ecm365':['ZZ ecm=365GeV','hadronic decays','','0.31417','1.0','1.0'],
@@ -162,6 +163,13 @@ pythialist={
     'p8_ee_WW_ecm345':['WW ecm=345GeV','inclusive decays','','11.899','1.0','1.0'],
     'p8_ee_WW_ecm350':['WW ecm=350GeV','inclusive decays','','11.715','1.0','1.0'],
     'p8_ee_WW_ecm355':['WW ecm=355GeV','inclusive decays','','11.527','1.0','1.0'],
+
+    'p8_ee_WW_PSup_ecm340':['WW ecm=340GeV','inclusive decays','','12.056','1.0','1.0'],
+    'p8_ee_WW_PSup_ecm345':['WW ecm=345GeV','inclusive decays','','11.899','1.0','1.0'],
+    'p8_ee_WW_PSup_ecm365':['WW ecm=365GeV','inclusive decays','','10.7165','1.0','1.0'],
+    'p8_ee_WW_PSdown_ecm340':['WW ecm=340GeV','inclusive decays','','12.056','1.0','1.0'],
+    'p8_ee_WW_PSdown_ecm345':['WW ecm=345GeV','inclusive decays','','11.899','1.0','1.0'],
+    'p8_ee_WW_PSdown_ecm365':['WW ecm=365GeV','inclusive decays','','10.7165','1.0','1.0'],
 
 
 #once we have Z -> bb
@@ -238,6 +246,9 @@ pythialist={
     'p8_ee_Zbb_ecm91_EvtGen_Bd2KstTauTauTAUHADNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (K*0 -> K- pi+) tau+ tau-, tau -> 3pi nu TAUHADNU model','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2D0PiPi':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> D0 p+ p-','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2MuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> mu mu','','3.029000668e-07','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2EE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> e e','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2TauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> tau tau','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2NuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> nu nu','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DstTauNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (D*- -> (D0b -> K+ pi-) pi-) tau+ nu, tau -> 3pi nu','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DstTauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (D*- -> (D0b -> K+ pi-) pi-) tau+ nu, tau -> 3pi nu TAUHADNU model','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DTauNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (D- -> K+ pi- pi-) tau+ nu, tau -> 3pi nu','','1.0','1.0','1.0'],
@@ -286,10 +297,15 @@ pythialist={
     'p8_ee_Zbb_ecm91_EvtGen_Bu2Pimm':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bu2Pimm','','1.0','1.0','1.0'],
 
 
+    'p8_ee_Zbb_ecm91_EvtGen_Bc2DsNuNuDs2KKst':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2KstNuNu_Ds2KKst','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bc2DsNuNuDs2phipi':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc2DsNuNu_Ds2phipi','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bc2DsNuNuDs2phirho':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc2DsNuNu_Ds2phirho','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2KstNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2KstNuNu','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs2PhiNuNu','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bu2KNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bu2KNuNu','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Lb2LNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Lb2LNuNu','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2JpsiL':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Lb2JpsiL','','1.0','1.0','1.0'],
+
 
     'p8_ee_Zbb_ecm91_EvtGen_Bd2D3Pi'    :['Z/Gamma* ecm=91.188GeV to bb','Bd2D3Pi','','17.1452868','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DDs'     :['Z/Gamma* ecm=91.188GeV to bb','Bd2DDs','','20.57434416','1.0','1.0'],
@@ -411,8 +427,8 @@ branching_ratios = {
 ## description/comment/matching parameters/cross section/kfactor/matching efficiency
 
 gridpacklist = {
-    'dummy': ['<span style="background-color:tomato;">NOT REGISTERED IN param_FCCee</span>',
-              '<span style="background-color:tomato;">NOT REGISTERED IN param_FCCee</span>', '',
+    'dummy': ['NOT REGISTERED IN param_FCCee',
+              'NOT REGISTERED IN param_FCCee', '',
               '-9999', '-9999', '-9999'],
     'mg_ee_tt_ecm350':['tt','tt inclusive','','1.0','1.0','1.0'],
     'mg_ee_tt_FCNC_tH_ecm365':['tt','tt inclusive','','1.0','1.0','1.0'],
@@ -499,6 +515,11 @@ gridpacklist = {
 
     'wzp6_ee_nuenueZ_ecm240':['Z nue nuebar, W-exchange only','inclusive Z decays by Pythia','','3.3274e-2','1.0','1.0'],
 
+    #update xsec
+    'wzp6_ee_llllll_ecm240':['ee -> llllll , ecm=240 GeV','Mll > 5 GeV, |cos(Theta_ll)| < 0.998750','','1.0','1.0','1.0'],
+    'wzp6_ee_jjllll_ecm240':['ee -> jjllll , ecm=240 GeV','Mll,jj > 5 GeV, |cos(Theta_ll,jj)| < 0.998750','','1.0','1.0','1.0'],
+    'wzp6_ee_llH_HZZ_llll_ecm240':['llH, ecm=240 GeV','H->4lep, Mll > 5 GeV, |cos(Theta_ll)| < 0.998750','','2.0589e-02','1.0','1.0'],
+
 # for Higgs, sqrts = 365 GeV:
     'wzp6_ee_mumuH_ecm365':['mumuH ecm=365 GeV','inclusive Higgs decays','','4.185e-3','1.0','1.0'],
     'wzp6_ee_mumuH_BES-higher-10pc_ecm365':['mumuH ecm=365 GeV','inclusive Higgs decays','','4.185e-3','1.0','1.0'],
@@ -512,7 +533,6 @@ gridpacklist = {
     'wzp6_ee_eeH_BES-higher-1pc_ecm365':['eeH ecm=365 GeV','inclusive Higgs decays','','7.390e-3','1.0','1.0'],
     'wzp6_ee_eeH_BES-lower-1pc_ecm365':['eeH ecm=365 GeV','inclusive Higgs decays','','7.390e-3','1.0','1.0'],
     'wzp6_ee_nunuH_ecm365':['nunuH ecm=365 GeV (all nu flavours)','inclusive Higgs decays','','53.94e-3','1.0','1.0'],
-    'wzp6_ee_qqH_ecm365':['qqH ecm=365 GeV, q = u,d,s,c,b','inclusive Higgs decays','','3.2985e-2','1.0','1.0'],
 
     'wzp6_egamma_eZ_Zmumu_ecm365':['e(e)Z EPA, e- gamma, ecm=365 GeV','Z to mumu','','140.0e-3','1.0','1.0'],
     'wzp6_gammae_eZ_Zmumu_ecm365':['e(e)Z EPA, e+ gamma, ecm=365 GeV','Z to mumu','','140.0e-3','1.0','1.0'],
@@ -553,7 +573,7 @@ gridpacklist = {
     #     'qqH'     : 53.343e-3
 
     'wzp6_ee_ZH_Hinv_ecm240':['ee->ZH, ecm=240 GeV','H->invisible', '','2.032e-04','1.0','1.0'],
-    
+
     'wzp6_ee_nunuH_Hbb_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to bb','','2.690e-02','1.0','1.0'],
     'wzp6_ee_nunuH_Hcc_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to cc','','1.335e-03','1.0','1.0'],
     'wzp6_ee_nunuH_Hss_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to ss','','1.109e-05','1.0','1.0'],
@@ -809,11 +829,11 @@ gridpacklist = {
 
     'wzp6_ee_WbWb_semihad_mtop171p5_ecm365': ['ee -> WbWb, ecm=365GeV (mtop = 171.5 GeV)','Wlep Whad', '','0.2067','1.0','1.0'],
     'wzp6_ee_WbWb_semihad_mtop173p5_ecm365': ['ee -> WbWb, ecm=365GeV (mtop = 173.5 GeV)','Wlep Whad', '','0.1980','1.0','1.0'],
-    
+
     'wzp6_ee_WbWb_mtop171p5_ecm340': ['ee -> WbWb, ecm=340GeV (mtop = 171.5 GeV)','W inclusive', '','0.0261','1.0','1.0'],
     'wzp6_ee_WbWb_mtop171p5_ecm345': ['ee -> WbWb, ecm=345GeV (mtop = 171.5 GeV)','W inclusive', '','0.1288','1.0','1.0'],
     'wzp6_ee_WbWb_mtop171p5_ecm365': ['ee -> WbWb, ecm=365GeV (mtop = 171.5 GeV)','W inclusive', '','0.4710','1.0','1.0'],
-    
+
     'wzp6_ee_WbWb_mtop173p5_ecm340': ['ee -> WbWb, ecm=340GeV (mtop = 173.5 GeV)','W inclusive', '','0.0160','1.0','1.0'],
     'wzp6_ee_WbWb_mtop173p5_ecm345': ['ee -> WbWb, ecm=345GeV (mtop = 173.5 GeV)','W inclusive', '','0.0348','1.0','1.0'],
     'wzp6_ee_WbWb_mtop173p5_ecm365': ['ee -> WbWb, ecm=365GeV (mtop = 173.5 GeV)','W inclusive', '','0.4515','1.0','1.0'],
@@ -824,7 +844,7 @@ gridpacklist = {
     'wzp6_ee_WbWb_PSdown_ecm340': ['ee -> WbWb, ecm=340GeV (PS variation down)','W inclusive', '','0.0195','1.0','1.0'],
     'wzp6_ee_WbWb_PSdown_ecm345': ['ee -> WbWb, ecm=345GeV (PS variation down)','W inclusive', '','0.0675','1.0','1.0'],
     'wzp6_ee_WbWb_PSdown_ecm365': ['ee -> WbWb, ecm=365GeV (PS variation down)','W inclusive', '','0.4605','1.0','1.0'],
-    
+
     'wzp6_ee_WWZ_Zbb_ecm340': ['ee -> WWZ, ecm=340GeV','W inclusive, Z->bb', '','1.318e-03','1.0','1.0'],
     'wzp6_ee_WWZ_Zbb_ecm345': ['ee -> WWZ, ecm=345GeV','W inclusive, Z->bb', '','1.455e-03','1.0','1.0'],
     'wzp6_ee_WWZ_Zbb_ecm365': ['ee -> WWZ, ecm=365GeV','W inclusive, Z->bb', '','2.018e-03','1.0','1.0'],
@@ -847,7 +867,7 @@ gridpacklist = {
 
     # xxH, ecm = 365 GeV (sample info & cross sections to be updated!)
     'wzp6_ee_ZH_Hinv_ecm365':['ee->ZH, ecm=365 GeV','H->invisible', '','1.541e-04','1.0','1.0'],
-    
+
     'wzp6_ee_bbH_ecm365':['ee->bbH, ecm=365 GeV','H->incl.', '','1.8389e-02','1.0','1.0'],
     'wzp6_ee_ccH_ecm365':['ee->ccH, ecm=365 GeV','H->incl.', '','1.4436e-02','1.0','1.0'],
     'wzp6_ee_ssH_ecm365':['ee->ssH, ecm=365 GeV','H->incl.', '','1.8538e-02','1.0','1.0'],
@@ -862,6 +882,7 @@ gridpacklist = {
     'wzp6_ee_bbH_Hgg_ecm365':['ee->bbH, ecm=365 GeV','H->gg', '','1.506e-03','1.0','1.0'],
     'wzp6_ee_bbH_Hss_ecm365':['ee->bbH, ecm=365 GeV','H->ss', '','3.678e-06','1.0','1.0'],
     'wzp6_ee_bbH_Htautau_ecm365':['ee->bbH, ecm=365 GeV','H->tautau', '','1.153e-03','1.0','1.0'],
+    'wzp6_ee_bbH_Hmumu_ecm365':['ee->bbH, ecm=365 GeV','H->', '','4.001e-06','1.0','1.0'],
 
     'wzp6_ee_ccH_HWW_ecm365':['ee->ccH, ecm=365 GeV','H->WW', '','3.107e-03','1.0','1.0'],
     'wzp6_ee_ccH_HZZ_ecm365':['ee->ccH, ecm=365 GeV','H->ZZ', '','3.813e-04','1.0','1.0'],
@@ -872,6 +893,7 @@ gridpacklist = {
     'wzp6_ee_ccH_Hgg_ecm365':['ee->ccH, ecm=365 GeV','H->gg', '','1.182e-03','1.0','1.0'],
     'wzp6_ee_ccH_Hss_ecm365':['ee->ccH, ecm=365 GeV','H->ss', '','2.887e-06','1.0','1.0'],
     'wzp6_ee_ccH_Htautau_ecm365':['ee->ccH, ecm=365 GeV','H->tautau', '','9.054e-04','1.0','1.0'],
+    'wzp6_ee_ccH_Hmumu_ecm365':['ee->ccH, ecm=365 GeV','H->mumu', '','3.1412e-06','1.0','1.0'],
 
     'wzp6_ee_eeH_HWW_ecm365':['ee->eeH, ecm=365 GeV','H->WW', '','1.590e-03','1.0','1.0'],
     'wzp6_ee_eeH_HZZ_ecm365':['ee->eeH, ecm=365 GeV','H->ZZ', '','1.951e-04','1.0','1.0'],
@@ -882,6 +904,7 @@ gridpacklist = {
     'wzp6_ee_eeH_Hgg_ecm365':['ee->eeH, ecm=365 GeV','H->gg', '','6.049e-04','1.0','1.0'],
     'wzp6_ee_eeH_Hss_ecm365':['ee->eeH, ecm=365 GeV','H->ss', '','1.478e-06','1.0','1.0'],
     'wzp6_ee_eeH_Htautau_ecm365':['ee->eeH, ecm=365 GeV','H->tautau', '','4.634e-04','1.0','1.0'],
+    'wzp6_ee_eeH_Hmumu_ecm365':['ee->eeH, ecm=365 GeV','H->mumu', '','1.608e-06','1.0','1.0'],
 
     'wzp6_ee_mumuH_HWW_ecm365':['ee->mumuH, ecm=365 GeV','H->WW', '','9.007e-04','1.0','1.0'],
     'wzp6_ee_mumuH_HZZ_ecm365':['ee->mumuH, ecm=365 GeV','H->ZZ', '','1.105e-04','1.0','1.0'],
@@ -892,6 +915,7 @@ gridpacklist = {
     'wzp6_ee_mumuH_Hgg_ecm365':['ee->mumuH, ecm=365 GeV','H->gg', '','3.426e-04','1.0','1.0'],
     'wzp6_ee_mumuH_Hss_ecm365':['ee->mumuH, ecm=365 GeV','H->ss', '','8.371e-07','1.0','1.0'],
     'wzp6_ee_mumuH_Htautau_ecm365':['ee->mumuH, ecm=365 GeV','H->tautau', '','2.625e-04','1.0','1.0'],
+    'wzp6_ee_mumuH_Hmumu_ecm365':['ee->mumuH, ecm=365 GeV','H->mumu', '','9.107-07','1.0','1.0'],
 
     'wzp6_ee_nunuH_HWW_ecm365':['ee->nunuH, ecm=365 GeV','H->WW', '','1.161e-02','1.0','1.0'],
     'wzp6_ee_nunuH_HZZ_ecm365':['ee->nunuH, ecm=365 GeV','H->ZZ', '','1.425e-03','1.0','1.0'],
@@ -945,6 +969,7 @@ gridpacklist = {
     'wzp6_ee_qqH_Hgg_ecm365':['ee->qqH, ecm=365 GeV','H->gg', '','2.701e-03','1.0','1.0'],
     'wzp6_ee_qqH_Hss_ecm365':['ee->qqH, ecm=365 GeV','H->ss', '','6.599e-06','1.0','1.0'],
     'wzp6_ee_qqH_Htautau_ecm365':['ee->qqH, ecm=365 GeV','H->tautau', '','2.070e-03','1.0','1.0'],
+    'wzp6_ee_qqH_Hmumu_ecm365':['ee->qqH, ecm=365 GeV','H->mumu', '','7.180e-06','1.0','1.0'],
 
     'wzp6_ee_ssH_HWW_ecm365':['ee->ssH, ecm=365 GeV','H->WW', '','3.989e-03','1.0','1.0'],
     'wzp6_ee_ssH_HZZ_ecm365':['ee->ssH, ecm=365 GeV','H->ZZ', '','4.896e-04','1.0','1.0'],
@@ -955,6 +980,7 @@ gridpacklist = {
     'wzp6_ee_ssH_Hgg_ecm365':['ee->ssH, ecm=365 GeV','H->gg', '','1.518e-03','1.0','1.0'],
     'wzp6_ee_ssH_Hss_ecm365':['ee->ssH, ecm=365 GeV','H->ss', '','3.708e-06','1.0','1.0'],
     'wzp6_ee_ssH_Htautau_ecm365':['ee->ssH, ecm=365 GeV','H->tautau', '','1.163e-03','1.0','1.0'],
+    'wzp6_ee_ssH_Hmumu_ecm365':['ee->ssH, ecm=365 GeV','H->mumu', '','4.034e-06','1.0','1.0'],
 
     'wzp6_ee_tautauH_HWW_ecm365':['ee->tautauH, ecm=365 GeV','H->WW', '','8.979e-04','1.0','1.0'],
     'wzp6_ee_tautauH_HZZ_ecm365':['ee->tautauH, ecm=365 GeV','H->ZZ', '','1.102e-04','1.0','1.0'],
@@ -965,6 +991,7 @@ gridpacklist = {
     'wzp6_ee_tautauH_Hgg_ecm365':['ee->tautauH, ecm=365 GeV','H->gg', '','3.416e-04','1.0','1.0'],
     'wzp6_ee_tautauH_Hss_ecm365':['ee->tautauH, ecm=365 GeV','H->ss', '','8.345e-07','1.0','1.0'],
     'wzp6_ee_tautauH_Htautau_ecm365':['ee->tautauH, ecm=365 GeV','H->tautau', '','2.617e-04','1.0','1.0'],
+    'wzp6_ee_tautauH_Hmumu_ecm365':['ee->tautauH, ecm=365 GeV','H->mumu', '','9.078e-07','1.0','1.0'],
 
     'wzp6_ee_bbH_Hbd_ecm365':['ee->mumuH, ecm=365 GeV','H->bd', '','1.0','1.0','1.0'],
     'wzp6_ee_bbH_Hbs_ecm365':['ee->mumuH, ecm=365 GeV','H->bs', '','1.0','1.0','1.0'],
@@ -999,31 +1026,31 @@ gridpacklist = {
     'wzp6_ee_tautauH_Hcu_ecm365':['ee->tautauH, ecm=365 GeV','H->cu', '','1.0','1.0','1.0'],
     'wzp6_ee_tautauH_Hsd_ecm365':['ee->tautauH, ecm=365 GeV','H->sd', '','1.0','1.0','1.0'],
 
-
     'wzp6_ee_qqH_HZZ_qqqq_ecm365':['ee -> Z(u u / d d) H, ecm=365 GeV','H to ZZ* to 4q (q=udscb)', '','3.6231e-03','1.0','1.0'],
     'wzp6_ee_qqH_HZZ_qqnunu_ecm365':['ee->Z(u u / d d) H, ecm=365 GeV','H to ZZ* to 2nu2q (q=udscb)', '','2.43815e-04','1.0','1.0'],
     'wzp6_ee_llH_HZZ_qqll_ecm365':['ee -> Z(ll) H,  ecm=365 GeV','H to ZZ* to qqll (q=udscb)','','1.409e-03','1.0','1.0'],
     'wzp6_ee_qqH_HZZ_llll_ecm365':['ee -> Z(qq) H,  ecm=365 GeV','H to ZZ* to llll','','1.409e-03','1.0','1.0'],
     'wzp6_ee_nunuH_HZZ_llll_ecm365':['ee -> Z(nunu) H,  ecm=365 GeV','H to ZZ* to llll','','1.409e-03','1.0','1.0'],
 
-    'wzp6_ee_tautau_ecm365': ['Z/gamma* to tautau, ecm=365 GeV','full phase space', '','2.01656','1.0','1.0'],
-    'wzp6_ee_mumu_ecm365':['Z/gamma* to mumu, ecm=365 GeV','full phase space', '','2.28580','1.0','1.0'],
-    'wzp6_ee_ee_Mee_30_150_ecm365':['ee (s and t), ecm=365 GeV','30 < Mee < 150 GeV, 15 < theta < 165 deg', '','1.5270','1.0','1.0'],
+    'wzp6_ee_qq_ecm340':['ee -> qq, ecm=340GeV','','','26.317','1.0','1.0'],
+    'wzp6_ee_qq_ecm345':['ee -> qq, ecm=345GeV','','','25.567','1.0','1.0'],
+    'wzp6_ee_qq_ecm350':['ee -> qq, ecm=350GeV','','','24.800','1.0','1.0'],
+    'wzp6_ee_qq_ecm355':['ee -> qq, ecm=355GeV','','','24.109','1.0','1.0'],
+    'wzp6_ee_qq_ecm365':['ee -> qq, ecm=365GeV','','','22.7986','1.0','1.0'],
 
-    'wzp6_ee_qq_ecm340':['ee -> qq, ecm=340GeV','','','9.4775','1.0','1.0'],
-    'wzp6_ee_qq_ecm345':['ee -> qq, ecm=345GeV','','','9.4775','1.0','1.0'],
-    'wzp6_ee_qq_ecm350':['ee -> qq, ecm=350GeV','','','9.4775','1.0','1.0'],
-    'wzp6_ee_qq_ecm355':['ee -> qq, ecm=355GeV','','','9.4775','1.0','1.0'],
-    'wzp6_ee_qq_ecm365':['ee -> qq, ecm=365GeV','','','9.4775','1.0','1.0'],
+    'wzp6_ee_qq_PSup_ecm340':['ee -> qq, ecm=340GeV (PS variation up)','','','26.317','1.0','1.0'],
+    'wzp6_ee_qq_PSup_ecm345':['ee -> qq, ecm=345GeV (PS variation up)','','','25.567','1.0','1.0'],
+    'wzp6_ee_qq_PSup_ecm365':['ee -> qq, ecm=365GeV (PS variation up)','','','22.7986','1.0','1.0'],
 
-    'wzp6_egamma_eZ_Zmumu_ecm365':['e(e)Z EPA, e- gamma, ecm=365 GeV', 'Z->mumu', '', '1.40104e-01','1.0','1.0'],
-    'wzp6_gammae_eZ_Zmumu_ecm365':['e(e)Z EPA, e+ gamma, ecm=365 GeV','Z->mumu', '','1.3992e-01','1.0','1.0'],
+    'wzp6_ee_qq_PSdown_ecm340':['ee -> qq, ecm=340GeV (PS variation down)','','','26.317','1.0','1.0'],
+    'wzp6_ee_qq_PSdown_ecm345':['ee -> qq, ecm=345GeV (PS variation down)','','','25.567','1.0','1.0'],
+    'wzp6_ee_qq_PSdown_ecm365':['ee -> qq, ecm=365GeV (PS variation down)','','','22.7986','1.0','1.0'],
+
+
+
     'wzp6_egamma_eZ_Zee_ecm365':['e(e)Z EPA, e- gamma, ecm=365 GeV','Z->ee', '','6.9932e-02','1.0','1.0'],
     'wzp6_gammae_eZ_Zee_ecm365':['e(e)Z EPA, e+ gamma, ecm=365 GeV','Z->ee', '','7.00717e-02','1.0','1.0'],
-
-    'wzp6_gaga_mumu_60_ecm365':['gammagamma to mumu, M(mumu) > 60 GeV, ecm=365 GeV','', '','2.8431','1.0','1.0'],
     'wzp6_gaga_ee_60_ecm365':['gammagamma to ee, M(ee) > 60 GeV,  ecm=365 GeV','', '','2.0063','1.0','1.0'],
-    'wzp6_gaga_tautau_60_ecm365':['gammagamma to tautau, M(tautau) > 60 GeV, ecm=365 GeV','', '','1.5395','1.0','1.0'],
 
     'wzp6_ee_nuenueZ_ecm365':['Z nue nuebar, W- exchange only','Z inclusive', '','1.2624e-01','1.0','1.0'],
 
@@ -1032,6 +1059,16 @@ gridpacklist = {
     'wzp6_ee_mumu_ecm91p1881':['Z/Gamma* ecm=91.188GeV','Z decays to mumu','','1462.08','1.0','1.0'],
     'wzp6_ee_mumu_ecm91p18795':['Z/Gamma* ecm=91.188GeV','Z decays to mumu','','1462.08','1.0','1.0'],
     'wzp6_ee_mumu_ecm91p18805':['Z/Gamma* ecm=91.188GeV','Z decays to mumu','','1462.08','1.0','1.0'],
+
+    'wzp6_ee_bb_ecm91p2':['Z/Gamma* ecm=91.2GeV','Z decays to bb','','6624.64','1.0','1.0'],
+    'wzp6_ee_cc_ecm91p2':['Z/Gamma* ecm=91.2GeV','Z decays to cc','','5223.34','1.0','1.0'],
+    'wzp6_ee_dd_ecm91p2':['Z/Gamma* ecm=91.2GeV','Z decays to dd','','6683.28','1.0','1.0'],
+    'wzp6_ee_ee_Mee_5_150_ecm91p2':['Z/Gamma* ecm=2GeV','Z decays to ee','5 < Mee < 150 GeV','3273.82','1.0','1.0'],
+    'wzp6_ee_mumu_ecm91p2':['Z/Gamma* ecm=91.2GeV','Z decays to mumu','','1526.29','1.0','1.0'],
+    'wzp6_ee_tautau_ecm91p2':['Z/Gamma* ecm=91.2GeV','Z decays to tautau','','1526.29','1.0','1.0'],
+    'wzp6_ee_ss_ecm91p2':['Z/Gamma* ecm=91.2GeV','Z decays to ss','','6682.38','1.0','1.0'],
+    'wzp6_ee_uu_ecm91p2':['Z/Gamma* ecm=91.2GeV','Z decays to uu','','5231.72','1.0','1.0'],
+
 
 
 

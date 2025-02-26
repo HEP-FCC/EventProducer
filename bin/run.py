@@ -4,7 +4,7 @@ import sys
 import argparse
 
 # _____________________________________________________________________________
-if __name__ == "__main__":
+def main():
 
     parser = argparse.ArgumentParser()
 
@@ -96,10 +96,14 @@ if __name__ == "__main__":
     prodTag=[i for i in para.prodTag]
     prodTagGroup = parser.add_argument_group('production tag')
     prodTagGroup.add_argument('--prodtag', type=str, required = '--reco' in sys.argv, help='Version to use', choices = prodTag)
-    prodTagGroup.add_argument('--detector', type=str, default='', required = '--reco' in sys.argv, help='Detector to use', choices = para.detectors)
+    prodTagGroup.add_argument('--detector',
+                              type=str, default='',
+                              required='--reco' in sys.argv,
+                              choices=para.detectors,
+                              help='Detector to use')
 
     args, _ = parser.parse_known_args()
-    
+
     decaylist=[]
     for key, value in para.decaylist.items():
         for v in value:
@@ -171,7 +175,6 @@ if __name__ == "__main__":
         print("yamldir = ", yamldir)
         print("indir = ", indir)
 
-
     elif args.reco:
         indir = '%s%s/%s' % (para.delphes_dir, version, detector)
         fext = para.delphes_ext
@@ -182,25 +185,30 @@ if __name__ == "__main__":
         print(f'        - detector: {detector}')
 
     else:
-        print ('problem, need to specify --reco or --LHE')
+        print('ERROR: Please specify --reco, --STDHEP or --LHE!')
+        print('Aborting...')
         sys.exit(3)
 
     import EventProducer.common.utils as ut
-    if not ut.testeos(para.eostest,para.eostest_size):
-        print ('eos seems to have problems, should check, will exit')
+    if not ut.testeos(para.eostest, para.eostest_size):
+        print('eos seems to have problems, should check, will exit')
         sys.exit(3)
 
     if args.check:
         print('running the check')
         if args.process != '':
             print('using a specific process ', args.process)
-            if args.reco and args.process[0:3] == 'mg_': args.process='mgp8_'+args.process[3:]
-            if args.reco and args.process[0:3] == 'ch_': args.process='chp8_'+args.process[3:]
-            if args.reco and args.process[0:3] == 'pw_': args.process='pwp8_'+args.process[3:]
-            if args.reco and args.process[0:5] == 'kkmc_' : args.process='kkmcp8_'+args.process[5:]
+            if args.reco and args.process[0:3] == 'mg_':
+                args.process = 'mgp8_' + args.process[3:]
+            if args.reco and args.process[0:3] == 'ch_':
+                args.process = 'chp8_' + args.process[3:]
+            if args.reco and args.process[0:3] == 'pw_':
+                args.process = 'pwp8_' + args.process[3:]
+            if args.reco and args.process[0:5] == 'kkmc_':
+                args.process = 'kkmcp8_' + args.process[5:]
         import EventProducer.common.checker_yaml as chky
         print(args.process)
-        checker = chky.checker_yaml(indir, para, fext, args.process,  yamldir)
+        checker = chky.CheckerYAML(indir, para, fext, args.process, yamldir)
         checker.check(args.force, statfile)
 
     elif args.checkeos:
@@ -217,7 +225,7 @@ if __name__ == "__main__":
                 args.process = 'kkmcp8_' + args.process[5:]
         import EventProducer.common.checker_eos as chkeos
         print(args.process)
-        checkereos = chkeos.checker_eos(yamldir, indir, args.process)
+        checkereos = chkeos.CheckerEOS(yamldir, indir, args.process)
         # (indirafs, indireos, process, version):
 
         checkereos.check(para)
@@ -225,14 +233,18 @@ if __name__ == "__main__":
     elif args.merge:
         print('running the merger')
         if args.process != '':
-            print('using a specific process ',args.process)
-            if args.reco and args.process[0:3] == 'mg_': args.process='mgp8_'+args.process[3:]
-            if args.reco and args.process[0:3] == 'ch_': args.process='chp8_'+args.process[3:]
-            if args.reco and args.process[0:3] == 'pw_': args.process='pwp8_'+args.process[3:]
-            if args.reco and args.process[0:5] == 'kkmc_' : args.process='kkmcp8_'+args.process[5:]
+            print('using a specific process ', args.process)
+            if args.reco and args.process[0:3] == 'mg_':
+                args.process = 'mgp8_' + args.process[3:]
+            if args.reco and args.process[0:3] == 'ch_':
+                args.process = 'chp8_' + args.process[3:]
+            if args.reco and args.process[0:3] == 'pw_':
+                args.process = 'pwp8_' + args.process[3:]
+            if args.reco and args.process[0:5] == 'kkmc_':
+                args.process = 'kkmcp8_' + args.process[5:]
         import EventProducer.common.merger as mgr
         isLHE = args.LHE
-        merger = mgr.merger(args.process, yamldir)
+        merger = mgr.Merger(args.process, yamldir)
         merger.merge(args.force)
 
     elif args.send:
@@ -299,20 +311,22 @@ if __name__ == "__main__":
     elif args.web:
         import EventProducer.common.printer as prt
         if args.LHE:
-            print('create web page for LHE')
-            printdic = prt.Printer(yamldir, para.lhe_web, False, True, para)
+            print('INFO: Creating LHE output files for the web page...')
+            printdic = prt.Printer(yamldir, para.lhe_web, para, False)
             printdic.run()
 
         elif args.STDHEP:
-            print('create web page for STDHEP')
-            stdhep_outfile = para.stdhep_web.replace('VERSION', version)
-            printdic = prt.Printer(yamldir, stdhep_outfile, False, True, para)
+            print('INFO: Creating STDHEP output files for the web page...')
+            stdhep_webfile = para.stdhep_web.replace('VERSION', version)
+            printdic = prt.Printer(yamldir, stdhep_webfile, para, False)
             printdic.run()
 
         elif args.reco:
-            print('INFO: Creating Reco web page file...')
-            webpage_file = para.delphes_web.replace('VERSION', version).replace('DETECTOR', detector)
-            printdic = prt.Printer(yamldir, webpage_file, True, False, para, detector, version)
+            print('INFO: Creating Reco output files for the web page...')
+            webpage_file = para.delphes_web.replace('VERSION', version)
+            webpage_file = webpage_file.replace('DETECTOR', detector)
+            webpage_file = webpage_file.replace('_.', '.')
+            printdic = prt.Printer(yamldir, webpage_file, para, True)
             printdic.run()
 
     elif args.remove:
@@ -348,3 +362,8 @@ if __name__ == "__main__":
     else:
         print('problem, need to specify --check or --send')
         sys.exit(3)
+
+
+# _____________________________________________________________________________
+if __name__ == "__main__":
+    main()

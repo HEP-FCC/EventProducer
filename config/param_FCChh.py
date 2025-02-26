@@ -1,21 +1,21 @@
-#module
-module_name='config/param_FCChh.py'
-#eos tests
-eostest='/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
-eostest_size=1312594
+# module
+module_name = 'config/param_FCChh.py'
+# eos tests
+eostest = '/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
+eostest_size = 1312594
 
-#stat
-lhe_stat="/eos/experiment/fcc/www/data/FCChh/statlhe.html"
-delphes_stat="/eos/experiment/fcc/www/data/FCChh/statdelphesVERSION.html"
+# stat
+lhe_stat = "/eos/experiment/fcc/www/data/FCChh/statlhe.html"
+delphes_stat = "/eos/experiment/fcc/www/data/FCChh/statdelphesVERSION.html"
 
-#web
-lhe_web="/eos/experiment/fcc/www/data/FCChh/LHEevents.txt"
-delphes_web="/eos/experiment/fcc/www/data/FCChh/Delphesevents_VERSION.txt"
+# web
+lhe_web = "/eos/experiment/fcc/www/data/FCChh/LHEevents.txt"
+delphes_web = "/eos/experiment/fcc/www/data/FCChh/Delphesevents_VERSION.txt"
 
-#yaml directory
-yamldir='/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCChh/'
+# yaml directory
+yamldir = '/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCChh/'
 
-#proc lists
+# proc lists
 procList = [
      '/eos/experiment/fcc/hh/utils/FCCDicts/FCChh_procDict_VERSION_DETECTOR.json'
      # '/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCChh_procDict_VERSION.json',
@@ -76,12 +76,14 @@ delphescard_base='FCChh_DETECTOR.tcl' #from fcc_v05 onwards
 ##FCC config script name
 fccconfig='PythiaDelphes_config_v02.py'
 
-#list of processes only with Pythia, meaning no LHE
-pythialist={
-'dummy':['1','1','1','1','1','1'],
-#for testing
-'p8_ee_Z_bb_ecm91':['1','1','1','1','1','1'],
-'p8_pp_Z_bb':['1','1','1','1','1','1'],
+# list of processes only with Pythia, meaning no LHE
+pythialist = {
+    'dummy': ['NOT REGISTERED IN param_FCChh',
+              'NOT REGISTERED IN param_FCChh',
+              '1', '1', '1', '1'],
+    # for testing
+    'p8_ee_Z_bb_ecm91': ['1', '1', '1', '1', '1', '1'],
+    'p8_pp_Z_bb': ['1', '1', '1', '1', '1', '1'],
 
 #'mg_pp_za012j_zmumu':['Z gamma + 012jets Z->mumu','','','1.0','1.0','1.0'],
 #'mg_pp_za012j_znunu':['Z gamma + 012jets Z->nunu','','','1.0','1.0','1.0'],
@@ -742,7 +744,15 @@ branching_ratios = {
 ## description/comment/matching parameters/cross section/kfactor/matching efficiency
 
 gridpacklist = {
+<<<<<<< HEAD
 #new bbyy signals at different E_CMS - cross-sections are dummy placeholders to be updated
+=======
+    'dummy': ['NOT REGISTERED IN param_FCChh',
+              'NOT REGISTERED IN param_FCChh',
+              '1', '1', '1', '1'],
+
+#new bbyy signals at different E_CMS - cross-sections are dummy placeholders
+>>>>>>> upstream/fcchh_evtgen_updates
 'pw_pp_hh_lambda100_5f_100TeV_SA':['pp gg HH 100TeV, kl =1','','','1.0','1.0','1.0'],
 'pw_pp_hh_lambda240_5f_100TeV_SA':['pp gg HH 100TeV, kl =2.4','','','1.0','1.0','1.0'],
 'pw_pp_hh_lambda300_5f_100TeV_SA':['pp gg HH 100TeV, kl =3','','','1.0','1.0','1.0'],
@@ -831,7 +841,11 @@ gridpacklist = {
 # new samples for analyes for 2025 ESPPU
 
 #ttH(yy) analysis
+<<<<<<< HEAD
 'mg_pp_ttaa_semilep_5f_100TeV':['top pair with photon pair, leading order, @ 100 TeV','Semileptonic ttbar, 90 < maa < 175 GeV','No Jet Matching','0.2852','1','1.0'],,
+=======
+'mg_pp_ttaa_semilep_5f_100TeV':['top pair with photon pair, leading order, @ 100 TeV','Semileptonic ttbar, 90 < maa < 175 GeV','No Jet Matching','0.2852','1','1.0'],
+>>>>>>> upstream/fcchh_evtgen_updates
 
 #VBF HWW analyses samples
 'mg_pp_vbf_ww_lvlv_5f_84TeV':['VBF WW full process - including H, continuum and interference @ 84 TeV','WW->lvlv, incl taus','No Jet matching','11.87','1','1.0'],
@@ -845,7 +859,6 @@ gridpacklist = {
 'mg_pp_vbf_hww_lvlv_offshell_5f_100TeV':['VBF HWW lvlv tester','WW->lvlv, incl taus','No Jet matching','0.4021','1','1'],
 
 
-'dummy':['1','1','1','1','1','1'],
     'mg_pp_za012j_zmumu':['Z gamma + 012jets Z->mumu','','','1.0','1.0','1.0'],
 'mg_pp_za012j_znunu':['Z gamma + 012jets Z->nunu','','','1.0','1.0','1.0'],
 'mg_pp_za012j_zee':['Z gamma + 012jets Z->ee','','','1.0','1.0','1.0'],
@@ -938,7 +951,7 @@ gridpacklist = {
 'mg_pp_v0123j_5f_HT_2900_5100':['vector boson + 0/1/2/3 jets','2900 < HT < 5100','xqcut = 30, qCut = 45','300.8','1.20','0.244'],
 'mg_pp_v0123j_5f_HT_5100_8500':['vector boson + 0/1/2/3 jets','5100 < HT < 8500','xqcut = 30, qCut = 45','30.94','1.20','0.227'],
 'mg_pp_v0123j_5f_HT_8500_100000':['vector boson + 0/1/2/3 jets','8500 < HT < 100000','xqcut = 30, qCut = 45','2.95','1.20','0.204'],
-'mg_pp_v0123j_5f':['vector boson + 0/1/2/3 jets','inclusive','xqcut = 30, qCut = 45','8.886e+06','1.20','0.232'],
+'mg_pp_v0123j_5f':['vector boson + 0/1/2/3 jets','inclusive','xqcut = 30, qCut = 45','8.886e+06','1.20','0.598'],
 'mg_gg_aa01j_5f_HT_0_500':['gluon fusion di-photon + 0/1 jets','0 < HT < 500','xqcut = 20, qCut = 30','850.4','2.0','0.578'],
 'mg_gg_aa01j_5f_HT_500_1000':['gluon fusion di-photon + 0/1 jets','500 < HT < 1000','xqcut = 20, qCut = 30','0.5129','2.0','0.383'],
 'mg_gg_aa01j_5f_HT_1000_2000':['gluon fusion di-photon + 0/1 jets','1000 < HT < 2000','xqcut = 20, qCut = 30','0.04712','2.0','0.344'],
@@ -1583,8 +1596,13 @@ gridpacklist = {
 'mg_pp_tautau_HT_2000_100000_5f_84TeV': ['', '', '', '0.00042966', '1.0','1.0'],
 'mg_pp_lvlv_HT_200_2000_5f_84TeV': ['WW leptonic (including tau)', '', '', '7.656941584', '1.0','1.0'],
 'mg_pp_lvlv_HT_2000_100000_5f_84TeV': ['WW leptonic (including tau)', '', '', '0.0067953154478', '1.0','1.0'],
+<<<<<<< HEAD
 'mg_pp_ttaa01j_5f_84TeV': ['ttaa +0/1j', '105 < maa < 145', '', '1.0', '1.0', '1.0'],
 'mg_pp_tth_5f_84TeV': ['ttz', '', '', '1.0', '1.0', '1.0'],
+=======
+'mg_pp_ttaa01j_5f_84TeV': ['ttaa +0/1j', '105 < maa < 145', 'Jet Matching settings T.B.C.', '1.0', '1.0', '1.0'],
+'mg_pp_tth_5f_84TeV': ['ttH, no extra jets', 'Inclusive', 'No Jet Matching', '1.0', '1.0', '1.0'],
+>>>>>>> upstream/fcchh_evtgen_updates
 }
 
 
