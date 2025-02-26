@@ -516,9 +516,11 @@ gridpacklist = {
     'wzp6_ee_nuenueZ_ecm240':['Z nue nuebar, W-exchange only','inclusive Z decays by Pythia','','3.3274e-2','1.0','1.0'],
 
     #update xsec
+    #'wzp6_ee_llZZ_Zll_ecm240':['ee -> llZ(ll)Z(ll) , ecm=240 GeV','Mll > 5 GeV, |cos(Theta_ll)| < 0.998750','','5.6282e-04','1.0','1.0'],
+    #'wzp6_ee_jjZZ_Zll_ecm240':['ee -> jjZ(ll)Z(ll) , ecm=240 GeV','Mll,jj > 5 GeV, |cos(Theta_ll,jj)| < 0.998750','','2.9043e-03','1.0','1.0'],-
     'wzp6_ee_llllll_ecm240':['ee -> llllll , ecm=240 GeV','Mll > 5 GeV, |cos(Theta_ll)| < 0.998750','','1.0','1.0','1.0'],
     'wzp6_ee_jjllll_ecm240':['ee -> jjllll , ecm=240 GeV','Mll,jj > 5 GeV, |cos(Theta_ll,jj)| < 0.998750','','1.0','1.0','1.0'],
-    'wzp6_ee_llH_HZZ_llll_ecm240':['llH, ecm=240 GeV','H->4lep, Mll > 5 GeV, |cos(Theta_ll)| < 0.998750','','2.0589e-02','1.0','1.0'],
+    'wzp6_ee_llH_HZZ_llll_ecm240':['llH, ecm=240 GeV','H->4lep, Mll > 5 GeV, |cos(Theta_ll)| < 0.998750','','5.705e-06','1.0','1.0'],
 
 # for Higgs, sqrts = 365 GeV:
     'wzp6_ee_mumuH_ecm365':['mumuH ecm=365 GeV','inclusive Higgs decays','','4.185e-3','1.0','1.0'],
