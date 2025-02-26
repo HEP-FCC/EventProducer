@@ -744,15 +744,11 @@ branching_ratios = {
 ## description/comment/matching parameters/cross section/kfactor/matching efficiency
 
 gridpacklist = {
-<<<<<<< HEAD
-#new bbyy signals at different E_CMS - cross-sections are dummy placeholders to be updated
-=======
     'dummy': ['NOT REGISTERED IN param_FCChh',
               'NOT REGISTERED IN param_FCChh',
               '1', '1', '1', '1'],
 
 #new bbyy signals at different E_CMS - cross-sections are dummy placeholders
->>>>>>> upstream/fcchh_evtgen_updates
 'pw_pp_hh_lambda100_5f_100TeV_SA':['pp gg HH 100TeV, kl =1','','','1.0','1.0','1.0'],
 'pw_pp_hh_lambda240_5f_100TeV_SA':['pp gg HH 100TeV, kl =2.4','','','1.0','1.0','1.0'],
 'pw_pp_hh_lambda300_5f_100TeV_SA':['pp gg HH 100TeV, kl =3','','','1.0','1.0','1.0'],
@@ -841,11 +837,7 @@ gridpacklist = {
 # new samples for analyes for 2025 ESPPU
 
 #ttH(yy) analysis
-<<<<<<< HEAD
-'mg_pp_ttaa_semilep_5f_100TeV':['top pair with photon pair, leading order, @ 100 TeV','Semileptonic ttbar, 90 < maa < 175 GeV','No Jet Matching','0.2852','1','1.0'],,
-=======
 'mg_pp_ttaa_semilep_5f_100TeV':['top pair with photon pair, leading order, @ 100 TeV','Semileptonic ttbar, 90 < maa < 175 GeV','No Jet Matching','0.2852','1','1.0'],
->>>>>>> upstream/fcchh_evtgen_updates
 
 #VBF HWW analyses samples
 'mg_pp_vbf_ww_lvlv_5f_84TeV':['VBF WW full process - including H, continuum and interference @ 84 TeV','WW->lvlv, incl taus','No Jet matching','11.87','1','1.0'],
@@ -1596,13 +1588,8 @@ gridpacklist = {
 'mg_pp_tautau_HT_2000_100000_5f_84TeV': ['', '', '', '0.00042966', '1.0','1.0'],
 'mg_pp_lvlv_HT_200_2000_5f_84TeV': ['WW leptonic (including tau)', '', '', '7.656941584', '1.0','1.0'],
 'mg_pp_lvlv_HT_2000_100000_5f_84TeV': ['WW leptonic (including tau)', '', '', '0.0067953154478', '1.0','1.0'],
-<<<<<<< HEAD
-'mg_pp_ttaa01j_5f_84TeV': ['ttaa +0/1j', '105 < maa < 145', '', '1.0', '1.0', '1.0'],
-'mg_pp_tth_5f_84TeV': ['ttz', '', '', '1.0', '1.0', '1.0'],
-=======
-'mg_pp_ttaa01j_5f_84TeV': ['ttaa +0/1j', '105 < maa < 145', 'Jet Matching settings T.B.C.', '1.0', '1.0', '1.0'],
-'mg_pp_tth_5f_84TeV': ['ttH, no extra jets', 'Inclusive', 'No Jet Matching', '1.0', '1.0', '1.0'],
->>>>>>> upstream/fcchh_evtgen_updates
+'mg_pp_ttaa01j_5f_84TeV': ['ttaa +0/1j', '105 < maa < 145', 'Jet Matching settings T.B.C.', '0.153633071796', '1.0', '1.0'],
+'mg_pp_tth_5f_84TeV': ['ttH, no extra jets', 'Inclusive', 'No Jet Matching', '17.50415', '1.0', '1.0'],
 }
 
 
