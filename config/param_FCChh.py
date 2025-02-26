@@ -839,6 +839,8 @@ gridpacklist = {
 #ttH(yy) analysis
 'mg_pp_ttaa_semilep_5f_100TeV':['top pair with photon pair, leading order, @ 100 TeV','Semileptonic ttbar, 90 < maa < 175 GeV','No Jet Matching','0.2852','1','1.0'],
 
+'mg_pp_Vaajj_HF_5f_84TeV':['V plus photon pair with pair of heavy flavour jets, leading order, @ 84 TeV','bb and cc only, 105 < maa < 145 GeV','No Jet Matching','1','1','1.0'],
+
 #VBF HWW analyses samples
 'mg_pp_vbf_ww_lvlv_5f_84TeV':['VBF WW full process - including H, continuum and interference @ 84 TeV','WW->lvlv, incl taus','No Jet matching','11.87','1','1.0'],
 'mg_pp_vbf_ww_lvlv_5f_100TeV':['VBF WW full process - including H, continuum and interference @ 100 TeV','WW->lvlv, incl taus','No Jet matching','15.53','1','1.0'],
@@ -1162,10 +1164,10 @@ gridpacklist = {
 'mg_pp_lla01j_mhcut_5f_HT_300_500':['l+ l- gamma + 0/1 jets','300 < HT < 500','xqcut = 30, qCut = 40','0.004548','1.50','0.245'],
 'mg_pp_lla01j_mhcut_5f_HT_300_100000':['l+ l- gamma + 0/1 jets','300 < HT < 100000','xqcut = 30, qCut = 40','0.08149','1.50','0.234'],
 'mg_pp_lla01j_mhcut_5f_HT_500_100000':['l+ l- gamma + 0/1 jets','500 < HT < 100000','xqcut = 30, qCut = 40','0.002727','1.50','0.162'],
-'mg_pp_llll01j_mhcut_5f_HT_0_200':['Z/gamma* Z/gamma* to 4l + 0/1 jets','0 < HT < 200','xqcut = 40, qCut = 60','0.04957','1.60','1.0'],
-'mg_pp_llll01j_mhcut_5f_HT_200_500':['Z/gamma* Z/gamma* to 4l + 0/1 jets','200 < HT < 500','xqcut = 40, qCut = 60','0.0002159','1.60','1.0'],
-'mg_pp_llll01j_mhcut_5f_HT_500_1100':['Z/gamma* Z/gamma* to 4l + 0/1 jets','500 < HT < 1100','xqcut = 40, qCut = 60','5.573e-06','1.60','1.0'],
-'mg_pp_llll01j_mhcut_5f_HT_1100_100000':['Z/gamma* Z/gamma* to 4l + 0/1 jets','1100 < HT < 100000','xqcut = 40, qCut = 60','1.361e-07','1.60','1.0'],
+'mg_pp_llll01j_mhcut_5f_HT_0_200':['Z/gamma* Z/gamma* to 4l + 0/1 jets','0 < HT < 200','xqcut = 40, qCut = 60','0.04957','1.60','0.809'],
+'mg_pp_llll01j_mhcut_5f_HT_200_500':['Z/gamma* Z/gamma* to 4l + 0/1 jets','200 < HT < 500','xqcut = 40, qCut = 60','0.0002159','1.60','0.936'],
+'mg_pp_llll01j_mhcut_5f_HT_500_1100':['Z/gamma* Z/gamma* to 4l + 0/1 jets','500 < HT < 1100','xqcut = 40, qCut = 60','5.573e-06','1.60','0.949'],
+'mg_pp_llll01j_mhcut_5f_HT_1100_100000':['Z/gamma* Z/gamma* to 4l + 0/1 jets','1100 < HT < 100000','xqcut = 40, qCut = 60','1.361e-07','1.60','0.971'],
 'mg_gg_aa01j_mhcut_5f_HT_0_200':['gluon fusion di-photon + 0/1 jets','0 < HT < 200','xqcut = 20, qCut = 30','60.21','2.0','0.408'],
 'mg_gg_aa01j_mhcut_5f_HT_200_500':['gluon fusion di-photon + 0/1 jets','200 < HT < 500','xqcut = 20, qCut = 30','0.026','2.0','0.915'],
 'mg_gg_aa01j_mhcut_5f_HT_200_100000':['gluon fusion di-photon + 0/1 jets','200 < HT < 100000','xqcut = 20, qCut = 30','0.02618','2.0','0.917'],
