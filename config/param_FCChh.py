@@ -1597,6 +1597,8 @@ gridpacklist = {
 'mg_pp_tt012j_5f_84TeV': ['ttbar+ 2 extra jets', 'Inclusive', 'Jet Matching', '31838.8464905', '1.0', '1.0'],
 'mg_pp_tt_5f_84TeV': ['tt LO no extrajets', '', '', '14787.47', '1.0', '1.0'],
 'mg_pp_tt_5f': ['tt LO no extrajets', '100 TeV', '', '19286.02', '1.0', '1.0'],
+'mg_pp_vbf_h_jjlvlv_5f_84TeV':['VBF H WW signal @ 100 TeV','WW->lvlv, incl taus','No Jet matching','1.0','1','1.0'],
+
 }
 
 
