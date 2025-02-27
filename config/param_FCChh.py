@@ -18,8 +18,8 @@ yamldir = '/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCChh/'
 # proc lists
 procList = [
      '/eos/experiment/fcc/hh/utils/FCCDicts/FCChh_procDict_VERSION_DETECTOR.json'
-     # '/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCChh_procDict_VERSION.json',
-     # '/eos/experiment/fcc/www/data/FCCDicts/FCChh_procDict_VERSION.json'
+     '/eos/experiment/fcc/www/data/FCCDicts/FCChh_procDict_VERSION_DETECTOR.json'
+       # '/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCChh_procDict_VERSION.json',
      ]
 
 ##eos directory for MG5@MCatNLO gridpacks
