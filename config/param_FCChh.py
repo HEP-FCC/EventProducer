@@ -839,7 +839,7 @@ gridpacklist = {
 #ttH(yy) analysis
 'mg_pp_ttaa_semilep_5f_100TeV':['top pair with photon pair, leading order, @ 100 TeV','Semileptonic ttbar, 90 < maa < 175 GeV','No Jet Matching','0.2852','1','1.0'],
 
-'mg_pp_Vaajj_HF_5f_84TeV':['V plus photon pair with pair of heavy flavour jets, leading order, @ 84 TeV','bb and cc only, 105 < maa < 145 GeV','No Jet Matching','1','1','1.0'],
+'mg_pp_Vaajj_HF_5f_84TeV':['V plus photon pair with pair of heavy flavour jets, leading order, @ 84 TeV','bb and cc only, 105 < maa < 145 GeV','No Jet Matching','0.0256','1','1.0'],
 
 #VBF HWW analyses samples
 'mg_pp_vbf_ww_lvlv_5f_84TeV':['VBF WW full process - including H, continuum and interference @ 84 TeV','WW->lvlv, incl taus','No Jet matching','11.87','1','1.0'],
