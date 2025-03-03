@@ -690,6 +690,8 @@ decaylist = {
 'mg_pp_ttz_5f_84TeV': ['ttzlep'],
 'mg_pp_ttzz_5f_84TeV': ['zzbbee','zzbbmumu','zzllll'],
 'mg_pp_tttt_5f_84TeV': ['4tlep'],
+'mg_pp_tt_HT_200_2000_5f_84TeV': ['blvblv'],
+'mg_pp_tt_HT_2000_100000_5f_84TeV': ['blvblv'],
 }
 
 ##list of decays branching ratios 
