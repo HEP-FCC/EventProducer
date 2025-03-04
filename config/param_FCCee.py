@@ -238,6 +238,7 @@ pythialist = {
     'p8_ee_Zbb_ecm91_EvtGen_Bu2KTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Lb2LEE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Lb2LMuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LMuMuphsp':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Lb2LTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
 
     'p8_ee_Zbb_ecm91_EvtGen_Bu2D0Pi':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B+/- -> D0(KPi)Pi','','1.3290920','1.0','1.0'],
