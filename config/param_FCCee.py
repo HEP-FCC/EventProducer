@@ -521,7 +521,7 @@ gridpacklist = {
 
     #update xsec
     #'wzp6_ee_llZZ_Zll_ecm240':['ee -> llZ(ll)Z(ll) , ecm=240 GeV','Mll > 5 GeV, |cos(Theta_ll)| < 0.998750','','5.6282e-04','1.0','1.0'],
-    #'wzp6_ee_jjZZ_Zll_ecm240':['ee -> jjZ(ll)Z(ll) , ecm=240 GeV','Mll,jj > 5 GeV, |cos(Theta_ll,jj)| < 0.998750','','2.9043e-03','1.0','1.0'],-
+    #'wzp6_ee_jjZZ_Zll_ecm240':['ee -> jjZ(ll)Z(ll) , ecm=240 GeV','Mll,jj > 5 GeV, |cos(Theta_ll,jj)| < 0.998750','','2.9043e-03','1.0','1.0'],
     'wzp6_ee_llllll_ecm240':['ee -> llllll , ecm=240 GeV','Mll > 5 GeV, |cos(Theta_ll)| < 0.998750','','1.0','1.0','1.0'],
     'wzp6_ee_jjllll_ecm240':['ee -> jjllll , ecm=240 GeV','Mll,jj > 5 GeV, |cos(Theta_ll,jj)| < 0.998750','','1.0','1.0','1.0'],
     'wzp6_ee_llH_HZZ_llll_ecm240':['llH, ecm=240 GeV','H->4lep, Mll > 5 GeV, |cos(Theta_ll)| < 0.998750','','5.17e-06','1.0','1.0'],
@@ -922,7 +922,7 @@ gridpacklist = {
     'wzp6_ee_mumuH_Hgg_ecm365':['ee->mumuH, ecm=365 GeV','H->gg', '','3.426e-04','1.0','1.0'],
     'wzp6_ee_mumuH_Hss_ecm365':['ee->mumuH, ecm=365 GeV','H->ss', '','1.004e-06','1.0','1.0'],
     'wzp6_ee_mumuH_Htautau_ecm365':['ee->mumuH, ecm=365 GeV','H->tautau', '','2.625e-04','1.0','1.0'],
-    'wzp6_ee_mumuH_Hmumu_ecm365':['ee->mumuH, ecm=365 GeV','H->mumu', '','9.098-07','1.0','1.0'],
+    'wzp6_ee_mumuH_Hmumu_ecm365':['ee->mumuH, ecm=365 GeV','H->mumu', '','9.098e-07','1.0','1.0'],
 
     'wzp6_ee_nunuH_HWW_ecm365':['ee->nunuH, ecm=365 GeV','H->WW', '','1.161e-02','1.0','1.0'],
     'wzp6_ee_nunuH_HZZ_ecm365':['ee->nunuH, ecm=365 GeV','H->ZZ', '','1.425e-03','1.0','1.0'],
