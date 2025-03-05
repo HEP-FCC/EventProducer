@@ -685,6 +685,13 @@ decaylist = {
 'mg_pp_stopstop_5f_mStop_10p5TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV','mChi4p0TeV','mChi4p5TeV','mChi5p0TeV','mChi5p5TeV','mChi6p0TeV','mChi6p5TeV','mChi7p0TeV','mChi7p5TeV','mChi8p0TeV','mChi8p5TeV','mChi9p0TeV','mChi9p5TeV','mChi10p0TeV'],
 'mg_pp_stopstop_5f_mStop_11p0TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV','mChi4p0TeV','mChi4p5TeV','mChi5p0TeV','mChi5p5TeV','mChi6p0TeV','mChi6p5TeV','mChi7p0TeV','mChi7p5TeV','mChi8p0TeV','mChi8p5TeV','mChi9p0TeV','mChi9p5TeV','mChi10p0TeV','mChi10p5TeV'],
 'mg_pp_stopstop_5f_mStop_11p5TeV':['mChi0p5TeV','mChi1p0TeV','mChi1p5TeV','mChi2p0TeV','mChi2p5TeV','mChi3p0TeV','mChi3p5TeV','mChi4p0TeV','mChi4p5TeV','mChi5p0TeV','mChi5p5TeV','mChi6p0TeV','mChi6p5TeV','mChi7p0TeV','mChi7p5TeV','mChi8p0TeV','mChi8p5TeV','mChi9p0TeV','mChi9p5TeV','mChi10p0TeV','mChi10p5TeV', 'mChi11p0TeV'],
+
+# now 84 TeV processes 
+'mg_pp_ttz_5f_84TeV': ['ttzlep'],
+'mg_pp_ttzz_5f_84TeV': ['zzbbee','zzbbmumu','zzllll'],
+'mg_pp_tttt_5f_84TeV': ['4tlep'],
+'mg_pp_tt_HT_200_2000_5f_84TeV': ['blvblv'],
+'mg_pp_tt_HT_2000_100000_5f_84TeV': ['blvblv'],
 }
 
 ##list of decays branching ratios 
@@ -712,6 +719,12 @@ branching_ratios = {
 'hww':0.218,
 'hwwlvlv':0.218*0.3259*0.3259,
 'blvblv':0.110224,
+'4tlep':0.110224*0.110224,
+'ttzlep':0.110224*0.101,
+'zzbbee':2*0.151*0.034,
+'zzbbmumu':2*0.151*0.034,
+'zzllll':0.151*0.151,
+
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
 'mChi0p5TeV':1.0,
@@ -1602,6 +1615,7 @@ gridpacklist = {
 'mg_pp_z0123j_4f_100TeV': ['TESTER - z + 0/1/2/3 jets @ 100 TeV','inclusive','xqcut = 30, qCut = 45','5.091e+05','1.20','1.0'],
 'mg_pp_z0123j_4f_84TeV': ['z + 0/1/2/3 jets @ 84 TeV','inclusive','xqcut = 30, qCut = 45','1.','1.20','1.0'],
 
+'mg_pp_vbf_h_jjlvlv_5f_84TeV':['VBF H WW signal @84 TeV','WW->lvlv, incl taus','No Jet matching','1.0','1','1.0'],
 
 }
 
