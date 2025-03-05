@@ -17,7 +17,7 @@ yamldir = '/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCChh/'
 
 # proc lists
 procList = [
-     '/eos/experiment/fcc/hh/utils/FCCDicts/FCChh_procDict_VERSION_DETECTOR.json'
+     '/eos/experiment/fcc/hh/utils/FCCDicts/FCChh_procDict_VERSION_DETECTOR.json',
      '/eos/experiment/fcc/www/data/FCCDicts/FCChh_procDict_VERSION_DETECTOR.json'
        # '/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCChh_procDict_VERSION.json',
      ]
@@ -853,7 +853,7 @@ gridpacklist = {
 'mg_pp_vbf_hww_lvlv_offshell_5f_100TeV':['VBF HWW lvlv tester','WW->lvlv, incl taus','No Jet matching','0.4021','1','1'],
 
 
-    'mg_pp_za012j_zmumu':['Z gamma + 012jets Z->mumu','','','1.0','1.0','1.0'],
+'mg_pp_za012j_zmumu':['Z gamma + 012jets Z->mumu','','','1.0','1.0','1.0'],
 'mg_pp_za012j_znunu':['Z gamma + 012jets Z->nunu','','','1.0','1.0','1.0'],
 'mg_pp_za012j_zee':['Z gamma + 012jets Z->ee','','','1.0','1.0','1.0'],
 
@@ -1594,9 +1594,15 @@ gridpacklist = {
 'mg_pp_tth_5f_84TeV': ['ttH, no extra jets', 'Inclusive', 'No Jet Matching', '1.0', '1.0', '1.0'],
 'mg_pp_ttaa01j_5f_84TeV': ['ttaa +0/1j', '105 < maa < 145', 'Jet Matching settings T.B.C.', '0.153633071796', '1.0', '1.0'],
 'mg_pp_tth_5f_84TeV': ['ttH, no extra jets', 'Inclusive', 'No Jet Matching', '17.50415', '1.0', '1.0'],
-'mg_pp_tt012j_5f_84TeV': ['ttbar+ 2 extra jets', 'Inclusive', 'Jet Matching', '31838.8464905', '1.0', '1.0'],
+'mg_pp_tt012j_5f_84TeV': ['top pair + 0/1/2 jets @ 84 TeV','inclusive','xqcut = 60, qCut = 90', '31838.8464905', '1.0', '1.0'],
+'mg_pp_tt012j_5f_100TeV': ['TESTER - top pair + 0/1/2 jets @ 100 TeV','inclusive','xqcut = 60, qCut = 90', '1', '1.0', '1.0'],
 'mg_pp_tt_5f_84TeV': ['tt LO no extrajets', '', '', '14787.47', '1.0', '1.0'],
 'mg_pp_tt_5f': ['tt LO no extrajets', '100 TeV', '', '19286.02', '1.0', '1.0'],
+
+'mg_pp_z0123j_4f_100TeV': ['TESTER - z + 0/1/2/3 jets @ 100 TeV','inclusive','xqcut = 30, qCut = 45','5.091e+05','1.20','1.0'],
+'mg_pp_z0123j_4f_84TeV': ['z + 0/1/2/3 jets @ 84 TeV','inclusive','xqcut = 30, qCut = 45','1.','1.20','1.0'],
+
+
 }
 
 
