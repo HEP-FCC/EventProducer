@@ -475,6 +475,9 @@ decaylist = {
 'mg_pp_vh012j_5f':['hmumu', 'haa', 'haaexcl', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau'],
 'mg_pp_v0123j_5f':['znunu'],
 'mg_pp_z0123j_4f':['zll','ztautau', 'znunu'],
+'mg_pp_z0123j_4f_84TeV':['zll','ztautau', 'znunu'],
+'mg_pp_zjj_4f_100TeV':['zll','ztautau', 'znunu'],
+'mg_pp_zjj_4f_84TeV':['zll','ztautau', 'znunu'],
 'mg_pp_w0123j_4f':['wlv'],
 'mg_pp_ttz_5f':['znunu', 'zbb'],
 'mg_pp_hh_lambda050_5f':['haa','htautau'],
@@ -507,6 +510,8 @@ decaylist = {
 # 'mg_pp_z0123j_4f':['znunu'],
 'mg_pp_tt012j_5f':['ttau', 'blvblv'],
 'mg_pp_tt012j_5f_84TeV':['ttau', 'blvblv'],
+'mg_pp_ttjj_5f_84TeV':['ttau', 'blvblv'],
+'mg_pp_ttjj_5f_100TeV':['ttau', 'blvblv'],
 'pw_pp_hh_lambda100_5f_100TeV_testSA_fixed':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda000_5f':['hhbbaa','hhbbtata','hhbbbb'],
 'pw_pp_hh_lambda020_5f':['hhbbaa','hhbbtata','hhbbbb'],
@@ -1618,6 +1623,12 @@ gridpacklist = {
 'mg_pp_z0123j_4f_84TeV': ['z + 0/1/2/3 jets @ 84 TeV','inclusive','xqcut = 30, qCut = 45','1.','1.20','1.0'],
 
 'mg_pp_vbf_h_jjlvlv_5f_84TeV':['VBF H WW signal @84 TeV','WW->lvlv, incl taus','No Jet matching','1.0','1','1.0'],
+
+'mg_pp_ttjj_5f_84TeV': ['top pair + 2 jets @ 84 TeV','pT j > 80 GeV','No Jet matching', '1.0', '1.0', '1.0'],
+'mg_pp_ttjj_5f_100TeV': ['top pair + 2 jets @ 100 TeV','pT j > 80 GeV','No Jet matching', '1.0', '1.0', '1.0'],
+
+'mg_pp_zjj_4f_84TeV': ['Z+ 2 jets @ 84 TeV','pT j > 80 GeV','No Jet matching', '1.0', '1.0', '1.0'],
+'mg_pp_zjj_4f_100TeV': ['tZ + 2 jets @ 100 TeV','pT j > 80 GeV','No Jet matching', '1.0', '1.0', '1.0'],
 
 }
 
