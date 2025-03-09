@@ -1,0 +1,25 @@
+import model sm-no_b_mass
+define w = w+ w-
+define ell = e+ mu+ ta+ e- mu- ta-
+define nu = ve vm vt ve~ vm~ vt~
+define top = t t~
+generate p p > j j 
+output DUMMYPROCESS
+
+######## DELIMITER (!!! NEED THIS LINE !!!) ##################
+
+set lhapdf /afs/cern.ch/work/b/bistapf/lhapdf/LHAPDF-6.1.6/install/bin/lhapdf-config
+
+launch DUMMYPROCESS
+set iseed DUMMYSEED
+set nevents DUMMYNEVENTS
+
+set pdlabel lhapdf
+set lhaid 260000
+
+set ebeam1 42000
+set ebeam2 42000
+set maxjetflavor 5
+set ihtmin 20000
+set ihtmax 20000
+set use_syst False
