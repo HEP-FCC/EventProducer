@@ -665,7 +665,16 @@ decaylist = {
 'mg_pp_vhh_lambda260_5f':['hhbbaa','hhbbtata','hhbbbb'],
 'mg_pp_vhh_lambda280_5f':['hhbbaa','hhbbtata','hhbbbb'],
 'mg_pp_vhh_lambda300_5f':['hhbbaa','hhbbtata','hhbbbb'],
-
+#dihiggs at alternative energies
+'pw_pp_hh_lambda100_5f_80TeV_SA':['hhbbaa','hhbbtata','hhbbbb','hhbbzz','hhbbzz_zleptonic', 'hhbbww', 'hhbbww_wleptonic', 'hhbbzz_4l'],
+'pw_pp_hh_lambda100_5f_100TeV_SA':['hhbbaa','hhbbtata','hhbbbb','hhbbzz','hhbbzz_zleptonic', 'hhbbww', 'hhbbww_wleptonic', 'hhbbzz_4l'],
+'pw_pp_hh_lambda100_5f_120TeV_SA':['hhbbaa','hhbbtata','hhbbbb','hhbbzz','hhbbzz_zleptonic', 'hhbbww', 'hhbbww_wleptonic', 'hhbbzz_4l'],
+'pw_pp_hh_lambda240_5f_80TeV_SA':['hhbbaa','hhbbtata','hhbbbb','hhbbzz','hhbbzz_zleptonic', 'hhbbww', 'hhbbww_wleptonic', 'hhbbzz_4l'],
+'pw_pp_hh_lambda240_5f_100TeV_SA':['hhbbaa','hhbbtata','hhbbbb','hhbbzz','hhbbzz_zleptonic', 'hhbbww', 'hhbbww_wleptonic', 'hhbbzz_4l'],
+'pw_pp_hh_lambda240_5f_120TeV_SA':['hhbbaa','hhbbtata','hhbbbb','hhbbzz','hhbbzz_zleptonic', 'hhbbww', 'hhbbww_wleptonic', 'hhbbzz_4l'],
+'pw_pp_hh_lambda300_5f_80TeV_SA':['hhbbaa','hhbbtata','hhbbbb','hhbbzz','hhbbzz_zleptonic', 'hhbbww', 'hhbbww_wleptonic', 'hhbbzz_4l'],
+'pw_pp_hh_lambda300_5f_100TeV_SA':['hhbbaa','hhbbtata','hhbbbb','hhbbzz','hhbbzz_zleptonic', 'hhbbww', 'hhbbww_wleptonic', 'hhbbzz_4l'],
+'pw_pp_hh_lambda300_5f_120TeV_SA':['hhbbaa','hhbbtata','hhbbbb','hhbbzz','hhbbzz_zleptonic', 'hhbbww', 'hhbbww_wleptonic', 'hhbbzz_4l'],
 ######
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
@@ -769,17 +778,21 @@ gridpacklist = {
               '1', '1', '1', '1'],
 
 #new bbyy signals at different E_CMS - cross-sections are dummy placeholders
-'pw_pp_hh_lambda100_5f_100TeV_SA':['pp gg HH 100TeV, kl =1','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda240_5f_100TeV_SA':['pp gg HH 100TeV, kl =2.4','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda300_5f_100TeV_SA':['pp gg HH 100TeV, kl =3','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda100_5f_80TeV_SA':['pp gg HH 80TeV, kl =1','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda240_5f_80TeV_SA':['pp gg HH 80TeV, kl =2.4','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda300_5f_80TeV_SA':['pp gg HH 80TeV, kl =3','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda100_5f_120TeV_SA':['pp gg HH 120TeV, kl =1','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda240_5f_120TeV_SA':['pp gg HH 120TeV, kl =2.4','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda300_5f_120TeV_SA':['pp gg HH 120TeV, kl =3','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda100_5f_100TeV_testSA':['pp gg HH 120TeV, kl =1','','','1.0','1.0','1.0'],
-'pw_pp_hh_lambda100_5f_100TeV_testSA_fixed':['pp gg HH 120TeV, kl =1','','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda100_5f_100TeV_SA':['TESTER - pp gg HH 100TeV, kl =1','','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda240_5f_100TeV_SA':['TESTER - pp gg HH 100TeV, kl =2.4','','','1.0','1.0','1.0'],
+'pw_pp_hh_lambda300_5f_100TeV_SA':['TESTER - pp gg HH 100TeV, kl =3','','','1.0','1.0','1.0'],
+
+'pw_pp_hh_lambda100_5f_80TeV_SA':['pp gg HH 80TeV, kl =1','Inclusive HH','No Jet Matching','8.16940E-01','1.075363','1.0'],
+'pw_pp_hh_lambda240_5f_80TeV_SA':['pp gg HH 80TeV, kl =2.4','Inclusive HH','No Jet Matching','3.59610E-01','1.075363','1.0'],
+'pw_pp_hh_lambda300_5f_80TeV_SA':['pp gg HH 80TeV, kl =3','Inclusive HH','No Jet Matching','4.28471E-01','1.075363','1.0'],
+
+'pw_pp_hh_lambda100_5f_120TeV_SA':['pp gg HH 120TeV, kl =1','Inclusive HH','No Jet Matching','1.49231','1.075363','1.0'],
+'pw_pp_hh_lambda240_5f_120TeV_SA':['pp gg HH 120TeV, kl =2.4','Inclusive HH','No Jet Matching','6.67420E-01','1.075363','1.0'],
+'pw_pp_hh_lambda300_5f_120TeV_SA':['pp gg HH 120TeV, kl =3','Inclusive HH','No Jet Matching','7.78254E-01','1.075363','1.0'],
+
+# Old unused testers -> to remove?
+# 'pw_pp_hh_lambda100_5f_100TeV_testSA':['pp gg HH 120TeV, kl =1','','','1.0','1.0','1.0'],
+# 'pw_pp_hh_lambda100_5f_100TeV_testSA_fixed':['pp gg HH 120TeV, kl =1','','','1.0','1.0','1.0'],
 
 # yy+jets bkgs for bbyy analysis @ alternative energies
 'mg_pp_jjaa_5f_60TeV':['dijet diphoton','Inclusive','No Jet Matching','9.17','1.2','1.0'],
@@ -1295,6 +1308,7 @@ gridpacklist = {
 'pw_pp_hh_lambda098_5f':['gg->HH (NLO)','inclusive','','1.15639','1.075363','1.0'],
 'pw_pp_hh_lambda099_5f':['gg->HH (NLO)','inclusive','','1.14728','1.075363','1.0'],
 'pw_pp_hh_lambda100_5f':['gg->HH (NLO)','inclusive','','1.13822','1.075363','1.0'],
+'pw_pp_hh_lambda100_5f':['gg->HH (NLO)','inclusive','','1.13822','1.075363','1.0'],
 'pw_pp_hh_lambda101_5f':['gg->HH (NLO)','inclusive','','1.12923','1.075363','1.0'],
 'pw_pp_hh_lambda102_5f':['gg->HH (NLO)','inclusive','','1.12031','1.075363','1.0'],
 'pw_pp_hh_lambda103_5f':['gg->HH (NLO)','inclusive','','1.11145','1.075363','1.0'],
@@ -1610,7 +1624,6 @@ gridpacklist = {
 'mg_pp_tautau_HT_2000_100000_5f_84TeV': ['', '', '', '0.00042966', '1.0','1.0'],
 'mg_pp_lvlv_HT_200_2000_5f_84TeV': ['WW leptonic (including tau)', '', '', '7.656941584', '1.0','1.0'],
 'mg_pp_lvlv_HT_2000_100000_5f_84TeV': ['WW leptonic (including tau)', '', '', '0.0067953154478', '1.0','1.0'],
-'mg_pp_ttaa01j_5f_84TeV': ['ttaa +0/1j', '105 < maa < 145', 'Jet Matching settings T.B.C.', '1.0', '1.0', '1.0'],
 'mg_pp_tth_5f_84TeV': ['ttH, no extra jets', 'Inclusive', 'No Jet Matching', '1.0', '1.0', '1.0'],
 'mg_pp_ttaa01j_5f_84TeV': ['ttaa +0/1j', '105 < maa < 145', 'Jet Matching settings T.B.C.', '0.153633071796', '1.0', '1.0'],
 'mg_pp_tth_5f_84TeV': ['ttH, no extra jets', 'Inclusive', 'No Jet Matching', '17.50415', '1.0', '1.0'],
