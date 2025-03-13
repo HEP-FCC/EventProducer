@@ -1,3 +1,5 @@
+#!/bin/bash
+
 PROD_TAG="${1}"
 DETECTOR="${2}"
 set --
@@ -5,7 +7,11 @@ set --
 cd /afs/cern.ch/user/f/fccsw/private/EventProducer/ || exit 1
 
 source ./init.sh
-LOGFILE="${EVENTPRODUCER}/log/cronrun_RECO_FCChh_${PROD_TAG}_${DETECTOR}.log"
+
+find "${EVENTPRODUCER}/log" -type f \
+	                    -name "cronrun_RECO_FCChh_${PROD_TAG}_${DETECTOR}_*.log" \
+			    -mtime +7 -exec rm {} \;
+LOGFILE="${EVENTPRODUCER}/log/cronrun_RECO_FCChh_${PROD_TAG}_${DETECTOR}_$(date +'%d-%m-%Y-%H-%M').log"
 echo "`date`  INFO: Cron run started." > "${LOGFILE}"
 
 # Making sure the last sync went OK and there is no .sync.lock file left
@@ -24,5 +30,4 @@ python bin/run.py --FCChh --reco --merge --prodtag "${PROD_TAG}" --detector "${D
 python bin/run.py --FCChh --reco --web --prodtag "${PROD_TAG}" --detector "${DETECTOR}" >> "${LOGFILE}" || exit 1
 python bin/run.py --FCChh --reco --sample --prodtag "${PROD_TAG}" --detector "${DETECTOR}" >> "${LOGFILE}" || exit 1
 
-mkdir -p "${EVENTPRODUCER}/log"
 echo "`date`  INFO: Cron run finished." >> "${LOGFILE}"
