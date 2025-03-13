@@ -1,0 +1,54 @@
+import model sm-no_b_mass
+generate p p > j j a a
+
+
+output DUMMYPROCESS
+
+######## DELIMITER (!!! NEED THIS LINE !!!) ##################
+
+launch DUMMYPROCESS
+set iseed DUMMYSEED
+set nevents DUMMYNEVENTS
+
+set ebeam1 42000
+set ebeam2 42000
+
+set pdlabel nn23lo1
+
+set ickkw 0
+
+set bwcutoff 15.0
+
+set ptj 30.0
+set ptb 30.0
+set pta 0.0
+set ptl 15.0
+
+set etaj 6.0
+set etab 6.0
+set etaa 6.0
+set etal 6.0
+
+set drjj 0.3
+set drbb 0.3
+set drll 0.3 
+set draa 0.3 
+set drbj 0.3 
+set draj 0.3
+set drbl 0.3  
+set dral 0.3 
+set drjl 0.3 
+set drab 0.3 
+
+set mmaa 115.0
+set mmaamax 135.0
+
+set ptgmin 35.0
+set r0gamma 0.3
+set xn 1.0
+set epsgamma 1.0
+set isoem True
+
+set maxjetflavor 5
+
+set use_syst False

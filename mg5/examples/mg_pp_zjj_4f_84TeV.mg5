@@ -1,0 +1,58 @@
+import model sm
+define p = g u c d s u~ c~ d~ s~
+define j = g u c d s u~ c~ d~ s~
+define l+ = e+ mu+
+define l- = e- mu-
+define vl = ve vm vt
+define vl~ = ve~ vm~ vt~
+define lept = l+ l- vl vl~
+define bos = Z W+ W- a
+define top = t t~
+define bosh = Z W+ W-
+
+generate p p > z j j 
+
+output DUMMYPROCESS
+
+######## DELIMITER (!!! NEED THIS LINE !!!) ##################
+
+set lhapdf /afs/cern.ch/work/b/bistapf/lhapdf/LHAPDF-6.1.6/install/bin/lhapdf-config
+
+launch DUMMYPROCESS
+set iseed DUMMYSEED
+set nevents DUMMYNEVENTS
+
+set ebeam1 42000
+set ebeam2 42000
+
+set pdlabel lhapdf
+set lhaid 260000
+
+set ickkw 0
+
+set bwcutoff 30.0
+
+set ptj 80.0
+set ptb 80.0
+set pta 5.0
+set ptl 5.0
+
+set etaj 8.0
+set etab 8.0
+set etaa 8.0
+set etal 8.0
+
+set drbb 0.001 
+set drll 0.001 
+set draa 0.001 
+set drbj 0.001 
+set draj 0.3
+set drab 0.001  
+set drbl 0.001  
+set dral 0.3  
+
+set mmll 20.0
+
+set maxjetflavor 4
+
+set use_syst False
