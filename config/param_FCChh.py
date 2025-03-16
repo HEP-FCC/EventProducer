@@ -803,8 +803,8 @@ gridpacklist = {
 'mg_pp_jjaa_5f_120TeV':['dijet diphoton','Inclusive','No Jet Matching','22.44','1.2','1.0'],
 
 #new lljj for bb2lMET
-'mg_pp_lljj_HF_QED_5f':['lepton pair with two heavy flavour jets (QED) @ 100 TeV','bb/cc jets only','No Jet Matching','2.3153','1','1'], 
-'mg_pp_lljj_HF_QCDQED_5f':['lepton pair with two heavy flavour jets (QED+QCD) @ 100 TeV','bb/cc jets only','No Jet Matching','294.03','1','1'], 
+'mg_pp_lljj_HF_QED_5f':['lepton pair with two heavy flavour jets (QED) @ 100 TeV','bb/cc jets only','No Jet Matching','2.3153','1','1'],
+'mg_pp_lljj_HF_QCDQED_5f':['lepton pair with two heavy flavour jets (QED+QCD) @ 100 TeV','bb/cc jets only','No Jet Matching','294.03','1','1'],
 
 #single Higgs production at various energy points
 'mg_pp_h012j_5f_50TeV':['gluon fusion higgs (finite mt) + 0/1/2 jets','@ 50 TeV, inclusive','xqcut = 30, qCut = 45','225.44','3.76','1.'],
