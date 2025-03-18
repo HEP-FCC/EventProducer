@@ -3,3 +3,4 @@
 *.root
 log/
 .sync.lock
+BatchOutputs/*
