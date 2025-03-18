@@ -1657,8 +1657,8 @@ gridpacklist = {
 
 'mg_pp_vbf_h_jjlvlv_5f_84TeV':['VBF H WW signal @84 TeV','WW->lvlv, incl taus','No Jet matching','1.0','1','1.0'],
 
-'mg_pp_ttjj_5f_84TeV': ['top pair + 2 jets @ 84 TeV','pT j > 80 GeV','No Jet matching', '1.0', '1.0', '1.0'],
-'mg_pp_ttjj_5f_100TeV': ['top pair + 2 jets @ 100 TeV','pT j > 80 GeV','No Jet matching', '1.0', '1.0', '1.0'],
+'mg_pp_ttjj_5f_84TeV': ['top pair + 2 jets @ 84 TeV','pT j > 80 GeV, mjj > 1.5 TeV','No Jet matching', '1.0', '1.0', '1.0'],
+'mg_pp_ttjj_5f_100TeV': ['top pair + 2 jets @ 100 TeV','pT j > 80 GeV, mjj > 1.5 TeV','No Jet matching', '1.0', '1.0', '1.0'],
 
 'mg_pp_zjj_4f_84TeV': ['Z+ 2 jets @ 84 TeV','pT j > 80 GeV','No Jet matching', '1.0', '1.0', '1.0'],
 'mg_pp_zjj_4f_100TeV': ['tZ + 2 jets @ 100 TeV','pT j > 80 GeV','No Jet matching', '1.0', '1.0', '1.0'],
