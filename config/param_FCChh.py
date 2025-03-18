@@ -840,32 +840,32 @@ gridpacklist = {
 'mg_pp_mumu012j_mhcut_5f_HT_0_100_100TeV':['TESTER - mu+ mu- + 0/1/2 jets @ 100 TeV','0 < HT < 100','xqcut = 30, qCut = 40','379.19','1.20','0.697'],
 'mg_pp_mumu012j_mhcut_5f_HT_0_100_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','0 < HT < 100','xqcut = 30, qCut = 40','284.85','1.20','0.71'],
 'mg_pp_mumu012j_mhcut_5f_HT_0_100_84TeV':['mu+ mu- + 0/1/2 jets @ 84 TeV','0 < HT < 100','xqcut = 30, qCut = 40','322.68','1.20','1'],
-'mg_pp_mumu012j_mhcut_5f_HT_0_100_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','0 < HT < 100','xqcut = 30, qCut = 40','1','1.20','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_0_100_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','0 < HT < 100','xqcut = 30, qCut = 40','438.786','1.20','1'],
 
 'mg_pp_mumu012j_mhcut_5f_HT_100_300_100TeV':['TESTER - mu+ mu- + 0/1/2 jets','100 < HT < 300','xqcut = 30, qCut = 40','43.88','1.20','0.34'],
 'mg_pp_mumu012j_mhcut_5f_HT_100_300_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','100 < HT < 300','xqcut = 30, qCut = 40','30.35','1.20','0.353'],
 'mg_pp_mumu012j_mhcut_5f_HT_100_300_84TeV':['mu+ mu- + 0/1/2 jets @ 84 TeV','100 < HT < 300','xqcut = 30, qCut = 40','36.09','1.20','1'],
-'mg_pp_mumu012j_mhcut_5f_HT_100_300_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','100 < HT < 300','xqcut = 30, qCut = 40','1','1.20','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_100_300_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','100 < HT < 300','xqcut = 30, qCut = 40','53.5075','1.20','1'],
 
 'mg_pp_mumu012j_mhcut_5f_HT_300_500_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','300 < HT < 500','xqcut = 30, qCut = 40','3.07','1.20','0.237'],
 'mg_pp_mumu012j_mhcut_5f_HT_300_500_84TeV':['mu+ mu- + 0/1/2 jets @ 84 TeV','300 < HT < 500','xqcut = 30, qCut = 40','3.75','1.20','1'],
-'mg_pp_mumu012j_mhcut_5f_HT_300_500_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','300 < HT < 500','xqcut = 30, qCut = 40','1','1.20','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_300_500_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','300 < HT < 500','xqcut = 30, qCut = 40','5.9390','1.20','1'],
 
 'mg_pp_mumu012j_mhcut_5f_HT_500_700_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','500 < HT < 700','xqcut = 30, qCut = 40','0.69','1.20','0.163'],
 'mg_pp_mumu012j_mhcut_5f_HT_500_700_84TeV':['mu+ mu- + 0/1/2 jets @ 84 TeV','500 < HT < 700','xqcut = 30, qCut = 40','0.87','1.20','1'],
-'mg_pp_mumu012j_mhcut_5f_HT_500_700_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','500 < HT < 700','xqcut = 30, qCut = 40','1','1.20','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_500_700_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','500 < HT < 700','xqcut = 30, qCut = 40','1.4301','1.20','1'],
 
 'mg_pp_mumu012j_mhcut_5f_HT_700_900_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','700 < HT < 900','xqcut = 30, qCut = 40','0.2333','1.20','0.124'],
 'mg_pp_mumu012j_mhcut_5f_HT_700_900_84TeV':['mu+ mu- + 0/1/2 jets @ 84 TeV','700 < HT < 900','xqcut = 30, qCut = 40','0.2966','1.20','1'],
-'mg_pp_mumu012j_mhcut_5f_HT_700_900_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','700 < HT < 900','xqcut = 30, qCut = 40','1','1.20','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_700_900_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','700 < HT < 900','xqcut = 30, qCut = 40','0.5047','1.20','1'],
 
 'mg_pp_mumu012j_mhcut_5f_HT_900_1100_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','900 < HT < 1100','xqcut = 30, qCut = 40','0.0983','1.20','0.099'],
 'mg_pp_mumu012j_mhcut_5f_HT_900_1100_84TeV':['mu+ mu- + 0/1/2 jets @ 84 TeV','900 < HT < 1100','xqcut = 30, qCut = 40','0.1264','1.20','1'],
-'mg_pp_mumu012j_mhcut_5f_HT_900_1100_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','900 < HT < 1100','xqcut = 30, qCut = 40','1','1.20','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_900_1100_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','900 < HT < 1100','xqcut = 30, qCut = 40','0.2201','1.20','1'],
 
 'mg_pp_mumu012j_mhcut_5f_HT_1100_100000_72TeV':['mu+ mu- + 0/1/2 jets @ 72 TeV','1100 < HT < 100000','xqcut = 30, qCut = 40','0.1146','1.20','0.067'],
 'mg_pp_mumu012j_mhcut_5f_HT_1100_100000_84TeV':['mu+ mu- + 0/1/2 jets @ 84 TeV','1100 < HT < 100000','xqcut = 30, qCut = 40','0.1516','1.20','1'],
-'mg_pp_mumu012j_mhcut_5f_HT_1100_100000_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','1100 < HT < 100000','xqcut = 30, qCut = 40','1','1.20','1'],
+'mg_pp_mumu012j_mhcut_5f_HT_1100_100000_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','1100 < HT < 100000','xqcut = 30, qCut = 40','0.2803','1.20','1'],
 
 'mg_pp_llll01j_mhcut_5f_HT_0_200_100TeV':['TESTER - Z/gamma* Z/gamma* to 4l + 0/1 jets','0 < HT < 200','xqcut = 40, qCut = 60','0.04957','1.60','0.809'],
 'mg_pp_llll01j_mhcut_5f_HT_200_500_100TeV':['TESTER -Z/gamma* Z/gamma* to 4l + 0/1 jets','200 < HT < 500','xqcut = 40, qCut = 60','0.0002159','1.60','0.936'],
