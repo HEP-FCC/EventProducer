@@ -5,7 +5,7 @@ eostest = '/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size = 1312594
 
 # stat
-lhe_stat = "/eos/experiment/fcc/www/data/FCChh/statlhe.html"
+lhe_stat = "/eos/home-o/oarakji/tth/data/FCChh/statlhe.html"
 delphes_stat = "/eos/experiment/fcc/www/data/FCChh/statdelphesVERSION.html"
 
 # web
@@ -13,7 +13,7 @@ lhe_web = "/eos/experiment/fcc/www/data/FCChh/LHEevents.txt"
 delphes_web = "/eos/experiment/fcc/www/data/FCChh/Delphesevents_VERSION_DETECTOR.txt"
 
 # yaml directory
-yamldir = '/afs/cern.ch/work/f/fccsw/public/FCCDicts/yaml/FCChh/'
+yamldir = '/eos/home-o/oarakji/tth/yaml/FCChh/'
 
 # proc lists
 procList = [
@@ -26,7 +26,7 @@ procList = [
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'
 ##eos directory for lhe files
-lhe_dir     = '/eos/experiment/fcc/hh/generation/lhe/'
+lhe_dir     = '/eos/home-o/oarakji/tth/lhe/'
 ##extension
 lhe_ext     ='.lhe.gz'
 
@@ -45,7 +45,7 @@ prodTag = {
 defaultstack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
 
 ##eos directory for FCCSW pythia delphes files
-delphes_dir = '/eos/experiment/fcc/hh/generation/DelphesEvents/'
+delphes_dir = '/eos/home-o/oarakji/tth/generation/DelphesEvents/'
 ##extension
 delphes_ext='.root'
 ##name of the ttree
