@@ -38,7 +38,8 @@ SYNCLOCK="${EVTPRODUCER_DIR}/.sync.lock"
 if [ -f "${SYNCLOCK}" ]; then
   echo "$(date)  WARNING: Encountered git sync lock. Aborting..." >> "${LOGFILE}"
 
-  if [ "$(find "${SYNCLOCK}" -mmin +720 -mmin -900)" ]; then
+  if [ "$(find "${SYNCLOCK}" -mmin +720 -mmin -840)" ]; then
+    echo "$(date)  WARNING: Git sync lock too old, sending email about it..." >> "${LOGFILE}"
     send_email "Git sync lock too old, please check the logs and possibly remove the lock from ${SYNCLOCK}"
 
     exit 3

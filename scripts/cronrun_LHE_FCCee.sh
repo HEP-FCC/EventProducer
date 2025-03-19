@@ -1,23 +1,30 @@
-cd /afs/cern.ch/user/f/fccsw/private/EventProducer/
-source ./init.sh
-LOGFILE="${EVENTPRODUCER}/log/cronrun_LHE_FCCee.log"
-echo "" > "${LOGFILE}"
+#!/bin/bash
 
-SYNCLOCK="${EVENTPRODUCER}/.sync.lock"
+set --
+
+cd /afs/cern.ch/user/f/fccsw/private/EventProducer/ || exit 3
+
+source init.sh
+
+find "${EVENTPRODUCER}/log" -type f \
+                            -name "cronrun_LHE_FCCee_*.log" \
+                            -mtime +7 -exec rm {} \;
+LOGFILE="${EVENTPRODUCER}/log/cronrun_LHE_FCCee_$(date +'%d-%m-%Y-%H-%M').log"
+echo "$(date)  INFO: Cron run started." > "${LOGFILE}"
+
 # Making sure the last sync went OK and there is no .sync.lock file left
-if [ -f "${SYNCLOCK}" ]; then
-  echo "`date`  WARNING: Encountered git sync lock. Aborting..." >> "${LOGFILE}"
+if [ -f "${EVENTPRODUCER}/.sync.lock" ]; then
+  echo "$(date)  WARNING: Encountered git sync lock. Aborting..." >> "${LOGFILE}"
 
   exit 3
 fi
 
-python bin/run.py --FCCee --LHE --checkeos > /dev/null
-python bin/run.py --FCCee --LHE --check > /dev/null
-python bin/run.py --FCCee --LHE --merge > /dev/null
-python bin/run.py --FCCee --LHE --clean > /dev/null
-python bin/run.py --FCCee --LHE --cleanold > /dev/null
-python bin/run.py --FCCee --LHE --merge > /dev/null
-python bin/run.py --FCCee --LHE --web > /dev/null
+python bin/run.py --FCCee --LHE --checkeos >> "${LOGFILE}" || exit 3
+python bin/run.py --FCCee --LHE --check >> "${LOGFILE}" || exit 3
+python bin/run.py --FCCee --LHE --merge >> "${LOGFILE}" || exit 3
+python bin/run.py --FCCee --LHE --clean >> "${LOGFILE}" || exit 3
+python bin/run.py --FCCee --LHE --cleanold >> "${LOGFILE}" || exit 3
+python bin/run.py --FCCee --LHE --merge >> "${LOGFILE}" || exit 3
+python bin/run.py --FCCee --LHE --web >> "${LOGFILE}" || exit 3
 
-mkdir -p ${EVENTPRODUCER}/log
-echo "`date`  INFO: Cron run finished." >> "${LOGFILE}"
+echo "$(date)  INFO: Cron run finished." >> "${LOGFILE}"
