@@ -64,7 +64,7 @@ class CheckerYAML:
             if not hack:
                 if os.path.isfile('tmp.slcio'):
                     os.system('rm tmp.slcio')
-                cmd='stdhepjob %s tmp.slcio 1000000000 | grep \"written to LCIO\" ' %(fcount.replace('.gz',''))
+                cmd = 'stdhepjob %s tmp.slcio 1000000000 | grep \"written to LCIO\" ' %(fcount.replace('.gz',''))
                 outputCMD = ut.getCommandOutput(cmd)
                 if len( outputCMD["stdout"].split() ) < 2:
                     print('... problem in checkFile_stdhep with stdhepjob')
@@ -100,10 +100,11 @@ class CheckerYAML:
         os.system(f'rm -f {self.filecounting_dir}/*lhe*')
 
         # Copy zipped LHE file to temporary directory
-        cmd = 'cp %s %s' % (filepath, self.filecounting_dir)
+        cmd = f'cp {filepath} {self.filecounting_dir}'
         outputCMD = ut.getCommandOutput(cmd)
 
-        filepath_local = '%s/%s' % (self.filecounting_dir, filepath.split('/')[-1])
+        filepath_local = '%s/%s' % (self.filecounting_dir,
+                                    filepath.split('/')[-1])
         if os.path.isfile(filepath_local):
             cmd = f'gunzip {filepath_local}'
             outputCMD = ut.getCommandOutput(cmd)
@@ -349,7 +350,7 @@ class CheckerYAML:
                             yaml.dump(dic, outyaml, default_flow_style=False)
                         continue
                     except IOError as exc:
-                        print("I/O error({0}): {1}".format(exc.errno, exc.strerror))
+                        print(f'I/O error({exc.errno}): {exc.strerror}')
                         print("outfile ", outfile)
                         time.sleep(10)
                         with open(outfile, 'w', encoding='utf-8') as outyaml:
@@ -361,7 +362,8 @@ class CheckerYAML:
                     while nevts == -1 and not check:
                         nevts, check = self.checkFile_lhe(infile)
                         if self.count == 10:
-                            print('can not copy or unzip the file, declare it wrong')
+                            print('can not copy or unzip the file, '
+                                  'declare it wrong')
                             break
 
                     status = 'DONE'
