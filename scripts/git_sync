@@ -23,7 +23,7 @@ The FCC Event Producer encountered an issue:
 ${1}
 EOM
 
-mail -s "FCC Event Producer" "${ADDRESSES}" <<< "${MESSAGE}"
+mail -s "FCC Event Producer" ${ADDRESSES} <<< "${MESSAGE}"
 }
 
 
