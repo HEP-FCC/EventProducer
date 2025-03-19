@@ -109,10 +109,10 @@ pythialist = {
     'p8_ee_Zqq_ecm240':['Z/Gamma* ecm=240GeV','hadronic decays','','52.6539','1.0','1.0'],  # Pythia 8.303, noBES (was 53.188 before spring2021)
     'p8_ee_Zll_ecm240':['Z/Gamma* ecm=240GeV','leptonic decays (e/mu/tau)','','13.7787','1.0','1.0'],  # Pythia 8.303, noBES
 
-    'p8_ee_ZH_mH-higher-100MeV_ecm240':['ZH ecm=240GeV, vary mH','inclusive decays','','0.201316','1.0','1.0'],  	# Pythia 8.303, noBES
-    'p8_ee_ZH_mH-higher-50MeV_ecm240':['ZH ecm=240GeV, vary mH','inclusive decays','','0.201673','1.0','1.0'],		# Pythia 8.303, noBES
-    'p8_ee_ZH_mH-lower-50MeV_ecm240':['ZH ecm=240GeV, vary mH','inclusive decays','','0.202169','1.0','1.0'],		# Pythia 8.303, noBES
-    'p8_ee_ZH_mH-lower-100MeV_ecm240':['ZH ecm=240GeV, vary mH','inclusive decays','','0.20253','1.0','1.0'],		# Pythia 8.303, noBES
+    'p8_ee_ZH_mH-higher-100MeV_ecm240':['ZH ecm=240GeV, vary mH','inclusive decays','','0.201316','1.0','1.0'],  # Pythia 8.303, noBES
+    'p8_ee_ZH_mH-higher-50MeV_ecm240':['ZH ecm=240GeV, vary mH','inclusive decays','','0.201673','1.0','1.0'],  # Pythia 8.303, noBES
+    'p8_ee_ZH_mH-lower-50MeV_ecm240':['ZH ecm=240GeV, vary mH','inclusive decays','','0.202169','1.0','1.0'],  # Pythia 8.303, noBES
+    'p8_ee_ZH_mH-lower-100MeV_ecm240':['ZH ecm=240GeV, vary mH','inclusive decays','','0.20253','1.0','1.0'],  # Pythia 8.303, noBES
 
     'p8_ee_ZZ_Zll_ecm240':['ZZ ecm=240GeV','Z to e, mu, tau','','0.027','1.0','1.0'],
 
