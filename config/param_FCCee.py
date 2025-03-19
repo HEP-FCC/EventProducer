@@ -1105,7 +1105,7 @@ gridpacklist = {
     'wzp6_ee_VBF_nunuH_Huu_ecm365':['VBF ee->nunuH, ecm=365 GeV','H->uu', '','2.792e-09','1.0','1.0'],
     'wzp6_ee_VBF_nunuH_ecm365':['VBF ee->nunuH, ecm=365 GeV','H inclusive', '','3.102e-02','1.0','1.0'],
 
-    'wzp6_ee_qqH_HZZ_llvv_ecm240':['ee -> Z(qq, incl.) H,  ecm=240 GeV','H to ZZ to llvv','','7.235e-5','1.0','1.0'],
-    'wzp6_ee_qqH_HZZ_llvv_ecm365':['ee -> Z(qq, incl.) H,  ecm=365 GeV','H to ZZ to llvv','','4.479e-5','1.0','1.0'],
+    'wzp6_ee_qqH_HZZ_llvv_ecm240':['ee -> Z(qq, incl.) H,  ecm=240 GeV','H to ZZ to llvv','','1.447e-4','1.0','1.0'],
+    'wzp6_ee_qqH_HZZ_llvv_ecm365':['ee -> Z(qq, incl.) H,  ecm=365 GeV','H to ZZ to llvv','','8.958e-4','1.0','1.0'],
 
 }
