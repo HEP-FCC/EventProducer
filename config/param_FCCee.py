@@ -749,7 +749,7 @@ gridpacklist = {
     'wzp6_ee_qqH_HZZ_qqqq_ecm240':['ee -> Z(u u / d d) H,  ecm=240 GeV','H to ZZ* to 4q (q=udscb)','','6.83e-04','1.0','1.0'],
     'wzp6_ee_qqH_HZZ_qqnunu_ecm240':['ee -> Z(u u/ d d ) H,  ecm=240 GeV','H to ZZ* to 2nu2q (q=udscb)','','1.95e-04','1.0','1.0'],
     'wzp6_ee_llH_HZZ_qqll_ecm240':['ee -> Z(ll) H,  ecm=240 GeV','H to ZZ* to qqll (q=udscb)','','3.82e-05','1.0','1.0'],
-    'wzp6_ee_qqH_HZZ_llll_ecm240':['ee -> Z(u u / d d) H,  ecm=240 GeV','H to ZZ* to llll','','3.777e-05','1.0','1.0'],
+    'wzp6_ee_qqH_HZZ_llll_ecm240':['ee -> Z(qq, inclusive) H,  ecm=240 GeV','H to ZZ* to llll','','3.777e-05','1.0','1.0'],
     'wzp6_ee_nunuH_HZZ_llll_ecm240':['ee -> Z(nunu) H,  ecm=240 GeV','H to ZZ* to llll','','1.280e-05','1.0','1.0'],
 
     'wzp6_ee_qqH_HZa_ecm240':['ee -> Z(u u / d d) H,  ecm=240 GeV','H to Za','','8.177e-05','1.0','1.0'],
@@ -1036,7 +1036,7 @@ gridpacklist = {
     'wzp6_ee_qqH_HZZ_qqqq_ecm365':['ee -> Z(u u / d d) H, ecm=365 GeV','H to ZZ* to 4q (q=udscb)', '','4.22e-03','1.0','1.0'],
     'wzp6_ee_qqH_HZZ_qqnunu_ecm365':['ee->Z(u u / d d) H, ecm=365 GeV','H to ZZ* to 2nu2q (q=udscb)', '','1.21e-04','1.0','1.0'],
     'wzp6_ee_llH_HZZ_qqll_ecm365':['ee -> Z(ll) H,  ecm=365 GeV','H to ZZ* to qqll (q=udscb)','','2.91e-05','1.0','1.0'],
-    'wzp6_ee_qqH_HZZ_llll_ecm365':['ee -> Z(qq) H,  ecm=365 GeV','H to ZZ* to llll','','2.338e-05','1.0','1.0'],
+    'wzp6_ee_qqH_HZZ_llll_ecm365':['ee -> Z(qq, inclusive) H,  ecm=365 GeV','H to ZZ* to llll','','2.338e-05','1.0','1.0'],
     'wzp6_ee_nunuH_HZZ_llll_ecm365':['ee -> Z(nunu) H,  ecm=365 GeV','H to ZZ* to llll','','1.490e-05','1.0','1.0'],
 
     'wzp6_ee_llH_HZZ_llll_ecm365':['ee -> Z(ll) H,  ecm=365 GeV','H to ZZ* to llll','','4.339e-06','1.0','1.0'],
@@ -1105,7 +1105,7 @@ gridpacklist = {
     'wzp6_ee_VBF_nunuH_Huu_ecm365':['VBF ee->nunuH, ecm=365 GeV','H->uu', '','2.792e-09','1.0','1.0'],
     'wzp6_ee_VBF_nunuH_ecm365':['VBF ee->nunuH, ecm=365 GeV','H inclusive', '','3.102e-02','1.0','1.0'],
 
-    'wzp6_ee_qqH_HZZ_llvv_ecm240':['ee -> Z(qq, incl.) H,  ecm=240 GeV','H to ZZ to llvv','','3.209e-3','1.0','1.0'],
-    'wzp6_ee_qqH_HZZ_llvv_ecm365':['ee -> Z(qq, incl.) H,  ecm=365 GeV','H to ZZ to llvv','','1.986e-3','1.0','1.0'],
+    'wzp6_ee_qqH_HZZ_llvv_ecm240':['ee -> Z(qq, incl.) H,  ecm=240 GeV','H to ZZ to llvv','','7.235e-5','1.0','1.0'],
+    'wzp6_ee_qqH_HZZ_llvv_ecm365':['ee -> Z(qq, incl.) H,  ecm=365 GeV','H to ZZ to llvv','','4.479e-5','1.0','1.0'],
 
 }
