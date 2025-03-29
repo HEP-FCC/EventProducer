@@ -1,0 +1,25 @@
+import model loop_sm-no_b_mass
+define lept = l+ l- vl vl~
+define bos = Z W+ W- a
+define top = t t~
+define bosh = Z W+ W-
+generate p p > top top h $ top bos h QED=1 @0
+
+output DUMMYPROCESS
+
+######## DELIMITER (!!! NEED THIS LINE !!!) ##################
+
+set lhapdf /afs/cern.ch/work/b/bistapf/lhapdf/LHAPDF-6.1.6/install/bin/lhapdf-config
+
+launch DUMMYPROCESS
+set iseed 12345
+set nevents 100
+
+set ebeam1 25000
+set ebeam2 25000
+
+set pdlabel lhapdf
+set lhaid 260000
+
+set ptj 5.0
+set etaj 8.0
