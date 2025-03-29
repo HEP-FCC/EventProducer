@@ -137,7 +137,7 @@ class send_mglhe():
                 frun_condor.write('requirements   = ( (OpSysAndVer =?= "AlmaLinux9") && (Machine =!= LastRemoteHost) )\n')
 
             frun_condor.write('on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)\n')
-            frun_condor.write('max_retries    = 3\n')
+            frun_condor.write('max_retries    = 1\n')
             frun_condor.write('+JobFlavour    = "%s"\n'%self.queue)
             frun_condor.write('+AccountingGroup = "%s"\n'%self.priority)
             frun_condor.write('RequestCpus = %s\n'%self.ncpus)
