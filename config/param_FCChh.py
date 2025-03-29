@@ -26,7 +26,7 @@ procList = [
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'
 ##eos directory for lhe files
-lhe_dir     = '/eos/home-o/oarakji/tth/lhe/'
+lhe_dir     = '/eos/home-o/oarakji/tth/lhe'
 ##extension
 lhe_ext     ='.lhe.gz'
 
@@ -1643,6 +1643,7 @@ gridpacklist = {
 
 'mg_pp_zjj_4f_84TeV': ['Z+ 2 jets @ 84 TeV','pT j > 80 GeV','No Jet matching', '1.0', '1.0', '1.0'],
 'mg_pp_zjj_4f_100TeV': ['tZ + 2 jets @ 100 TeV','pT j > 80 GeV','No Jet matching', '1.0', '1.0', '1.0'],
+'mg_pp_tth_5f_50TeV': ['ttH, no extra jets', 'Inclusive', 'No Jet Matching', '1.0', '1.0', '1.0']
 
 }
 
