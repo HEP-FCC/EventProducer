@@ -26,7 +26,7 @@ procList = [
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'
 ##eos directory for lhe files
-lhe_dir     = '/afs/cern.ch/user/o/oarakji/EventProducer/mylhe'
+lhe_dir     = '/eos/home-o/oarakji/tth/lhe/'
 ##extension
 lhe_ext     ='.lhe.gz'
 
