@@ -45,7 +45,7 @@ prodTag = {
 defaultstack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'
 
 ##eos directory for FCCSW pythia delphes files
-delphes_dir = '/eos/home-o/oarakji/tth/generation/DelphesEvents/'
+delphes_dir = '/eos/home-o/oarakji/tth/myRoot/'
 ##extension
 delphes_ext='.root'
 ##name of the ttree
