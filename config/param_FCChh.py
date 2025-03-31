@@ -5,8 +5,8 @@ eostest = '/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size = 1312594
 
 # stat
-lhe_stat = "/eos/home-o/oarakji/tth/www/data/FCChh/statlhe.html"
-delphes_stat = "/eos/home-o/oarakji/tth/www/data/FCChh/statdelphesVERSION.html"
+lhe_stat = "/eos/home-o/oarakji/tth/stat/statlhe.html"
+delphes_stat = "/eos/home-o/oarakji/tth/stat/delphes_stat/statdelphesVERSION.html"
 
 # web
 lhe_web = "/eos/experiment/fcc/www/data/FCChh/LHEevents.txt"
