@@ -5,7 +5,7 @@ eostest = '/eos/experiment/fcc/hh/tests/testfile.lhe.gz'
 eostest_size = 1312594
 
 # stat
-lhe_stat = "/eos/home-o/oarakji/tth/data/FCChh/statlhe.html"
+lhe_stat = "/eos/experiment/fcc/www/data/FCChh/statlhe.html"
 delphes_stat = "/eos/experiment/fcc/www/data/FCChh/statdelphesVERSION.html"
 
 # web
@@ -26,7 +26,7 @@ procList = [
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'
 ##eos directory for lhe files
-lhe_dir     = '/eos/home-o/oarakji/tth/lhe'
+lhe_dir     = '/afs/cern.ch/user/o/oarakji/EventProducer/mylhe'
 ##extension
 lhe_ext     ='.lhe.gz'
 
