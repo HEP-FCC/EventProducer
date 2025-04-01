@@ -1643,7 +1643,8 @@ gridpacklist = {
 
 'mg_pp_zjj_4f_84TeV': ['Z+ 2 jets @ 84 TeV','pT j > 80 GeV','No Jet matching', '1.0', '1.0', '1.0'],
 'mg_pp_zjj_4f_100TeV': ['tZ + 2 jets @ 100 TeV','pT j > 80 GeV','No Jet matching', '1.0', '1.0', '1.0'],
-'mg_pp_tth_5f_50TeV': ['ttH, no extra jets', 'Inclusive', 'No Jet Matching', '1.0', '1.0', '1.0']
+'mg_pp_tth_5f_50TeV': ['ttH, no extra jets', 'Inclusive', 'No Jet Matching', '1.0', '1.0', '1.0'],
+'mg_pp_ttyy_5f_50TeV': ['ttyy, no extra jets', 'Inclusive', 'No Jet Matching', '1.0', '1.0', '1.0'],
 
 }
 
