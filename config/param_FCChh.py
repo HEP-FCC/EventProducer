@@ -707,6 +707,25 @@ decaylist = {
 'mg_pp_tttt_5f_84TeV': ['4tlep'],
 'mg_pp_tt_HT_200_2000_5f_84TeV': ['blvblv'],
 'mg_pp_tt_HT_2000_100000_5f_84TeV': ['blvblv'],
+
+'mg_pp_ttz01_5f_84TeV': ['zee'],
+
+'mg_pp_Htohh_mH_300GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
+'mg_pp_Htohh_mH_350GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
+'mg_pp_Htohh_mH_400GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
+'mg_pp_Htohh_mH_450GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
+'mg_pp_Htohh_mH_500GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
+'mg_pp_Htohh_mH_550GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
+'mg_pp_Htohh_mH_600GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
+'mg_pp_Htohh_mH_650GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
+'mg_pp_Htohh_mH_700GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
+'mg_pp_Htohh_mH_750GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
+'mg_pp_Htohh_mH_800GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
+'mg_pp_Htohh_mH_850GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
+'mg_pp_Htohh_mH_900GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
+'mg_pp_Htohh_mH_950GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
+'mg_pp_Htohh_mH_1000GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
+
 }
 
 ##list of decays branching ratios 
@@ -1708,8 +1727,22 @@ gridpacklist = {
 'mg_pp_lvlv_HT_12619_20000_5f_84TeV': ['', '', '', '7.0485853e-07', '1.0', '1.0'],
 'mg_pp_lvlv_HT_20000_84000_5f_84TeV': ['', '', '', '1', '1.0', '1.0'],
 'mg_pp_ttz01j_5f_84TeV':['z associated with top pair + 0/1 jets','','xqcut = 80, qCut = 120','1','1.0','1.0'],
+'mg_pp_Htohh_mH_300GeV_84TeV': ['', '', '', '1', '1.0','1.0'],
+'mg_pp_Htohh_mH_350GeV_84TeV': ['', '', '', '1', '1.0','1.0'],
+'mg_pp_Htohh_mH_400GeV_84TeV': ['', '', '', '1', '1.0','1.0'],
+'mg_pp_Htohh_mH_450GeV_84TeV': ['', '', '', '1', '1.0','1.0'],
+'mg_pp_Htohh_mH_500GeV_84TeV': ['', '', '', '1', '1.0','1.0'],
+'mg_pp_Htohh_mH_550GeV_84TeV': ['', '', '', '1', '1.0','1.0'],
+'mg_pp_Htohh_mH_600GeV_84TeV': ['', '', '', '1', '1.0','1.0'],
+'mg_pp_Htohh_mH_650GeV_84TeV': ['', '', '', '1', '1.0','1.0'],
+'mg_pp_Htohh_mH_700GeV_84TeV': ['', '', '', '1', '1.0','1.0'],
+'mg_pp_Htohh_mH_750GeV_84TeV': ['', '', '', '1', '1.0','1.0'],
+'mg_pp_Htohh_mH_800GeV_84TeV': ['', '', '', '1', '1.0','1.0'],
+'mg_pp_Htohh_mH_850GeV_84TeV': ['', '', '', '1', '1.0','1.0'],
+'mg_pp_Htohh_mH_900GeV_84TeV': ['', '', '', '1', '1.0','1.0'],
+'mg_pp_Htohh_mH_950GeV_84TeV': ['', '', '', '1', '1.0','1.0'],
+'mg_pp_Htohh_mH_1000GeV_84TeV': ['', '', '', '1', '1.0','1.0'],
 }
-
 
 
 
