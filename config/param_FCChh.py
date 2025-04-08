@@ -833,7 +833,7 @@ gridpacklist = {
 'mg_pp_vh012j_5f_72TeV':['higgsstrahlung + 0/1/2 jets','@ 72 TeV, inclusive','xqcut = 40, qCut = 60','25.22','1.32','1.0'],
 'mg_pp_vh012j_5f_80TeV':['higgsstrahlung + 0/1/2 jets','@ 80 TeV, inclusive','xqcut = 40, qCut = 60','28.64','1.32','1.0'],
 'mg_pp_vh012j_5f_84TeV':['higgsstrahlung + 0/1/2 jets','@ 84 TeV, inclusive','xqcut = 40, qCut = 60','30.37','1.32','1.0'],
-'mg_pp_vh012j_5f_100TeV':['TESTER - higgsstrahlung + 0/1/2 jets','@ 100 TeV, inclusive','xqcut = 40, qCut = 60','37.43','37.33','1.0'],
+'mg_pp_vh012j_5f_100TeV':['TESTER - higgsstrahlung + 0/1/2 jets','@ 100 TeV, inclusive','xqcut = 40, qCut = 60','37.43','1.32','1.0'],
 'mg_pp_vh012j_5f_120TeV':['higgsstrahlung + 0/1/2 jets','@ 120 TeV, inclusive','xqcut = 40, qCut = 60','46.25','1.32','1.0'],
 
 #backgrounds to single higgs analyses at various energy points:
@@ -867,25 +867,25 @@ gridpacklist = {
 'mg_pp_mumu012j_mhcut_5f_HT_1100_100000_84TeV':['mu+ mu- + 0/1/2 jets @ 84 TeV','1100 < HT < 100000','xqcut = 30, qCut = 40','0.1516','1.20','1'],
 'mg_pp_mumu012j_mhcut_5f_HT_1100_100000_120TeV':['mu+ mu- + 0/1/2 jets @ 120 TeV','1100 < HT < 100000','xqcut = 30, qCut = 40','0.2803','1.20','1'],
 
-'mg_pp_llll01j_mhcut_5f_HT_0_200_100TeV':['TESTER - Z/gamma* Z/gamma* to 4l + 0/1 jets','0 < HT < 200','xqcut = 40, qCut = 60','0.04957','1.60','0.809'],
-'mg_pp_llll01j_mhcut_5f_HT_200_500_100TeV':['TESTER -Z/gamma* Z/gamma* to 4l + 0/1 jets','200 < HT < 500','xqcut = 40, qCut = 60','0.0002159','1.60','0.936'],
-'mg_pp_llll01j_mhcut_5f_HT_500_1100_100TeV':['Z/gamma* Z/gamma* to 4l + 0/1 jets','500 < HT < 1100','xqcut = 40, qCut = 60','5.573e-06','1.60','0.949'],
-'mg_pp_llll01j_mhcut_5f_HT_1100_100000_100TeV':['Z/gamma* Z/gamma* to 4l + 0/1 jets','1100 < HT < 100000','xqcut = 40, qCut = 60','1.361e-07','1.60','0.971'],
+'mg_pp_llll01j_mhcut_5f_HT_0_200_100TeV':['TESTER - Z/gamma* Z/gamma* to 4l + 0/1 jets','0 < HT < 200','xqcut = 40, qCut = 60','0.0492','1.60','0.809'],
+'mg_pp_llll01j_mhcut_5f_HT_200_500_100TeV':['TESTER -Z/gamma* Z/gamma* to 4l + 0/1 jets','200 < HT < 500','xqcut = 40, qCut = 60','0.000207090','1.60','0.936'],
+'mg_pp_llll01j_mhcut_5f_HT_500_1100_100TeV':['Z/gamma* Z/gamma* to 4l + 0/1 jets','500 < HT < 1100','xqcut = 40, qCut = 60','5.94279320164e-06','1.60','0.949'],
+'mg_pp_llll01j_mhcut_5f_HT_1100_100000_100TeV':['Z/gamma* Z/gamma* to 4l + 0/1 jets','1100 < HT < 100000','xqcut = 40, qCut = 60','1.25839275996e-07','1.60','0.971'],
 
-'mg_pp_llll01j_mhcut_5f_HT_0_200_84TeV':['TESTER -Z/gamma* Z/gamma* to 4l + 0/1 jets @ 84 TeV','0 < HT < 200','xqcut = 40, qCut = 60','1.','1.60','0.809'],
-'mg_pp_llll01j_mhcut_5f_HT_200_500_84TeV':['TESTER -Z/gamma* Z/gamma* to 4l + 0/1 jets @ 84 TeV','200 < HT < 500','xqcut = 40, qCut = 60','1.','1.60','0.936'],
-'mg_pp_llll01j_mhcut_5f_HT_500_1100_84TeV':['TESTER -Z/gamma* Z/gamma* to 4l + 0/1 jets @ 84 TeV','500 < HT < 1100','xqcut = 40, qCut = 60','1.','1.60','0.949'],
-'mg_pp_llll01j_mhcut_5f_HT_1100_100000_84TeV':['TESTER -Z/gamma* Z/gamma* to 4l + 0/1 jets @ 84 TeV','1100 < HT < 100000','xqcut = 40, qCut = 60','1.','1.60','0.971'],
+'mg_pp_llll01j_mhcut_5f_HT_0_200_84TeV':['Z/gamma* Z/gamma* to 4l + 0/1 jets @ 84 TeV','0 < HT < 200','xqcut = 40, qCut = 60','0.0428','1.60','0.809'],
+'mg_pp_llll01j_mhcut_5f_HT_200_500_84TeV':['Z/gamma* Z/gamma* to 4l + 0/1 jets @ 84 TeV','200 < HT < 500','xqcut = 40, qCut = 60','0.000167211','1.60','0.936'],
+'mg_pp_llll01j_mhcut_5f_HT_500_1100_84TeV':['Z/gamma* Z/gamma* to 4l + 0/1 jets @ 84 TeV','500 < HT < 1100','xqcut = 40, qCut = 60','4.56474206631e-06','1.60','0.949'],
+'mg_pp_llll01j_mhcut_5f_HT_1100_100000_84TeV':['Z/gamma* Z/gamma* to 4l + 0/1 jets @ 84 TeV','1100 < HT < 100000','xqcut = 40, qCut = 60','8.65346339341e-08','1.60','0.971'],
 
-'mg_pp_llll01j_mhcut_5f_HT_0_200_72TeV':['TESTER -Z/gamma* Z/gamma* to 4l + 0/1 jets @ 72 TeV','0 < HT < 200','xqcut = 40, qCut = 60','1.','1.60','0.809'],
-'mg_pp_llll01j_mhcut_5f_HT_200_500_72TeV':['TESTER -Z/gamma* Z/gamma* to 4l + 0/1 jets @ 72 TeV','200 < HT < 500','xqcut = 40, qCut = 60','1.','1.60','0.936'],
-'mg_pp_llll01j_mhcut_5f_HT_500_1100_72TeV':['TESTER -Z/gamma* Z/gamma* to 4l + 0/1 jets @ 72 TeV','500 < HT < 1100','xqcut = 40, qCut = 60','1.','1.60','0.949'],
-'mg_pp_llll01j_mhcut_5f_HT_1100_100000_72TeV':['TESTER -Z/gamma* Z/gamma* to 4l + 0/1 jets @ 72 TeV','1100 < HT < 100000','xqcut = 40, qCut = 60','1.','1.60','0.971'],
+'mg_pp_llll01j_mhcut_5f_HT_0_200_72TeV':['Z/gamma* Z/gamma* to 4l + 0/1 jets @ 72 TeV','0 < HT < 200','xqcut = 40, qCut = 60','3.7901e-02','1.60','0.809'],
+'mg_pp_llll01j_mhcut_5f_HT_200_500_72TeV':['Z/gamma* Z/gamma* to 4l + 0/1 jets @ 72 TeV','200 < HT < 500','xqcut = 40, qCut = 60','1.4137e-04','1.60','0.936'],
+'mg_pp_llll01j_mhcut_5f_HT_500_1100_72TeV':['Z/gamma* Z/gamma* to 4l + 0/1 jets @ 72 TeV','500 < HT < 1100','xqcut = 40, qCut = 60','1.','3.5948e-06','0.949'],
+'mg_pp_llll01j_mhcut_5f_HT_1100_100000_72TeV':['Z/gamma* Z/gamma* to 4l + 0/1 jets @ 72 TeV','1100 < HT < 100000','xqcut = 40, qCut = 60','6.5118e-08','1.60','0.971'],
 
-'mg_pp_llll01j_mhcut_5f_HT_0_200_120TeV':['TESTER -Z/gamma* Z/gamma* to 4l + 0/1 jets @ 120 TeV','0 < HT < 200','xqcut = 40, qCut = 60','1.','1.60','0.809'],
-'mg_pp_llll01j_mhcut_5f_HT_200_500_120TeV':['TESTER -Z/gamma* Z/gamma* to 4l + 0/1 jets @ 120 TeV','200 < HT < 500','xqcut = 40, qCut = 60','1.','1.60','0.936'],
-'mg_pp_llll01j_mhcut_5f_HT_500_1100_120TeV':['TESTER -Z/gamma* Z/gamma* to 4l + 0/1 jets @ 120 TeV','500 < HT < 1100','xqcut = 40, qCut = 60','1.','1.60','0.949'],
-'mg_pp_llll01j_mhcut_5f_HT_1100_100000_120TeV':['TESTER -Z/gamma* Z/gamma* to 4l + 0/1 jets @ 120 TeV','1100 < HT < 100000','xqcut = 40, qCut = 60','1.','1.60','0.971'],
+'mg_pp_llll01j_mhcut_5f_HT_0_200_120TeV':['Z/gamma* Z/gamma* to 4l + 0/1 jets @ 120 TeV','0 < HT < 200','xqcut = 40, qCut = 60','5.6681e-02','1.60','0.809'],
+'mg_pp_llll01j_mhcut_5f_HT_200_500_120TeV':['Z/gamma* Z/gamma* to 4l + 0/1 jets @ 120 TeV','200 < HT < 500','xqcut = 40, qCut = 60','2.5697e-04','1.60','0.936'],
+'mg_pp_llll01j_mhcut_5f_HT_500_1100_120TeV':['Z/gamma* Z/gamma* to 4l + 0/1 jets @ 120 TeV','500 < HT < 1100','xqcut = 40, qCut = 60','7.4646e-06','1.60','0.949'],
+'mg_pp_llll01j_mhcut_5f_HT_1100_100000_120TeV':['Z/gamma* Z/gamma* to 4l + 0/1 jets @ 120 TeV','1100 < HT < 100000','xqcut = 40, qCut = 60','1.7696e-07','1.60','0.971'],
 
 # new samples for analyes for 2025 ESPPU
 
