@@ -10,7 +10,7 @@ import EventProducer.common.makeyaml as my
 class send_mglhe():
 
 #__________________________________________________________
-    def __init__(self, islsf, iscondor, mg5card, cutfile, model, para, procname, njobs, nev, queue, priority, ncpus, do_EL7 = False ):
+    def __init__(self, islsf, iscondor, mg5card, cutfile, model, para, procname, njobs, nev, queue, priority, ncpus, do_EL7, useV3=False):
         self.islsf     = islsf
         self.iscondor  = iscondor
         self.user      = os.environ['USER']
@@ -25,6 +25,7 @@ class send_mglhe():
         self.priority  = priority
         self.ncpus     = ncpus
         self.do_EL7    = do_EL7
+        self.useV3     = useV3
 
 #__________________________________________________________
     def send(self):
@@ -82,6 +83,8 @@ class send_mglhe():
 
             cwd = os.getcwd()
             script = cwd + '/bin/submitMG.sh '
+            if self.useV3:
+                script = cwd + '/bin/submitMG_v3.sh '
 
             if self.islsf==True :
               cmdBatch = 'bsub -o '+jobsdir+'/std/'+basename +'.out -e '+jobsdir+'/std/'+basename +'.err -q '+self.queue
