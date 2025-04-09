@@ -777,6 +777,13 @@ gridpacklist = {
     'wzp6_ee_SM_tt_tWbTWs_tallTlight_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W b, anti-top -> W s -> light q', '','0.01','1.0','1.0'],
     'wzp6_ee_SM_tt_tWbTWs_tallTheavy_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W b, anti-top -> W s -> heavy q', '','0.01','1.0','1.0'],
 
+    'wzp6_ee_SM_tt_tWbTWb_tlepTall_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W b -> lep, anti-top -> W b',     '','0.01','1.0','1.0'],
+    'wzp6_ee_SM_tt_tWbTWb_tlightTall_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W b -> light q, anti-top -> W b', '','0.01','1.0','1.0'],
+    'wzp6_ee_SM_tt_tWbTWb_theavyTall_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W b -> heavy q, anti-top -> W b', '','0.01','1.0','1.0'],
+    'wzp6_ee_SM_tt_tWbTWb_tallTlep_ecm365':   ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W b, anti-top -> W b -> lep',     '','0.01','1.0','1.0'],
+    'wzp6_ee_SM_tt_tWbTWb_tallTlight_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W b, anti-top -> W b -> light q', '','0.01','1.0','1.0'],
+    'wzp6_ee_SM_tt_tWbTWb_tallTheavy_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top -> W b, anti-top -> W b -> heavy q', '','0.01','1.0','1.0'],
+
     'wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top fully leptonic decays','','0.106','1.0','1.0'],
     'wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top fully hadronic decays','','0.454','1.0','1.0'],
     'wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ecm365': ['ee -> Z*/A* -> tt, ecm=365GeV','top mixed lep+had decays', '','0.220','1.0','1.0'],
