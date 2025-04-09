@@ -708,7 +708,7 @@ decaylist = {
 'mg_pp_tt_HT_200_2000_5f_84TeV': ['blvblv'],
 'mg_pp_tt_HT_2000_100000_5f_84TeV': ['blvblv'],
 
-'mg_pp_ttz01_5f_84TeV': ['zee'],
+'mg_pp_ttz01j_5f_84TeV': ['zee'],
 
 'mg_pp_Htohh_mH_300GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
 'mg_pp_Htohh_mH_350GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
@@ -743,6 +743,7 @@ branching_ratios = {
 'htautau':6.272E-02,
 'zll':0.307,
 'ztautau':0.03367,
+'zee':0.034,
 'zbb':0.152,
 'wlv':3*0.108,
 'ttau':0.108,
