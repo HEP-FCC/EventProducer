@@ -1743,6 +1743,12 @@ gridpacklist = {
 'mg_pp_Htohh_mH_900GeV_84TeV': ['', '', '', '0.014357', '1.0', '1.0'],
 'mg_pp_Htohh_mH_950GeV_84TeV': ['', '', '', '0.011567', '1.0', '1.0'],
 'mg_pp_Htohh_mH_1000GeV_84TeV': ['', '', '', '0.0094051', '1.0', '1.0'],
+
+#backgrounds to ttZ(ee) analysis:
+'mg_pp_ZZjj_HF_5f_84TeV':['Z boson pair plus heavy flavour jet pair @ 84 TeV', 'Only bb/cc jets', 'No jet matching', '5.8712e+00', '1.0', '1.0'],
+'mg_pp_WZjj_HF_5f_84TeV':['WZ boson pair plus heavy flavour jet pair @ 84 TeV', 'Only bb/cc jets', 'No jet matching', '4.0792e+00', '1.0', '1.0'],
+'mg_pp_tZj_5f_84TeV':['Top + Z boson + jet', 'Inclusive', 'No jet matching', '3.0689e+01', '1.0', '1.0'],
+'mg_pp_tWZj_5f_84TeV':['Top + W boson + Z boson + jet', 'Inclusive', 'No jet matching', '7.8073e+01', '1.0', '1.0'],
 }
 
 
