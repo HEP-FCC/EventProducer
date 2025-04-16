@@ -726,6 +726,12 @@ decaylist = {
 'mg_pp_Htohh_mH_950GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
 'mg_pp_Htohh_mH_1000GeV_84TeV': ['hhbbaa','hhbbtata','hhbbbb'],
 
+#bkgs to ttZ(ee) analysis
+'mg_pp_ZZjj_HF_5f_84TeV':['zzlep'], 
+'mg_pp_WZjj_HF_5f_84TeV':['zeewlep'],
+'mg_pp_tZj_5f_84TeV':['zeewlep'],
+'mg_pp_tWZj_5f_84TeV':['zee'],
+
 }
 
 ##list of decays branching ratios 
@@ -759,8 +765,9 @@ branching_ratios = {
 'ttzlep':0.110224*0.101,
 'zzbbee':2*0.151*0.034,
 'zzbbmumu':2*0.151*0.034,
-'zzllll':0.151*0.151,
-
+'zzllll':0.101*0.101, # duplicate of below, ideally to be unified
+'zzlep':0.101*0.101, #both zs to leptons, including taus
+'zeewlep':0.034*0.3259,
 
 #stop to top neutralino decays, need to specify one for each possible neutralino mass
 'mChi0p5TeV':1.0,
