@@ -225,3 +225,13 @@ def getdate_str():
 def gettime_str():
     timestamp = datetime.utcnow().strftime('%H:%M')
     return timestamp
+
+# _____________________________________________________________________________
+def random_string(length: int) -> str:
+    result = ''
+    random_str_seq = "abcdefghijklmnopqrstuvwxyz"
+    for i in range(0, length):
+        result += str(random_str_seq[random.randint(
+                                        0, len(random_str_seq) - 1)])
+
+    return result
