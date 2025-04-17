@@ -149,8 +149,11 @@ class MakeSampleList:
         yamldir_reco = os.path.join(self.para.yamldir,
                                     self.version, self.detector)
 
-        uid = self.para.module_name.replace('.py', '').split('/')[1]
-        proc_dict = open(f'tmp_{uid}.json', 'w', encoding='utf-8')
+        param_module_name = self.para.module_name.replace('.py', '')
+        param_module_name = param_module_name.split('/')[1]
+        tmp_proc_path = '/tmp/tmp_' + param_module_name + '_' + \
+                        uuid.uuid4().hex[:14] + '.json'
+        proc_dict = open(tmp_proc_path, 'w', encoding='utf-8')
         proc_dict.write('{\n')
 
         # Load parameters file as text
@@ -286,7 +289,7 @@ class MakeSampleList:
         proc_dict.close()
 
         # strip last comma and check the validity of JSON
-        with open(f'tmp_{uid}.json', 'r', encoding='utf-8') as infile:
+        with open(tmp_proc_path, 'r', encoding='utf-8') as infile:
             data = infile.read()
             if len(data) > 2:
                 proc_dict_string = data[:-2]
@@ -307,10 +310,10 @@ class MakeSampleList:
             print(f'  - {filepath}')
             with open(filepath, 'w', encoding='utf-8') as outfile:
                 json.dump(proc_dict_json, outfile, indent=4)
-        os.system(f'rm -f tmp_{uid}.json')
+        os.system(f'rm -f {tmp_proc_path}')
 
         # Save temporary version of the parameters file
-        tmp_param_path = '/tmp/tmp_' + uid + '_' + \
+        tmp_param_path = '/tmp/tmp_' + param_module_name + '_' + \
                          uuid.uuid4().hex[:14] + '.py'
         with open(tmp_param_path, "w", encoding='utf-8') as f1:
             f1.writelines(param_text)
