@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import uuid
 import yaml
 import EventProducer.common.utils as ut
 
@@ -309,15 +310,17 @@ class MakeSampleList:
         os.system(f'rm -f tmp_{uid}.json')
 
         # Save temporary version of the parameters file
-        with open(f'tmp_{uid}.py', "w", encoding='utf-8') as f1:
+        tmp_param_path = '/tmp/tmp_' + uid + '_' + \
+                         uuid.uuid4().hex[:14] + '.py'
+        with open(tmp_param_path, "w", encoding='utf-8') as f1:
             f1.writelines(param_text)
 
         # Replace existing parameters file if different
-        retval = os.system(f'diff tmp_{uid}.py {self.para.module_name}')
+        retval = os.system(f'diff {tmp_param_path} {self.para.module_name}')
         if retval > 0:
-            retval = os.system(f'cp tmp_{uid}.py {self.para.module_name}')
+            retval = os.system(f'cp {tmp_param_path} {self.para.module_name}')
 
             if retval > 0:
                 print('ERROR: Update of parameter file unsuccessful!')
                 return
-        os.system(f'rm -f tmp_{uid}.py')
+        os.system(f'rm -f {tmp_param_path}')
