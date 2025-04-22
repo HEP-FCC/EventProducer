@@ -24,7 +24,7 @@ procList = [
 ]
 
 ##eos directory for MG5@MCatNLO gridpacks
-gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'
+gp_dir      = '/eos/home-o/oarakji/tth/gridpacks/'
 ##eos directory for lhe files
 lhe_dir     = '/eos/home-o/oarakji/tth/lhe/'
 ##extension
