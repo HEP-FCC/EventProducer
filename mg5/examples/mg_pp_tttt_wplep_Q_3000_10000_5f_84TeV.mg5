@@ -1,0 +1,30 @@
+import model sm-no_b_mass
+define w = w+ w-
+define ell = e+ mu+ ta+ e- mu- ta-
+define nu = ve vm vt ve~ vm~ vt~
+define top = t t~
+generate p p > top top top top 
+output DUMMYPROCESS
+
+######## DELIMITER (!!! NEED THIS LINE !!!) ##################
+
+launch DUMMYPROCESS
+
+MADSPIN=onshell
+
+set iseed DUMMYSEED
+set nevents DUMMYNEVENTS
+
+set ebeam1 42000
+set ebeam2 42000
+set maxjetflavor 5
+set dsqrt_shat 3000
+set dsqrt_shatmax 10000
+set use_syst False
+
+decay t > w- b, w- > all_p all_p
+decay t~ > w+ b~, w+ > lep lep
+decay w- > all_p all_p
+decay w+ > lep lep
+
+
