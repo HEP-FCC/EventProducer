@@ -81,5 +81,12 @@ OUTFILE=${OUTDIR}/events_${JOBID}.lhe.gz
 echo "Copying LHE file to ${OUTFILE}"
 mkdir -p ${OUTDIR}
 
+# check if this run is decayed or not
+if [ -d "${PWD}/DUMMYPROCESS/Events/run_01_decayed_1" ]; then
+  INFILE="${PWD}/DUMMYPROCESS/Events/run_01/unweighted_events.lhe.gz"
+else
+  INFILE="${PWD}/DUMMYPROCESS/Events/run_01_decayed_1/unweighted_events.lhe.gz"
+fi
+
 #source /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc8-opt/setup.sh
-xrdcp -N -v DUMMYPROCESS/Events/run_01/unweighted_events.lhe.gz root://eospublic.cern.ch/${OUTDIR}/events_${JOBID}.lhe.gz
+xrdcp -N -v ${INFILE} root://eospublic.cern.ch/${OUTDIR}/events_${JOBID}.lhe.gz
