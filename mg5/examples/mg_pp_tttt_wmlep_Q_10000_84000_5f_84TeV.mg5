@@ -1,8 +1,16 @@
 import model sm-no_b_mass
+define p = g u c d s u~ c~ d~ s~
+define j = g u c d s u~ c~ d~ s~
+define l+ = e+ mu+
+define l- = e- mu-
+define vl = ve vm vt
+define vl~ = ve~ vm~ vt~
 define w = w+ w-
-define ell = e+ mu+ ta+ e- mu- ta-
-define nu = ve vm vt ve~ vm~ vt~
 define top = t t~
+define lepm = ve~ vm~ vt~ e- mu- ta-
+define lepp = ve vm vt e+ mu+ ta+
+define all_p = ve vm vt e+ mu+ ta+ g u c d s b u~ c~ d~ s~ b~
+
 generate p p > top top top top 
 output DUMMYPROCESS
 
@@ -17,14 +25,15 @@ set nevents DUMMYNEVENTS
 
 set ebeam1 42000
 set ebeam2 42000
-set maxjetflavor 5
 set dsqrt_shat 10000
 set dsqrt_shatmax 84000
 set use_syst False
 
 decay t > w+ b, w+ > all_p all_p
-decay t~ > w- b~, w- > lep lep
+decay t~ > w- b~, w- > lepm lepm
 decay w+ > all_p all_p
-decay w- > lep lep
+decay w- > lepm lepm
 
+
+done
 
