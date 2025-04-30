@@ -46,6 +46,8 @@ set draj 0.3
 set drbl 0.001  
 set dral 0.3  
 
+set mmjj 1500.0
+
 set maxjetflavor 5
 
 set use_syst False

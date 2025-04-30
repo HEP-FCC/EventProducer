@@ -1,12 +1,10 @@
-import model sm-no_b_mass
-define p = 21 2 4 1 3 -2 -4 -1 -3 5 -5
-define j = p
+import model loop_sm-no_b_mass
 define lept = l+ l- vl vl~
 define bos = Z W+ W- a
 define top = t t~
 define bosh = Z W+ W-
-
-generate p p > top top j j $ top bos h QED=0 
+generate p p > top top z $ top bos h QED=1 @0
+add process p p > top top z j $ top bos h QED=1 @1
 
 output DUMMYPROCESS
 
@@ -24,12 +22,17 @@ set ebeam2 42000
 set pdlabel lhapdf
 set lhaid 260000
 
-set ickkw 0
+set ickkw 1
+set alpsfact 1.0
+set chcluster False
+set asrwgtflavor 5
+set auto_ptj_mjj False
+set xqcut 80.0
 
 set bwcutoff 30.0
 
-set ptj 80.0
-set ptb 80.0
+set ptj 5.0
+set ptb 5.0
 set pta 5.0
 set ptl 5.0
 
@@ -46,7 +49,7 @@ set draj 0.3
 set drbl 0.001  
 set dral 0.3  
 
-set mmjj 1500.0
+set mmll 20.0
 
 set maxjetflavor 5
 
