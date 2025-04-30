@@ -1964,10 +1964,23 @@ gridpacklist = {
 'mg_pp_WZjj_HF_5f_84TeV':['WZ boson pair plus heavy flavour jet pair @ 84 TeV', 'Only bb/cc jets', 'No jet matching', '4.0792e+00', '1.0', '1.0'],
 'mg_pp_tZj_5f_84TeV':['Top + Z boson + jet', 'Inclusive', 'No jet matching', '3.0689e+01', '1.0', '1.0'],
 'mg_pp_tWZj_5f_84TeV':['Top + W boson + Z boson + jet', 'Inclusive', 'No jet matching', '7.8073e+01', '1.0', '1.0'],
+
+# new SM binned samples (using MG_v3 script)
+'mg_pp_tttt_Q_0_1000_5f_84TeV': ['', '', '', '0.03185003200000001', '1.0', '1.0'],
+'mg_pp_tttt_Q_1000_3000_5f_84TeV': ['', '', '', '1.35051502', '1.0', '1.0'],
+'mg_pp_tttt_Q_3000_10000_5f_84TeV': ['', '', '', '0.5869170199999999', '1.0', '1.0'],
+'mg_pp_tttt_Q_10000_84000_5f_84TeV': ['', '', '', '0.019505330950000004', '1.0', '1.0'],
+
+'mg_pp_tttt_wmlep_Q_0_1000_5f_84TeV': ['', '', '', '0.0033485494322880007', '1.0', '1.0'],
+'mg_pp_tttt_wplep_Q_0_1000_5f_84TeV': ['', '', '', '0.0033496084301760003', '1.0', '1.0'],
+'mg_pp_tttt_wmlep_Q_1000_3000_5f_84TeV': ['', '', '', '0.14218313916671999', '1.0', '1.0'],
+'mg_pp_tttt_wplep_Q_1000_3000_5f_84TeV': ['', '', '', '0.1419929363016', '1.0', '1.0'],
+'mg_pp_tttt_wmlep_Q_3000_10000_5f_84TeV': ['', '', '', '0.06146619417215999', '1.0', '1.0'],
+'mg_pp_tttt_wplep_Q_3000_10000_5f_84TeV': ['', '', '', '0.0600545756016', '1.0', '1.0'],
+'mg_pp_tttt_wmlep_Q_10000_84000_5f_84TeV': ['', '', '', '0.0020499875940311997', '1.0', '1.0'],
+'mg_pp_tttt_wplep_Q_10000_84000_5f_84TeV': ['', '', '', '0.0020581391473430393', '1.0', '1.0'],
+
 }
-
-
-
 ##Gridpack list for MG5@MC@NLO
 ##     0          1            2                 3           4           5
 ## description/comment/matching parameters/cross section/kfactor/matching efficiency
