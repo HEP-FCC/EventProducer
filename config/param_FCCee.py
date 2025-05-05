@@ -129,6 +129,8 @@ pythialist = {
     'p8_ee_ZZ_ecm365':['ZZ ecm=365GeV','inclusive decays','','0.6428','1.0','1.0'],
     'p8_ee_WW_ecm365':['WW ecm=365GeV','inclusive decays','','10.7165','1.0','1.0'],
     'p8_ee_tt_ecm365':['tt ecm=365GeV','inclusive decays','','0.800','1.0','1.0'],
+    
+    'p8_ee_WW_tautau_ecm365':['WW ecm=365GeV','W->tau','','0.131','1.0','1.0'],
 
     'p8_ee_WW_mumu_ecm365':['WW ecm=365GeV','W->mu and W ->tau->mu','','0.1785','1.0','1.0'],
     'p8_ee_Zqq_ecm365':['Z/Gamma* ecm=365GeV','Z->qq (q = u,d)','','8.679','1.0','1.0'],
