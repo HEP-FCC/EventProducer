@@ -187,7 +187,7 @@ class MakeSampleList:
                                            'stdhep', extension)
                 if training:
                     yamldir_lhe = os.path.join(self.para.yamldir, 'stdhep',
-                                               extension+'training')
+                                               extension+'/training')
 
             yaml_reco = os.path.join(yamldir_reco, l, 'merge.yaml')
             if not ut.file_exist(yaml_reco):
