@@ -198,6 +198,11 @@ pythialist = {
     'p8_ee_Zmumu_ecm88':['Z/Gamma* ecm=87.8 GeV','Z decays to mumu','','197.0','1.0','1.0'],
     'p8_ee_Zmumu_ecm94':['Z/Gamma* ecm=94.3 GeV','Z decays to mumu','','386.0','1.0','1.0'],
 
+    'p8_ee_Ztautau_Mnutau_0p1MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau M_nutau = 0.1 MeV','inclusive decays','','1476.58','1.0','1.0'],
+    'p8_ee_Ztautau_Mnutau_1p0MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau M_nutau = 1.0 MeV','inclusive decays','','1476.58','1.0','1.0'],
+    'p8_ee_Ztautau_Mtau_m0p1MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau Mtau = 1776.7 MeV','inclusive decays','','1476.58','1.0','1.0'],
+    'p8_ee_Ztautau_Mtau_p0p1MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau Mtau = 1776.9 MeV','inclusive decays','','1476.58','1.0','1.0'],
+
 
     'p8_ee_Zbb_ecm91_EvtGen':['Z/Gamma* ecm=91.188GeV to bb','inclusive decays using EvtGen','','6645.46','1.0','1.0'],
 
