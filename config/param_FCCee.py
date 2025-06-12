@@ -595,6 +595,7 @@ gridpacklist = {
     'wzp6_ee_eeH_Hinv_ecm240':['ee->eeH, ecm=240 GeV','H->invisible', '','7.164e-06','1.0','1.0'],
     'wzp6_ee_mumuH_Hinv_ecm240':['ee->mumuH, ecm=240 GeV','H->invisible', '','7.164e-06','1.0','1.0'],
     'wzp6_ee_tautauH_Hinv_ecm240':['ee->tautauH, ecm=240 GeV','H->invisible', '','7.164e-06','1.0','1.0'],
+    'wzp6_ee_nunuH_Hinv_ecm240':['ee->nunuH, ecm=240 GeV','H->invisible', '','4.264e-05','1.0','1.0'],
 
     'wzp6_ee_nunuH_Hbb_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to bb','','2.690e-02','1.0','1.0'],
     'wzp6_ee_nunuH_Hcc_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to cc','','1.335e-03','1.0','1.0'],
@@ -904,6 +905,7 @@ gridpacklist = {
     'wzp6_ee_eeH_Hinv_ecm365':['ee->eeH, ecm=365 GeV','H->invisible', '','5.436e-06','1.0','1.0'],
     'wzp6_ee_mumuH_Hinv_ecm365':['ee->mumuH, ecm=365 GeV','H->invisible', '','5.436e-06','1.0','1.0'],
     'wzp6_ee_tautauH_Hinv_ecm365':['ee->tautauH, ecm=365 GeV','H->invisible', '','5.436e-06','1.0','1.0'],
+    'wzp6_ee_nunuH_Hinv_ecm365':['ee->nunuH, ecm=365 GeV','H->invisible', '','3.236e-05','1.0','1.0'],
 
     'wzp6_ee_bbH_ecm365':['ee->bbH, ecm=365 GeV','H->incl.', '','1.8389e-02','1.0','1.0'],
     'wzp6_ee_ccH_ecm365':['ee->ccH, ecm=365 GeV','H->incl.', '','1.4436e-02','1.0','1.0'],
