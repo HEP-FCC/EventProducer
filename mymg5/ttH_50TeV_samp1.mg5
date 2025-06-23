@@ -3,15 +3,16 @@ define lept = l+ l- vl vl~
 define bos = Z W+ W- a
 define top = t t~
 define bosh = Z W+ W-
-generate p p > top top h $ top bos h QED=1 @0
+generate p p > top top h $ top bos h QED=1 @0 
 
-output DUMMYPROCESS
+output /afs/cern.ch/user/o/oarakji/EventProducer/outputs_gp/tth
 
 ######## DELIMITER (!!! NEED THIS LINE !!!) ##################
 
-set lhapdf /afs/cern.ch/work/b/bistapf/lhapdf/LHAPDF-6.1.6/install/bin/lhapdf-config
+##set lhapdf /afs/cern.ch/user/o/oarakji/LHAPDF-6.1.6/install/bin/lhapdf-config
 
-launch DUMMYPROCESS
+launch /afs/cern.ch/user/o/oarakji/EventProducer/outputs_gp/tth
+set gridpack = True
 set iseed 12345
 set nevents 100
 

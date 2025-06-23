@@ -6,12 +6,12 @@ define bosh = Z W+ W-
 generate p p > top top a a QED=2 @0
 add process p p > top top a a j QED=2 @1
 
-output DUMMYPROCESS
+output /afs/cern.ch/user/o/oarakji/EventProducer/outputs_gp/ttyy
 
 ######## DELIMITER (!!! NEED THIS LINE !!!) ##################
 
 set lhapdf /afs/cern.ch/work/b/bistapf/lhapdf/LHAPDF-6.1.6/install/bin/lhapdf-config
-launch DUMMYPROCESS
+launch /afs/cern.ch/user/o/oarakji/EventProducer/outputs_gp/ttyy
 
 set iseed DUMMYSEED
 set nevents DUMMYNEVENTS

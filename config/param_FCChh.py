@@ -25,6 +25,7 @@ procList = [
 
 ##eos directory for MG5@MCatNLO gridpacks
 gp_dir      = '/eos/home-o/oarakji/tth/gridpacks/'
+# gp_dir      = '/eos/experiment/fcc/hh/generation/gridpacks/'
 ##eos directory for lhe files
 lhe_dir     = '/eos/home-o/oarakji/tth/lhe/'
 ##extension
@@ -57,6 +58,7 @@ do_weighted = True
 delphescards_dir = '/eos/experiment/fcc/hh/utils/delphescards/'
 ##where the pythia cards are stored
 pythiacards_dir  = '/eos/experiment/fcc/hh/utils/pythiacards/'
+# pythiacards_dir  ='/eos/home-o/oarakji/tth/myCards/pythia8/'
 ##where the FCC config script is stored
 fccconfig_dir    = '/eos/experiment/fcc/hh/utils/config/'
 
@@ -442,6 +444,17 @@ pythialist = {
 
 decaylist = {
 #bbyy samples at alternate energies
+
+# here is the list for gluon fusion seperating 0,1 and 2 jets
+
+'mg_pp_h0j_5f_50TeV':['hmumu', 'haa', 'haaexcl', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
+'mg_pp_h1j_5f_50TeV':['hmumu', 'haa', 'haaexcl', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
+'mg_pp_h2j_5f_50TeV':['hmumu', 'haa', 'haaexcl', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
+
+#added by omar arakji
+'mg_pp_tth_5f_50TeV':['hmumu', 'haa', 'haaexcl', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
+
+
 'mg_pp_h012j_5f_50TeV':['hmumu', 'haa', 'haaexcl', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
 'mg_pp_h012j_5f_60TeV':['hmumu', 'haa', 'haaexcl','hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
 'mg_pp_h012j_5f_72TeV':['hmumu', 'haa', 'haaexcl', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
@@ -462,6 +475,8 @@ decaylist = {
 'mg_pp_tth01j_5f_84TeV':['hmumu', 'haa', 'haaexcl', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
 'mg_pp_tth01j_5f_100TeV':['hmumu', 'haa', 'haaexcl', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
 'mg_pp_tth01j_5f_120TeV':['hmumu', 'haa', 'haaexcl', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
+#50TeV addition
+'mg_pp_vh012j_5f_50TeV':['hmumu', 'haa', 'haaexcl', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
 'mg_pp_vh012j_5f_60TeV':['hmumu', 'haa', 'haaexcl', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
 'mg_pp_vh012j_5f_72TeV':['hmumu', 'haa', 'haaexcl', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
 'mg_pp_vh012j_5f_80TeV':['hmumu', 'haa', 'haaexcl', 'hlla', 'hllll', 'hlvlv', 'hbb', 'htautau', 'hww', 'hwwlvlv'],
@@ -842,7 +857,7 @@ gridpacklist = {
 'mg_pp_h012j_5f_100TeV':['TESTER - gluon fusion higgs (finite mt) + 0/1/2 jets','@ 100 TeV, inclusive','xqcut = 30, qCut = 45','588.20','3.76','1.'],
 'mg_pp_h012j_5f_120TeV':['gluon fusion higgs (finite mt) + 0/1/2 jets','@ 120 TeV, inclusive','xqcut = 30, qCut = 45','748.25','3.76','1.'],
 
-'mg_pp_vbf_h01j_5f_50TeV':['vbf higgs + 0/1 jets',' @ 50 TeV, inclusive','xqcut = 40, qCut = 60','33.78','4.3', '1'],
+# 'mg_pp_vbf_h01j_5f_50TeV':['vbf higgs + 0/1 jets',' @ 50 TeV, inclusive','xqcut = 40, qCut = 60','33.78','4.3', '1'],
 'mg_pp_vbf_h01j_5f_60TeV':['vbf higgs + 0/1 jets',' @ 60 TeV, inclusive','xqcut = 40, qCut = 60','43.29','4.3', '1'],
 'mg_pp_vbf_h01j_5f_72TeV':['vbf higgs + 0/1 jets',' @ 72 TeV, inclusive','xqcut = 40, qCut = 60','55.14','4.3','0.188'],
 'mg_pp_vbf_h01j_5f_80TeV':['vbf higgs + 0/1 jets',' @ 80 TeV, inclusive','xqcut = 40, qCut = 60','63.23','4.3', '1'],
@@ -1690,8 +1705,7 @@ gridpacklist = {
 
 'mg_pp_zjj_4f_84TeV': ['Z+ 2 jets @ 84 TeV','pT j > 80 GeV','No Jet matching', '1.0', '1.0', '1.0'],
 'mg_pp_zjj_4f_100TeV': ['tZ + 2 jets @ 100 TeV','pT j > 80 GeV','No Jet matching', '1.0', '1.0', '1.0'],
-'mg_pp_tth_5f_50TeV': ['ttH, no extra jets', 'Inclusive', 'No Jet Matching', '1.0', '1.0', '1.0'],
-'mg_pp_ttyy_5f_50TeV': ['ttyy, no extra jets', 'Inclusive', 'No Jet Matching', '1.0', '1.0', '1.0'],
+
 
 'mg_pp_jj_HT_200_317_5f_84TeV': ['', '', '', '18113075.3', '1.0', '1.0'],
 'mg_pp_jj_HT_317_502_5f_84TeV': ['', '', '', '3527789.6', '1.0', '1.0'],
@@ -1982,6 +1996,26 @@ gridpacklist = {
 'mg_pp_tttt_wplep_Q_3000_10000_5f_84TeV': ['', '', '', '0.0600545756016', '1.0', '1.0'],
 'mg_pp_tttt_wmlep_Q_10000_84000_5f_84TeV': ['', '', '', '0.0020499875940311997', '1.0', '1.0'],
 'mg_pp_tttt_wplep_Q_10000_84000_5f_84TeV': ['', '', '', '0.0020581391473430393', '1.0', '1.0'],
+
+
+#added by Omar Arakji
+'mg_pp_tth_5f_50TeV':['higgs associated with top pair + no extra jets','@ 50 TeV, inclusive','xqcut = 80, qCut = 120','7.684','1.22','1'],
+'mg_pp_ttyy_5f_50TeV':['top pair with photon pair, leading order, @ 50 TeV','Semileptonic ttbar, 90 < maa < 175 GeV','No Jet Matching','0.3545','1','1.0'],
+'mg_pp_tth01j_5f_50TeV':['higgs associated with top pair + 0/1 jets','@ 50 TeV, inclusive','xqcut = 80, qCut = 120','14.23','1.22','1'],
+'mg_pp_ttaa01j_5f_50TeV': ['ttaa +0/1j', '105 < maa < 145', 'Jet Matching settings T.B.C.', '0.07387', '1.0', '1.0'],
+
+
+# gluon fusion for 0, 1 and 2 jets seperately
+'mg_pp_h0j_5f_50TeV':['gluon fusion higgs (finite mt) + 0/1/2 jets','@ 50 TeV, inclusive','xqcut = 30, qCut = 45','161.9','3.76','1.'],
+'mg_pp_h1j_5f_50TeV':['gluon fusion higgs (finite mt) + 0/1/2 jets','@ 50 TeV, inclusive','xqcut = 30, qCut = 45','0','3.76','1.'],
+'mg_pp_h2j_5f_50TeV':['gluon fusion higgs (finite mt) + 0/1/2 jets','@ 50 TeV, inclusive','xqcut = 30, qCut = 45','225.44','3.76','1.'],
+
+# WH, ZH and yH production mode
+'mg_pp_vh012j_5f_50TeV':['higgsstrahlung + 0/1/2 jets','@ 50 TeV, inclusive','xqcut = 40, qCut = 60','18.34','1.32','1.0'],
+
+# VBF 
+'mg_pp_vbf_h01j_5f_50TeV':['vbf higgs + 0/1 jets',' @ 50 TeV, inclusive','xqcut = 40, qCut = 60','30.69','4.3', '1'],
+
 
 }
 ##Gridpack list for MG5@MC@NLO
