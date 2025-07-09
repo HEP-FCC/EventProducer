@@ -591,22 +591,44 @@ def main():
 
         if args.LHE:
             print("INFO: Creating LHE output files for the web page...")
-            printdic = prt.Printer(yamldir, para.lhe_web, para, False)
+            web_file = para.lhe_web
+            printdic = prt.Printer(yamldir, web_file, para, False)
             printdic.run()
 
         elif args.STDHEP:
             print("INFO: Creating STDHEP output files for the web page...")
-            stdhep_webfile = para.stdhep_web.replace("VERSION", version)
-            printdic = prt.Printer(yamldir, stdhep_webfile, para, False)
+            web_file = para.stdhep_web.replace("VERSION", version)
+            printdic = prt.Printer(yamldir, web_file, para, False)
             printdic.run()
 
         elif args.reco:
             print("INFO: Creating Reco output files for the web page...")
-            webpage_file = para.delphes_web.replace("VERSION", version)
-            webpage_file = webpage_file.replace("DETECTOR", detector)
-            webpage_file = webpage_file.replace("_.", ".")
-            printdic = prt.Printer(yamldir, webpage_file, para, True)
+            web_file = para.delphes_web.replace("VERSION", version)
+            web_file = web_file.replace("DETECTOR", detector)
+            web_file = web_file.replace("_.", ".")
+            printdic = prt.Printer(yamldir, web_file, para, True)
             printdic.run()
+
+        # Try to upload the data automatically
+        print("INFO: Going to try upload the files to the web page now...")
+        import os
+        import subprocess
+        from pathlib import Path
+
+        upload_script = Path(__file__).parent / "upload_fcc_dicts.sh"
+        web_file_json = os.path.splitext(web_file)[0] + ".json"
+
+        try:
+            print(f"INFO: Executing the upload script now: {upload_script}")
+            subprocess.run([upload_script, web_file_json], check=True, text=True)
+        except FileNotFoundError:
+            print(f"ERROR: The script '{upload_script}' is not executable.")
+            print(f"ERROR: Please grant execute permissions: chmod +x {upload_script}")
+        except subprocess.CalledProcessError as e:
+            print(f"ERROR: Upload failed with exit code {e.returncode}.")
+            print(f"ERROR: {e}")
+        except Exception as e:
+            print(f"ERROR: Unexpected error occured: {e}")
 
     elif args.remove:
         if args.process == "":
