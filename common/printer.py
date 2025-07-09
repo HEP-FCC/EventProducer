@@ -318,6 +318,10 @@ class Printer:
                     process_info['status'] = 'done'
                 ispythiaonly = False
             out_text += cmd
+
+            # Try to infer the key4hep stack version from env vars
+            process_info["key4hep-stack"] = os.environ.get("KEY4HEP_STACK", None)
+
             out_dict['processes'].append(process_info)
 
 #     0          1            2                 3           4           5
