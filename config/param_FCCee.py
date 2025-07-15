@@ -133,6 +133,8 @@ pythialist = {
     
     'p8_ee_WW_tautau_ecm365':['WW ecm=365GeV','W->tau','','0.131','1.0','1.0'],
 
+    'p8_ee_WW_ee_ecm365':['WW ecm=365GeV','W->e and W ->tau->e','','0.1785','1.0','1.0'],
+
     'p8_ee_WW_mumu_ecm365':['WW ecm=365GeV','W->mu and W ->tau->mu','','0.1785','1.0','1.0'],
     'p8_ee_Zqq_ecm365':['Z/Gamma* ecm=365GeV','Z->qq (q = u,d)','','8.679','1.0','1.0'],
     'p8_ee_Zbb_ecm365':['Z/Gamma* ecm=365GeV','Z->bb','','4.056','1.0','1.0'],
