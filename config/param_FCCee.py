@@ -133,6 +133,8 @@ pythialist = {
     
     'p8_ee_WW_tautau_ecm365':['WW ecm=365GeV','W->tau','','0.131','1.0','1.0'],
 
+    'p8_ee_WW_ee_ecm365':['WW ecm=365GeV','W->e and W ->tau->e','','0.1785','1.0','1.0'],
+
     'p8_ee_WW_mumu_ecm365':['WW ecm=365GeV','W->mu and W ->tau->mu','','0.1785','1.0','1.0'],
     'p8_ee_Zqq_ecm365':['Z/Gamma* ecm=365GeV','Z->qq (q = u,d)','','8.679','1.0','1.0'],
     'p8_ee_Zbb_ecm365':['Z/Gamma* ecm=365GeV','Z->bb','','4.056','1.0','1.0'],
@@ -203,6 +205,16 @@ pythialist = {
     'p8_ee_Ztautau_Mnutau_1p0MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau M_nutau = 1.0 MeV','inclusive decays','','1476.58','1.0','1.0'],
     'p8_ee_Ztautau_Mtau_m0p1MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau Mtau = 1776.7 MeV','inclusive decays','','1476.58','1.0','1.0'],
     'p8_ee_Ztautau_Mtau_p0p1MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau Mtau = 1776.9 MeV','inclusive decays','','1476.58','1.0','1.0'],
+    'p8_ee_Ztautau_Mtau_m1p0MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau Mtau = 1775.8 MeV','inclusive decays','','1476.58','1.0','1.0'],
+    'p8_ee_Ztautau_Mtau_p1p0MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau Mtau = 1777.8 MeV','inclusive decays','','1476.58','1.0','1.0'],
+    'p8_ee_Ztautau_Mtau_m10p0MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau Mtau = 1766.8 MeV','inclusive decays','','1476.58','1.0','1.0'],
+    'p8_ee_Ztautau_Mtau_p10p0MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau Mtau = 1786.8 MeV','inclusive decays','','1476.58','1.0','1.0'],
+
+
+
+
+
+
 
 
     'p8_ee_Zbb_ecm91_EvtGen':['Z/Gamma* ecm=91.188GeV to bb','inclusive decays using EvtGen','','6645.46','1.0','1.0'],
@@ -839,6 +851,8 @@ gridpacklist = {
     'wzp6_ee_WbWb_ecm350': ['ee -> WbWb, ecm=350GeV','W inclusive', '','0.2184','1.0','1.0'],
     'wzp6_ee_WbWb_ecm355': ['ee -> WbWb, ecm=355GeV','W inclusive', '','0.3230','1.0','1.0'],
     'wzp6_ee_WbWb_ecm365': ['ee -> WbWb, ecm=365GeV','W inclusive', '','0.4605','1.0','1.0'],
+    'wzp6_ee_WbWb_PY6mod_ecm365': ['ee -> WbWb, ecm=365GeV','W inclusive, alternative PS parameters', '','0.4605','1.0','1.0'],
+
 
     'wzp6_ee_WbWb_had_ecm340': ['ee -> WbWb, ecm=340GeV','Whad Whad', '','0.0088','1.0','1.0'],
     'wzp6_ee_WbWb_had_ecm345': ['ee -> WbWb, ecm=345GeV','Whad Whad', '','0.0307','1.0','1.0'],
