@@ -68,6 +68,7 @@ treename     = "events"
 delphescards_dir = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Delphes/"
 ##where the pythia cards are stored
 pythiacards_dir  = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/Pythia8/"
+
 ##where the EVTGEN card are stored
 evtgencards_dir  = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/EvtGen/"
 ##where the WHIZARD cards are stored
@@ -421,6 +422,10 @@ pythialist = {
 
 ##list of possible decays of LHE files
 decaylist = {
+'mg_ee_zh_ecm240':['huu','hdd','hss','hcc','hbb','hmumu','htautau','hww','hlvlv','hzz','hllll','haa','hgg'],
+'mg_ee_ha_ecm160':['huu','hdd','hss','hcc','hbb','hmumu','htautau','hww','hlvlv','hzz','hllll','haa','hgg'],
+'mg_ee_ha_ecm240':['huu','hdd','hss','hcc','hbb','hmumu','htautau','hww','hlvlv','hzz','hllll','haa','hgg'],
+'mg_ee_ha_ecm365':['huu','hdd','hss','hcc','hbb','hmumu','htautau','hww','hlvlv','hzz','hllll','haa','hgg'],
 
 }
 
@@ -435,6 +440,14 @@ branching_ratios = {
 'hlvlv':1.055E-02,
 'hbb':5.824E-01,
 'htautau':6.272E-02,
+'huu':3.000e-7,
+'hdd':3.000e-7,
+'hss':2.400e-4,
+'hcc':2.891e-2,
+'hww':2.152e-1,
+'hzz':2.641e-2,
+'hgg':8.187e-2,
+
 'zll':0.307,
 'ztautau':0.03367,
 'zbb':0.152,
@@ -456,6 +469,11 @@ gridpacklist = {
     'dummy': ['NOT REGISTERED IN param_FCCee',
               'NOT REGISTERED IN param_FCCee', '',
               '-9999', '-9999', '-9999'],
+
+    'mg_ee_ha_ecm160':['H+gamma','to do','','2.127e-05','1.0','1.0'],
+    'mg_ee_ha_ecm240':['H+gamma','to do','','8.773e-05','1.0','1.0'],
+    'mg_ee_ha_ecm365':['H+gamma','to do','','2.975e-05','1.0','1.0'],
+
     'mg_ee_tt_ecm350':['tt','tt inclusive','','1.0','1.0','1.0'],
     'mg_ee_tt_FCNC_tH_ecm365':['tt','tt inclusive','','1.0','1.0','1.0'],
     'mg_ee_tbw_FCNC_tcz_ecm365':['single top FCNC','to be added','','1.0','1.0','1.0'],
