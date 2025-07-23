@@ -930,6 +930,16 @@ gridpacklist = {
     'wzp6_ee_Hqqlnu_ecm125':['ee -> H-> WW ecm=125GeV','H->WW*->qqlnu','','3.187e-05','1.0','1.0'],
     'wzp6_ee_Hgg_ecm125':['ee -> H-> gg, ecm=125GeV','','','7.384e-05','1.0','1.0'],
 
+    'wzp6_ee_Hbb_ecm125':['ee -> H -> bb ecm=125GeV','','','1.0','1.0','1.0'],
+    'wzp6_ee_Htautau_ecm125':['ee -> H -> tautau ecm=125GeV','','','1.0','1.0','1.0'],
+
+    'wzp6_ee_eeqq_ecm125':['ee -> eeqq (no H) ecm=125GeV','','','1.0','1.0','1.0'],
+    'wzp6_ee_mumuqq_ecm125':['ee -> mumuqq (no H) ecm=125GeV','','','1.0','1.0','1.0'],
+    'wzp6_ee_tautau_ecm125':['ee -> tautau (no H) ecm=125GeV','','','1.0','1.0','1.0'],
+
+    'wzp6_ee_tautaugamma_ecm240':['ee -> tau tau gamma ecm=240GeV','','','1.0','1.0','1.0'],
+    'wzp6_ee_bbgamma_ecm240':['ee -> b b gamma ecm=240GeV','','','1.0','1.0','1.0'],
+
     # xxH, ecm = 365 GeV (sample info & cross sections to be updated!)
     'wzp6_ee_ZH_Hinv_ecm365':['ee->ZH, ecm=365 GeV','H->invisible', '','1.618e-04','1.0','1.0'],
 
