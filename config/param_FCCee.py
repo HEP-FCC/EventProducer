@@ -937,9 +937,6 @@ gridpacklist = {
     'wzp6_ee_mumuqq_ecm125':['ee -> mumuqq (no H) ecm=125GeV','','','1.0','1.0','1.0'],
     'wzp6_ee_tautau_ecm125':['ee -> tautau (no H) ecm=125GeV','','','25.939','1.0','1.0'],
 
-    'wzp6_ee_tautaugamma_ecm240':['ee -> tau tau gamma ecm=240GeV','','','1.0','1.0','1.0'],
-    'wzp6_ee_bbgamma_ecm240':['ee -> b b gamma ecm=240GeV','','','1.0','1.0','1.0'],
-
     # xxH, ecm = 365 GeV (sample info & cross sections to be updated!)
     'wzp6_ee_ZH_Hinv_ecm365':['ee->ZH, ecm=365 GeV','H->invisible', '','1.618e-04','1.0','1.0'],
 
