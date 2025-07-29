@@ -934,7 +934,9 @@ gridpacklist = {
     'wzp6_ee_Htautau_ecm125':['ee -> H -> tautau ecm=125GeV','','','1.011e-4','1.0','1.0'],
 
     'wzp6_ee_eeqq_ecm125':['ee -> eeqq (no H) ecm=125GeV','','','5.065e-1','1.0','1.0'],
-    'wzp6_ee_mumuqq_ecm125':['ee -> mumuqq (no H) ecm=125GeV','','','1.0','1.0','1.0'],
+    'wzp6_ee_mumuqq_ecm125':['ee -> mumuqq (no H) ecm=125GeV','','','1.505e-1','1.0','1.0'],
+    'wzp6_ee_tautauqq_ecm125':['ee -> tautauqq (no H) ecm=125GeV','','','1.476e-1','1.0','1.0'],
+
     'wzp6_ee_tautau_ecm125':['ee -> tautau (no H) ecm=125GeV','','','25.939','1.0','1.0'],
 
     # xxH, ecm = 365 GeV (sample info & cross sections to be updated!)
