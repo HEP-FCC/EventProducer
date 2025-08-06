@@ -312,13 +312,13 @@ def main():
         import EventProducer.common.printer as prt
         if args.LHE:
             print('INFO: Creating LHE output files for the web page...')
-            printdic = prt.Printer(yamldir, para.lhe_web, para, False)
+            printdic = prt.Printer(yamldir, para.lhe_web, args, para, False)
             printdic.run()
 
         elif args.STDHEP:
             print('INFO: Creating STDHEP output files for the web page...')
             stdhep_webfile = para.stdhep_web.replace('VERSION', version)
-            printdic = prt.Printer(yamldir, stdhep_webfile, para, False)
+            printdic = prt.Printer(yamldir, stdhep_webfile, args, para, False)
             printdic.run()
 
         elif args.reco:
@@ -326,7 +326,7 @@ def main():
             webpage_file = para.delphes_web.replace('VERSION', version)
             webpage_file = webpage_file.replace('DETECTOR', detector)
             webpage_file = webpage_file.replace('_.', '.')
-            printdic = prt.Printer(yamldir, webpage_file, para, True)
+            printdic = prt.Printer(yamldir, webpage_file, args, para, True)
             printdic.run()
 
     elif args.remove:
