@@ -323,7 +323,7 @@ class Printer:
             out_text += cmd
 
             # Produced with
-            process_info['produced-with'] = 'EventProducer'
+            process_info['produced-with'] = 'event-producer'
             # Accelerator
             if self.args.FCChh:
                 process_info['accelerator'] = 'fcc-hh'
@@ -337,11 +337,14 @@ class Printer:
             if self.args.STDHEP:
                 process_info['stage'] = 'gen'
             # Campaign
-            process_info['campaign'] = self.args.prodtag
+            if self.args.prodtag is None:
+                process_info['campaign'] = 'Not defined'
+            else:
+                process_info['campaign'] = self.args.prodtag
             # Detector
             process_info['detector'] = self.args.detector
             if process_info['detector'] == '':
-                process_info['detector'] = None
+                process_info['detector'] = 'Not defined'
             # File type
             if self.args.reco:
                 process_info['file-type'] = 'edm4hep-root'
