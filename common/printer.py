@@ -8,6 +8,7 @@ import re
 import time
 import json
 from types import ModuleType
+from typing import Any
 import yaml
 
 
@@ -18,10 +19,12 @@ class Printer:
     def __init__(self,
                  yaml_dir: str,
                  webfile_path: str,
+                 args: Any,
                  para: ModuleType,
                  matching: bool):
         self.yaml_dir = yaml_dir
         self.webfile_path = webfile_path
+        self.args = args
         self.para = para
         self.matching = matching
 
@@ -318,6 +321,53 @@ class Printer:
                     process_info['status'] = 'done'
                 ispythiaonly = False
             out_text += cmd
+
+            # Produced with
+            process_info['produced-with'] = 'EventProducer'
+            # Accelerator
+            if self.args.FCChh:
+                process_info['accelerator'] = 'fcc-hh'
+            if self.args.FCCee:
+                process_info['accelerator'] = 'fcc-ee'
+            # Stage
+            if self.args.reco:
+                process_info['stage'] = 'rec'
+            if self.args.LHE:
+                process_info['stage'] = 'gen'
+            if self.args.STDHEP:
+                process_info['stage'] = 'gen'
+            # Campaign
+            process_info['campaign'] = self.args.prodTag
+            # Detector
+            process_info['detector'] = self.args.detector
+            if process_info['detector'] == '':
+                process_info['detector'] = None
+            # File type
+            if self.args.reco:
+                process_info['file-type'] = 'edm4hep-root'
+            if self.args.LHE:
+                process_info['file-type'] = 'lhe'
+            if self.args.STDHEP:
+                process_info['file-type'] = 'stdhep'
+            # Key4hep stack
+            process_info['key4hep-stack'] = self.para.prodTag[self.args.prodTag]
+            # Generation type
+            process_info['gen-type'] = process_name.split('_')[0]
+            # Simulation type
+            if self.args.reco:
+                process_info['sim-type'] = 'delphes'
+            if self.args.LHE:
+                process_info['sim-type'] = None
+            if self.args.STDHEP:
+                process_info['sim-type'] = None
+            # Reconstruction type
+            if self.args.reco:
+                process_info['rec-type'] = 'delphes'
+            if self.args.LHE:
+                process_info['rec-type'] = None
+            if self.args.STDHEP:
+                process_info['rec-type'] = None
+
             out_dict['processes'].append(process_info)
 
 #     0          1            2                 3           4           5
