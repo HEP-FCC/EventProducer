@@ -337,7 +337,7 @@ class Printer:
             if self.args.STDHEP:
                 process_info['stage'] = 'gen'
             # Campaign
-            process_info['campaign'] = self.args.prodTag
+            process_info['campaign'] = self.args.prodtag
             # Detector
             process_info['detector'] = self.args.detector
             if process_info['detector'] == '':
@@ -350,7 +350,10 @@ class Printer:
             if self.args.STDHEP:
                 process_info['file-type'] = 'stdhep'
             # Key4hep stack
-            process_info['key4hep-stack'] = self.para.prodTag[self.args.prodTag]
+            if self.args.prodtag is None:
+                process_info['key4hep-stack'] = None
+            else:
+                process_info['key4hep-stack'] = self.para.prodTag[self.args.prodtag]
             # Generation type
             process_info['gen-type'] = process_name.split('_')[0]
             # Simulation type
