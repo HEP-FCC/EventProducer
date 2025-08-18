@@ -338,13 +338,13 @@ class Printer:
                 process_info['stage'] = 'gen'
             # Campaign
             if self.args.prodtag is None:
-                process_info['campaign'] = 'Not defined'
+                process_info['campaign'] = 'not-defined'
             else:
                 process_info['campaign'] = self.args.prodtag
             # Detector
             process_info['detector'] = self.args.detector
             if process_info['detector'] == '':
-                process_info['detector'] = 'Not defined'
+                process_info['detector'] = 'not-defined'
             # File type
             if self.args.reco:
                 process_info['file-type'] = 'edm4hep-root'
