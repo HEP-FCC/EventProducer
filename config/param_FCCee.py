@@ -127,6 +127,10 @@ pythialist = {
     'p8_noBES_ee_ZZ_ecm240':['ZZ ecm=240GeV, no BES','inclusive decays','','1.35899','1.0','1.0'],
     'p8_noBES_ee_WW_ecm240':['WW ecm=240GeV, no BES','inclusive decays','','16.4385','1.0','1.0'],
 
+    'p8_ee_ZZ_ecm160':['ZZ ecm=160GeV, no BES','inclusive decays','','0.496','1.0','1.0'],
+    'p8_ee_WW_ecm160':['WW ecm=160GeV, no BES','inclusive decays','','2.303','1.0','1.0'],
+
+
     'p8_ee_ZH_ecm365':['ZH ecm=365GeV','inclusive decays','','0.1173','1.0','1.0'],
     'p8_ee_ZZ_ecm365':['ZZ ecm=365GeV','inclusive decays','','0.6428','1.0','1.0'],
     'p8_ee_WW_ecm365':['WW ecm=365GeV','inclusive decays','','10.7165','1.0','1.0'],
@@ -205,11 +209,16 @@ pythialist = {
     'p8_ee_Ztautau_Mnutau_0p1MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau M_nutau = 0.1 MeV','inclusive decays','','1476.58','1.0','1.0'],
     'p8_ee_Ztautau_Mnutau_1p0MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau M_nutau = 1.0 MeV','inclusive decays','','1476.58','1.0','1.0'],
     'p8_ee_Ztautau_Mnutau_10p0MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau M_nutau = 10.0 MeV','inclusive decays','','1476.58','1.0','1.0'],
+    'p8_ee_Ztautau_Mnutau_50p0MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau M_nutau = 50.0 MeV','inclusive decays','','1476.58','1.0','1.0'],
     'p8_ee_Ztautau_Mnutau_100p0MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau M_nutau = 100.0 MeV','inclusive decays','','1476.58','1.0','1.0'],
+    'p8_ee_Ztautau_Mnutau_200p0MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau M_nutau = 200.0 MeV','inclusive decays','','1476.58','1.0','1.0'],
+
     'p8_ee_Ztautau_Mtau_m0p1MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau Mtau = 1776.7 MeV','inclusive decays','','1476.58','1.0','1.0'],
     'p8_ee_Ztautau_Mtau_p0p1MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau Mtau = 1776.9 MeV','inclusive decays','','1476.58','1.0','1.0'],
     'p8_ee_Ztautau_Mtau_m1p0MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau Mtau = 1775.8 MeV','inclusive decays','','1476.58','1.0','1.0'],
     'p8_ee_Ztautau_Mtau_p1p0MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau Mtau = 1777.8 MeV','inclusive decays','','1476.58','1.0','1.0'],
+    'p8_ee_Ztautau_Mtau_m5p0MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau Mtau = 1771.8 MeV','inclusive decays','','1476.58','1.0','1.0'],
+    'p8_ee_Ztautau_Mtau_p5p0MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau Mtau = 1781.8 MeV','inclusive decays','','1476.58','1.0','1.0'],
     'p8_ee_Ztautau_Mtau_m10p0MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau Mtau = 1766.8 MeV','inclusive decays','','1476.58','1.0','1.0'],
     'p8_ee_Ztautau_Mtau_p10p0MeV_ecm91':['Z/Gamma* ecm=91.188GeV to tautau Mtau = 1786.8 MeV','inclusive decays','','1476.58','1.0','1.0'],
 
@@ -1207,5 +1216,10 @@ gridpacklist = {
     'wzp6_ee_tautaua_ecm160':['ee -> tau tau gamma,  ecm=160 GeV','','','1.553','1.0','1.0'],
     'wzp6_ee_tautaua_ecm240':['ee -> tau tau gamma,  ecm=240 GeV','','','7.702e-1','1.0','1.0'],
     'wzp6_ee_tautaua_ecm365':['ee -> tau tau gamma,  ecm=365 GeV','','','3.623e-1','1.0','1.0'],
+
+    'wzp6_ee_ffH_ecm160':['ee -> f fbar H, ecm=160 GeV','','','2.281e-4','1.0','1.0'],
+
+    'wzp6_ee_WWa_ecm240':['ee -> W W gamma,  ecm=240 GeV','W incl.','','6.407e-2','1.0','1.0'],
+    'wzp6_ee_WWa_ecm365':['ee -> W W gamma,  ecm=240 GeV','W incl.','','2.727e-1','1.0','1.0'],
 
 }
