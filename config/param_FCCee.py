@@ -168,6 +168,18 @@ pythialist = {
     'p8_ee_ZZ_ecm125':['ZZ ecm=125GeV','inclusive','','1.','0.','1.0'],
     'p8_ee_WW_ecm125':['WW ecm=125GeV','inclusive','','0.0558','1.0','1.0'],
 
+    'p8_ee_ZZ_nunubb_ecm365':['ZZ ecm=365GeV','Z(nunu)Z(bb)','','0.086','0.','1.0'],
+    'p8_ee_ZZ_nunucc_ecm365':['ZZ ecm=365GeV','Z(nunu)Z(cc)','','0.080','0.','1.0'],
+    'p8_ee_ZZ_nunuss_ecm365':['ZZ ecm=365GeV','Z(nunu)Z(ss)','','0.086','0.','1.0'],
+    'p8_ee_ZZ_nunuuu_ecm365':['ZZ ecm=365GeV','Z(nunu)Z(uu)','','0.080','0.','1.0'],
+    'p8_ee_ZZ_nunudd_ecm365':['ZZ ecm=365GeV','Z(nunu)Z(dd)','','0.086','0.','1.0'],
+
+    'p8_ee_ZZ_bbbb_ecm365':['ZZ ecm=365GeV','Z(bb)Z(bb)','','0.017','0.','1.0'],
+    'p8_ee_ZZ_cccc_ecm365':['ZZ ecm=365GeV','Z(cc)Z(cc)','','0.014','0.','1.0'],
+    'p8_ee_ZZ_ssss_ecm365':['ZZ ecm=365GeV','Z(ss)Z(ss)','','0.017','0.','1.0'],
+    'p8_ee_ZZ_uuuu_ecm365':['ZZ ecm=365GeV','Z(uu)Z(uu)','','0.014','0.','1.0'],
+    'p8_ee_ZZ_dddd_ecm365':['ZZ ecm=365GeV','Z(dd)Z(dd)','','0.017','0.','1.0'],
+
     # ttbar threshold scan
     'p8_ee_WW_ecm340':['WW ecm=340GeV','inclusive decays','','12.056','1.0','1.0'],
     'p8_ee_WW_ecm345':['WW ecm=345GeV','inclusive decays','','11.899','1.0','1.0'],
@@ -941,6 +953,13 @@ gridpacklist = {
 
     'wzp6_ee_Hbb_ecm125':['ee -> H -> bb ecm=125GeV','','','1.685e-3','1.0','1.0'],
     'wzp6_ee_Htautau_ecm125':['ee -> H -> tautau ecm=125GeV','','','1.011e-4','1.0','1.0'],
+
+    'wzp6_ee_Henueqq_ecm125':['ee -> H -> WW* ecm=125GeV','W(enue)W*(qq)','','7.285e-06','1.0','1.0'],
+    'wzp6_ee_Hmunumuqq_ecm125':['ee -> H -> WW* ecm=125GeV','W(munumu)W*(qq)','','7.285e-06','1.0','1.0'],
+    'wzp6_ee_Htaunutauqq_ecm125':['ee -> H -> WW* ecm=125GeV','W(taunutau)W*(qq)','','7.285e-06','1.0','1.0'],
+    'wzp6_ee_Hqqenue_ecm125':['ee -> H -> WW* ecm=125GeV','W(qq)W*(enue)','','2.266e-05','1.0','1.0'],
+    'wzp6_ee_Hqqmunumu_ecm125':['ee -> H -> WW* ecm=125GeV','W(qq)W*(munumu)','','2.266e-05','1.0','1.0'],
+    'wzp6_ee_Hqqtaunutau_ecm125':['ee -> H -> WW* ecm=125GeV','W(qq)W*(taunutau','','2.266e-05','1.0','1.0'],
 
     'wzp6_ee_eeqq_ecm125':['ee -> eeqq (no H) ecm=125GeV','','','5.065e-1','1.0','1.0'],
     'wzp6_ee_mumuqq_ecm125':['ee -> mumuqq (no H) ecm=125GeV','','','1.505e-1','1.0','1.0'],
