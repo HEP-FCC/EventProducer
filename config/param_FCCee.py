@@ -146,6 +146,8 @@ pythialist = {
     'p8_ee_Zcc_ecm365':['Z/Gamma* ecm=365GeV','Z->cc','','4.5060','1.0','1.0'],
     'p8_ee_Zss_ecm365':['Z/Gamma* ecm=365GeV','Z->ss','','4.084','1.0','1.0'],
 
+    'p8_ee_ZZ_4tau_ecm125':['ZZ, ecm=125GeV','Z(tautau)Z(tautau)','','0.003','1.0','1.0'],
+
     'p8_ee_tt_fullhad_ecm365':['tt ecm=365GeV','hadronic decays','','0.363528','1.0','1.0'],
     'p8_ee_ZZ_fullhad_ecm365':['ZZ ecm=365GeV','hadronic decays','','0.31417','1.0','1.0'],
     'p8_ee_WW_fullhad_ecm365':['WW ecm=365GeV','hadronic decays','','4.86969','1.0','1.0'],
@@ -936,12 +938,12 @@ gridpacklist = {
     'wzp6_ee_WWZ_Zbb_ecm365': ['ee -> WWZ, ecm=365GeV','W inclusive, Z->bb', '','2.018e-03','1.0','1.0'],
 
 # ee->H + background, ecm = 125 GeV:
-    'wzp6_ee_l1l2nunu_ecm125':['ee -> l1l2nunu (l1!=l2, no H) ecm=125GeV','','','5.799e-03','1.0','1.0'],
-    'wzp6_ee_eenunu_ecm125':['ee -> eenunu (no H) ecm=125GeV','','','3.364e-01','1.0','1.0'],
+    'wzp6_ee_l1l2nunu_ecm125':['ee -> l1l2nunu (l1!=l2, no H) ecm=125GeV','','','9.845e-03','1.0','1.0'],
+    'wzp6_ee_eenunu_ecm125':['ee -> eenunu (no H) ecm=125GeV','','','6.574e-01','1.0','1.0'],
     'wzp6_ee_mumununu_ecm125':['ee -> mumununu (no H) ecm=125GeV','','','2.202e-01','1.0','1.0'],
     'wzp6_ee_tautaununu_ecm125':['ee -> tautaununu (no H) ecm=125GeV','','','4.265e-02','1.0','1.0'],
 
-    'wzp6_ee_enueqq_ecm125':['ee -> enuqq (no H) ecm=125GeV','','','1.382e-02','1.0','1.0'],
+    'wzp6_ee_enueqq_ecm125':['ee -> enuqq (no H) ecm=125GeV','','','2.613e-02','1.0','1.0'],
     'wzp6_ee_munumuqq_ecm125':['ee -> munuqq (no H) ecm=125GeV','','','6.711e-03','1.0','1.0'],
     'wzp6_ee_taunutauqq_ecm125':['ee -> taunuqq (no H) ecm=125GeV','','','6.761e-03','1.0','1.0'],
     'wzp6_ee_qq_ecm125':['ee -> qq, ecm=125GeV','','','3.631E+02','1.0','1.0'],
@@ -961,7 +963,7 @@ gridpacklist = {
     'wzp6_ee_Hqqmunumu_ecm125':['ee -> H -> WW* ecm=125GeV','W(qq)W*(munumu)','','2.266e-05','1.0','1.0'],
     'wzp6_ee_Hqqtaunutau_ecm125':['ee -> H -> WW* ecm=125GeV','W(qq)W*(taunutau','','2.266e-05','1.0','1.0'],
 
-    'wzp6_ee_eeqq_ecm125':['ee -> eeqq (no H) ecm=125GeV','','','5.065e-1','1.0','1.0'],
+    'wzp6_ee_eeqq_ecm125':['ee -> eeqq (no H) ecm=125GeV','','','3.934','1.0','1.0'],
     'wzp6_ee_mumuqq_ecm125':['ee -> mumuqq (no H) ecm=125GeV','','','1.505e-1','1.0','1.0'],
     'wzp6_ee_tautauqq_ecm125':['ee -> tautauqq (no H) ecm=125GeV','','','1.476e-1','1.0','1.0'],
 
@@ -1240,5 +1242,12 @@ gridpacklist = {
 
     'wzp6_ee_WWa_ecm240':['ee -> W W gamma,  ecm=240 GeV','W incl.','','6.407e-2','1.0','1.0'],
     'wzp6_ee_WWa_ecm365':['ee -> W W gamma,  ecm=240 GeV','W incl.','','2.727e-1','1.0','1.0'],
+
+    'wzp6_ee_alnuW_ecm160':['ee -> W W gamma,  ecm=160 GeV','W(incl)W*(lnu)','','1.194e-02','1.0','1.0'],
+    'wzp6_ee_alnuW_ecm240':['ee -> W W gamma,  ecm=240 GeV','W(incl)W*(lnu)','','8.136e-02','1.0','1.0'],
+    'wzp6_ee_alnuW_ecm365':['ee -> W W gamma,  ecm=365 GeV','W(incl)W*(lnu)','','7.052e-03','1.0','1.0'],
+    'wzp6_ee_aqqW_ecm160':['ee -> W W gamma,  ecm=160 GeV','W(incl)W*(qq)','','2.328e-02','1.0','1.0'],
+    'wzp6_ee_aqqW_ecm240':['ee -> W W gamma,  ecm=240 GeV','W(incl)W*(qq)','','1.286e-01','1.0','1.0'],
+    'wzp6_ee_aqqW_ecm365':['ee -> W W gamma,  ecm=365 GeV','W(incl)W*(qq)','','1.131e-02','1.0','1.0'],
 
 }
