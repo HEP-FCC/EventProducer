@@ -1214,27 +1214,27 @@ gridpacklist = {
     'wzp6_ee_qqH_HZZ_llvv_ecm240':['ee -> Z(qq, incl.) H,  ecm=240 GeV','H to ZZ to llvv','','1.447e-4','1.0','1.0'],
     'wzp6_ee_qqH_HZZ_llvv_ecm365':['ee -> Z(qq, incl.) H,  ecm=365 GeV','H to ZZ to llvv','','8.958e-4','1.0','1.0'],
 
-    'wzp6_ee_bba_ecm160':['ee -> b b gamma,  ecm=160 GeV','','','5.173','1.0','1.0'],
+    'wzp6_ee_bba_ecm160':['ee -> b b gamma,  ecm=160 GeV','','','8.061','1.0','1.0'],
     'wzp6_ee_bba_ecm240':['ee -> b b gamma,  ecm=240 GeV','','','2.350','1.0','1.0'],
     'wzp6_ee_bba_ecm365':['ee -> b b gamma,  ecm=365 GeV','','','0.985','1.0','1.0'],
 
-    'wzp6_ee_cca_ecm160':['ee -> c c gamma,  ecm=160 GeV','','','4.519','1.0','1.0'],
+    'wzp6_ee_cca_ecm160':['ee -> c c gamma,  ecm=160 GeV','','','7.445','1.0','1.0'],
     'wzp6_ee_cca_ecm240':['ee -> c c gamma,  ecm=240 GeV','','','2.155','1.0','1.0'],
     'wzp6_ee_cca_ecm365':['ee -> c c gamma,  ecm=365 GeV','','','0.954','1.0','1.0'],
 
-    'wzp6_ee_eea_ecm160':['ee -> e e gamma,  ecm=160 GeV','','','231.6','1.0','1.0'],
+    'wzp6_ee_eea_ecm160':['ee -> e e gamma,  ecm=160 GeV','','','920.5','1.0','1.0'],
     'wzp6_ee_eea_ecm240':['ee -> e e gamma,  ecm=240 GeV','','','195.8','1.0','1.0'],
     'wzp6_ee_eea_ecm365':['ee -> e e gamma,  ecm=365 GeV','','','131.1','1.0','1.0'],
 
-    'wzp6_ee_mumua_ecm160':['ee -> mu mu gamma,  ecm=160 GeV','','','1.597','1.0','1.0'],
+    'wzp6_ee_mumua_ecm160':['ee -> mu mu gamma,  ecm=160 GeV','','','2.818','1.0','1.0'],
     'wzp6_ee_mumua_ecm240':['ee -> mu mu gamma,  ecm=240 GeV','','','8.029e-1','1.0','1.0'],
     'wzp6_ee_mumua_ecm365':['ee -> mu mu gamma,  ecm=365 GeV','','','3.820e-1','1.0','1.0'],
 
-    'wzp6_ee_qqa_ecm160':['ee -> q q gamma,  ecm=160 GeV','','','15.082','1.0','1.0'],
+    'wzp6_ee_qqa_ecm160':['ee -> q q gamma,  ecm=160 GeV','','','24.188','1.0','1.0'],
     'wzp6_ee_qqa_ecm240':['ee -> q q gamma,  ecm=240 GeV','','','6.978','1.0','1.0'],
     'wzp6_ee_qqa_ecm365':['ee -> q q gamma,  ecm=365 GeV','','','2.983','1.0','1.0'],
 
-    'wzp6_ee_tautaua_ecm160':['ee -> tau tau gamma,  ecm=160 GeV','','','1.553','1.0','1.0'],
+    'wzp6_ee_tautaua_ecm160':['ee -> tau tau gamma,  ecm=160 GeV','','','2.598','1.0','1.0'],
     'wzp6_ee_tautaua_ecm240':['ee -> tau tau gamma,  ecm=240 GeV','','','7.702e-1','1.0','1.0'],
     'wzp6_ee_tautaua_ecm365':['ee -> tau tau gamma,  ecm=365 GeV','','','3.623e-1','1.0','1.0'],
 
