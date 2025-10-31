@@ -1245,7 +1245,6 @@ gridpacklist = {
     'wzp6_ee_WWa_ecm240':['ee -> W W gamma,  ecm=240 GeV','W incl.','','6.407e-2','1.0','1.0'],
     'wzp6_ee_WWa_ecm365':['ee -> W W gamma,  ecm=240 GeV','W incl.','','2.727e-1','1.0','1.0'],
 
-    # TODO: fix alnuW xsec
     'wzp6_ee_alnuW_ecm160':['ee -> W W gamma,  ecm=160 GeV','W(incl)W*(lnu)','','1.387e-02','1.0','1.0'],
     'wzp6_ee_alnuW_ecm240':['ee -> W W gamma,  ecm=240 GeV','W(incl)W*(lnu)','','1.017e-01','1.0','1.0'],
     'wzp6_ee_alnuW_ecm365':['ee -> W W gamma,  ecm=365 GeV','W(incl)W*(lnu)','','8.962e-03','1.0','1.0'],
