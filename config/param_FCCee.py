@@ -1253,7 +1253,7 @@ gridpacklist = {
     'wzp6_ee_aqqW_ecm365':['ee -> W W gamma,  ecm=365 GeV','W(incl)W*(qq)','','1.131e-02','1.0','1.0'],
 
     'wzp6_ee_allZ_ecm160':['ee -> Z Z gamma,  ecm=160 GeV','Z(incl)Z*(ll)','','1.837e-01','1.0','1.0'],
-    'wzp6_ee_allZ_ecm240':['ee -> Z Z gamma,  ecm=240 GeV','Z(incl)Z*(ll)','','5.889e-02.','1.0','1.0'],
+    'wzp6_ee_allZ_ecm240':['ee -> Z Z gamma,  ecm=240 GeV','Z(incl)Z*(ll)','','5.889e-02','1.0','1.0'],
     'wzp6_ee_allZ_ecm365':['ee -> Z Z gamma,  ecm=365 GeV','Z(incl)Z*(ll)','','1.607e-02','1.0','1.0'],
     'wzp6_ee_aqqZ_ecm160':['ee -> Z Z gamma,  ecm=160 GeV','Z(incl)Z*(qq)','','9.243e-01','1.0','1.0'],
     'wzp6_ee_aqqZ_ecm240':['ee -> Z Z gamma,  ecm=240 GeV','Z(incl)Z*(qq)','','3.025e-01','1.0','1.0'],
