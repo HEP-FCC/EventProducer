@@ -1259,6 +1259,26 @@ gridpacklist = {
     'wzp6_ee_aqqZ_ecm240':['ee -> Z Z gamma,  ecm=240 GeV','Z(incl)Z*(qq)','','3.025e-01','1.0','1.0'],
     'wzp6_ee_aqqZ_ecm365':['ee -> Z Z gamma,  ecm=365 GeV','Z(incl)Z*(qq)','','7.280e-02','1.0','1.0'],
 
+    #fixme: cross sections
+    'wzp6_ee_bbH_HZZ_noInv_ecm240':['ee -> Z(b b) H,  ecm=240 GeV','H to ZZ, no inv. decay','','7.594e-04','1.0','1.0'],
+    'wzp6_ee_ccH_HZZ_noInv_ecm240':['ee -> Z(c c) H,  ecm=240 GeV','H to ZZ, no inv. decay','','5.914e-04','1.0','1.0'],
+    'wzp6_ee_eeH_HZZ_noInv_ecm240':['ee -> Z(e e) H,  ecm=240 GeV','H to ZZ, no inv. decay','','1.815e-04','1.0','1.0'],
+    'wzp6_ee_mumuH_HZZ_noInv_ecm240':['ee -> Z(mu mu) H,  ecm=240 GeV','H to ZZ, no inv. decay','','1.714e-04','1.0','1.0'],
+    'wzp6_ee_nuenueH_HZZ_noInv_ecm240':['ee -> Z(nue nue) H,  ecm=240 GeV','H to ZZ, no inv. decay','','1.0','1.0','1.0'],
+    'wzp6_ee_numunumuH_HZZ_noInv_ecm240':['ee -> Z(numu numu) H,  ecm=240 GeV','H to ZZ, no inv. decay','','1.0','1.0','1.0'],
+    'wzp6_ee_nunuH_HZZ_noInv_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to ZZ, no inv. decay','','1.170e-03','1.0','1.0'],
+    'wzp6_ee_qqH_HZZ_noInv_ecm240':['ee -> Z(q q) H,  ecm=240 GeV','H to ZZ, no inv. decay','','1.352e-03','1.0','1.0'],
+    'wzp6_ee_ssH_HZZ_noInv_ecm240':['ee -> Z(s s) H,  ecm=240 GeV','H to ZZ, no inv. decay','','7.591e-04','1.0','1.0'],
+    'wzp6_ee_tautauH_HZZ_noInv_ecm240':['ee -> Z(tau tau) H,  ecm=240 GeV','H to ZZ, no inv. decay','','1.711e-04','1.0','1.0'],
 
-
+    'wzp6_ee_bbH_HZZ_noInv_ecm365':['ee -> Z(b b) H,  ecm=365 GeV','H to ZZ, no inv. decay','','4.660e-04','1.0','1.0'],
+    'wzp6_ee_ccH_HZZ_noInv_ecm365':['ee -> Z(c c) H,  ecm=365 GeV','H to ZZ, no inv. decay','','3.658e-04','1.0','1.0'],
+    'wzp6_ee_eeH_HZZ_noInv_ecm365':['ee -> Z(e e) H,  ecm=365 GeV','H to ZZ, no inv. decay','','1.872e-04','1.0','1.0'],
+    'wzp6_ee_mumuH_HZZ_noInv_ecm365':['ee -> Z(mu mu) H,  ecm=365 GeV','H to ZZ, no inv. decay','','1.061e-04','1.0','1.0'],
+    'wzp6_ee_nuenueH_HZZ_noInv_ecm365':['ee -> Z(nue nue) H,  ecm=365 GeV','H to ZZ, no inv. decay','','1.0','1.0','1.0'],
+    'wzp6_ee_numunumuH_HZZ_noInv_ecm365':['ee -> Z(numu numu) H,  ecm=365 GeV','H to ZZ, no inv. decay','','1.0','1.0','1.0'],
+    'wzp6_ee_nunuH_HZZ_noInv_ecm365':['ee -> Z(nu nu) H,  ecm=365 GeV','H to ZZ, no inv. decay','','1.368e-03','1.0','1.0'],
+    'wzp6_ee_qqH_HZZ_noInv_ecm365':['ee -> Z(q q) H,  ecm=365 GeV','H to ZZ, no inv. decay','','8.362e-04','1.0','1.0'],
+    'wzp6_ee_ssH_HZZ_noInv_ecm365':['ee -> Z(s s) H,  ecm=365 GeV','H to ZZ, no inv. decay','','4.697e-04','1.0','1.0'],
+    'wzp6_ee_tautauH_HZZ_noInv_ecm365':['ee -> Z(tau tau) H,  ecm=365 GeV','H to ZZ, no inv. decay','','1.057e-04','1.0','1.0'],
 }
