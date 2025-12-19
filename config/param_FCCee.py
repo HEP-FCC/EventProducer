@@ -105,6 +105,8 @@ pythialist = {
     'p8_ee_ZH_Znunu_Huu_ecm240':['ZH ecm=240GeV','Z->nunu, H->uu','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
     'p8_ee_ZH_Znunu_Htautau_ecm240':['ZH ecm=240GeV','Z->nunu, H->tautau','','0.201868','1.0','1.0'],     #    Pythia 8.303, noBES (Used 0.201037 before)
 
+    'p8_ee_ZZ_llX_ecm240':['ZZ ecm=240GeV','Z(ll)Z(incl)','','1.35899','1.0','1.0'],
+
     'p8_ee_ZH_ecm240':['ZH ecm=240GeV','inclusive decays','','0.201868','1.0','1.0'],       #    Pythia 8.303, noBES (Used 0.201037 before)
     'p8_ee_ZZ_ecm240':['ZZ ecm=240GeV','inclusive decays','','1.35899','1.0','1.0'],
     'p8_ee_WW_ecm240':['WW ecm=240GeV','inclusive decays','','16.4385','1.0','1.0'],
@@ -717,6 +719,9 @@ gridpacklist = {
     'wzp6_ee_eeH_HZa_ecm240':['ee -> Z(e e) H,  ecm=240 GeV','H to Za','','1.098e-05','1.0','1.0'],
     'wzp6_ee_eeH_Haa_ecm240':['ee -> Z(e e) H,  ecm=240 GeV','H to aa','','1.626e-05','1.0','1.0'],
 
+    'wzp6_ee_eeH_HWW_llnunu_ecm240':['ee -> Z(e e) H,  ecm=240 GeV','H to WW(lep)','','1.633e-04','1.0','1.0'],
+
+
     # eeH with QFV Higgs decays
     'wzp6_ee_eeH_Hbd_ecm240':['ee -> Z(e e) H,  ecm=240 GeV','H to bd','','1.0','1.0','1.0'],
     'wzp6_ee_eeH_Hbs_ecm240':['ee -> Z(e e) H,  ecm=240 GeV','H to bs','','1.0','1.0','1.0'],
@@ -733,6 +738,8 @@ gridpacklist = {
     'wzp6_ee_mumuH_HZZ_ecm240':['ee -> Z(mu mu) H,  ecm=240 GeV','H to ZZ','','1.786e-04','1.0','1.0'],
     'wzp6_ee_mumuH_HZa_ecm240':['ee -> Z(mu mu) H,  ecm=240 GeV','H to Za','','1.037e-05','1.0','1.0'],
     'wzp6_ee_mumuH_Haa_ecm240':['ee -> Z(mu mu) H,  ecm=240 GeV','H to aa','','1.535e-05','1.0','1.0'],
+
+    'wzp6_ee_mumuH_HWW_llnunu_ecm240':['ee -> Z(mu mu) H,  ecm=240 GeV','H to WW(lep)','','1.543e-04','1.0','1.0'],
 
     # mumuH with QFV Higgs decays
     'wzp6_ee_mumuH_Hbd_ecm240':['ee -> Z(mu mu) H,  ecm=240 GeV','H to bd','','1.0','1.0','1.0'],
