@@ -105,7 +105,8 @@ pythialist = {
     'p8_ee_ZH_Znunu_Huu_ecm240':['ZH ecm=240GeV','Z->nunu, H->uu','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
     'p8_ee_ZH_Znunu_Htautau_ecm240':['ZH ecm=240GeV','Z->nunu, H->tautau','','0.201868','1.0','1.0'],     #    Pythia 8.303, noBES (Used 0.201037 before)
 
-    'p8_ee_ZZ_llX_ecm240':['ZZ ecm=240GeV','Z(ll)Z(incl)','','1.35899','1.0','1.0'],
+    'p8_ee_ZZ_llX_ecm240':['ZZ ecm=240GeV','Z(ee/mumu)Z(incl)','','0.1739','1.0','1.0'],
+    'p8_ee_ZZ_tautauX_ecm240':['ZZ ecm=240GeV','Z(tautau)Z(incl)','','0.0870','1.0','1.0'],
 
     'p8_ee_ZH_ecm240':['ZH ecm=240GeV','inclusive decays','','0.201868','1.0','1.0'],       #    Pythia 8.303, noBES (Used 0.201037 before)
     'p8_ee_ZZ_ecm240':['ZZ ecm=240GeV','inclusive decays','','1.35899','1.0','1.0'],
@@ -138,6 +139,9 @@ pythialist = {
     'p8_ee_WW_ecm365':['WW ecm=365GeV','inclusive decays','','10.7165','1.0','1.0'],
     'p8_ee_tt_ecm365':['tt ecm=365GeV','inclusive decays','','0.800','1.0','1.0'],
     
+    'p8_ee_ZZ_llX_ecm365':['ZZ ecm=365GeV','Z(ee/mumu)Z(incl)','','0.1098','1.0','1.0'],
+    'p8_ee_ZZ_tautauX_ecm365':['ZZ ecm=365GeV','Z(tautau)Z(incl)','','0.0549','1.0','1.0'],
+
     'p8_ee_WW_tautau_ecm365':['WW ecm=365GeV','W->tau','','0.131','1.0','1.0'],
 
     'p8_ee_WW_ee_ecm365':['WW ecm=365GeV','W->e and W ->tau->e','','0.1785','1.0','1.0'],
