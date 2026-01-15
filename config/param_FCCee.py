@@ -652,14 +652,14 @@ gridpacklist = {
 
     'wzp6_ee_ZH_Hinv_ecm240':['ee->ZH, ecm=240 GeV','H->invisible', '','2.132e-04','1.0','1.0'],
 
-    'wzp6_ee_qqH_Hinv_ecm240':['ee->qqH, ecm=240 GeV','H->invisible', '','3.241e-05','1.0','1.0'],
-    'wzp6_ee_ssH_Hinv_ecm240':['ee->ssH, ecm=240 GeV','H->invisible', '','3.241e-05','1.0','1.0'],
-    'wzp6_ee_ccH_Hinv_ecm240':['ee->ccH, ecm=240 GeV','H->invisible', '','2.558e-05','1.0','1.0'],
-    'wzp6_ee_bbH_Hinv_ecm240':['ee->bbH, ecm=240 GeV','H->invisible', '','3.241e-05','1.0','1.0'],
-    'wzp6_ee_eeH_Hinv_ecm240':['ee->eeH, ecm=240 GeV','H->invisible', '','7.164e-06','1.0','1.0'],
-    'wzp6_ee_mumuH_Hinv_ecm240':['ee->mumuH, ecm=240 GeV','H->invisible', '','7.164e-06','1.0','1.0'],
-    'wzp6_ee_tautauH_Hinv_ecm240':['ee->tautauH, ecm=240 GeV','H->invisible', '','7.164e-06','1.0','1.0'],
-    'wzp6_ee_nunuH_Hinv_ecm240':['ee->nunuH, ecm=240 GeV','H->invisible', '','4.264e-05','1.0','1.0'],
+    'wzp6_ee_qqH_Hinv_ecm240':['ee->qqH, ecm=240 GeV','H->invisible', '','5.601e-05','1.0','1.0'],
+    'wzp6_ee_ssH_Hinv_ecm240':['ee->ssH, ecm=240 GeV','H->invisible', '','3.146e-05','1.0','1.0'],
+    'wzp6_ee_ccH_Hinv_ecm240':['ee->ccH, ecm=240 GeV','H->invisible', '','2.450e-05','1.0','1.0'],
+    'wzp6_ee_bbH_Hinv_ecm240':['ee->bbH, ecm=240 GeV','H->invisible', '','3.146e-05','1.0','1.0'],
+    'wzp6_ee_eeH_Hinv_ecm240':['ee->eeH, ecm=240 GeV','H->invisible', '','7.519e-06','1.0','1.0'],
+    'wzp6_ee_mumuH_Hinv_ecm240':['ee->mumuH, ecm=240 GeV','H->invisible', '','7.103e-06','1.0','1.0'],
+    'wzp6_ee_tautauH_Hinv_ecm240':['ee->tautauH, ecm=240 GeV','H->invisible', '','7.089e-06','1.0','1.0'],
+    'wzp6_ee_nunuH_Hinv_ecm240':['ee->nunuH, ecm=240 GeV','H->invisible', '','4.8501e-05','1.0','1.0'],
 
     'wzp6_ee_nunuH_Hbb_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to bb','','2.690e-02','1.0','1.0'],
     'wzp6_ee_nunuH_Hcc_ecm240':['ee -> Z(nu nu) H,  ecm=240 GeV','H to cc','','1.335e-03','1.0','1.0'],
@@ -985,14 +985,14 @@ gridpacklist = {
     # xxH, ecm = 365 GeV (sample info & cross sections to be updated!)
     'wzp6_ee_ZH_Hinv_ecm365':['ee->ZH, ecm=365 GeV','H->invisible', '','1.618e-04','1.0','1.0'],
 
-    'wzp6_ee_qqH_Hinv_ecm365':['ee->qqH, ecm=365 GeV','H->invisible', '','2.459e-05','1.0','1.0'],
-    'wzp6_ee_ssH_Hinv_ecm365':['ee->ssH, ecm=365 GeV','H->invisible', '','2.459e-05','1.0','1.0'],
-    'wzp6_ee_ccH_Hinv_ecm365':['ee->ccH, ecm=365 GeV','H->invisible', '','1.942e-05','1.0','1.0'],
-    'wzp6_ee_bbH_Hinv_ecm365':['ee->bbH, ecm=365 GeV','H->invisible', '','2.459e-05','1.0','1.0'],
-    'wzp6_ee_eeH_Hinv_ecm365':['ee->eeH, ecm=365 GeV','H->invisible', '','5.436e-06','1.0','1.0'],
-    'wzp6_ee_mumuH_Hinv_ecm365':['ee->mumuH, ecm=365 GeV','H->invisible', '','5.436e-06','1.0','1.0'],
-    'wzp6_ee_tautauH_Hinv_ecm365':['ee->tautauH, ecm=365 GeV','H->invisible', '','5.436e-06','1.0','1.0'],
-    'wzp6_ee_nunuH_Hinv_ecm365':['ee->nunuH, ecm=365 GeV','H->invisible', '','3.236e-05','1.0','1.0'],
+    'wzp6_ee_qqH_Hinv_ecm365':['ee->qqH, ecm=365 GeV','H->invisible', '','3.456e-05','1.0','1.0'],
+    'wzp6_ee_ssH_Hinv_ecm365':['ee->ssH, ecm=365 GeV','H->invisible', '','1.942e-05','1.0','1.0'],
+    'wzp6_ee_ccH_Hinv_ecm365':['ee->ccH, ecm=365 GeV','H->invisible', '','1.513e-05','1.0','1.0'],
+    'wzp6_ee_bbH_Hinv_ecm365':['ee->bbH, ecm=365 GeV','H->invisible', '','1.926e-05','1.0','1.0'],
+    'wzp6_ee_eeH_Hinv_ecm365':['ee->eeH, ecm=365 GeV','H->invisible', '','7.738e-06','1.0','1.0'],
+    'wzp6_ee_mumuH_Hinv_ecm365':['ee->mumuH, ecm=365 GeV','H->invisible', '','4.380e-06','1.0','1.0'],
+    'wzp6_ee_tautauH_Hinv_ecm365':['ee->tautauH, ecm=365 GeV','H->invisible', '','4.373e-06','1.0','1.0'],
+    'wzp6_ee_nunuH_Hinv_ecm365':['ee->nunuH, ecm=365 GeV','H->invisible', '','5.652e-05','1.0','1.0'],
 
     'wzp6_ee_bbH_ecm365':['ee->bbH, ecm=365 GeV','H->incl.', '','1.8389e-02','1.0','1.0'],
     'wzp6_ee_ccH_ecm365':['ee->ccH, ecm=365 GeV','H->incl.', '','1.4436e-02','1.0','1.0'],
@@ -1115,7 +1115,7 @@ gridpacklist = {
     'wzp6_ee_tautauH_Hbb_ecm365':['ee->tautauH, ecm=365 GeV','H->bb', '','2.430e-03','1.0','1.0'],
     'wzp6_ee_tautauH_Hcc_ecm365':['ee->tautauH, ecm=365 GeV','H->cc', '','1.206e-04','1.0','1.0'],
     'wzp6_ee_tautauH_Hgg_ecm365':['ee->tautauH, ecm=365 GeV','H->gg', '','3.416e-04','1.0','1.0'],
-    'wzp6_ee_tautauH_Hss_ecm365':['ee->tautauH, ecm=365 GeV','H->ss', '','1.121e-06','1.0','1.0'],
+    'wzp6_ee_tautauH_Hss_ecm365':['ee->tautauH, ecm=365 GeV','H->ss', '','1.002e-06','1.0','1.0'],
     'wzp6_ee_tautauH_Htautau_ecm365':['ee->tautauH, ecm=365 GeV','H->tautau', '','2.617e-04','1.0','1.0'],
     'wzp6_ee_tautauH_Hmumu_ecm365':['ee->tautauH, ecm=365 GeV','H->mumu', '','9.078e-07','1.0','1.0'],
 
@@ -1270,6 +1270,14 @@ gridpacklist = {
     'wzp6_ee_aqqZ_ecm240':['ee -> Z Z gamma,  ecm=240 GeV','Z(incl)Z*(qq)','','3.025e-01','1.0','1.0'],
     'wzp6_ee_aqqZ_ecm365':['ee -> Z Z gamma,  ecm=365 GeV','Z(incl)Z*(qq)','','7.280e-02','1.0','1.0'],
 
+    'wzp6_ee_lnuqq_ecm157':['ee -> l nu q q,  ecm=157 GeV','','','1.0','1.0','1.0'],
+    'wzp6_ee_lnuqq_ecm160':['ee -> l nu q q,  ecm=160 GeV','','','9.829e-01','1.0','1.0'],
+    'wzp6_ee_lnuqq_ecm163':['ee -> l nu q q,  ecm=163 GeV','','','1.0','1.0','1.0'],
+    'wzp6_ee_taunutauqq_ecm157':['ee -> tau nutau q q,  ecm=157 GeV','','','1.0','1.0','1.0'],
+    'wzp6_ee_taunutauqq_ecm160':['ee -> tau nutau q q,  ecm=160 GeV','','','1.0','1.0','1.0'],
+    'wzp6_ee_taunutauqq_ecm163':['ee -> tau nutau q q,  ecm=163 GeV','','','1.0','1.0','1.0'],
+
+    
     #fixme: cross sections
     'wzp6_ee_bbH_HZZ_noInv_ecm240':['ee -> Z(b b) H,  ecm=240 GeV','H to ZZ, no inv. decay','','7.594e-04','1.0','1.0'],
     'wzp6_ee_ccH_HZZ_noInv_ecm240':['ee -> Z(c c) H,  ecm=240 GeV','H to ZZ, no inv. decay','','5.914e-04','1.0','1.0'],
