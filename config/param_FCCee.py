@@ -501,9 +501,9 @@ gridpacklist = {
               'NOT REGISTERED IN param_FCCee', '',
               '-9999', '-9999', '-9999'],
 
-    'mg_ee_ha_ecm160':['H+gamma','to do','','2.127e-05','1.0','1.0'],
-    'mg_ee_ha_ecm240':['H+gamma','to do','','8.773e-05','1.0','1.0'],
-    'mg_ee_ha_ecm365':['H+gamma','to do','','2.975e-05','1.0','1.0'],
+    'mg_ee_ha_ecm160':['H+gamma','to do','','1.89e-05','1.0','1.0'],
+    'mg_ee_ha_ecm240':['H+gamma','to do','','8.39e-05','1.0','1.0'],
+    'mg_ee_ha_ecm365':['H+gamma','to do','','3.66e-05','1.0','1.0'],
 
     'mg_ee_tt_ecm350':['tt','tt inclusive','','1.0','1.0','1.0'],
     'mg_ee_tt_FCNC_tH_ecm365':['tt','tt inclusive','','1.0','1.0','1.0'],
@@ -1276,7 +1276,7 @@ gridpacklist = {
     'wzp6_ee_taunutauqq_ecm157':['ee -> tau nutau q q,  ecm=157 GeV','','','1.0','1.0','1.0'],
     'wzp6_ee_taunutauqq_ecm160':['ee -> tau nutau q q,  ecm=160 GeV','','','1.0','1.0','1.0'],
     'wzp6_ee_taunutauqq_ecm163':['ee -> tau nutau q q,  ecm=163 GeV','','','1.0','1.0','1.0'],
-
+    'wzp6_ee_lnuqq_noMcut_ecm160':['ee -> l nu q q,  ecm=160 GeV','test sample','','9.829e-01','1.0','1.0'],
     
     #fixme: cross sections
     'wzp6_ee_bbH_HZZ_noInv_ecm240':['ee -> Z(b b) H,  ecm=240 GeV','H to ZZ, no inv. decay','','7.594e-04','1.0','1.0'],
