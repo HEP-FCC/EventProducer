@@ -47,11 +47,11 @@ class MakeSampleList:
             processhad = proc_param.replace('kkmcp8_', 'kkmc_')
 
         yaml_lhe = os.path.join(yaml_lhe, processhad, 'merge.yaml')
-        print('INFO: LHE yaml:', yaml_lhe)
-        print('INFO: Reco. yaml:', yaml_reco)
+        print('INFO: LHE/STDHEP yaml:', yaml_lhe)
+        print('INFO: Reco yaml:', yaml_reco)
 
         if not ut.file_exist(yaml_lhe):
-            print(f'WARNING: No merged LHE file for process "{process}"\n'
+            print(f'WARNING: No merged LHE/STDHEP file for process "{process}"\n'
                   'Skipping...')
             # sys.exit(3)
             return 1.0
@@ -91,16 +91,19 @@ class MakeSampleList:
                    s[0] for s in yreco['merge']['outfiles']):
                 nlhe += int(f[1])
 
-        # skip process if do not find corresponding lhes
+        # skip process (FCC-hh) if do not find corresponding lhes
         if nlhe == 0:
-            print('did not find any LHE event for process', process)
-            return matching_eff
+            if 'FCCee' not in self.para.module_name:
+                print('WARNING: Production file IDs do not match!')
+            else:
+                print('Did not find any LHE event for process', process)
+                return matching_eff
 
         if nmatched == 0:
-            print('did not find any FCCSW event for process', process)
+            print('Did not find any events for process', process)
             return matching_eff
 
-        # compute matching efficiency ( for FCC-pp only )
+        # compute matching efficiency ( for FCC-hh only )
         if 'FCCee' not in self.para.module_name:
             matching_eff = round(float(nmatched)/nlhe, 3)
         if nweights == 0:
