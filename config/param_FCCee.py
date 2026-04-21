@@ -996,7 +996,7 @@ gridpacklist = {
 
     'wzp6_ee_HZZ_llnunu_ecm125':['ee -> H -> ZZ* ecm=125GeV','Z(ll)Z*(nunu)','','6.721e-07','1.0','1.0'],
     'wzp6_ee_HZZ_nunull_ecm125':['ee -> H -> ZZ* ecm=125GeV','Z(nunu)Z*(ll)','','6.721e-07','1.0','1.0'],
-    'wzp6_ee_Heenunu_ecm125':['ee -> H -> WW* ecm=125GeV','W(enu)W*(enu)','','3.631e-06','1.0'],
+    'wzp6_ee_Heenunu_ecm125':['ee -> H -> WW* ecm=125GeV','W(enu)W*(enu)','','3.631e-06','1.0','1.0'],
     'wzp6_ee_Hemununu_ecm125':['ee -> H -> WW* ecm=125GeV','W(enu)W*(munu)','','3.631e-06','1.0','1.0'],
     'wzp6_ee_Hetaununu_ecm125':['ee -> H -> WW* ecm=125GeV','W(enu)W*(taunu)','','3.631e-06','1.0','1.0'],
     'wzp6_ee_Hmuenunu_ecm125':['ee -> H -> WW* ecm=125GeV','W(munu)W*(enu)','','3.631e-06','1.0','1.0'],
