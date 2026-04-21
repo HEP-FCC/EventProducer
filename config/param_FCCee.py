@@ -446,6 +446,10 @@ pythialist = {
     'p8_ee_Zbb_ecm91_EvtGen_Bs2KstarKstar':['Z/Gamma* ecm=91.188GeV to bb','Bs to Kstar(Kpi) Kstar(Kpi)','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2rhoKstar':['Z/Gamma* ecm=91.188GeV to bb','Bd to rho(pipi) Kstar(Kpi)','','1.0','1.0','1.0'],
 
+    'p8_ee_Zss_ecm91_Ksmumu':['Z/Gamma* ecm=91.188GeV to ss','Ks to mu mu','','1.0','1.0','1.0'],
+    'p8_ee_Zss_ecm91_Kspipi_pimu':['Z/Gamma* ecm=91.188GeV to ss','Ks to pi pi / pi mu','','1.0','1.0','1.0'],
+
+    
 
 }
 
