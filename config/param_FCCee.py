@@ -449,7 +449,12 @@ pythialist = {
     'p8_ee_Zss_ecm91_Ksmumu':['Z/Gamma* ecm=91.188GeV to ss','Ks to mu mu','','1.0','1.0','1.0'],
     'p8_ee_Zss_ecm91_Kspipi_pimu':['Z/Gamma* ecm=91.188GeV to ss','Ks to pi pi / pi mu','','1.0','1.0','1.0'],
 
-    
+    'p8_ee_Zbb_ecm91_Ksmumu':['Z/Gamma* ecm=91.188GeV to bb','Ks to mu mu','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_Kspipi_pimu':['Z/Gamma* ecm=91.188GeV to bb','Ks to pi pi / pi mu','','1.0','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_Ksmumu':['Z/Gamma* ecm=91.188GeV to cc','Ks to mu mu','','1.0','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_Kspipi_pimu':['Z/Gamma* ecm=91.188GeV to cc','Ks to pi pi / pi mu','','1.0','1.0','1.0'],
+    'p8_ee_Zud_ecm91_Ksmumu':['Z/Gamma* ecm=91.188GeV to uu/dd','Ks to mu mu','','1.0','1.0','1.0'],
+    'p8_ee_Zud_ecm91_Kspipi_pimu':['Z/Gamma* ecm=91.188GeV to uu/dd','Ks to pi pi / pi mu','','1.0','1.0','1.0'],
 
 }
 
@@ -967,6 +972,16 @@ gridpacklist = {
     'wzp6_ee_taunutauqq_ecm125':['ee -> taunuqq (no H) ecm=125GeV','','','6.761e-03','1.0','1.0'],
     'wzp6_ee_qq_ecm125':['ee -> qq, ecm=125GeV','','','3.631E+02','1.0','1.0'],
 
+    'wzp6_ee_qqqq_ecm125':['ee -> qq, ecm=125GeV','','','1.0','1.0','1.0'],
+    'wzp6_ee_mumu_ecm125':['ee -> mumu, ecm=125GeV','','','1.0','1.0','1.0'],
+    'wzp6_ee_ee_Mee_5_150_ecm125':['ee -> ee, ecm=125GeV','','','1.0','1.0','1.0'],
+
+
+    'wzp6_ee_anunuH_ecm160':['ee -> nunuH + photon, ecm=160GeV','','','6.10e-08','1.0','1.0'],
+   
+    'wzp6_ee_anunuH_Hbb_ecm240':['ee -> nunuH + photon, ecm=160GeV','H->bb','','2.21e-07','1.0','1.0'],
+    'wzp6_ee_anunuH_Hbb_ecm365':['ee -> nunuH + photon, ecm=160GeV','H->bb','','1.44e-06','1.0','1.0'],
+    
     'wzp6_ee_WWemununu_ecm125':['ee -> WW* (no H) ecm=125GeV','W(enu)W*(munu)','','6.370e-04','1.0','1.0'],
     'wzp6_ee_WWmuenunu_ecm125':['ee -> WW* (no H) ecm=125GeV','W(munu)W*(enu)','','6.370e-04','1.0','1.0'],
     'wzp6_ee_ZZ4lep_2lepColToBeam_ecm125':['ee -> ZZ* (no H) ecm=125GeV','ZZ*(4lep), Z* leptons outside of acceptance','','1.371e-01','1.0','1.0'],
