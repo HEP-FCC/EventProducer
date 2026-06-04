@@ -1365,4 +1365,20 @@ gridpacklist = {
     'wzp6_ee_qqH_HZZ_noInv_ecm365':['ee -> Z(q q) H,  ecm=365 GeV','H to ZZ, no inv. decay','','8.362e-04','1.0','1.0'],
     'wzp6_ee_ssH_HZZ_noInv_ecm365':['ee -> Z(s s) H,  ecm=365 GeV','H to ZZ, no inv. decay','','4.697e-04','1.0','1.0'],
     'wzp6_ee_tautauH_HZZ_noInv_ecm365':['ee -> Z(tau tau) H,  ecm=365 GeV','H to ZZ, no inv. decay','','1.057e-04','1.0','1.0'],
+
+     #fixme: cross sections
+    'wzp6_ee_numunumuH_Hbb_mZmHeqmW_ecm163':['ee -> Z(numu numu) H,  ecm=163 GeV','H->bb, mZ = mH = mW', '','1.0','1.0','1.0'],
+    'wzp6_ee_numunumuH_Hcc_mZmHeqmW_ecm163':['ee -> Z(numu numu) H,  ecm=163 GeV','H->cc, mZ = mH = mW', '','1.0','1.0','1.0'],
+    'wzp6_ee_numunumuH_Hdd_mZmHeqmW_ecm163':['ee -> Z(numu numu) H,  ecm=163 GeV','H->dd, mZ = mH = mW', '','1.0','1.0','1.0'],
+    'wzp6_ee_numunumuH_Hgg_mZmHeqmW_ecm163':['ee -> Z(numu numu) H,  ecm=163 GeV','H->gg, mZ = mH = mW', '','1.0','1.0','1.0'],
+    'wzp6_ee_numunumuH_Hss_mZmHeqmW_ecm163':['ee -> Z(numu numu) H,  ecm=163 GeV','H->ss, mZ = mH = mW', '','1.0','1.0','1.0'],
+    'wzp6_ee_numunumuH_Htautau_mZmHeqmW_ecm163':['ee -> Z(numu numu) H,  ecm=163 GeV','H->tautau, mZ = mH = mW', '','1.0','1.0','1.0'],
+    'wzp6_ee_numunumuH_Huu_mZmHeqmW_ecm163':['ee -> Z(numu numu) H,  ecm=163 GeV','H->uu, mZ = mH = mW', '','1.0','1.0','1.0'],
+
+    'wzp6_ee_munumuqq_Vcb_ecm163':['ee -> mu numu q q,  ecm=163 GeV','W(munu)W(qq), Vcb', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vcd_ecm163':['ee -> mu numu q q,  ecm=163 GeV','W(munu)W(qq), Vcd', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vcs_ecm163':['ee -> mu numu q q,  ecm=163 GeV','W(munu)W(qq), Vcs', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vub_ecm163':['ee -> mu numu q q,  ecm=163 GeV','W(munu)W(qq), Vub', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vud_ecm163':['ee -> mu numu q q,  ecm=163 GeV','W(munu)W(qq), Vud', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vus_ecm163':['ee -> mu numu q q,  ecm=163 GeV','W(munu)W(qq), Vus', '','1.0','1.0','1.0'],       
 }
