@@ -51,6 +51,8 @@ prodTag = {
     'pre_fall2022_training':'/cvmfs/fcc.cern.ch/sw/latest/setup.sh',
     'winter2023':'/cvmfs/sw.hsf.org/spackages6/key4hep-stack/2022-12-23/x86_64-centos7-gcc11.2.0-opt/ll3gi/setup.sh',
     'winter2023_training':'/cvmfs/sw.hsf.org/spackages6/key4hep-stack/2022-12-23/x86_64-centos7-gcc11.2.0-opt/ll3gi/setup.sh',
+    # test campaign: pinned nightly 2026-06-06 (Delphes develop 822e31b3, post-d2d4c3d). NB nightly snapshots are GC'd after ~weeks.
+    'pre_summer2026':'/cvmfs/sw-nightlies.hsf.org/key4hep/releases/2026-06-06/x86_64-almalinux9-gcc14.2.0-opt/key4hep-stack/2026-06-06-3mtemo/setup.sh',
 }
 
 defaultstack='/cvmfs/fcc.cern.ch/sw/latest/setup.sh'

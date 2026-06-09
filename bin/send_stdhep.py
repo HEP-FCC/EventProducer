@@ -67,6 +67,8 @@ class send_stdhep():
             whizardcard='%s%s.sin'%(self.para.whizardcards_dir, 'v3.0.3/'+self.process)     # Whizard 2.8.5, with Pythia6 interface
             if 'spring2021' in self.version or 'pre_fall2022' in self.version or 'dev' in self.version:
                 whizardcard='%s%s.sin'%(self.para.whizardcards_dir, 'v2.8.5/'+self.process)     # Whizard 2.8.5, with Pythia6 interface
+            if 'pre_summer2026' in self.version:
+                whizardcard='%s%s.sin'%(self.para.whizardcards_dir, 'v3.1.5/'+self.process)     # Whizard 3.1.5 (nightly 2026-06-06), Pythia6 interface
 	  
 
         whizardcard=whizardcard.replace('_VERSION_',self.version)
