@@ -76,6 +76,10 @@ pythiacards_dir  = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/Pythia8
 evtgencards_dir  = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/EvtGen/"
 ##where the WHIZARD cards are stored
 whizardcards_dir = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/Whizard/"
+##where the HERWIG cards are stored
+herwigcards_dir = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/Herwig/"
+##where the SHERPA cards are stored
+sherpacards_dir = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/Sherpa/"
 ##where the KKMC cards are stored
 kkmccards_dir = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/KKMC/"
 # /cvmfs/fcc.cern.ch/sw/latest/setup.sh
@@ -503,6 +507,26 @@ branching_ratios = {
 
 }
 
+
+# list of processes generated with Herwig directly (Herwig -> HepMC2 -> Delphes EDM4hep, single job)
+# xsec consistent with the pythialist Zqq entries (Zud 11870.5 split: dd down-type, uu up-type ~ cc)
+herwiglist = {
+    'hw_ee_dd_ecm91p2':['Z/Gamma* ecm=91.188GeV to dd (Herwig 7.3)','','','6655.04','1.0','1.0'],
+    'hw_ee_uu_ecm91p2':['Z/Gamma* ecm=91.188GeV to uu (Herwig 7.3)','','','5215.46','1.0','1.0'],
+    'hw_ee_ss_ecm91p2':['Z/Gamma* ecm=91.188GeV to ss (Herwig 7.3)','','','5215.46','1.0','1.0'],
+    'hw_ee_cc_ecm91p2':['Z/Gamma* ecm=91.188GeV to cc (Herwig 7.3)','','','5215.46','1.0','1.0'],
+    'hw_ee_bb_ecm91p2':['Z/Gamma* ecm=91.188GeV to bb (Herwig 7.3)','','','6645.46','1.0','1.0'],
+}
+
+# list of processes generated with Sherpa directly (Sherpa -> HepMC3 -> Delphes EDM4hep, single job)
+# xsec consistent with the pythialist Zqq entries (Zud 11870.5 split: dd down-type, uu up-type ~ cc)
+sherpalist = {
+    'sh_ee_dd_ecm91p2':['Z/Gamma* ecm=91.188GeV to dd (Sherpa 3.0)','','','6655.04','1.0','1.0'],
+    'sh_ee_uu_ecm91p2':['Z/Gamma* ecm=91.188GeV to uu (Sherpa 3.0)','','','5215.46','1.0','1.0'],
+    'sh_ee_ss_ecm91p2':['Z/Gamma* ecm=91.188GeV to ss (Sherpa 3.0)','','','5215.46','1.0','1.0'],
+    'sh_ee_cc_ecm91p2':['Z/Gamma* ecm=91.188GeV to cc (Sherpa 3.0)','','','5215.46','1.0','1.0'],
+    'sh_ee_bb_ecm91p2':['Z/Gamma* ecm=91.188GeV to bb (Sherpa 3.0)','','','6645.46','1.0','1.0'],
+}
 
 ##Gridpack list
 ##     0          1            2                 3           4           5
