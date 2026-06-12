@@ -104,6 +104,19 @@ detectors = [
 pythialist = {
     'dummy':['NOT REGISTERED IN param_FCCee', 'NOT REGISTERED IN param_FCCee', '', '-9999', '-9999', '-9999'],
 
+    # pre_summer2026 Z->qq flavour-tagging samples; _cylinder = old winter2023 long-lived
+    # convention (limitCylinder), bare = proper-lifetime cut (tau0Max=100, as Herwig/Sherpa)
+    'p8_ee_dd_ecm91p2':['Z/Gamma* ecm=91.188GeV to dd','inclusive decays','','6655.04','1.0','1.0'],
+    'p8_ee_uu_ecm91p2':['Z/Gamma* ecm=91.188GeV to uu','inclusive decays','','5215.46','1.0','1.0'],
+    'p8_ee_ss_ecm91p2':['Z/Gamma* ecm=91.188GeV to ss','inclusive decays','','5215.46','1.0','1.0'],
+    'p8_ee_cc_ecm91p2':['Z/Gamma* ecm=91.188GeV to cc','inclusive decays','','5215.46','1.0','1.0'],
+    'p8_ee_bb_ecm91p2':['Z/Gamma* ecm=91.188GeV to bb','inclusive decays','','6645.46','1.0','1.0'],
+    'p8_ee_dd_ecm91p2_cylinder':['Z/Gamma* ecm=91.188GeV to dd','cylinder long-lived convention','','6655.04','1.0','1.0'],
+    'p8_ee_uu_ecm91p2_cylinder':['Z/Gamma* ecm=91.188GeV to uu','cylinder long-lived convention','','5215.46','1.0','1.0'],
+    'p8_ee_ss_ecm91p2_cylinder':['Z/Gamma* ecm=91.188GeV to ss','cylinder long-lived convention','','5215.46','1.0','1.0'],
+    'p8_ee_cc_ecm91p2_cylinder':['Z/Gamma* ecm=91.188GeV to cc','cylinder long-lived convention','','5215.46','1.0','1.0'],
+    'p8_ee_bb_ecm91p2_cylinder':['Z/Gamma* ecm=91.188GeV to bb','cylinder long-lived convention','','6645.46','1.0','1.0'],
+
     'p8_ee_ZH_Znunu_Hgg_ecm240':['ZH ecm=240GeV','Z->nunu, H->gg','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
     'p8_ee_ZH_Znunu_Hbb_ecm240':['ZH ecm=240GeV','Z->nunu, H->bb','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
     'p8_ee_ZH_Znunu_Hcc_ecm240':['ZH ecm=240GeV','Z->nunu, H->cc','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
