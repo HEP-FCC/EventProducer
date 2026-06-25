@@ -253,160 +253,71 @@ pythialist = {
 
 
     'p8_ee_Zbb_ecm91_EvtGen':['Z/Gamma* ecm=91.188GeV to bb','inclusive decays using EvtGen','','6645.46','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2Inclusive':['Z/Gamma* ecm=91.188GeV to bb','EvtGen inclusive Bd decay','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Inclusive':['Z/Gamma* ecm=91.188GeV to bb','EvtGen inclusive Bu decay','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2Inclusive':['Z/Gamma* ecm=91.188GeV to bb','EvtGen inclusive Bs decay','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bc2Inclusive':['Z/Gamma* ecm=91.188GeV to bb','EvtGen inclusive Bc decay','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2Inclusive':['Z/Gamma* ecm=91.188GeV to bb','EvtGen inclusive Lb decay','','1.0','1.0','1.0'],
 
-    'p8_ee_Zcc_ecm91_EvtGen_Dd2K3Pi':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zcc_ecm91_EvtGen_Dd2TauNu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zcc_ecm91_EvtGen_Dd2TauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zcc_ecm91_EvtGen_Ds2EtapRho':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zcc_ecm91_EvtGen_Ds2TauNu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zcc_ecm91_EvtGen_Ds2TauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zcc_ecm91_EvtGen_Lc2LENu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zcc_ecm91_EvtGen_Lc2LMuNu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zcc_ecm91_EvtGen_Lc2LRhoPi':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zcc_ecm91_EvtGen_Lc2Sigma2Pi':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
-
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2DENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2DMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2DstENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2DstMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2D0ENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2D0MuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst0ENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst0MuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsEE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsMuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2EE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2MuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2NuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiEE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiMuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2KEE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2KMuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2KTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2LEE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2LMuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2LMuMuphsp':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2LTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
-
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2D0Pi':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B+/- -> D0(KPi)Pi','','1.3290920','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2KstTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (K*0 -> K- pi+) tau+ tau-, tau -> 3pi nu','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2KstTauTauTAUHADNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (K*0 -> K- pi+) tau+ tau-, tau -> 3pi nu TAUHADNU model','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2D0PiPi':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> D0 p+ p-','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2MuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> mu mu','','3.029000668e-07','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2EE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> e e','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2TauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> tau tau','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2NuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> nu nu','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2DstTauNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (D*- -> (D0b -> K+ pi-) pi-) tau+ nu, tau -> 3pi nu','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2DstTauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (D*- -> (D0b -> K+ pi-) pi-) tau+ nu, tau -> 3pi nu TAUHADNU model','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2DTauNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (D- -> K+ pi- pi-) tau+ nu, tau -> 3pi nu','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2DTauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (D- -> K+ pi- pi-) tau+ nu, tau -> 3pi nu TAUHADNU model','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2KstEE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (K*0 -> K- pi+) e+ e-','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_BdKstNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (K*0 -> K- pi+) nu nu','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsPi0':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (Ks0 -> pi pi) pi0','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiGamma':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs0 -> (phi -> K+ K-) gamma','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2TauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs0 -> tau+ tau-, tau -> 3pi nu','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2TauTauTAUHADNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs0 -> tau+ tau-, tau -> 3pi nu TAUHADNU model','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bc2TauNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc+ -> tau+ nu, tau -> 3pi nu','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bc2TauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc+ -> tau+ nu, tau -> 3pi nu TAUHADNU model','','0.011680911114880002','1.0','1.0'],#6645.46*2*0.0004*0.0236*0.0931
-    'p8_ee_Zbb_ecm91_EvtGen_Bc2TauNuTau23PiPi0NuTAUOLA':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc+ -> tau+ nu, tau -> 3pi pi0 nu TAUOLA model','','0.01','1.0','1.0'],#0.0931 for the tau decay, it is 0.0462
-    'p8_ee_Zbb_ecm91_EvtGen_Bc2MuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc+ -> mu+ nu','','0.011680911114880002','1.0','1.0'],#6645.46*2*0.0004*0.0236*0.0931
-    'p8_ee_Zbb_ecm91_EvtGen_Bc2TauNuTau2MuNuNuPHOTOSTAULNUNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc+ -> tau+ nu, tau -> mu nu nu','','0.011680911114880002','1.0','1.0'],#6645.46*2*0.0004*0.0236*0.0931
-    'p8_ee_Zbb_ecm91_EvtGen_Bc2TauNuTau2MuNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc+ -> tau+ nu, tau -> mu nu nu','','0.011680911114880002','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2MuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B+ -> mu+ nu','','0.011680911114880002','1.0','1.0'],#6645.46*2*0.0004*0.0236*0.0931
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2TauNuTau2MuNuNuPHOTOSTAULNUNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B+ -> tau+ nu, tau -> mu nu nu','','0.011680911114880002','1.0','1.0'],#6645.46*2*0.0004*0.0236*0.0931
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2TauNuTau2MuNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B+ -> tau+ nu, tau -> mu nu nu','','0.011680911114880002','1.0','1.0'],
-
-
-    #'p8_ee_Zbb_ecm91_EvtGen_Bs2DsK':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs+ -> D*K','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2TauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B+ -> tau+ nu, tau -> 3pi nu TAUHADNU model','','0.05799621863924','1.0','1.0'],#6645.46*2*0.43*0.000109*0.0931
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2TauNuTau23PiPi0NuTAUOLA':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bu+ -> tau+ nu, tau -> 3pi pi0 nu TAUOLA model','','0.01','1.0','1.0'],
-
-    'p8_ee_Zbb_ecm91_EvtGen_BuCocktail':['Z/Gamma* ecm=91.188GeV to bb','Bc2TaNu Bu cocktail','','877.26717','1.0','1.0'],#6645.46*0.13201
+    # NB: the cocktail cards below were only used in the spring2021 production
+#Bu = 0.307 * 0.43 = 0.13201
+#Bd = 0.242 * 0.43 = 0.10406
+#Bs = 0.243 * 0.096 = 0.023328
+#Lb = 0.307 * 0.037 = 0.011359
     'p8_ee_Zbb_ecm91_EvtGen_BdCocktail':['Z/Gamma* ecm=91.188GeV to bb','Bc2TaNu Bd cocktail','','691.52657','1.0','1.0'],#6645.46*0.10406
+    'p8_ee_Zbb_ecm91_EvtGen_BuCocktail':['Z/Gamma* ecm=91.188GeV to bb','Bc2TaNu Bu cocktail','','877.26717','1.0','1.0'],#6645.46*0.13201
     'p8_ee_Zbb_ecm91_EvtGen_BsCocktail':['Z/Gamma* ecm=91.188GeV to bb','Bc2TaNu Bs cocktail','','155.02529','1.0','1.0'],#6645.46*0.023328
     'p8_ee_Zbb_ecm91_EvtGen_LbCocktail':['Z/Gamma* ecm=91.188GeV to bb','Bc2TaNu Lb cocktail','','75.485780','1.0','1.0'],#6645.46*0.011359
 
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2TauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> tau tau','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2MuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> mu mu','','3.029000668e-07','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2EE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> e e','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2NuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> nu nu','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2gammagamma':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
 
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2Kstee':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2Kstee','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsteeBTOSLLBALL':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2KsteeBTOSLLBALL','','1.0','1.0','1.0'],
-
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DTauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Bd2DTauNu','','30.861516240000004','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DstTauNu':['Z/Gamma* ecm=91.188GeV to bb','Bd2DstTauNu','','44.86350046','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DTauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (D- -> K+ pi- pi-) tau+ nu, tau -> 3pi nu TAUHADNU model','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DstTauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (D*- -> (D0b -> K+ pi-) pi-) tau+ nu, tau -> 3pi nu TAUHADNU model','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DstMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DstENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2KstTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (K*0 -> K- pi+) tau+ tau-, tau -> 3pi nu','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2KstTauTauTAUHADNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (K*0 -> K- pi+) tau+ tau-, tau -> 3pi nu TAUHADNU model','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2KstarTauTau':['Z/Gamma* ecm=91.188GeV to bb','B to K* tautau decay, with  taus decaying into 3 pions','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsMuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2Kstmm':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2Kstmm','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2KstmmBTOSLLBALL':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2KstmmBTOSLLBALL','','1.0','1.0','1.0'],
-
     'p8_ee_Zbb_ecm91_EvtGen_Bd2Rhomm':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2Rhomm','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsEE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2KstEE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (K*0 -> K- pi+) e+ e-','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2Kstee':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2Kstee','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsteeBTOSLLBALL':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2KsteeBTOSLLBALL','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2Rhoee':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2Rhoee','','1.0','1.0','1.0'],
-
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2Kstee':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs2Kstee','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2KsteeBTOSLLBALL':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs2KsteeBTOSLLBALL','','1.0','1.0','1.0'],
-
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2Kstmm':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs2Kstmm','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2KstmmBTOSLLBALL':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs2KstmmBTOSLLBALL','','1.0','1.0','1.0'],
-
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2Piee':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bu2Piee','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2Pimm':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bu2Pimm','','1.0','1.0','1.0'],
-
-
-    'p8_ee_Zbb_ecm91_EvtGen_Bc2DsNuNuDs2KKst':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2KstNuNu_Ds2KKst','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bc2DsNuNuDs2phipi':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc2DsNuNu_Ds2phipi','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bc2DsNuNuDs2phirho':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc2DsNuNu_Ds2phirho','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsNuNu':['Z/Gamma* ecm=91.188GeV to bb', 'Bd to Ks nunu','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_BdKstNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (K*0 -> K- pi+) nu nu','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2KstNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2KstNuNu','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs2PhiNuNu','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2KNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bu2KNuNu','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2LNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Lb2LNuNu','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2JpsiL':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Lb2JpsiL','','1.0','1.0','1.0'],
-
 
     'p8_ee_Zbb_ecm91_EvtGen_Bd2D3Pi'    :['Z/Gamma* ecm=91.188GeV to bb','Bd2D3Pi','','17.1452868','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DDs'     :['Z/Gamma* ecm=91.188GeV to bb','Bd2DDs','','20.57434416','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2DTauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Bd2DTauNu','','30.861516240000004','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2Dst3Pi'  :['Z/Gamma* ecm=91.188GeV to bb','Bd2Dst3Pi','','20.602919638','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DstDs'   :['Z/Gamma* ecm=91.188GeV to bb','Bd2DstDs','','22.8603824','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DstDsst' :['Z/Gamma* ecm=91.188GeV to bb','Bd2DstDsst','','50.57859606','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2DstTauNu':['Z/Gamma* ecm=91.188GeV to bb','Bd2DstTauNu','','44.86350046','1.0','1.0'],
-
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2Ds3Pi'    :['Z/Gamma* ecm=91.188GeV to bb','Bs2Ds3Pi','','3.891581376','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsDs'     :['Z/Gamma* ecm=91.188GeV to bb','Bs2DsDs','','2.8070423040000003','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsTauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Bs2DsTauNu','','15.502529088000001','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2Dsst3Pi'  :['Z/Gamma* ecm=91.188GeV to bb','Bs2Dsst3Pi','','4.5997215936','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstDs'   :['Z/Gamma* ecm=91.188GeV to bb','Bs2DsstD','','8.867701824','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstDsst' :['Z/Gamma* ecm=91.188GeV to bb','Bs2DsstDsst','','9.186683904','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstTauNu':['Z/Gamma* ecm=91.188GeV to bb','Bs2DsstTauNu','','10.335019392','1.0','1.0'],
-
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2D03Pi'    :['Z/Gamma* ecm=91.188GeV to bb','Bu2D03Pi','','16.00226768','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2D0Ds'     :['Z/Gamma* ecm=91.188GeV to bb','Bu2D0Ds','','25.717930199999998','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2D0TauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Bu2D0TauNu','','22.003118060000002','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst03Pi'  :['Z/Gamma* ecm=91.188GeV to bb','Bu2Dsst3Pi','','29.43274234','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst0Ds'   :['Z/Gamma* ecm=91.188GeV to bb','Bu2DsstD','','21.71736328','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst0Dsst' :['Z/Gamma* ecm=91.188GeV to bb','Bu2DsstDsst','','48.86406738','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst0TauNu':['Z/Gamma* ecm=91.188GeV to bb','Bu2DsstTauNu','','53.721898640000006','1.0','1.0'],
-
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2Lc3Pi'    :['Z/Gamma* ecm=91.188GeV to bb','Lb2Ds3Pi','','1.893291554','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcDs'     :['Z/Gamma* ecm=91.188GeV to bb','Lb2DsDs','','2.7047022199999997','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcTauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Lb2DsTauNu','','8.040342054','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2Lcst3Pi'  :['Z/Gamma* ecm=91.188GeV to bb','Lb2Dsst3Pi','','1.893291554','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstDs'   :['Z/Gamma* ecm=91.188GeV to bb','Lb2DsstD','','2.7047022199999997','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstDsst' :['Z/Gamma* ecm=91.188GeV to bb','Lb2DsstDsst','','2.7047022199999997','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstTauNu':['Z/Gamma* ecm=91.188GeV to bb','Lb2DsstTauNu','','8.040342054','1.0','1.0'],
-
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2JpsiPhi':['Z/Gamma* ecm=91.188GeV to bb','Bs to JPsi(mumu) Phi(KK)','','1','1.0','1.0'],
-
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2KstarTauTau':['Z/Gamma* ecm=91.188GeV to bb','B to K* tautau decay, with  taus decaying into 3 pions','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2D0Pi0'   :['Z/Gamma* ecm=91.188GeV to bb','Bd2D0Pi0','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2D0PiPi':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> D0 p+ p-','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsPi0':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B0 -> (Ks0 -> pi pi) pi0','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2JpsiKL'  :['Z/Gamma* ecm=91.188GeV to bb','Bd2JpsiKL','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2JpsiKS'  :['Z/Gamma* ecm=91.188GeV to bb','Bd2JpsiKS','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2JpsiKstSVV' :['Z/Gamma* ecm=91.188GeV to bb','Bd2JpsiKstSVV','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2PhiKs':['Z/Gamma* ecm=91.188GeV to bb','Bd to Phi(KK) Ks(pi+pi-)','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2rhoKstar':['Z/Gamma* ecm=91.188GeV to bb','Bd to rho(pipi) Kstar(Kpi)','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2DsK':['Z/Gamma* ecm=91.188GeV to bb','B0 to Ds K, Ds to Phi pi or Phi rho','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bd2Dsstarpi':['Z/Gamma* ecm=91.188GeV to bb','B0 to Ds* pi, Ds* to gamma Phi pi or gamma Phi rho','','4.52e-3','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2pipipipi0':['Z/Gamma* ecm=91.188GeV to bb','B0 -> (Ds+ ->  pi+  pi+  pi-  pi0) (Ds- -> pi-  pi-  pi+  pi0) (K*0 -> K+ pi-)','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2Taunu':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds+ Ds- K*0, K*0 forced to K+ pi-, Ds forced to tau nu','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2pipipipi0v2':['Z/Gamma* ecm=91.188GeV to bb','B0 -> (Ds+ -> (eta0 ->  pi+  pi-  pi0 / omega0 -> pi+  pi-  pi0) pi+) (Ds+ -> (eta0 ->  pi-  pi+  pi0 / omega0 -> pi-  pi+  pi0) pi-) (K*0 -> K+ pi-)','','1','1.0','1.0'],
-
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2TaunuDs2pipipipi0':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds+ Ds- K*0, K*0 forced to K+ pi-, Ds forced to tau nu or 3pi1pi0','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2pipipipi0pi0':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds+ Ds- K*0, K*0 forced to K+ pi-, Ds forced to pipipipipi0','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2pipipipi0pi0v2':['Z/Gamma* ecm=91.188GeV to bb','B0 -> (Ds+ ->  (eta0 / omega0 -> pi+ pi- pi0) pi+ pi0) (Ds- -> (eta0 / omega0 -> pi+ pi- pi0)  pi- pi0) (K*0 -> K+ pi-)','','1','1.0','1.0'],
@@ -418,12 +329,71 @@ pythialist = {
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DsDsKstarDs2TaunuDs2pipipipi0pi0ChargeConjugation':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds+ Ds- K*0, K*0 forced to K+ pi-, Ds- forced to tau nu, Ds+ forced to multi pions','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DsstarDsKstarDs2PiPiPiPi0Pi0Dsstar2Dsgamma':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds*+ Ds- K*0, K*0 forced to K+ pi-, Ds*+ forced to Ds+ and gamma, and both Ds+ and Ds- forced to multi pions','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bd2DsstarKstarTauNuDs2pipipipi0pi0':['Z/Gamma* ecm=91.188GeV to bb','B0 -> Ds*+ tau- K*0, K*0 forced to K+ pi-, Ds* forced to Ds gamma, and Ds forced to multi pions','','1','1.0','1.0'],
-#Bu = 0.307 * 0.43 = 0.13201
-#Bd = 0.242 * 0.43 = 0.10406
-#Bs = 0.243 * 0.096 = 0.023328
-#Lb = 0.307 * 0.037 = 0.011359
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2DsK':['Z/Gamma* ecm=91.188GeV to bb','B0 to Ds K, Ds to Phi pi or Phi rho','','1','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2Dsstarpi':['Z/Gamma* ecm=91.188GeV to bb','B0 to Ds* pi, Ds* to gamma Phi pi or gamma Phi rho','','4.52e-3','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2TauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B+ -> tau+ nu, tau -> 3pi nu TAUHADNU model','','0.05799621863924','1.0','1.0'],#6645.46*2*0.43*0.000109*0.0931
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2TauNuTau23PiPi0NuTAUOLA':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bu+ -> tau+ nu, tau -> 3pi pi0 nu TAUOLA model','','0.01','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2TauNuTau2MuNuNuPHOTOSTAULNUNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B+ -> tau+ nu, tau -> mu nu nu','','0.011680911114880002','1.0','1.0'],#6645.46*2*0.0004*0.0236*0.0931
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2TauNuTau2MuNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B+ -> tau+ nu, tau -> mu nu nu','','0.011680911114880002','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2TauNuTau2ENuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B+ -> tau+ nu, tau -> mu nu nu','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2MuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B+ -> mu+ nu','','0.011680911114880002','1.0','1.0'],#6645.46*2*0.0004*0.0236*0.0931
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2D0TauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Bu2D0TauNu','','22.003118060000002','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst0TauNu':['Z/Gamma* ecm=91.188GeV to bb','Bu2DsstTauNu','','53.721898640000006','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2D0MuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst0MuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2D0ENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst0ENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2KTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2KMuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Pimm':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bu2Pimm','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2KEE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Piee':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bu2Piee','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2KNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bu2KNuNu','','1.0','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2D0Pi':['Z/Gamma* ecm=91.188GeV to bb','EvtGen B+/- -> D0(KPi)Pi','','1.3290920','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2D03Pi'    :['Z/Gamma* ecm=91.188GeV to bb','Bu2D03Pi','','16.00226768','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2D0Ds'     :['Z/Gamma* ecm=91.188GeV to bb','Bu2D0Ds','','25.717930199999998','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst03Pi'  :['Z/Gamma* ecm=91.188GeV to bb','Bu2Dsst3Pi','','29.43274234','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst0Ds'   :['Z/Gamma* ecm=91.188GeV to bb','Bu2DsstD','','21.71736328','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2Dst0Dsst' :['Z/Gamma* ecm=91.188GeV to bb','Bu2DsstDsst','','48.86406738','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bu2JpsiK'    :['Z/Gamma* ecm=91.188GeV to bb','Bu2JpsiK','','1','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2TauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs0 -> tau+ tau-, tau -> 3pi nu','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2TauTauTAUHADNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs0 -> tau+ tau-, tau -> 3pi nu TAUHADNU model','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2MuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2EE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2NuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2gammagamma':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs0 -> gamma gamma','','1.0','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsTauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Bs2DsTauNu','','15.502529088000001','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstTauNu':['Z/Gamma* ecm=91.188GeV to bb','Bs2DsstTauNu','','10.335019392','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiMuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2Kstmm':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs2Kstmm','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2KstmmBTOSLLBALL':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs2KstmmBTOSLLBALL','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiEE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2Kstee':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs2Kstee','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2KsteeBTOSLLBALL':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs2KsteeBTOSLLBALL','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs2PhiNuNu','','1.0','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2Ds3Pi'    :['Z/Gamma* ecm=91.188GeV to bb','Bs2Ds3Pi','','3.891581376','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsDs'     :['Z/Gamma* ecm=91.188GeV to bb','Bs2DsDs','','2.8070423040000003','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2Dsst3Pi'  :['Z/Gamma* ecm=91.188GeV to bb','Bs2Dsst3Pi','','4.5997215936','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstDs'   :['Z/Gamma* ecm=91.188GeV to bb','Bs2DsstD','','8.867701824','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstDsst' :['Z/Gamma* ecm=91.188GeV to bb','Bs2DsstDsst','','9.186683904','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2D0KS'     :['Z/Gamma* ecm=91.188GeV to bb','Bs2D0KS','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2DsPiDs2KKPi' :['Z/Gamma* ecm=91.188GeV to bb','Bs2DsPiDs2KKPi','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2JpsiPhiSVV'  :['Z/Gamma* ecm=91.188GeV to bb','Bs2JpsiPhiSVV','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2JpsiPhi':['Z/Gamma* ecm=91.188GeV to bb','Bs to JPsi(mumu) Phi(KK)','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiGamma':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs0 -> (phi -> K+ K-) gamma','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiKs':['Z/Gamma* ecm=91.188GeV to bb','Bs to Phi(KK) Ks(pi+pi-)','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiPhi':['Z/Gamma* ecm=91.188GeV to bb','Bs to Phi(KK) Phi(KK)','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bs2KstarKstar':['Z/Gamma* ecm=91.188GeV to bb','Bs to Kstar(Kpi) Kstar(Kpi)','','1.0','1.0','1.0'],
+    #'p8_ee_Zbb_ecm91_EvtGen_Bs2DsK':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bs+ -> D*K','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2DsK':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds K, Ds to Phi pi or Phi rho','','13.23e-3','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2DsKtest':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds K, Ds to Phi pi or Phi rho','','13.23e-3','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2DsKstar':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds K*, Ds to Phi pi or Phi rho, K* to K pi0','','6.52e-3','1.0','1.0'],
@@ -431,23 +401,57 @@ pythialist = {
     'p8_ee_Zbb_ecm91_EvtGen_Bs2Dsrho':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds rho, Ds to Phi pi','','200e-3','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2DsstarK':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds* K, Ds* to gamma Phi pi or gamma Phi rho','','8.248e-3','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Bs2Dsstarpi':['Z/Gamma* ecm=91.188GeV to bb','Bs to Ds* pi, Ds* to gamma Phi pi or gamma Phi rho','','105e-3','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bc2TauNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc+ -> tau+ nu, tau -> 3pi nu','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bc2TauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc+ -> tau+ nu, tau -> 3pi nu TAUHADNU model','','0.011680911114880002','1.0','1.0'],#6645.46*2*0.0004*0.0236*0.0931
+    'p8_ee_Zbb_ecm91_EvtGen_Bc2TauNuTau23PiPi0NuTAUOLA':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc+ -> tau+ nu, tau -> 3pi pi0 nu TAUOLA model','','0.01','1.0','1.0'],#0.0931 for the tau decay, it is 0.0462
+    'p8_ee_Zbb_ecm91_EvtGen_Bc2TauNuTau2MuNuNuPHOTOSTAULNUNU':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc+ -> tau+ nu, tau -> mu nu nu','','0.011680911114880002','1.0','1.0'],#6645.46*2*0.0004*0.0236*0.0931
+    'p8_ee_Zbb_ecm91_EvtGen_Bc2TauNuTau2MuNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc+ -> tau+ nu, tau -> mu nu nu','','0.011680911114880002','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bc2TauNuTau2ENuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc+ -> tau+ nu, tau ->  e nu nu','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bc2MuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc+ -> mu+ nu','','0.011680911114880002','1.0','1.0'],#6645.46*2*0.0004*0.0236*0.0931
+
+    'p8_ee_Zbb_ecm91_EvtGen_Bc2DsNuNuDs2KKst':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bd2KstNuNu_Ds2KKst','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bc2DsNuNuDs2phipi':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc2DsNuNu_Ds2phipi','','1.0','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Bc2DsNuNuDs2phirho':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc2DsNuNu_Ds2phirho','','1.0','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcTauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Lb2DsTauNu','','8.040342054','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstTauNu':['Z/Gamma* ecm=91.188GeV to bb','Lb2DsstTauNu','','8.040342054','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstENu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LTauTau':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LMuMu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LMuMuphsp':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LEE':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LNuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Lb2LNuNu','','1.0','1.0','1.0'],
+
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2Lc3Pi'    :['Z/Gamma* ecm=91.188GeV to bb','Lb2Ds3Pi','','1.893291554','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcDs'     :['Z/Gamma* ecm=91.188GeV to bb','Lb2DsDs','','2.7047022199999997','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2Lcst3Pi'  :['Z/Gamma* ecm=91.188GeV to bb','Lb2Dsst3Pi','','1.893291554','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstDs'   :['Z/Gamma* ecm=91.188GeV to bb','Lb2DsstD','','2.7047022199999997','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstDsst' :['Z/Gamma* ecm=91.188GeV to bb','Lb2DsstDsst','','2.7047022199999997','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2JpsiL':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Lb2JpsiL','','1.0','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Lb2Dsp':['Z/Gamma* ecm=91.188GeV to bb','Lambda0 to Ds p, Ds to Phi pi or Phi rho','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Lb2Dsstarp':['Z/Gamma* ecm=91.188GeV to bb','Lambda0 to Ds* p, Ds* to gamma Phi pi or gamma Phi rho','','1','1.0','1.0'],
 
+    'p8_ee_Zcc_ecm91_EvtGen_Dd2TauNu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Dd2TauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Ds2TauNu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Ds2TauNuTAUHADNU':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Lc2LMuNu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Lc2LENu':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Dd2K3Pi':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Ds2EtapRho':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Lc2LRhoPi':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_Lc2Sigma2Pi':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_D2PiPi0':['Z/Gamma* ecm=91.188GeV to cc','EvtGen D+ -> pi+ pi0','','1.0','1.0','1.0'],
+    'p8_ee_Zcc_ecm91_EvtGen_D02gammagamma':['Z/Gamma* ecm=91.188GeV to cc','EvtGen to be filled','','1','1.0','1.0'],
+
     'p8_ee_Ztautau_ecm91_EvtGen_Tau2MuMuMu':['Z/Gamma* ecm=91.188GeV to tautau','EvtGen tau -> 3mu','','1.0','1.0','1.0'],
     'p8_ee_Ztautau_ecm91_EvtGen_Tau2MuGamma':['Z/Gamma* ecm=91.188GeV to tautau','EvtGen tau -> mu gamma','','1.0','1.0','1.0'],
-    'p8_ee_Zcc_ecm91_EvtGen_D2PiPi0':['Z/Gamma* ecm=91.188GeV to cc','EvtGen D+ -> pi+ pi0','','1.0','1.0','1.0'],
-
-
     'p8_noBES_ee_Ztautau_ecm91_EvtGen_TauMinus2MuMuMu':['Z/Gamma* ecm=91.188GeV to tautau', 'tau- -> 3mu, sig for BR=2e-8','','29.5e-6','1.0','1.0'],
     'p8_noBES_ee_Ztautau_ecm91_EvtGen_TauMinus2PiPiPinu':['Z/Gamma* ecm=91.188GeV to tautau', 'tau- -> 3pi nu','','137.3','1.0','1.0'],
-
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2KsNuNu':['Z/Gamma* ecm=91.188GeV to bb', 'Bd to Ks nunu','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiKs':['Z/Gamma* ecm=91.188GeV to bb','Bs to Phi(KK) Ks(pi+pi-)','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2PhiKs':['Z/Gamma* ecm=91.188GeV to bb','Bd to Phi(KK) Ks(pi+pi-)','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2PhiPhi':['Z/Gamma* ecm=91.188GeV to bb','Bs to Phi(KK) Phi(KK)','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bs2KstarKstar':['Z/Gamma* ecm=91.188GeV to bb','Bs to Kstar(Kpi) Kstar(Kpi)','','1.0','1.0','1.0'],
-    'p8_ee_Zbb_ecm91_EvtGen_Bd2rhoKstar':['Z/Gamma* ecm=91.188GeV to bb','Bd to rho(pipi) Kstar(Kpi)','','1.0','1.0','1.0'],
 
     'p8_ee_Zss_ecm91_Ksmumu':['Z/Gamma* ecm=91.188GeV to ss','Ks to mu mu','','1.0','1.0','1.0'],
     'p8_ee_Zss_ecm91_Kspipi_pimu':['Z/Gamma* ecm=91.188GeV to ss','Ks to pi pi / pi mu','','1.0','1.0','1.0'],
@@ -1229,11 +1233,11 @@ gridpacklist = {
     'wzp6_gaga_ee_60_ecm365':['gammagamma to ee, M(ee) > 60 GeV,  ecm=365 GeV','', '','2.0063','1.0','1.0'],
 
 
-    'wzp6_egamma_eZ_Zqq_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z->qq', '','2.092','1.0','1.0'],
+    'wzp6_egamma_eZ_Zqq_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z->qq', '','2.092','1.0','1.0'], #fixme: duplicate with L584. which xsec is correct?
     'wzp6_egamma_eZ_Zqq_ecm365':['e(e)Z EPA, e- gamma, ecm=365 GeV','Z->qq', '','2.825','1.0','1.0'],
     'wzp6_gaga_qq_60_ecm240':['gammagamma to qq, M(qq) > 60 GeV, ecm=240 GeV','', '','6.9932e-02','1.0','1.0'],
     'wzp6_gaga_qq_60_ecm365':['gammagamma to qq, M(qq) > 60 GeV, ecm=365 GeV','', '','6.9932e-02','1.0','1.0'],
-    'wzp6_gammae_eZ_Zqq_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z->qq', '','2.092','1.0','1.0'],
+    'wzp6_gammae_eZ_Zqq_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z->qq', '','2.092','1.0','1.0'], #fixme: duplicate with L585. which xsec is correct?
     'wzp6_gammae_eZ_Zqq_ecm365':['e(e)Z EPA, e+ gamma, ecm=365 GeV','Z->qq', '','2.825','1.0','1.0'],
 
 
