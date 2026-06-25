@@ -581,8 +581,6 @@ gridpacklist = {
     'wzp6_gammae_eZ_Zmumu_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z to mumu','','103.68e-3','1.0','1.0'],
     'wzp6_egamma_eZ_Zbb_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z to bb','','455.7e-3','1.0','1.0'],
     'wzp6_gammae_eZ_Zbb_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z to bb','','455.7e-3','1.0','1.0'],
-    'wzp6_egamma_eZ_Zqq_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z to qq, q=udsc','','1.6369','1.0','1.0'],
-    'wzp6_gammae_eZ_Zqq_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z to qq, q=udsc','','1.6369','1.0','1.0'],
     'wzp6_egamma_tbnu_ecm240':['nu_e t b (e) EPA, e- gamma, ecm=240 GeV','inc. top decays','','1.0753e-5','1.0','1.0'],
     'wzp6_gammae_tbnu_ecm240':['nu_e t b (e) EPA, e+ gamma, ecm=240 GeV','inc. top decays','','1.0753e-5','1.0','1.0'],
 
@@ -1233,11 +1231,11 @@ gridpacklist = {
     'wzp6_gaga_ee_60_ecm365':['gammagamma to ee, M(ee) > 60 GeV,  ecm=365 GeV','', '','2.0063','1.0','1.0'],
 
 
-    'wzp6_egamma_eZ_Zqq_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z->qq', '','2.092','1.0','1.0'], #fixme: duplicate with L584. which xsec is correct?
+    'wzp6_egamma_eZ_Zqq_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z->qq', '','2.092','1.0','1.0'],
     'wzp6_egamma_eZ_Zqq_ecm365':['e(e)Z EPA, e- gamma, ecm=365 GeV','Z->qq', '','2.825','1.0','1.0'],
     'wzp6_gaga_qq_60_ecm240':['gammagamma to qq, M(qq) > 60 GeV, ecm=240 GeV','', '','6.9932e-02','1.0','1.0'],
     'wzp6_gaga_qq_60_ecm365':['gammagamma to qq, M(qq) > 60 GeV, ecm=365 GeV','', '','6.9932e-02','1.0','1.0'],
-    'wzp6_gammae_eZ_Zqq_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z->qq', '','2.092','1.0','1.0'], #fixme: duplicate with L585. which xsec is correct?
+    'wzp6_gammae_eZ_Zqq_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z->qq', '','2.092','1.0','1.0'],
     'wzp6_gammae_eZ_Zqq_ecm365':['e(e)Z EPA, e+ gamma, ecm=365 GeV','Z->qq', '','2.825','1.0','1.0'],
 
 
