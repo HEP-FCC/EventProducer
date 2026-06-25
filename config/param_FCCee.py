@@ -1233,11 +1233,11 @@ gridpacklist = {
     'wzp6_gaga_ee_60_ecm365':['gammagamma to ee, M(ee) > 60 GeV,  ecm=365 GeV','', '','2.0063','1.0','1.0'],
 
 
-    'wzp6_egamma_eZ_Zqq_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z->qq', '','2.092','1.0','1.0'],
+    'wzp6_egamma_eZ_Zqq_ecm240':['e(e)Z EPA, e- gamma, ecm=240 GeV','Z->qq', '','2.092','1.0','1.0'], #fixme: duplicate with L584. which xsec is correct?
     'wzp6_egamma_eZ_Zqq_ecm365':['e(e)Z EPA, e- gamma, ecm=365 GeV','Z->qq', '','2.825','1.0','1.0'],
     'wzp6_gaga_qq_60_ecm240':['gammagamma to qq, M(qq) > 60 GeV, ecm=240 GeV','', '','6.9932e-02','1.0','1.0'],
     'wzp6_gaga_qq_60_ecm365':['gammagamma to qq, M(qq) > 60 GeV, ecm=365 GeV','', '','6.9932e-02','1.0','1.0'],
-    'wzp6_gammae_eZ_Zqq_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z->qq', '','2.092','1.0','1.0'],
+    'wzp6_gammae_eZ_Zqq_ecm240':['e(e)Z EPA, e+ gamma, ecm=240 GeV','Z->qq', '','2.092','1.0','1.0'], #fixme: duplicate with L585. which xsec is correct?
     'wzp6_gammae_eZ_Zqq_ecm365':['e(e)Z EPA, e+ gamma, ecm=365 GeV','Z->qq', '','2.825','1.0','1.0'],
 
 
