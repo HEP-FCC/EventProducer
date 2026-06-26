@@ -1378,7 +1378,9 @@ gridpacklist = {
     'wzp6_ee_munumuqq_noCut_ecm157':['ee -> mu numu q q,  ecm=157 GeV','test sample','','9.829e-01','1.0','1.0'],
     'wzp6_ee_munumuqq_noCut_ecm160':['ee -> mu numu q q,  ecm=160 GeV','test sample','','9.829e-01','1.0','1.0'],
     'wzp6_ee_munumuqq_noCut_ecm163':['ee -> mu numu q q,  ecm=163 GeV','test sample','','9.829e-01','1.0','1.0'],
-    
+    'wzp6_ee_munumuqq_noCut_ecm240':['ee -> mu numu q q,  ecm=240 GeV','test sample','','9.829e-01','1.0','1.0'],
+    'wzp6_ee_munumuqq_noCut_ecm365':['ee -> mu numu q q,  ecm=365 GeV','test sample','','9.829e-01','1.0','1.0'],
+
     'wzp6_ee_mumuqq_noCut_ecm157':['ee -> mu mu q q,  ecm=157 GeV','test sample','','9.829e-01','1.0','1.0'],
     'wzp6_ee_mumuqq_noCut_ecm160':['ee -> mu mu q q,  ecm=160 GeV','test sample','','9.829e-01','1.0','1.0'],
     'wzp6_ee_mumuqq_noCut_ecm163':['ee -> mu mu q q,  ecm=163 GeV','test sample','','9.829e-01','1.0','1.0'],
