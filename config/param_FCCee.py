@@ -76,6 +76,10 @@ pythiacards_dir  = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/Pythia8
 evtgencards_dir  = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/EvtGen/"
 ##where the WHIZARD cards are stored
 whizardcards_dir = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/Whizard/"
+##where the HERWIG cards are stored
+herwigcards_dir = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/Herwig/"
+##where the SHERPA cards are stored
+sherpacards_dir = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/Sherpa/"
 ##where the KKMC cards are stored
 kkmccards_dir = eosbaseinputdir+"FCC-config/_VERSION_/FCCee/Generator/KKMC/"
 # /cvmfs/fcc.cern.ch/sw/latest/setup.sh
@@ -99,6 +103,19 @@ detectors = [
 # list of processes only with Pythia, meaning no LHE
 pythialist = {
     'dummy':['NOT REGISTERED IN param_FCCee', 'NOT REGISTERED IN param_FCCee', '', '-9999', '-9999', '-9999'],
+
+    # pre_summer2026 Z->qq flavour-tagging samples; _cylinder = old winter2023 long-lived
+    # convention (limitCylinder), bare = proper-lifetime cut (tau0Max=100, as Herwig/Sherpa)
+    'p8_ee_dd_ecm91p2':['Z/Gamma* ecm=91.188GeV to dd','inclusive decays','','6655.04','1.0','1.0'],
+    'p8_ee_uu_ecm91p2':['Z/Gamma* ecm=91.188GeV to uu','inclusive decays','','5215.46','1.0','1.0'],
+    'p8_ee_ss_ecm91p2':['Z/Gamma* ecm=91.188GeV to ss','inclusive decays','','5215.46','1.0','1.0'],
+    'p8_ee_cc_ecm91p2':['Z/Gamma* ecm=91.188GeV to cc','inclusive decays','','5215.46','1.0','1.0'],
+    'p8_ee_bb_ecm91p2':['Z/Gamma* ecm=91.188GeV to bb','inclusive decays','','6645.46','1.0','1.0'],
+    'p8_ee_dd_ecm91p2_cylinder':['Z/Gamma* ecm=91.188GeV to dd','cylinder long-lived convention','','6655.04','1.0','1.0'],
+    'p8_ee_uu_ecm91p2_cylinder':['Z/Gamma* ecm=91.188GeV to uu','cylinder long-lived convention','','5215.46','1.0','1.0'],
+    'p8_ee_ss_ecm91p2_cylinder':['Z/Gamma* ecm=91.188GeV to ss','cylinder long-lived convention','','5215.46','1.0','1.0'],
+    'p8_ee_cc_ecm91p2_cylinder':['Z/Gamma* ecm=91.188GeV to cc','cylinder long-lived convention','','5215.46','1.0','1.0'],
+    'p8_ee_bb_ecm91p2_cylinder':['Z/Gamma* ecm=91.188GeV to bb','cylinder long-lived convention','','6645.46','1.0','1.0'],
 
     'p8_ee_ZH_Znunu_Hgg_ecm240':['ZH ecm=240GeV','Z->nunu, H->gg','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
     'p8_ee_ZH_Znunu_Hbb_ecm240':['ZH ecm=240GeV','Z->nunu, H->bb','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
@@ -507,6 +524,26 @@ branching_ratios = {
 
 }
 
+
+# list of processes generated with Herwig directly (Herwig -> HepMC2 -> Delphes EDM4hep, single job)
+# xsec consistent with the pythialist Zqq entries (Zud 11870.5 split: dd down-type, uu up-type ~ cc)
+herwiglist = {
+    'hw_ee_dd_ecm91p2':['Z/Gamma* ecm=91.188GeV to dd (Herwig 7.3)','','','6655.04','1.0','1.0'],
+    'hw_ee_uu_ecm91p2':['Z/Gamma* ecm=91.188GeV to uu (Herwig 7.3)','','','5215.46','1.0','1.0'],
+    'hw_ee_ss_ecm91p2':['Z/Gamma* ecm=91.188GeV to ss (Herwig 7.3)','','','5215.46','1.0','1.0'],
+    'hw_ee_cc_ecm91p2':['Z/Gamma* ecm=91.188GeV to cc (Herwig 7.3)','','','5215.46','1.0','1.0'],
+    'hw_ee_bb_ecm91p2':['Z/Gamma* ecm=91.188GeV to bb (Herwig 7.3)','','','6645.46','1.0','1.0'],
+}
+
+# list of processes generated with Sherpa directly (Sherpa -> HepMC3 -> Delphes EDM4hep, single job)
+# xsec consistent with the pythialist Zqq entries (Zud 11870.5 split: dd down-type, uu up-type ~ cc)
+sherpalist = {
+    'sh_ee_dd_ecm91p2':['Z/Gamma* ecm=91.188GeV to dd (Sherpa 3.0)','','','6655.04','1.0','1.0'],
+    'sh_ee_uu_ecm91p2':['Z/Gamma* ecm=91.188GeV to uu (Sherpa 3.0)','','','5215.46','1.0','1.0'],
+    'sh_ee_ss_ecm91p2':['Z/Gamma* ecm=91.188GeV to ss (Sherpa 3.0)','','','5215.46','1.0','1.0'],
+    'sh_ee_cc_ecm91p2':['Z/Gamma* ecm=91.188GeV to cc (Sherpa 3.0)','','','5215.46','1.0','1.0'],
+    'sh_ee_bb_ecm91p2':['Z/Gamma* ecm=91.188GeV to bb (Sherpa 3.0)','','','6645.46','1.0','1.0'],
+}
 
 ##Gridpack list
 ##     0          1            2                 3           4           5
@@ -1343,7 +1380,9 @@ gridpacklist = {
     'wzp6_ee_munumuqq_noCut_ecm157':['ee -> mu numu q q,  ecm=157 GeV','test sample','','9.829e-01','1.0','1.0'],
     'wzp6_ee_munumuqq_noCut_ecm160':['ee -> mu numu q q,  ecm=160 GeV','test sample','','9.829e-01','1.0','1.0'],
     'wzp6_ee_munumuqq_noCut_ecm163':['ee -> mu numu q q,  ecm=163 GeV','test sample','','9.829e-01','1.0','1.0'],
-    
+    'wzp6_ee_munumuqq_noCut_ecm240':['ee -> mu numu q q,  ecm=240 GeV','test sample','','9.829e-01','1.0','1.0'],
+    'wzp6_ee_munumuqq_noCut_ecm365':['ee -> mu numu q q,  ecm=365 GeV','test sample','','9.829e-01','1.0','1.0'],
+
     'wzp6_ee_mumuqq_noCut_ecm157':['ee -> mu mu q q,  ecm=157 GeV','test sample','','9.829e-01','1.0','1.0'],
     'wzp6_ee_mumuqq_noCut_ecm160':['ee -> mu mu q q,  ecm=160 GeV','test sample','','9.829e-01','1.0','1.0'],
     'wzp6_ee_mumuqq_noCut_ecm163':['ee -> mu mu q q,  ecm=163 GeV','test sample','','9.829e-01','1.0','1.0'],
@@ -1385,5 +1424,26 @@ gridpacklist = {
     'wzp6_ee_munumuqq_Vcs_ecm163':['ee -> mu numu q q,  ecm=163 GeV','W(munu)W(qq), Vcs', '','1.0','1.0','1.0'],
     'wzp6_ee_munumuqq_Vub_ecm163':['ee -> mu numu q q,  ecm=163 GeV','W(munu)W(qq), Vub', '','1.0','1.0','1.0'],
     'wzp6_ee_munumuqq_Vud_ecm163':['ee -> mu numu q q,  ecm=163 GeV','W(munu)W(qq), Vud', '','1.0','1.0','1.0'],
-    'wzp6_ee_munumuqq_Vus_ecm163':['ee -> mu numu q q,  ecm=163 GeV','W(munu)W(qq), Vus', '','1.0','1.0','1.0'],       
+    'wzp6_ee_munumuqq_Vus_ecm163':['ee -> mu numu q q,  ecm=163 GeV','W(munu)W(qq), Vus', '','1.0','1.0','1.0'],
+
+    'wzp6_ee_munumuqq_Vcb_ecm157':['ee -> mu numu q q,  ecm=157 GeV','W(munu)W(qq), Vcb', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vcd_ecm157':['ee -> mu numu q q,  ecm=157 GeV','W(munu)W(qq), Vcd', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vcs_ecm157':['ee -> mu numu q q,  ecm=157 GeV','W(munu)W(qq), Vcs', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vub_ecm157':['ee -> mu numu q q,  ecm=157 GeV','W(munu)W(qq), Vub', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vud_ecm157':['ee -> mu numu q q,  ecm=157 GeV','W(munu)W(qq), Vud', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vus_ecm157':['ee -> mu numu q q,  ecm=157 GeV','W(munu)W(qq), Vus', '','1.0','1.0','1.0'],
+
+    'wzp6_ee_munumuqq_Vcb_ecm240':['ee -> mu numu q q,  ecm=240 GeV','W(munu)W(qq), Vcb', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vcd_ecm240':['ee -> mu numu q q,  ecm=240 GeV','W(munu)W(qq), Vcd', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vcs_ecm240':['ee -> mu numu q q,  ecm=240 GeV','W(munu)W(qq), Vcs', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vub_ecm240':['ee -> mu numu q q,  ecm=240 GeV','W(munu)W(qq), Vub', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vud_ecm240':['ee -> mu numu q q,  ecm=240 GeV','W(munu)W(qq), Vud', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vus_ecm240':['ee -> mu numu q q,  ecm=240 GeV','W(munu)W(qq), Vus', '','1.0','1.0','1.0'],
+
+    'wzp6_ee_munumuqq_Vcb_ecm365':['ee -> mu numu q q,  ecm=365 GeV','W(munu)W(qq), Vcb', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vcd_ecm365':['ee -> mu numu q q,  ecm=365 GeV','W(munu)W(qq), Vcd', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vcs_ecm365':['ee -> mu numu q q,  ecm=365 GeV','W(munu)W(qq), Vcs', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vub_ecm365':['ee -> mu numu q q,  ecm=365 GeV','W(munu)W(qq), Vub', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vud_ecm365':['ee -> mu numu q q,  ecm=365 GeV','W(munu)W(qq), Vud', '','1.0','1.0','1.0'],
+    'wzp6_ee_munumuqq_Vus_ecm365':['ee -> mu numu q q,  ecm=365 GeV','W(munu)W(qq), Vus', '','1.0','1.0','1.0'],
 }

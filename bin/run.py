@@ -30,7 +30,7 @@ def main():
     jobTypeGroup.add_argument("--sample", action='store_true', help="make the proc dict" )
 
     sendjobGroup = parser.add_argument_group('type of jobs to send')
-    sendjobGroup.add_argument('--type', type=str, required = '--send' in sys.argv and '--reco'  in sys.argv , help='type of jobs to send', choices = ['lhep8','p8','stdhep'])
+    sendjobGroup.add_argument('--type', type=str, required = '--send' in sys.argv and '--reco'  in sys.argv , help='type of jobs to send', choices = ['lhep8','p8','stdhep','herwig','sherpa'])
     sendjobGroup.add_argument('--typelhe', type=str, required = '--send' in sys.argv and '--LHE'  in sys.argv , help='type of jobs to send', choices = ['gp_mg','gp_pw','mg','kkmc'])
     sendjobGroup.add_argument('--typestdhep', type=str, required = '--send' in sys.argv and '--STDHEP'  in sys.argv , help='type of jobs to send', choices = ['wzp6'])
 
@@ -123,6 +123,12 @@ def main():
             if key[0:5]=='kkmc_': newkey='kkmcp8_'+key[5:]
             for v in value:
                 processlist.append("%s_%s"%(newkey,v))
+    if (args.reco and args.type=="herwig") or args.check or args.checkeos or args.clean or args.cleanold or args.merge or args.remove:
+        for key, value in para.herwiglist.items():
+            processlist.append(key)
+    if (args.reco and args.type=="sherpa") or args.check or args.checkeos or args.clean or args.cleanold or args.merge or args.remove:
+        for key, value in para.sherpalist.items():
+            processlist.append(key)
     if args.LHE or args.STDHEP or args.check or args.checkeos or args.clean or args.merge or args.reco:
         for key, value in para.gridpacklist.items():
             processlist.append(key)
@@ -307,6 +313,16 @@ def main():
                 import EventProducer.bin.send_fromstdhep as sstdhep
                 sendstdhep = sstdhep.send_fromstdhep(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, detector, args.decay)
                 sendstdhep.send(args.force)
+            elif sendOpt == 'herwig':
+                print('preparing to send FCCSW jobs from Herwig (HepMC2) directly')
+                import EventProducer.bin.send_herwig as sherwig
+                sendherwig = sherwig.send_herwig(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, training, detector, args.customEDM4HEPOutput)
+                sendherwig.send()
+            elif sendOpt == 'sherpa':
+                print('preparing to send FCCSW jobs from Sherpa (HepMC3) directly')
+                import EventProducer.bin.send_sherpa as ssherpa
+                sendsherpa = ssherpa.send_sherpa(args.numJobs,args.numEvents, args.process, args.lsf, args.condor, args.local, args.queue, args.priority, args.ncpus, para, version, training, detector, args.customEDM4HEPOutput)
+                sendsherpa.send()
 
     elif args.web:
         import EventProducer.common.printer as prt
