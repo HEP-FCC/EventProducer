@@ -1446,4 +1446,35 @@ gridpacklist = {
     'wzp6_ee_munumuqq_Vub_ecm365':['ee -> mu numu q q,  ecm=365 GeV','W(munu)W(qq), Vub', '','1.0','1.0','1.0'],
     'wzp6_ee_munumuqq_Vud_ecm365':['ee -> mu numu q q,  ecm=365 GeV','W(munu)W(qq), Vud', '','1.0','1.0','1.0'],
     'wzp6_ee_munumuqq_Vus_ecm365':['ee -> mu numu q q,  ecm=365 GeV','W(munu)W(qq), Vus', '','1.0','1.0','1.0'],
+
+    # ee -> qqbar via gamma*/Z*, split by flavour, with |p(qq)| cut (40/80/150 GeV at low/240/365)
+    'wzp6_ee_uu_pqqmin40_ecm157':['ee -> u ubar (gamma*/Z*), |p(qq)|>40, ecm=157 GeV','split-flavour qq','','2.047e+01','1.0','1.0'],
+    'wzp6_ee_uu_pqqmin40_ecm160':['ee -> u ubar (gamma*/Z*), |p(qq)|>40, ecm=160 GeV','split-flavour qq','','1.952e+01','1.0','1.0'],
+    'wzp6_ee_uu_pqqmin40_ecm163':['ee -> u ubar (gamma*/Z*), |p(qq)|>40, ecm=163 GeV','split-flavour qq','','1.870e+01','1.0','1.0'],
+    'wzp6_ee_uu_pqqmin80_ecm240':['ee -> u ubar (gamma*/Z*), |p(qq)|>80, ecm=240 GeV','split-flavour qq','','7.150e+00','1.0','1.0'],
+    'wzp6_ee_uu_pqqmin150_ecm365':['ee -> u ubar (gamma*/Z*), |p(qq)|>150, ecm=365 GeV','split-flavour qq','','2.860e+00','1.0','1.0'],
+
+    'wzp6_ee_dd_pqqmin40_ecm157':['ee -> d dbar (gamma*/Z*), |p(qq)|>40, ecm=157 GeV','split-flavour qq','','2.325e+01','1.0','1.0'],
+    'wzp6_ee_dd_pqqmin40_ecm160':['ee -> d dbar (gamma*/Z*), |p(qq)|>40, ecm=160 GeV','split-flavour qq','','2.252e+01','1.0','1.0'],
+    'wzp6_ee_dd_pqqmin40_ecm163':['ee -> d dbar (gamma*/Z*), |p(qq)|>40, ecm=163 GeV','split-flavour qq','','2.092e+01','1.0','1.0'],
+    'wzp6_ee_dd_pqqmin80_ecm240':['ee -> d dbar (gamma*/Z*), |p(qq)|>80, ecm=240 GeV','split-flavour qq','','7.930e+00','1.0','1.0'],
+    'wzp6_ee_dd_pqqmin150_ecm365':['ee -> d dbar (gamma*/Z*), |p(qq)|>150, ecm=365 GeV','split-flavour qq','','3.160e+00','1.0','1.0'],
+
+    'wzp6_ee_ss_pqqmin40_ecm157':['ee -> s sbar (gamma*/Z*), |p(qq)|>40, ecm=157 GeV','split-flavour qq','','2.366e+01','1.0','1.0'],
+    'wzp6_ee_ss_pqqmin40_ecm160':['ee -> s sbar (gamma*/Z*), |p(qq)|>40, ecm=160 GeV','split-flavour qq','','2.212e+01','1.0','1.0'],
+    'wzp6_ee_ss_pqqmin40_ecm163':['ee -> s sbar (gamma*/Z*), |p(qq)|>40, ecm=163 GeV','split-flavour qq','','2.097e+01','1.0','1.0'],
+    'wzp6_ee_ss_pqqmin80_ecm240':['ee -> s sbar (gamma*/Z*), |p(qq)|>80, ecm=240 GeV','split-flavour qq','','7.730e+00','1.0','1.0'],
+    'wzp6_ee_ss_pqqmin150_ecm365':['ee -> s sbar (gamma*/Z*), |p(qq)|>150, ecm=365 GeV','split-flavour qq','','3.080e+00','1.0','1.0'],
+
+    'wzp6_ee_cc_pqqmin40_ecm157':['ee -> c cbar (gamma*/Z*), |p(qq)|>40, ecm=157 GeV','split-flavour qq','','1.952e+01','1.0','1.0'],
+    'wzp6_ee_cc_pqqmin40_ecm160':['ee -> c cbar (gamma*/Z*), |p(qq)|>40, ecm=160 GeV','split-flavour qq','','1.872e+01','1.0','1.0'],
+    'wzp6_ee_cc_pqqmin40_ecm163':['ee -> c cbar (gamma*/Z*), |p(qq)|>40, ecm=163 GeV','split-flavour qq','','1.794e+01','1.0','1.0'],
+    'wzp6_ee_cc_pqqmin80_ecm240':['ee -> c cbar (gamma*/Z*), |p(qq)|>80, ecm=240 GeV','split-flavour qq','','6.780e+00','1.0','1.0'],
+    'wzp6_ee_cc_pqqmin150_ecm365':['ee -> c cbar (gamma*/Z*), |p(qq)|>150, ecm=365 GeV','split-flavour qq','','2.690e+00','1.0','1.0'],
+
+    'wzp6_ee_bb_pqqmin40_ecm157':['ee -> b bbar (gamma*/Z*), |p(qq)|>40, ecm=157 GeV','split-flavour qq','','2.230e+01','1.0','1.0'],
+    'wzp6_ee_bb_pqqmin40_ecm160':['ee -> b bbar (gamma*/Z*), |p(qq)|>40, ecm=160 GeV','split-flavour qq','','2.130e+01','1.0','1.0'],
+    'wzp6_ee_bb_pqqmin40_ecm163':['ee -> b bbar (gamma*/Z*), |p(qq)|>40, ecm=163 GeV','split-flavour qq','','2.032e+01','1.0','1.0'],
+    'wzp6_ee_bb_pqqmin80_ecm240':['ee -> b bbar (gamma*/Z*), |p(qq)|>80, ecm=240 GeV','split-flavour qq','','7.480e+00','1.0','1.0'],
+    'wzp6_ee_bb_pqqmin150_ecm365':['ee -> b bbar (gamma*/Z*), |p(qq)|>150, ecm=365 GeV','split-flavour qq','','2.950e+00','1.0','1.0'],
 }
