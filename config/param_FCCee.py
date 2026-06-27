@@ -116,6 +116,9 @@ pythialist = {
     'p8_ee_ss_ecm91p2_cylinder':['Z/Gamma* ecm=91.188GeV to ss','cylinder long-lived convention','','5215.46','1.0','1.0'],
     'p8_ee_cc_ecm91p2_cylinder':['Z/Gamma* ecm=91.188GeV to cc','cylinder long-lived convention','','5215.46','1.0','1.0'],
     'p8_ee_bb_ecm91p2_cylinder':['Z/Gamma* ecm=91.188GeV to bb','cylinder long-lived convention','','6645.46','1.0','1.0'],
+    # inclusive hadronic Z decays (all quark flavours d,u,s,c,b in one sample)
+    'p8_ee_qq_ecm91p2':['Z/Gamma* ecm=91.188GeV to qq (inclusive d,u,s,c,b)','inclusive hadronic','','28946.88','1.0','1.0'],
+    'p8_ee_qq_ecm91p2_cylinder':['Z/Gamma* ecm=91.188GeV to qq (inclusive d,u,s,c,b)','inclusive hadronic, cylinder long-lived','','28946.88','1.0','1.0'],
 
     'p8_ee_ZH_Znunu_Hgg_ecm240':['ZH ecm=240GeV','Z->nunu, H->gg','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
     'p8_ee_ZH_Znunu_Hbb_ecm240':['ZH ecm=240GeV','Z->nunu, H->bb','','0.201868','1.0','1.0'],             #    Pythia 8.303, noBES (Used 0.201037 before)
@@ -533,6 +536,7 @@ herwiglist = {
     'hw_ee_ss_ecm91p2':['Z/Gamma* ecm=91.188GeV to ss (Herwig 7.3)','','','5215.46','1.0','1.0'],
     'hw_ee_cc_ecm91p2':['Z/Gamma* ecm=91.188GeV to cc (Herwig 7.3)','','','5215.46','1.0','1.0'],
     'hw_ee_bb_ecm91p2':['Z/Gamma* ecm=91.188GeV to bb (Herwig 7.3)','','','6645.46','1.0','1.0'],
+    'hw_ee_qq_ecm91p2':['Z/Gamma* ecm=91.188GeV to qq (Herwig 7.3, inclusive d,u,s,c,b)','inclusive hadronic','','28946.88','1.0','1.0'],
 }
 
 # list of processes generated with Sherpa directly (Sherpa -> HepMC3 -> Delphes EDM4hep, single job)
@@ -543,6 +547,7 @@ sherpalist = {
     'sh_ee_ss_ecm91p2':['Z/Gamma* ecm=91.188GeV to ss (Sherpa 3.0)','','','5215.46','1.0','1.0'],
     'sh_ee_cc_ecm91p2':['Z/Gamma* ecm=91.188GeV to cc (Sherpa 3.0)','','','5215.46','1.0','1.0'],
     'sh_ee_bb_ecm91p2':['Z/Gamma* ecm=91.188GeV to bb (Sherpa 3.0)','','','6645.46','1.0','1.0'],
+    'sh_ee_qq_ecm91p2':['Z/Gamma* ecm=91.188GeV to qq (Sherpa 3.0, inclusive d,u,s,c,b)','inclusive hadronic','','28946.88','1.0','1.0'],
 }
 
 ##Gridpack list
