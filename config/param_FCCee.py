@@ -1265,7 +1265,7 @@ gridpacklist = {
     'wzp6_ee_qq_ecm355':['ee -> qq, ecm=355GeV','','','24.109','1.0','1.0'],
     'wzp6_ee_qq_ecm365':['ee -> qq, ecm=365GeV','','','22.7986','1.0','1.0'],
 
-    'wzp6_ee_qq_ecm240':['ee -> qq, ecm=240GeV','','','22.7986','1.0','1.0'],
+    'wzp6_ee_qq_ecm240':['ee -> qq, ecm=240GeV','','','54.9665','1.0','1.0'],
 
     'wzp6_ee_qq_PSup_ecm340':['ee -> qq, ecm=340GeV (PS variation up)','','','26.317','1.0','1.0'],
     'wzp6_ee_qq_PSup_ecm345':['ee -> qq, ecm=345GeV (PS variation up)','','','25.567','1.0','1.0'],
