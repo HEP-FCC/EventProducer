@@ -1025,6 +1025,8 @@ gridpacklist = {
 
 
     'wzp6_ee_anunuH_ecm160':['ee -> nunuH + photon, ecm=160GeV','','','6.10e-08','1.0','1.0'],
+    'wzp6_ee_anunuH_ecm240':['ee -> nunuH + photon, ecm=240GeV','','','3.97e-04','1.0','1.0'],
+    'wzp6_ee_anunuH_ecm365':['ee -> nunuH + photon, ecm=365GeV','','','2.69e-03','1.0','1.0'],
    
     'wzp6_ee_anunuH_Hbb_ecm160':['ee -> nunuH + photon, ecm=160GeV','H->bb','','3.534e-08','1.0','1.0'],
     'wzp6_ee_anunuH_Hbb_ecm240':['ee -> nunuH + photon, ecm=160GeV','H->bb','','2.227e-04','1.0','1.0'],
