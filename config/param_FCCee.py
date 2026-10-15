@@ -435,6 +435,12 @@ pythialist = {
     'p8_ee_Zbb_ecm91_EvtGen_Bc2DsNuNuDs2phirho':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Bc2DsNuNu_Ds2phirho','','1.0','1.0','1.0'],
 
     'p8_ee_Zbb_ecm91_EvtGen_Lb2LcTauNu'  :['Z/Gamma* ecm=91.188GeV to bb','Lb2DsTauNu','','8.040342054','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcENuLc2pKpi':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Lb -> Lc e nu, Lc -> p K pi','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcMuNuLc2pKpi':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Lb -> Lc mu nu, Lc -> p K pi','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstENuLc2pKpi':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Lb -> Lc(2593)/Lc(2625) e nu, Lc -> p K pi','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstMuNuLc2pKpi':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Lb -> Lc(2593)/Lc(2625) mu nu, Lc -> p K pi','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcXENuInclusive':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Lb -> Lc(X) e nu inclusive','','1','1.0','1.0'],
+    'p8_ee_Zbb_ecm91_EvtGen_Lb2LcXMuNuInclusive':['Z/Gamma* ecm=91.188GeV to bb','EvtGen Lb -> Lc(X) mu nu inclusive','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstTauNu':['Z/Gamma* ecm=91.188GeV to bb','Lb2DsstTauNu','','8.040342054','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Lb2LcMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
     'p8_ee_Zbb_ecm91_EvtGen_Lb2LcstMuNu':['Z/Gamma* ecm=91.188GeV to bb','EvtGen to be filled','','1','1.0','1.0'],
