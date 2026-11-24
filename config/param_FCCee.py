@@ -562,7 +562,9 @@ gridpacklist = {
     'mg_ee_ha_ecm160':['H+gamma','to do','','1.89e-05','1.0','1.0'],
     'mg_ee_ha_ecm240':['H+gamma','to do','','8.39e-05','1.0','1.0'],
     'mg_ee_ha_ecm365':['H+gamma','to do','','3.66e-05','1.0','1.0'],
-    'mg_ee_wbwb_ecm365':['ee->tt->WbWb (MG5 dim6top, ISR fcce365ll)','inclusive W decays','','0.3192','1.0','1.0'],
+    'mg_ee_wbwb_ecm365':['ee->tt->WbWb, tt only (MG5 dim6top SM, ISR fcce365ll)','inclusive W decays','','0.3192','1.0','1.0'],
+    'mg_ee_wbwb_ecm345':['ee->WbWb full (MG5 dim6top SM, ISR fcce365ll)','inclusive W decays','','0.07163','1.0','1.0'],
+    'mg_ee_wbwb_ecm340':['ee->WbWb full (MG5 dim6top SM, ISR fcce365ll)','inclusive W decays','','0.01938','1.0','1.0'],
 
     'mg_ee_tt_ecm350':['tt','tt inclusive','','1.0','1.0','1.0'],
     'mg_ee_tt_FCNC_tH_ecm365':['tt','tt inclusive','','1.0','1.0','1.0'],
